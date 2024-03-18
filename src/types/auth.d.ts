@@ -10,7 +10,7 @@ declare global {
 		password: string
 	}
 
-	interface RegisterCredentials extends RegisterCredentialsToSend{
+	interface RegisterCredentials extends RegisterCredentialsToSend {
 		passwordConfirmation: string
 	}
 }

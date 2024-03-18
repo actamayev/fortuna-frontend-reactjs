@@ -1,5 +1,5 @@
-import { useState } from "react"
 import { observer } from "mobx-react"
+import { useCallback, useState } from "react"
 import Button from "../../components/button"
 import useLoginSubmit from "../../hooks/auth/login-submit"
 import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
@@ -21,10 +21,10 @@ function Login() {
 	const [loading, setLoading] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
 
-	const isShowPassword = () => {
+	const isShowPassword = useCallback(() => {
 		if (showPassword) return "text"
 		return "password"
-	}
+	}, [showPassword])
 
 	const loginSubmit = useLoginSubmit(loginInformation, setError, setLoading)
 

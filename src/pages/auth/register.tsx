@@ -1,5 +1,5 @@
-import { useCallback, useState } from "react"
 import { observer } from "mobx-react"
+import { useCallback, useState } from "react"
 import Button from "../../components/button"
 import useRegisterSubmit from "../../hooks/auth/register-submit"
 import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
