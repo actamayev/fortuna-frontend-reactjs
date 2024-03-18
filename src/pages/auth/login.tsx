@@ -1,13 +1,13 @@
 import { useState } from "react"
 import { observer } from "mobx-react"
-import Button from "../components/button"
-import useLoginSubmit from "../hooks/auth/login-submit"
-import useRedirectKnownUser from "../hooks/redirects/redirect-known-user"
-import AuthTemplate from "../components/login-and-registration-form/auth-template"
-import ErrorMessage from "../components/login-and-registration-form/error-message"
-import ContactInput from "../components/login-and-registration-form/contact-input"
-import PasswordInput from "../components/login-and-registration-form/password-input"
-import ShowOrHidePasswordButton from "../components/login-and-registration-form/show-or-hide-password-button"
+import Button from "../../components/button"
+import useLoginSubmit from "../../hooks/auth/login-submit"
+import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
+import AuthTemplate from "../../components/login-and-registration-form/auth-template"
+import ErrorMessage from "../../components/login-and-registration-form/error-message"
+import LoginContactInput from "../../components/login-and-registration-form/login-contact-input"
+import PasswordInput from "../../components/login-and-registration-form/password-input"
+import ShowOrHidePasswordButton from "../../components/login-and-registration-form/show-or-hide-password-button"
 
 function Login() {
 	useRedirectKnownUser()
@@ -36,9 +36,9 @@ function Login() {
 	return (
 		<AuthTemplate title="Login">
 			<form onSubmit={loginSubmit}>
-				<ContactInput
+				<LoginContactInput
 					credentials={loginInformation}
-					setCredentials={createSetCredentialsFunction(setLoginInformation)}
+					setCredentials={setLoginInformation}
 				/>
 
 				<PasswordInput

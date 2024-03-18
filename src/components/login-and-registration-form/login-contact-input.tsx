@@ -1,11 +1,11 @@
 import FormGroup from "../form-group"
 
 interface Props {
-	credentials: LoginCredentials | RegisterCredentials
-    setCredentials: (newCredentials: Partial<LoginCredentials | RegisterCredentials>) => void
+	credentials: LoginCredentials
+    setCredentials: (newCredentials: LoginCredentials) => void
 }
 
-export default function ContactInput (props: Props) {
+export default function LoginContactInput (props: Props) {
 	const { credentials, setCredentials } = props
 
 	return (

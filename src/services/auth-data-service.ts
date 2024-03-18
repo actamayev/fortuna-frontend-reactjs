@@ -15,7 +15,7 @@ export default class AuthDataService {
 		return await this.httpClient.http.post<SuccessResponse | ErrorResponse>("/auth/logout")
 	}
 
-	async register(registerInformation: RegisterCredentials): Promise<AxiosResponse<AuthSuccess | NonSuccessResponse>> {
+	async register(registerInformation: RegisterCredentialsToSend): Promise<AxiosResponse<AuthSuccess | NonSuccessResponse>> {
 		return await this.httpClient.http.post<AuthSuccess | NonSuccessResponse>(
 			"/auth/register", { registerInformation }, { headers: { "No-Auth-Required": "true" }}
 		)

@@ -9,6 +9,6 @@ export default function useRedirectKnownUser (): void  {
 
 	useEffect(() => {
 		if (_.isNil(authClass.accessToken)) return
-		navigate("/events-dashboard")
+		navigate("/dashboard")
 	}, [authClass.accessToken, navigate])
 }
