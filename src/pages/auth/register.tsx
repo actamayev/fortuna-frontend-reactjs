@@ -8,6 +8,7 @@ import ErrorMessage from "../../components/login-and-registration-form/error-mes
 import PasswordInput from "../../components/login-and-registration-form/password-input"
 import UsernameInput from "../../components/login-and-registration-form/username-input"
 import ConfirmPassword from "../../components/login-and-registration-form/confirm-password"
+import SubRegisterInfo from "../../components/login-and-registration-form/sub-register-info"
 import RegisterContactInput from "../../components/login-and-registration-form/register-contact-input"
 import ShowOrHidePasswordButton from "../../components/login-and-registration-form/show-or-hide-password-button"
 
@@ -77,6 +78,7 @@ function Register() {
 					title = "Register"
 				/>
 			</form>
+			<SubRegisterInfo />
 		</AuthTemplate>
 	)
 }

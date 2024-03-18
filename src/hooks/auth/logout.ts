@@ -11,6 +11,7 @@ export default function useLogout(): () => void {
 		authClass.logout()
 		eventfullApiClient.logout()
 		personalInfoClass?.logout()
+		sessionStorage.clear()
 	}
 
 	return logout

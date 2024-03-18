@@ -15,7 +15,7 @@ function Dashboard() {
 			console.log("here")
 			await apiClient.authDataService.logout()
 			logout()
-			navigate("/")
+			navigate("/login")
 		} catch (error) {
 			console.error(error)
 		}

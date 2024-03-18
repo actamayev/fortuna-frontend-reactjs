@@ -5,8 +5,9 @@ import useLoginSubmit from "../../hooks/auth/login-submit"
 import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
 import AuthTemplate from "../../components/login-and-registration-form/auth-template"
 import ErrorMessage from "../../components/login-and-registration-form/error-message"
-import LoginContactInput from "../../components/login-and-registration-form/login-contact-input"
+import SubLoginInfo from "../../components/login-and-registration-form/sub-login-info"
 import PasswordInput from "../../components/login-and-registration-form/password-input"
+import LoginContactInput from "../../components/login-and-registration-form/login-contact-input"
 import ShowOrHidePasswordButton from "../../components/login-and-registration-form/show-or-hide-password-button"
 
 function Login() {
@@ -62,6 +63,7 @@ function Login() {
 					title = "Login"
 				/>
 			</form>
+			<SubLoginInfo />
 		</AuthTemplate>
 	)
 }
