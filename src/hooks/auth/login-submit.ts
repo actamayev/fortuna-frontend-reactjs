@@ -1,10 +1,10 @@
 import _ from "lodash"
 import { useNavigate } from "react-router-dom"
-import { useAuthContext } from "../../contexts/auth-context"
 import { isNonSuccessResponse } from "../../utils/type-checks"
 import confirmLoginFields from "../../utils/auth/confirm-login-fields"
 import { useApiClientContext } from "../../contexts/fiftyone-api-client-context"
 import setErrorAxiosResponse from "../../utils/error-handling/set-error-axios-response"
+import useSetDataAfterLoginOrRegister from "./set-data-after-login-or-register"
 
 export default function useLoginSubmit (
 	loginInformation: LoginCredentials,
@@ -13,8 +13,8 @@ export default function useLoginSubmit (
 ): (
 	e: React.FormEvent<HTMLFormElement>,
 ) => Promise<void> {
-	const authClass = useAuthContext()
 	const fiftyoneApiClient = useApiClientContext()
+	const setDataAfterLogin = useSetDataAfterLoginOrRegister()
 	const navigate = useNavigate()
 
 	const loginSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
@@ -30,7 +30,7 @@ export default function useLoginSubmit (
 				setError("Unable to login. Please reload and try again.")
 				return
 			}
-			authClass.setAccessToken(response.data.accessToken)
+			setDataAfterLogin(response.data.accessToken)
 			navigate("/dashboard")
 		} catch (error: unknown) {
 			setErrorAxiosResponse(error, setError, "Unable to login")
