@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom"
 import { disableReactDevTools } from "@fvilers/disable-react-devtools"
 import App from "./App"
 import "../src/styles/index.css"
+import ContextLevelComponent from "./context-level-component"
 
 if (process.env.NODE_ENV === "production") disableReactDevTools()
 
@@ -13,8 +14,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
 	<React.StrictMode>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
+		<ContextLevelComponent>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+		</ContextLevelComponent>
 	</React.StrictMode>
 )
