@@ -1,5 +1,5 @@
 import _ from "lodash"
-import { makeAutoObservable, runInAction } from "mobx"
+import { makeAutoObservable } from "mobx"
 import { createContext, useContext, useMemo } from "react"
 
 class AuthClass {
@@ -19,9 +19,7 @@ class AuthClass {
 
 	public getAuthDataFromStorage(): void {
 		const storedAccessToken = sessionStorage.getItem("Access Token")
-		runInAction(() => {
-			if (!_.isUndefined(storedAccessToken)) this.accessToken = storedAccessToken
-		})
+		if (!_.isUndefined(storedAccessToken)) this.accessToken = storedAccessToken
 	}
 
 	public setAccessToken(accessToken: string | null): void {

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import { observer } from "mobx-react"
 import Button from "../../components/button"
 import useRegisterSubmit from "../../hooks/auth/register-submit"
@@ -25,10 +25,10 @@ function Register() {
 	const [loading, setLoading] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
 
-	const isShowPassword = () => {
+	const isShowPassword = useCallback(() => {
 		if (showPassword) return "text"
 		return "password"
-	}
+	}, [showPassword])
 
 	const registerSubmit = useRegisterSubmit(registerInformation, setError, setLoading)
 

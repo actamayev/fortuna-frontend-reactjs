@@ -1,7 +1,8 @@
-import { createContext, useContext, useMemo } from "react"
 import { makeAutoObservable } from "mobx"
+import { createContext, useContext, useMemo } from "react"
 
 class PersonalInfoClass {
+	// TODO: Will need to assign the email/phonenumber/username in the future (via a retrievePersonalData hook)
 	private _username: string | null = null
 	private _email?: string | null = null
 	private _phoneNumber?: string | null = null

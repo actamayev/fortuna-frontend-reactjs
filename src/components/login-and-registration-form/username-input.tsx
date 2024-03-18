@@ -2,7 +2,7 @@ import FormGroup from "../form-group"
 
 interface Props {
 	credentials: RegisterCredentials
-    setCredentials: (newCredentials: RegisterCredentials) => void
+	setCredentials: (newCredentials: RegisterCredentials) => void
 }
 
 export default function UsernameInput (props: Props) {

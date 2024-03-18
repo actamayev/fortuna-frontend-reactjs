@@ -2,7 +2,7 @@ import FormGroup from "../form-group"
 
 interface Props {
 	credentials: LoginCredentials | RegisterCredentials
-    setCredentials: (newCredentials: Partial<LoginCredentials | RegisterCredentials>) => void
+	setCredentials: (newCredentials: Partial<LoginCredentials | RegisterCredentials>) => void
 	showPassword: "text" | "password"
 }
 

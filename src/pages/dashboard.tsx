@@ -10,9 +10,8 @@ function Dashboard() {
 	const apiClient = useApiClientContext()
 	const logout = useLogout()
 
-	const handleLogout = useCallback(async() => {
+	const handleLogout = useCallback(async () => {
 		try {
-			console.log("here")
 			await apiClient.authDataService.logout()
 			logout()
 			navigate("/login")

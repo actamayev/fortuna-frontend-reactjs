@@ -2,7 +2,7 @@ import FormGroup from "../form-group"
 
 interface Props {
 	credentials: LoginCredentials
-    setCredentials: (newCredentials: LoginCredentials) => void
+	setCredentials: (newCredentials: LoginCredentials) => void
 }
 
 export default function LoginContactInput (props: Props) {

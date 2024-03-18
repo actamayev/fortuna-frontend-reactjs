@@ -2,9 +2,10 @@ import _ from "lodash"
 import { useNavigate } from "react-router-dom"
 import { isNonSuccessResponse } from "../../utils/type-checks"
 import confirmLoginFields from "../../utils/auth/confirm-login-fields"
+import useSetDataAfterLoginOrRegister from "./set-data-after-login-or-register"
 import { useApiClientContext } from "../../contexts/fiftyone-api-client-context"
 import setErrorAxiosResponse from "../../utils/error-handling/set-error-axios-response"
-import useSetDataAfterLoginOrRegister from "./set-data-after-login-or-register"
+import { useCallback } from "react"
 
 export default function useLoginSubmit (
 	loginInformation: LoginCredentials,
@@ -17,7 +18,7 @@ export default function useLoginSubmit (
 	const setDataAfterLogin = useSetDataAfterLoginOrRegister()
 	const navigate = useNavigate()
 
-	const loginSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+	const loginSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
 		e.preventDefault()
 		setError("")
 		try {
@@ -37,7 +38,7 @@ export default function useLoginSubmit (
 		} finally {
 			setLoading(false)
 		}
-	}
+	}, [fiftyoneApiClient.authDataService, loginInformation, navigate, setDataAfterLogin, setError, setLoading])
 
 	return loginSubmit
 }

@@ -1,3 +1,4 @@
+import { useCallback } from "react"
 import Button from "../button"
 
 interface Props {
@@ -8,10 +9,10 @@ interface Props {
 export default function ShowOrHidePasswordButton (props: Props) {
 	const { showPassword, setShowPassword } = props
 
-	const hideOrShowPassword = () => {
+	const hideOrShowPassword = useCallback(() => {
 		if (showPassword) return "Hide Password"
 		return "Show Password"
-	}
+	}, [showPassword])
 
 	return (
 		<Button

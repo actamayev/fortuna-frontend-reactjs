@@ -1,4 +1,5 @@
 import _ from "lodash"
+import { useCallback } from "react"
 import { useNavigate } from "react-router-dom"
 import { isNonSuccessResponse } from "../../utils/type-checks"
 import confirmRegisterFields from "../../utils/auth/confirm-register-fields"
@@ -17,7 +18,7 @@ export default function useRegisterSubmit (
 	const navigate = useNavigate()
 	const setDataAfterRegister = useSetDataAfterLoginOrRegister()
 
-	const loginSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+	const loginSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
 		e.preventDefault()
 		setError("")
 		try {
@@ -30,17 +31,17 @@ export default function useRegisterSubmit (
 
 			const response = await fiftyoneApiClient.authDataService.register(restOfCredentials)
 			if (!_.isEqual(response.status, 200) || isNonSuccessResponse(response.data)) {
-				setError("Unable to login. Please reload and try again.")
+				setError("Unable to register. Please reload and try again.")
 				return
 			}
 			setDataAfterRegister(response.data.accessToken)
 			navigate("/dashboard")
 		} catch (error: unknown) {
-			setErrorAxiosResponse(error, setError, "Unable to login")
+			setErrorAxiosResponse(error, setError, "Unable to Register")
 		} finally {
 			setLoading(false)
 		}
-	}
+	}, [fiftyoneApiClient.authDataService, navigate, registerCredentials, setDataAfterRegister, setError, setLoading])
 
 	return loginSubmit
 }
