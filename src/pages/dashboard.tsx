@@ -3,7 +3,7 @@ import { observer } from "mobx-react"
 import { useNavigate } from "react-router-dom"
 import Button from "../components/button"
 import useLogout from "../hooks/auth/logout"
-import { useApiClientContext } from "../contexts/fiftyone-api-client-context"
+import { useApiClientContext } from "../contexts/fortuna-api-client-context"
 
 function Dashboard() {
 	const navigate = useNavigate()
