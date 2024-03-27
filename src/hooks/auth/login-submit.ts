@@ -1,11 +1,11 @@
 import _ from "lodash"
+import { useCallback } from "react"
 import { useNavigate } from "react-router-dom"
 import { isNonSuccessResponse } from "../../utils/type-checks"
 import confirmLoginFields from "../../utils/auth/confirm-login-fields"
 import useSetDataAfterLoginOrRegister from "./set-data-after-login-or-register"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import setErrorAxiosResponse from "../../utils/error-handling/set-error-axios-response"
-import { useCallback } from "react"
 
 export default function useLoginSubmit (
 	whereToNavigate: string,

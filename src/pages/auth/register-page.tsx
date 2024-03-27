@@ -5,6 +5,6 @@ export default function RegisterPage() {
 	// useRedirectKnownUser()
 
 	return (
-		<Register whereToNavigate="/dashboard"/>
+		<Register whereToNavigate="/dashboard" defaultUserType="supporter"/>
 	)
 }

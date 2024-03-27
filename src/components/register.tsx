@@ -13,18 +13,19 @@ import ShowOrHidePasswordButton from "./login-and-registration-form/show-or-hide
 
 interface Props {
 	whereToNavigate: string
+	defaultUserType: UserTypes
 	setLoginOrRegister?: React.Dispatch<React.SetStateAction<LoginOrRegister>>
 }
 
 function Register(props: Props) {
-	const { whereToNavigate, setLoginOrRegister } = props
+	const { whereToNavigate, defaultUserType, setLoginOrRegister } = props
 	const [registerInformation, setRegisterInformation] =
 		useState<RegisterCredentials>({
 			contact: "",
 			username: "",
 			password: "",
 			passwordConfirmation: "",
-			defaultUserType: "creator"
+			defaultUserType: defaultUserType
 		})
 	const [error, setError] = useState("")
 	const [loading, setLoading] = useState(false)

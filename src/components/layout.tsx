@@ -2,12 +2,12 @@ import _ from "lodash"
 import { useState } from "react"
 import { observer } from "mobx-react"
 import { useLocation } from "react-router-dom"
-import VerticalNavBar from "./vertical-nav"
 import CustomLink, { TopNavLink } from "./custom-link"
 import { isErrorResponse } from "../utils/type-checks"
 import { useAuthContext } from "../contexts/auth-context"
 import { useApiClientContext } from "../contexts/fortuna-api-client-context"
 import { usePersonalInfoContext } from "../contexts/personal-info-context"
+import useLogout from "../hooks/auth/logout"
 
 interface Props {
 	children: React.ReactNode
@@ -20,16 +20,19 @@ export default function Layout (props: Props) {
 	const personalInfoClass = usePersonalInfoContext()
 	const [logoutDisabled, setLogoutDisabled] = useState(false)
 	const location = useLocation()
+	const logout = useLogout()
 
 	const handleLogout = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>): Promise<void> => {
 		try {
 			e.preventDefault()
 			setLogoutDisabled(true)
+			console.log(authClass.accessToken)
 			const response = await fortunaApiClient.authDataService.logout()
 			if (!_.isEqual(response.status, 200) || isErrorResponse(response.data)) {
 				throw new Error("Failed to logout")
 			}
-			fortunaApiClient.logout() // Automatically navigates to home page after logout (via the redirect unknown user hook)
+			fortunaApiClient.logout()
+			logout()
 		} catch (error) {
 			console.error(error)
 		} finally {
@@ -40,7 +43,7 @@ export default function Layout (props: Props) {
 	const LinkToHome = observer(() => {
 		return (
 			<CustomLink
-				href={!_.isNull(authClass.accessToken) ? "/events-dashboard" : "/"}
+				href="/"
 				title="Fortuna"
 				css = "text-gray-200 hover:text-white font-bold text-xl"
 			/>
@@ -65,14 +68,6 @@ export default function Layout (props: Props) {
 		)
 	})
 
-	const ShowVerticalNavBar = observer(() => {
-		if (
-			_.isNull(authClass.accessToken) ||
-			_.isNil(personalInfoClass?.username)
-		) return null
-		return <VerticalNavBar />
-	})
-
 	return (
 		<div>
 			<nav className="bg-black">
@@ -86,7 +81,6 @@ export default function Layout (props: Props) {
 				</div>
 			</nav>
 			<div className="flex flex-row">
-				<ShowVerticalNavBar />
 				<div className="flex-1 w-full bg-white overflow-y-auto px-10 py-8">
 					{children}
 				</div>

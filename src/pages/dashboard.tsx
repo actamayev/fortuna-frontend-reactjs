@@ -7,18 +7,18 @@ import { useApiClientContext } from "../contexts/fortuna-api-client-context"
 
 function Dashboard() {
 	const navigate = useNavigate()
-	const apiClient = useApiClientContext()
+	const fortunaApiClient = useApiClientContext()
 	const logout = useLogout()
 
 	const handleLogout = useCallback(async () => {
 		try {
-			await apiClient.authDataService.logout()
+			await fortunaApiClient.authDataService.logout()
 			logout()
 			navigate("/login")
 		} catch (error) {
 			console.error(error)
 		}
-	}, [apiClient.authDataService, logout, navigate])
+	}, [fortunaApiClient.authDataService, logout, navigate])
 
 	return (
 		<div>
