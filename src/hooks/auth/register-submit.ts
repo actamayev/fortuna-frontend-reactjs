@@ -8,6 +8,7 @@ import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import setErrorAxiosResponse from "../../utils/error-handling/set-error-axios-response"
 
 export default function useRegisterSubmit (
+	whereToNavigate: string,
 	registerCredentials: RegisterCredentials,
 	setError: (error: string) => void,
 	setLoading: (loading: boolean) => void
@@ -35,7 +36,7 @@ export default function useRegisterSubmit (
 				return
 			}
 			setDataAfterRegister(response.data.accessToken)
-			navigate("/dashboard")
+			navigate(whereToNavigate)
 		} catch (error: unknown) {
 			setErrorAxiosResponse(error, setError, "Unable to Register")
 		} finally {

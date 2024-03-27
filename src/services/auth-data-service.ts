@@ -5,8 +5,8 @@ export default class AuthDataService {
 	constructor(private readonly httpClient: FortunaHttpClient) {
 	}
 
-	async login(loginInformation: LoginCredentials): Promise<AxiosResponse<AuthSuccess | NonSuccessResponse>> {
-		return await this.httpClient.http.post<AuthSuccess | NonSuccessResponse>(
+	async login(loginInformation: LoginCredentials): Promise<AxiosResponse<LoginSuccess | NonSuccessResponse>> {
+		return await this.httpClient.http.post<LoginSuccess | NonSuccessResponse>(
 			"/devnet/auth/login", { loginInformation }, { headers: { "No-Auth-Required": "true" }}
 		)
 	}
@@ -15,8 +15,8 @@ export default class AuthDataService {
 		return await this.httpClient.http.post<SuccessResponse | ErrorResponse>("/devnet/auth/logout")
 	}
 
-	async register(registerInformation: RegisterCredentialsToSend): Promise<AxiosResponse<AuthSuccess | NonSuccessResponse>> {
-		return await this.httpClient.http.post<AuthSuccess | NonSuccessResponse>(
+	async register(registerInformation: RegisterCredentialsToSend): Promise<AxiosResponse<RegisterSuccess | NonSuccessResponse>> {
+		return await this.httpClient.http.post<RegisterSuccess | NonSuccessResponse>(
 			"/devnet/auth/register", { registerInformation }, { headers: { "No-Auth-Required": "true" }}
 		)
 	}

@@ -1,11 +1,12 @@
 import _ from "lodash"
-import { observer } from "mobx-react"
 import { useState } from "react"
-import { isErrorResponse } from "../utils/type-checks"
+import { observer } from "mobx-react"
+import { useLocation } from "react-router-dom"
 import VerticalNavBar from "./vertical-nav"
 import CustomLink, { TopNavLink } from "./custom-link"
-import { useApiClientContext } from "../contexts/fortuna-api-client-context"
+import { isErrorResponse } from "../utils/type-checks"
 import { useAuthContext } from "../contexts/auth-context"
+import { useApiClientContext } from "../contexts/fortuna-api-client-context"
 import { usePersonalInfoContext } from "../contexts/personal-info-context"
 
 interface Props {
@@ -18,6 +19,7 @@ export default function Layout (props: Props) {
 	const authClass = useAuthContext()
 	const personalInfoClass = usePersonalInfoContext()
 	const [logoutDisabled, setLogoutDisabled] = useState(false)
+	const location = useLocation()
 
 	const handleLogout = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>): Promise<void> => {
 		try {
@@ -47,7 +49,11 @@ export default function Layout (props: Props) {
 
 	const LoginLogout = observer(() => {
 		if (_.isNull(authClass.accessToken)) {
-			return <TopNavLink href = "/" title = "Login"/>
+			if (location.pathname === "/login") {
+				return <TopNavLink href = "/register" title = "Register"/>
+			} else {
+				return <TopNavLink href = "/login" title = "Login"/>
+			}
 		}
 		return (
 			<TopNavLink

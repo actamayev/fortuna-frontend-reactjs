@@ -8,6 +8,7 @@ import setErrorAxiosResponse from "../../utils/error-handling/set-error-axios-re
 import { useCallback } from "react"
 
 export default function useLoginSubmit (
+	whereToNavigate: string,
 	loginInformation: LoginCredentials,
 	setError: (error: string) => void,
 	setLoading: (loading: boolean) => void
@@ -32,13 +33,13 @@ export default function useLoginSubmit (
 				return
 			}
 			setDataAfterLogin(response.data.accessToken)
-			navigate("/dashboard")
+			navigate(whereToNavigate)
 		} catch (error: unknown) {
 			setErrorAxiosResponse(error, setError, "Unable to login")
 		} finally {
 			setLoading(false)
 		}
-	}, [fortunaApiClient.authDataService, loginInformation, navigate, setDataAfterLogin, setError, setLoading])
+	}, [fortunaApiClient.authDataService, loginInformation, navigate, setDataAfterLogin, setError, setLoading, whereToNavigate])
 
 	return loginSubmit
 }

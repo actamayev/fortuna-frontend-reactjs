@@ -9,7 +9,8 @@ declare global {
 	type AllCommonResponses = SuccessResponse | NonSuccessResponse
 
 	//Auth Responses:
-	type AuthSuccess = { accessToken: string }
+	type RegisterSuccess = { accessToken: string }
+	type LoginSuccess = { accessToken: string, defaultUserType: UserTypes }
 }
 
 export {}

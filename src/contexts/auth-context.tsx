@@ -18,13 +18,13 @@ class AuthClass {
 	}
 
 	public getAuthDataFromStorage(): void {
-		const storedAccessToken = sessionStorage.getItem("Access Token")
+		const storedAccessToken = localStorage.getItem("Access Token")
 		if (!_.isUndefined(storedAccessToken)) this.accessToken = storedAccessToken
 	}
 
 	public setAccessToken(accessToken: string | null): void {
 		this.accessToken = accessToken
-		if (!_.isNull(accessToken)) sessionStorage.setItem("Access Token", accessToken as string)
+		if (!_.isNull(accessToken)) localStorage.setItem("Access Token", accessToken as string)
 	}
 
 	public logout() {

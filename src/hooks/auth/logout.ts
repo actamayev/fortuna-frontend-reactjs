@@ -12,7 +12,7 @@ export default function useLogout(): () => void {
 		personalInfoClass?.logout()
 		authClass.logout()
 		fortunaApiClient.logout()
-		sessionStorage.clear()
+		localStorage.clear()
 	}, [authClass, fortunaApiClient, personalInfoClass])
 
 	return logout

@@ -8,11 +8,14 @@ declare global {
 		contact: string
 		username: string
 		password: string
+		defaultUserType: UserTypes
 	}
 
 	interface RegisterCredentials extends RegisterCredentialsToSend {
 		passwordConfirmation: string
 	}
+
+	type LoginOrRegister = "Login" | "Register"
 }
 
 export {}
