@@ -1,14 +1,14 @@
 import { observer } from "mobx-react"
 import { useCallback, useState } from "react"
-import Button from "./button"
-import useLoginSubmit from "../hooks/auth/login-submit"
-import AuthTemplate from "./login-and-registration-form/auth-template"
-import ErrorMessage from "./login-and-registration-form/error-message"
-import SubLoginInfo from "./login-and-registration-form/sub-login-info"
-import PasswordInput from "./login-and-registration-form/password-input"
-import useRedirectKnownUser from "../hooks/redirects/redirect-known-user"
-import LoginContactInput from "./login-and-registration-form/login-contact-input"
-import ShowOrHidePasswordButton from "./login-and-registration-form/show-or-hide-password-button"
+import Button from "../button"
+import AuthTemplate from "./auth-template"
+import ErrorMessage from "./error-message"
+import SubLoginInfo from "./sub-login-info"
+import PasswordInput from "./password-input"
+import LoginContactInput from "./login-contact-input"
+import useLoginSubmit from "../../hooks/auth/login-submit"
+import ShowOrHidePasswordButton from "./show-or-hide-password-button"
+import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
 
 interface Props {
 	whereToNavigate: string
