@@ -1,22 +1,27 @@
 import { observer } from "mobx-react"
 import { useCallback, useState } from "react"
-import Button from "../../components/button"
-import useLoginSubmit from "../../hooks/auth/login-submit"
-import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
-import AuthTemplate from "../../components/login-and-registration-form/auth-template"
-import ErrorMessage from "../../components/login-and-registration-form/error-message"
-import SubLoginInfo from "../../components/login-and-registration-form/sub-login-info"
-import PasswordInput from "../../components/login-and-registration-form/password-input"
-import LoginContactInput from "../../components/login-and-registration-form/login-contact-input"
-import ShowOrHidePasswordButton from "../../components/login-and-registration-form/show-or-hide-password-button"
+import Button from "./button"
+import useLoginSubmit from "../hooks/auth/login-submit"
+import AuthTemplate from "./login-and-registration-form/auth-template"
+import ErrorMessage from "./login-and-registration-form/error-message"
+import SubLoginInfo from "./login-and-registration-form/sub-login-info"
+import PasswordInput from "./login-and-registration-form/password-input"
+import useRedirectKnownUser from "../hooks/redirects/redirect-known-user"
+import LoginContactInput from "./login-and-registration-form/login-contact-input"
+import ShowOrHidePasswordButton from "./login-and-registration-form/show-or-hide-password-button"
 
-function Login() {
+interface Props {
+	whereToNavigate: string
+	setLoginOrRegister?: React.Dispatch<React.SetStateAction<LoginOrRegister>>
+}
+
+function Login(props: Props) {
+	const { whereToNavigate, setLoginOrRegister } = props
 	useRedirectKnownUser()
-	const [loginInformation, setLoginInformation] =
-		useState<LoginCredentials>({
-			contact: "",
-			password: ""
-		})
+	const [loginInformation, setLoginInformation] = useState<LoginCredentials>({
+		contact: "",
+		password: ""
+	})
 	const [error, setError] = useState("")
 	const [loading, setLoading] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
@@ -26,7 +31,7 @@ function Login() {
 		return "password"
 	}, [showPassword])
 
-	const loginSubmit = useLoginSubmit(loginInformation, setError, setLoading)
+	const loginSubmit = useLoginSubmit(whereToNavigate, loginInformation, setError, setLoading)
 
 	const createSetCredentialsFunction = (setter: React.Dispatch<React.SetStateAction<LoginCredentials>>) => {
 		return (newCredentials: Partial<LoginCredentials | RegisterCredentials>) => {
@@ -63,7 +68,7 @@ function Login() {
 					title = "Login"
 				/>
 			</form>
-			<SubLoginInfo />
+			<SubLoginInfo setLoginOrRegister={setLoginOrRegister}/>
 		</AuthTemplate>
 	)
 }

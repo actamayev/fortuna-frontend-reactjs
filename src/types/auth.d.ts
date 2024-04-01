@@ -13,6 +13,8 @@ declare global {
 	interface RegisterCredentials extends RegisterCredentialsToSend {
 		passwordConfirmation: string
 	}
+
+	type LoginOrRegister = "Login" | "Register"
 }
 
 export {}

@@ -1,26 +1,29 @@
 import { observer } from "mobx-react"
 import { useCallback, useState } from "react"
-import Button from "../../components/button"
-import useRegisterSubmit from "../../hooks/auth/register-submit"
-import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
-import AuthTemplate from "../../components/login-and-registration-form/auth-template"
-import ErrorMessage from "../../components/login-and-registration-form/error-message"
-import PasswordInput from "../../components/login-and-registration-form/password-input"
-import UsernameInput from "../../components/login-and-registration-form/username-input"
-import ConfirmPassword from "../../components/login-and-registration-form/confirm-password"
-import SubRegisterInfo from "../../components/login-and-registration-form/sub-register-info"
-import RegisterContactInput from "../../components/login-and-registration-form/register-contact-input"
-import ShowOrHidePasswordButton from "../../components/login-and-registration-form/show-or-hide-password-button"
+import Button from "./button"
+import useRegisterSubmit from "../hooks/auth/register-submit"
+import AuthTemplate from "./login-and-registration-form/auth-template"
+import ErrorMessage from "./login-and-registration-form/error-message"
+import PasswordInput from "./login-and-registration-form/password-input"
+import UsernameInput from "./login-and-registration-form/username-input"
+import ConfirmPassword from "./login-and-registration-form/confirm-password"
+import SubRegisterInfo from "./login-and-registration-form/sub-register-info"
+import RegisterContactInput from "./login-and-registration-form/register-contact-input"
+import ShowOrHidePasswordButton from "./login-and-registration-form/show-or-hide-password-button"
 
-function Register() {
-	useRedirectKnownUser()
-	const [registerInformation, setRegisterInformation] =
-		useState<RegisterCredentials>({
-			contact: "",
-			username: "",
-			password: "",
-			passwordConfirmation: "",
-		})
+interface Props {
+	whereToNavigate: string
+	setLoginOrRegister?: React.Dispatch<React.SetStateAction<LoginOrRegister>>
+}
+
+function Register(props: Props) {
+	const { whereToNavigate, setLoginOrRegister } = props
+	const [registerInformation, setRegisterInformation] = useState<RegisterCredentials>({
+		contact: "",
+		username: "",
+		password: "",
+		passwordConfirmation: ""
+	})
 	const [error, setError] = useState("")
 	const [loading, setLoading] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
@@ -30,7 +33,7 @@ function Register() {
 		return "password"
 	}, [showPassword])
 
-	const registerSubmit = useRegisterSubmit(registerInformation, setError, setLoading)
+	const registerSubmit = useRegisterSubmit(whereToNavigate, registerInformation, setError, setLoading)
 
 	const createSetCredentialsFunction = (setter: React.Dispatch<React.SetStateAction<RegisterCredentials>>) => {
 		return (newCredentials: Partial<LoginCredentials | RegisterCredentials>) => {
@@ -78,7 +81,7 @@ function Register() {
 					title = "Register"
 				/>
 			</form>
-			<SubRegisterInfo />
+			<SubRegisterInfo setLoginOrRegister = {setLoginOrRegister}/>
 		</AuthTemplate>
 	)
 }
