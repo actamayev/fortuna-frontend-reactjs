@@ -1,7 +1,7 @@
 import _ from "lodash"
 import axios, { AxiosInstance } from "axios"
 
-export default class FiftyoneHttpClient {
+export default class FortunaHttpClient {
 	public readonly http: AxiosInstance
 	private _accessToken: string | null = null
 

@@ -1,16 +1,16 @@
 import { useAuthContext } from "../../contexts/auth-context"
-import { useApiClientContext } from "../../contexts/fiftyone-api-client-context"
+import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useSetDataAfterLoginOrRegister(): (
 	accessToken: string,
 ) => void {
 	const authClass = useAuthContext()
-	const eventfullApiClient = useApiClientContext()
+	const fortunaApiClient = useApiClientContext()
 
 	const handleSetDataAfterLoginOrRegister = (
 		accessToken: string,
 	): void => {
-		eventfullApiClient.httpClient.accessToken = accessToken
+		fortunaApiClient.httpClient.accessToken = accessToken
 		authClass.setAccessToken(accessToken)
 	}
 

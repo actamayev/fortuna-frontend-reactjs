@@ -1,6 +1,26 @@
+import _ from "lodash"
 import { Link } from "react-router-dom"
 
-export default function SubRegisterInfo() {
+interface Props {
+	setLoginOrRegister?: React.Dispatch<React.SetStateAction<LoginOrRegister>>
+}
+
+export default function SubRegisterInfo(props: Props) {
+	const { setLoginOrRegister } = props
+
+	if (!_.isUndefined(setLoginOrRegister)) {
+		return (
+			<>
+				Already have an account?{" "}
+				<div
+					className="hover:underline cursor-pointer"
+					onClick={() => setLoginOrRegister("Login")}
+				>
+					Login
+				</div>
+			</>
+		)
+	}
 	return (
 		<>
 			Already have an account?{" "}

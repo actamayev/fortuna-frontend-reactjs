@@ -1,13 +1,13 @@
 import { useAuthContext } from "../../contexts/auth-context"
-import { useApiClientContext } from "../../contexts/fiftyone-api-client-context"
+import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useGetAuthDataFromStorage(): () => void {
 	const authClass = useAuthContext()
-	const eventfullApiClient = useApiClientContext()
+	const fortunaApiClient = useApiClientContext()
 
 	const getAuthDataFromStorage = (): void => {
 		authClass.getAuthDataFromStorage()
-		eventfullApiClient.httpClient.accessToken = authClass.accessToken
+		fortunaApiClient.httpClient.accessToken = authClass.accessToken
 	}
 
 	return getAuthDataFromStorage
