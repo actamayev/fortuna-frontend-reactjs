@@ -18,13 +18,12 @@ interface Props {
 
 function Register(props: Props) {
 	const { whereToNavigate, setLoginOrRegister } = props
-	const [registerInformation, setRegisterInformation] =
-		useState<RegisterCredentials>({
-			contact: "",
-			username: "",
-			password: "",
-			passwordConfirmation: "",
-		})
+	const [registerInformation, setRegisterInformation] = useState<RegisterCredentials>({
+		contact: "",
+		username: "",
+		password: "",
+		passwordConfirmation: ""
+	})
 	const [error, setError] = useState("")
 	const [loading, setLoading] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
