@@ -1,6 +1,5 @@
-import _ from "lodash"
 import classNames from "classnames" // This is a utility for conditionally joining classNames together
-import { Link, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 interface Props {
 	href: string
