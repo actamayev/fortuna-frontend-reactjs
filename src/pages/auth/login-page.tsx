@@ -5,6 +5,6 @@ export default function LoginPage() {
 	// useRedirectKnownUser()
 
 	return (
-		<Login whereToNavigate="/dashboard"/>
+		<Login whereToNavigate="/my-ownership"/>
 	)
 }

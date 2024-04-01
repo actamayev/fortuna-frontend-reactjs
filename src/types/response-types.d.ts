@@ -10,7 +10,7 @@ declare global {
 
 	//Auth Responses:
 	type RegisterSuccess = { accessToken: string }
-	type LoginSuccess = { accessToken: string, defaultUserType: UserTypes }
+	type LoginSuccess = { accessToken: string }
 }
 
 export {}

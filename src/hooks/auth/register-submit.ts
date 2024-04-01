@@ -42,7 +42,7 @@ export default function useRegisterSubmit (
 		} finally {
 			setLoading(false)
 		}
-	}, [fortunaApiClient.authDataService, navigate, registerCredentials, setDataAfterRegister, setError, setLoading])
+	}, [fortunaApiClient.authDataService, navigate, registerCredentials, setDataAfterRegister, setError, setLoading, whereToNavigate])
 
 	return loginSubmit
 }

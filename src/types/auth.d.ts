@@ -8,7 +8,6 @@ declare global {
 		contact: string
 		username: string
 		password: string
-		defaultUserType: UserTypes
 	}
 
 	interface RegisterCredentials extends RegisterCredentialsToSend {

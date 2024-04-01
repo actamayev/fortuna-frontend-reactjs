@@ -2,12 +2,11 @@ import _ from "lodash"
 import { useState } from "react"
 import { observer } from "mobx-react"
 import { useLocation } from "react-router-dom"
+import useLogout from "../hooks/auth/logout"
 import CustomLink, { TopNavLink } from "./custom-link"
 import { isErrorResponse } from "../utils/type-checks"
 import { useAuthContext } from "../contexts/auth-context"
 import { useApiClientContext } from "../contexts/fortuna-api-client-context"
-import { usePersonalInfoContext } from "../contexts/personal-info-context"
-import useLogout from "../hooks/auth/logout"
 
 interface Props {
 	children: React.ReactNode
@@ -17,7 +16,6 @@ export default function Layout (props: Props) {
 	const { children } = props
 	const fortunaApiClient = useApiClientContext()
 	const authClass = useAuthContext()
-	const personalInfoClass = usePersonalInfoContext()
 	const [logoutDisabled, setLogoutDisabled] = useState(false)
 	const location = useLocation()
 	const logout = useLogout()
@@ -26,7 +24,6 @@ export default function Layout (props: Props) {
 		try {
 			e.preventDefault()
 			setLogoutDisabled(true)
-			console.log(authClass.accessToken)
 			const response = await fortunaApiClient.authDataService.logout()
 			if (!_.isEqual(response.status, 200) || isErrorResponse(response.data)) {
 				throw new Error("Failed to logout")

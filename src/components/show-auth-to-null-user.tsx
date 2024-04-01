@@ -6,7 +6,7 @@ interface Props {
 	whereToNavigate: string
 }
 
-export default function ShowAuthContentToNullCreator(props: Props) {
+export default function ShowAuthToNullUser(props: Props) {
 	const { whereToNavigate } = props
 	const [loginOrRegister, setLoginOrRegister] = useState<LoginOrRegister>("Register")
 
@@ -15,9 +15,13 @@ export default function ShowAuthContentToNullCreator(props: Props) {
 			<Register
 				whereToNavigate={whereToNavigate}
 				setLoginOrRegister={setLoginOrRegister}
-				defaultUserType="creator"
 			/>
 		)
 	}
-	return <Login whereToNavigate={whereToNavigate} setLoginOrRegister={setLoginOrRegister}/>
+	return (
+		<Login
+			whereToNavigate={whereToNavigate}
+			setLoginOrRegister={setLoginOrRegister}
+		/>
+	)
 }
