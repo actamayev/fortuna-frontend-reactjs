@@ -7,13 +7,13 @@ declare global {
 		creatorOwnershipPercentage: number
 	}
 
-	interface MyContent extends SPLDetails {
+	interface MyContent extends NewSPLDetails {
 		imageUrl: string
 		splId: number
 		mintAddress: string
 	}
 
-	interface CreateAndMintSPL extends SPLDetails {
+	interface CreateAndMintSPL extends NewSPLDetails {
 		imageUrl: string
 		fileName: string
 		uuid: string
