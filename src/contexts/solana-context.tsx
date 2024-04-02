@@ -1,35 +1,35 @@
-// import { action, makeAutoObservable } from "mobx"
+import { action, makeAutoObservable } from "mobx"
 import { createContext, useContext, useMemo } from "react"
 
 class SolanaClass {
-	// private _walletAddress: string | null = null
-	// public myContentMap: Map<string, MyContent> = new Map()
+	private _walletAddress: string | null = null
+	public myContentMap: Map<string, MyContent> = new Map()
 
-	// constructor() {
-	// 	makeAutoObservable(this)
-	// }
+	constructor() {
+		makeAutoObservable(this)
+	}
 
-	// get walletAddress(): string | null {
-	// 	return this._walletAddress
-	// }
+	get walletAddress(): string | null {
+		return this._walletAddress
+	}
 
-	// set walletAddress(walletAddress: string | null) {
-	// 	this._walletAddress = walletAddress
-	// }
+	set walletAddress(walletAddress: string | null) {
+		this._walletAddress = walletAddress
+	}
 
-	// public contextForMyContent(splId: string): MyContent | undefined {
-	// 	return this.myContentMap.get(splId)
-	// }
+	public contextForMyContent(mintAddress: string): MyContent | undefined {
+		return this.myContentMap.get(mintAddress)
+	}
 
-	// public addContent = action((event: MyContent): void =>  {
-	// 	if (this.myContentMap.has(event.splId)) return
-	// 	this.myContentMap.set(event.splId, event)
-	// })
+	public addContent = action((newContent: MyContent): void =>  {
+		if (this.myContentMap.has(newContent.mintAddress)) return
+		this.myContentMap.set(newContent.mintAddress, newContent)
+	})
 
-	// public logout() {
-	// 	this.walletAddress = null
-	// 	this.myContentMap.clear()
-	// }
+	public logout() {
+		this.walletAddress = null
+		this.myContentMap.clear()
+	}
 }
 
 const SolanaContext = createContext<SolanaClass | null>(null)

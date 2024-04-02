@@ -5,8 +5,8 @@ import confirmNewSPLDetails from "../../utils/confirm-new-spl-details"
 import useUploadMintInfoOnclick from "../../hooks/solana/upload-mint-info-onclick"
 
 interface Props {
-	newSplDetails: NewSPLDetails
 	selectedImage: File | null
+	newSplDetails: NewSPLDetails
 	setError: React.Dispatch<React.SetStateAction<string>>
 }
 

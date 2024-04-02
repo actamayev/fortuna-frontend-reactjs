@@ -13,7 +13,7 @@ declare global {
 	type RegisterSuccess = { accessToken: string }
 
 	// Solana Responses:
-	type MintSPLResponse = { mintAddress: string }
+	type MintSPLResponse = { splId: number, mintAddress: string }
 
 	// Upload Responses:
 	type UploadImageToS3 = {

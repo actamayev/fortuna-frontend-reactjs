@@ -9,7 +9,7 @@ declare global {
 
 	interface MyContent extends SPLDetails {
 		imageUrl: string
-		splId: string
+		splId: number
 	}
 
 	interface CreateAndMintSPL extends SPLDetails {
