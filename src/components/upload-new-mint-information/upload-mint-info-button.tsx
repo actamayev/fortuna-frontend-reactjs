@@ -1,5 +1,5 @@
 import _ from "lodash"
-import { useCallback, useMemo } from "react"
+import { useCallback, useMemo, useState } from "react"
 import Button from "../button"
 import useTypedNavigate from "../../hooks/typed-navigate"
 import confirmNewSPLDetails from "../../utils/confirm-new-spl-details"
@@ -16,6 +16,7 @@ export default function UploadMintInfoButton(props: Props) {
 	const { newSplDetails, selectedImage, setError } = props
 	const fortunaApiClient = useApiClientContext()
 	const navigate = useTypedNavigate()
+	const [loading, setLoading] = useState(false)
 
 	const isReadyToSubmit = useMemo(() => {
 		return confirmNewSPLDetails(newSplDetails) && !_.isNull(selectedImage)
@@ -23,6 +24,7 @@ export default function UploadMintInfoButton(props: Props) {
 
 	const uploadMintInfoOnclick = useCallback(async() => {
 		try {
+			setLoading(true)
 			if (_.isNull(selectedImage)) return
 			const uploadImageResponse = await fortunaApiClient.uploadDataService.uploadImageToS3(selectedImage)
 			if (
@@ -52,13 +54,15 @@ export default function UploadMintInfoButton(props: Props) {
 			navigate("/creator/my-content")
 		} catch (error) {
 			console.error(error)
+		} finally {
+			setLoading(false)
 		}
 	}, [fortunaApiClient.solanaDataService, fortunaApiClient.uploadDataService, navigate, newSplDetails, selectedImage, setError])
 
 	return (
 		<Button
 			title={isReadyToSubmit ? "Submit" : "Please finish fields and image"}
-			disabled={!isReadyToSubmit}
+			disabled={!isReadyToSubmit || loading}
 			colorClass="bg-yellow-400"
 			hoverClass="hover:bg-yellow-500"
 			onClick={uploadMintInfoOnclick}
