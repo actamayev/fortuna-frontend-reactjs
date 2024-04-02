@@ -8,7 +8,7 @@ import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import setErrorAxiosResponse from "../../utils/error-handling/set-error-axios-response"
 
 export default function useRegisterSubmit (
-	whereToNavigate: string,
+	whereToNavigate: PageNames,
 	registerCredentials: RegisterCredentials,
 	setError: (error: string) => void,
 	setLoading: (loading: boolean) => void

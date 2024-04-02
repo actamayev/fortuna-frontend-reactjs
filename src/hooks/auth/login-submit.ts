@@ -8,7 +8,7 @@ import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import setErrorAxiosResponse from "../../utils/error-handling/set-error-axios-response"
 
 export default function useLoginSubmit (
-	whereToNavigate: string,
+	whereToNavigate: PageNames,
 	loginInformation: LoginCredentials,
 	setError: (error: string) => void,
 	setLoading: (loading: boolean) => void

@@ -12,7 +12,7 @@ import useRegisterSubmit from "../../hooks/auth/register-submit"
 import ShowOrHidePasswordButton from "./show-or-hide-password-button"
 
 interface Props {
-	whereToNavigate: string
+	whereToNavigate: PageNames
 	setLoginOrRegister?: React.Dispatch<React.SetStateAction<LoginOrRegister>>
 }
 
