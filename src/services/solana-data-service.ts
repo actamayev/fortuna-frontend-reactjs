@@ -5,9 +5,9 @@ export default class SolanaDataService {
 	constructor(private readonly httpClient: FortunaHttpClient) {
 	}
 
-	async createAndMintSPL(createAndMintSPL: CreateAndMintSPL): Promise<AxiosResponse<MintSPLResponse | NonSuccessResponse>> {
+	async createAndMintSPL(newSPLData: CreateAndMintSPL): Promise<AxiosResponse<MintSPLResponse | NonSuccessResponse>> {
 		return await this.httpClient.http.post<MintSPLResponse | NonSuccessResponse>(
-			"/devnet/solana/create-and-mint-spl", { createAndMintSPL }
+			"/devnet/solana/create-and-mint-spl", { newSPLData }
 		)
 	}
 }

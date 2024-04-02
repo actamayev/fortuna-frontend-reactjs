@@ -36,7 +36,7 @@ export default function UploadMintInfoButton(props: Props) {
 
 			const createAndMintSPL: CreateAndMintSPL = {
 				...newSplDetails,
-				imageURL: uploadImageResponse.data.imageUploadUrl,
+				imageUrl: uploadImageResponse.data.imageUploadUrl,
 				fileName: uploadImageResponse.data.fileName,
 				uuid: uploadImageResponse.data.uuid,
 				uploadedImageId: uploadImageResponse.data.uploadedImageId
