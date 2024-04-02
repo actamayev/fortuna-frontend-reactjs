@@ -10,6 +10,7 @@ declare global {
 	interface MyContent extends SPLDetails {
 		imageUrl: string
 		splId: number
+		mintAddress: string
 	}
 
 	interface CreateAndMintSPL extends SPLDetails {
