@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import { useNavigate } from "react-router-dom"
+import useTypedNavigate from "../typed-navigate"
 import { isNonSuccessResponse } from "../../utils/type-checks"
 import confirmRegisterFields from "../../utils/auth/confirm-register-fields"
 import useSetDataAfterLoginOrRegister from "./set-data-after-login-or-register"
@@ -16,7 +16,7 @@ export default function useRegisterSubmit (
 	e: React.FormEvent<HTMLFormElement>,
 ) => Promise<void> {
 	const fortunaApiClient = useApiClientContext()
-	const navigate = useNavigate()
+	const navigate = useTypedNavigate()
 	const setDataAfterRegister = useSetDataAfterLoginOrRegister()
 
 	const loginSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {

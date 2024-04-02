@@ -1,5 +1,5 @@
 import { useCallback } from "react"
-import { useNavigate } from "react-router-dom"
+import useTypedNavigate from "../typed-navigate"
 import { useAuthContext } from "../../contexts/auth-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
@@ -8,7 +8,7 @@ export default function useLogout(): () => void {
 	const authClass = useAuthContext()
 	const personalInfoClass = usePersonalInfoContext()
 	const fortunaApiClient = useApiClientContext()
-	const navigate = useNavigate()
+	const navigate = useTypedNavigate()
 
 	const logout = useCallback((): void => {
 		personalInfoClass?.logout()

@@ -1,7 +1,7 @@
 import _ from "lodash"
-import { useNavigate } from "react-router"
 import { useCallback, useMemo } from "react"
 import Button from "../button"
+import useTypedNavigate from "../../hooks/typed-navigate"
 import confirmNewSPLDetails from "../../utils/confirm-new-spl-details"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import { isErrorResponse, isMessageResponse, isNonSuccessResponse } from "../../utils/type-checks"
@@ -15,7 +15,7 @@ interface Props {
 export default function UploadMintInfoButton(props: Props) {
 	const { newSplDetails, selectedImage, setError } = props
 	const fortunaApiClient = useApiClientContext()
-	const navigate = useNavigate()
+	const navigate = useTypedNavigate()
 
 	const isReadyToSubmit = useMemo(() => {
 		return confirmNewSPLDetails(newSplDetails) && !_.isNull(selectedImage)
