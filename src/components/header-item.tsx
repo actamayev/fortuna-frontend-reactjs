@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom"
 
 interface Props {
 	label: string
-	to: string
+	to: PageNames
 }
 
 export default function HeaderItem (props: Props) {
