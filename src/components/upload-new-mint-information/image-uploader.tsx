@@ -15,7 +15,7 @@ export default function ImageUploader(props: Props) {
 	const handleImageChange = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
 		const files = e.target.files
 
-		if (files && files.length > 0) {
+		if (!_.isNull(files) && !_.isEmpty(files)) {
 			const file = files[0]
 			setSelectedImage(file)
 
@@ -26,9 +26,8 @@ export default function ImageUploader(props: Props) {
 			setPreviewUrl(null)
 		}
 
-		if (fileInputRef.current) {
-			fileInputRef.current.value = ""
-		}
+		if (_.isNull(fileInputRef.current))  return
+		fileInputRef.current.value = ""
 	}, [setSelectedImage])
 
 	const removeImage = useCallback(() => {
