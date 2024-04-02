@@ -1,5 +1,5 @@
 import _ from "lodash"
-import { useState, ChangeEvent, useRef } from "react"
+import { useState, ChangeEvent, useRef, useCallback } from "react"
 import Button from "../button"
 
 interface Props {
@@ -12,7 +12,7 @@ export default function ImageUploader(props: Props) {
 	const [previewUrl, setPreviewUrl] = useState<null | string>(null)
 	const fileInputRef = useRef<HTMLInputElement>(null)
 
-	const handleImageChange = (e: ChangeEvent<HTMLInputElement>): void => {
+	const handleImageChange = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
 		const files = e.target.files
 
 		if (files && files.length > 0) {
@@ -29,12 +29,12 @@ export default function ImageUploader(props: Props) {
 		if (fileInputRef.current) {
 			fileInputRef.current.value = ""
 		}
-	}
+	}, [setSelectedImage])
 
-	const removeImage = () => {
+	const removeImage = useCallback(() => {
 		setSelectedImage(null)
 		setPreviewUrl(null)
-	}
+	}, [setSelectedImage])
 
 	const ShowImage = () => {
 		if (_.isNull(previewUrl)) return null

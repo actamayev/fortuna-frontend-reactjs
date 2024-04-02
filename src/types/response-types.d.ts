@@ -11,6 +11,17 @@ declare global {
 	//Auth Responses:
 	type LoginSuccess = { accessToken: string }
 	type RegisterSuccess = { accessToken: string }
+
+	// Solana Responses:
+	type MintSPLResponse = { mintAddress: string }
+
+	// Upload Responses:
+	type UploadImageToS3 = {
+		imageUploadUrl: string
+		fileName: string
+		uuid: string
+		uploadedImageId: number
+	}
 }
 
 export {}
