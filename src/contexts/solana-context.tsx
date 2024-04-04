@@ -4,6 +4,7 @@ import { createContext, useContext, useMemo } from "react"
 class SolanaClass {
 	private _walletAddress: string | null = null
 	public myContentMap: Map<string, MyContent> = new Map()
+	public hasContentToRetrieve = true // might need to make setting this an action
 
 	constructor() {
 		makeAutoObservable(this)

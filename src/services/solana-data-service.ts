@@ -10,4 +10,8 @@ export default class SolanaDataService {
 			"/devnet/solana/create-and-mint-spl", { newSPLData }
 		)
 	}
+
+	async retrieveMyContent(): Promise<AxiosResponse<RetrieveMyContentResponse | MessageResponse | ErrorResponse>> {
+		return await this.httpClient.http.get<RetrieveMyContentResponse | MessageResponse | ErrorResponse>("/devnet/solana/get-creator-content-list")
+	}
 }

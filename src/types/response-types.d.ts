@@ -14,6 +14,10 @@ declare global {
 
 	// Solana Responses:
 	type MintSPLResponse = { splId: number, mintAddress: string }
+	type RetrieveMyContentResponse = {
+		spl_id: number,
+		public_key_address: string
+	} // TODO: add stuff here.
 
 	// Upload Responses:
 	type UploadImageToS3 = {
