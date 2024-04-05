@@ -13,7 +13,7 @@ declare global {
 	type RegisterSuccess = { accessToken: string }
 
 	// Solana Responses:
-	type MintSPLResponse = { splId: number, mintAddress: string }
+	type MintSPLResponse = { newSPLId: number, mintAddress: string }
 	interface RetrieveMyContentResponse {
 		creatorContentList : {
 			splId: number

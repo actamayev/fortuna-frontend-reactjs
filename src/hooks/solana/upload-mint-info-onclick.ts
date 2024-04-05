@@ -52,7 +52,7 @@ export default function useUploadMintInfoOnclick(): (
 			const myContent: MyContent = {
 				...newSplDetails,
 				imageUrl: uploadImageResponse.data.imageUploadUrl,
-				splId: createAndMintResponse.data.splId,
+				splId: createAndMintResponse.data.newSPLId,
 				mintAddress: createAndMintResponse.data.mintAddress
 			}
 
