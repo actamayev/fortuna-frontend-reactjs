@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import { useNavigate } from "react-router-dom"
+import useTypedNavigate from "../typed-navigate"
 import { isNonSuccessResponse } from "../../utils/type-checks"
 import confirmLoginFields from "../../utils/auth/confirm-login-fields"
 import useSetDataAfterLoginOrRegister from "./set-data-after-login-or-register"
@@ -8,7 +8,7 @@ import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import setErrorAxiosResponse from "../../utils/error-handling/set-error-axios-response"
 
 export default function useLoginSubmit (
-	whereToNavigate: string,
+	whereToNavigate: PageNames,
 	loginInformation: LoginCredentials,
 	setError: (error: string) => void,
 	setLoading: (loading: boolean) => void
@@ -17,7 +17,7 @@ export default function useLoginSubmit (
 ) => Promise<void> {
 	const fortunaApiClient = useApiClientContext()
 	const setDataAfterLogin = useSetDataAfterLoginOrRegister()
-	const navigate = useNavigate()
+	const navigate = useTypedNavigate()
 
 	const loginSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
 		e.preventDefault()
