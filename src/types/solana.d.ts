@@ -9,15 +9,17 @@ declare global {
 
 	interface MyContent extends NewSPLDetails {
 		imageUrl: string
+		videoUrl: string
 		splId: number
 		mintAddress: string
 	}
 
 	interface CreateAndMintSPL extends NewSPLDetails {
 		imageUrl: string
-		fileName: string
+		videoUrl: string
 		uuid: string
 		uploadedImageId: number
+		uploadedVideoId: number
 	}
 }
 

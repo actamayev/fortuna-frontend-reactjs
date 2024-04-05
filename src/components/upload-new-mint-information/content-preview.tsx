@@ -1,34 +1,33 @@
 import _ from "lodash"
-import Button from "../button"
 import { useCallback } from "react"
+import Button from "../button"
 
 interface Props {
 	previewUrl: string | null
 	setPreviewUrl: React.Dispatch<React.SetStateAction<string | null>>
-	setSelectedImage: (files: File | null) => void
+	setSelectedContent: (files: File | null) => void
+	children: React.ReactNode
 }
 
-export default function ShowImage(props: Props) {
-	const { previewUrl, setPreviewUrl, setSelectedImage } = props
+export default function ContentPreview(props: Props) {
+	const { previewUrl, setPreviewUrl, setSelectedContent, children } = props
 
-	const removeImage = useCallback(() => {
-		setSelectedImage(null)
+	const removeContent = useCallback(() => {
+		setSelectedContent(null)
 		setPreviewUrl(null)
-	}, [setPreviewUrl, setSelectedImage])
+	}, [setPreviewUrl, setSelectedContent])
 
 	if (_.isNull(previewUrl)) return null
+
 	return (
 		<div className="preview-container">
 			<div style={{ position: "relative", display: "inline-block", margin: "5px" }}>
-				<img
-					src={previewUrl}
-					style={{ maxWidth: "35%", height: "auto" }}
-				/>
+				{ children }
 				<Button
 					title="Remove"
 					colorClass="bg-red-600"
 					hoverClass="hover:bg-red-700"
-					onClick={removeImage}
+					onClick={removeContent}
 					className="text-white font-semibold"
 				/>
 			</div>
