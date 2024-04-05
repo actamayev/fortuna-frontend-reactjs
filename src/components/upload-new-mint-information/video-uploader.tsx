@@ -41,14 +41,16 @@ export default function VideoUploader(props: Props) {
 				style={{ display: "none" }}
 				max={1}
 			/>
-			<Button
-				title="Choose an Video"
-				colorClass="bg-violet-500"
-				hoverClass="hover:bg-violet-600"
-				onClick={() => fileInputRef.current?.click()}
-				className="text-white font-semibold"
-				disabled={!_.isNull(selectedVideo)}
-			/>
+			{selectedVideo ? (<></>) : (
+				<Button
+					title="Choose an Video"
+					colorClass="bg-blue-500"
+					hoverClass="hover:bg-blue-600"
+					onClick={() => fileInputRef.current?.click()}
+					className="text-white font-semibold"
+					disabled={!_.isNull(selectedVideo)}
+				/>
+			)}
 
 			<ContentPreview
 				previewUrl={previewUrl}

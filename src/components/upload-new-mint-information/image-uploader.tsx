@@ -27,7 +27,7 @@ export default function ImageUploader(props: Props) {
 			setPreviewUrl(null)
 		}
 
-		if (_.isNull(fileInputRef.current))  return
+		if (_.isNull(fileInputRef.current)) return
 		fileInputRef.current.value = ""
 	}, [setSelectedImage])
 
@@ -41,14 +41,16 @@ export default function ImageUploader(props: Props) {
 				style={{ display: "none" }}
 				max={1}
 			/>
-			<Button
-				title="Choose an Image"
-				colorClass="bg-violet-500"
-				hoverClass="hover:bg-violet-600"
-				onClick={() => fileInputRef.current?.click()}
-				className="text-white font-semibold"
-				disabled={!_.isNull(selectedImage)}
-			/>
+			{selectedImage ? (<></>) : (
+				<Button
+					title="Choose a Thumbnail"
+					colorClass="bg-sky-500"
+					hoverClass="hover:bg-sky-600"
+					onClick={() => fileInputRef.current?.click()}
+					className="text-white font-semibold"
+					disabled={!_.isNull(selectedImage)}
+				/>
+			)}
 
 			<ContentPreview
 				previewUrl={previewUrl}

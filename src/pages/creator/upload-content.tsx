@@ -33,7 +33,6 @@ function UploadContent() {
 	return (
 		<>
 			<CreatorHeader />
-			Upload content
 
 			<VideoUploader
 				selectedVideo={selectedVideo}
