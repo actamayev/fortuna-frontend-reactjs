@@ -7,6 +7,7 @@ import { useAuthContext } from "../../contexts/auth-context"
 import ShowAuthToNullUser from "../../components/show-auth-to-null-user"
 import SPLNameInput from "../../components/upload-new-mint-information/spl-name-input"
 import ImageUploader from "../../components/upload-new-mint-information/image-uploader"
+import VideoUploader from "../../components/upload-new-mint-information/video-uploader"
 import SelectNumberShares from "../../components/upload-new-mint-information/select-number-shares"
 import SPLDescriptionInput from "../../components/upload-new-mint-information/spl-description-input"
 import UploadMintInfoButton from "../../components/upload-new-mint-information/upload-mint-info-button"
@@ -23,6 +24,7 @@ function UploadContent() {
 		creatorOwnershipPercentage: 0
 	})
 	const [selectedImage, setSelectedImage] = useState<File | null>(null)
+	const [selectedVideo, setSelectedVideo] = useState<File | null>(null)
 	const [error, setError] = useState("")
 
 	if (_.isNull(authClass.accessToken)) {
@@ -33,6 +35,12 @@ function UploadContent() {
 		<>
 			<CreatorHeader />
 			Upload content
+
+			<VideoUploader
+				selectedVideo={selectedVideo}
+				setSelectedVideo={setSelectedVideo}
+			/>
+
 			<ImageUploader
 				selectedImage={selectedImage}
 				setSelectedImage={setSelectedImage}
@@ -66,6 +74,7 @@ function UploadContent() {
 			<UploadMintInfoButton
 				newSplDetails={newSplDetails}
 				selectedImage={selectedImage}
+				selectedVideo={selectedVideo}
 				setError={setError}
 			/>
 

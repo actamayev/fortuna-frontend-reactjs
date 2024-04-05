@@ -4,60 +4,61 @@ import Button from "../button"
 import ContentPreview from "./content-preview"
 
 interface Props {
-	selectedImage: File | null
-	setSelectedImage: (files: File | null) => void
+	selectedVideo: File | null
+	setSelectedVideo: (files: File | null) => void
 }
 
-export default function ImageUploader(props: Props) {
-	const { selectedImage, setSelectedImage } = props
+export default function VideoUploader(props: Props) {
+	const { selectedVideo, setSelectedVideo } = props
 	const [previewUrl, setPreviewUrl] = useState<null | string>(null)
 	const fileInputRef = useRef<HTMLInputElement>(null)
 
-	const handleImageChange = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
+	const handleVideoChange = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
 		const files = e.target.files
 
 		if (!_.isNull(files) && !_.isEmpty(files)) {
 			const file = files[0]
-			setSelectedImage(file)
+			setSelectedVideo(file)
 
 			const newPreviewUrl = URL.createObjectURL(file)
 			setPreviewUrl(newPreviewUrl)
 		} else {
-			setSelectedImage(null)
+			setSelectedVideo(null)
 			setPreviewUrl(null)
 		}
 
 		if (_.isNull(fileInputRef.current))  return
 		fileInputRef.current.value = ""
-	}, [setSelectedImage])
+	}, [setSelectedVideo])
 
 	return (
 		<div className="mb-2">
 			<input
 				ref={fileInputRef}
 				type="file"
-				onChange={handleImageChange}
-				accept="image/*"
+				onChange={handleVideoChange}
+				accept="video/*"
 				style={{ display: "none" }}
 				max={1}
 			/>
 			<Button
-				title="Choose an Image"
+				title="Choose an Video"
 				colorClass="bg-violet-500"
 				hoverClass="hover:bg-violet-600"
 				onClick={() => fileInputRef.current?.click()}
 				className="text-white font-semibold"
-				disabled={!_.isNull(selectedImage)}
+				disabled={!_.isNull(selectedVideo)}
 			/>
 
 			<ContentPreview
 				previewUrl={previewUrl}
 				setPreviewUrl={setPreviewUrl}
-				setSelectedContent={setSelectedImage}
+				setSelectedContent={setSelectedVideo}
 			>
-				<img
+				<video
 					src={previewUrl || ""}
-					style={{ maxWidth: "35%", height: "auto" }}
+					style={{ maxWidth: "100%", height: "auto" }}
+					controls
 				/>
 			</ContentPreview>
 		</div>

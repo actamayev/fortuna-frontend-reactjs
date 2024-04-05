@@ -23,6 +23,7 @@ declare global {
 			description: string
 			creatorOwnershipPercentage: number
 			imageUrl: string
+			videoUrl: string
 			mintAddress: string
 		}[]
 	}
@@ -30,9 +31,13 @@ declare global {
 	// Upload Responses:
 	type UploadImageToS3 = {
 		imageUploadUrl: string
-		fileName: string
-		uuid: string
 		uploadedImageId: number
+	}
+
+	type UploadVideoToS3 = {
+		videoUploadUrl: string
+		uploadedVideoId: number
+		uuid: string
 	}
 }
 

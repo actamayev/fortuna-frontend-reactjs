@@ -6,18 +6,19 @@ import useUploadMintInfoOnclick from "../../hooks/solana/upload-mint-info-onclic
 
 interface Props {
 	selectedImage: File | null
+	selectedVideo: File | null
 	newSplDetails: NewSPLDetails
 	setError: React.Dispatch<React.SetStateAction<string>>
 }
 
 export default function UploadMintInfoButton(props: Props) {
-	const { newSplDetails, selectedImage, setError } = props
+	const { newSplDetails, selectedImage, selectedVideo, setError } = props
 	const [loading, setLoading] = useState(false)
 	const uploadMintInfoOnclick = useUploadMintInfoOnclick()
 
 	const isReadyToSubmit = useMemo(() => {
-		return confirmNewSPLDetails(newSplDetails) && !_.isNull(selectedImage)
-	}, [newSplDetails, selectedImage])
+		return confirmNewSPLDetails(newSplDetails) && !_.isNull(selectedImage) && !_.isNull(selectedVideo)
+	}, [newSplDetails, selectedImage, selectedVideo])
 
 	return (
 		<Button
@@ -25,7 +26,7 @@ export default function UploadMintInfoButton(props: Props) {
 			disabled={!isReadyToSubmit || loading}
 			colorClass="bg-yellow-400"
 			hoverClass="hover:bg-yellow-500"
-			onClick={() => uploadMintInfoOnclick(newSplDetails, selectedImage, setError, setLoading)}
+			onClick={() => uploadMintInfoOnclick(newSplDetails, selectedImage, selectedVideo, setError, setLoading)}
 		/>
 	)
 }

@@ -1,13 +1,14 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import useTypedNavigate from "../typed-navigate"
+import { isNonSuccessResponse } from "../../utils/type-checks"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
-import { isErrorResponse, isMessageResponse, isNonSuccessResponse } from "../../utils/type-checks"
 
 export default function useUploadMintInfoOnclick(): (
 	newSplDetails: NewSPLDetails,
 	selectedImage: File | null,
+	selectedVideo: File | null,
 	setError: React.Dispatch<React.SetStateAction<string>>,
 	setLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => Promise<void> {
@@ -15,21 +16,25 @@ export default function useUploadMintInfoOnclick(): (
 	const fortunaApiClient = useApiClientContext()
 	const solanaClass = useSolanaContext()
 
+	// eslint-disable-next-line complexity
 	const uploadMintInfoOnclick = useCallback(async (
 		newSplDetails: NewSPLDetails,
 		selectedImage: File | null,
+		selectedVideo: File | null,
 		setError: React.Dispatch<React.SetStateAction<string>>,
 		setLoading: React.Dispatch<React.SetStateAction<boolean>>
 	): Promise<void> => {
 		try {
 			setLoading(true)
-			if (_.isNull(selectedImage) || _.isNull(solanaClass)) return
-			const uploadImageResponse = await fortunaApiClient.uploadDataService.uploadImageToS3(selectedImage)
-			if (
-				!_.isEqual(uploadImageResponse.status, 200) ||
-				isMessageResponse(uploadImageResponse.data) ||
-				isErrorResponse(uploadImageResponse.data)
-			) {
+			if (_.isNull(selectedImage) || _.isNull(selectedVideo) || _.isNull(solanaClass)) return
+			const uploadVideoResponse = await fortunaApiClient.uploadDataService.uploadVideoToS3(selectedVideo)
+			if (!_.isEqual(uploadVideoResponse.status, 200) || isNonSuccessResponse(uploadVideoResponse.data)) {
+				setError("Error uploading image")
+				return
+			}
+
+			const uploadImageResponse = await fortunaApiClient.uploadDataService.uploadImageToS3(selectedImage, uploadVideoResponse.data.uuid)
+			if (!_.isEqual(uploadImageResponse.status, 200) || isNonSuccessResponse(uploadImageResponse.data)) {
 				setError("Error uploading image")
 				return
 			}
@@ -37,9 +42,10 @@ export default function useUploadMintInfoOnclick(): (
 			const createAndMintSPL: CreateAndMintSPL = {
 				...newSplDetails,
 				imageUrl: uploadImageResponse.data.imageUploadUrl,
-				fileName: uploadImageResponse.data.fileName,
-				uuid: uploadImageResponse.data.uuid,
-				uploadedImageId: uploadImageResponse.data.uploadedImageId
+				videoUrl: uploadVideoResponse.data.videoUploadUrl,
+				uuid: uploadVideoResponse.data.uuid,
+				uploadedImageId: uploadImageResponse.data.uploadedImageId,
+				uploadedVideoId: uploadVideoResponse.data.uploadedVideoId
 			}
 
 			const createAndMintResponse = await fortunaApiClient.solanaDataService.createAndMintSPL(createAndMintSPL)
@@ -52,6 +58,7 @@ export default function useUploadMintInfoOnclick(): (
 			const myContent: MyContent = {
 				...newSplDetails,
 				imageUrl: uploadImageResponse.data.imageUploadUrl,
+				videoUrl: uploadVideoResponse.data.videoUploadUrl,
 				splId: createAndMintResponse.data.newSPLId,
 				mintAddress: createAndMintResponse.data.mintAddress
 			}
