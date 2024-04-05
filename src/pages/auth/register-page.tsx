@@ -1,4 +1,4 @@
-import Register from "../../components/register"
+import Register from "../../components/auth/register"
 // import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
 
 export default function RegisterPage() {

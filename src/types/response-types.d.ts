@@ -11,6 +11,29 @@ declare global {
 	//Auth Responses:
 	type LoginSuccess = { accessToken: string }
 	type RegisterSuccess = { accessToken: string }
+
+	// Solana Responses:
+	type MintSPLResponse = { newSPLId: number, mintAddress: string }
+	interface RetrieveMyContentResponse {
+		creatorContentList : {
+			splId: number
+			splName: string
+			numberOfShares: number
+			offeringSharePriceSol: number
+			description: string
+			creatorOwnershipPercentage: number
+			imageUrl: string
+			mintAddress: string
+		}[]
+	}
+
+	// Upload Responses:
+	type UploadImageToS3 = {
+		imageUploadUrl: string
+		fileName: string
+		uuid: string
+		uploadedImageId: number
+	}
 }
 
 export {}

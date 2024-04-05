@@ -1,9 +1,9 @@
 import { useState } from "react"
-import Login from "./login"
-import Register from "./register"
+import Login from "./auth/login"
+import Register from "./auth/register"
 
 interface Props {
-	whereToNavigate: string
+	whereToNavigate: PageNames
 }
 
 export default function ShowAuthToNullUser(props: Props) {
