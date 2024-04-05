@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { useState, ChangeEvent, useRef, useCallback } from "react"
 import Button from "../button"
+import ShowImage from "./show-image"
 
 interface Props {
 	selectedImage: File | null
@@ -30,32 +31,6 @@ export default function ImageUploader(props: Props) {
 		fileInputRef.current.value = ""
 	}, [setSelectedImage])
 
-	const removeImage = useCallback(() => {
-		setSelectedImage(null)
-		setPreviewUrl(null)
-	}, [setSelectedImage])
-
-	const ShowImage = () => {
-		if (_.isNull(previewUrl)) return null
-		return (
-			<div className="preview-container">
-				<div style={{ position: "relative", display: "inline-block", margin: "5px" }}>
-					<img
-						src={previewUrl}
-						style={{ maxWidth: "35%", height: "auto" }}
-					/>
-					<Button
-						title="Remove"
-						colorClass="bg-red-600"
-						hoverClass="hover:bg-red-700"
-						onClick={removeImage}
-						className="text-white font-semibold"
-					/>
-				</div>
-			</div>
-		)
-	}
-
 	return (
 		<div className="mb-2">
 			<input
@@ -75,7 +50,11 @@ export default function ImageUploader(props: Props) {
 				disabled={!_.isNull(selectedImage)}
 			/>
 
-			<ShowImage />
+			<ShowImage
+				previewUrl={previewUrl}
+				setPreviewUrl={setPreviewUrl}
+				setSelectedImage={setSelectedImage}
+			/>
 		</div>
 	)
 }
