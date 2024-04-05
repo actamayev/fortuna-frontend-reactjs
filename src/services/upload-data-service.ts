@@ -20,7 +20,6 @@ export default class UploadDataService {
 		formData.append("file", file, file.name)
 		formData.append("uuid", uuid)
 
-		// todo: pass uuid as a body param
 		return await this.httpClient.http.post<UploadImageToS3 | NonSuccessResponse>(
 			"/devnet/upload/upload-image-to-s3", formData, { headers: { "Content-Type": file.type }}
 		)
