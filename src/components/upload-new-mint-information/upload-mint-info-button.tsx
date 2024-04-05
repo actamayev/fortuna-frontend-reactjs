@@ -25,9 +25,7 @@ export default function UploadMintInfoButton(props: Props) {
 			disabled={!isReadyToSubmit || loading}
 			colorClass="bg-yellow-400"
 			hoverClass="hover:bg-yellow-500"
-			onClick={() => {
-				uploadMintInfoOnclick(newSplDetails, selectedImage, setError, setLoading)
-			}}
+			onClick={() => uploadMintInfoOnclick(newSplDetails, selectedImage, setError, setLoading)}
 		/>
 	)
 }

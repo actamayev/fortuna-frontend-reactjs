@@ -1,3 +1,4 @@
+import _ from "lodash"
 import { action, makeAutoObservable } from "mobx"
 import { createContext, useContext, useMemo } from "react"
 
@@ -5,6 +6,7 @@ class SolanaClass {
 	private _walletAddress: string | null = null
 	public myContentMap: Map<string, MyContent> = new Map()
 	public hasContentToRetrieve = true // might need to make setting this an action
+	public isRetrievingContent = false
 
 	constructor() {
 		makeAutoObservable(this)
@@ -21,6 +23,12 @@ class SolanaClass {
 	public contextForMyContent(mintAddress: string): MyContent | undefined {
 		return this.myContentMap.get(mintAddress)
 	}
+
+	public setContent = action((newContentList: MyContent[]): void => {
+		this.myContentMap.clear()
+		if (_.isEmpty(newContentList)) return
+		newContentList.map(singleNewContent => this.addContent(singleNewContent))
+	})
 
 	public addContent = action((newContent: MyContent): void =>  {
 		if (this.myContentMap.has(newContent.mintAddress)) return

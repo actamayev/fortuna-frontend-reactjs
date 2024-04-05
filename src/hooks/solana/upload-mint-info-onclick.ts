@@ -58,8 +58,6 @@ export default function useUploadMintInfoOnclick(): (
 
 			solanaClass.addContent(myContent)
 
-			// TODO: will need to create a retrieve my content hook (that works on refresh)
-
 			navigate("/creator/my-content")
 		} catch (error) {
 			console.error(error)

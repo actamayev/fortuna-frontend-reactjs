@@ -22,6 +22,8 @@ function SingleContent(props: Props) {
 			<div className="flex flex-col">
 				<h2 className="text-lg font-semibold mb-2">
 					{myContent.splName}
+					<img src={myContent.imageUrl} />
+
 					{/* Dr. {_.upperFirst(firstName || "")} {_.upperFirst(lastName || "")} */}
 				</h2>
 				{/* <Link

@@ -8,28 +8,38 @@ export default function useRetrieveMyContent(): void {
 	const fortunaApiClient = useApiClientContext()
 	const solanaClass = useSolanaContext()
 
+	// eslint-disable-next-line complexity
 	const retrieveMyContent = useCallback(async () => {
 		try {
 			if (
 				_.isNull(solanaClass) ||
-				solanaClass.hasContentToRetrieve === true ||
+				solanaClass.hasContentToRetrieve === false ||
+				solanaClass.isRetrievingContent === true ||
 				!_.isEmpty(solanaClass.myContentMap)
 			) {
 				return
 			}
-			const myContent = await fortunaApiClient.solanaDataService.retrieveMyContent()
-			if (!_.isEqual(myContent.status, 200) || isMessageResponse(myContent.data) || isErrorResponse(myContent.data)) {
+			solanaClass.isRetrievingContent = true
+			const myContentResponse = await fortunaApiClient.solanaDataService.retrieveMyContent()
+			if (
+				!_.isEqual(myContentResponse.status, 200) ||
+				isMessageResponse(myContentResponse.data) ||
+				isErrorResponse(myContentResponse.data)
+			) {
 				return
 			}
 
-			solanaClass.addContent(myContent)
+			solanaClass.setContent(myContentResponse.data.creatorContentList)
 			solanaClass.hasContentToRetrieve = false
 		} catch (error) {
 			console.error(error)
+		} finally {
+			if (!_.isNull(solanaClass)) solanaClass.isRetrievingContent = false
 		}
-	}, [fortunaApiClient.solanaDataService, solanaClass])
+	}, [])
 
 	useEffect(() => {
+		if (_.isNull(fortunaApiClient.httpClient.accessToken)) return
 		void retrieveMyContent()
-	}, [retrieveMyContent, solanaClass])
+	}, [fortunaApiClient.httpClient.accessToken, retrieveMyContent])
 }
