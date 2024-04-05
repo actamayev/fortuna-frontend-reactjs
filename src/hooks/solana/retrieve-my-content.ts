@@ -19,7 +19,7 @@ export default function useRetrieveMyContent(): void {
 			) {
 				return
 			}
-			solanaClass.isRetrievingContent = true
+			solanaClass.setIsRetrievingContent(true)
 			const myContentResponse = await fortunaApiClient.solanaDataService.retrieveMyContent()
 			if (
 				!_.isEqual(myContentResponse.status, 200) ||
@@ -30,13 +30,13 @@ export default function useRetrieveMyContent(): void {
 			}
 
 			solanaClass.setContent(myContentResponse.data.creatorContentList)
-			solanaClass.hasContentToRetrieve = false
+			solanaClass.setHasContentToRetrieve(false)
 		} catch (error) {
 			console.error(error)
 		} finally {
-			if (!_.isNull(solanaClass)) solanaClass.isRetrievingContent = false
+			if (!_.isNull(solanaClass)) solanaClass.setIsRetrievingContent(false)
 		}
-	}, [])
+	}, [fortunaApiClient.solanaDataService, solanaClass])
 
 	useEffect(() => {
 		if (_.isNull(fortunaApiClient.httpClient.accessToken)) return

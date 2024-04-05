@@ -8,7 +8,9 @@ function MyContentMap() {
 
 	if (_.isNull(solanaClass)) return null
 
-	if (_.isEmpty(solanaClass.myContentMap)) {
+	if (solanaClass.isRetrievingContent === true || solanaClass.hasContentToRetrieve === true) {
+		return <>Retrieving Content...</>
+	} else if (_.isEmpty(solanaClass.myContentMap)) {
 		return <>No content</>
 	}
 

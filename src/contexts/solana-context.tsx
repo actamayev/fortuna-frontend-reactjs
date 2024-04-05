@@ -5,7 +5,7 @@ import { createContext, useContext, useMemo } from "react"
 class SolanaClass {
 	private _walletAddress: string | null = null
 	public myContentMap: Map<string, MyContent> = new Map()
-	public hasContentToRetrieve = true // might need to make setting this an action
+	public hasContentToRetrieve = true
 	public isRetrievingContent = false
 
 	constructor() {
@@ -30,9 +30,17 @@ class SolanaClass {
 		newContentList.map(singleNewContent => this.addContent(singleNewContent))
 	})
 
-	public addContent = action((newContent: MyContent): void =>  {
+	public addContent = action((newContent: MyContent): void => {
 		if (this.myContentMap.has(newContent.mintAddress)) return
 		this.myContentMap.set(newContent.mintAddress, newContent)
+	})
+
+	public setHasContentToRetrieve = action((newState: boolean): void => {
+		this.hasContentToRetrieve = newState
+	})
+
+	public setIsRetrievingContent = action((newState: boolean): void => {
+		this.isRetrievingContent = newState
 	})
 
 	public logout() {
