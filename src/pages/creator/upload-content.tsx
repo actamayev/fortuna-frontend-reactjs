@@ -1,7 +1,6 @@
 import _ from "lodash"
 import { useState } from "react"
 import { observer } from "mobx-react"
-import ErrorMessage from "../../components/error-message"
 import CreatorHeader from "../../components/creator-header"
 import { useAuthContext } from "../../contexts/auth-context"
 import ShowAuthToNullUser from "../../components/show-auth-to-null-user"
@@ -25,7 +24,7 @@ function UploadContent() {
 	})
 	const [selectedImage, setSelectedImage] = useState<File | null>(null)
 	const [selectedVideo, setSelectedVideo] = useState<File | null>(null)
-	const [error, setError] = useState("")
+
 
 	if (_.isNull(authClass.accessToken)) {
 		return <ShowAuthToNullUser whereToNavigate="/creator/my-content" />
@@ -75,10 +74,7 @@ function UploadContent() {
 				newSplDetails={newSplDetails}
 				selectedImage={selectedImage}
 				selectedVideo={selectedVideo}
-				setError={setError}
 			/>
-
-			<ErrorMessage error={error} />
 		</>
 	)
 }

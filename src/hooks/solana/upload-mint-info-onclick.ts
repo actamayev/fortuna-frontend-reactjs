@@ -10,7 +10,8 @@ export default function useUploadMintInfoOnclick(): (
 	selectedImage: File | null,
 	selectedVideo: File | null,
 	setError: React.Dispatch<React.SetStateAction<string>>,
-	setLoading: React.Dispatch<React.SetStateAction<boolean>>
+	setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+	setStatus: React.Dispatch<React.SetStateAction<string>>
 ) => Promise<void> {
 	const navigate = useTypedNavigate()
 	const fortunaApiClient = useApiClientContext()
@@ -22,17 +23,21 @@ export default function useUploadMintInfoOnclick(): (
 		selectedImage: File | null,
 		selectedVideo: File | null,
 		setError: React.Dispatch<React.SetStateAction<string>>,
-		setLoading: React.Dispatch<React.SetStateAction<boolean>>
+		setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+		setStatus: React.Dispatch<React.SetStateAction<string>>
 	): Promise<void> => {
 		try {
 			setLoading(true)
 			if (_.isNull(selectedImage) || _.isNull(selectedVideo) || _.isNull(solanaClass)) return
+
+			setStatus("Uploading Video")
 			const uploadVideoResponse = await fortunaApiClient.uploadDataService.uploadVideoToS3(selectedVideo)
 			if (!_.isEqual(uploadVideoResponse.status, 200) || isNonSuccessResponse(uploadVideoResponse.data)) {
 				setError("Error uploading image")
 				return
 			}
 
+			setStatus("Uploading Thumbnail/picture")
 			const uploadImageResponse = await fortunaApiClient.uploadDataService.uploadImageToS3(selectedImage, uploadVideoResponse.data.uuid)
 			if (!_.isEqual(uploadImageResponse.status, 200) || isNonSuccessResponse(uploadImageResponse.data)) {
 				setError("Error uploading image")
@@ -48,6 +53,7 @@ export default function useUploadMintInfoOnclick(): (
 				uploadedVideoId: uploadVideoResponse.data.uploadedVideoId
 			}
 
+			setStatus("Creating and Minting Token")
 			const createAndMintResponse = await fortunaApiClient.solanaDataService.createAndMintSPL(createAndMintSPL)
 
 			if (!_.isEqual(createAndMintResponse.status, 200) || isNonSuccessResponse(createAndMintResponse.data)) {
@@ -70,6 +76,7 @@ export default function useUploadMintInfoOnclick(): (
 			console.error(error)
 		} finally {
 			setLoading(false)
+			setStatus("")
 		}
 	}, [fortunaApiClient.solanaDataService, fortunaApiClient.uploadDataService, navigate, solanaClass])
 
