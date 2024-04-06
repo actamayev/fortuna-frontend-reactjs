@@ -28,7 +28,6 @@ export default function useUsernameSearch(): (
 			if (!_.isEqual(response.status, 200) || isErrorResponses(response.data)) {
 				throw new Error("User Search Failed")
 			}
-			console.log(response.data)
 			setUsernameSearchResults(response.data.usernames)
 		} catch (error) {
 			console.error(error)
