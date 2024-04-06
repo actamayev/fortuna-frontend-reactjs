@@ -19,11 +19,11 @@ function UsernameSearch(props: Props) {
 
 	const handleSearch = useCallback(async () => {
 		try {
-			setIsLoading(true)
-			if (_.isEmpty(transferSolDetails.username.trim())) {
+			if (_.isEmpty(transferSolDetails.username.trim()) || transferSolDetails.isUsernameSelected === true) {
 				setUsernameSearchResults([])
 				return
 			}
+			setIsLoading(true)
 
 			const response = await fortunaApiClient.searchDataService.searchForUsername(transferSolDetails.username)
 			if (!_.isEqual(response.status, 200) || isErrorResponses(response.data)) {
@@ -36,7 +36,7 @@ function UsernameSearch(props: Props) {
 		} finally {
 			setIsLoading(false)
 		}
-	}, [fortunaApiClient.searchDataService, transferSolDetails.username])
+	}, [fortunaApiClient.searchDataService, transferSolDetails.isUsernameSelected, transferSolDetails.username])
 
 	useEffect(() => {
 		void handleSearch()
@@ -44,13 +44,20 @@ function UsernameSearch(props: Props) {
 
 	return (
 		<>
-			<input
-				type="text"
-				value={transferSolDetails.username}
-				onChange={(e) => setTransferSolDetails({ ...transferSolDetails, username: e.target.value})}
-				className="border rounded-lg p-2"
-				placeholder="Username"
-			/>
+			<div className="relative border rounded-lg">
+				<input
+					type="text"
+					value={transferSolDetails.username}
+					onChange={(e) => setTransferSolDetails({ ...transferSolDetails, username: e.target.value, isUsernameSelected: false })}
+					className="p-2 rounded-lg w-full"
+					placeholder="Username"
+				/>
+				{transferSolDetails.isUsernameSelected && (
+					<span className="absolute inset-y-0 right-0 flex items-center pr-3">
+						✓
+					</span>
+				)}
+			</div>
 			<DisplayUsernames
 				isLoading={isLoading}
 				usernameSearchResults={usernameSearchResults}
