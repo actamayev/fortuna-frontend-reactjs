@@ -12,6 +12,10 @@ declare global {
 	type LoginSuccess = { accessToken: string }
 	type RegisterSuccess = { accessToken: string }
 
+	// Search Responses:
+	type SearchForUsersResponse = { usernames: { username: string }[] }
+	type BooleanResponse = { exists: boolean }
+
 	// Solana Responses:
 	type MintSPLResponse = { newSPLId: number, mintAddress: string }
 	interface RetrieveMyContentResponse {
@@ -26,6 +30,13 @@ declare global {
 			videoUrl: string
 			mintAddress: string
 		}[]
+	}
+
+	type WalletBalanceResponse = {
+		balanceInSol: number,
+		balanceInUsd: number,
+		solPriceInUSD: number,
+		solPriceRetrievedTime: Date
 	}
 
 	// Upload Responses:

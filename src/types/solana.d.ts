@@ -21,6 +21,25 @@ declare global {
 		uploadedImageId: number
 		uploadedVideoId: number
 	}
+
+	interface SolPriceDetails {
+		solPriceInUSD: number
+		lastRetrieved: Date
+	}
+
+	type TransferOption = "username" | "publicKey"
+
+	interface TransferSolDetails {
+		transferOption: TransferOption
+
+		username: string
+		isUsernameSelected: boolean
+
+		publicKey: string
+		doesPublicKeyExist: boolean
+
+		amount: number
+	}
 }
 
 export {}

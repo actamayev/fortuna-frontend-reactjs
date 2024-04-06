@@ -1,12 +1,15 @@
 import _ from "lodash"
-import { action, makeAutoObservable } from "mobx"
 import { createContext, useContext, useMemo } from "react"
+import { action, computed, makeAutoObservable } from "mobx"
 
 class SolanaClass {
 	private _walletAddress: string | null = null
 	public myContentMap: Map<string, MyContent> = new Map()
 	public hasContentToRetrieve = true
 	public isRetrievingContent = false
+	private _walletBalanceSol: number | null = null
+	public solPriceDetails: SolPriceDetails | null = null
+	public isRetrievingWalletDetails = false
 
 	constructor() {
 		makeAutoObservable(this)
@@ -18,6 +21,14 @@ class SolanaClass {
 
 	set walletAddress(walletAddress: string | null) {
 		this._walletAddress = walletAddress
+	}
+
+	get walletBalanceSol(): number | null {
+		return this._walletBalanceSol
+	}
+
+	set walletBalanceSol(walletBalanceSol: number | null) {
+		this._walletBalanceSol = walletBalanceSol
 	}
 
 	public contextForMyContent(mintAddress: string): MyContent | undefined {
@@ -41,6 +52,19 @@ class SolanaClass {
 
 	public setIsRetrievingContent = action((newState: boolean): void => {
 		this.isRetrievingContent = newState
+	})
+
+	public setIsRetrievingWalletDetails = action((newState: boolean): void => {
+		this.isRetrievingWalletDetails = newState
+	})
+
+	public getWalletBalanceUSD = computed((): number | void => {
+		if (_.isNull(this.walletBalanceSol) || _.isNull(this.solPriceDetails)) return
+		return this.walletBalanceSol * this.solPriceDetails.solPriceInUSD
+	})
+
+	public setSolPriceDetails = action((newSolPriceDetails: SolPriceDetails): void => {
+		this.solPriceDetails = newSolPriceDetails
 	})
 
 	public logout() {

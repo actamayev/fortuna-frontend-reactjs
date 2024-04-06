@@ -14,4 +14,8 @@ export default class SolanaDataService {
 	async retrieveMyContent(): Promise<AxiosResponse<RetrieveMyContentResponse | MessageResponse | ErrorResponse>> {
 		return await this.httpClient.http.get<RetrieveMyContentResponse | MessageResponse | ErrorResponse>("/devnet/solana/get-creator-content-list")
 	}
+
+	async retrieveWalletBalance(): Promise<AxiosResponse<WalletBalanceResponse | MessageResponse | ErrorResponse>> {
+		return await this.httpClient.http.get<WalletBalanceResponse | MessageResponse | ErrorResponse>("/devnet/solana/get-wallet-balance")
+	}
 }
