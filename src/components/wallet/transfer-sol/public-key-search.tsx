@@ -1,52 +1,17 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useCallback, useEffect, useState } from "react"
-import { isErrorResponses } from "../../../utils/type-checks"
+import { useEffect, useState } from "react"
 import { useSolanaContext } from "../../../contexts/solana-context"
-import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
+import usePublicKeySearch from "../../../hooks/search/public-key-search"
 
 function PublicKeySearch() {
 	const [isLoading, setIsLoading] = useState(false)
-	const fortunaApiClient = useApiClientContext()
 	const solanaClass = useSolanaContext()
-
-	// eslint-disable-next-line complexity
-	const handleSearch = useCallback(async () => {
-		try {
-			if (_.isNull(solanaClass) || !_.isEqual(solanaClass.transferSolDetails.publicKey.length, 44)) return
-			setIsLoading(true)
-			solanaClass.updateTransferSolDetails("doesPublicKeyExist", false)
-
-			const publicKeyOnFortunaResponse = await fortunaApiClient.searchDataService.checkIfPublicKeyRegisteredOnFortuna(
-				solanaClass.transferSolDetails.publicKey
-			)
-			if (!_.isEqual(publicKeyOnFortunaResponse.status, 200) || isErrorResponses(publicKeyOnFortunaResponse.data)) {
-				throw new Error("Public Key Search Search Failed")
-			}
-			if (publicKeyOnFortunaResponse.data.exists === true) {
-				solanaClass.updateTransferSolDetails("doesPublicKeyExist", true)
-				return
-			}
-
-			const publicKeyExistsOnSolana = await fortunaApiClient.searchDataService.checkIfPublicKeyExistsOnSolana(solanaClass.transferSolDetails.publicKey)
-			if (!_.isEqual(publicKeyExistsOnSolana.status, 200) || isErrorResponses(publicKeyExistsOnSolana.data)) {
-				throw new Error("Public Key Search Search Failed")
-			}
-			if (publicKeyExistsOnSolana.data.exists === true) {
-				solanaClass.updateTransferSolDetails("doesPublicKeyExist", true)
-				return
-			}
-		} catch (error) {
-			console.error(error)
-		} finally {
-			setIsLoading(false)
-		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [fortunaApiClient.searchDataService, solanaClass?.transferSolDetails.publicKey])
+	const publicKeySearch = usePublicKeySearch()
 
 	useEffect(() => {
-		void handleSearch()
-	}, [handleSearch])
+		void publicKeySearch(setIsLoading)
+	}, [publicKeySearch])
 
 	if (_.isNull(solanaClass)) return null
 
