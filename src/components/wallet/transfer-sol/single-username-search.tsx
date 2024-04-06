@@ -1,25 +1,27 @@
+import _ from "lodash"
 import { useCallback } from "react"
+import { observer } from "mobx-react"
+import { useSolanaContext } from "../../../contexts/solana-context"
 
 interface Props {
-	username: string
-	transferSolDetails: TransferSolDetails
-	setTransferSolDetails: React.Dispatch<React.SetStateAction<TransferSolDetails>>
+	searchResultsUsername: string
 }
 
-export default function SingleUsernameSearch(props: Props) {
-	const { username, transferSolDetails, setTransferSolDetails } = props
+function SingleUsernameSearch(props: Props) {
+	const { searchResultsUsername } = props
+	const solanaClass = useSolanaContext()
 
 	const selectUsername = useCallback(() => {
-		setTransferSolDetails({
-			...transferSolDetails,
-			isUsernameSelected: true,
-			username
-		})
-	}, [setTransferSolDetails, transferSolDetails, username])
+		if (_.isNull(solanaClass)) return
+		solanaClass.updateTransferSolDetails("isUsernameSelected", true)
+		solanaClass.updateTransferSolDetails("username", searchResultsUsername)
+	}, [solanaClass, searchResultsUsername])
 
 	return (
 		<div onClick={selectUsername}>
-			{username}
+			{searchResultsUsername}
 		</div>
 	)
 }
+
+export default observer(SingleUsernameSearch)

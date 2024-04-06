@@ -3,29 +3,25 @@ import { observer } from "mobx-react"
 import { useCallback, useEffect, useState } from "react"
 import DisplayUsernames from "./display-usernames"
 import { isErrorResponses } from "../../../utils/type-checks"
+import { useSolanaContext } from "../../../contexts/solana-context"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 
-interface Props {
-	transferSolDetails: TransferSolDetails
-	setTransferSolDetails: React.Dispatch<React.SetStateAction<TransferSolDetails>>
-}
-
-function UsernameSearch(props: Props) {
-	// TODO: Pass down the setIsUsernameSelected until the single-username-search. onclick, should set the username
-	const { transferSolDetails, setTransferSolDetails } = props
+function UsernameSearch() {
 	const [isLoading, setIsLoading] = useState(false)
 	const [usernameSearchResults, setUsernameSearchResults] = useState<{username: string}[]>([])
 	const fortunaApiClient = useApiClientContext()
+	const solanaClass = useSolanaContext()
 
 	const handleSearch = useCallback(async () => {
 		try {
-			if (_.isEmpty(transferSolDetails.username.trim()) || transferSolDetails.isUsernameSelected === true) {
+			if (_.isNull(solanaClass)) return
+			if (_.isEmpty(solanaClass.transferSolDetails.username.trim()) || solanaClass.transferSolDetails.isUsernameSelected === true) {
 				setUsernameSearchResults([])
 				return
 			}
 			setIsLoading(true)
 
-			const response = await fortunaApiClient.searchDataService.searchForUsername(transferSolDetails.username)
+			const response = await fortunaApiClient.searchDataService.searchForUsername(solanaClass.transferSolDetails.username)
 			if (!_.isEqual(response.status, 200) || isErrorResponses(response.data)) {
 				throw new Error("User Search Failed")
 			}
@@ -36,23 +32,29 @@ function UsernameSearch(props: Props) {
 		} finally {
 			setIsLoading(false)
 		}
-	}, [fortunaApiClient.searchDataService, transferSolDetails.isUsernameSelected, transferSolDetails.username])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [fortunaApiClient.searchDataService, solanaClass?.transferSolDetails.isUsernameSelected, solanaClass?.transferSolDetails.username])
 
 	useEffect(() => {
 		void handleSearch()
 	}, [handleSearch])
+
+	if (_.isNull(solanaClass)) return null
 
 	return (
 		<>
 			<div className="relative border rounded-lg">
 				<input
 					type="text"
-					value={transferSolDetails.username}
-					onChange={(e) => setTransferSolDetails({ ...transferSolDetails, username: e.target.value, isUsernameSelected: false })}
+					value={solanaClass.transferSolDetails.username}
+					onChange={(e) => {
+						solanaClass.updateTransferSolDetails("username", e.target.value)
+						solanaClass.updateTransferSolDetails("isUsernameSelected", false)
+					}}
 					className="p-2 rounded-lg w-full"
 					placeholder="Username"
 				/>
-				{transferSolDetails.isUsernameSelected && (
+				{solanaClass.transferSolDetails.isUsernameSelected && (
 					<span className="absolute inset-y-0 right-0 flex items-center pr-3">
 						✓
 					</span>
@@ -61,8 +63,6 @@ function UsernameSearch(props: Props) {
 			<DisplayUsernames
 				isLoading={isLoading}
 				usernameSearchResults={usernameSearchResults}
-				transferSolDetails={transferSolDetails}
-				setTransferSolDetails={setTransferSolDetails}
 			/>
 		</>
 	)

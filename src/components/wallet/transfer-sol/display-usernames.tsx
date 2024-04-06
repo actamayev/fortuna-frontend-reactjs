@@ -1,19 +1,20 @@
+import _ from "lodash"
+import { observer } from "mobx-react"
 import SingleUsernameSearch from "./single-username-search"
+import { useSolanaContext } from "../../../contexts/solana-context"
 
 interface Props {
 	isLoading: boolean
 	usernameSearchResults: { username: string }[]
-	transferSolDetails: TransferSolDetails
-	setTransferSolDetails: React.Dispatch<React.SetStateAction<TransferSolDetails>>
 }
 
-// TODO: Move transferSolDetails onto the context level to not have to pass around as a prop
+function DisplayUsernames(props: Props) {
+	const { isLoading, usernameSearchResults } = props
+	const solanaClass = useSolanaContext()
 
-export default function DisplayUsernames(props: Props) {
-	const { isLoading, usernameSearchResults, transferSolDetails, setTransferSolDetails } = props
-
-	if (transferSolDetails.isUsernameSelected === true) return null
+	if (_.isNull(solanaClass)) return null
 	if (isLoading === true) return <>Loading...</>
+	if (solanaClass.transferSolDetails.isUsernameSelected === true) return null
 
 	return (
 		<>
@@ -21,12 +22,12 @@ export default function DisplayUsernames(props: Props) {
 				return (
 					<SingleUsernameSearch
 						key = {item.username}
-						username={item.username}
-						transferSolDetails={transferSolDetails}
-						setTransferSolDetails={setTransferSolDetails}
+						searchResultsUsername={item.username}
 					/>
 				)
 			})}
 		</>
 	)
 }
+
+export default observer(DisplayUsernames)

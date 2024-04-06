@@ -4,11 +4,21 @@ import { action, computed, makeAutoObservable } from "mobx"
 
 class SolanaClass {
 	private _walletAddress: string | null = null
+	private _walletBalanceSol: number | null = null
+
 	public myContentMap: Map<string, MyContent> = new Map()
+	public transferSolDetails: TransferSolDetails = {
+		transferOption: "username",
+		username: "",
+		isUsernameSelected: false,
+		publicKey: "",
+		doesPublicKeyExist: false,
+		amount: 0
+	}
+
+	public solPriceDetails: SolPriceDetails | null = null
 	public hasContentToRetrieve = true
 	public isRetrievingContent = false
-	private _walletBalanceSol: number | null = null
-	public solPriceDetails: SolPriceDetails | null = null
 	public isRetrievingWalletDetails = false
 
 	constructor() {
@@ -67,9 +77,30 @@ class SolanaClass {
 		this.solPriceDetails = newSolPriceDetails
 	})
 
+	public updateTransferSolDetails = action(<K extends keyof TransferSolDetails>(key: K, value: TransferSolDetails[K]) => {
+		if (typeof this.transferSolDetails[key] === typeof value) {
+			this.transferSolDetails[key] = value
+		} else {
+			console.warn(`Type mismatch when trying to set ${key}`)
+		}
+	})
+
 	public logout() {
 		this.walletAddress = null
+		this.walletBalanceSol = null
 		this.myContentMap.clear()
+		this.solPriceDetails = null
+		this.hasContentToRetrieve = true
+		this.isRetrievingContent = false
+		this.isRetrievingWalletDetails = false
+		this.transferSolDetails = {
+			transferOption: "username",
+			username: "",
+			isUsernameSelected: false,
+			publicKey: "",
+			doesPublicKeyExist: false,
+			amount: 0
+		}
 	}
 }
 

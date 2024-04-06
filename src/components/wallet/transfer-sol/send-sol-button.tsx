@@ -1,14 +1,12 @@
 import _ from "lodash"
+import { observer } from "mobx-react"
 import Button from "../../button"
+import { useSolanaContext } from "../../../contexts/solana-context"
 
-interface Props {
-	transferSolDetails: TransferSolDetails
-}
+function SendSolButton() {
+	const solanaClass = useSolanaContext()
 
-export default function SendSolButton(props: Props) {
-	const { transferSolDetails } = props
-
-	if (_.isEqual(transferSolDetails.amount, 0)) return null
+	if (_.isNull(solanaClass) || _.isEqual(solanaClass.transferSolDetails.amount, 0)) return null
 
 	return (
 		<Button
@@ -19,3 +17,5 @@ export default function SendSolButton(props: Props) {
 		/>
 	)
 }
+
+export default observer(SendSolButton)

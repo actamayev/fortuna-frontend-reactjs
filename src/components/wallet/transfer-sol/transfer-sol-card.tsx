@@ -1,5 +1,4 @@
 import _ from "lodash"
-import { useState } from "react"
 import { observer } from "mobx-react"
 import SendSolButton from "./send-sol-button"
 import UsernameSearch from "./username-search"
@@ -9,14 +8,6 @@ import { useSolanaContext } from "../../../contexts/solana-context"
 
 function TransferSolCard() {
 	const solanaClass = useSolanaContext()
-	const [transferSolDetails, setTransferSolDetails] = useState<TransferSolDetails>({
-		transferOption: "username",
-		username: "",
-		isUsernameSelected: false,
-		publicKey: "",
-		doesPublicKeyExist: false,
-		amount: 0,
-	})
 
 	if (_.isNull(solanaClass)) return null
 
@@ -27,32 +18,23 @@ function TransferSolCard() {
 		>
 			<div className="text-center font-semibold">Transfer Sol</div>
 			<select
-				value={transferSolDetails.transferOption}
-				onChange={(e) => setTransferSolDetails({ ...transferSolDetails, transferOption: e.target.value as TransferOption })}
+				value={solanaClass.transferSolDetails.transferOption}
+				onChange={(e) => solanaClass.updateTransferSolDetails("transferOption", e.target.value as TransferOption) }
 				className="border rounded-lg p-2"
 			>
 				<option value="username">Username</option>
 				<option value="publicKey">Public Key</option>
 			</select>
 
-			{transferSolDetails.transferOption === "username" ? (
-				<UsernameSearch
-					transferSolDetails={transferSolDetails}
-					setTransferSolDetails={setTransferSolDetails}
-				/>
+			{solanaClass.transferSolDetails.transferOption === "username" ? (
+				<UsernameSearch />
 			) : (
-				<PublicKeySearch
-					transferSolDetails={transferSolDetails}
-					setTransferSolDetails={setTransferSolDetails}
-				/>
+				<PublicKeySearch />
 			)}
 
-			<SelectTransferAmount
-				transferSolDetails={transferSolDetails}
-				setTransferSolDetails={setTransferSolDetails}
-			/>
+			<SelectTransferAmount />
 
-			<SendSolButton transferSolDetails={transferSolDetails} />
+			<SendSolButton />
 
 		</div>
 	)
