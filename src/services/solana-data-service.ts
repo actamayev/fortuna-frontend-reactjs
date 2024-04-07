@@ -18,4 +18,8 @@ export default class SolanaDataService {
 	async retrieveWalletBalance(): Promise<AxiosResponse<WalletBalanceResponse | MessageResponse | ErrorResponse>> {
 		return await this.httpClient.http.get<WalletBalanceResponse | MessageResponse | ErrorResponse>("/devnet/solana/get-wallet-balance")
 	}
+
+	async transferSol(transferSolData: SendingSolTransfer): Promise<AxiosResponse<AllCommonResponses>> {
+		return await this.httpClient.http.post<AllCommonResponses>("/devnet/solana/transfer-sol", { transferSolData })
+	}
 }

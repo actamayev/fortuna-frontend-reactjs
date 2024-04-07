@@ -1,8 +1,8 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useEffect, useState } from "react"
-import { useSolanaContext } from "../../../contexts/solana-context"
-import usePublicKeySearch from "../../../hooks/search/public-key-search"
+import { useSolanaContext } from "../../../../contexts/solana-context"
+import usePublicKeySearch from "../../../../hooks/search/public-key-search"
 
 function PublicKeySearch() {
 	const [isLoading, setIsLoading] = useState(false)

@@ -28,6 +28,7 @@ declare global {
 	}
 
 	type TransferOption = "username" | "publicKey"
+	type TransferStage = "initial" | "review"
 
 	interface TransferSolDetails {
 		transferOption: TransferOption
@@ -38,7 +39,14 @@ declare global {
 		publicKey: string
 		doesPublicKeyExist: boolean
 
-		amount: number
+		solAmount: number
+		transferStage: TransferStage
+	}
+
+	interface SendingSolTransfer {
+		sendingTo: string
+		sendingToPublicKeyOrUsername: TransferOption
+		transferAmountSol: number
 	}
 }
 

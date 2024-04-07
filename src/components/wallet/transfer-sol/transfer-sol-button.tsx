@@ -1,9 +1,11 @@
-import { useState } from "react"
+import _ from "lodash"
+import { observer } from "mobx-react"
 import Button from "../../button"
 import TransferSolCard from "./transfer-sol-card"
+import { useSolanaContext } from "../../../contexts/solana-context"
 
-export default function TransferSolButton() {
-	const [isButtonPressed, setIsButtonPressed] = useState(false)
+function TransferSolButton() {
+	const solanaClass = useSolanaContext()
 
 	// have a button. onclick, a card opens underneath with two options. the first is default selected.
 	// teh first option is: username. on type, searches for usernames in fortuna's network.
@@ -13,15 +15,18 @@ export default function TransferSolButton() {
 	// the other non-default option is transfer to another public key. if that public key is within fortuna's system, should recognize, and do 0 fee
 	// else, should do the same as before, but have a fee.
 
+	if (_.isNull(solanaClass)) return null
 	return (
 		<>
 			<Button
 				title="Transfer Sol"
 				colorClass="bg-blue-400"
 				hoverClass="hover:bg-blue-500"
-				onClick={() => setIsButtonPressed(!isButtonPressed)}
+				onClick={() => solanaClass.setIsTransferSolButtonPressed(!solanaClass.isTransferSolButtonPressed)}
 			/>
-			{ isButtonPressed && <TransferSolCard /> }
+			{ solanaClass.isTransferSolButtonPressed && <TransferSolCard /> }
 		</>
 	)
 }
+
+export default observer(TransferSolButton)

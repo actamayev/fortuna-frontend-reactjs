@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import SingleUsernameSearch from "./single-username-search"
-import { useSolanaContext } from "../../../contexts/solana-context"
+import { useSolanaContext } from "../../../../contexts/solana-context"
 
 interface Props {
 	isLoading: boolean

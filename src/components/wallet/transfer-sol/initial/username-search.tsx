@@ -2,8 +2,8 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useEffect, useState } from "react"
 import DisplayUsernames from "./display-usernames"
-import { useSolanaContext } from "../../../contexts/solana-context"
-import useUsernameSearch from "../../../hooks/search/username-search"
+import { useSolanaContext } from "../../../../contexts/solana-context"
+import useUsernameSearch from "../../../../hooks/search/username-search"
 
 function UsernameSearch() {
 	const [isLoading, setIsLoading] = useState(false)

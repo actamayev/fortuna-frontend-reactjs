@@ -7,13 +7,15 @@ class SolanaClass {
 	private _walletBalanceSol: number | null = null
 
 	public myContentMap: Map<string, MyContent> = new Map()
+	public isTransferSolButtonPressed = false
 	public transferSolDetails: TransferSolDetails = {
 		transferOption: "username",
 		username: "",
 		isUsernameSelected: false,
 		publicKey: "",
 		doesPublicKeyExist: false,
-		amount: 0
+		solAmount: 0,
+		transferStage: "initial"
 	}
 
 	public solPriceDetails: SolPriceDetails | null = null
@@ -68,6 +70,10 @@ class SolanaClass {
 		this.isRetrievingWalletDetails = newState
 	})
 
+	public setIsTransferSolButtonPressed = action((newState: boolean): void => {
+		this.isTransferSolButtonPressed = newState
+	})
+
 	public getWalletBalanceUSD = computed((): number | void => {
 		if (_.isNull(this.walletBalanceSol) || _.isNull(this.solPriceDetails)) return
 		return this.walletBalanceSol * this.solPriceDetails.solPriceInUSD
@@ -93,13 +99,15 @@ class SolanaClass {
 		this.hasContentToRetrieve = true
 		this.isRetrievingContent = false
 		this.isRetrievingWalletDetails = false
+		this.isTransferSolButtonPressed = false
 		this.transferSolDetails = {
 			transferOption: "username",
 			username: "",
 			isUsernameSelected: false,
 			publicKey: "",
 			doesPublicKeyExist: false,
-			amount: 0
+			solAmount: 0,
+			transferStage: "initial"
 		}
 	}
 }
