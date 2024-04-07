@@ -13,6 +13,7 @@ class SolanaClass {
 		username: "",
 		isUsernameSelected: false,
 		publicKey: "",
+		isPublicKeyRegisteredWithFortuna: false,
 		doesPublicKeyExist: false,
 		solAmount: 0,
 		transferStage: "initial"
@@ -105,6 +106,7 @@ class SolanaClass {
 			username: "",
 			isUsernameSelected: false,
 			publicKey: "",
+			isPublicKeyRegisteredWithFortuna: false,
 			doesPublicKeyExist: false,
 			solAmount: 0,
 			transferStage: "initial"

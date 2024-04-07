@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import { isNonSuccessResponse } from "../../utils/type-checks"
+import useRetrieveWalletBalance from "./retrieve-wallet-balance"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
@@ -9,6 +10,7 @@ export default function useTransferSol(): (
 ) => Promise<void> {
 	const solanaClass = useSolanaContext()
 	const fortunaApiClient = useApiClientContext()
+	const retrieveWalletBalance = useRetrieveWalletBalance()
 
 	const transferSol = useCallback(async (
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
@@ -29,16 +31,18 @@ export default function useTransferSol(): (
 				transferAmountSol: solanaClass.transferSolDetails.solAmount
 			}
 			const transferSolResponse = await fortunaApiClient.solanaDataService.transferSol(sendingSolTransfer)
-			if (!_.isEqual(transferSolResponse, 200) || isNonSuccessResponse(transferSolResponse)) {
+			if (!_.isEqual(transferSolResponse.status, 200) || isNonSuccessResponse(transferSolResponse.data)) {
 				throw Error("Error transferring sol")
 			}
 			solanaClass.setIsTransferSolButtonPressed(false)
+			// Refresh wallet balance.
+			await retrieveWalletBalance()
 		} catch (error) {
 			console.error(error)
 		} finally {
 			setIsLoading(false)
 		}
-	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService, solanaClass])
+	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService, retrieveWalletBalance, solanaClass])
 
 	return transferSol
 }

@@ -38,6 +38,7 @@ declare global {
 
 		publicKey: string
 		doesPublicKeyExist: boolean
+		isPublicKeyRegisteredWithFortuna: boolean
 
 		solAmount: number
 		transferStage: TransferStage

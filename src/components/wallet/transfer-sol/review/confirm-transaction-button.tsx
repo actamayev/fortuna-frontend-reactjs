@@ -5,7 +5,7 @@ import Button from "../../../button"
 import useTransferSol from "../../../../hooks/solana/transfer-sol"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 
-function ReviewTransferButton() {
+function ConfirmTransactionButton() {
 	const solanaClass = useSolanaContext()
 	const transferSol = useTransferSol()
 	const [isLoading, setIsLoading] = useState(false)
@@ -23,4 +23,4 @@ function ReviewTransferButton() {
 	)
 }
 
-export default observer(ReviewTransferButton)
+export default observer(ConfirmTransactionButton)

@@ -18,6 +18,7 @@ export default function usePublicKeySearch(): (
 			if (_.isNull(solanaClass) || !_.isEqual(solanaClass.transferSolDetails.publicKey.length, 44)) return
 			setIsLoading(true)
 			solanaClass.updateTransferSolDetails("doesPublicKeyExist", false)
+			solanaClass.updateTransferSolDetails("isPublicKeyRegisteredWithFortuna", false)
 
 			const publicKeyOnFortunaResponse = await fortunaApiClient.searchDataService.checkIfPublicKeyRegisteredOnFortuna(
 				solanaClass.transferSolDetails.publicKey
@@ -27,9 +28,11 @@ export default function usePublicKeySearch(): (
 			}
 			if (publicKeyOnFortunaResponse.data.exists === true) {
 				solanaClass.updateTransferSolDetails("doesPublicKeyExist", true)
+				solanaClass.updateTransferSolDetails("isPublicKeyRegisteredWithFortuna", true)
 				return
 			}
 
+			solanaClass.updateTransferSolDetails("isPublicKeyRegisteredWithFortuna", false)
 			const publicKeyExistsOnSolana = await fortunaApiClient.searchDataService.checkIfPublicKeyExistsOnSolana(solanaClass.transferSolDetails.publicKey)
 			if (!_.isEqual(publicKeyExistsOnSolana.status, 200) || isErrorResponses(publicKeyExistsOnSolana.data)) {
 				throw new Error("Public Key Search Search Failed")
