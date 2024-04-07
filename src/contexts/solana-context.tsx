@@ -18,10 +18,16 @@ class SolanaClass {
 		solAmount: 0,
 		transferStage: "initial"
 	}
+	private _myTransactionMap: Map<number, SolanaTransaction> = new Map()
 
 	public solPriceDetails: SolPriceDetails | null = null
+
 	public hasContentToRetrieve = true
 	public isRetrievingContent = false
+
+	public hasTransactionsToRetrieve = true
+	public isRetrievingTransactions = false
+
 	public isRetrievingWalletDetails = false
 
 	constructor() {
@@ -44,8 +50,20 @@ class SolanaClass {
 		this._walletBalanceSol = walletBalanceSol
 	}
 
+	get myTransactionMap(): Map<number, SolanaTransaction> {
+		return this._myTransactionMap
+	}
+
+	set myTransactionMap(myTransactionMap: Map<number, SolanaTransaction>) {
+		this._myTransactionMap = myTransactionMap
+	}
+
 	public contextForMyContent(mintAddress: string): MyContent | undefined {
 		return this.myContentMap.get(mintAddress)
+	}
+
+	public contextForMyTransaction(transactionId: number): SolanaTransaction | undefined {
+		return this.myTransactionMap.get(transactionId)
 	}
 
 	public setContent = action((newContentList: MyContent[]): void => {
@@ -65,6 +83,25 @@ class SolanaClass {
 
 	public setIsRetrievingContent = action((newState: boolean): void => {
 		this.isRetrievingContent = newState
+	})
+
+	public setHasTransactionsToRetrieve = action((newState: boolean): void => {
+		this.hasTransactionsToRetrieve = newState
+	})
+
+	public setIsRetrievingTransactions = action((newState: boolean): void => {
+		this.isRetrievingTransactions = newState
+	})
+
+	public setTransactions = action((solanaTransactions: SolanaTransaction[]): void => {
+		this.myTransactionMap.clear()
+		if (_.isEmpty(solanaTransactions)) return
+		solanaTransactions.map(singleSolanaTransaction => this.addSolanaTransaction(singleSolanaTransaction))
+	})
+
+	public addSolanaTransaction = action((solanaTransaction: SolanaTransaction): void => {
+		if (this.myTransactionMap.has(solanaTransaction.solTransferId)) return
+		this.myTransactionMap.set(solanaTransaction.solTransferId, solanaTransaction)
 	})
 
 	public setIsRetrievingWalletDetails = action((newState: boolean): void => {
@@ -96,6 +133,7 @@ class SolanaClass {
 		this.walletAddress = null
 		this.walletBalanceSol = null
 		this.myContentMap.clear()
+		this.myTransactionMap.clear()
 		this.solPriceDetails = null
 		this.hasContentToRetrieve = true
 		this.isRetrievingContent = false

@@ -19,17 +19,7 @@ declare global {
 	// Solana Responses:
 	type MintSPLResponse = { newSPLId: number, mintAddress: string }
 	interface RetrieveMyContentResponse {
-		creatorContentList : {
-			splId: number
-			splName: string
-			numberOfShares: number
-			offeringSharePriceSol: number
-			description: string
-			creatorOwnershipPercentage: number
-			imageUrl: string
-			videoUrl: string
-			mintAddress: string
-		}[]
+		creatorContentList: MyContent[]
 	}
 
 	type WalletBalanceResponse = {
@@ -37,6 +27,10 @@ declare global {
 		balanceInUsd: number,
 		solPriceInUSD: number,
 		solPriceRetrievedTime: Date
+	}
+
+	type TransactionsResponse = {
+		transactions: SolanaTransaction[]
 	}
 
 	// Upload Responses:

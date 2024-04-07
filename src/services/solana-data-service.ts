@@ -22,4 +22,8 @@ export default class SolanaDataService {
 	async transferSol(transferSolData: SendingSolTransfer): Promise<AxiosResponse<AllCommonResponses>> {
 		return await this.httpClient.http.post<AllCommonResponses>("/devnet/solana/transfer-sol", { transferSolData })
 	}
+
+	async retrieveTransactions(): Promise<AxiosResponse<TransactionsResponse | MessageResponse | ErrorResponse>> {
+		return await this.httpClient.http.get<TransactionsResponse | MessageResponse | ErrorResponse>("/devnet/solana/get-transactions")
+	}
 }

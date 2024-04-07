@@ -49,6 +49,18 @@ declare global {
 		sendingToPublicKeyOrUsername: TransferOption
 		transferAmountSol: number
 	}
+
+	interface SolanaTransaction {
+		solTransferId: number
+		solTransferred: number
+		usdTransferred: number
+
+		transferDateTime: Date
+		transferToUsername?: string
+		transferToPublicKey?: string
+		transferFeeSol?: number
+		transferFeeUsd?: number
+	}
 }
 
 export {}
