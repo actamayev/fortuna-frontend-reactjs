@@ -27,10 +27,15 @@ export default function useTransferSol(): (
 			}
 			const sendingSolTransfer: SendingSolTransfer = {
 				sendingTo,
-				sendingToPublicKeyOrUsername: solanaClass.transferSolDetails.transferOption,
 				transferAmountSol: solanaClass.transferSolDetails.solAmount
 			}
-			const transferSolResponse = await fortunaApiClient.solanaDataService.transferSol(sendingSolTransfer)
+
+			let transferSolResponse
+			if (solanaClass.transferSolDetails.transferOption === "publicKey") {
+				transferSolResponse = await fortunaApiClient.solanaDataService.transferSolToPublicKey(sendingSolTransfer)
+			} else {
+				transferSolResponse = await fortunaApiClient.solanaDataService.transferSolToUsername(sendingSolTransfer)
+			}
 			if (!_.isEqual(transferSolResponse.status, 200) || isNonSuccessResponse(transferSolResponse.data)) {
 				throw Error("Error transferring sol")
 			}

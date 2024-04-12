@@ -46,7 +46,6 @@ declare global {
 
 	interface SendingSolTransfer {
 		sendingTo: string
-		sendingToPublicKeyOrUsername: TransferOption
 		transferAmountSol: number
 	}
 
@@ -56,7 +55,7 @@ declare global {
 		usdTransferred: number
 
 		transferDateTime: Date
-		transferToUsername?: string
+		transferToUsername?: string | null
 		transferToPublicKey?: string
 		transferFeeSol?: number
 		transferFeeUsd?: number

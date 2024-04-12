@@ -1,5 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
+import Button from "../../button"
 import { useSolanaContext } from "../../../contexts/solana-context"
 import ConfirmTransactionButton from "./review/confirm-transaction-button"
 
@@ -21,6 +22,12 @@ function ReviewTransferInfo() {
 	return (
 		<>
 			<div className="text-center font-semibold">
+				<Button
+					title="<"
+					colorClass="bg-blue-300"
+					hoverClass="hover:bg-blue-400"
+					onClick={() => solanaClass.updateTransferSolDetails("transferStage", "initial")}
+				/>
 				Review Transaction
 			</div>
 
