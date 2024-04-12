@@ -13,7 +13,6 @@ export default function useConfirmUserHasEnoughSolToTransfer(): (
 	): void => {
 		try {
 			if (_.isNull(solanaClass) || _.isNull(solanaClass.walletBalanceSol)) return
-			// TODO: Confirm amount sending is less than the amount the user has in the account.
 			setDoesUserHaveEnoughSol(false)
 			const myWalletBalance = solanaClass.walletBalanceSol
 

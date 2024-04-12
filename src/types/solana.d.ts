@@ -53,6 +53,7 @@ declare global {
 		solTransferId: number
 		solTransferred: number
 		usdTransferred: number
+		outgoingOrIncoming: "outgoing" | "incoming"
 
 		transferDateTime: Date
 		transferToUsername?: string
