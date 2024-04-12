@@ -17,7 +17,6 @@ export default function useTransferSol(): (
 	): Promise<void> => {
 		try {
 			if (_.isNull(solanaClass) || _.isNull(fortunaApiClient.httpClient.accessToken)) return
-			// TODO: Confirm amount sending is less than the amount the user has in teh account.
 			setIsLoading(true)
 			let sendingTo
 			if (solanaClass.transferSolDetails.transferOption === "publicKey") {
@@ -41,6 +40,7 @@ export default function useTransferSol(): (
 			}
 			solanaClass.setIsTransferSolButtonPressed(false)
 			await retrieveWalletBalance()
+			// TODO: Add the transfer to the list.
 		} catch (error) {
 			console.error(error)
 		} finally {

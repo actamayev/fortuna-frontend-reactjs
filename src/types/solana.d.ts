@@ -55,7 +55,7 @@ declare global {
 		usdTransferred: number
 
 		transferDateTime: Date
-		transferToUsername?: string | null
+		transferToUsername?: string
 		transferToPublicKey?: string
 		transferFeeSol?: number
 		transferFeeUsd?: number
