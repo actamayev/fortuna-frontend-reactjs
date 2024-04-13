@@ -7,13 +7,13 @@ declare global {
 	type ErrorResponses = ValidationErrorResponse | ErrorResponse
 	type NonSuccessResponse = MessageResponse | ErrorResponses
 	type AllCommonResponses = SuccessResponse | NonSuccessResponse
+	type BooleanResponse = { exists: boolean }
 
 	//Auth Responses:
 	type LoginOrRegisterSuccess = { accessToken: string }
 
 	// Search Responses:
 	type SearchForUsersResponse = { usernames: { username: string }[] }
-	type BooleanResponse = { exists: boolean }
 
 	// Solana Responses:
 	type MintSPLResponse = {
