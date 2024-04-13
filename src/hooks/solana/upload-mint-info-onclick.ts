@@ -38,7 +38,9 @@ export default function useUploadMintInfoOnclick(): (
 			}
 
 			setStatus("Uploading Thumbnail/picture")
-			const uploadImageResponse = await fortunaApiClient.uploadDataService.uploadImageToS3(selectedImage, uploadVideoResponse.data.uuid)
+			const uploadImageResponse = await fortunaApiClient.uploadDataService.uploadImageToS3(
+				selectedImage, uploadVideoResponse.data.uuid
+			)
 			if (!_.isEqual(uploadImageResponse.status, 200) || isNonSuccessResponse(uploadImageResponse.data)) {
 				setError("Error uploading image")
 				return

@@ -49,10 +49,10 @@ export default function Layout (props: Props) {
 
 	const LoginLogout = observer(() => {
 		if (_.isNull(authClass.accessToken)) {
-			if (location.pathname === "/login") {
-				return <TopNavLink href = "/register" title = "Register"/>
-			} else {
+			if (location.pathname === "/register") {
 				return <TopNavLink href = "/login" title = "Login"/>
+			} else {
+				return <TopNavLink href = "/register" title = "Register"/>
 			}
 		}
 		return (
