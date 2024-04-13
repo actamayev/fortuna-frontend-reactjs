@@ -7,33 +7,34 @@ declare global {
 	type ErrorResponses = ValidationErrorResponse | ErrorResponse
 	type NonSuccessResponse = MessageResponse | ErrorResponses
 	type AllCommonResponses = SuccessResponse | NonSuccessResponse
+	type BooleanResponse = { exists: boolean }
 
 	//Auth Responses:
-	type LoginSuccess = { accessToken: string }
-	type RegisterSuccess = { accessToken: string }
+	type LoginOrRegisterSuccess = { accessToken: string }
+
+	// Search Responses:
+	type SearchForUsersResponse = { usernames: { username: string }[] }
 
 	// Solana Responses:
-	type MintSPLResponse = { newSPLId: number, mintAddress: string }
-	interface RetrieveMyContentResponse {
-		creatorContentList : {
-			splId: number
-			splName: string
-			numberOfShares: number
-			offeringSharePriceSol: number
-			description: string
-			creatorOwnershipPercentage: number
-			imageUrl: string
-			videoUrl: string
-			mintAddress: string
-		}[]
+	type MintSPLResponse = {
+		newSPLId: number,
+		mintAddress: string
 	}
+	type RetrieveMyContentResponse = { creatorContentList: MyContent[] }
+	type TransferSolResponse = { solTransferData: SolanaTransaction }
+	type WalletBalanceResponse = {
+		balanceInSol: number,
+		balanceInUsd: number,
+		solPriceInUSD: number,
+		solPriceRetrievedTime: Date
+	}
+	type TransactionsResponse = { transactions: SolanaTransaction[] }
 
 	// Upload Responses:
 	type UploadImageToS3 = {
 		imageUploadUrl: string
 		uploadedImageId: number
 	}
-
 	type UploadVideoToS3 = {
 		videoUploadUrl: string
 		uploadedVideoId: number
