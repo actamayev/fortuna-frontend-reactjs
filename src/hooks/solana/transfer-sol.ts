@@ -39,8 +39,9 @@ export default function useTransferSol(): (
 				throw Error("Error transferring sol")
 			}
 			solanaClass.setIsTransferSolButtonPressed(false)
+			solanaClass.resetTransferSolDetails()
+			solanaClass.addSolanaTransaction(transferSolResponse.data.solTransferData)
 			await retrieveWalletBalance()
-			// TODO: Add the transfer to the list.
 		} catch (error) {
 			console.error(error)
 		} finally {

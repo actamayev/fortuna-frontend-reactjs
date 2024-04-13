@@ -37,7 +37,7 @@ function SingleTransaction(props: Props) {
 
 	return (
 		<div className="card-container">
-			Incoming or Outgoing: {_.upperFirst(pastTransaction.outgoingOrIncoming)}
+			{_.upperFirst(pastTransaction.outgoingOrIncoming)} Transfer
 			<br />
 			Transfer on {formattedDateTime}
 			<br />

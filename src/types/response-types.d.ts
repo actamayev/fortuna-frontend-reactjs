@@ -18,9 +18,9 @@ declare global {
 
 	// Solana Responses:
 	type MintSPLResponse = { newSPLId: number, mintAddress: string }
-	interface RetrieveMyContentResponse {
-		creatorContentList: MyContent[]
-	}
+	type RetrieveMyContentResponse = { creatorContentList: MyContent[] }
+
+	type TransferSolResponse = { solTransferData: SolanaTransaction }
 
 	type WalletBalanceResponse = {
 		balanceInSol: number,

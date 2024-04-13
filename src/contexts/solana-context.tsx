@@ -129,16 +129,7 @@ class SolanaClass {
 		}
 	})
 
-	public logout() {
-		this.walletAddress = null
-		this.walletBalanceSol = null
-		this.myContentMap.clear()
-		this.myTransactionMap.clear()
-		this.solPriceDetails = null
-		this.hasContentToRetrieve = true
-		this.isRetrievingContent = false
-		this.isRetrievingWalletDetails = false
-		this.isTransferSolButtonPressed = false
+	public resetTransferSolDetails = action(() => {
 		this.transferSolDetails = {
 			transferOption: "username",
 			username: "",
@@ -149,6 +140,19 @@ class SolanaClass {
 			solAmount: 0,
 			transferStage: "initial"
 		}
+	})
+
+	public logout() {
+		this.walletAddress = null
+		this.walletBalanceSol = null
+		this.myContentMap.clear()
+		this.myTransactionMap.clear()
+		this.solPriceDetails = null
+		this.hasContentToRetrieve = true
+		this.isRetrievingContent = false
+		this.isRetrievingWalletDetails = false
+		this.isTransferSolButtonPressed = false
+		this.resetTransferSolDetails()
 	}
 }
 
