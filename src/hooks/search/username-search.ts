@@ -11,14 +11,16 @@ export default function useUsernameSearch(): (
 	const solanaClass = useSolanaContext()
 	const fortunaApiClient = useApiClientContext()
 
-	// eslint-disable-next-line complexity
 	const usernameSearch = useCallback(async (
 		setIsLoading: (value: React.SetStateAction<boolean>) => void,
 		setUsernameSearchResults: React.Dispatch<React.SetStateAction<{ username: string }[]>>
 	) => {
 		try {
-			if (_.isNull(solanaClass)) return
-			if (_.isEmpty(solanaClass.transferSolDetails.username.trim()) || solanaClass.transferSolDetails.isUsernameSelected === true) {
+			if (
+				_.isNull(solanaClass) ||
+				_.isEmpty(solanaClass.transferSolDetails.username.trim()) ||
+				solanaClass.transferSolDetails.isUsernameSelected === true
+			) {
 				setUsernameSearchResults([])
 				return
 			}

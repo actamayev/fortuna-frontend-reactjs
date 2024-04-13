@@ -33,7 +33,9 @@ export default function usePublicKeySearch(): (
 			}
 
 			solanaClass.updateTransferSolDetails("isPublicKeyRegisteredWithFortuna", false)
-			const publicKeyExistsOnSolana = await fortunaApiClient.searchDataService.checkIfPublicKeyExistsOnSolana(solanaClass.transferSolDetails.publicKey)
+			const publicKeyExistsOnSolana = await fortunaApiClient.searchDataService.checkIfPublicKeyExistsOnSolana(
+				solanaClass.transferSolDetails.publicKey
+			)
 			if (!_.isEqual(publicKeyExistsOnSolana.status, 200) || isErrorResponses(publicKeyExistsOnSolana.data)) {
 				throw new Error("Public Key Search Search Failed")
 			}
@@ -46,8 +48,7 @@ export default function usePublicKeySearch(): (
 		} finally {
 			setIsLoading(false)
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [fortunaApiClient.searchDataService, solanaClass?.transferSolDetails.publicKey])
+	}, [fortunaApiClient.searchDataService, solanaClass])
 
 	return publicKeySearch
 }

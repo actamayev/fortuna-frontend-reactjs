@@ -7,7 +7,6 @@ export default function useConfirmUserHasEnoughSolToTransfer(): (
 ) => void {
 	const solanaClass = useSolanaContext()
 
-	// eslint-disable-next-line complexity
 	const confirmUserHasEnoughSolToTransfer = useCallback((
 		setDoesUserHaveEnoughSol: React.Dispatch<React.SetStateAction<boolean>>
 	): void => {
@@ -16,7 +15,10 @@ export default function useConfirmUserHasEnoughSolToTransfer(): (
 			setDoesUserHaveEnoughSol(false)
 			const myWalletBalance = solanaClass.walletBalanceSol
 
-			if (solanaClass.transferSolDetails.transferOption === "publicKey") {
+			if (
+				solanaClass.transferSolDetails.transferOption === "publicKey" &&
+				solanaClass.transferSolDetails.isPublicKeyRegisteredWithFortuna === false
+			) {
 				if (myWalletBalance < solanaClass.transferSolDetails.solAmount + 0.000005) {
 					setDoesUserHaveEnoughSol(false)
 					return

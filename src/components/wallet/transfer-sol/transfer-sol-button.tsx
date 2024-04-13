@@ -16,7 +16,7 @@ function TransferSolButton() {
 				hoverClass="hover:bg-blue-500"
 				onClick={() => solanaClass.setIsTransferSolButtonPressed(!solanaClass.isTransferSolButtonPressed)}
 			/>
-			{ solanaClass.isTransferSolButtonPressed && <TransferSolCard /> }
+			{solanaClass.isTransferSolButtonPressed && <TransferSolCard />}
 		</>
 	)
 }

@@ -10,10 +10,14 @@ export default class SearchDataService {
 	}
 
 	async checkIfPublicKeyRegisteredOnFortuna(publicKey: string): Promise<AxiosResponse<BooleanResponse | ErrorResponses>> {
-		return await this.httpClient.http.get<BooleanResponse | ErrorResponses>(`/devnet/search/check-if-public-key-exists-with-fortuna/${publicKey}`)
+		return await this.httpClient.http.get<BooleanResponse | ErrorResponses>(
+			`/devnet/search/check-if-public-key-exists-with-fortuna/${publicKey}`
+		)
 	}
 
 	async checkIfPublicKeyExistsOnSolana(publicKey: string): Promise<AxiosResponse<BooleanResponse | ErrorResponses>> {
-		return await this.httpClient.http.get<BooleanResponse | ErrorResponses>(`/devnet/search/check-if-public-key-exists-on-solana/${publicKey}`)
+		return await this.httpClient.http.get<BooleanResponse | ErrorResponses>(
+			`/devnet/search/check-if-public-key-exists-on-solana/${publicKey}`
+		)
 	}
 }
