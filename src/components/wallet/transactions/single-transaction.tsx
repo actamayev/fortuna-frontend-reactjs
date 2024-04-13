@@ -14,9 +14,7 @@ function SingleTransaction(props: Props) {
 	const pastTransaction = solanaClass?.contextForMyTransaction(transactionId)
 	const formattedDateTime = useMemo(() => {
 		const lastRetrieved = pastTransaction?.transferDateTime
-		if (!lastRetrieved) {
-			return "unknown"
-		}
+		if (_.isUndefined(lastRetrieved)) return "unknown"
 
 		const date = new Date(lastRetrieved)
 		const dateString = date.toLocaleDateString("en-US", {

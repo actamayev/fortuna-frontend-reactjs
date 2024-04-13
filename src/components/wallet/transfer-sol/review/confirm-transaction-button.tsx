@@ -1,6 +1,6 @@
 import _ from "lodash"
-import { useEffect, useState } from "react"
 import { observer } from "mobx-react"
+import { useEffect, useState } from "react"
 import Button from "../../../button"
 import useTransferSol from "../../../../hooks/solana/transfer-sol"
 import { useSolanaContext } from "../../../../contexts/solana-context"

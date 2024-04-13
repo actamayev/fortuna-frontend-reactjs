@@ -1,12 +1,17 @@
 import _ from "lodash"
+import { useEffect } from "react"
 import { observer } from "mobx-react"
 import SingleTransaction from "./single-transaction"
 import { useSolanaContext } from "../../../contexts/solana-context"
-import useRetrievePastTransactions from "../../../hooks/solana/retrieve-transactions"
+import useRetrieveTransactions from "../../../hooks/solana/retrieve-transactions"
 
 function Transactions() {
 	const solanaClass = useSolanaContext()
-	useRetrievePastTransactions()
+	const retrieveTransactions = useRetrieveTransactions()
+
+	useEffect(() => {
+		void retrieveTransactions()
+	}, [retrieveTransactions])
 
 	if (_.isNull(solanaClass)) return null
 

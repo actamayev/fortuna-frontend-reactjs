@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import ReviewTransferInfo from "./review-transfer-info"
+import ReviewTransferInfo from "./review/review-transfer-info"
 import InitialTransferInfo from "./initial/initial-transfer-info"
 import { useSolanaContext } from "../../../contexts/solana-context"
 

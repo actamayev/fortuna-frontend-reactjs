@@ -1,8 +1,8 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import Button from "../../button"
-import { useSolanaContext } from "../../../contexts/solana-context"
-import ConfirmTransactionButton from "./review/confirm-transaction-button"
+import Button from "../../../button"
+import ConfirmTransactionButton from "./confirm-transaction-button"
+import { useSolanaContext } from "../../../../contexts/solana-context"
 
 function ReviewTransferInfo() {
 	const solanaClass = useSolanaContext()

@@ -36,9 +36,9 @@ class PersonalInfoClass {
 	}
 
 	public logout() {
+		this.username = null
 		this.email = null
 		this.phoneNumber = null
-		this.username = null
 	}
 }
 

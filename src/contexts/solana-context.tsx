@@ -146,13 +146,15 @@ class SolanaClass {
 		this.walletAddress = null
 		this.walletBalanceSol = null
 		this.myContentMap.clear()
+		this.isTransferSolButtonPressed = false
+		this.resetTransferSolDetails()
 		this.myTransactionMap.clear()
 		this.solPriceDetails = null
 		this.hasContentToRetrieve = true
 		this.isRetrievingContent = false
+		this.hasTransactionsToRetrieve = true
+		this.isRetrievingTransactions = false
 		this.isRetrievingWalletDetails = false
-		this.isTransferSolButtonPressed = false
-		this.resetTransferSolDetails()
 	}
 }
 

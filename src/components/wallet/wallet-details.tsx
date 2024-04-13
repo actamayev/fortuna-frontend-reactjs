@@ -1,6 +1,6 @@
 import _ from "lodash"
-import { useEffect, useMemo } from "react"
 import { observer } from "mobx-react"
+import { useEffect, useMemo } from "react"
 import { useSolanaContext } from "../../contexts/solana-context"
 import TransferSolButton from "./transfer-sol/transfer-sol-button"
 import useRetrieveWalletBalance from "../../hooks/solana/retrieve-wallet-balance"
@@ -21,7 +21,6 @@ function WalletDetails () {
 			minute: "numeric",
 			hour12: true // Use AM/PM
 		}) : "unknown"
-
 	}, [solanaClass?.solPriceDetails?.lastRetrieved])
 
 	if (_.isNull(solanaClass)) return null

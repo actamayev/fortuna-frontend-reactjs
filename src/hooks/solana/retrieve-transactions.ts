@@ -1,10 +1,10 @@
 import _ from "lodash"
-import { useCallback, useEffect } from "react"
+import { useCallback } from "react"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { isErrorResponse, isMessageResponse } from "../../utils/type-checks"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useRetrieveTransactions(): void {
+export default function useRetrieveTransactions(): () => Promise<void> {
 	const fortunaApiClient = useApiClientContext()
 	const solanaClass = useSolanaContext()
 
@@ -13,6 +13,7 @@ export default function useRetrieveTransactions(): void {
 		try {
 			if (
 				_.isNull(solanaClass) ||
+				_.isNull(fortunaApiClient.httpClient.accessToken) ||
 				solanaClass.hasTransactionsToRetrieve === false ||
 				solanaClass.isRetrievingTransactions === true ||
 				!_.isEmpty(solanaClass.myTransactionMap)
@@ -36,10 +37,7 @@ export default function useRetrieveTransactions(): void {
 		} finally {
 			if (!_.isNull(solanaClass)) solanaClass.setIsRetrievingTransactions(false)
 		}
-	}, [fortunaApiClient.solanaDataService, solanaClass])
+	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService, solanaClass])
 
-	useEffect(() => {
-		if (_.isNull(fortunaApiClient.httpClient.accessToken)) return
-		void retrieveTransactions()
-	}, [fortunaApiClient.httpClient.accessToken, retrieveTransactions])
+	return retrieveTransactions
 }
