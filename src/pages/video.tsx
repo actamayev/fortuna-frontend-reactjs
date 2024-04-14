@@ -2,6 +2,7 @@ import _ from "lodash"
 import { useState } from "react"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
+import VideoPlayer from "../components/video/video-player"
 import { useVideoContext } from "../contexts/video-context"
 import useSetSingleVideo from "../hooks/videos/set-single-video"
 
@@ -20,12 +21,11 @@ function Video() {
 	const video = videoClass.contextForVideo(videoUUID)
 	if (_.isUndefined(video)) return null
 
-	console.log(video)
 	return (
 		<>
 			{video.splName}
 			<br />
-			{video.videoUrl}
+			<VideoPlayer videoUrl={video.videoUrl} />
 			<br />
 			{video.imageUrl}
 			<br />

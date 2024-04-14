@@ -19,10 +19,8 @@ export default function useSetSingleVideo(
 			setIsVideoNotFound(false)
 			const response = await fortunaApiClient.videoDataService.getVideoById(videoUUID)
 			if (!_.isEqual(response.status, 200) || isErrorResponse(response.data)) {
-				// setIsVideoNotFound(true)
 				throw new Error("Failed to retrieve video")
 			}
-			console.log(response.data.video)
 			videoClass.addVideoToMap(response.data.video)
 		} catch (error) {
 			console.error(error)
