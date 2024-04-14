@@ -1,12 +1,9 @@
 import _ from "lodash"
-import { useState } from "react"
 import { observer } from "mobx-react"
 import { useLocation } from "react-router-dom"
-import useLogout from "../hooks/auth/logout"
 import CustomLink, { TopNavLink } from "./custom-link"
-import { isErrorResponse } from "../utils/type-checks"
 import { useAuthContext } from "../contexts/auth-context"
-import { useApiClientContext } from "../contexts/fortuna-api-client-context"
+import HeaderDropdown from "./profile-dropdown/header-dropdown"
 
 interface Props {
 	children: React.ReactNode
@@ -14,28 +11,8 @@ interface Props {
 
 export default function Layout (props: Props) {
 	const { children } = props
-	const fortunaApiClient = useApiClientContext()
 	const authClass = useAuthContext()
-	const [logoutDisabled, setLogoutDisabled] = useState(false)
 	const location = useLocation()
-	const logout = useLogout()
-
-	const handleLogout = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>): Promise<void> => {
-		try {
-			e.preventDefault()
-			setLogoutDisabled(true)
-			const response = await fortunaApiClient.authDataService.logout()
-			if (!_.isEqual(response.status, 200) || isErrorResponse(response.data)) {
-				throw new Error("Failed to logout")
-			}
-			fortunaApiClient.logout()
-			logout()
-		} catch (error) {
-			console.error(error)
-		} finally {
-			setLogoutDisabled(false)
-		}
-	}
 
 	const LinkToHome = observer(() => {
 		return (
@@ -55,14 +32,7 @@ export default function Layout (props: Props) {
 				return <TopNavLink href = "/register" title = "Register"/>
 			}
 		}
-		return (
-			<TopNavLink
-				href = "/"
-				title = "Logout"
-				onClick={handleLogout}
-				disabled = {logoutDisabled}
-			/>
-		)
+		return <HeaderDropdown />
 	})
 
 	return (
