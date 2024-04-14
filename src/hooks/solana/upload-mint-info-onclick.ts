@@ -67,6 +67,7 @@ export default function useUploadMintInfoOnclick(): (
 				...newSplDetails,
 				imageUrl: uploadImageResponse.data.imageUploadUrl,
 				videoUrl: uploadVideoResponse.data.videoUploadUrl,
+				uuid: uploadVideoResponse.data.uuid,
 				splId: createAndMintResponse.data.newSPLId,
 				mintAddress: createAndMintResponse.data.mintAddress
 			}

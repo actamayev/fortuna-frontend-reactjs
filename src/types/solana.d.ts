@@ -10,6 +10,7 @@ declare global {
 	interface MyContent extends NewSPLDetails {
 		imageUrl: string
 		videoUrl: string
+		uuid: string
 		splId: number
 		mintAddress: string
 	}

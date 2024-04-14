@@ -1,5 +1,7 @@
 import _ from "lodash"
+import { useCallback } from "react"
 import { observer } from "mobx-react"
+import useTypedNavigate from "../../hooks/typed-navigate"
 import { useSolanaContext } from "../../contexts/solana-context"
 
 interface Props {
@@ -9,6 +11,11 @@ interface Props {
 function SingleContent(props: Props) {
 	const { mintAddress } = props
 	const solanaClass = useSolanaContext()
+	const navigate = useTypedNavigate()
+
+	const navigateToVideoPage = useCallback((uuid: string) => {
+		navigate(`/v/${uuid}`)
+	}, [navigate])
 
 	if (_.isNull(solanaClass)) return null
 	const myContent = solanaClass.contextForMyContent(mintAddress)
@@ -20,7 +27,11 @@ function SingleContent(props: Props) {
 			<div className="flex flex-col">
 				<h2 className="text-lg font-semibold mb-2">
 					{myContent.splName}
-					<img src={myContent.imageUrl} />
+					<img
+						src={myContent.imageUrl}
+						onClick={() => navigateToVideoPage(myContent.uuid)}
+						className="hover:cursor-pointer"
+					/>
 				</h2>
 			</div>
 		</div>
