@@ -1,7 +1,7 @@
 import _ from "lodash"
-import { useState } from "react"
 import { observer } from "mobx-react"
 import { Link } from "react-router-dom"
+import { useCallback, useMemo, useState } from "react"
 import useLogout from "../../hooks/auth/logout"
 import { isErrorResponse } from "../../utils/type-checks"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
@@ -11,7 +11,7 @@ function DropdownItems () {
 	const [logoutDisabled, setLogoutDisabled] = useState(false)
 	const logout = useLogout()
 
-	const handleLogout = async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
+	const handleLogout = useCallback(async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
 		try {
 			e.preventDefault()
 			setLogoutDisabled(true)
@@ -26,9 +26,9 @@ function DropdownItems () {
 		} finally {
 			setLogoutDisabled(false)
 		}
-	}
+	}, [fortunaApiClient, logout])
 
-	const unboldedDropdownItemCSS = "text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200 transition-all duration-100"
+	const unboldedDropdownItemCSS = useMemo(() => "text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200 transition-all duration-100", [])
 
 	return (
 		<>

@@ -1,24 +1,23 @@
 import { observer } from "mobx-react"
 import { useLocation } from "react-router-dom"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import DropdownItemsContainer from "./dropdown-items-container"
 
 function HeaderDropdown () {
 	const location = useLocation()
 	const [isOpen, setIsOpen] = useState(false)
-
 	const dropdownRef = useRef<HTMLDivElement>(null)
 
-	const handleClickOutside = (event: MouseEvent) => {
+	const handleClickOutside = useCallback((event: MouseEvent) => {
 		if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
 			setIsOpen(false)
 		}
-	}
+	}, [])
 
 	useEffect(() => {
 		document.addEventListener("mousedown", handleClickOutside)
 		return () => document.removeEventListener("mousedown", handleClickOutside)
-	}, [])
+	}, [handleClickOutside])
 
 	useEffect(() => {
 		setIsOpen(false)
