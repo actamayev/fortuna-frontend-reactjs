@@ -25,7 +25,6 @@ function UploadContent() {
 	const [selectedImage, setSelectedImage] = useState<File | null>(null)
 	const [selectedVideo, setSelectedVideo] = useState<File | null>(null)
 
-
 	if (_.isNull(authClass.accessToken)) {
 		return <ShowAuthToNullUser whereToNavigate="/creator/my-content" />
 	}

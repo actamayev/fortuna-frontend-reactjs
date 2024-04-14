@@ -1,5 +1,6 @@
 import { createContext, useContext, useMemo } from "react"
 import AuthDataService from "../services/auth-data-service"
+import VideoDataService from "../services/video-data-service"
 import FortunaHttpClient from "../classes/fortuna-http-client"
 import UploadDataService from "../services/upload-data-service"
 import SolanaDataService from "../services/solana-data-service"
@@ -11,6 +12,7 @@ export class FortunaApiClient {
 	public searchDataService: SearchDataService = new SearchDataService(this.httpClient)
 	public solanaDataService: SolanaDataService = new SolanaDataService(this.httpClient)
 	public uploadDataService: UploadDataService = new UploadDataService(this.httpClient)
+	public videoDataService: VideoDataService = new VideoDataService(this.httpClient)
 
 	constructor() {
 	}
@@ -21,6 +23,7 @@ export class FortunaApiClient {
 		this.searchDataService = new SearchDataService(this.httpClient)
 		this.solanaDataService = new SolanaDataService(this.httpClient)
 		this.uploadDataService = new UploadDataService(this.httpClient)
+		this.videoDataService = new VideoDataService(this.httpClient)
 	}
 
 	public logout() {

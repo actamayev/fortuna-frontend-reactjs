@@ -40,6 +40,9 @@ declare global {
 		uploadedVideoId: number
 		uuid: string
 	}
+
+	// Video Responses:
+	type RetrievedVideo = { video: Video }
 }
 
 export {}

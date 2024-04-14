@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom"
 
 import Home from "./pages/home"
+import Video from "./pages/video"
 import Missing from "./pages/missing"
 import LoginPage from "./pages/auth/login-page"
 import RegisterPage from "./pages/auth/register-page"
@@ -22,6 +23,7 @@ export default function App() {
 			<Route path = "/register" element = {<RegisterPage />} />
 			<Route path = "/my-ownership" element = {<MyOwnership />} />
 			<Route path = "/my-wallet" element = {<SupporterWallet />} />
+			<Route path = "/v/:videoUUID" element = {<Video />} />
 
 			<Route path = "/creator/*" element = {<CreatorRoutes />} />
 			<Route path = "*" element = {<Missing />} />
