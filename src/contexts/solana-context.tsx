@@ -20,6 +20,12 @@ class SolanaClass {
 	}
 	private _myTransactionMap: Map<number, SolanaTransaction> = new Map()
 
+	public purchaseSplSharesDetails: PurchaseSplSharesDetails = {
+		numberOfTokensPurchasing: 0,
+		splPublicKey: "",
+		purchaseStage: "initial"
+	}
+
 	public solPriceDetails: SolPriceDetails | null = null
 
 	public hasContentToRetrieve = true
@@ -76,6 +82,13 @@ class SolanaClass {
 		if (this.myContentMap.has(newContent.mintAddress)) return
 		this.myContentMap.set(newContent.mintAddress, newContent)
 	})
+
+	public checkIfUuidExistsInContent = (uuid: string): boolean => {
+		for (const content of this.myContentMap.values()) {
+			if (_.isEqual(content.uuid, uuid)) return true
+		}
+		return false
+	}
 
 	public setHasContentToRetrieve = action((newState: boolean): void => {
 		this.hasContentToRetrieve = newState
@@ -142,12 +155,31 @@ class SolanaClass {
 		}
 	})
 
+	public updatePurchaseSplSharesDetails = action(<K extends keyof PurchaseSplSharesDetails>(
+		key: K, value: PurchaseSplSharesDetails[K]
+	) => {
+		if (typeof this.purchaseSplSharesDetails[key] === typeof value) {
+			this.purchaseSplSharesDetails[key] = value
+		} else {
+			console.warn(`Type mismatch when trying to set ${key}`)
+		}
+	})
+
+	public resetPurchaseSplSharesDetails = action(() => {
+		this.purchaseSplSharesDetails = {
+			numberOfTokensPurchasing: 0,
+			splPublicKey: "",
+			purchaseStage: "initial"
+		}
+	})
+
 	public logout() {
 		this.walletAddress = null
 		this.walletBalanceSol = null
 		this.myContentMap.clear()
 		this.isTransferSolButtonPressed = false
 		this.resetTransferSolDetails()
+		this.resetPurchaseSplSharesDetails()
 		this.myTransactionMap.clear()
 		this.solPriceDetails = null
 		this.hasContentToRetrieve = true

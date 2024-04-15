@@ -31,10 +31,7 @@ export default function useSetSingleVideo(
 	}, [fortunaApiClient.videoDataService, setIsVideoLoading, setIsVideoNotFound, videoClass, videoUUID])
 
 	useEffect(() => {
-		if (
-			_.isUndefined(videoUUID) ||
-			_.isNull(fortunaApiClient.httpClient.accessToken)
-		) return
+		if (_.isUndefined(videoUUID)) return
 
 		const video = videoClass.contextForVideo(videoUUID)
 		if (_.isUndefined(video)) {

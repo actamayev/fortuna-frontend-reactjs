@@ -1,8 +1,9 @@
+import _ from "lodash"
 import { action, makeObservable, observable } from "mobx"
 import { useContext, useMemo, createContext } from "react"
 
 class VideoClass {
-	public videosMap: Map<string, Video> = new Map()
+	public videosMap: Map<string, Video> = new Map() // Maps UUID to Video
 
 	constructor() {
 		makeObservable(this, {
@@ -16,6 +17,13 @@ class VideoClass {
 
 	public addVideoToMap = action((video: Video): void => {
 		if (this.videosMap.has(video.uuid)) return
+		this.videosMap.set(video.uuid, video)
+	})
+
+	public tokenPurchaseUpdateAvailableShares = action((videoUuid: string, numberOfShares: number): void => {
+		const video = this.contextForVideo(videoUuid)
+		if (_.isUndefined(video)) return
+		video.sharesRemainingForSale -= numberOfShares
 		this.videosMap.set(video.uuid, video)
 	})
 }

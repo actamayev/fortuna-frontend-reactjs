@@ -29,7 +29,7 @@ declare global {
 	}
 
 	type TransferOption = "username" | "publicKey"
-	type TransferStage = "initial" | "review"
+	type TransactionStage = "initial" | "review"
 
 	interface TransferSolDetails {
 		transferOption: TransferOption
@@ -42,7 +42,7 @@ declare global {
 		isPublicKeyRegisteredWithFortuna: boolean
 
 		solAmount: number
-		transferStage: TransferStage
+		transferStage: TransactionStage
 	}
 
 	interface SendingSolTransfer {
@@ -61,6 +61,15 @@ declare global {
 		transferToPublicKey?: string
 		transferFeeSol?: number
 		transferFeeUsd?: number
+	}
+
+	interface PurchaseSplTokensData {
+		numberOfTokensPurchasing: number
+		splPublicKey: string
+	}
+
+	interface PurchaseSplSharesDetails extends PurchaseSplTokensData{
+		purchaseStage: TransactionStage
 	}
 }
 
