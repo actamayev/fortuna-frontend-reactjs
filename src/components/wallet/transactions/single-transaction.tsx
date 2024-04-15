@@ -39,7 +39,7 @@ function SingleTransaction(props: Props) {
 			<br />
 			Transfer on {formattedDateTime}
 			<br />
-			Sol Transferred: {pastTransaction.solTransferred} (${pastTransaction.usdTransferred})
+			Sol Transferred: {pastTransaction.solAmountTransferred} (${pastTransaction.usdAmountTransferred})
 			{pastTransaction.outgoingOrIncoming === "incoming" ? <> from </> : <> to </>}
 			{pastTransaction.transferToUsername || pastTransaction.transferToPublicKey}
 		</div>

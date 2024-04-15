@@ -52,8 +52,8 @@ declare global {
 
 	interface SolanaTransaction {
 		solTransferId: number
-		solTransferred: number
-		usdTransferred: number
+		solAmountTransferred: number
+		usdAmountTransferred: number
 		outgoingOrIncoming: "outgoing" | "incoming"
 
 		transferDateTime: Date

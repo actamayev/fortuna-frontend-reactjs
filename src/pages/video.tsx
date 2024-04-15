@@ -23,13 +23,13 @@ function Video() {
 
 	return (
 		<>
-			{video.splName}
+			Token name: {video.splName}
 			<br />
 			<VideoPlayer videoUrl={video.videoUrl} />
 			<br />
-			{video.imageUrl}
+			Description: {video.description}
 			<br />
-			{video.description}
+			{video.sharesRemainingForSale} Shares Remaining for {video.offeringSharePriceSol} Sol / Share
 		</>
 	)
 }
