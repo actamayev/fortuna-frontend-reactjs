@@ -1,36 +1,19 @@
 import classNames from "classnames" // This is a utility for conditionally joining classNames together
-import { useCallback } from "react"
 import { Link } from "react-router-dom"
 
 interface Props {
 	href: string
 	title: string
 	css?: string
-	disabled?: boolean
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	onClick?: (e: any) => void
 }
 
 export default function CustomLink(props: Props) {
-	const { css, href, title, onClick, disabled } = props
-
-	const handleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-		if (disabled) {
-			e.preventDefault() // Prevent navigation if disabled
-			return
-		}
-		onClick?.(e) // Call onClick if not disabled
-	}, [disabled, onClick])
-
-	const linkClasses = classNames(css, {
-		"opacity-50 cursor-not-allowed": disabled
-	})
+	const { css, href, title } = props
 
 	return (
 		<Link
 			to={href}
-			className={`${linkClasses} block`}
-			onClick={handleClick}
+			className={`${classNames(css)} block`}
 		>
 			{title}
 		</Link>
