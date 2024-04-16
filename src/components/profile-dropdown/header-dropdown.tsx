@@ -2,11 +2,13 @@ import { observer } from "mobx-react"
 import { useLocation } from "react-router-dom"
 import { useState, useEffect, useRef, useCallback } from "react"
 import DropdownItemsContainer from "./dropdown-items-container"
+import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
 function HeaderDropdown () {
 	const location = useLocation()
 	const [isOpen, setIsOpen] = useState(false)
 	const dropdownRef = useRef<HTMLDivElement>(null)
+	const personalInfoClass = usePersonalInfoContext()
 
 	const handleClickOutside = useCallback((event: MouseEvent) => {
 		if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -36,7 +38,7 @@ function HeaderDropdown () {
 						onClick={() => setIsOpen(!isOpen)}
 					>
 						<span className="max-w-xs truncate">
-							Profile
+							{personalInfoClass?.username || "Profile"}
 						</span>
 					</button>
 					<DropdownItemsContainer isOpen = {isOpen} />

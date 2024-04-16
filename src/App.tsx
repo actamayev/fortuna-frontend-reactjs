@@ -12,12 +12,14 @@ import SupporterWallet from "./pages/supporter/supporter-wallet"
 import CreatorRoutes from "./routes/creator-routes"
 
 import useGetAuthDataFromStorage from "./utils/auth/get-auth-data-from-storage"
+import useRetrievePersonalInfoUseEffect from "./hooks/personal-info/retrieve-personal-info-use-effect"
 import useRetrieveWalletBalanceUseEffect from "./hooks/solana/wallet-balance/retrieve-wallet-balance-use-effect"
 
 function App() {
 	const getAuthDataFromStorage = useGetAuthDataFromStorage()
 	getAuthDataFromStorage()
 	useRetrieveWalletBalanceUseEffect()
+	useRetrievePersonalInfoUseEffect()
 
 	return (
 		<Routes>
