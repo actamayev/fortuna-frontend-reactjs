@@ -1,8 +1,8 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import { isNonSuccessResponse } from "../../../utils/type-checks"
-import useRetrieveWalletBalance from "../retrieve-wallet-balance"
 import { useSolanaContext } from "../../../contexts/solana-context"
+import useRetrieveWalletBalance from "../wallet-balance/retrieve-wallet-balance"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 
 export default function useTransferSol(): (
