@@ -14,9 +14,10 @@ export default function useSetSingleVideo(
 
 	const retrieveVideo = useCallback(async (): Promise<void> => {
 		try {
-			if (_.isUndefined(videoUUID)) return
+			if (_.isUndefined(videoUUID) || videoClass.videosBeingRetrieved.includes(videoUUID)) return
 			setIsVideoLoading(true)
 			setIsVideoNotFound(false)
+			videoClass.addVideoUUIDToRetrievingList(videoUUID)
 			const response = await fortunaApiClient.videoDataService.getVideoById(videoUUID)
 			if (!_.isEqual(response.status, 200) || isErrorResponse(response.data)) {
 				throw new Error("Failed to retrieve video")
@@ -27,6 +28,7 @@ export default function useSetSingleVideo(
 			setIsVideoNotFound(true)
 		} finally {
 			setIsVideoLoading(false)
+			if (!_.isUndefined(videoUUID)) videoClass.removeVideoUUIDFromRetrievingList(videoUUID)
 		}
 	}, [fortunaApiClient.videoDataService, setIsVideoLoading, setIsVideoNotFound, videoClass, videoUUID])
 
