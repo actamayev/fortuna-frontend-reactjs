@@ -19,15 +19,26 @@ export default function UploadMintInfoButton(props: Props) {
 	const [error, setError] = useState("")
 	const [status, setStatus] = useState("")
 
-	const isReadyToSubmit = useMemo(() => {
-		return confirmNewSPLDetails(newSplDetails) && !_.isNull(selectedImage) && !_.isNull(selectedVideo)
-	}, [newSplDetails, selectedImage, selectedVideo])
+	const isImageAndVideoReadyToSubmit = useMemo(() => {
+		return !_.isNull(selectedImage) && !_.isNull(selectedVideo)
+	}, [selectedImage, selectedVideo])
+
+	const buttonTitle = useMemo(() => {
+		if (isImageAndVideoReadyToSubmit === false) return "Please upload an image (thumbnail) and video"
+		else if (confirmNewSPLDetails(newSplDetails) === false) return "Please finish filling out the fields"
+		else if (newSplDetails.creatorOwnershipPercentage < 50) return "Creator ownership percentage must be at least 50%"
+		else if (newSplDetails.creatorOwnershipPercentage > 90) return "Creator ownership percentage must be at most 90%"
+		return "Submit"
+	}, [isImageAndVideoReadyToSubmit, newSplDetails])
 
 	return (
 		<>
 			<Button
-				title={isReadyToSubmit ? "Submit" : "Please finish fields and image"}
-				disabled={!isReadyToSubmit || loading}
+				title={buttonTitle}
+				disabled={
+					isImageAndVideoReadyToSubmit === false || confirmNewSPLDetails(newSplDetails) === false ||
+					newSplDetails.creatorOwnershipPercentage < 50 || newSplDetails.creatorOwnershipPercentage > 90 || loading
+				}
 				colorClass="bg-yellow-400"
 				hoverClass="hover:bg-yellow-500"
 				onClick={() => uploadMintInfoOnclick(newSplDetails, selectedImage, selectedVideo, setError, setLoading, setStatus)}
