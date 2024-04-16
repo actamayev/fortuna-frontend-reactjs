@@ -17,7 +17,6 @@ export default function useCalculateMaxSharesToPurchase(): (
 			const video = videoClass.contextForVideo(videoUUID)
 			if (_.isUndefined(video)) return 0
 			const walletBalanceSol = solanaClass.walletBalanceSol
-			console.log(walletBalanceSol)
 			if (_.isNull(walletBalanceSol)) return 0
 			if (_.isEqual(video.offeringSharePriceSol, 0)) return 0  // Prevent division by zero
 			const maxSharesFromBalance = Math.floor(walletBalanceSol / video.offeringSharePriceSol)

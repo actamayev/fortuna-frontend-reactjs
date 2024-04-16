@@ -18,6 +18,16 @@ export default function VideoUploader(props: Props) {
 
 		if (!_.isNull(files) && !_.isEmpty(files)) {
 			const file = files[0]
+			const maxFileSize = 10 * 1024 * 1024 // 10 MB in bytes
+
+			if (file.size > maxFileSize) {
+				alert("The selected file exceeds the maximum size limit of 10MB.")
+				if (fileInputRef.current) {
+					fileInputRef.current.value = "" // Reset the input
+				}
+				return // Exit the function if the file is too large
+			}
+
 			setSelectedVideo(file)
 
 			const newPreviewUrl = URL.createObjectURL(file)
@@ -27,8 +37,8 @@ export default function VideoUploader(props: Props) {
 			setPreviewUrl(null)
 		}
 
-		if (_.isNull(fileInputRef.current))  return
-		fileInputRef.current.value = ""
+		if (_.isNull(fileInputRef.current)) return
+		fileInputRef.current.value = "" // Reset the input after handling
 	}, [setSelectedVideo])
 
 	return (
@@ -66,4 +76,3 @@ export default function VideoUploader(props: Props) {
 		</div>
 	)
 }
-

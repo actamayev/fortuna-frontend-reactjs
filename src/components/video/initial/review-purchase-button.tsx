@@ -25,7 +25,6 @@ function ReviewPurchaseButton(props: Props) {
 
 	const isAbleToPurchaseShares = useMemo(() => {
 		if (_.isNull(solanaClass) || _.isUndefined(videoUUID)) return false
-		console.log(solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing, maxSharesAvailableToPurchase)
 		return solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing < maxSharesAvailableToPurchase
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [maxSharesAvailableToPurchase, solanaClass?.purchaseSplSharesDetails.numberOfTokensPurchasing, videoUUID])
