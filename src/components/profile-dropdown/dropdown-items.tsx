@@ -1,32 +1,11 @@
-import _ from "lodash"
-import { observer } from "mobx-react"
+
 import { Link } from "react-router-dom"
-import { useCallback, useMemo, useState } from "react"
-import useLogout from "../../hooks/auth/logout"
-import { isErrorResponse } from "../../utils/type-checks"
-import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
+import { useMemo, useState } from "react"
+import useHandleLogout from "../../hooks/auth/handle-logout"
 
-function DropdownItems () {
-	const fortunaApiClient = useApiClientContext()
+export default function DropdownItems () {
 	const [logoutDisabled, setLogoutDisabled] = useState(false)
-	const logout = useLogout()
-
-	const handleLogout = useCallback(async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
-		try {
-			e.preventDefault()
-			setLogoutDisabled(true)
-			const response = await fortunaApiClient.authDataService.logout()
-			if (!_.isEqual(response.status, 200) || isErrorResponse(response.data)) {
-				throw new Error("Failed to logout")
-			}
-			fortunaApiClient.logout()
-			logout()
-		} catch (error) {
-			console.error(error)
-		} finally {
-			setLogoutDisabled(false)
-		}
-	}, [fortunaApiClient, logout])
+	const handleLogout = useHandleLogout(setLogoutDisabled)
 
 	const unboldedDropdownItemCSS = useMemo(() => "text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200 transition-all duration-100", [])
 
@@ -48,5 +27,3 @@ function DropdownItems () {
 		</>
 	)
 }
-
-export default observer(DropdownItems)
