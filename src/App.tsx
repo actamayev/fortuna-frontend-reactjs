@@ -1,3 +1,4 @@
+import { observer } from "mobx-react"
 import { Routes, Route } from "react-router-dom"
 
 import Home from "./pages/home"
@@ -10,12 +11,14 @@ import SupporterWallet from "./pages/supporter/supporter-wallet"
 
 import CreatorRoutes from "./routes/creator-routes"
 
-import useGetAuthDataFromStorageUseEffect from "./utils/auth/get-auth-data-from-storage-use-effect"
+import useGetAuthDataFromStorage from "./utils/auth/get-auth-data-from-storage"
 import useRetrievePersonalInfoUseEffect from "./hooks/personal-info/retrieve-personal-info-use-effect"
 import useRetrieveWalletBalanceUseEffect from "./hooks/solana/wallet-balance/retrieve-wallet-balance-use-effect"
 
-export default function App() {
-	useGetAuthDataFromStorageUseEffect()
+function App() {
+	// Don't change the getAuthData to a useEffect, or else it doesn't work immediately after login
+	const getAuthDataFromStorage = useGetAuthDataFromStorage()
+	getAuthDataFromStorage()
 	useRetrieveWalletBalanceUseEffect()
 	useRetrievePersonalInfoUseEffect()
 
@@ -33,3 +36,6 @@ export default function App() {
 		</Routes>
 	)
 }
+
+// Do not remove this observer or else auth data doesn't set immediately after login.
+export default observer(App)

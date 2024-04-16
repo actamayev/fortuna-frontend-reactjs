@@ -1,8 +1,8 @@
-import { useCallback, useEffect } from "react"
+import { useCallback } from "react"
 import { useAuthContext } from "../../contexts/auth-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useGetAuthDataFromStorageUseEffect(): void {
+export default function useGetAuthDataFromStorage(): () => void {
 	const authClass = useAuthContext()
 	const fortunaApiClient = useApiClientContext()
 
@@ -11,7 +11,5 @@ export default function useGetAuthDataFromStorageUseEffect(): void {
 		fortunaApiClient.httpClient.accessToken = authClass.accessToken
 	}, [authClass, fortunaApiClient.httpClient])
 
-	useEffect(() => {
-		void getAuthDataFromStorage()
-	} , [getAuthDataFromStorage])
+	return getAuthDataFromStorage
 }
