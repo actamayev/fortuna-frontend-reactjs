@@ -1,4 +1,3 @@
-import { observer } from "mobx-react"
 import { Routes, Route } from "react-router-dom"
 
 import Home from "./pages/home"
@@ -15,7 +14,7 @@ import useGetAuthDataFromStorageUseEffect from "./utils/auth/get-auth-data-from-
 import useRetrievePersonalInfoUseEffect from "./hooks/personal-info/retrieve-personal-info-use-effect"
 import useRetrieveWalletBalanceUseEffect from "./hooks/solana/wallet-balance/retrieve-wallet-balance-use-effect"
 
-function App() {
+export default function App() {
 	useGetAuthDataFromStorageUseEffect()
 	useRetrieveWalletBalanceUseEffect()
 	useRetrievePersonalInfoUseEffect()
@@ -34,5 +33,3 @@ function App() {
 		</Routes>
 	)
 }
-
-export default observer(App)
