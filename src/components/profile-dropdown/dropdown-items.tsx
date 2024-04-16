@@ -34,6 +34,7 @@ function DropdownItems () {
 		<>
 			<Link to="/my-ownership" className={unboldedDropdownItemCSS} role="menuitem">My Ownership</Link>
 			<Link to="/my-wallet" className={unboldedDropdownItemCSS} role="menuitem">My Wallet</Link>
+			<Link to="/creator/my-content" className={unboldedDropdownItemCSS} role="menuitem">My Content</Link>
 			<div className = "block">
 				<button
 					onClick = {handleLogout}
