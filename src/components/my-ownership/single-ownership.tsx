@@ -1,5 +1,7 @@
 import _ from "lodash"
+import { useCallback } from "react"
 import { observer } from "mobx-react"
+import useTypedNavigate from "../../hooks/typed-navigate"
 import { useSolanaContext } from "../../contexts/solana-context"
 
 interface Props {
@@ -9,6 +11,11 @@ interface Props {
 function SingleOwnership(props: Props) {
 	const { mintAddress } = props
 	const solanaClass = useSolanaContext()
+	const navigate = useTypedNavigate()
+
+	const navigateToVideoPage = useCallback((uuid: string) => {
+		navigate(`/v/${uuid}`)
+	}, [navigate])
 
 	if (_.isNull(solanaClass)) return null
 	const myOwnership = solanaClass.contextForMyOwnership(mintAddress)
@@ -19,7 +26,12 @@ function SingleOwnership(props: Props) {
 		<div className="bg-white shadow-lg rounded-lg p-4 m-2 grid grid-cols-1 grid-rows-1 border">
 			<div className="flex flex-col">
 				<h2 className="text-lg font-semibold mb-2">
-					{myOwnership.splPublicKey}
+					{myOwnership.splName}
+					<img
+						src={myOwnership.imageUrl}
+						onClick={() => navigateToVideoPage(myOwnership.uuid)}
+						className="hover:cursor-pointer"
+					/>
 				</h2>
 				<p>Number of shares: {myOwnership.numberOfShares}</p>
 			</div>

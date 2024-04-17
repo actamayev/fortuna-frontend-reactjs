@@ -116,8 +116,14 @@ class SolanaClass {
 	})
 
 	public addOwnership = action((newOwnership: MyOwnership): void => {
-		if (this.myOwnershipMap.has(newOwnership.splPublicKey)) return
-		this.myOwnershipMap.set(newOwnership.splPublicKey, newOwnership)
+		if (this.myOwnershipMap.has(newOwnership.splPublicKey) === false) {
+			this.myOwnershipMap.set(newOwnership.splPublicKey, newOwnership)
+			return
+		}
+		const ownership = this.contextForMyOwnership(newOwnership.splPublicKey)
+		if (_.isUndefined(ownership)) return
+		ownership.numberOfShares += newOwnership.numberOfShares
+		this.myOwnershipMap.set(ownership.splPublicKey, ownership)
 	})
 
 	public setHasContentToRetrieve = action((newState: boolean): void => {

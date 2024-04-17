@@ -78,8 +78,12 @@ declare global {
 	}
 
 	interface MyOwnership {
+		splName: string
 		splPublicKey: string
 		numberOfShares: number
+		imageUrl: string
+		uuid: string
+		isMyContent: boolean
 	}
 }
 
