@@ -32,6 +32,7 @@ function Video() {
 			<br />
 			{video.sharesRemainingForSale} Shares Remaining for {video.offeringSharePriceSol} Sol / Share
 			<br />
+			Total Outstanding shares: {video.totalNumberShares}
 			<PurchaseSharesCard />
 		</>
 	)

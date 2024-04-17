@@ -11,8 +11,8 @@ export default function HeaderItem (props: Props) {
 	const isActive = location.pathname.startsWith(to)
 
 	let classes
-	if (isActive) classes = "bg-orange-200 border-orange-300"
-	else classes = "bg-white border-orange-200 hover:bg-orange-300"
+	if (isActive) classes = "bg-blue-200 border-blue-300"
+	else classes = "bg-white border-blue-200 hover:bg-blue-300"
 
 	return (
 		<div className = "inline-flex items-center justify-center flex-grow flex-shrink">

@@ -13,7 +13,7 @@ export default function SubRegisterInfo(props: Props) {
 			<>
 				Already have an account?{" "}
 				<div
-					className="hover:underline cursor-pointer"
+					className="hover:underline cursor-pointer font-bold"
 					onClick={() => setLoginOrRegister("Login")}
 				>
 					Login
@@ -26,7 +26,7 @@ export default function SubRegisterInfo(props: Props) {
 			Already have an account?{" "}
 			<Link
 				to="/login"
-				className="hover:underline"
+				className="hover:underline font-bold"
 			>
 				Login
 			</Link>
