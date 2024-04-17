@@ -58,7 +58,7 @@ function ImageUploader() {
 
 			<ContentPreview
 				previewUrl={previewUrl}
-				setPreviewUrl={setPreviewUrl}
+				setPreviewUrlNull={() => setPreviewUrl(null)}
 				setSelectedContentNull={setSelectedContentNull}
 			>
 				<img

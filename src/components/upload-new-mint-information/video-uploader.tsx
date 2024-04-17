@@ -68,7 +68,7 @@ function VideoUploader() {
 
 			<ContentPreview
 				previewUrl={previewUrl}
-				setPreviewUrl={setPreviewUrl}
+				setPreviewUrlNull={() => setPreviewUrl(null)}
 				setSelectedContentNull={setSelectedContentNull}
 			>
 				<video
