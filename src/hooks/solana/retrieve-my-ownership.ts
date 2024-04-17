@@ -26,7 +26,7 @@ export default function useRetrieveMyOwnership(): void {
 				isErrorResponse(myOwnershipResponse.data)
 			) return
 
-			solanaClass.setMyOwnership(myOwnershipResponse.data.myOwnership)
+			solanaClass.setMyOwnership(myOwnershipResponse.data.myOwnershipList)
 			solanaClass.setHasOwnershipToRetrieve(false)
 		} catch (error) {
 			console.error(error)

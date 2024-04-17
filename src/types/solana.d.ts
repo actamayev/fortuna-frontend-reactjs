@@ -78,9 +78,8 @@ declare global {
 	}
 
 	interface MyOwnership {
-		splId: number
+		splPublicKey: string
 		numberOfShares: number
-		// TODO: Add more attributes
 	}
 }
 

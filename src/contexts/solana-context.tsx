@@ -20,7 +20,7 @@ class SolanaClass {
 	}
 	private _myTransactionMap: Map<number, SolanaTransaction> = new Map()
 
-	public myOwnershipMap: Map<number, MyOwnership> = new Map() // Maps splId to my ownership
+	public myOwnershipMap: Map<string, MyOwnership> = new Map() // Maps Mint address to my ownership
 
 	public purchaseSplSharesDetails: PurchaseSplSharesDetails = {
 		numberOfTokensPurchasing: 0,
@@ -87,8 +87,8 @@ class SolanaClass {
 		return this.myTransactionMap.get(transactionId)
 	}
 
-	public contextForMyOwnership(splId: number): MyOwnership | undefined {
-		return this.myOwnershipMap.get(splId)
+	public contextForMyOwnership(mintAddress: string): MyOwnership | undefined {
+		return this.myOwnershipMap.get(mintAddress)
 	}
 
 	public setContent = action((newContentList: MyContent[]): void => {
@@ -116,10 +116,9 @@ class SolanaClass {
 	})
 
 	public addOwnership = action((newOwnership: MyOwnership): void => {
-		if (this.myOwnershipMap.has(newOwnership.splId)) return
-		this.myOwnershipMap.set(newOwnership.splId, newOwnership)
+		if (this.myOwnershipMap.has(newOwnership.splPublicKey)) return
+		this.myOwnershipMap.set(newOwnership.splPublicKey, newOwnership)
 	})
-
 
 	public setHasContentToRetrieve = action((newState: boolean): void => {
 		this.hasContentToRetrieve = newState

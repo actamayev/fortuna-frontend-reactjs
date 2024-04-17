@@ -30,7 +30,11 @@ export default function usePurchaseSplTokens(): (
 			if (!_.isEqual(purchaseResponse.status, 200) || isNonSuccessResponse(purchaseResponse.data)) {
 				throw Error ("Error purchasing sol")
 			}
-			// ASAP TODO: add shares to the users' ownership.
+			const myOwnership: MyOwnership = {
+				splPublicKey: solanaClass.purchaseSplSharesDetails.splPublicKey,
+				numberOfShares: solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing
+			}
+			solanaClass.addOwnership(myOwnership)
 			videoClass.tokenPurchaseUpdateAvailableShares(videoUUID, purchaseSplTokensData.numberOfTokensPurchasing)
 			solanaClass.resetPurchaseSplSharesDetails()
 			await retrieveWalletBalance()
