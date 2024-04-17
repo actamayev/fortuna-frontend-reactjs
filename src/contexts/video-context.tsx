@@ -3,7 +3,7 @@ import { action, makeObservable, observable } from "mobx"
 import { useContext, useMemo, createContext } from "react"
 
 class VideoClass {
-	public videosMap: Map<string, Video> = new Map() // Maps UUID to Video
+	public videosMap: Map<string, VideoData> = new Map() // Maps UUID to Video
 	public videosBeingRetrieved: string[] = []
 
 	constructor() {
@@ -12,11 +12,11 @@ class VideoClass {
 		})
 	}
 
-	public contextForVideo(videoUUID: string): Video | undefined {
+	public contextForVideo(videoUUID: string): VideoData | undefined {
 		return this.videosMap.get(videoUUID)
 	}
 
-	public addVideoToMap = action((video: Video): void => {
+	public addVideoToMap = action((video: VideoData): void => {
 		if (this.videosMap.has(video.uuid)) return
 		this.videosMap.set(video.uuid, video)
 	})

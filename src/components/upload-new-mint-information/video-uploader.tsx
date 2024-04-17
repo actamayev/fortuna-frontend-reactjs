@@ -31,7 +31,7 @@ function VideoUploader() {
 			const newPreviewUrl = URL.createObjectURL(file)
 			setPreviewUrl(newPreviewUrl)
 		} else {
-			solanaClass.updateNewSplDetails("selectedVideo",null)
+			solanaClass.updateNewSplDetails("selectedVideo", null)
 			setPreviewUrl(null)
 		}
 

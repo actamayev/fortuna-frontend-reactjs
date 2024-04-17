@@ -73,7 +73,7 @@ declare global {
 		splPublicKey: string
 	}
 
-	interface PurchaseSplSharesDetails extends PurchaseSplTokensData{
+	interface PurchaseSplSharesDetails extends PurchaseSplTokensData {
 		purchaseStage: TransactionStage
 	}
 }

@@ -11,9 +11,9 @@ import useUploadMintInfoOnclick from "../../hooks/solana/upload-mint-info-onclic
 function UploadMintInfoButton() {
 	const solanaClass = useSolanaContext()
 	const [loading, setLoading] = useState(false)
-	const uploadMintInfoOnclick = useUploadMintInfoOnclick()
 	const [error, setError] = useState("")
 	const [status, setStatus] = useState("")
+	const uploadMintInfoOnclick = useUploadMintInfoOnclick()
 
 	const isImageAndVideoReadyToSubmit = useMemo(() => {
 		if (_.isNull(solanaClass)) return false

@@ -1,5 +1,5 @@
 declare global {
-	interface Video {
+	interface VideoData {
 		splName: string
 		splPublicKey: string
 		offeringSharePriceSol: number

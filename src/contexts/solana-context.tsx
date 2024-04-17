@@ -93,7 +93,7 @@ class SolanaClass {
 		this.myContentMap.set(newContent.mintAddress, newContent)
 	})
 
-	public checkIfUuidExistsInContent = (uuid: string): boolean => {
+	public checkIfUuidExistsInContentList(uuid: string): boolean {
 		for (const content of this.myContentMap.values()) {
 			if (_.isEqual(content.uuid, uuid)) return true
 		}

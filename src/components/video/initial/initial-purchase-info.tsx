@@ -2,16 +2,14 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import Button from "../../button"
-import useTypedNavigate from "../../../hooks/typed-navigate"
 import ReviewPurchaseButton from "./review-purchase-button"
+import useTypedNavigate from "../../../hooks/typed-navigate"
 import { useAuthContext } from "../../../contexts/auth-context"
-import { useSolanaContext } from "../../../contexts/solana-context"
 import SelectNumberSharesToPurchase from "./select-number-shares-to-purchase"
 import useCalculateMaxSharesToPurchase from "../../../hooks/solana/purchase-spl-tokens/calculate-max-shares-to-purchase"
 
 function InitialPurchaseInfo() {
 	const authClass = useAuthContext()
-	const solanaClass = useSolanaContext()
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const calculateMaxSharesToPurchase = useCalculateMaxSharesToPurchase()
 	const navigate = useTypedNavigate()
@@ -27,7 +25,7 @@ function InitialPurchaseInfo() {
 		)
 	}
 
-	if (_.isNull(solanaClass) || _.isUndefined(videoUUID)) return null
+	if (_.isUndefined(videoUUID)) return null
 
 	return (
 		<>

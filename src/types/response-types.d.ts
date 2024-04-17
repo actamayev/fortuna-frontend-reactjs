@@ -49,7 +49,7 @@ declare global {
 	}
 
 	// Video Responses:
-	type RetrievedVideo = { video: Video }
+	type RetrievedVideo = { videoData: VideoData }
 }
 
 export {}

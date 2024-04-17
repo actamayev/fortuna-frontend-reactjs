@@ -20,7 +20,7 @@ function ReviewPurchaseButton(props: Props) {
 
 	const wasVideoCreatedByUser = useMemo(() => {
 		if (_.isNull(solanaClass) || _.isUndefined(videoUUID)) return true
-		return solanaClass.checkIfUuidExistsInContent(videoUUID)
+		return solanaClass.checkIfUuidExistsInContentList(videoUUID)
 	}, [solanaClass, videoUUID])
 
 	const isAbleToPurchaseShares = useMemo(() => {
