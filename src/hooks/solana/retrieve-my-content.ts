@@ -19,6 +19,7 @@ export default function useRetrieveMyContent(): void {
 			) return
 			solanaClass.setIsRetrievingContent(true)
 			const myContentResponse = await fortunaApiClient.solanaDataService.retrieveMyContent()
+
 			if (
 				!_.isEqual(myContentResponse.status, 200) ||
 				isMessageResponse(myContentResponse.data) ||

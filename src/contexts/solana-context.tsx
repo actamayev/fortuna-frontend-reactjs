@@ -255,6 +255,7 @@ class SolanaClass {
 		this.hasTransactionsToRetrieve = true
 		this.isRetrievingTransactions = false
 		this.isRetrievingWalletDetails = false
+		this.hasOwnershipToRetrieve = true
 		this.isRetrievingOwnership = false
 	}
 }

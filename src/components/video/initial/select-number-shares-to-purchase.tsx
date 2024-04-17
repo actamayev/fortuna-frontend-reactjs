@@ -15,9 +15,7 @@ function SelectNumberSharesToPurchase() {
 		return solanaClass.checkIfUuidExistsInContentList(videoUUID)
 	}, [solanaClass, videoUUID])
 
-	if (_.isNull(solanaClass) || _.isUndefined(videoUUID)) return null
-
-	if (wasVideoCreatedByUser === true) return null
+	if (_.isNull(solanaClass) || _.isUndefined(videoUUID) || wasVideoCreatedByUser === true) return null
 
 	return (
 		<input
