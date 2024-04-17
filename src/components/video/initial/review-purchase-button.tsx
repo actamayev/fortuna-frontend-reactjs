@@ -6,17 +6,14 @@ import Button from "../../button"
 import { useAuthContext } from "../../../contexts/auth-context"
 import { useVideoContext } from "../../../contexts/video-context"
 import { useSolanaContext } from "../../../contexts/solana-context"
+import useCalculateMaxSharesToPurchase from "../../../hooks/solana/purchase-spl-tokens/calculate-max-shares-to-purchase"
 
-interface Props {
-	maxSharesAvailableToPurchase: number
-}
-
-function ReviewPurchaseButton(props: Props) {
-	const { maxSharesAvailableToPurchase } = props
+function ReviewPurchaseButton() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const solanaClass = useSolanaContext()
 	const videoClass = useVideoContext()
 	const authClass = useAuthContext()
+	const calculateMaxSharesToPurchase = useCalculateMaxSharesToPurchase()
 
 	const wasVideoCreatedByUser = useMemo(() => {
 		if (_.isNull(solanaClass) || _.isUndefined(videoUUID)) return true
@@ -25,9 +22,9 @@ function ReviewPurchaseButton(props: Props) {
 
 	const isAbleToPurchaseShares = useMemo(() => {
 		if (_.isNull(solanaClass) || _.isUndefined(videoUUID)) return false
-		return solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing <= maxSharesAvailableToPurchase
+		return solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing <= calculateMaxSharesToPurchase(videoUUID)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [maxSharesAvailableToPurchase, solanaClass?.purchaseSplSharesDetails.numberOfTokensPurchasing, videoUUID])
+	}, [solanaClass?.purchaseSplSharesDetails.numberOfTokensPurchasing, videoUUID])
 
 	const onClickButton = useCallback(() => {
 		if (_.isNull(solanaClass) || _.isUndefined(videoUUID)) return

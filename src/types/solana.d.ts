@@ -76,6 +76,15 @@ declare global {
 	interface PurchaseSplSharesDetails extends PurchaseSplTokensData {
 		purchaseStage: TransactionStage
 	}
+
+	interface MyOwnership {
+		splName: string
+		splPublicKey: string
+		numberOfShares: number
+		imageUrl: string
+		uuid: string
+		isMyContent: boolean
+	}
 }
 
 export {}

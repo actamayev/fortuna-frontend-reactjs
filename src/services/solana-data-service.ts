@@ -35,7 +35,13 @@ export default class SolanaDataService {
 		return await this.httpClient.http.get<TransactionsResponse | MessageResponse | ErrorResponse>("/devnet/solana/get-transactions")
 	}
 
-	async purchaseSplTokens(purchaseSplTokensData: PurchaseSplTokensData): Promise<AxiosResponse<AllCommonResponses>> {
-		return await this.httpClient.http.post<AllCommonResponses>("/devnet/solana/purchase-spl-tokens", { purchaseSplTokensData })
+	async purchaseSplTokens(purchaseSplTokensData: PurchaseSplTokensData): Promise<AxiosResponse<MyOwnership | NonSuccessResponse>> {
+		return await this.httpClient.http.post<MyOwnership | NonSuccessResponse>(
+			"/devnet/solana/purchase-spl-tokens", { purchaseSplTokensData }
+		)
+	}
+
+	async retrieveMyOwnership(): Promise<AxiosResponse<MyOwnershipResponse | MessageResponse | ErrorResponse>> {
+		return await this.httpClient.http.get<MyOwnershipResponse | MessageResponse | ErrorResponse>("/devnet/solana/get-my-ownership")
 	}
 }
