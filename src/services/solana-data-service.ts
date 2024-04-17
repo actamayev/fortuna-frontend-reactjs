@@ -38,4 +38,8 @@ export default class SolanaDataService {
 	async purchaseSplTokens(purchaseSplTokensData: PurchaseSplTokensData): Promise<AxiosResponse<AllCommonResponses>> {
 		return await this.httpClient.http.post<AllCommonResponses>("/devnet/solana/purchase-spl-tokens", { purchaseSplTokensData })
 	}
+
+	async retrieveMyOwnership(): Promise<AxiosResponse<MyOwnershipResponse | MessageResponse | ErrorResponse>> {
+		return await this.httpClient.http.get<MyOwnershipResponse | MessageResponse | ErrorResponse>("/devnet/solana/get-my-ownership")
+	}
 }

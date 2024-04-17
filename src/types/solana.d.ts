@@ -76,6 +76,12 @@ declare global {
 	interface PurchaseSplSharesDetails extends PurchaseSplTokensData {
 		purchaseStage: TransactionStage
 	}
+
+	interface MyOwnership {
+		splId: number
+		numberOfShares: number
+		// TODO: Add more attributes
+	}
 }
 
 export {}

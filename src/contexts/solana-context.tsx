@@ -6,7 +6,7 @@ class SolanaClass {
 	private _walletAddress: string | null = null
 	private _walletBalanceSol: number | null = null
 
-	public myContentMap: Map<string, MyContent> = new Map()
+	public myContentMap: Map<string, MyContent> = new Map() // Maps Mint Address to MyContent
 	public isTransferSolButtonPressed = false
 	public transferSolDetails: TransferSolDetails = {
 		transferOption: "username",
@@ -19,6 +19,8 @@ class SolanaClass {
 		transferStage: "initial"
 	}
 	private _myTransactionMap: Map<number, SolanaTransaction> = new Map()
+
+	public myOwnershipMap: Map<number, MyOwnership> = new Map() // Maps splId to my ownership
 
 	public purchaseSplSharesDetails: PurchaseSplSharesDetails = {
 		numberOfTokensPurchasing: 0,
@@ -45,6 +47,9 @@ class SolanaClass {
 	public isRetrievingTransactions = false
 
 	public isRetrievingWalletDetails = false
+
+	public hasOwnershipToRetrieve = true
+	public isRetrievingOwnership = false
 
 	constructor() {
 		makeAutoObservable(this)
@@ -82,6 +87,10 @@ class SolanaClass {
 		return this.myTransactionMap.get(transactionId)
 	}
 
+	public contextForMyOwnership(splId: number): MyOwnership | undefined {
+		return this.myOwnershipMap.get(splId)
+	}
+
 	public setContent = action((newContentList: MyContent[]): void => {
 		this.myContentMap.clear()
 		if (_.isEmpty(newContentList)) return
@@ -99,6 +108,18 @@ class SolanaClass {
 		}
 		return false
 	}
+
+	public setMyOwnership = action((newOwnershipList: MyOwnership[]): void => {
+		this.myOwnershipMap.clear()
+		if (_.isEmpty(newOwnershipList)) return
+		newOwnershipList.map(singleNewOwnership => this.addOwnership(singleNewOwnership))
+	})
+
+	public addOwnership = action((newOwnership: MyOwnership): void => {
+		if (this.myOwnershipMap.has(newOwnership.splId)) return
+		this.myOwnershipMap.set(newOwnership.splId, newOwnership)
+	})
+
 
 	public setHasContentToRetrieve = action((newState: boolean): void => {
 		this.hasContentToRetrieve = newState
@@ -129,6 +150,14 @@ class SolanaClass {
 
 	public setIsRetrievingWalletDetails = action((newState: boolean): void => {
 		this.isRetrievingWalletDetails = newState
+	})
+
+	public setHasOwnershipToRetrieve = action((newState: boolean): void => {
+		this.hasOwnershipToRetrieve = newState
+	})
+
+	public setIsRetrievingOwnership = action((newState: boolean): void => {
+		this.isRetrievingOwnership = newState
 	})
 
 	public setIsTransferSolButtonPressed = action((newState: boolean): void => {
@@ -211,15 +240,17 @@ class SolanaClass {
 		this.myContentMap.clear()
 		this.isTransferSolButtonPressed = false
 		this.resetTransferSolDetails()
+		this.myTransactionMap.clear()
+		this.myOwnershipMap.clear()
 		this.resetPurchaseSplSharesDetails()
 		this.resetNewSplDetails()
-		this.myTransactionMap.clear()
 		this.solPriceDetails = null
 		this.hasContentToRetrieve = true
 		this.isRetrievingContent = false
 		this.hasTransactionsToRetrieve = true
 		this.isRetrievingTransactions = false
 		this.isRetrievingWalletDetails = false
+		this.isRetrievingOwnership = false
 	}
 }
 
