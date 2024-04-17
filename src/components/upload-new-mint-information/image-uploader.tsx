@@ -1,35 +1,40 @@
 import _ from "lodash"
+import { observer } from "mobx-react"
 import { useState, ChangeEvent, useRef, useCallback } from "react"
 import Button from "../button"
 import ContentPreview from "./content-preview"
+import { useSolanaContext } from "../../contexts/solana-context"
 
-interface Props {
-	selectedImage: File | null
-	setSelectedImage: (files: File | null) => void
-}
-
-export default function ImageUploader(props: Props) {
-	const { selectedImage, setSelectedImage } = props
+function ImageUploader() {
+	const solanaClass = useSolanaContext()
 	const [previewUrl, setPreviewUrl] = useState<null | string>(null)
 	const fileInputRef = useRef<HTMLInputElement>(null)
 
 	const handleImageChange = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
+		if (_.isNull(solanaClass)) return
 		const files = e.target.files
 
 		if (!_.isNull(files) && !_.isEmpty(files)) {
 			const file = files[0]
-			setSelectedImage(file)
+			solanaClass.updateNewSplDetails("selectedImage", file)
 
 			const newPreviewUrl = URL.createObjectURL(file)
 			setPreviewUrl(newPreviewUrl)
 		} else {
-			setSelectedImage(null)
+			solanaClass.updateNewSplDetails("selectedImage", null)
 			setPreviewUrl(null)
 		}
 
 		if (_.isNull(fileInputRef.current)) return
 		fileInputRef.current.value = ""
-	}, [setSelectedImage])
+	}, [solanaClass])
+
+	const setSelectedContentNull = useCallback(() => {
+		if (_.isNull(solanaClass)) return
+		solanaClass.updateNewSplDetails("selectedImage", null)
+	}, [solanaClass])
+
+	if (_.isNull(solanaClass)) return null
 
 	return (
 		<div className="mb-2">
@@ -41,21 +46,21 @@ export default function ImageUploader(props: Props) {
 				style={{ display: "none" }}
 				max={1}
 			/>
-			{selectedImage ? (<></>) : (
+			{solanaClass.newSplDetails.selectedImage ? (<></>) : (
 				<Button
 					title="Choose a Thumbnail"
 					colorClass="bg-sky-500"
 					hoverClass="hover:bg-sky-600"
 					onClick={() => fileInputRef.current?.click()}
 					className="text-white font-semibold"
-					disabled={!_.isNull(selectedImage)}
+					disabled={!_.isNull(solanaClass.newSplDetails.selectedImage)}
 				/>
 			)}
 
 			<ContentPreview
 				previewUrl={previewUrl}
 				setPreviewUrl={setPreviewUrl}
-				setSelectedContent={setSelectedImage}
+				setSelectedContentNull={setSelectedContentNull}
 			>
 				<img
 					src={previewUrl || ""}
@@ -66,3 +71,4 @@ export default function ImageUploader(props: Props) {
 	)
 }
 
+export default observer(ImageUploader)

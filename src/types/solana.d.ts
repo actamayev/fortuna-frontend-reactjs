@@ -1,5 +1,5 @@
 declare global {
-	interface NewSPLDetails {
+	interface CommonSplDetails {
 		splName: string
 		numberOfShares: number
 		offeringSharePriceSol: number
@@ -7,7 +7,12 @@ declare global {
 		creatorOwnershipPercentage: number
 	}
 
-	interface MyContent extends NewSPLDetails {
+	interface NewSPLDetails extends CommonSplDetails {
+		selectedImage: File | null
+		selectedVideo: File | null
+	}
+
+	interface MyContent extends CommonSplDetails {
 		imageUrl: string
 		videoUrl: string
 		uuid: string
@@ -15,7 +20,7 @@ declare global {
 		mintAddress: string
 	}
 
-	interface CreateAndMintSPL extends NewSPLDetails {
+	interface CreateAndMintSPL extends CommonSplDetails {
 		imageUrl: string
 		videoUrl: string
 		uuid: string

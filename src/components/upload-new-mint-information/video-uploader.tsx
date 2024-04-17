@@ -1,19 +1,17 @@
 import _ from "lodash"
+import { observer } from "mobx-react"
 import { useState, ChangeEvent, useRef, useCallback } from "react"
 import Button from "../button"
 import ContentPreview from "./content-preview"
+import { useSolanaContext } from "../../contexts/solana-context"
 
-interface Props {
-	selectedVideo: File | null
-	setSelectedVideo: (files: File | null) => void
-}
-
-export default function VideoUploader(props: Props) {
-	const { selectedVideo, setSelectedVideo } = props
+function VideoUploader() {
+	const solanaClass = useSolanaContext()
 	const [previewUrl, setPreviewUrl] = useState<null | string>(null)
 	const fileInputRef = useRef<HTMLInputElement>(null)
 
 	const handleVideoChange = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
+		if (_.isNull(solanaClass)) return
 		const files = e.target.files
 
 		if (!_.isNull(files) && !_.isEmpty(files)) {
@@ -28,18 +26,25 @@ export default function VideoUploader(props: Props) {
 				return // Exit the function if the file is too large
 			}
 
-			setSelectedVideo(file)
+			solanaClass.updateNewSplDetails("selectedVideo", file)
 
 			const newPreviewUrl = URL.createObjectURL(file)
 			setPreviewUrl(newPreviewUrl)
 		} else {
-			setSelectedVideo(null)
+			solanaClass.updateNewSplDetails("selectedVideo",null)
 			setPreviewUrl(null)
 		}
 
 		if (_.isNull(fileInputRef.current)) return
 		fileInputRef.current.value = "" // Reset the input after handling
-	}, [setSelectedVideo])
+	}, [solanaClass])
+
+	const setSelectedContentNull = useCallback(() => {
+		if (_.isNull(solanaClass)) return
+		solanaClass.updateNewSplDetails("selectedVideo", null)
+	}, [solanaClass])
+
+	if (_.isNull(solanaClass)) return null
 
 	return (
 		<div className="mb-2">
@@ -51,21 +56,21 @@ export default function VideoUploader(props: Props) {
 				style={{ display: "none" }}
 				max={1}
 			/>
-			{selectedVideo ? (<></>) : (
+			{solanaClass.newSplDetails.selectedVideo ? (<></>) : (
 				<Button
 					title="Choose an Video"
 					colorClass="bg-blue-500"
 					hoverClass="hover:bg-blue-600"
 					onClick={() => fileInputRef.current?.click()}
 					className="text-white font-semibold"
-					disabled={!_.isNull(selectedVideo)}
+					disabled={!_.isNull(solanaClass.newSplDetails.selectedVideo)}
 				/>
 			)}
 
 			<ContentPreview
 				previewUrl={previewUrl}
 				setPreviewUrl={setPreviewUrl}
-				setSelectedContent={setSelectedVideo}
+				setSelectedContentNull={setSelectedContentNull}
 			>
 				<video
 					src={previewUrl || ""}
@@ -76,3 +81,5 @@ export default function VideoUploader(props: Props) {
 		</div>
 	)
 }
+
+export default observer(VideoUploader)

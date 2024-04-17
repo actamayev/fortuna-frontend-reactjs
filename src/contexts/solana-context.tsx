@@ -26,6 +26,16 @@ class SolanaClass {
 		purchaseStage: "initial"
 	}
 
+	public newSplDetails: NewSPLDetails = {
+		splName: "",
+		numberOfShares: 0,
+		offeringSharePriceSol: 0,
+		description: "",
+		creatorOwnershipPercentage: 0,
+		selectedImage: null,
+		selectedVideo: null
+	}
+
 	public solPriceDetails: SolPriceDetails | null = null
 
 	public hasContentToRetrieve = true
@@ -173,6 +183,28 @@ class SolanaClass {
 		}
 	})
 
+	public updateNewSplDetails = action(<K extends keyof NewSPLDetails>(
+		key: K, value: NewSPLDetails[K]
+	) => {
+		if (typeof this.newSplDetails[key] === typeof value) {
+			this.newSplDetails[key] = value
+		} else {
+			console.warn(`Type mismatch when trying to set ${key}`)
+		}
+	})
+
+	public resetNewSplDetails = action(() => {
+		this.newSplDetails = {
+			splName: "",
+			numberOfShares: 0,
+			offeringSharePriceSol: 0,
+			description: "",
+			creatorOwnershipPercentage: 0,
+			selectedImage: null,
+			selectedVideo: null
+		}
+	})
+
 	public logout() {
 		this.walletAddress = null
 		this.walletBalanceSol = null
@@ -180,6 +212,7 @@ class SolanaClass {
 		this.isTransferSolButtonPressed = false
 		this.resetTransferSolDetails()
 		this.resetPurchaseSplSharesDetails()
+		this.resetNewSplDetails()
 		this.myTransactionMap.clear()
 		this.solPriceDetails = null
 		this.hasContentToRetrieve = true

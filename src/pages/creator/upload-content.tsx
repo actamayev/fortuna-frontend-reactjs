@@ -1,5 +1,4 @@
 import _ from "lodash"
-import { useState } from "react"
 import { observer } from "mobx-react"
 import CreatorHeader from "../../components/creator-header"
 import { useAuthContext } from "../../contexts/auth-context"
@@ -15,15 +14,6 @@ import SelectCreatorOwnershipPercentage from "../../components/upload-new-mint-i
 
 function UploadContent() {
 	const authClass = useAuthContext()
-	const [newSplDetails, setNewSplDetails] = useState<NewSPLDetails>({
-		splName: "",
-		numberOfShares: 0,
-		offeringSharePriceSol: 0,
-		description: "",
-		creatorOwnershipPercentage: 0
-	})
-	const [selectedImage, setSelectedImage] = useState<File | null>(null)
-	const [selectedVideo, setSelectedVideo] = useState<File | null>(null)
 
 	if (_.isNull(authClass.accessToken)) {
 		return <ShowAuthToNullUser whereToNavigate="/creator/my-content" />
@@ -33,46 +23,21 @@ function UploadContent() {
 		<>
 			<CreatorHeader />
 
-			<VideoUploader
-				selectedVideo={selectedVideo}
-				setSelectedVideo={setSelectedVideo}
-			/>
+			<VideoUploader />
 
-			<ImageUploader
-				selectedImage={selectedImage}
-				setSelectedImage={setSelectedImage}
-			/>
+			<ImageUploader />
 
-			<SPLNameInput
-				splDetails={newSplDetails}
-				setNewSplDetails={setNewSplDetails}
-			/>
+			<SPLNameInput />
 
-			<SPLDescriptionInput
-				splDetails={newSplDetails}
-				setNewSplDetails={setNewSplDetails}
-			/>
+			<SPLDescriptionInput />
 
-			<SelectOfferingSharePrice
-				splDetails={newSplDetails}
-				setNewSplDetails={setNewSplDetails}
-			/>
+			<SelectOfferingSharePrice />
 
-			<SelectNumberShares
-				splDetails={newSplDetails}
-				setNewSplDetails={setNewSplDetails}
-			/>
+			<SelectNumberShares />
 
-			<SelectCreatorOwnershipPercentage
-				splDetails={newSplDetails}
-				setNewSplDetails={setNewSplDetails}
-			/>
+			<SelectCreatorOwnershipPercentage />
 
-			<UploadMintInfoButton
-				newSplDetails={newSplDetails}
-				selectedImage={selectedImage}
-				selectedVideo={selectedVideo}
-			/>
+			<UploadMintInfoButton />
 		</>
 	)
 }

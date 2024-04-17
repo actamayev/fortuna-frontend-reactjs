@@ -1,21 +1,23 @@
+import _ from "lodash"
+import { observer } from "mobx-react"
+import { useSolanaContext } from "../../contexts/solana-context"
 import FormGroup from "../form-group"
 
-interface Props {
-	splDetails: NewSPLDetails
-	setNewSplDetails: React.Dispatch<React.SetStateAction<NewSPLDetails>>
-}
+function SPLNameInput() {
+	const solanaClass = useSolanaContext()
 
-export default function SPLNameInput(props: Props) {
-	const { splDetails, setNewSplDetails } = props
+	if (_.isNull(solanaClass)) return null
 
 	return (
 		<FormGroup
 			label = "Token Name"
 			type = "text"
 			placeholder = "Charlie bit my finger"
-			onChange = {(event) => setNewSplDetails({ ...splDetails, splName: event.target.value })}
+			onChange = {(event) => solanaClass.updateNewSplDetails("splName", event.target.value)}
 			required
-			value = {splDetails.splName || ""}
+			value = {solanaClass.newSplDetails.splName || ""}
 		/>
 	)
 }
+
+export default observer(SPLNameInput)
