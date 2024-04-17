@@ -46,7 +46,7 @@ function ImageUploader() {
 				style={{ display: "none" }}
 				max={1}
 			/>
-			{previewUrl ? (<></>) : (
+			{_.isNull(previewUrl) && (
 				<Button
 					title="Choose a Thumbnail"
 					colorClass="bg-sky-500"

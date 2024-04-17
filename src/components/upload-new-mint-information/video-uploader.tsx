@@ -56,7 +56,7 @@ function VideoUploader() {
 				style={{ display: "none" }}
 				max={1}
 			/>
-			{previewUrl ? (<></>) : (
+			{_.isNull(previewUrl) && (
 				<Button
 					title="Choose an Video"
 					colorClass="bg-blue-500"
