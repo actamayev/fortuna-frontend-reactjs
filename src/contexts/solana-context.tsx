@@ -20,6 +20,22 @@ class SolanaClass {
 	}
 	private _myTransactionMap: Map<number, SolanaTransaction> = new Map()
 
+	public purchaseSplSharesDetails: PurchaseSplSharesDetails = {
+		numberOfTokensPurchasing: 0,
+		splPublicKey: "",
+		purchaseStage: "initial"
+	}
+
+	public newSplDetails: NewSPLDetails = {
+		splName: "",
+		numberOfShares: 0,
+		offeringSharePriceSol: 0,
+		description: "",
+		creatorOwnershipPercentage: 0,
+		selectedImage: null,
+		selectedVideo: null
+	}
+
 	public solPriceDetails: SolPriceDetails | null = null
 
 	public hasContentToRetrieve = true
@@ -77,6 +93,13 @@ class SolanaClass {
 		this.myContentMap.set(newContent.mintAddress, newContent)
 	})
 
+	public checkIfUuidExistsInContentList(uuid: string): boolean {
+		for (const content of this.myContentMap.values()) {
+			if (_.isEqual(content.uuid, uuid)) return true
+		}
+		return false
+	}
+
 	public setHasContentToRetrieve = action((newState: boolean): void => {
 		this.hasContentToRetrieve = newState
 	})
@@ -122,11 +145,11 @@ class SolanaClass {
 	})
 
 	public updateTransferSolDetails = action(<K extends keyof TransferSolDetails>(key: K, value: TransferSolDetails[K]) => {
-		if (typeof this.transferSolDetails[key] === typeof value) {
-			this.transferSolDetails[key] = value
-		} else {
+		if (typeof this.transferSolDetails[key] !== typeof value) {
 			console.warn(`Type mismatch when trying to set ${key}`)
+			return
 		}
+		this.transferSolDetails[key] = value
 	})
 
 	public resetTransferSolDetails = action(() => {
@@ -142,12 +165,54 @@ class SolanaClass {
 		}
 	})
 
+	public updatePurchaseSplSharesDetails = action(<K extends keyof PurchaseSplSharesDetails>(
+		key: K, value: PurchaseSplSharesDetails[K]
+	) => {
+		if (typeof this.purchaseSplSharesDetails[key] !== typeof value) {
+			console.warn(`Type mismatch when trying to set ${key}`)
+			return
+		}
+		this.purchaseSplSharesDetails[key] = value
+	})
+
+	public resetPurchaseSplSharesDetails = action(() => {
+		this.purchaseSplSharesDetails = {
+			numberOfTokensPurchasing: 0,
+			splPublicKey: "",
+			purchaseStage: "initial"
+		}
+	})
+
+	public updateNewSplDetails = action(<K extends keyof NewSPLDetails>(
+		key: K, value: NewSPLDetails[K]
+	) => {
+		if (typeof this.newSplDetails[key] !== typeof value) {
+			console.warn(`Type mismatch when trying to set ${key}`)
+			return
+		}
+		this.newSplDetails[key] = value
+	})
+
+	public resetNewSplDetails = action(() => {
+		this.newSplDetails = {
+			splName: "",
+			numberOfShares: 0,
+			offeringSharePriceSol: 0,
+			description: "",
+			creatorOwnershipPercentage: 0,
+			selectedImage: null,
+			selectedVideo: null
+		}
+	})
+
 	public logout() {
 		this.walletAddress = null
 		this.walletBalanceSol = null
 		this.myContentMap.clear()
 		this.isTransferSolButtonPressed = false
 		this.resetTransferSolDetails()
+		this.resetPurchaseSplSharesDetails()
+		this.resetNewSplDetails()
 		this.myTransactionMap.clear()
 		this.solPriceDetails = null
 		this.hasContentToRetrieve = true

@@ -1,21 +1,23 @@
+import _ from "lodash"
+import { observer } from "mobx-react"
 import FormGroup from "../form-group"
+import { useSolanaContext } from "../../contexts/solana-context"
 
-interface Props {
-	splDetails: NewSPLDetails
-	setNewSplDetails: React.Dispatch<React.SetStateAction<NewSPLDetails>>
-}
+function SelectCreatorOwnershipPercentage() {
+	const solanaClass = useSolanaContext()
 
-export default function SelectCreatorOwnershipPercentage(props: Props) {
-	const { splDetails, setNewSplDetails } = props
+	if (_.isNull(solanaClass)) return null
 
 	return (
 		<FormGroup
 			label = "Ownership percentage"
 			type = "number"
 			placeholder = "69"
-			onChange = {(event) => setNewSplDetails({ ...splDetails, creatorOwnershipPercentage: Number(event.target.value) })}
+			onChange = {(event) => solanaClass.updateNewSplDetails("creatorOwnershipPercentage", Number(event.target.value))}
 			required
-			value = {splDetails.creatorOwnershipPercentage.toString()}
+			value = {solanaClass.newSplDetails.creatorOwnershipPercentage.toString()}
 		/>
 	)
 }
+
+export default observer(SelectCreatorOwnershipPercentage)

@@ -1,18 +1,11 @@
 import _ from "lodash"
+import { useMemo } from "react"
 import { observer } from "mobx-react"
-import { useEffect, useMemo } from "react"
 import { useSolanaContext } from "../../contexts/solana-context"
 import TransferSolButton from "./transfer-sol/transfer-sol-button"
-import useRetrieveWalletBalance from "../../hooks/solana/retrieve-wallet-balance"
 
 function WalletDetails () {
 	const solanaClass = useSolanaContext()
-	const retrieveWalletBalance = useRetrieveWalletBalance()
-
-	useEffect(() => {
-		if (_.isNull(solanaClass) || !_.isNull(solanaClass.walletBalanceSol)) return
-		void retrieveWalletBalance()
-	}, [retrieveWalletBalance, solanaClass])
 
 	const formattedTime = useMemo(() => {
 		const lastRetrieved = solanaClass?.solPriceDetails?.lastRetrieved

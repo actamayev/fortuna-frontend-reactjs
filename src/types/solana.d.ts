@@ -1,5 +1,5 @@
 declare global {
-	interface NewSPLDetails {
+	interface CommonSplDetails {
 		splName: string
 		numberOfShares: number
 		offeringSharePriceSol: number
@@ -7,14 +7,20 @@ declare global {
 		creatorOwnershipPercentage: number
 	}
 
-	interface MyContent extends NewSPLDetails {
+	interface NewSPLDetails extends CommonSplDetails {
+		selectedImage: File | null
+		selectedVideo: File | null
+	}
+
+	interface MyContent extends CommonSplDetails {
 		imageUrl: string
 		videoUrl: string
+		uuid: string
 		splId: number
 		mintAddress: string
 	}
 
-	interface CreateAndMintSPL extends NewSPLDetails {
+	interface CreateAndMintSPL extends CommonSplDetails {
 		imageUrl: string
 		videoUrl: string
 		uuid: string
@@ -28,7 +34,7 @@ declare global {
 	}
 
 	type TransferOption = "username" | "publicKey"
-	type TransferStage = "initial" | "review"
+	type TransactionStage = "initial" | "review"
 
 	interface TransferSolDetails {
 		transferOption: TransferOption
@@ -41,7 +47,7 @@ declare global {
 		isPublicKeyRegisteredWithFortuna: boolean
 
 		solAmount: number
-		transferStage: TransferStage
+		transferStage: TransactionStage
 	}
 
 	interface SendingSolTransfer {
@@ -51,8 +57,8 @@ declare global {
 
 	interface SolanaTransaction {
 		solTransferId: number
-		solTransferred: number
-		usdTransferred: number
+		solAmountTransferred: number
+		usdAmountTransferred: number
 		outgoingOrIncoming: "outgoing" | "incoming"
 
 		transferDateTime: Date
@@ -60,6 +66,15 @@ declare global {
 		transferToPublicKey?: string
 		transferFeeSol?: number
 		transferFeeUsd?: number
+	}
+
+	interface PurchaseSplTokensData {
+		numberOfTokensPurchasing: number
+		splPublicKey: string
+	}
+
+	interface PurchaseSplSharesDetails extends PurchaseSplTokensData {
+		purchaseStage: TransactionStage
 	}
 }
 

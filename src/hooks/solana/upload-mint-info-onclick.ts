@@ -6,9 +6,6 @@ import { useSolanaContext } from "../../contexts/solana-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useUploadMintInfoOnclick(): (
-	newSplDetails: NewSPLDetails,
-	selectedImage: File | null,
-	selectedVideo: File | null,
 	setError: React.Dispatch<React.SetStateAction<string>>,
 	setLoading: React.Dispatch<React.SetStateAction<boolean>>,
 	setStatus: React.Dispatch<React.SetStateAction<string>>
@@ -19,19 +16,20 @@ export default function useUploadMintInfoOnclick(): (
 
 	// eslint-disable-next-line complexity
 	const uploadMintInfoOnclick = useCallback(async (
-		newSplDetails: NewSPLDetails,
-		selectedImage: File | null,
-		selectedVideo: File | null,
 		setError: React.Dispatch<React.SetStateAction<string>>,
 		setLoading: React.Dispatch<React.SetStateAction<boolean>>,
 		setStatus: React.Dispatch<React.SetStateAction<string>>
 	): Promise<void> => {
 		try {
 			setLoading(true)
-			if (_.isNull(selectedImage) || _.isNull(selectedVideo) || _.isNull(solanaClass)) return
+			if (
+				_.isNull(solanaClass) ||
+				_.isNull(solanaClass.newSplDetails.selectedVideo) ||
+				_.isNull(solanaClass.newSplDetails.selectedImage)
+			) return
 
 			setStatus("Uploading Video")
-			const uploadVideoResponse = await fortunaApiClient.uploadDataService.uploadVideoToS3(selectedVideo)
+			const uploadVideoResponse = await fortunaApiClient.uploadDataService.uploadVideoToS3(solanaClass.newSplDetails.selectedVideo)
 			if (!_.isEqual(uploadVideoResponse.status, 200) || isNonSuccessResponse(uploadVideoResponse.data)) {
 				setError("Error uploading image")
 				return
@@ -39,20 +37,23 @@ export default function useUploadMintInfoOnclick(): (
 
 			setStatus("Uploading Thumbnail/picture")
 			const uploadImageResponse = await fortunaApiClient.uploadDataService.uploadImageToS3(
-				selectedImage, uploadVideoResponse.data.uuid
+				solanaClass.newSplDetails.selectedImage, uploadVideoResponse.data.uuid
 			)
 			if (!_.isEqual(uploadImageResponse.status, 200) || isNonSuccessResponse(uploadImageResponse.data)) {
 				setError("Error uploading image")
 				return
 			}
 
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
+			const { selectedImage, selectedVideo, ...restOfSplDetails } = solanaClass.newSplDetails
+
 			const createAndMintSPL: CreateAndMintSPL = {
-				...newSplDetails,
+				...restOfSplDetails,
 				imageUrl: uploadImageResponse.data.imageUploadUrl,
 				videoUrl: uploadVideoResponse.data.videoUploadUrl,
 				uuid: uploadVideoResponse.data.uuid,
 				uploadedImageId: uploadImageResponse.data.uploadedImageId,
-				uploadedVideoId: uploadVideoResponse.data.uploadedVideoId
+				uploadedVideoId: uploadVideoResponse.data.uploadedVideoId,
 			}
 
 			setStatus("Creating and Minting Token")
@@ -64,14 +65,16 @@ export default function useUploadMintInfoOnclick(): (
 			}
 
 			const myContent: MyContent = {
-				...newSplDetails,
+				...restOfSplDetails,
 				imageUrl: uploadImageResponse.data.imageUploadUrl,
 				videoUrl: uploadVideoResponse.data.videoUploadUrl,
+				uuid: uploadVideoResponse.data.uuid,
 				splId: createAndMintResponse.data.newSPLId,
 				mintAddress: createAndMintResponse.data.mintAddress
 			}
 
 			solanaClass.addContent(myContent)
+			solanaClass.resetNewSplDetails()
 
 			navigate("/creator/my-content")
 		} catch (error) {

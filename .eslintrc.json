@@ -104,7 +104,7 @@
 
     "overrides": [
 		{
-			"files": ["*.d.ts"],
+			"files": ["*.d.ts", "App.tsx"],
 			"rules": {
 				"filenames/match-regex": "off"
 			}

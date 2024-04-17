@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import { useSolanaContext } from "../../contexts/solana-context"
+import { useSolanaContext } from "../../../contexts/solana-context"
 
 export default function useConfirmUserHasEnoughSolToTransfer(): (
 	setDoesUserHaveEnoughSol: React.Dispatch<React.SetStateAction<boolean>>

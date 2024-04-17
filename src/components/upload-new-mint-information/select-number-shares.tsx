@@ -1,21 +1,23 @@
+import _ from "lodash"
+import { observer } from "mobx-react"
 import FormGroup from "../form-group"
+import { useSolanaContext } from "../../contexts/solana-context"
 
-interface Props {
-	splDetails: NewSPLDetails
-	setNewSplDetails: React.Dispatch<React.SetStateAction<NewSPLDetails>>
-}
+function SelectNumberShares() {
+	const solanaClass = useSolanaContext()
 
-export default function SelectNumberShares(props: Props) {
-	const { splDetails, setNewSplDetails } = props
+	if (_.isNull(solanaClass)) return null
 
 	return (
 		<FormGroup
 			label = "Number of Shares"
 			type = "number"
 			placeholder = "1000"
-			onChange = {(event) => setNewSplDetails({ ...splDetails, numberOfShares: Number(event.target.value) })}
+			onChange = {(event) => solanaClass.updateNewSplDetails("numberOfShares", Number(event.target.value))}
 			required
-			value = {splDetails.numberOfShares.toString()}
+			value = {solanaClass.newSplDetails.numberOfShares.toString()}
 		/>
 	)
 }
+
+export default observer(SelectNumberShares)
