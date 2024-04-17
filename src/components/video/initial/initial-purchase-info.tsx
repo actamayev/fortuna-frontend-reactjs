@@ -7,13 +7,11 @@ import useTypedNavigate from "../../../hooks/typed-navigate"
 import { useAuthContext } from "../../../contexts/auth-context"
 import { useVideoContext } from "../../../contexts/video-context"
 import SelectNumberSharesToPurchase from "./select-number-shares-to-purchase"
-import useCalculateMaxSharesToPurchase from "../../../hooks/solana/purchase-spl-tokens/calculate-max-shares-to-purchase"
 
 function InitialPurchaseInfo() {
 	const authClass = useAuthContext()
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const videoClass = useVideoContext()
-	const calculateMaxSharesToPurchase = useCalculateMaxSharesToPurchase()
 	const navigate = useTypedNavigate()
 
 	if (_.isUndefined(videoUUID)) return null
@@ -38,10 +36,10 @@ function InitialPurchaseInfo() {
 	return (
 		<>
 			<div className="text-center font-semibold">Purchase Shares</div>
-			<SelectNumberSharesToPurchase maxSharesAvailableToPurchase = {calculateMaxSharesToPurchase(videoUUID)}/>
+			<SelectNumberSharesToPurchase />
 			<br />
 
-			<ReviewPurchaseButton maxSharesAvailableToPurchase = {calculateMaxSharesToPurchase(videoUUID)}/>
+			<ReviewPurchaseButton />
 		</>
 	)
 }
