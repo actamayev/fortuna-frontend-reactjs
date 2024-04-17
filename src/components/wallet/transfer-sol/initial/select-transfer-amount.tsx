@@ -2,7 +2,8 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 
-//TODO: show the $ amount side by side, and allow the user to enter either dollar or sol amounts (and the other should adjust automatically)
+// FUTURE TODO: show the $ amount side by side, and allow the user to enter either dollar or sol amounts
+// (and the other should adjust automatically)
 function SelectTransferAmount() {
 	const solanaClass = useSolanaContext()
 

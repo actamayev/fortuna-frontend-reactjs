@@ -17,11 +17,9 @@ function InitialTransferInfo() {
 			<div className="text-center font-semibold">Transfer Sol</div>
 			<SelectTransferOption />
 
-			{solanaClass.transferSolDetails.transferOption === "username" ? (
-				<UsernameSearch />
-			) : (
-				<PublicKeySearch />
-			)}
+			{solanaClass.transferSolDetails.transferOption === "username" && <UsernameSearch />}
+
+			{solanaClass.transferSolDetails.transferOption === "publicKey" && <PublicKeySearch />}
 
 			<SelectTransferAmount />
 

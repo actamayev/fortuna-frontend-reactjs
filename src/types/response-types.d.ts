@@ -12,6 +12,13 @@ declare global {
 	//Auth Responses:
 	type LoginOrRegisterSuccess = { accessToken: string }
 
+	// Personal Info Responses:
+	type PersonalInfoResponse = {
+		username: string
+		email: string | null
+		phoneNumber: string | null
+	}
+
 	// Search Responses:
 	type SearchForUsersResponse = { usernames: { username: string }[] }
 
@@ -23,9 +30,9 @@ declare global {
 	type RetrieveMyContentResponse = { creatorContentList: MyContent[] }
 	type TransferSolResponse = { solTransferData: SolanaTransaction }
 	type WalletBalanceResponse = {
-		balanceInSol: number,
-		balanceInUsd: number,
-		solPriceInUSD: number,
+		balanceInSol: number
+		balanceInUsd: number
+		solPriceInUSD: number
 		solPriceRetrievedTime: Date
 	}
 	type TransactionsResponse = { transactions: SolanaTransaction[] }
@@ -40,6 +47,9 @@ declare global {
 		uploadedVideoId: number
 		uuid: string
 	}
+
+	// Video Responses:
+	type RetrievedVideo = { videoData: VideoData }
 }
 
 export {}

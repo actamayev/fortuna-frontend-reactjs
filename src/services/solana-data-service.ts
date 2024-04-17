@@ -34,4 +34,8 @@ export default class SolanaDataService {
 	async retrieveTransactions(): Promise<AxiosResponse<TransactionsResponse | MessageResponse | ErrorResponse>> {
 		return await this.httpClient.http.get<TransactionsResponse | MessageResponse | ErrorResponse>("/devnet/solana/get-transactions")
 	}
+
+	async purchaseSplTokens(purchaseSplTokensData: PurchaseSplTokensData): Promise<AxiosResponse<AllCommonResponses>> {
+		return await this.httpClient.http.post<AllCommonResponses>("/devnet/solana/purchase-spl-tokens", { purchaseSplTokensData })
+	}
 }

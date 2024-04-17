@@ -2,9 +2,9 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useEffect, useState } from "react"
 import Button from "../../../button"
-import useTransferSol from "../../../../hooks/solana/transfer-sol"
 import { useSolanaContext } from "../../../../contexts/solana-context"
-import useConfirmUserHasEnoughSolToTransfer from "../../../../hooks/solana/confirm-user-has-enough-sol-to-transfer"
+import useTransferSol from "../../../../hooks/solana/transfer-sol/transfer-sol"
+import useConfirmUserHasEnoughSolToTransfer from "../../../../hooks/solana/transfer-sol/confirm-user-has-enough-sol-to-transfer"
 
 function ConfirmTransactionButton() {
 	const solanaClass = useSolanaContext()

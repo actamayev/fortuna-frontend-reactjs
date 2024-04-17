@@ -3,15 +3,20 @@ declare global {
 
 	type EmailOrPhoneOrUnknown = EmailOrPhone | "Unknown"
 
-	type PageNames =
+	type StaticPageNames =
 		"/" |
 		"/login" |
 		"/register" |
 		"/my-ownership" |
 		"/my-wallet" |
+
 		"/creator/my-content" |
 		"/creator/my-wallet" |
 		"/creator/upload-content"
+
+	type DynamicPageNames = `/v/${string}`
+
+	type PageNames = StaticPageNames | DynamicPageNames
 }
 
 export {}

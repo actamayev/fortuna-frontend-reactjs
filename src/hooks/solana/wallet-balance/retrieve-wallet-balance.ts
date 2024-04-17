@@ -1,8 +1,8 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import { useSolanaContext } from "../../contexts/solana-context"
-import { isErrorResponse, isMessageResponse } from "../../utils/type-checks"
-import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
+import { useSolanaContext } from "../../../contexts/solana-context"
+import { isErrorResponse, isMessageResponse } from "../../../utils/type-checks"
+import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 
 export default function useRetrieveWalletBalance(): () => Promise<void> {
 	const fortunaApiClient = useApiClientContext()

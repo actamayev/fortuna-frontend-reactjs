@@ -4,18 +4,18 @@ import Button from "../button"
 
 interface Props {
 	previewUrl: string | null
-	setPreviewUrl: React.Dispatch<React.SetStateAction<string | null>>
-	setSelectedContent: (files: File | null) => void
+	setPreviewUrlNull: () => void
+	setSelectedContentNull: () => void
 	children: React.ReactNode
 }
 
 export default function ContentPreview(props: Props) {
-	const { previewUrl, setPreviewUrl, setSelectedContent, children } = props
+	const { previewUrl, setPreviewUrlNull, setSelectedContentNull, children } = props
 
 	const removeContent = useCallback(() => {
-		setSelectedContent(null)
-		setPreviewUrl(null)
-	}, [setPreviewUrl, setSelectedContent])
+		setSelectedContentNull()
+		setPreviewUrlNull()
+	}, [setPreviewUrlNull, setSelectedContentNull])
 
 	if (_.isNull(previewUrl)) return null
 
