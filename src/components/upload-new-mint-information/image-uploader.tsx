@@ -46,14 +46,13 @@ function ImageUploader() {
 				style={{ display: "none" }}
 				max={1}
 			/>
-			{solanaClass.newSplDetails.selectedImage ? (<></>) : (
+			{previewUrl ? (<></>) : (
 				<Button
 					title="Choose a Thumbnail"
 					colorClass="bg-sky-500"
 					hoverClass="hover:bg-sky-600"
 					onClick={() => fileInputRef.current?.click()}
 					className="text-white font-semibold"
-					disabled={!_.isNull(solanaClass.newSplDetails.selectedImage)}
 				/>
 			)}
 

@@ -56,14 +56,13 @@ function VideoUploader() {
 				style={{ display: "none" }}
 				max={1}
 			/>
-			{solanaClass.newSplDetails.selectedVideo ? (<></>) : (
+			{previewUrl ? (<></>) : (
 				<Button
 					title="Choose an Video"
 					colorClass="bg-blue-500"
 					hoverClass="hover:bg-blue-600"
 					onClick={() => fileInputRef.current?.click()}
 					className="text-white font-semibold"
-					disabled={!_.isNull(solanaClass.newSplDetails.selectedVideo)}
 				/>
 			)}
 

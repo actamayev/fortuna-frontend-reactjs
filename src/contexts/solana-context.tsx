@@ -145,11 +145,11 @@ class SolanaClass {
 	})
 
 	public updateTransferSolDetails = action(<K extends keyof TransferSolDetails>(key: K, value: TransferSolDetails[K]) => {
-		if (typeof this.transferSolDetails[key] === typeof value) {
-			this.transferSolDetails[key] = value
-		} else {
+		if (typeof this.transferSolDetails[key] !== typeof value) {
 			console.warn(`Type mismatch when trying to set ${key}`)
+			return
 		}
+		this.transferSolDetails[key] = value
 	})
 
 	public resetTransferSolDetails = action(() => {
@@ -168,11 +168,11 @@ class SolanaClass {
 	public updatePurchaseSplSharesDetails = action(<K extends keyof PurchaseSplSharesDetails>(
 		key: K, value: PurchaseSplSharesDetails[K]
 	) => {
-		if (typeof this.purchaseSplSharesDetails[key] === typeof value) {
-			this.purchaseSplSharesDetails[key] = value
-		} else {
+		if (typeof this.purchaseSplSharesDetails[key] !== typeof value) {
 			console.warn(`Type mismatch when trying to set ${key}`)
+			return
 		}
+		this.purchaseSplSharesDetails[key] = value
 	})
 
 	public resetPurchaseSplSharesDetails = action(() => {
@@ -186,11 +186,11 @@ class SolanaClass {
 	public updateNewSplDetails = action(<K extends keyof NewSPLDetails>(
 		key: K, value: NewSPLDetails[K]
 	) => {
-		if (typeof this.newSplDetails[key] === typeof value) {
-			this.newSplDetails[key] = value
-		} else {
+		if (typeof this.newSplDetails[key] !== typeof value) {
 			console.warn(`Type mismatch when trying to set ${key}`)
+			return
 		}
+		this.newSplDetails[key] = value
 	})
 
 	public resetNewSplDetails = action(() => {
