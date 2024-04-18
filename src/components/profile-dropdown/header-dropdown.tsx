@@ -26,7 +26,7 @@ function HeaderDropdown () {
 	}, [location])
 
 	return (
-		<div className="w-1/4 flex justify-end position: relative z-10">
+		<div className="w-1/4 flex justify-end position: relative">
 			<div className="flex items-center">
 				<div className="relative inline-block text-left" ref = {dropdownRef}>
 					<button

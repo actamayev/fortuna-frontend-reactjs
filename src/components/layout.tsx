@@ -1,4 +1,5 @@
 import CustomLink from "./custom-link"
+import SolOrUsdSlider from "./sol-or-usd-slider"
 import LoginLogoutHeaderItem from "./login-logout-header-item"
 
 interface Props {
@@ -19,7 +20,8 @@ export default function Layout (props: Props) {
 							css = "text-gray-200 hover:text-white font-bold text-4xl"
 						/>
 					</div>
-					<div className="flex items-center mr-4">
+					<div className="flex items-center space-x-4">
+						<SolOrUsdSlider />
 						<LoginLogoutHeaderItem />
 					</div>
 				</div>

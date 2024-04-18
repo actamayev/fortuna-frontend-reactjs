@@ -17,6 +17,8 @@ declare global {
 	type DynamicPageNames = `/v/${string}`
 
 	type PageNames = StaticPageNames | DynamicPageNames
+
+	type Currencies = "sol" | "usd"
 }
 
 export {}
