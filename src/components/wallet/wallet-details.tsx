@@ -33,8 +33,7 @@ function WalletDetails () {
 				{personalInfoClass.defaultCurrency === "sol" && (<> Sol</>)}
 				<br />
 				{/* Wallet Balance: ${solanaClass.getWalletBalanceUSD} */}
-				Last Solana price: ${solanaClass.solPriceDetails?.solPriceInUSD}
-				<br />
+				Last Solana price: ${solanaClass.solPriceDetails?.solPriceInUSD} {" "}
 				(Last updated {formattedTime})
 			</div>
 		</>
