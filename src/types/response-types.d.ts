@@ -52,6 +52,7 @@ declare global {
 
 	// Video Responses:
 	type RetrievedVideo = { videoData: VideoData }
+	type HomePageVideos = { homePageVideos: VideoData[] }
 }
 
 export {}

@@ -5,16 +5,25 @@ import { useContext, useMemo, createContext } from "react"
 class VideoClass {
 	public videosMap: Map<string, VideoData> = new Map() // Maps UUID to Video
 	public videosBeingRetrieved: string[] = []
+	public areHomePageVideoRetrieved: boolean = false
 
 	constructor() {
 		makeObservable(this, {
-			videosMap: observable
+			videosMap: observable,
+			videosBeingRetrieved: observable,
+			areHomePageVideoRetrieved: observable
 		})
 	}
 
 	public contextForVideo(videoUUID: string): VideoData | undefined {
 		return this.videosMap.get(videoUUID)
 	}
+
+	public setHomePageVideos = action((videoData: VideoData[]): void => {
+		this.videosMap.clear()
+		if (_.isEmpty(videoData)) return
+		videoData.map(singleVideo => this.addVideoToMap(singleVideo))
+	})
 
 	public addVideoToMap = action((video: VideoData): void => {
 		if (this.videosMap.has(video.uuid)) return
