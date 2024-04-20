@@ -8,6 +8,7 @@ function SelectNumberShares() {
 
 	if (_.isNull(solanaClass)) return null
 
+	// TODO: Change this to be a slider from 100 - 1000 shares
 	return (
 		<FormGroup
 			label = "Number of Shares"

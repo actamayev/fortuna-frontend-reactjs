@@ -8,6 +8,7 @@ function SelectCreatorOwnershipPercentage() {
 
 	if (_.isNull(solanaClass)) return null
 
+	// TODO: Change this to be a slider from 50 - 90%.
 	return (
 		<FormGroup
 			label = "Ownership percentage"

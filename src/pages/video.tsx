@@ -13,7 +13,6 @@ function Video() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const videoClass = useVideoContext()
 	const personalInfoClass = usePersonalInfoContext()
-
 	const [isVideoLoading, setIsVideoLoading] = useState(false)
 	const [isVideoNotFound, setIsVideoNotFound] = useState(false)
 	useSetSingleVideo(videoUUID, setIsVideoLoading, setIsVideoNotFound)
