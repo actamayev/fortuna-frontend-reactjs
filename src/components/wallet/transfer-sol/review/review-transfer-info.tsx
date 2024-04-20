@@ -3,9 +3,11 @@ import { observer } from "mobx-react"
 import Button from "../../../button"
 import ConfirmTransactionButton from "./confirm-transaction-button"
 import { useSolanaContext } from "../../../../contexts/solana-context"
+import useConvertSolAmountDefaultCurrency from "../../../../hooks/solana/convert-sol-amount-to-default-currency"
 
 function ReviewTransferInfo() {
 	const solanaClass = useSolanaContext()
+	const convertSolAmountToDefaultCurrency = useConvertSolAmountDefaultCurrency()
 
 	if (_.isNull(solanaClass)) return null
 
@@ -31,7 +33,7 @@ function ReviewTransferInfo() {
 				Review Transaction
 			</div>
 
-			Sending {solanaClass.transferSolDetails.solAmount} Sol to
+			Sending {_.round(convertSolAmountToDefaultCurrency(solanaClass.transferSolDetails.solAmount) || 0, 2)} Sol to
 			<br />
 			{solanaClass.transferSolDetails.transferOption === "username" && solanaClass.transferSolDetails.username}
 			{solanaClass.transferSolDetails.transferOption === "publicKey" && solanaClass.transferSolDetails.publicKey}

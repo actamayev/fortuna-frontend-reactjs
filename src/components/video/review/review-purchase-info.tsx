@@ -5,13 +5,18 @@ import Button from "../../button"
 import ConfirmPurchaseButton from "./confirm-purchase-button"
 import { useVideoContext } from "../../../contexts/video-context"
 import { useSolanaContext } from "../../../contexts/solana-context"
+import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
+import useConvertSolAmountDefaultCurrency from "../../../hooks/solana/convert-sol-amount-to-default-currency"
 
+// eslint-disable-next-line complexity
 function ReviewPurchaseInfo() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const solanaClass = useSolanaContext()
 	const videoClass = useVideoContext()
+	const convertSolAmountToDefaultCurrency = useConvertSolAmountDefaultCurrency()
+	const personalInfoClass = usePersonalInfoContext()
 
-	if (_.isNull(solanaClass)) return null
+	if (_.isNull(solanaClass) || _.isNull(personalInfoClass)) return null
 
 	if (_.isUndefined(videoUUID)) return null
 	const video = videoClass.contextForVideo(videoUUID)
@@ -30,8 +35,16 @@ function ReviewPurchaseInfo() {
 			</div>
 
 			Purchasing {solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing} shares
-			for {video.offeringSharePriceSol * solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing} Sol
-			({video.offeringSharePriceSol} Sol / Share)
+			for
+			{personalInfoClass.defaultCurrency === "usd" && (<> $</>)}
+			{personalInfoClass.defaultCurrency === "sol" && (<> </>)}
+			{(convertSolAmountToDefaultCurrency(video.offeringSharePriceSol) || 0) *
+				solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing}
+			<> </>
+			({personalInfoClass.defaultCurrency === "usd" && (<>$</>)}
+			{convertSolAmountToDefaultCurrency(video.offeringSharePriceSol)}
+			{personalInfoClass.defaultCurrency === "sol" && (<> Sol</>)}
+			/ Share)
 			<br />
 			<ConfirmPurchaseButton />
 		</>
