@@ -44,4 +44,8 @@ export default class SolanaDataService {
 	async retrieveMyOwnership(): Promise<AxiosResponse<MyOwnershipResponse | MessageResponse | ErrorResponse>> {
 		return await this.httpClient.http.get<MyOwnershipResponse | MessageResponse | ErrorResponse>("/devnet/solana/get-my-ownership")
 	}
+
+	async requestAirdrop(): Promise<AxiosResponse<WalletBalanceResponse | MessageResponse | ErrorResponse>> {
+		return await this.httpClient.http.post<WalletBalanceResponse | MessageResponse | ErrorResponse>("/devnet/solana/request-airdrop")
+	}
 }
