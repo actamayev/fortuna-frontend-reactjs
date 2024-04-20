@@ -7,6 +7,7 @@ class PersonalInfoClass {
 	private _phoneNumber?: string | null = null
 
 	public isRetrievingPersonalInfo = false
+	public defaultCurrency: Currencies = "usd"
 
 	constructor() {
 		makeAutoObservable(this)
@@ -44,6 +45,11 @@ class PersonalInfoClass {
 		this.username = retrievedData.username
 		this.email = retrievedData.email
 		this.phoneNumber = retrievedData.phoneNumber
+		this.setDefaultCurrency(retrievedData.defaultCurrency)
+	})
+
+	public setDefaultCurrency = action((newDefaultCurrency: Currencies): void => {
+		this.defaultCurrency = newDefaultCurrency
 	})
 
 	public logout() {
@@ -51,6 +57,7 @@ class PersonalInfoClass {
 		this.email = null
 		this.phoneNumber = null
 		this.isRetrievingPersonalInfo = false
+		// do not change the default currency back to usd after logout.
 	}
 }
 

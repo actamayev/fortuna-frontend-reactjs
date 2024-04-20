@@ -8,4 +8,10 @@ export default class PersonalInfoDataService {
 	async retrievePersonalInfo(): Promise<AxiosResponse<PersonalInfoResponse | ErrorResponse>> {
 		return await this.httpClient.http.get<PersonalInfoResponse | ErrorResponse>("/devnet/personal-info/retrieve-personal-info")
 	}
+
+	async setDefaultCurrency(newCurrency: Currencies): Promise<AxiosResponse<SuccessResponse | ErrorResponses>> {
+		return await this.httpClient.http.post<SuccessResponse | ErrorResponses>(
+			`/devnet/personal-info/set-default-currency/${newCurrency}`
+		)
+	}
 }

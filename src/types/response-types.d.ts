@@ -17,6 +17,7 @@ declare global {
 		username: string
 		email: string | null
 		phoneNumber: string | null
+		defaultCurrency: Currencies
 	}
 
 	// Search Responses:

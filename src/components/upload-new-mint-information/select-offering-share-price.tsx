@@ -9,6 +9,7 @@ function SelectOfferingSharePrice() {
 	if (_.isNull(solanaClass)) return null
 
 	// FUTURE TODO: Make an option to enter in dollars (maybe have two boxes, each of which influences the other when changed)
+	// TODO: Change this to limit between $0.5 and $50/share.
 	return (
 		<FormGroup
 			label = "Offering price per share (Sol)"
