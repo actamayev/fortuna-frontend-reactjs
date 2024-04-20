@@ -3,6 +3,7 @@ import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../contexts/solana-context"
 import TransferSolButton from "./transfer-sol/transfer-sol-button"
+import RequestAirdropButton from "./request-airdrop/request-airdrop-button"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import useConvertSolAmountDefaultCurrency from "../../hooks/solana/convert-sol-amount-to-default-currency"
 
@@ -24,7 +25,12 @@ function WalletDetails () {
 
 	return (
 		<>
-			<TransferSolButton />
+			<div className="flex flex-row">
+				<div className="mr-4">
+					<TransferSolButton />
+				</div>
+				<RequestAirdropButton />
+			</div>
 			<div className="bg-white shadow-lg rounded-lg p-4 m-2 grid grid-cols-1 grid-rows-1 border">
 				Wallet Balance:
 				{personalInfoClass.defaultCurrency === "usd" && (<> $</>)}
