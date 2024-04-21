@@ -57,7 +57,7 @@ class PersonalInfoClass {
 		if (isValidCurrency(locallyStoredDefaultCurrency)) {
 			this.setDefaultCurrency(locallyStoredDefaultCurrency)
 		}
-		const locallyStoredDefaultSiteTheme = localStorage.getItem("defaultSiteTime")
+		const locallyStoredDefaultSiteTheme = localStorage.getItem("defaultSiteTheme")
 		if (isValidSiteTheme(locallyStoredDefaultSiteTheme)) {
 			this.setDefaultSiteTheme(locallyStoredDefaultSiteTheme)
 		}
@@ -82,7 +82,7 @@ class PersonalInfoClass {
 
 	public setDefaultSiteTheme = action((newSiteTheme: SiteThemes): void => {
 		this._defaultSiteTheme = newSiteTheme
-		localStorage.setItem("defaultSiteTime", newSiteTheme)
+		localStorage.setItem("defaultSiteTheme", newSiteTheme)
 		if (newSiteTheme === "dark") document.documentElement.classList.add("dark")
 		else document.documentElement.classList.remove("dark")
 	})
