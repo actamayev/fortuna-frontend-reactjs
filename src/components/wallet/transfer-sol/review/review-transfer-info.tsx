@@ -26,8 +26,8 @@ function ReviewTransferInfo() {
 			<div className="flex flex-row justify-between items-center font-semibold w-full">
 				<Button
 					title="<"
-					colorClass="bg-blue-300"
-					hoverClass="hover:bg-blue-400"
+					colorClass="bg-blue-200"
+					hoverClass="hover:bg-blue-300"
 					onClick={() => solanaClass.updateTransferSolDetails("transferStage", "initial")}
 					className="font-semibold"
 				/>

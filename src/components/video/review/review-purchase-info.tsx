@@ -28,9 +28,10 @@ function ReviewPurchaseInfo() {
 				<div>
 					<Button
 						title="<"
-						colorClass="bg-blue-300"
-						hoverClass="hover:bg-blue-400"
+						colorClass="bg-blue-200"
+						hoverClass="hover:bg-blue-300"
 						onClick={() => solanaClass.updatePurchaseSplSharesDetails("purchaseStage", "initial")}
+						className="font-semibold"
 					/>
 				</div>
 				<div className="text-center flex-1">

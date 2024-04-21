@@ -44,17 +44,18 @@ function ReviewPurchaseButton() {
 	if (_.isNull(solanaClass)) return null
 
 	return (
-		<Button
-			onClick={onClickButton}
-			colorClass="bg-blue-300"
-			hoverClass="hover:bg-blue-400"
-			title={createTitleForButton}
-			disabled={
-				wasVideoCreatedByUser ||
-				!isAbleToPurchaseShares ||
-				solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing === 0
-			}
-		/>
+		<div className="flex justify-center">
+			<Button
+				onClick={onClickButton}
+				colorClass="bg-blue-200"
+				hoverClass="hover:bg-blue-300"
+				title={createTitleForButton}
+				disabled={wasVideoCreatedByUser || !isAbleToPurchaseShares ||
+					solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing === 0
+				}
+				className="font-semibold"
+			/>
+		</div>
 	)
 }
 
