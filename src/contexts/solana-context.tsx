@@ -30,10 +30,13 @@ class SolanaClass {
 
 	public newSplDetails: NewSPLDetails = {
 		splName: "",
-		numberOfShares: 0,
-		offeringSharePriceSol: 0,
+		numberOfShares: 100,
+		offeringSharePriceUsd: 0.5,
+		// TODO: Share price sol should change on the fly to adjust to be approximately $0.5
+		// Same for the min/max/step size when purchasing an Spl
+		offeringSharePriceSol: 0.003,
 		description: "",
-		creatorOwnershipPercentage: 0,
+		creatorOwnershipPercentage: 50,
 		selectedImage: null,
 		selectedVideo: null
 	}
@@ -230,10 +233,11 @@ class SolanaClass {
 	public resetNewSplDetails = action(() => {
 		this.newSplDetails = {
 			splName: "",
-			numberOfShares: 0,
-			offeringSharePriceSol: 0,
+			numberOfShares: 100,
+			offeringSharePriceUsd: 0.5,
+			offeringSharePriceSol: 0.003,
 			description: "",
-			creatorOwnershipPercentage: 0,
+			creatorOwnershipPercentage: 50,
 			selectedImage: null,
 			selectedVideo: null
 		}

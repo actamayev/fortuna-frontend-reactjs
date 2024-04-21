@@ -39,6 +39,10 @@ declare global {
 	}
 	type TransactionsResponse = { transactions: SolanaTransaction[] }
 	type MyOwnershipResponse = { myOwnershipList: MyOwnership[] }
+	type SolPriceResponse = {
+		solPriceInUSD: number
+		lastRetrievedTime: Date
+	}
 
 	// Upload Responses:
 	type UploadImageToS3 = {

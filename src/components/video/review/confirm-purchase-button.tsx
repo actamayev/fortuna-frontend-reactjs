@@ -13,13 +13,16 @@ function ConfirmPurchaseButton() {
 	if (_.isUndefined(videoUUID)) return null
 
 	return (
-		<Button
-			onClick={() => purchaseSplTokens(setIsLoading, videoUUID)}
-			colorClass="bg-blue-400"
-			hoverClass="hover:bg-blue-500"
-			title="Confirm Purchase"
-			disabled={isLoading}
-		/>
+		<div className="flex justify-center mt-2">
+			<Button
+				onClick={() => purchaseSplTokens(setIsLoading, videoUUID)}
+				colorClass="bg-emerald-200"
+				hoverClass="hover:bg-emerald-300"
+				title="Confirm Purchase"
+				disabled={isLoading}
+				className="font-semibold"
+			/>
+		</div>
 	)
 }
 

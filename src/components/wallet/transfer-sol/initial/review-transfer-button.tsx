@@ -11,9 +11,10 @@ function ReviewTransferButton() {
 	return (
 		<Button
 			onClick={() => solanaClass.updateTransferSolDetails("transferStage", "review")}
-			colorClass="bg-blue-400"
-			hoverClass="hover:bg-blue-500"
+			colorClass="bg-blue-200"
+			hoverClass="hover:bg-blue-300"
 			title="Review Transaction"
+			className="font-semibold"
 		/>
 	)
 }

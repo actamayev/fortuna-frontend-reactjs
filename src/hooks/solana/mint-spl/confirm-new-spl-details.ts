@@ -8,6 +8,7 @@ export default function useConfirmNewSplDetails(): boolean {
 		_.isNull(solanaClass) ||
 		_.isEmpty(solanaClass.newSplDetails.splName) ||
 		_.isEqual(solanaClass.newSplDetails.numberOfShares, 0) ||
+		_.isEqual(solanaClass.newSplDetails.offeringSharePriceUsd, 0) ||
 		_.isEqual(solanaClass.newSplDetails.offeringSharePriceSol, 0) ||
 		_.isEqual(solanaClass.newSplDetails.creatorOwnershipPercentage, 0) ||
 		_.isEmpty(solanaClass.newSplDetails.description)
