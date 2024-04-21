@@ -20,7 +20,6 @@ class VideoClass {
 	}
 
 	public setHomePageVideos = action((videoData: VideoData[]): void => {
-		this.videosMap.clear()
 		if (_.isEmpty(videoData)) return
 		videoData.map(singleVideo => this.addVideoToMap(singleVideo))
 	})

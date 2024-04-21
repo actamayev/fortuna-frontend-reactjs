@@ -1,5 +1,5 @@
 import { observer } from "mobx-react"
-import { useCallback, useState } from "react"
+import { useMemo, useState } from "react"
 import Button from "../button"
 import AuthTemplate from "./auth-template"
 import ErrorMessage from "../error-message"
@@ -30,7 +30,7 @@ function Register(props: Props) {
 	const [loading, setLoading] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
 
-	const isShowPassword = useCallback(() => {
+	const isShowPassword = useMemo(() => {
 		if (showPassword) return "text"
 		return "password"
 	}, [showPassword])
@@ -59,13 +59,13 @@ function Register(props: Props) {
 				<PasswordInput
 					credentials = {registerInformation}
 					setCredentials = {createSetCredentialsFunction(setRegisterInformation)}
-					showPassword = {isShowPassword()}
+					showPassword = {isShowPassword}
 				/>
 
 				<ConfirmPassword
 					credentials = {registerInformation}
 					setCredentials = {createSetCredentialsFunction(setRegisterInformation)}
-					showPassword = {isShowPassword()}
+					showPassword = {isShowPassword}
 				/>
 
 				<ShowOrHidePasswordButton

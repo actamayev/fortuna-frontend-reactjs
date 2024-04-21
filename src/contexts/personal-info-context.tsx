@@ -7,8 +7,6 @@ class PersonalInfoClass {
 	private _email?: string | null = null
 	private _phoneNumber?: string | null = null
 
-	// TODO: Figure out how to make these properties read-able, but not writeable from outside the class.
-	// they should only be written to via the action functions within the class
 	private _isRetrievingPersonalInfo = false
 	private _defaultCurrency: Currencies = "usd"
 	private _defaultSiteTheme: SiteThemes = "light"
@@ -93,7 +91,7 @@ class PersonalInfoClass {
 		this.username = null
 		this.email = null
 		this.phoneNumber = null
-		this._isRetrievingPersonalInfo = false
+		this.setIsRetrievingPersonalDetails(false)
 	}
 }
 
