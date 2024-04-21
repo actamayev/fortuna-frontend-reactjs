@@ -1,15 +1,13 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useSolanaContext } from "../../contexts/solana-context"
 import SelectOfferingSharePriceSol from "./select-offering-share-price-sol"
 import SelectOfferingSharePriceUsd from "./select-offering-share-price-usd"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
 function SelectOfferingSharePrice() {
-	const solanaClass = useSolanaContext()
 	const personalInfoClass = usePersonalInfoContext()
 
-	if (_.isNull(solanaClass) || _.isNull(personalInfoClass)) return null
+	if (_.isNull(personalInfoClass)) return null
 
 	if (personalInfoClass.getDefaultCurrency() === "sol") {
 		return <SelectOfferingSharePriceSol />

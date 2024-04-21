@@ -24,10 +24,11 @@ function ConfirmTransactionButton() {
 		<>
 			<Button
 				onClick={() => transferSol(setIsLoading)}
-				colorClass="bg-blue-400"
-				hoverClass="hover:bg-blue-500"
+				colorClass="bg-blue-200"
+				hoverClass="hover:bg-blue-300"
 				title="Confirm Transaction"
 				disabled={isLoading || !doesUserHaveEnoughSol}
+				className="font-semibold"
 			/>
 			{!doesUserHaveEnoughSol && <>Not enough Sol to complete transfer</>}
 		</>

@@ -23,14 +23,17 @@ function ReviewTransferInfo() {
 
 	return (
 		<>
-			<div className="text-center font-semibold">
+			<div className="flex flex-row justify-between items-center font-semibold w-full">
 				<Button
 					title="<"
 					colorClass="bg-blue-300"
 					hoverClass="hover:bg-blue-400"
 					onClick={() => solanaClass.updateTransferSolDetails("transferStage", "initial")}
+					className="font-semibold"
 				/>
+				<div className="text-center flex-1">
 				Review Transaction
+				</div>
 			</div>
 
 			Sending {_.round(convertSolAmountToDefaultCurrency(solanaClass.transferSolDetails.solAmount) || 0, 2)} Sol to

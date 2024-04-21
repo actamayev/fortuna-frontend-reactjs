@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
+import RangeSelectorSlider from "../../../range-selector-slider"
 
 // FUTURE TODO: show the $ amount side by side, and allow the user to enter either dollar or sol amounts
 // (and the other should adjust automatically)
@@ -27,16 +28,17 @@ function SelectTransferAmount() {
 		return <>You have no Sol to transfer</>
 	}
 	return (
-		<input
-			type="number"
-			value={solanaClass.transferSolDetails.solAmount}
-			onChange={(e) => solanaClass.updateTransferSolDetails("solAmount", Number(e.target.value))}
-			className="border rounded-lg p-2"
-			placeholder="Amount"
-			max={solanaClass.walletBalanceSol || 0}
-			min={0}
-			step={0.1}
-		/>
+		<div className="flex flex-col space-y-4">
+			<RangeSelectorSlider
+				title=""
+				value={solanaClass.transferSolDetails.solAmount}
+				onChange={(e) => solanaClass.updateTransferSolDetails("solAmount", Number(e.target.value))}
+				min={0}
+				max={solanaClass.walletBalanceSol || 0}
+				step={0.01}
+			/>
+			{solanaClass.transferSolDetails.solAmount} Sol
+		</div>
 	)
 }
 
