@@ -5,13 +5,13 @@ import { useContext, useMemo, createContext } from "react"
 class VideoClass {
 	public videosMap: Map<string, VideoData> = new Map() // Maps UUID to Video
 	public videosBeingRetrieved: string[] = []
-	public areHomePageVideoRetrieved: boolean = false
+	public areHomePageVideosRetrieved: boolean = false
+	public areHomePageVideosBeingRetrieved: boolean = false
 
 	constructor() {
 		makeObservable(this, {
 			videosMap: observable,
-			videosBeingRetrieved: observable,
-			areHomePageVideoRetrieved: observable
+			videosBeingRetrieved: observable
 		})
 	}
 
@@ -43,10 +43,6 @@ class VideoClass {
 
 	public removeVideoUUIDFromRetrievingList = action((videoUUID: string): void => {
 		this.videosBeingRetrieved.filter(item => item !== videoUUID)
-	})
-
-	public setAreHomePageVideosRetrieved = action((newState: boolean): void => {
-		this.areHomePageVideoRetrieved = newState
 	})
 }
 

@@ -15,7 +15,7 @@ export default class PersonalInfoDataService {
 		)
 	}
 
-	async setSiteTheme(newSiteTheme: SiteThemes): Promise<AxiosResponse<SuccessResponse | ErrorResponses>> {
+	async setDefaultSiteTheme(newSiteTheme: SiteThemes): Promise<AxiosResponse<SuccessResponse | ErrorResponses>> {
 		return await this.httpClient.http.post<SuccessResponse | ErrorResponses>(
 			`/devnet/personal-info/set-default-site-theme/${newSiteTheme}`
 		)

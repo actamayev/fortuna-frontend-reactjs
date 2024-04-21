@@ -16,16 +16,16 @@ function SolOrUsdSlider() {
 				<input
 					type="checkbox"
 					className="opacity-0 w-0 h-0"
-					checked={personalInfoClass.defaultCurrency === "sol"}
+					checked={personalInfoClass.getDefaultCurrency() === "sol"}
 					onChange={setDefaultCurrency}
 				/>
 				<span className="slider absolute cursor-pointer inset-0 bg-gray-300 transition duration-300 rounded-full"></span>
 				<span className="knob absolute left-1 bottom-1 h-6 w-6 bg-white rounded-full transition-transform duration-300"
-					style={{ transform: personalInfoClass.defaultCurrency === "sol" ? "translateX(13px)" : "translateX(0)" }}>
+					style={{ transform: personalInfoClass.getDefaultCurrency() === "sol" ? "translateX(13px)" : "translateX(0)" }}>
 				</span>
 			</label>
 			<span className="text-sm font-medium text-white">
-				{personalInfoClass.defaultCurrency.toUpperCase()}
+				{personalInfoClass.getDefaultCurrency().toUpperCase()}
 			</span>
 		</div>
 	)

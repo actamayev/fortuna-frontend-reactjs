@@ -17,7 +17,6 @@ export default function useLogout(): () => void {
 		solanaClass?.logout()
 		authClass.logout()
 		fortunaApiClient.logout()
-		localStorage.clear()
 		navigate("/")
 	}, [authClass, fortunaApiClient, navigate, personalInfoClass, solanaClass])
 

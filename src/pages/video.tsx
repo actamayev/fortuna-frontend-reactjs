@@ -36,10 +36,10 @@ function Video() {
 				Description: {video.description}
 				<br />
 				{video.sharesRemainingForSale} Shares Remaining for
-				{personalInfoClass.defaultCurrency === "usd" && (<> $</>)}
-				{personalInfoClass.defaultCurrency === "sol" && (<> </>)}
+				{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
+				{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
 				{convertSolAmountToDefaultCurrency(video.offeringSharePriceSol)}
-				{personalInfoClass.defaultCurrency === "sol" && (<> Sol</>)}
+				{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)}
 				/ Share
 				<br />
 				Total Outstanding shares: {video.totalNumberShares}
