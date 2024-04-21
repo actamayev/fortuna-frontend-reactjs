@@ -19,7 +19,7 @@ function InitialPurchaseInfo() {
 	if (_.isUndefined(video)) return null
 
 	if (_.isEqual(video.sharesRemainingForSale, 0)) {
-		return <>Sold out</>
+		return <div className="dark:text-white">Sold out</div>
 	}
 
 	if (_.isNull(authClass.accessToken)) {
