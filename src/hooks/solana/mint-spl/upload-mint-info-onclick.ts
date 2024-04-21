@@ -1,8 +1,11 @@
 import _ from "lodash"
 import { useCallback } from "react"
+import useRetrieveSolPrice from "../retrieve-sol-price"
 import useTypedNavigate from "../../navigate/typed-navigate"
+import useConfirmNewSplDetails from "./confirm-new-spl-details"
 import { isNonSuccessResponse } from "../../../utils/type-checks"
 import { useSolanaContext } from "../../../contexts/solana-context"
+import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 
 export default function useUploadMintInfoOnclick(): (
@@ -13,6 +16,9 @@ export default function useUploadMintInfoOnclick(): (
 	const navigate = useTypedNavigate()
 	const fortunaApiClient = useApiClientContext()
 	const solanaClass = useSolanaContext()
+	const personalInfoClass = usePersonalInfoContext()
+	const retrieveSolPrice = useRetrieveSolPrice()
+	const confirmNewSplDetails = useConfirmNewSplDetails()
 
 	// eslint-disable-next-line complexity
 	const uploadMintInfoOnclick = useCallback(async (
@@ -24,9 +30,21 @@ export default function useUploadMintInfoOnclick(): (
 			setLoading(true)
 			if (
 				_.isNull(solanaClass) ||
+				_.isNull(personalInfoClass) ||
 				_.isNull(solanaClass.newSplDetails.selectedVideo) ||
-				_.isNull(solanaClass.newSplDetails.selectedImage)
+				_.isNull(solanaClass.newSplDetails.selectedImage) ||
+				confirmNewSplDetails === false
 			) return
+
+			await retrieveSolPrice()
+			if (_.isNull(solanaClass.solPriceDetails)) return
+			if (personalInfoClass.getDefaultCurrency() === "sol") {
+				solanaClass.newSplDetails.offeringSharePriceUsd =
+					solanaClass.newSplDetails.offeringSharePriceSol * solanaClass.solPriceDetails.solPriceInUSD
+			} else {
+				solanaClass.newSplDetails.offeringSharePriceSol =
+					solanaClass.newSplDetails.offeringSharePriceUsd / solanaClass.solPriceDetails.solPriceInUSD
+			}
 
 			setStatus("Uploading Video")
 			const uploadVideoResponse = await fortunaApiClient.uploadDataService.uploadVideoToS3(solanaClass.newSplDetails.selectedVideo)
@@ -83,7 +101,9 @@ export default function useUploadMintInfoOnclick(): (
 			setLoading(false)
 			setStatus("")
 		}
-	}, [fortunaApiClient.solanaDataService, fortunaApiClient.uploadDataService, navigate, solanaClass])
+	}, [confirmNewSplDetails, fortunaApiClient.solanaDataService,fortunaApiClient.uploadDataService,
+		navigate,personalInfoClass, retrieveSolPrice, solanaClass
+	])
 
 	return uploadMintInfoOnclick
 }

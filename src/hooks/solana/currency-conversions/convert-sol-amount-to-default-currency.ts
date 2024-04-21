@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import { useSolanaContext } from "../../contexts/solana-context"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import { useSolanaContext } from "../../../contexts/solana-context"
+import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 
 export default function useConvertSolAmountDefaultCurrency(): (
 	solAmountToConvert: number

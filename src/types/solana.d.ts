@@ -3,6 +3,7 @@ declare global {
 		splName: string
 		numberOfShares: number
 		offeringSharePriceSol: number
+		offeringSharePriceUsd: number
 		description: string
 		creatorOwnershipPercentage: number
 	}
@@ -30,7 +31,7 @@ declare global {
 
 	interface SolPriceDetails {
 		solPriceInUSD: number
-		lastRetrieved: Date
+		lastRetrievedTime: Date
 	}
 
 	type TransferOption = "username" | "publicKey"

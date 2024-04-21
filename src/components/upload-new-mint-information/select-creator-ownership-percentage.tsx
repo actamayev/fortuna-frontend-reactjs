@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import FormGroup from "../form-group"
+import RangeSelectorSlider from "../range-selector-slider"
 import { useSolanaContext } from "../../contexts/solana-context"
 
 function SelectCreatorOwnershipPercentage() {
@@ -8,16 +8,20 @@ function SelectCreatorOwnershipPercentage() {
 
 	if (_.isNull(solanaClass)) return null
 
-	// TODO: Change this to be a slider from 50 - 90%.
 	return (
-		<FormGroup
-			label = "Ownership percentage"
-			type = "number"
-			placeholder = "69"
-			onChange = {(event) => solanaClass.updateNewSplDetails("creatorOwnershipPercentage", Number(event.target.value))}
-			required
-			value = {solanaClass.newSplDetails.creatorOwnershipPercentage.toString()}
-		/>
+		<div className="mb-2">
+			<div className="flex flex-col space-y-4">
+				<RangeSelectorSlider
+					title="Retained Ownership Percentage"
+					value={solanaClass.newSplDetails.creatorOwnershipPercentage}
+					onChange={(event) => solanaClass.updateNewSplDetails("creatorOwnershipPercentage", parseInt(event.target.value))}
+					min={50}
+					max={90}
+					step={1}
+				/>
+				{solanaClass.newSplDetails.creatorOwnershipPercentage}%
+			</div>
+		</div>
 	)
 }
 
