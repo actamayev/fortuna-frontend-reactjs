@@ -1,5 +1,5 @@
 import { useCallback } from "react"
-import useTypedNavigate from "../typed-navigate"
+import useTypedNavigate from "../navigate/typed-navigate"
 import { useAuthContext } from "../../contexts/auth-context"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
@@ -17,7 +17,6 @@ export default function useLogout(): () => void {
 		solanaClass?.logout()
 		authClass.logout()
 		fortunaApiClient.logout()
-		localStorage.clear()
 		navigate("/")
 	}, [authClass, fortunaApiClient, navigate, personalInfoClass, solanaClass])
 

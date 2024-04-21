@@ -10,4 +10,10 @@ export default class VideoDataService {
 			`/devnet/videos/get-video/${videoUUID}`, { headers: { "No-Auth-Required": "true" }}
 		)
 	}
+
+	async getHomePageVideos(): Promise<AxiosResponse<HomePageVideos | ErrorResponse>> {
+		return await this.httpClient.http.get<HomePageVideos | ErrorResponse>(
+			"/devnet/videos/get-home-page-videos", { headers: { "No-Auth-Required": "true" }}
+		)
+	}
 }

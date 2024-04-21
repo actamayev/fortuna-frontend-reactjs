@@ -36,14 +36,14 @@ function ReviewPurchaseInfo() {
 
 			Purchasing {solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing} shares
 			for
-			{personalInfoClass.defaultCurrency === "usd" && (<> $</>)}
-			{personalInfoClass.defaultCurrency === "sol" && (<> </>)}
+			{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
+			{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
 			{(convertSolAmountToDefaultCurrency(video.offeringSharePriceSol) || 0) *
 				solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing}
 			<> </>
-			({personalInfoClass.defaultCurrency === "usd" && (<>$</>)}
+			({personalInfoClass.getDefaultCurrency() === "usd" && (<>$</>)}
 			{convertSolAmountToDefaultCurrency(video.offeringSharePriceSol)}
-			{personalInfoClass.defaultCurrency === "sol" && (<> Sol</>)}
+			{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)}
 			/ Share)
 			<br />
 			<ConfirmPurchaseButton />

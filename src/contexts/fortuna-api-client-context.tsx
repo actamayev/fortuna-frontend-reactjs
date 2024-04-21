@@ -7,7 +7,7 @@ import SolanaDataService from "../services/solana-data-service"
 import SearchDataService from "../services/search-data-service"
 import PersonalInfoDataService from "../services/personal-info-data-service"
 
-export class FortunaApiClient {
+class FortunaApiClient {
 	public httpClient: FortunaHttpClient = new FortunaHttpClient()
 	public authDataService: AuthDataService = new AuthDataService(this.httpClient)
 	public personalInfoDataService: PersonalInfoDataService = new PersonalInfoDataService(this.httpClient)

@@ -13,14 +13,14 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 			// FUTURE TODO: Check the solana Context for the last time the Sol price was retrieved.
 			// If the price was retrieved longer than 1 minute ago, re-retrieve it.
 			if (_.isNull(personalInfoClass)) return
-			const newCurrency = personalInfoClass.defaultCurrency === "usd" ? "sol" : "usd"
+			const newCurrency = personalInfoClass.getDefaultCurrency() === "usd" ? "sol" : "usd"
+			personalInfoClass.setDefaultCurrency(newCurrency)
 			if (!_.isNull(fortunaApiClient.httpClient.accessToken)) {
 				const defaultCurrencyResponse = await fortunaApiClient.personalInfoDataService.setDefaultCurrency(newCurrency)
 				if (!_.isEqual(defaultCurrencyResponse.status, 200) || isErrorResponse(defaultCurrencyResponse.data)) {
 					throw Error("Unable to save new default currency")
 				}
 			}
-			personalInfoClass.setDefaultCurrency(newCurrency)
 		} catch (error) {
 			console.error(error)
 		}

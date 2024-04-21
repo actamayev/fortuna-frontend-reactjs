@@ -18,3 +18,11 @@ export function isNonSuccessResponse(data: any): data is NonSuccessResponse {
 export function isErrorResponses(data: any): data is ErrorResponses {
 	return isErrorResponse(data) || isValidationErrorResponse(data)
 }
+
+export function isValidCurrency(value: any): value is Currencies {
+	return ["sol", "usd"].includes(value)
+}
+
+export function isValidSiteTheme(value: any): value is SiteThemes {
+	return ["light", "dark"].includes(value)
+}
