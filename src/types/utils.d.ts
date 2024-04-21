@@ -19,6 +19,8 @@ declare global {
 	type PageNames = StaticPageNames | DynamicPageNames
 
 	type Currencies = "sol" | "usd"
+
+	type SiteThemes = "light" | "dark"
 }
 
 export {}

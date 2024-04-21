@@ -27,7 +27,7 @@ function SingleHomePageVideoCard(props: Props) {
 				alt={video.splName}
 				className="w-full h-80 object-cover rounded-lg"
 			/>
-			<div className="mt-2 text-sm text-center">{video.splName}</div>
+			<div className="mt-2 text-sm text-center dark:text-white">{video.splName}</div>
 		</div>
 	)
 }

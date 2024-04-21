@@ -47,9 +47,9 @@ export default function FormGroup(props: Props) {
 
 	return (
 		<div className= {`mb-4 ${className}`}>
-			{label && <label className = "block text-sm font-medium text-gray-600">{label}</label>}
+			{label && <label className = "block text-sm font-medium text-gray-600 dark:text-gray-200">{label}</label>}
 			<Component
-				className ="mt-1 p-2 w-full border rounded-md text-black"
+				className ="mt-1 p-2 w-full border rounded-md text-black dark:border-yellow-300 dark:border-2"
 				max={max}
 				min = {minAttribute}
 				maxLength = {maxLength}

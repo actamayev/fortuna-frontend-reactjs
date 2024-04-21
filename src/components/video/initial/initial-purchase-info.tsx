@@ -35,7 +35,7 @@ function InitialPurchaseInfo() {
 
 	return (
 		<>
-			<div className="text-center font-semibold">Purchase Shares</div>
+			<div className="text-center font-semibold dark:text-white">Purchase Shares</div>
 			<SelectNumberSharesToPurchase />
 			<br />
 

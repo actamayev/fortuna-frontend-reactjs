@@ -28,20 +28,22 @@ function Video() {
 
 	return (
 		<>
-			Token name: {video.splName}
-			<br />
-			<VideoPlayer videoUrl={video.videoUrl} />
-			<br />
-			Description: {video.description}
-			<br />
-			{video.sharesRemainingForSale} Shares Remaining for
-			{personalInfoClass.defaultCurrency === "usd" && (<> $</>)}
-			{personalInfoClass.defaultCurrency === "sol" && (<> </>)}
-			{convertSolAmountToDefaultCurrency(video.offeringSharePriceSol)}
-			{personalInfoClass.defaultCurrency === "sol" && (<> Sol</>)}
-			/ Share
-			<br />
-			Total Outstanding shares: {video.totalNumberShares}
+			<div className="dark:text-white">
+				Token name: {video.splName}
+				<br />
+				<VideoPlayer videoUrl={video.videoUrl} />
+				<br />
+				Description: {video.description}
+				<br />
+				{video.sharesRemainingForSale} Shares Remaining for
+				{personalInfoClass.defaultCurrency === "usd" && (<> $</>)}
+				{personalInfoClass.defaultCurrency === "sol" && (<> </>)}
+				{convertSolAmountToDefaultCurrency(video.offeringSharePriceSol)}
+				{personalInfoClass.defaultCurrency === "sol" && (<> Sol</>)}
+				/ Share
+				<br />
+				Total Outstanding shares: {video.totalNumberShares}
+			</div>
 			<PurchaseSharesCard />
 		</>
 	)

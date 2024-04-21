@@ -14,4 +14,10 @@ export default class PersonalInfoDataService {
 			`/devnet/personal-info/set-default-currency/${newCurrency}`
 		)
 	}
+
+	async setSiteTheme(newSiteTheme: SiteThemes): Promise<AxiosResponse<SuccessResponse | ErrorResponses>> {
+		return await this.httpClient.http.post<SuccessResponse | ErrorResponses>(
+			`/devnet/personal-info/set-default-site-theme/${newSiteTheme}`
+		)
+	}
 }

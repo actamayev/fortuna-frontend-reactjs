@@ -31,7 +31,7 @@ function WalletDetails () {
 				</div>
 				<RequestAirdropButton />
 			</div>
-			<div className="bg-white shadow-lg rounded-lg p-4 m-2 grid grid-cols-1 grid-rows-1 border">
+			<div className="bg-white shadow-lg rounded-md p-4 mt-4 grid grid-cols-1 grid-rows-1 border">
 				Wallet Balance:
 				{personalInfoClass.defaultCurrency === "usd" && (<> $</>)}
 				{personalInfoClass.defaultCurrency === "sol" && (<> </>)}

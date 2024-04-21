@@ -11,7 +11,7 @@ function Home() {
 
 	const videoKeys = Array.from(videoClass.videosMap.keys())
 
-	if (areVideosLoading === true) return <>Loading...</>
+	if (areVideosLoading === true) return <div className="dark:text-white">Loading...</div>
 
 	return (
 		<div className="grid grid-cols-4 gap-4 p-4">

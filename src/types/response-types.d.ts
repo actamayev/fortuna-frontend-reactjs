@@ -18,6 +18,7 @@ declare global {
 		email: string | null
 		phoneNumber: string | null
 		defaultCurrency: Currencies
+		defaultSiteTheme: SiteThemes
 	}
 
 	// Search Responses:

@@ -6,8 +6,11 @@ class PersonalInfoClass {
 	private _email?: string | null = null
 	private _phoneNumber?: string | null = null
 
+	// TODO: Figure out how to make these properties read-able, but not writeable from outside the class.
+	// they should only be written to via the action functions within the class
 	public isRetrievingPersonalInfo = false
 	public defaultCurrency: Currencies = "usd"
+	public siteTheme: SiteThemes = "light"
 
 	constructor() {
 		makeAutoObservable(this)
@@ -46,10 +49,17 @@ class PersonalInfoClass {
 		this.email = retrievedData.email
 		this.phoneNumber = retrievedData.phoneNumber
 		this.setDefaultCurrency(retrievedData.defaultCurrency)
+		this.setSiteTheme(retrievedData.defaultSiteTheme)
 	})
 
 	public setDefaultCurrency = action((newDefaultCurrency: Currencies): void => {
 		this.defaultCurrency = newDefaultCurrency
+	})
+
+	public setSiteTheme = action((newSiteTheme: SiteThemes): void => {
+		this.siteTheme = newSiteTheme
+		if (newSiteTheme === "dark") document.documentElement.classList.add("dark")
+		else document.documentElement.classList.remove("dark")
 	})
 
 	public logout() {
