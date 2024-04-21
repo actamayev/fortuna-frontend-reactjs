@@ -24,14 +24,18 @@ function ReviewPurchaseInfo() {
 
 	return (
 		<>
-			<div className="text-center font-semibold">
-				<Button
-					title="<"
-					colorClass="bg-blue-300"
-					hoverClass="hover:bg-blue-400"
-					onClick={() => solanaClass.updatePurchaseSplSharesDetails("purchaseStage", "initial")}
-				/>
-				Review Purchase
+			<div className="flex flex-row justify-between items-center font-semibold w-full">
+				<div>
+					<Button
+						title="<"
+						colorClass="bg-blue-300"
+						hoverClass="hover:bg-blue-400"
+						onClick={() => solanaClass.updatePurchaseSplSharesDetails("purchaseStage", "initial")}
+					/>
+				</div>
+				<div className="text-center flex-1">
+					Review Purchase
+				</div>
 			</div>
 
 			Purchasing {solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing} shares for
@@ -43,7 +47,7 @@ function ReviewPurchaseInfo() {
 			({personalInfoClass.getDefaultCurrency() === "usd" && (<>$</>)}
 			{_.round(convertUsdAmountToDefaultCurrency(video.offeringSharePriceUsd) || 0, 2)}
 			{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)}
-			/ Share)
+			/Share)
 			<br />
 			<ConfirmPurchaseButton />
 		</>

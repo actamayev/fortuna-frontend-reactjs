@@ -2,6 +2,7 @@ import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
+import RangeSelectorSlider from "../../range-selector-slider"
 import { useSolanaContext } from "../../../contexts/solana-context"
 import useCalculateMaxSharesToPurchase from "../../../hooks/solana/purchase-spl-tokens/calculate-max-shares-to-purchase"
 
@@ -18,16 +19,19 @@ function SelectNumberSharesToPurchase() {
 	if (_.isNull(solanaClass) || _.isUndefined(videoUUID) || wasVideoCreatedByUser === true) return null
 
 	return (
-		<input
-			type="number"
-			value={solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing}
-			onChange={(e) => solanaClass.updatePurchaseSplSharesDetails("numberOfTokensPurchasing", Number(e.target.value))}
-			className="border rounded-lg p-2"
-			placeholder="Number of shares"
-			max={calculateMaxSharesToPurchase(videoUUID)}
-			min={0}
-			step={1}
-		/>
+		<div className="flex flex-col space-y-4">
+			<RangeSelectorSlider
+				title="Shares to purchase"
+				value={solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing}
+				onChange={(e) => solanaClass.updatePurchaseSplSharesDetails("numberOfTokensPurchasing", Number(e.target.value))}
+				min={0}
+				max={calculateMaxSharesToPurchase(videoUUID)}
+				step={1}
+			/>
+			<div>
+				{solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing}
+			</div>
+		</div>
 	)
 }
 
