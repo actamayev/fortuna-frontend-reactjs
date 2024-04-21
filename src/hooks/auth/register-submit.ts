@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import useTypedNavigate from "../typed-navigate"
+import useTypedNavigate from "../navigate/typed-navigate"
 import { isNonSuccessResponse } from "../../utils/type-checks"
 import confirmRegisterFields from "../../utils/auth/confirm-register-fields"
 import useSetDataAfterLoginOrRegister from "./set-data-after-login-or-register"

@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { useEffect } from "react"
+import useTypedNavigate from "../navigate/typed-navigate"
 import { useAuthContext } from "../../contexts/auth-context"
-import useTypedNavigate from "../typed-navigate"
 
 export default function useRedirectKnownUser (): void  {
 	const authClass = useAuthContext()

@@ -3,9 +3,9 @@ import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import Button from "../../button"
 import ReviewPurchaseButton from "./review-purchase-button"
-import useTypedNavigate from "../../../hooks/typed-navigate"
 import { useAuthContext } from "../../../contexts/auth-context"
 import { useVideoContext } from "../../../contexts/video-context"
+import useTypedNavigate from "../../../hooks/navigate/typed-navigate"
 import SelectNumberSharesToPurchase from "./select-number-shares-to-purchase"
 
 function InitialPurchaseInfo() {
@@ -19,7 +19,7 @@ function InitialPurchaseInfo() {
 	if (_.isUndefined(video)) return null
 
 	if (_.isEqual(video.sharesRemainingForSale, 0)) {
-		return <>Sold out</>
+		return <div className="dark:text-white">Sold out</div>
 	}
 
 	if (_.isNull(authClass.accessToken)) {
@@ -35,7 +35,7 @@ function InitialPurchaseInfo() {
 
 	return (
 		<>
-			<div className="text-center font-semibold">Purchase Shares</div>
+			<div className="text-center font-semibold dark:text-white">Purchase Shares</div>
 			<SelectNumberSharesToPurchase />
 			<br />
 

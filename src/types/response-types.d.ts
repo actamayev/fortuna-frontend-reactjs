@@ -18,6 +18,7 @@ declare global {
 		email: string | null
 		phoneNumber: string | null
 		defaultCurrency: Currencies
+		defaultSiteTheme: SiteThemes
 	}
 
 	// Search Responses:
@@ -52,6 +53,7 @@ declare global {
 
 	// Video Responses:
 	type RetrievedVideo = { videoData: VideoData }
+	type HomePageVideos = { homePageVideos: VideoData[] }
 }
 
 export {}

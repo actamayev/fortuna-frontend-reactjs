@@ -1,5 +1,5 @@
 import { observer } from "mobx-react"
-import { useCallback, useState } from "react"
+import { useMemo, useState } from "react"
 import Button from "../button"
 import AuthTemplate from "./auth-template"
 import ErrorMessage from "../error-message"
@@ -10,6 +10,7 @@ import SubRegisterInfo from "./sub-register-info"
 import RegisterContactInput from "./register-contact-input"
 import useRegisterSubmit from "../../hooks/auth/register-submit"
 import ShowOrHidePasswordButton from "./show-or-hide-password-button"
+import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
 
 interface Props {
 	whereToNavigate: PageNames
@@ -18,6 +19,7 @@ interface Props {
 
 function Register(props: Props) {
 	const { whereToNavigate, setLoginOrRegister } = props
+	useRedirectKnownUser()
 	const [registerInformation, setRegisterInformation] = useState<RegisterCredentials>({
 		contact: "",
 		username: "",
@@ -28,7 +30,7 @@ function Register(props: Props) {
 	const [loading, setLoading] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
 
-	const isShowPassword = useCallback(() => {
+	const isShowPassword = useMemo(() => {
 		if (showPassword) return "text"
 		return "password"
 	}, [showPassword])
@@ -57,13 +59,13 @@ function Register(props: Props) {
 				<PasswordInput
 					credentials = {registerInformation}
 					setCredentials = {createSetCredentialsFunction(setRegisterInformation)}
-					showPassword = {isShowPassword()}
+					showPassword = {isShowPassword}
 				/>
 
 				<ConfirmPassword
 					credentials = {registerInformation}
 					setCredentials = {createSetCredentialsFunction(setRegisterInformation)}
-					showPassword = {isShowPassword()}
+					showPassword = {isShowPassword}
 				/>
 
 				<ShowOrHidePasswordButton
@@ -74,9 +76,9 @@ function Register(props: Props) {
 				<ErrorMessage error={error} />
 
 				<Button
-					className = "mt-3 w-full font-bold text-lg text-white"
+					className = "mt-3 w-full font-bold text-lg text-white border-b-2"
 					colorClass = "bg-blue-600"
-					hoverClass = "hover:bg-blue-700"
+					hoverClass = "hover:bg-blue-700 hover:border-yellow-400"
 					disabled = {loading}
 					title = "Register"
 				/>
