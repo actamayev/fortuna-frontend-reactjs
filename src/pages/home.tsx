@@ -14,10 +14,7 @@ function Home() {
 	if (areVideosLoading === true) return <>Loading...</>
 
 	return (
-		<div
-			className = "card-container"
-			style = {{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gridGap: "16px" }}
-		>
+		<div className="grid grid-cols-4 gap-4 p-4">
 			{videoKeys.map((item) => {
 				return <SingleHomePageVideoCard key={item} videoUUID={item} />
 			})}

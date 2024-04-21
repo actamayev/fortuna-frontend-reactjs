@@ -12,11 +12,14 @@ export default function useRetrieveHomePageVideos(
 
 	const retrieveHomePageVideos = useCallback(async (): Promise<void> => {
 		try {
+			if (videoClass.areHomePageVideoRetrieved === true) return
 			setAreVideosLoading(true)
+			videoClass.setAreHomePageVideosRetrieved(false)
 			const response = await fortunaApiClient.videoDataService.getHomePageVideos()
 			if (!_.isEqual(response.status, 200) || isErrorResponse(response.data)) {
 				throw new Error("Failed to retrieve video")
 			}
+			videoClass.setAreHomePageVideosRetrieved(true)
 			videoClass.setHomePageVideos(response.data.homePageVideos)
 		} catch (error) {
 			console.error(error)

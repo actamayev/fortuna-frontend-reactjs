@@ -44,6 +44,10 @@ class VideoClass {
 	public removeVideoUUIDFromRetrievingList = action((videoUUID: string): void => {
 		this.videosBeingRetrieved.filter(item => item !== videoUUID)
 	})
+
+	public setAreHomePageVideosRetrieved = action((newState: boolean): void => {
+		this.areHomePageVideoRetrieved = newState
+	})
 }
 
 const VideoContext = createContext(new VideoClass())

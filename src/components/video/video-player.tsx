@@ -7,7 +7,7 @@ export default function VideoPlayer(props: Props) {
 
 	return (
 		<div>
-			<video width="720" controls>
+			<video width="720" controls autoPlay muted>
 				<source src={videoUrl} type="video/mp4" />
 				Your browser does not support the video tag.
 			</video>
