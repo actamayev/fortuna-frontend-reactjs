@@ -9,6 +9,7 @@ import PurchaseSharesCard from "../components/video/purchase-shares-card"
 import { usePersonalInfoContext } from "../contexts/personal-info-context"
 import useConvertUsdAmountDefaultCurrency from "../hooks/solana/currency-conversions/convert-usd-amount-to-default-currency"
 
+// eslint-disable-next-line complexity
 function Video() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const videoClass = useVideoContext()
@@ -38,9 +39,9 @@ function Video() {
 				{video.sharesRemainingForSale} Shares Remaining for
 				{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
 				{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
-				{convertUsdAmountToDefaultCurrency(video.offeringSharePriceUsd)}
+				{_.round(convertUsdAmountToDefaultCurrency(video.offeringSharePriceUsd) || 0, 3)}
 				{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)}
-				/ Share
+				/Share
 				<br />
 				Total Outstanding shares: {video.totalNumberShares}
 			</div>
