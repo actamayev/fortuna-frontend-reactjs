@@ -31,7 +31,9 @@ function UploadContent() {
 
 			<SPLDescriptionInput />
 
-			<SelectOfferingSharePrice />
+			<div className="mb-4">
+				<SelectOfferingSharePrice />
+			</div>
 
 			<SelectNumberShares />
 

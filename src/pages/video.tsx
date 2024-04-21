@@ -7,7 +7,7 @@ import { useVideoContext } from "../contexts/video-context"
 import useSetSingleVideo from "../hooks/videos/set-single-video"
 import PurchaseSharesCard from "../components/video/purchase-shares-card"
 import { usePersonalInfoContext } from "../contexts/personal-info-context"
-import useConvertSolAmountDefaultCurrency from "../hooks/solana/convert-sol-amount-to-default-currency"
+import useConvertUsdAmountDefaultCurrency from "../hooks/solana/currency-conversions/convert-usd-amount-to-default-currency"
 
 function Video() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
@@ -16,7 +16,7 @@ function Video() {
 	const [isVideoLoading, setIsVideoLoading] = useState(false)
 	const [isVideoNotFound, setIsVideoNotFound] = useState(false)
 	useSetSingleVideo(videoUUID, setIsVideoLoading, setIsVideoNotFound)
-	const convertSolAmountToDefaultCurrency = useConvertSolAmountDefaultCurrency()
+	const convertUsdAmountToDefaultCurrency = useConvertUsdAmountDefaultCurrency()
 
 	if (_.isUndefined(videoUUID) || _.isNull(personalInfoClass)) return null
 	if (isVideoLoading === true) return <>Loading...</>
@@ -38,7 +38,7 @@ function Video() {
 				{video.sharesRemainingForSale} Shares Remaining for
 				{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
 				{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
-				{convertSolAmountToDefaultCurrency(video.offeringSharePriceSol)}
+				{convertUsdAmountToDefaultCurrency(video.offeringSharePriceUsd)}
 				{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)}
 				/ Share
 				<br />

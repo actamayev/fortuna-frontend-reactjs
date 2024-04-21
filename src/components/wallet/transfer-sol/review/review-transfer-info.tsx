@@ -3,7 +3,7 @@ import { observer } from "mobx-react"
 import Button from "../../../button"
 import ConfirmTransactionButton from "./confirm-transaction-button"
 import { useSolanaContext } from "../../../../contexts/solana-context"
-import useConvertSolAmountDefaultCurrency from "../../../../hooks/solana/convert-sol-amount-to-default-currency"
+import useConvertSolAmountDefaultCurrency from "../../../../hooks/solana/currency-conversions/convert-sol-amount-to-default-currency"
 
 function ReviewTransferInfo() {
 	const solanaClass = useSolanaContext()

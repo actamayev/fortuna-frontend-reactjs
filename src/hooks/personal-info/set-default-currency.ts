@@ -10,7 +10,7 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 
 	const setDefaultCurrency = useCallback(async () => {
 		try {
-			// FUTURE TODO: Check the solana Context for the last time the Sol price was retrieved.
+			// TODO: Check the solana Context for the last time the Sol price was retrieved.
 			// If the price was retrieved longer than 1 minute ago, re-retrieve it.
 			if (_.isNull(personalInfoClass)) return
 			const newCurrency = personalInfoClass.getDefaultCurrency() === "usd" ? "sol" : "usd"

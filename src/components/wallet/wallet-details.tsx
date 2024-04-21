@@ -5,7 +5,7 @@ import { useSolanaContext } from "../../contexts/solana-context"
 import TransferSolButton from "./transfer-sol/transfer-sol-button"
 import RequestAirdropButton from "./request-airdrop/request-airdrop-button"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
-import useConvertSolAmountDefaultCurrency from "../../hooks/solana/convert-sol-amount-to-default-currency"
+import useConvertSolAmountDefaultCurrency from "../../hooks/solana/currency-conversions/convert-sol-amount-to-default-currency"
 
 function WalletDetails () {
 	const solanaClass = useSolanaContext()

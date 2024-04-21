@@ -1,25 +1,20 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import FormGroup from "../form-group"
 import { useSolanaContext } from "../../contexts/solana-context"
+import SelectOfferingSharePriceSol from "./select-offering-share-price-sol"
+import SelectOfferingSharePriceUsd from "./select-offering-share-price-usd"
+import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
 function SelectOfferingSharePrice() {
 	const solanaClass = useSolanaContext()
+	const personalInfoClass = usePersonalInfoContext()
 
-	if (_.isNull(solanaClass)) return null
+	if (_.isNull(solanaClass) || _.isNull(personalInfoClass)) return null
 
-	// FUTURE TODO: Make an option to enter in dollars (maybe have two boxes, each of which influences the other when changed)
-	// TODO: Change this to limit between $0.5 and $50/share.
-	return (
-		<FormGroup
-			label = "Offering price per share (Sol)"
-			type = "number"
-			placeholder = "1"
-			onChange = {(event) => solanaClass.updateNewSplDetails("offeringSharePriceSol", Number(event.target.value))}
-			required
-			value = {solanaClass.newSplDetails.offeringSharePriceSol.toString()}
-		/>
-	)
+	if (personalInfoClass.getDefaultCurrency() === "sol") {
+		return <SelectOfferingSharePriceSol />
+	}
+	return <SelectOfferingSharePriceUsd />
 }
 
 export default observer(SelectOfferingSharePrice)

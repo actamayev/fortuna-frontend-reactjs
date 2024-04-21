@@ -3,6 +3,7 @@ declare global {
 		splName: string
 		numberOfShares: number
 		offeringSharePriceSol: number
+		offeringSharePriceUsd: number
 		description: string
 		creatorOwnershipPercentage: number
 	}
