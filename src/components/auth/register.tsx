@@ -10,6 +10,7 @@ import SubRegisterInfo from "./sub-register-info"
 import RegisterContactInput from "./register-contact-input"
 import useRegisterSubmit from "../../hooks/auth/register-submit"
 import ShowOrHidePasswordButton from "./show-or-hide-password-button"
+import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
 
 interface Props {
 	whereToNavigate: PageNames
@@ -18,6 +19,7 @@ interface Props {
 
 function Register(props: Props) {
 	const { whereToNavigate, setLoginOrRegister } = props
+	useRedirectKnownUser()
 	const [registerInformation, setRegisterInformation] = useState<RegisterCredentials>({
 		contact: "",
 		username: "",

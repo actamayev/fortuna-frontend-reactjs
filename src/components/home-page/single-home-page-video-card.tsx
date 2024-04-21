@@ -1,8 +1,7 @@
 import _ from "lodash"
-import { useCallback } from "react"
 import { observer } from "mobx-react"
-import useTypedNavigate from "../../hooks/typed-navigate"
 import { useVideoContext } from "../../contexts/video-context"
+import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
 
 interface Props {
 	videoUUID: string
@@ -12,11 +11,7 @@ function SingleHomePageVideoCard(props: Props) {
 	const { videoUUID } = props
 	const videoClass = useVideoContext()
 	const video = videoClass.contextForVideo(videoUUID)
-	const navigate = useTypedNavigate()
-
-	const navigateToVideoPage = useCallback((uuid: string) => {
-		navigate(`/v/${uuid}`)
-	}, [navigate])
+	const navigateToVideoPage = useNavigateToVideo()
 
 	if (_.isUndefined(video)) return null
 

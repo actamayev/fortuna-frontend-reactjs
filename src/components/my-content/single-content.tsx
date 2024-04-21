@@ -1,8 +1,7 @@
 import _ from "lodash"
-import { useCallback } from "react"
 import { observer } from "mobx-react"
-import useTypedNavigate from "../../hooks/typed-navigate"
 import { useSolanaContext } from "../../contexts/solana-context"
+import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
 
 interface Props {
 	mintAddress: string
@@ -11,11 +10,7 @@ interface Props {
 function SingleContent(props: Props) {
 	const { mintAddress } = props
 	const solanaClass = useSolanaContext()
-	const navigate = useTypedNavigate()
-
-	const navigateToVideoPage = useCallback((uuid: string) => {
-		navigate(`/v/${uuid}`)
-	}, [navigate])
+	const navigateToVideoPage = useNavigateToVideo()
 
 	if (_.isNull(solanaClass)) return null
 	const myContent = solanaClass.contextForMyContent(mintAddress)

@@ -3,9 +3,9 @@ import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import Button from "../../button"
 import ReviewPurchaseButton from "./review-purchase-button"
-import useTypedNavigate from "../../../hooks/typed-navigate"
 import { useAuthContext } from "../../../contexts/auth-context"
 import { useVideoContext } from "../../../contexts/video-context"
+import useTypedNavigate from "../../../hooks/navigate/typed-navigate"
 import SelectNumberSharesToPurchase from "./select-number-shares-to-purchase"
 
 function InitialPurchaseInfo() {
