@@ -28,7 +28,7 @@ export default function useRequestAirdrop(): (
 			solanaClass.walletBalanceSol = airdropResponse.data.balanceInSol
 			solanaClass.setSolPriceDetails({
 				solPriceInUSD: airdropResponse.data.solPriceInUSD,
-				lastRetrieved: airdropResponse.data.solPriceRetrievedTime
+				lastRetrievedTime: airdropResponse.data.solPriceRetrievedTime
 			})
 		} catch (error) {
 			console.error(error)

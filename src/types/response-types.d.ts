@@ -41,7 +41,7 @@ declare global {
 	type MyOwnershipResponse = { myOwnershipList: MyOwnership[] }
 	type SolPriceResponse = {
 		solPriceInUSD: number
-		lastRetrieved: Date
+		lastRetrievedTime: Date
 	}
 
 	// Upload Responses:

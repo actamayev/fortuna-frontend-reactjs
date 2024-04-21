@@ -13,13 +13,13 @@ function WalletDetails () {
 	const convertSolAmountToDefaultCurrency = useConvertSolAmountDefaultCurrency()
 
 	const formattedTime = useMemo(() => {
-		const lastRetrieved = solanaClass?.solPriceDetails?.lastRetrieved
+		const lastRetrieved = solanaClass?.solPriceDetails?.lastRetrievedTime
 		return lastRetrieved ? new Date(lastRetrieved).toLocaleTimeString("en-US", {
 			hour: "numeric",
 			minute: "numeric",
 			hour12: true // Use AM/PM
 		}) : "unknown"
-	}, [solanaClass?.solPriceDetails?.lastRetrieved])
+	}, [solanaClass?.solPriceDetails?.lastRetrievedTime])
 
 	if (_.isNull(solanaClass) || _.isNull(personalInfoClass)) return null
 

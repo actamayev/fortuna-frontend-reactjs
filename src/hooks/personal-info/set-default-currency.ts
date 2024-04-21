@@ -24,7 +24,7 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 			if (
 				!_.isNull(solanaClass) &&
 				!_.isNull(solanaClass.solPriceDetails) &&
-				new Date(solanaClass.solPriceDetails.lastRetrieved).getTime() + 30000 < currentTime.getTime()
+				new Date(solanaClass.solPriceDetails.lastRetrievedTime).getTime() + 30000 < currentTime.getTime()
 			) {
 				await retrieveSolPrice()
 			}

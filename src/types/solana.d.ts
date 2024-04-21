@@ -31,7 +31,7 @@ declare global {
 
 	interface SolPriceDetails {
 		solPriceInUSD: number
-		lastRetrieved: Date
+		lastRetrievedTime: Date
 	}
 
 	type TransferOption = "username" | "publicKey"

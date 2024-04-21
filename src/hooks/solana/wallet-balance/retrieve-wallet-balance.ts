@@ -29,7 +29,7 @@ export default function useRetrieveWalletBalance(): () => Promise<void> {
 			solanaClass.walletBalanceSol = myWalletResponse.data.balanceInSol
 			solanaClass.setSolPriceDetails({
 				solPriceInUSD: myWalletResponse.data.solPriceInUSD,
-				lastRetrieved: myWalletResponse.data.solPriceRetrievedTime
+				lastRetrievedTime: myWalletResponse.data.solPriceRetrievedTime
 			})
 		} catch (error) {
 			console.error(error)

@@ -43,7 +43,7 @@ export default function useUploadMintInfoOnclick(): (
 					solanaClass.newSplDetails.offeringSharePriceSol * solanaClass.solPriceDetails.solPriceInUSD
 			} else {
 				solanaClass.newSplDetails.offeringSharePriceSol =
-				solanaClass.newSplDetails.offeringSharePriceUsd / solanaClass.solPriceDetails.solPriceInUSD
+					solanaClass.newSplDetails.offeringSharePriceUsd / solanaClass.solPriceDetails.solPriceInUSD
 			}
 
 			setStatus("Uploading Video")
