@@ -48,11 +48,11 @@ function ImageUploader() {
 			/>
 			{_.isNull(previewUrl) && (
 				<Button
-					title="Choose a Thumbnail"
-					colorClass="bg-sky-500"
-					hoverClass="hover:bg-sky-600"
+					title="Select a Thumbnail"
+					colorClass="bg-sky-200"
+					hoverClass="hover:bg-sky-300"
 					onClick={() => fileInputRef.current?.click()}
-					className="text-white font-semibold"
+					className="font-semibold"
 				/>
 			)}
 
@@ -63,7 +63,7 @@ function ImageUploader() {
 			>
 				<img
 					src={previewUrl || ""}
-					style={{ maxWidth: "35%", height: "auto" }}
+					className="max-w-[35%] h-auto rounded-lg"
 				/>
 			</ContentPreview>
 		</div>

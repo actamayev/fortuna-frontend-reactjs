@@ -21,7 +21,7 @@ export default function ContentPreview(props: Props) {
 
 	return (
 		<div className="preview-container">
-			<div style={{ position: "relative", display: "inline-block", margin: "5px" }}>
+			<div>
 				{ children }
 				<Button
 					title="Remove"

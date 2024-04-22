@@ -6,6 +6,7 @@ class PersonalInfoClass {
 	private _username: string | null = null
 	private _email?: string | null = null
 	private _phoneNumber?: string | null = null
+	private _profilePictureUrl?: string | null = null
 
 	private _isRetrievingPersonalInfo = false
 	private _defaultCurrency: Currencies = "usd"
@@ -40,6 +41,14 @@ class PersonalInfoClass {
 		this._phoneNumber = phoneNumber
 	}
 
+	get profilePictureUrl(): string | null | undefined {
+		return this._profilePictureUrl
+	}
+
+	set profilePictureUrl(profilePictureUrl: string | null | undefined) {
+		this._profilePictureUrl = profilePictureUrl
+	}
+
 	public getIsRetrievingPersonalInfo(): boolean {
 		return this._isRetrievingPersonalInfo
 	}
@@ -71,6 +80,7 @@ class PersonalInfoClass {
 		this.username = retrievedData.username
 		this.email = retrievedData.email
 		this.phoneNumber = retrievedData.phoneNumber
+		this.profilePictureUrl = retrievedData.profilePictureUrl
 		this.setDefaultCurrency(retrievedData.defaultCurrency)
 		this.setDefaultSiteTheme(retrievedData.defaultSiteTheme)
 	})

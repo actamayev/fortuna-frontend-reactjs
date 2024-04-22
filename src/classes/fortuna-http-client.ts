@@ -7,7 +7,7 @@ export default class FortunaHttpClient {
 
 	constructor() {
 		this.http = axios.create({
-			baseURL: process.env.REACT_APP_BASE_URL,
+			baseURL: process.env.REACT_APP_BASE_URL as string,
 			withCredentials: true,
 			headers: {
 				"Content-Type": "application/json"

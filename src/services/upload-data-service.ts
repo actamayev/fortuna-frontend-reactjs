@@ -24,4 +24,13 @@ export default class UploadDataService {
 			"/devnet/upload/upload-image-to-s3", formData, { headers: { "Content-Type": file.type }}
 		)
 	}
+
+	async uploadProfilePicture(file: File): Promise<AxiosResponse<ProfilePictureUrl | ErrorResponses>> {
+		const formData = new FormData()
+		formData.append("file", file, file.name)
+
+		return await this.httpClient.http.post<ProfilePictureUrl | ErrorResponses>(
+			"/devnet/upload/upload-profile-picture", formData, { headers: { "Content-Type": file.type }}
+		)
+	}
 }
