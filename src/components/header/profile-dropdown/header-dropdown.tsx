@@ -2,8 +2,8 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useState, useRef } from "react"
 import DropdownItemsContainer from "./dropdown-items-container"
-import useClickOutSideUseEffect from "../../hooks/click-outside-use-effect"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import useClickOutSideUseEffect from "../../../hooks/click-outside-use-effect"
+import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 
 function HeaderDropdown () {
 	const [isOpen, setIsOpen] = useState(false)

@@ -15,7 +15,7 @@ function MyContentMap() {
 	}
 
 	return (
-		<div className="grid grid-cols-4 gap-4 p-4">
+		<div className="grid grid-cols-4">
 			{solanaClass.myContent.map((item) => {
 				return <SingleContent key={item.mintAddress} content={item} />
 			})}

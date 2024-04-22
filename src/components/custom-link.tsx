@@ -7,12 +7,11 @@ interface Props {
 
 export function TopNavLink(props: Props) {
 	const { href, title } = props
-	const css = "text-gray-200 hover:text-white pr-3 py-2 rounded-md font-bold text-3xl"
 
 	return (
 		<Link
 			to={href}
-			className={css}
+			className="text-gray-200 hover:text-white pr-3 py-2 rounded-md font-bold text-3xl"
 		>
 			{title}
 		</Link>

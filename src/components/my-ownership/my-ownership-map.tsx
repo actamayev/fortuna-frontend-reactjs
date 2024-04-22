@@ -15,10 +15,7 @@ function MyOwnershipMap() {
 	}
 
 	return (
-		<div
-			className = "card-container"
-			style = {{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gridGap: "16px" }}
-		>
+		<div className="grid grid-cols-4">
 			{solanaClass.myOwnership.map((item) => {
 				return <SingleOwnership key={item.splPublicKey} ownership={item} />
 			})}

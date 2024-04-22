@@ -1,7 +1,7 @@
 import SolOrUsdSlider from "./sliders/sol-or-usd-slider"
 import SiteThemeSlider from "./sliders/site-theme-slider"
-import LoginLogoutHeaderItem from "./login-logout-header-item"
-import LogoHeaderSection from "./logo-header-section"
+import LogoHeaderSection from "./header/logo-header-section"
+import LoginLogoutHeaderItem from "./header/login-logout-header-item"
 
 interface Props {
 	children: React.ReactNode

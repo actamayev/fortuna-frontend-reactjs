@@ -1,8 +1,8 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useLocation } from "react-router-dom"
-import { TopNavLink } from "./custom-link"
-import { useAuthContext } from "../contexts/auth-context"
+import { TopNavLink } from "../custom-link"
+import { useAuthContext } from "../../contexts/auth-context"
 import HeaderDropdown from "./profile-dropdown/header-dropdown"
 
 function LoginLogoutHeaderItem() {
