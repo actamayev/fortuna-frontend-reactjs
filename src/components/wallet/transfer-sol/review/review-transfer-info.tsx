@@ -4,13 +4,16 @@ import Button from "../../../button"
 import ConfirmTransactionButton from "./confirm-transaction-button"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import useConvertSolAmountDefaultCurrency from "../../../../hooks/solana/currency-conversions/convert-sol-amount-to-default-currency"
+import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
 
 function ReviewTransferInfo() {
 	const solanaClass = useSolanaContext()
 	const convertSolAmountToDefaultCurrency = useConvertSolAmountDefaultCurrency()
+	const personalInfoClass = usePersonalInfoContext()
 
-	if (_.isNull(solanaClass)) return null
+	if (_.isNull(solanaClass) || _.isNull(personalInfoClass)) return null
 
+	// TODO: Change this to adjust for the default currency
 	const FeeSection = observer(() => {
 		if (solanaClass.transferSolDetails.transferOption === "publicKey") {
 			if (solanaClass.transferSolDetails.isPublicKeyRegisteredWithFortuna === true) {
@@ -36,9 +39,12 @@ function ReviewTransferInfo() {
 				</div>
 			</div>
 			<div>
-			Sending {convertSolAmountToDefaultCurrency(solanaClass.transferSolDetails.solAmount)} Sol to
-			</div>
-			<div>
+			Sending
+				{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
+				{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
+				{convertSolAmountToDefaultCurrency(solanaClass.transferSolDetails.solAmount)}
+				{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)} to {" "}
+
 				{solanaClass.transferSolDetails.transferOption === "username" && solanaClass.transferSolDetails.username}
 				{solanaClass.transferSolDetails.transferOption === "publicKey" && solanaClass.transferSolDetails.publicKey}
 			</div>

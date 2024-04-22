@@ -65,6 +65,7 @@ declare global {
 		transferDateTime: Date
 		transferToUsername?: string
 		transferToPublicKey?: string
+		transferFromUsername: string
 		transferFeeSol?: number
 		transferFeeUsd?: number
 	}
