@@ -1,7 +1,7 @@
-import CustomLink from "./custom-link"
 import SolOrUsdSlider from "./sliders/sol-or-usd-slider"
 import SiteThemeSlider from "./sliders/site-theme-slider"
 import LoginLogoutHeaderItem from "./login-logout-header-item"
+import LogoHeaderSection from "./logo-header-section"
 
 interface Props {
 	children: React.ReactNode
@@ -14,14 +14,8 @@ export default function Layout (props: Props) {
 		<div className="flex flex-col min-h-screen">
 			<nav className="bg-blue-600 dark:bg-gray-950 border-yellow-400 border-b-2">
 				<div className="flex justify-between h-16">
-					<div className="flex items-center ml-4">
-						<CustomLink
-							href="/"
-							title="Fortuna"
-							css="text-gray-200 hover:text-white font-bold text-4xl"
-						/>
-					</div>
-					<div className="flex items-center space-x-4">
+					<LogoHeaderSection />
+					<div className="flex items-center space-x-3">
 						<SolOrUsdSlider />
 						<SiteThemeSlider />
 						<LoginLogoutHeaderItem />
