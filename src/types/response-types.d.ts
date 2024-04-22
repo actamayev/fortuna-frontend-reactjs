@@ -19,6 +19,7 @@ declare global {
 		phoneNumber: string | null
 		defaultCurrency: Currencies
 		defaultSiteTheme: SiteThemes
+		profilePictureUrl: string | null
 	}
 
 	// Search Responses:
@@ -54,6 +55,7 @@ declare global {
 		uploadedVideoId: number
 		uuid: string
 	}
+	type ProfilePictureUrl = { profilePictureUrl: string }
 
 	// Video Responses:
 	type RetrievedVideo = { videoData: VideoData }

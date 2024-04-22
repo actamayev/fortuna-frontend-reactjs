@@ -58,7 +58,7 @@ function VideoUploader() {
 			/>
 			{_.isNull(previewUrl) && (
 				<Button
-					title="Choose an Video"
+					title="Select a Video"
 					colorClass="bg-blue-500"
 					hoverClass="hover:bg-blue-600"
 					onClick={() => fileInputRef.current?.click()}
@@ -73,8 +73,8 @@ function VideoUploader() {
 			>
 				<video
 					src={previewUrl || ""}
-					style={{ maxWidth: "100%", height: "auto" }}
 					controls
+					className="max-w-[100%] h-auto rounded-lg"
 				/>
 			</ContentPreview>
 		</div>
