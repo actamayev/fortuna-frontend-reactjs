@@ -22,13 +22,9 @@ export default function Layout (props: Props) {
 						/>
 					</div>
 					<div className="flex items-center space-x-4">
-						<div className="flex flex-row">
-							<SolOrUsdSlider />
-							<SiteThemeSlider />
-							<div>
-								<LoginLogoutHeaderItem />
-							</div>
-						</div>
+						<SolOrUsdSlider />
+						<SiteThemeSlider />
+						<LoginLogoutHeaderItem />
 					</div>
 				</div>
 			</nav>
