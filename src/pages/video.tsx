@@ -9,7 +9,7 @@ import PurchaseSharesCard from "../components/video/purchase-shares-card"
 import { usePersonalInfoContext } from "../contexts/personal-info-context"
 import useConvertUsdAmountDefaultCurrency from "../hooks/solana/currency-conversions/convert-usd-amount-to-default-currency"
 
-// TODO: Add the video minter pfp
+// eslint-disable-next-line complexity
 function Video() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const videoClass = useVideoContext()
@@ -36,8 +36,17 @@ function Video() {
 				<div className="text-2xl font-semibold">
 					{video.splName}
 				</div>
-				<div>
-					Minted by {video.creatorUsername}
+				<div className="flex items-center">
+					{video.creatorProfilePictureUrl && (
+						<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center mr-2">
+							<img
+								src={video.creatorProfilePictureUrl}
+								alt="Creator's Profile"
+								className="min-w-full min-h-full object-cover"
+							/>
+						</div>
+					)}
+					<span className="text-sm font-medium">{video.creatorUsername}</span>
 				</div>
 				<div>
 					{video.description}

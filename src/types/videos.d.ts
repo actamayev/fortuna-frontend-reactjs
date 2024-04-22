@@ -11,6 +11,7 @@ declare global {
 		totalNumberShares: number
 		sharesRemainingForSale: number
 		creatorUsername: string
+		creatorProfilePictureUrl: string | null // use this
 	}
 }
 
