@@ -9,7 +9,6 @@ import PurchaseSharesCard from "../components/video/purchase-shares-card"
 import { usePersonalInfoContext } from "../contexts/personal-info-context"
 import useConvertUsdAmountDefaultCurrency from "../hooks/solana/currency-conversions/convert-usd-amount-to-default-currency"
 
-// eslint-disable-next-line complexity
 function Video() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const videoClass = useVideoContext()
@@ -30,19 +29,26 @@ function Video() {
 	return (
 		<>
 			<div className="dark:text-white">
-				Token name: {video.splName}
-				<br />
-				<VideoPlayer videoUrl={video.videoUrl} />
-				<br />
-				Description: {video.description}
-				<br />
-				{video.sharesRemainingForSale} Shares Remaining for
-				{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
-				{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
-				{_.round(convertUsdAmountToDefaultCurrency(video.offeringSharePriceUsd) || 0, 3)}
-				{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)}
-				/Share
-				<br />
+				<div>
+					<VideoPlayer videoUrl={video.videoUrl} />
+				</div>
+				<div className="text-2xl font-semibold">
+					{video.splName}
+				</div>
+				<div>
+					Minted by {video.creatorUsername}
+				</div>
+				<div>
+					{video.description}
+				</div>
+				<div>
+					{video.sharesRemainingForSale} Shares Remaining for
+					{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
+					{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
+					{convertUsdAmountToDefaultCurrency(video.offeringSharePriceUsd)}
+					{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)}
+					/Share
+				</div>
 				Total Outstanding shares: {video.totalNumberShares}
 			</div>
 			<PurchaseSharesCard />

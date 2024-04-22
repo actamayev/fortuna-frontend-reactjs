@@ -35,10 +35,12 @@ function SingleTransaction(props: Props) {
 
 	return (
 		<div className="card-container">
-			{_.upperFirst(pastTransaction.outgoingOrIncoming)} Transfer
-			<br />
-			Transfer on {formattedDateTime}
-			<br />
+			<div>
+				{_.upperFirst(pastTransaction.outgoingOrIncoming)} Transfer
+			</div>
+			<div>
+				Transfer on {formattedDateTime}
+			</div>
 			Sol Transferred: {pastTransaction.solAmountTransferred} (${_.round(pastTransaction.usdAmountTransferred, 2)})
 			{pastTransaction.outgoingOrIncoming === "incoming" ? <> from </> : <> to </>}
 			{pastTransaction.transferToUsername || pastTransaction.transferToPublicKey}
