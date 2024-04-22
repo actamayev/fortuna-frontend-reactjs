@@ -35,12 +35,13 @@ function ReviewTransferInfo() {
 				Review Transaction
 				</div>
 			</div>
-
-			Sending {_.round(convertSolAmountToDefaultCurrency(solanaClass.transferSolDetails.solAmount) || 0, 2)} Sol to
-			<br />
-			{solanaClass.transferSolDetails.transferOption === "username" && solanaClass.transferSolDetails.username}
-			{solanaClass.transferSolDetails.transferOption === "publicKey" && solanaClass.transferSolDetails.publicKey}
-			<br />
+			<div>
+			Sending {convertSolAmountToDefaultCurrency(solanaClass.transferSolDetails.solAmount)} Sol to
+			</div>
+			<div>
+				{solanaClass.transferSolDetails.transferOption === "username" && solanaClass.transferSolDetails.username}
+				{solanaClass.transferSolDetails.transferOption === "publicKey" && solanaClass.transferSolDetails.publicKey}
+			</div>
 			Fee: <FeeSection />
 			<ConfirmTransactionButton />
 		</>
