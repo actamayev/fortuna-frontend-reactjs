@@ -16,7 +16,7 @@ export default function useRetrieveTransactions(): () => Promise<void> {
 				_.isNull(fortunaApiClient.httpClient.accessToken) ||
 				solanaClass.hasTransactionsToRetrieve === false ||
 				solanaClass.isRetrievingTransactions === true ||
-				!_.isEmpty(solanaClass.myTransactionMap)
+				!_.isEmpty(solanaClass.myTransactions)
 			) {
 				return
 			}

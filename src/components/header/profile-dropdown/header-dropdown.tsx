@@ -2,8 +2,8 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useState, useRef } from "react"
 import DropdownItemsContainer from "./dropdown-items-container"
-import useClickOutSideUseEffect from "../../hooks/click-outside-use-effect"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import useClickOutSideUseEffect from "../../../hooks/click-outside-use-effect"
+import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 
 function HeaderDropdown () {
 	const [isOpen, setIsOpen] = useState(false)
@@ -14,7 +14,7 @@ function HeaderDropdown () {
 	if (_.isNull(personalInfoClass)) return null
 
 	return (
-		<div className="w-1/4 flex justify-end position: relative">
+		<div className="px-2">
 			<div className="flex items-center">
 				<div className="relative inline-block text-left" ref = {dropdownRef}>
 					<button

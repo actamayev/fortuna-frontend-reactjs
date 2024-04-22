@@ -15,7 +15,7 @@ export default function useRetrieveMyContent(): void {
 				_.isNull(solanaClass) ||
 				solanaClass.hasContentToRetrieve === false ||
 				solanaClass.isRetrievingContent === true ||
-				!_.isEmpty(solanaClass.myContentMap)
+				!_.isEmpty(solanaClass.myContent)
 			) return
 			solanaClass.setIsRetrievingContent(true)
 			const myContentResponse = await fortunaApiClient.solanaDataService.retrieveMyContent()
