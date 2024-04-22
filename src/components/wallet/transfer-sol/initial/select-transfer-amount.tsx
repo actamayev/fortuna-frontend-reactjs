@@ -3,9 +3,7 @@ import { observer } from "mobx-react"
 import RangeSelectorSlider from "../../../range-selector-slider"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 
-// TODO: show the $ amount side by side, and allow the user to enter either dollar or sol amounts
-// (and the other should adjust automatically)
-// Instead, jut have the user enter in whichever currency they want (default currency)
+// TODO: Adjust to match the default currency
 function SelectTransferAmount() {
 	const solanaClass = useSolanaContext()
 

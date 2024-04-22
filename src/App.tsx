@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom"
 import Home from "./pages/home"
 import Video from "./pages/video"
 import Missing from "./pages/missing"
+import MyProfile from "./pages/my-profile"
 import LoginPage from "./pages/auth/login-page"
 import RegisterPage from "./pages/auth/register-page"
 import MyOwnership from "./pages/supporter/my-ownership"
@@ -14,6 +15,7 @@ import CreatorRoutes from "./routes/creator-routes"
 import useRetrieveMyContent from "./hooks/solana/retrieve-my-content"
 import useRetrieveMyOwnership from "./hooks/solana/retrieve-my-ownership"
 import useGetAuthDataFromStorage from "./hooks/auth/get-auth-data-from-storage"
+import useInitializeTagManager from "./hooks/analytics/initiallize-tag-manager"
 import useRetrievePersonalInfoUseEffect from "./hooks/personal-info/retrieve-personal-info-use-effect"
 import useRetrieveWalletBalanceUseEffect from "./hooks/solana/wallet-balance/retrieve-wallet-balance-use-effect"
 
@@ -25,6 +27,7 @@ function App() {
 	useRetrievePersonalInfoUseEffect()
 	useRetrieveMyContent()
 	useRetrieveMyOwnership()
+	useInitializeTagManager()
 
 	return (
 		<Routes>
@@ -34,6 +37,7 @@ function App() {
 			<Route path = "/my-ownership" element = {<MyOwnership />} />
 			<Route path = "/my-wallet" element = {<SupporterWallet />} />
 			<Route path = "/v/:videoUUID" element = {<Video />} />
+			<Route path = "/my-profile" element = {<MyProfile />} />
 
 			<Route path = "/creator/*" element = {<CreatorRoutes />} />
 			<Route path = "*" element = {<Missing />} />
