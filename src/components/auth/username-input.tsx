@@ -12,7 +12,7 @@ export default function UsernameInput (props: Props) {
 		<FormGroup
 			label = "Username"
 			type = "username"
-			placeholder = "bigBaller"
+			placeholder = "abc123"
 			onChange = {(event) => setCredentials({ ...credentials, username: event.target.value })}
 			required
 			value = {credentials.username || ""}
