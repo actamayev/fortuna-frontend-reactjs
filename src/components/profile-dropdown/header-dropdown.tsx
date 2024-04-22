@@ -14,7 +14,7 @@ function HeaderDropdown () {
 	if (_.isNull(personalInfoClass)) return null
 
 	return (
-		<div className="w-1/4 flex justify-end position: relative">
+		<div className="px-2">
 			<div className="flex items-center">
 				<div className="relative inline-block text-left" ref = {dropdownRef}>
 					<button
