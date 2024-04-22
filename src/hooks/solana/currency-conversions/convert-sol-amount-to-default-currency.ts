@@ -5,7 +5,7 @@ import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 
 export default function useConvertSolAmountDefaultCurrency(): (
 	solAmountToConvert: number
-) => null | number {
+) => number {
 	const personalInfoClass = usePersonalInfoContext()
 	const solanaClass = useSolanaContext()
 
@@ -13,18 +13,18 @@ export default function useConvertSolAmountDefaultCurrency(): (
 		solAmountToConvert: number
 	) => {
 		try {
-			if (_.isNull(personalInfoClass)) return null
+			if (_.isNull(personalInfoClass)) return 0
 
 			if (personalInfoClass.getDefaultCurrency() === "sol") {
 				return _.round(solAmountToConvert, 4)
 			}
 
-			if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null
+			if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return 0
 
 			return _.round(solAmountToConvert * solanaClass.solPriceDetails.solPriceInUSD, 2)
 		} catch (error) {
 			console.error(error)
-			return null
+			return 0
 		}
 	}, [personalInfoClass, solanaClass])
 
