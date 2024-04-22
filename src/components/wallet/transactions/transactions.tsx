@@ -15,12 +15,10 @@ function Transactions() {
 
 	if (_.isNull(solanaClass)) return null
 
-	const transactionKeys = Array.from(solanaClass.myTransactionMap.keys())
-
 	return (
 		<>
-			{transactionKeys.map((item) => {
-				return <SingleTransaction key={item} transactionId={item} />
+			{solanaClass.myTransactions.map((item) => {
+				return <SingleTransaction key={item.solTransferId} transaction={item} />
 			})}
 		</>
 	)

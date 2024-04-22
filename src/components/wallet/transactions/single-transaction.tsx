@@ -6,19 +6,18 @@ import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 import useConvertSolAmountDefaultCurrency from "../../../hooks/solana/currency-conversions/convert-sol-amount-to-default-currency"
 
 interface Props {
-	transactionId: number
+	transaction: SolanaTransaction
 }
 
 // eslint-disable-next-line complexity
 function SingleTransaction(props: Props) {
-	const { transactionId } = props
+	const { transaction } = props
 	const solanaClass = useSolanaContext()
 	const personalInfoClass = usePersonalInfoContext()
 	const convertSolAmountToDefaultCurrency = useConvertSolAmountDefaultCurrency()
 
-	const pastTransaction = solanaClass?.contextForMyTransaction(transactionId)
 	const formattedDateTime = useMemo(() => {
-		const lastRetrieved = pastTransaction?.transferDateTime
+		const lastRetrieved = transaction.transferDateTime
 		if (_.isUndefined(lastRetrieved)) return "unknown"
 
 		const date = new Date(lastRetrieved)
@@ -34,22 +33,22 @@ function SingleTransaction(props: Props) {
 		})
 
 		return `${dateString} at ${timeString}`
-	}, [pastTransaction?.transferDateTime])
+	}, [transaction.transferDateTime])
 
-	if (_.isNull(solanaClass) || _.isUndefined(pastTransaction) || _.isNull(personalInfoClass)) return null
+	if (_.isNull(solanaClass) || _.isNull(personalInfoClass)) return null
 
 	return (
 		<div className="card-container">
 			<div>
-				{_.upperFirst(pastTransaction.outgoingOrIncoming)} Transfer on {formattedDateTime}
+				{_.upperFirst(transaction.outgoingOrIncoming)} Transfer on {formattedDateTime}
 			</div>
 			{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
 			{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
 			{convertSolAmountToDefaultCurrency(solanaClass.walletBalanceSol || 0)}
 			{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)}
-			{pastTransaction.outgoingOrIncoming === "incoming" && (<> from {pastTransaction.transferFromUsername}</>)}
-			{pastTransaction.outgoingOrIncoming === "outgoing" &&
-				(<> to {pastTransaction.transferToUsername || pastTransaction.transferToPublicKey}</>)
+			{transaction.outgoingOrIncoming === "incoming" && (<> from {transaction.transferFromUsername}</>)}
+			{transaction.outgoingOrIncoming === "outgoing" &&
+				(<> to {transaction.transferToUsername || transaction.transferToPublicKey}</>)
 			}
 		</div>
 	)

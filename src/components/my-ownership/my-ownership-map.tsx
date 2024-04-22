@@ -10,19 +10,17 @@ function MyOwnershipMap() {
 
 	if (solanaClass.isRetrievingOwnership === true || solanaClass.hasOwnershipToRetrieve === true) {
 		return <>Retrieving Ownership...</>
-	} else if (_.isEmpty(solanaClass.myOwnershipMap)) {
+	} else if (_.isEmpty(solanaClass.myOwnership)) {
 		return <>No ownership</>
 	}
-
-	const ownershipKeys = Array.from(solanaClass.myOwnershipMap.keys())
 
 	return (
 		<div
 			className = "card-container"
 			style = {{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gridGap: "16px" }}
 		>
-			{ownershipKeys.map((item) => {
-				return <SingleOwnership key={item} mintAddress={item} />
+			{solanaClass.myOwnership.map((item) => {
+				return <SingleOwnership key={item.splPublicKey} ownership={item} />
 			})}
 		</div>
 	)

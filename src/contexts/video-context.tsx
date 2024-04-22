@@ -1,22 +1,19 @@
 import _ from "lodash"
-import { action, makeObservable, observable } from "mobx"
+import { action, makeAutoObservable } from "mobx"
 import { useContext, useMemo, createContext } from "react"
 
 class VideoClass {
-	public videosMap: Map<string, VideoData> = new Map() // Maps UUID to Video
+	public videos: VideoData[] = []
 	public videosBeingRetrieved: string[] = []
 	public areHomePageVideosRetrieved: boolean = false
 	public areHomePageVideosBeingRetrieved: boolean = false
 
 	constructor() {
-		makeObservable(this, {
-			videosMap: observable,
-			videosBeingRetrieved: observable
-		})
+		makeAutoObservable(this)
 	}
 
 	public contextForVideo(videoUUID: string): VideoData | undefined {
-		return this.videosMap.get(videoUUID)
+		return this.videos.find(video => video.uuid === videoUUID)
 	}
 
 	public setHomePageVideos = action((videoData: VideoData[]): void => {
@@ -25,15 +22,14 @@ class VideoClass {
 	})
 
 	public addVideoToMap = action((video: VideoData): void => {
-		if (this.videosMap.has(video.uuid)) return
-		this.videosMap.set(video.uuid, video)
+		if (!_.isUndefined(this.contextForVideo(video.uuid))) return
+		this.videos.unshift(video)
 	})
 
-	public tokenPurchaseUpdateAvailableShares = action((videoUuid: string, numberOfShares: number): void => {
-		const video = this.contextForVideo(videoUuid)
-		if (_.isUndefined(video)) return
-		video.sharesRemainingForSale -= numberOfShares
-		this.videosMap.set(video.uuid, video)
+	public tokenPurchaseUpdateAvailableShares = action((videoUUID: string, numberOfShares: number): void => {
+		const index = this.videos.findIndex(video => video.uuid === videoUUID)
+		if (_.isEqual(index, -1)) return
+		this.videos[index].sharesRemainingForSale -= numberOfShares
 	})
 
 	public addVideoUUIDToRetrievingList(videoUUID: string): void {
