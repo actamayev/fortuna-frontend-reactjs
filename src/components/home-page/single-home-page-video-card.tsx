@@ -17,7 +17,7 @@ function SingleHomePageVideoCard(props: Props) {
 
 	return (
 		<div
-			className="flex flex-col items-center cursor-pointer"
+			className="flex flex-col items-center cursor-pointer w-full"
 			onClick={() => navigateToVideoPage(video.uuid)}
 		>
 			<img
@@ -25,7 +25,9 @@ function SingleHomePageVideoCard(props: Props) {
 				alt={video.splName}
 				className="w-full h-80 object-cover rounded-lg"
 			/>
-			<div className="mt-2 text-sm text-center dark:text-white">{video.splName}</div>
+			<div className="mt-2 text-2xl font-semibold text-left dark:text-white w-full">
+				{video.splName}
+			</div>
 		</div>
 	)
 }

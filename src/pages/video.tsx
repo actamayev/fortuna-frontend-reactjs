@@ -30,7 +30,9 @@ function Video() {
 	return (
 		<>
 			<div className="dark:text-white">
-				<VideoPlayer videoUrl={video.videoUrl} />
+				<div>
+					<VideoPlayer videoUrl={video.videoUrl} />
+				</div>
 				<div className="text-2xl font-semibold">
 					{video.splName}
 				</div>
