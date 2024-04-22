@@ -6,6 +6,9 @@ import WalletDetails from "../../components/wallet/wallet-details"
 import ShowAuthToNullUser from "../../components/show-auth-to-null-user"
 import Transactions from "../../components/wallet/transactions/transactions"
 
+// TODO: Only show transactions from fans who have purchased my spls here.
+// Add a button that says something like: "Looking for your fan wallet transactions, click here"
+// Same for the fan screen --> creator wallet.
 function CreatorWallet() {
 	const authClass = useAuthContext()
 

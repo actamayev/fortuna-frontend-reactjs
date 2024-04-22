@@ -9,7 +9,7 @@ export default function VideoPlayer(props: Props) {
 	return (
 		<div>
 			<video
-				width="720"
+				width="1280"
 				controls
 				autoPlay
 				muted

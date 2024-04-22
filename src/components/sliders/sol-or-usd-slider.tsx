@@ -11,7 +11,7 @@ function SolOrUsdSlider() {
 	if (_.isNull(personalInfoClass)) return null
 
 	return (
-		<div className="flex flex-col items-center space-y-2 z-20 mr-36">
+		<div className="flex flex-col items-center z-20 mt-3">
 			<label className="toggle-pill">
 				<input
 					type="checkbox"

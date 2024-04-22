@@ -15,7 +15,7 @@ export default function useRetrieveMyOwnership(): void {
 				_.isNull(solanaClass) ||
 				solanaClass.hasOwnershipToRetrieve === false ||
 				solanaClass.isRetrievingOwnership === true ||
-				!_.isEmpty(solanaClass.myOwnershipMap)
+				!_.isEmpty(solanaClass.myOwnership)
 			) return
 			solanaClass.setIsRetrievingOwnership(true)
 			const myOwnershipResponse = await fortunaApiClient.solanaDataService.retrieveMyOwnership()

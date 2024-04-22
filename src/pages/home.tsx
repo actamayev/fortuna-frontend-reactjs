@@ -9,14 +9,12 @@ function Home() {
 	const [areVideosLoading, setAreVideosLoading] = useState(false)
 	useRetrieveHomePageVideos(setAreVideosLoading)
 
-	const videoKeys = Array.from(videoClass.videosMap.keys())
-
 	if (areVideosLoading === true) return <div className="dark:text-white">Loading...</div>
 
 	return (
 		<div className="grid grid-cols-4 gap-4 p-4">
-			{videoKeys.map((item) => {
-				return <SingleHomePageVideoCard key={item} videoUUID={item} />
+			{videoClass.videos.map((video) => {
+				return <SingleHomePageVideoCard key={video.uuid} video={video} />
 			})}
 		</div>
 	)

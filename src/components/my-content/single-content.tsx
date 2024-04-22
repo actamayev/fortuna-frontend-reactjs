@@ -1,30 +1,21 @@
-import _ from "lodash"
-import { observer } from "mobx-react"
-import { useSolanaContext } from "../../contexts/solana-context"
 import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
 
 interface Props {
-	mintAddress: string
+	content: MyContent
 }
 
-function SingleContent(props: Props) {
-	const { mintAddress } = props
-	const solanaClass = useSolanaContext()
+export default function SingleContent(props: Props) {
+	const { content } = props
 	const navigateToVideoPage = useNavigateToVideo()
-
-	if (_.isNull(solanaClass)) return null
-	const myContent = solanaClass.contextForMyContent(mintAddress)
-
-	if (_.isUndefined(myContent)) return <>Content not found</>
 
 	return (
 		<div className="bg-white shadow-lg rounded-lg p-4 m-2 grid grid-cols-1 grid-rows-1 border">
 			<div className="flex flex-col">
 				<h2 className="text-lg font-semibold mb-2">
-					{myContent.splName}
+					{content.splName}
 					<img
-						src={myContent.imageUrl}
-						onClick={() => navigateToVideoPage(myContent.uuid)}
+						src={content.imageUrl}
+						onClick={() => navigateToVideoPage(content.uuid)}
 						className="hover:cursor-pointer"
 					/>
 				</h2>
@@ -32,5 +23,3 @@ function SingleContent(props: Props) {
 		</div>
 	)
 }
-
-export default observer(SingleContent)

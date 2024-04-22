@@ -6,7 +6,7 @@ class SolanaClass {
 	private _walletAddress: string | null = null
 	private _walletBalanceSol: number | null = null
 
-	public myContentMap: Map<string, MyContent> = new Map() // Maps Mint Address to MyContent
+	private _myContent: MyContent[] = []
 	public isTransferSolButtonPressed = false
 	public transferSolDetails: TransferSolDetails = {
 		transferOption: "username",
@@ -18,9 +18,9 @@ class SolanaClass {
 		solAmount: 0,
 		transferStage: "initial"
 	}
-	private _myTransactionMap: Map<number, SolanaTransaction> = new Map()
+	private _myTransactions: SolanaTransaction[] = []
 
-	public myOwnershipMap: Map<string, MyOwnership> = new Map() // Maps Mint address to my ownership
+	private _myOwnership: MyOwnership[] = []
 
 	public purchaseSplSharesDetails: PurchaseSplSharesDetails = {
 		numberOfTokensPurchasing: 0,
@@ -74,59 +74,74 @@ class SolanaClass {
 		this._walletBalanceSol = walletBalanceSol
 	}
 
-	get myTransactionMap(): Map<number, SolanaTransaction> {
-		return this._myTransactionMap
+	get myTransactions(): SolanaTransaction[] {
+		return this._myTransactions
 	}
 
-	set myTransactionMap(myTransactionMap: Map<number, SolanaTransaction>) {
-		this._myTransactionMap = myTransactionMap
+	set myTransactions(myTransactions: SolanaTransaction[]) {
+		this._myTransactions = myTransactions
+	}
+
+	get myContent(): MyContent[] {
+		return this._myContent
+	}
+
+	set myContent(myContent: MyContent[]) {
+		this._myContent = myContent
+	}
+
+	get myOwnership(): MyOwnership[] {
+		return this._myOwnership
+	}
+
+	set myOwnership(myOwnership: MyOwnership[]) {
+		this._myOwnership = myOwnership
 	}
 
 	public contextForMyContent(mintAddress: string): MyContent | undefined {
-		return this.myContentMap.get(mintAddress)
+		return this.myContent.find(content => content.mintAddress === mintAddress)
 	}
 
 	public contextForMyTransaction(transactionId: number): SolanaTransaction | undefined {
-		return this.myTransactionMap.get(transactionId)
+		return this.myTransactions.find(transaction => transaction.solTransferId === transactionId)
 	}
 
-	public contextForMyOwnership(mintAddress: string): MyOwnership | undefined {
-		return this.myOwnershipMap.get(mintAddress)
+	public contextForMyOwnership(splPublicKey: string): MyOwnership | undefined {
+		return this.myOwnership.find(ownership => ownership.splPublicKey === splPublicKey)
 	}
 
 	public setContent = action((newContentList: MyContent[]): void => {
-		this.myContentMap.clear()
+		this.myContent = []
 		if (_.isEmpty(newContentList)) return
 		newContentList.map(singleNewContent => this.addContent(singleNewContent))
 	})
 
 	public addContent = action((newContent: MyContent): void => {
-		if (this.myContentMap.has(newContent.mintAddress)) return
-		this.myContentMap.set(newContent.mintAddress, newContent)
+		const retrievedContent = this.contextForMyContent(newContent.mintAddress)
+		if (!_.isUndefined(retrievedContent)) return
+		this.myContent.unshift(newContent)
 	})
 
 	public checkIfUuidExistsInContentList(uuid: string): boolean {
-		for (const content of this.myContentMap.values()) {
+		for (const content of this.myContent) {
 			if (_.isEqual(content.uuid, uuid)) return true
 		}
 		return false
 	}
 
 	public setMyOwnership = action((newOwnershipList: MyOwnership[]): void => {
-		this.myOwnershipMap.clear()
+		this.myOwnership = []
 		if (_.isEmpty(newOwnershipList)) return
 		newOwnershipList.map(singleNewOwnership => this.addOwnership(singleNewOwnership))
 	})
 
 	public addOwnership = action((newOwnership: MyOwnership): void => {
-		if (this.myOwnershipMap.has(newOwnership.splPublicKey) === false) {
-			this.myOwnershipMap.set(newOwnership.splPublicKey, newOwnership)
+		const index = this.myOwnership.findIndex(ownership => ownership.splPublicKey === newOwnership.splPublicKey)
+		if (_.isEqual(index, -1)) {
+			this.myOwnership.unshift(newOwnership)
 			return
 		}
-		const ownership = this.contextForMyOwnership(newOwnership.splPublicKey)
-		if (_.isUndefined(ownership)) return
-		ownership.numberOfShares += newOwnership.numberOfShares
-		this.myOwnershipMap.set(ownership.splPublicKey, ownership)
+		this.myOwnership[index].numberOfShares += newOwnership.numberOfShares
 	})
 
 	public setHasContentToRetrieve = action((newState: boolean): void => {
@@ -146,14 +161,14 @@ class SolanaClass {
 	})
 
 	public setTransactions = action((solanaTransactions: SolanaTransaction[]): void => {
-		this.myTransactionMap.clear()
-		if (_.isEmpty(solanaTransactions)) return
-		solanaTransactions.map(singleSolanaTransaction => this.addSolanaTransaction(singleSolanaTransaction))
+		this.myTransactions = []
+		solanaTransactions.forEach(transaction => this.addSolanaTransaction(transaction))
 	})
 
 	public addSolanaTransaction = action((solanaTransaction: SolanaTransaction): void => {
-		if (this.myTransactionMap.has(solanaTransaction.solTransferId)) return
-		this.myTransactionMap.set(solanaTransaction.solTransferId, solanaTransaction)
+		const retrievedTransaction = this.contextForMyTransaction(solanaTransaction.solTransferId)
+		if (!_.isUndefined(retrievedTransaction)) return
+		this.myTransactions.unshift(solanaTransaction)
 	})
 
 	public setIsRetrievingWalletDetails = action((newState: boolean): void => {
@@ -246,11 +261,11 @@ class SolanaClass {
 	public logout() {
 		this.walletAddress = null
 		this.walletBalanceSol = null
-		this.myContentMap.clear()
+		this.myContent = []
 		this.isTransferSolButtonPressed = false
 		this.resetTransferSolDetails()
-		this.myTransactionMap.clear()
-		this.myOwnershipMap.clear()
+		this.myTransactions = []
+		this.myOwnership = []
 		this.resetPurchaseSplSharesDetails()
 		this.resetNewSplDetails()
 		this.solPriceDetails = null

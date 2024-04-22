@@ -1,19 +1,12 @@
-import _ from "lodash"
-import { observer } from "mobx-react"
-import { useVideoContext } from "../../contexts/video-context"
 import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
 
 interface Props {
-	videoUUID: string
+	video: VideoData
 }
 
-function SingleHomePageVideoCard(props: Props) {
-	const { videoUUID } = props
-	const videoClass = useVideoContext()
-	const video = videoClass.contextForVideo(videoUUID)
+export default function SingleHomePageVideoCard(props: Props) {
+	const { video } = props
 	const navigateToVideoPage = useNavigateToVideo()
-
-	if (_.isUndefined(video)) return null
 
 	return (
 		<div
@@ -31,5 +24,3 @@ function SingleHomePageVideoCard(props: Props) {
 		</div>
 	)
 }
-
-export default observer(SingleHomePageVideoCard)
