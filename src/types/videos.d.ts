@@ -10,6 +10,7 @@ declare global {
 		uuid: string
 		totalNumberShares: number
 		sharesRemainingForSale: number
+		creatorUsername: string
 	}
 }
 

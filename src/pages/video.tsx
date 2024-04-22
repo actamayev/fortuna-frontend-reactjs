@@ -26,7 +26,6 @@ function Video() {
 	const video = videoClass.contextForVideo(videoUUID)
 	if (_.isUndefined(video)) return null
 
-	// TODO: Add a line that shows who minted the video
 	return (
 		<>
 			<div className="dark:text-white">
@@ -35,6 +34,9 @@ function Video() {
 				</div>
 				<div className="text-2xl font-semibold">
 					{video.splName}
+				</div>
+				<div>
+					Minted by {video.creatorUsername}
 				</div>
 				<div>
 					{video.description}
