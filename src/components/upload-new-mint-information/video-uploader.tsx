@@ -16,10 +16,10 @@ function VideoUploader() {
 
 		if (!_.isNull(files) && !_.isEmpty(files)) {
 			const file = files[0]
-			const maxFileSize = 100 * 1024 * 1024 // 10 MB in bytes
+			const maxFileSize = 150 * 1024 * 1024 // 150 MB in bytes
 
 			if (file.size > maxFileSize) {
-				alert("The selected file exceeds the maximum size limit of 10MB.")
+				alert("The selected file exceeds the maximum size limit of 150MB.")
 				if (fileInputRef.current) {
 					fileInputRef.current.value = "" // Reset the input
 				}
