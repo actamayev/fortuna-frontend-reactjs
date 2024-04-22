@@ -9,6 +9,7 @@ import PurchaseSharesCard from "../components/video/purchase-shares-card"
 import { usePersonalInfoContext } from "../contexts/personal-info-context"
 import useConvertUsdAmountDefaultCurrency from "../hooks/solana/currency-conversions/convert-usd-amount-to-default-currency"
 
+// TODO: Add the video minter pfp
 function Video() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const videoClass = useVideoContext()

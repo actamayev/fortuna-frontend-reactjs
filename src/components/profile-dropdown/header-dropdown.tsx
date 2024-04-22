@@ -1,3 +1,4 @@
+import _ from "lodash"
 import { observer } from "mobx-react"
 import { useState, useRef } from "react"
 import DropdownItemsContainer from "./dropdown-items-container"
@@ -9,6 +10,8 @@ function HeaderDropdown () {
 	const dropdownRef = useRef<HTMLDivElement>(null)
 	const personalInfoClass = usePersonalInfoContext()
 	useClickOutSideUseEffect(dropdownRef, setIsOpen)
+
+	if (_.isNull(personalInfoClass)) return null
 
 	return (
 		<div className="w-1/4 flex justify-end position: relative">
@@ -23,8 +26,8 @@ function HeaderDropdown () {
 						aria-haspopup="true"
 						onClick={() => setIsOpen(!isOpen)}
 					>
-						{personalInfoClass?.profilePictureUrl && (
-							<div className="mr-2 flex items-center">
+						<div className="mr-2 flex items-center">
+							{personalInfoClass.profilePictureUrl && (
 								<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center mr-4">
 									<img
 										src={personalInfoClass.profilePictureUrl}
@@ -32,9 +35,9 @@ function HeaderDropdown () {
 										className="min-w-full min-h-full object-cover"
 									/>
 								</div>
-								<span className="max-w-xs truncate">{personalInfoClass.username || "Profile"}</span>
-							</div>
-						)}
+							)}
+							<span className="max-w-xs truncate">{personalInfoClass.username || "Profile"}</span>
+						</div>
 
 					</button>
 					<DropdownItemsContainer isOpen = {isOpen} />

@@ -1,8 +1,8 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import { isErrorResponses } from "../../utils/type-checks"
-import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useUploadProfilePicture(): (
 	selectedImage: File | null,
@@ -26,7 +26,6 @@ export default function useUploadProfilePicture(): (
 			personalInfoClass.profilePictureUrl = uploadProfilePictureResponse.data.profilePictureUrl
 			setSelectedImage(null)
 			setPreviewUrl(null)
-
 		} catch (error) {
 			console.error(error)
 		}
