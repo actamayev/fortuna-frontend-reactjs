@@ -6,7 +6,7 @@ class SolanaClass {
 	private _walletAddress: string | null = null
 	private _walletBalanceSol: number | null = null
 
-	public myContent: MyContent[] = []
+	private _myContent: MyContent[] = []
 	public isTransferSolButtonPressed = false
 	public transferSolDetails: TransferSolDetails = {
 		transferOption: "username",
@@ -20,7 +20,7 @@ class SolanaClass {
 	}
 	private _myTransactions: SolanaTransaction[] = []
 
-	public myOwnership: MyOwnership[] = []
+	private _myOwnership: MyOwnership[] = []
 
 	public purchaseSplSharesDetails: PurchaseSplSharesDetails = {
 		numberOfTokensPurchasing: 0,
@@ -80,6 +80,22 @@ class SolanaClass {
 
 	set myTransactions(myTransactions: SolanaTransaction[]) {
 		this._myTransactions = myTransactions
+	}
+
+	get myContent(): MyContent[] {
+		return this._myContent
+	}
+
+	set myContent(myContent: MyContent[]) {
+		this._myContent = myContent
+	}
+
+	get myOwnership(): MyOwnership[] {
+		return this._myOwnership
+	}
+
+	set myOwnership(myOwnership: MyOwnership[]) {
+		this._myOwnership = myOwnership
 	}
 
 	public contextForMyContent(mintAddress: string): MyContent | undefined {
