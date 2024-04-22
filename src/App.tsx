@@ -15,6 +15,7 @@ import CreatorRoutes from "./routes/creator-routes"
 import useRetrieveMyContent from "./hooks/solana/retrieve-my-content"
 import useRetrieveMyOwnership from "./hooks/solana/retrieve-my-ownership"
 import useGetAuthDataFromStorage from "./hooks/auth/get-auth-data-from-storage"
+import useInitializeTagManager from "./hooks/analytics/initiallize-tag-manager"
 import useRetrievePersonalInfoUseEffect from "./hooks/personal-info/retrieve-personal-info-use-effect"
 import useRetrieveWalletBalanceUseEffect from "./hooks/solana/wallet-balance/retrieve-wallet-balance-use-effect"
 
@@ -26,6 +27,7 @@ function App() {
 	useRetrievePersonalInfoUseEffect()
 	useRetrieveMyContent()
 	useRetrieveMyOwnership()
+	useInitializeTagManager()
 
 	return (
 		<Routes>
