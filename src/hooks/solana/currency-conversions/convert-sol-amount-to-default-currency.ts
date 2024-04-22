@@ -15,11 +15,13 @@ export default function useConvertSolAmountDefaultCurrency(): (
 		try {
 			if (_.isNull(personalInfoClass)) return null
 
-			if (personalInfoClass.getDefaultCurrency() === "sol") return solAmountToConvert
+			if (personalInfoClass.getDefaultCurrency() === "sol") {
+				return _.round(solAmountToConvert, 4)
+			}
 
 			if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null
 
-			return solAmountToConvert * solanaClass.solPriceDetails.solPriceInUSD
+			return _.round(solAmountToConvert * solanaClass.solPriceDetails.solPriceInUSD, 2)
 		} catch (error) {
 			console.error(error)
 			return null

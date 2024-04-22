@@ -16,7 +16,10 @@ function SingleHomePageVideoCard(props: Props) {
 	if (_.isUndefined(video)) return null
 
 	return (
-		<div className="flex flex-col items-center cursor-pointer" onClick={() => navigateToVideoPage(video.uuid)}>
+		<div
+			className="flex flex-col items-center cursor-pointer"
+			onClick={() => navigateToVideoPage(video.uuid)}
+		>
 			<img
 				src={video.imageUrl}
 				alt={video.splName}

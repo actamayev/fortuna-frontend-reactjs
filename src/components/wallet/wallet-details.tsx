@@ -32,13 +32,13 @@ function WalletDetails () {
 				<RequestAirdropButton />
 			</div>
 			<div className="bg-white shadow-lg rounded-md p-4 mt-4 grid grid-cols-1 grid-rows-1 border">
+				<div>
 				Wallet Balance:
-				{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
-				{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
-				{_.round(convertSolAmountToDefaultCurrency(solanaClass.walletBalanceSol || 0) || 0, 2)}
-				{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)}
-				<br />
-				{/* Wallet Balance: ${solanaClass.getWalletBalanceUSD} */}
+					{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
+					{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
+					{convertSolAmountToDefaultCurrency(solanaClass.walletBalanceSol || 0)}
+					{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)}
+				</div>
 				Last Solana price: ${solanaClass.solPriceDetails?.solPriceInUSD} {" "}
 				(Last updated {formattedTime})
 			</div>

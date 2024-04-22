@@ -7,7 +7,13 @@ export default function VideoPlayer(props: Props) {
 
 	return (
 		<div>
-			<video width="720" controls autoPlay muted>
+			<video
+				width="720"
+				controls
+				autoPlay
+				muted
+				className="rounded-lg"
+			>
 				<source src={videoUrl} type="video/mp4" />
 				Your browser does not support the video tag.
 			</video>

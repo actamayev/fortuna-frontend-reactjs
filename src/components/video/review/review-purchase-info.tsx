@@ -38,18 +38,18 @@ function ReviewPurchaseInfo() {
 					Review Purchase
 				</div>
 			</div>
-
+			<div>
 			Purchasing {solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing} shares for
-			{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
-			{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
-			{(_.round(convertUsdAmountToDefaultCurrency(video.offeringSharePriceUsd) || 0, 2)) *
+				{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
+				{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
+				{(convertUsdAmountToDefaultCurrency(video.offeringSharePriceUsd) || 0) *
 				solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing}
-			<> </>
+				<> </>
 			({personalInfoClass.getDefaultCurrency() === "usd" && (<>$</>)}
-			{_.round(convertUsdAmountToDefaultCurrency(video.offeringSharePriceUsd) || 0, 2)}
-			{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)}
+				{convertUsdAmountToDefaultCurrency(video.offeringSharePriceUsd)}
+				{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)}
 			/Share)
-			<br />
+			</div>
 			<ConfirmPurchaseButton />
 		</>
 	)
