@@ -3,8 +3,8 @@ import { observer } from "mobx-react"
 import Button from "../../../button"
 import ConfirmTransactionButton from "./confirm-transaction-button"
 import { useSolanaContext } from "../../../../contexts/solana-context"
-import useConvertSolAmountDefaultCurrency from "../../../../hooks/solana/currency-conversions/convert-sol-amount-to-default-currency"
 import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
+import useConvertSolAmountDefaultCurrency from "../../../../hooks/solana/currency-conversions/convert-sol-amount-to-default-currency"
 
 function ReviewTransferInfo() {
 	const solanaClass = useSolanaContext()
@@ -13,15 +13,19 @@ function ReviewTransferInfo() {
 
 	if (_.isNull(solanaClass) || _.isNull(personalInfoClass)) return null
 
-	// TODO: Change this to adjust for the default currency
 	const FeeSection = observer(() => {
+		const defaultCurrency = personalInfoClass.getDefaultCurrency()
+		let returnText = ""
+		if (defaultCurrency === "sol") returnText = "0 Sol (internal transfer)"
+		else returnText = "$0.00 (internal transfer)"
+
 		if (solanaClass.transferSolDetails.transferOption === "publicKey") {
 			if (solanaClass.transferSolDetails.isPublicKeyRegisteredWithFortuna === true) {
-				return <>0 Sol (internal transfer)</>
+				return <>{returnText}</>
 			}
 			return <>Variable Fee (depends on network traffic)</>
 		}
-		return <>0 Sol (internal transfer)</>
+		return <>{returnText}</>
 	})
 
 	return (
