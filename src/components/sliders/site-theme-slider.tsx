@@ -1,9 +1,9 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
+import { useLocation } from "react-router-dom"
 import "../../styles/toggle-styles.css"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import useSetDefaultSiteTheme from "../../hooks/personal-info/set-default-site-theme"
-import { useLocation } from "react-router-dom"
 
 // TODO: Change this from a slider to a button that is eihter the sun or the moon (sun is light, moon is dark mode)
 function SiteThemeSlider() {
