@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useLocation } from "react-router-dom"
-import { TopNavLink } from "../custom-link"
+import { NullUserNavLink, TopNavLink } from "../custom-link"
 import { useAuthContext } from "../../contexts/auth-context"
 import HeaderDropdown from "./profile-dropdown/header-dropdown"
 
@@ -12,9 +12,10 @@ function LoginLogoutHeaderItem() {
 	if (_.isNull(authClass.accessToken)) {
 		if (location.pathname === "/register") {
 			return <TopNavLink href = "/login" title = "Login"/>
-		} else {
+		} else if (location.pathname === "/login") {
 			return <TopNavLink href = "/register" title = "Register"/>
 		}
+		return <NullUserNavLink />
 	}
 	return <HeaderDropdown />
 }
