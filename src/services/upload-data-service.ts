@@ -11,7 +11,7 @@ export default class UploadDataService {
 		formData.append("file", file, file.name)
 
 		return await this.httpClient.http.post<UploadVideoToS3 | NonSuccessResponse>(
-			"/devnet/upload/upload-video-to-s3", formData, { headers: { "Content-Type": file.type }}
+			"/upload/upload-video-to-s3", formData, { headers: { "Content-Type": file.type }}
 		)
 	}
 
@@ -21,7 +21,7 @@ export default class UploadDataService {
 		formData.append("uuid", uuid)
 
 		return await this.httpClient.http.post<UploadImageToS3 | NonSuccessResponse>(
-			"/devnet/upload/upload-image-to-s3", formData, { headers: { "Content-Type": file.type }}
+			"/upload/upload-image-to-s3", formData, { headers: { "Content-Type": file.type }}
 		)
 	}
 
@@ -30,7 +30,7 @@ export default class UploadDataService {
 		formData.append("file", file, file.name)
 
 		return await this.httpClient.http.post<ProfilePictureUrl | ErrorResponses>(
-			"/devnet/upload/upload-profile-picture", formData, { headers: { "Content-Type": file.type }}
+			"/upload/upload-profile-picture", formData, { headers: { "Content-Type": file.type }}
 		)
 	}
 }

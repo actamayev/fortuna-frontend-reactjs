@@ -7,17 +7,17 @@ export default class AuthDataService {
 
 	async login(loginInformation: LoginCredentials): Promise<AxiosResponse<LoginOrRegisterSuccess | NonSuccessResponse>> {
 		return await this.httpClient.http.post<LoginOrRegisterSuccess | NonSuccessResponse>(
-			"/devnet/auth/login", { loginInformation }, { headers: { "No-Auth-Required": "true" }}
+			"/auth/login", { loginInformation }, { headers: { "No-Auth-Required": "true" }}
 		)
 	}
 
 	async logout(): Promise<AxiosResponse<SuccessResponse | ErrorResponse>> {
-		return await this.httpClient.http.post<SuccessResponse | ErrorResponse>("/devnet/auth/logout")
+		return await this.httpClient.http.post<SuccessResponse | ErrorResponse>("/auth/logout")
 	}
 
 	async register(registerInformation: RegisterCredentialsToSend): Promise<AxiosResponse<LoginOrRegisterSuccess | NonSuccessResponse>> {
 		return await this.httpClient.http.post<LoginOrRegisterSuccess | NonSuccessResponse>(
-			"/devnet/auth/register", { registerInformation }, { headers: { "No-Auth-Required": "true" }}
+			"/auth/register", { registerInformation }, { headers: { "No-Auth-Required": "true" }}
 		)
 	}
 }
