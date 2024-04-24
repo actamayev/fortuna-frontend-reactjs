@@ -16,6 +16,7 @@ class SolanaClass {
 		isPublicKeyRegisteredWithFortuna: false,
 		doesPublicKeyExist: false,
 		solAmount: 0,
+		usdAmount: 0,
 		transferStage: "initial"
 	}
 	private _myTransactions: SolanaTransaction[] = []
@@ -213,6 +214,7 @@ class SolanaClass {
 			isPublicKeyRegisteredWithFortuna: false,
 			doesPublicKeyExist: false,
 			solAmount: 0,
+			usdAmount: 0,
 			transferStage: "initial"
 		}
 	})
