@@ -35,9 +35,6 @@ function MyProfile() {
 
 	return (
 		<div>
-			<div>
-				Profile Picture
-			</div>
 			<div className="my-3">
 				{personalInfoClass.profilePictureUrl && (
 					<img
