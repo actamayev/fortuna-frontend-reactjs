@@ -63,7 +63,7 @@ function Login(props: Props) {
 				<Button
 					className = "mt-3 w-full font-bold text-lg text-white border-b-2"
 					colorClass = "bg-blue-600"
-					hoverClass = "hover:border-yellow-400"
+					hoverClass = "hover:bg-blue-700 hover:border-yellow-400"
 					disabled = {loading}
 					title = "Login"
 				/>

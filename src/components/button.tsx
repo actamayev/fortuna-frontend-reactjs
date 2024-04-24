@@ -19,7 +19,7 @@ export default function Button (props: Props) {
 		hoverColor = props.hoverClass || ""
 	}
 
-	const css = `transition-all duration-0 rounded p-2 ${backgroundColor} ${hoverColor} ${props.className}`
+	const css = `transition-all hover:duration-[50ms] rounded p-2 ${backgroundColor} ${hoverColor} ${props.className}`
 
 	return (
 		<button

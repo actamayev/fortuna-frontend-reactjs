@@ -20,7 +20,7 @@ export default function HeaderItem (props: Props) {
 				to = {to}
 				className = "font-bold text-center w-full"
 			>
-				<div className = {`rounded text-black border p-2 transition-all duration-100 ${classes}`}>
+				<div className = {`rounded text-black border p-2 transition-all duration-50 ${classes}`}>
 					{" "} {label} {""}
 				</div>
 			</Link>

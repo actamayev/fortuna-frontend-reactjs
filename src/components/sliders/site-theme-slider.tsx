@@ -22,8 +22,8 @@ function SiteThemeSlider() {
 					checked={personalInfoClass.getDefaultSiteTheme() === "light"}
 					onChange={setDefaultSiteTheme}
 				/>
-				<span className="slider absolute cursor-pointer inset-0 bg-gray-300 transition duration-300 rounded-full"></span>
-				<span className="knob absolute left-1 bottom-1 h-6 w-6 bg-white rounded-full transition-transform duration-300"
+				<span className="slider absolute cursor-pointer inset-0 bg-gray-300 transition duration-50 rounded-full"></span>
+				<span className="knob absolute left-1 bottom-1 h-6 w-6 bg-white rounded-full transition-transform duration-50"
 					style={{ transform: personalInfoClass.getDefaultSiteTheme() === "light" ? "translateX(13px)" : "translateX(0)" }}>
 				</span>
 			</label>
