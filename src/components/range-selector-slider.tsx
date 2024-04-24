@@ -12,7 +12,7 @@ export default function RangeSelectorSlider(props: Props) {
 
 	return (
 		<>
-			<label className = "block text-sm font-medium text-gray-600 dark:text-white">{title}</label>
+			<label className = "block text-sm font-medium text-gray-600">{title}</label>
 			<input
 				type="range"
 				min={min}
@@ -20,7 +20,7 @@ export default function RangeSelectorSlider(props: Props) {
 				step={step}
 				value={value}
 				onChange={onChange}
-				className="w-64 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+				className="w-64 h-2 bg-gray-400 rounded-lg appearance-none cursor-pointer dark:bg-gray-800"
 			/>
 		</>
 	)
