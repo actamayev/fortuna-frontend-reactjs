@@ -38,13 +38,13 @@ function SingleTransaction(props: Props) {
 	if (_.isNull(solanaClass) || _.isNull(personalInfoClass)) return null
 
 	return (
-		<div className="card-container">
+		<div className="card-container dark:text-white">
 			<div>
 				{_.upperFirst(transaction.outgoingOrIncoming)} Transfer on {formattedDateTime}
 			</div>
 			{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
 			{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
-			{convertSolAmountToDefaultCurrency(solanaClass.walletBalanceSol || 0)}
+			{convertSolAmountToDefaultCurrency(transaction.solAmountTransferred || 0)}
 			{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)}
 			{transaction.outgoingOrIncoming === "incoming" && (<> from {transaction.transferFromUsername}</>)}
 			{transaction.outgoingOrIncoming === "outgoing" &&

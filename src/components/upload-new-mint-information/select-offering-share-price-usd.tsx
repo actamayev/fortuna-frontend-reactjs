@@ -9,7 +9,7 @@ function SelectOfferingSharePriceUsd() {
 	if (_.isNull(solanaClass)) return null
 
 	return (
-		<div className="flex flex-col space-y-4">
+		<div className="flex flex-col space-y-4 dark:text-white">
 			<RangeSelectorSlider
 				title="Offering price per share ($)"
 				value={solanaClass.newSplDetails.offeringSharePriceUsd}

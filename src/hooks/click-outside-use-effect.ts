@@ -9,7 +9,14 @@ export default function useClickOutSideUseEffect(
 	const location = useLocation()
 
 	const handleClickOutside = useCallback((event: MouseEvent) => {
-		if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) && !_.isUndefined(setIsOpen)) {
+		// Check if the clicked element is part of the dark mode slider
+		const sliderHTML = (event.target as HTMLElement).closest(".toggle-pill")
+
+		if (dropdownRef.current &&
+            !dropdownRef.current.contains(event.target as Node) &&
+            !_.isUndefined(setIsOpen) &&
+            !sliderHTML
+		) {
 			setIsOpen(false)
 		}
 	}, [dropdownRef, setIsOpen])
