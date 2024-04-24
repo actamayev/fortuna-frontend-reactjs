@@ -27,7 +27,7 @@ function SelectTransferAmount() {
 		}
 	}
 
-	if (solanaClass.walletBalanceSol === 0) {
+	if (_.isNull(solanaClass.walletBalanceSol) || _.isEqual(solanaClass.walletBalanceSol, 0)) {
 		return <>You have no Sol to transfer</>
 	}
 	if (_.isNull(personalInfoClass)) return null

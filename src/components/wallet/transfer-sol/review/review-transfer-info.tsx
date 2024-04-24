@@ -23,14 +23,14 @@ function ReviewTransferInfo() {
 					className="font-semibold"
 				/>
 				<div className="text-center flex-1">
-				Review Transfer
+					Review Transfer
 				</div>
 			</div>
 			<div>
 				Sending
-				{personalInfoClass.getDefaultCurrency() === "usd" && (<> ${_.round(solanaClass.transferSolDetails.usdAmount, 2)}</>)}
+				{personalInfoClass.getDefaultCurrency() === "usd" && (<> ${_.round(solanaClass.transferSolDetails.usdAmount, 2)} to </>)}
 				{personalInfoClass.getDefaultCurrency() === "sol" && (<> {_.round(solanaClass.transferSolDetails.solAmount, 4)}</>)}
-				{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)} to {" "}
+				{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol to </>)}
 
 				{solanaClass.transferSolDetails.transferOption === "username" && solanaClass.transferSolDetails.username}
 				{solanaClass.transferSolDetails.transferOption === "publicKey" && solanaClass.transferSolDetails.publicKey}

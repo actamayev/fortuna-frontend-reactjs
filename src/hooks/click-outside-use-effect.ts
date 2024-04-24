@@ -12,7 +12,8 @@ export default function useClickOutSideUseEffect(
 		// Check if the clicked element is part of the dark mode slider
 		const sliderHTML = (event.target as HTMLElement).closest(".toggle-pill")
 
-		if (dropdownRef.current &&
+		if (
+			dropdownRef.current &&
             !dropdownRef.current.contains(event.target as Node) &&
             !_.isUndefined(setIsOpen) &&
             !sliderHTML
