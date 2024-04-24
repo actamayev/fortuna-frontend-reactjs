@@ -1,7 +1,9 @@
 import _ from "lodash"
 import { useCallback } from "react"
+import useRetrieveSolPrice from "../retrieve-sol-price"
 import { isNonSuccessResponse } from "../../../utils/type-checks"
 import { useSolanaContext } from "../../../contexts/solana-context"
+import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 import useRetrieveWalletBalance from "../wallet-balance/retrieve-wallet-balance"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 
@@ -10,13 +12,20 @@ export default function useTransferSol(): (
 ) => Promise<void> {
 	const solanaClass = useSolanaContext()
 	const fortunaApiClient = useApiClientContext()
+	const personalInfoClass = usePersonalInfoContext()
+	const retrieveSolPrice = useRetrieveSolPrice()
 	const retrieveWalletBalance = useRetrieveWalletBalance()
 
+	// eslint-disable-next-line complexity
 	const transferSol = useCallback(async (
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 	): Promise<void> => {
 		try {
-			if (_.isNull(solanaClass) || _.isNull(fortunaApiClient.httpClient.accessToken)) return
+			if (
+				_.isNull(solanaClass) ||
+				_.isNull(fortunaApiClient.httpClient.accessToken) ||
+				_.isNull(personalInfoClass)
+			) return
 			setIsLoading(true)
 			let sendingTo
 			if (solanaClass.transferSolDetails.transferOption === "publicKey") {
@@ -24,9 +33,22 @@ export default function useTransferSol(): (
 			} else {
 				sendingTo = solanaClass.transferSolDetails.username
 			}
+
+			await retrieveSolPrice()
+			if (_.isNull(solanaClass.solPriceDetails)) return
+			if (personalInfoClass.getDefaultCurrency() === "sol") {
+				solanaClass.updateTransferSolDetails("usdAmount",
+					solanaClass.transferSolDetails.solAmount * solanaClass.solPriceDetails.solPriceInUSD
+				)
+			} else {
+				solanaClass.updateTransferSolDetails("solAmount",
+					solanaClass.transferSolDetails.usdAmount / solanaClass.solPriceDetails.solPriceInUSD
+				)
+			}
 			const sendingSolTransfer: SendingSolTransfer = {
 				sendingTo,
-				transferAmountSol: solanaClass.transferSolDetails.solAmount
+				transferAmountSol: solanaClass.transferSolDetails.solAmount,
+				transferAmountUsd: solanaClass.transferSolDetails.usdAmount
 			}
 
 			let transferSolResponse
@@ -47,7 +69,8 @@ export default function useTransferSol(): (
 		} finally {
 			setIsLoading(false)
 		}
-	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService, retrieveWalletBalance, solanaClass])
+	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService,
+		personalInfoClass, retrieveSolPrice, retrieveWalletBalance, solanaClass])
 
 	return transferSol
 }
