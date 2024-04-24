@@ -6,7 +6,7 @@ export default function DropdownItems () {
 	const [logoutDisabled, setLogoutDisabled] = useState(false)
 	const handleLogout = useHandleLogout(setLogoutDisabled)
 
-	const unboldedDropdownItemCSS = useMemo(() => "text-gray-700 block px-4 py-2 text-md hover:bg-gray-200 transition-all duration-100", [])
+	const unboldedDropdownItemCSS = useMemo(() => "text-gray-700 block px-4 py-2 text-md hover:bg-gray-200 transition-all duration-50", [])
 
 	return (
 		<>

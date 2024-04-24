@@ -7,13 +7,13 @@ export default class VideoDataService {
 
 	async getVideoById(videoUUID: string): Promise<AxiosResponse<RetrievedVideo | ErrorResponse>> {
 		return await this.httpClient.http.get<RetrievedVideo | ErrorResponse>(
-			`/devnet/videos/get-video/${videoUUID}`, { headers: { "No-Auth-Required": "true" }}
+			`/videos/get-video/${videoUUID}`, { headers: { "No-Auth-Required": "true" }}
 		)
 	}
 
 	async getHomePageVideos(): Promise<AxiosResponse<HomePageVideos | ErrorResponse>> {
 		return await this.httpClient.http.get<HomePageVideos | ErrorResponse>(
-			"/devnet/videos/get-home-page-videos", { headers: { "No-Auth-Required": "true" }}
+			"/videos/get-home-page-videos", { headers: { "No-Auth-Required": "true" }}
 		)
 	}
 }

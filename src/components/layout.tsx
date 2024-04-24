@@ -12,7 +12,7 @@ export default function Layout (props: Props) {
 
 	return (
 		<div className="flex flex-col min-h-screen">
-			<nav className="bg-blue-600 dark:bg-gray-950 border-yellow-400 border-b-2">
+			<nav className="bg-blue-600 dark:bg-gray-950 border-yellow-200 border-b-2">
 				<div className="flex justify-between h-16">
 					<LogoHeaderSection />
 					<div className="flex items-center space-x-3">
