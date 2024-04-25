@@ -2,6 +2,7 @@ import SolOrUsdSlider from "./sliders/sol-or-usd-slider"
 import SiteThemeSlider from "./sliders/site-theme-slider"
 import LogoHeaderSection from "./header/logo-header-section"
 import LoginLogoutHeaderItem from "./header/login-logout-header-item"
+import CreateContentHeaderButton from "./header/create-content-header-button"
 
 interface Props {
 	children: React.ReactNode
@@ -16,6 +17,7 @@ export default function Layout (props: Props) {
 				<div className="flex justify-between h-16">
 					<LogoHeaderSection />
 					<div className="flex items-center space-x-3">
+						<CreateContentHeaderButton />
 						<div className="flex items-center space-x-3 mt-3">
 							<SolOrUsdSlider />
 							<SiteThemeSlider />
