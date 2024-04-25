@@ -14,7 +14,7 @@ function InitialTransferInfo() {
 
 	return (
 		<>
-			<div className="text-center font-semibold">Transfer Sol</div>
+			<div className="text-center font-semibold">Transfer Funds</div>
 			<SelectTransferOption />
 
 			{solanaClass.transferSolDetails.transferOption === "username" && <UsernameSearch />}

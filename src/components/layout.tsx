@@ -16,8 +16,10 @@ export default function Layout (props: Props) {
 				<div className="flex justify-between h-16">
 					<LogoHeaderSection />
 					<div className="flex items-center space-x-3">
-						<SolOrUsdSlider />
-						<SiteThemeSlider />
+						<div className="flex items-center space-x-3 mt-3">
+							<SolOrUsdSlider />
+							<SiteThemeSlider />
+						</div>
 						<LoginLogoutHeaderItem />
 					</div>
 				</div>

@@ -4,19 +4,15 @@ import { isErrorResponses } from "../../utils/type-checks"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function usePublicKeySearch(): (
-	setIsLoading: (value: React.SetStateAction<boolean>) => void
-) => Promise<void> {
+export default function usePublicKeySearch(): () => Promise<void> {
 	const solanaClass = useSolanaContext()
 	const fortunaApiClient = useApiClientContext()
 
 	// eslint-disable-next-line complexity
-	const publicKeySearch = useCallback(async (
-		setIsLoading: (value: React.SetStateAction<boolean>) => void
-	) => {
+	const publicKeySearch = useCallback(async () => {
 		try {
 			if (_.isNull(solanaClass) || !_.isEqual(solanaClass.transferSolDetails.publicKey.length, 44)) return
-			setIsLoading(true)
+			solanaClass.setIsPublicKeySearchLoading(true)
 			solanaClass.updateTransferSolDetails("doesPublicKeyExist", false)
 			solanaClass.updateTransferSolDetails("isPublicKeyRegisteredWithFortuna", false)
 
@@ -46,9 +42,10 @@ export default function usePublicKeySearch(): (
 		} catch (error) {
 			console.error(error)
 		} finally {
-			setIsLoading(false)
+			if (!_.isNull(solanaClass)) solanaClass.setIsPublicKeySearchLoading(false)
 		}
-	}, [fortunaApiClient.searchDataService, solanaClass])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [fortunaApiClient.searchDataService, solanaClass, solanaClass?.transferSolDetails.publicKey])
 
 	return publicKeySearch
 }

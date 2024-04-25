@@ -14,12 +14,12 @@ function HeaderDropdown () {
 	if (_.isNull(personalInfoClass)) return null
 
 	return (
-		<div className="px-2">
+		<div className="pr-2">
 			<div className="flex items-center">
 				<div className="relative inline-block text-left" ref = {dropdownRef}>
 					<button
 						type="button"
-						className="bg-gray-100 text-black border border-yellow-400 rounded px-4 py-2 flex
+						className="bg-gray-100 text-black border border-yellow-400 rounded p-2 flex
 							items-center text-md font-semibold hover:shadow-lg"
 						id="menu-button"
 						aria-expanded="false"

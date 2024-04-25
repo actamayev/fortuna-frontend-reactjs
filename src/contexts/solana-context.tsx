@@ -16,8 +16,10 @@ class SolanaClass {
 		isPublicKeyRegisteredWithFortuna: false,
 		doesPublicKeyExist: false,
 		solAmount: 0,
+		usdAmount: 0,
 		transferStage: "initial"
 	}
+	public isPublicKeySearchLoading = false
 	private _myTransactions: SolanaTransaction[] = []
 
 	private _myOwnership: MyOwnership[] = []
@@ -152,6 +154,10 @@ class SolanaClass {
 		this.isRetrievingContent = newState
 	})
 
+	public setIsPublicKeySearchLoading = action((newState: boolean): void => {
+		this.isPublicKeySearchLoading = newState
+	})
+
 	public setHasTransactionsToRetrieve = action((newState: boolean): void => {
 		this.hasTransactionsToRetrieve = newState
 	})
@@ -213,6 +219,7 @@ class SolanaClass {
 			isPublicKeyRegisteredWithFortuna: false,
 			doesPublicKeyExist: false,
 			solAmount: 0,
+			usdAmount: 0,
 			transferStage: "initial"
 		}
 	})
@@ -264,6 +271,7 @@ class SolanaClass {
 		this.myContent = []
 		this.isTransferSolButtonPressed = false
 		this.resetTransferSolDetails()
+		this.isPublicKeySearchLoading = false
 		this.myTransactions = []
 		this.myOwnership = []
 		this.resetPurchaseSplSharesDetails()
