@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useMemo, useState } from "react"
 import useHandleLogout from "../../../hooks/auth/handle-logout"
 
-export default function DropdownItems () {
+export default function ProfileDropdownItems () {
 	const [logoutDisabled, setLogoutDisabled] = useState(false)
 	const handleLogout = useHandleLogout(setLogoutDisabled)
 

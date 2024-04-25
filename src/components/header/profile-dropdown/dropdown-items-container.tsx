@@ -1,4 +1,4 @@
-import DropdownItems from "./dropdown-items"
+import ProfileDropdownItems from "./profile-dropdown-items"
 
 interface Props {
 	isOpen: boolean
@@ -17,7 +17,7 @@ export default function DropdownItemsContainer (props: Props) {
 			aria-labelledby="menu-button"
 		>
 			<div className="py-1" role="none">
-				<DropdownItems />
+				<ProfileDropdownItems />
 			</div>
 		</div>
 	)

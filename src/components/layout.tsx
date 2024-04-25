@@ -1,7 +1,6 @@
-import SolOrUsdSlider from "./sliders/sol-or-usd-slider"
-import SiteThemeSlider from "./sliders/site-theme-slider"
 import LogoHeaderSection from "./header/logo-header-section"
 import LoginLogoutHeaderItem from "./header/login-logout-header-item"
+import SliderDropdown from "./header/slider-dropdown/slider-dropdown"
 import CreateContentHeaderButton from "./header/create-content-header-button"
 
 interface Props {
@@ -18,10 +17,7 @@ export default function Layout (props: Props) {
 					<LogoHeaderSection />
 					<div className="flex items-center space-x-3">
 						<CreateContentHeaderButton />
-						<div className="flex items-center space-x-3 mt-3">
-							<SolOrUsdSlider />
-							<SiteThemeSlider />
-						</div>
+						<SliderDropdown />
 						<LoginLogoutHeaderItem />
 					</div>
 				</div>

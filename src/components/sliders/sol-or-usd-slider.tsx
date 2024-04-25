@@ -28,7 +28,7 @@ function SolOrUsdSlider() {
 				>
 				</span>
 			</label>
-			<span className="text-sm font-medium text-white">
+			<span className="text-sm font-medium text-black">
 				{personalInfoClass.getDefaultCurrency().toUpperCase()}
 			</span>
 		</div>
