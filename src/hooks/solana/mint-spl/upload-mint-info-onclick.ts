@@ -39,11 +39,13 @@ export default function useUploadMintInfoOnclick(): (
 			await retrieveSolPrice()
 			if (_.isNull(solanaClass.solPriceDetails)) return
 			if (personalInfoClass.getDefaultCurrency() === "sol") {
-				solanaClass.newSplDetails.offeringSharePriceUsd =
+				solanaClass.updateNewSplDetails("offeringSharePriceUsd",
 					solanaClass.newSplDetails.offeringSharePriceSol * solanaClass.solPriceDetails.solPriceInUSD
+				)
 			} else {
-				solanaClass.newSplDetails.offeringSharePriceSol =
+				solanaClass.updateNewSplDetails("offeringSharePriceSol",
 					solanaClass.newSplDetails.offeringSharePriceUsd / solanaClass.solPriceDetails.solPriceInUSD
+				)
 			}
 
 			setStatus("Uploading Video")

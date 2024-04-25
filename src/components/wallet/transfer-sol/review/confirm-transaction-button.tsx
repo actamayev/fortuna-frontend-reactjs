@@ -18,7 +18,10 @@ function ConfirmTransactionButton() {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [solanaClass?.transferSolDetails.transferStage])
 
-	if (_.isNull(solanaClass) || _.isEqual(solanaClass.transferSolDetails.solAmount, 0)) return null
+	if (
+		_.isNull(solanaClass) ||
+		(_.isEqual(solanaClass.transferSolDetails.solAmount, 0) && _.isEqual(solanaClass.transferSolDetails.usdAmount, 0))
+	) return null
 
 	return (
 		<>
@@ -26,7 +29,7 @@ function ConfirmTransactionButton() {
 				onClick={() => transferSol(setIsLoading)}
 				colorClass="bg-blue-200"
 				hoverClass="hover:bg-blue-300"
-				title="Confirm Transaction"
+				title="Confirm Transfer"
 				disabled={isLoading || !doesUserHaveEnoughSol}
 				className="font-semibold"
 			/>

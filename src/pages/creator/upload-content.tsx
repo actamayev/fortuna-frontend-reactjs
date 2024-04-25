@@ -3,6 +3,7 @@ import { observer } from "mobx-react"
 import CreatorHeader from "../../components/creator-header"
 import { useAuthContext } from "../../contexts/auth-context"
 import ShowAuthToNullUser from "../../components/show-auth-to-null-user"
+import UploadContentTemplate from "../../components/templates/upload-content-template"
 import SPLNameInput from "../../components/upload-new-mint-information/spl-name-input"
 import ImageUploader from "../../components/upload-new-mint-information/image-uploader"
 import VideoUploader from "../../components/upload-new-mint-information/video-uploader"
@@ -22,24 +23,26 @@ function UploadContent() {
 	return (
 		<>
 			<CreatorHeader />
+			<UploadContentTemplate>
 
-			<VideoUploader />
+				<VideoUploader />
 
-			<ImageUploader />
+				<ImageUploader />
 
-			<SPLNameInput />
+				<SPLNameInput />
 
-			<SPLDescriptionInput />
+				<SPLDescriptionInput />
 
-			<div className="mb-4">
-				<SelectOfferingSharePrice />
-			</div>
+				<div className="mb-4">
+					<SelectOfferingSharePrice />
+				</div>
 
-			<SelectNumberShares />
+				<SelectNumberShares />
 
-			<SelectCreatorOwnershipPercentage />
+				<SelectCreatorOwnershipPercentage />
 
-			<UploadMintInfoButton />
+				<UploadMintInfoButton />
+			</UploadContentTemplate>
 		</>
 	)
 }

@@ -9,9 +9,9 @@ function MyOwnershipMap() {
 	if (_.isNull(solanaClass)) return null
 
 	if (solanaClass.isRetrievingOwnership === true || solanaClass.hasOwnershipToRetrieve === true) {
-		return <>Retrieving Ownership...</>
+		return <div className="dark:text-white">Retrieving Ownership...</div>
 	} else if (_.isEmpty(solanaClass.myOwnership)) {
-		return <>No ownership</>
+		return <div className="dark:text-white">No ownership</div>
 	}
 
 	return (

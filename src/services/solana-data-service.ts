@@ -51,7 +51,7 @@ export default class SolanaDataService {
 
 	async retrieveSolPrice(): Promise<AxiosResponse<SolPriceResponse | ErrorResponse>> {
 		return await this.httpClient.http.get<SolPriceResponse | ErrorResponse>(
-			"devnet/solana/get-sol-price", { headers: { "No-Auth-Required": "true" }}
+			"/solana/get-sol-price", { headers: { "No-Auth-Required": "true" }}
 		)
 	}
 }

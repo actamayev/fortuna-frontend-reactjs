@@ -48,12 +48,14 @@ declare global {
 		isPublicKeyRegisteredWithFortuna: boolean
 
 		solAmount: number
+		usdAmount: number
 		transferStage: TransactionStage
 	}
 
 	interface SendingSolTransfer {
 		sendingTo: string
 		transferAmountSol: number
+		transferAmountUsd: number
 	}
 
 	interface SolanaTransaction {

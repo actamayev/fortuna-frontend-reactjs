@@ -1,16 +1,15 @@
 import _ from "lodash"
+import { useEffect } from "react"
 import { observer } from "mobx-react"
-import { useEffect, useState } from "react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import usePublicKeySearch from "../../../../hooks/search/public-key-search"
 
 function PublicKeySearch() {
-	const [isLoading, setIsLoading] = useState(false)
 	const solanaClass = useSolanaContext()
 	const publicKeySearch = usePublicKeySearch()
 
 	useEffect(() => {
-		void publicKeySearch(setIsLoading)
+		void publicKeySearch()
 	}, [publicKeySearch])
 
 	if (_.isNull(solanaClass)) return null
@@ -31,7 +30,7 @@ function PublicKeySearch() {
 					</span>
 				)}
 			</div>
-			{isLoading && (<>Loading...</>)}
+			{solanaClass.isPublicKeySearchLoading && (<>Loading...</>)}
 		</>
 	)
 }
