@@ -21,16 +21,16 @@ function SelectTransferAmount() {
 	}
 	if (solanaClass.transferSolDetails.transferOption === "publicKey") {
 		if (!_.isEqual(solanaClass.transferSolDetails.publicKey.length, 44)) {
-			return <>Public Key Must be 44 Characters</>
-		} else if (solanaClass.transferSolDetails.doesPublicKeyExist === false) {
-			return <>This Public Key Does not Exist on Solana</>
+			return <>Public Key Must be exactly 44 Characters</>
+		} else if (solanaClass.transferSolDetails.doesPublicKeyExist === false && solanaClass.isPublicKeySearchLoading === false) {
+			return <>This Public Key does not exist</>
 		}
 	}
 
 	if (_.isNull(solanaClass.walletBalanceSol) || _.isEqual(solanaClass.walletBalanceSol, 0)) {
 		return <>You have no Sol to transfer</>
 	}
-	if (_.isNull(personalInfoClass)) return null
+	if (_.isNull(personalInfoClass) || solanaClass.isPublicKeySearchLoading === true) return null
 
 	if (personalInfoClass.getDefaultCurrency() === "sol") {
 		return (
