@@ -37,7 +37,7 @@ function WalletDetails () {
 					{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
 					{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
 					{convertSolAmountToDefaultCurrency(solanaClass.walletBalanceSol || 0)}
-					{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)}
+					{personalInfoClass.getDefaultCurrency() === "sol" && (<> SOL</>)}
 				</div>
 				Last Solana price: ${solanaClass.solPriceDetails?.solPriceInUSD} {" "}
 				(Last updated {formattedTime})

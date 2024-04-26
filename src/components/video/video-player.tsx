@@ -12,7 +12,6 @@ export default function VideoPlayer(props: Props) {
 				width="1280"
 				controls
 				autoPlay
-				muted
 				className="rounded-lg"
 			>
 				<source src={videoUrl} type="video/mp4" />

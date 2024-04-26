@@ -45,7 +45,7 @@ function SingleTransaction(props: Props) {
 			{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
 			{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
 			{convertSolAmountToDefaultCurrency(transaction.solAmountTransferred || 0)}
-			{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)}
+			{personalInfoClass.getDefaultCurrency() === "sol" && (<> SOL</>)}
 			{transaction.outgoingOrIncoming === "incoming" && (<> from {transaction.transferFromUsername}</>)}
 			{transaction.outgoingOrIncoming === "outgoing" &&
 				(<> to {transaction.transferToUsername || transaction.transferToPublicKey}</>)

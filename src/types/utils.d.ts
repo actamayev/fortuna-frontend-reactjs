@@ -14,7 +14,9 @@ declare global {
 		"/creator/my-wallet" |
 		"/creator/upload-content"
 
-	type DynamicPageNames = `/v/${string}`
+	type DynamicPageNames =
+		`/v/${string}` |
+		`/c/${string}`
 
 	type PageNames = StaticPageNames | DynamicPageNames
 
