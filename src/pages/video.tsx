@@ -56,7 +56,7 @@ function Video() {
 					{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
 					{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
 					{convertUsdAmountToDefaultCurrency(video.offeringSharePriceUsd)}
-					{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)}
+					{personalInfoClass.getDefaultCurrency() === "sol" && (<> SOL</>)}
 					/Share
 				</div>
 				Total Outstanding shares: {video.totalNumberShares}

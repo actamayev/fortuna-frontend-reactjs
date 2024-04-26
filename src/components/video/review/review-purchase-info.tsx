@@ -47,7 +47,7 @@ function ReviewPurchaseInfo() {
 				<> </>
 			({personalInfoClass.getDefaultCurrency() === "usd" && (<>$</>)}
 				{convertUsdAmountToDefaultCurrency(video.offeringSharePriceUsd)}
-				{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol</>)}
+				{personalInfoClass.getDefaultCurrency() === "sol" && (<> SOL</>)}
 			/Share)
 			</div>
 			<ConfirmPurchaseButton />

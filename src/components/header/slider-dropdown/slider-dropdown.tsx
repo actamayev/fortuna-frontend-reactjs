@@ -8,7 +8,7 @@ export default function SliderDropdown() {
 	useClickOutSideUseEffect(dropdownRef, setIsOpen)
 
 	return (
-		<div className="z-10">
+		<div className="z-10 mr-2">
 			<div className="flex items-center">
 				<div className="relative inline-block text-left" ref = {dropdownRef}>
 					<button
