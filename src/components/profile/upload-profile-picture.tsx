@@ -2,7 +2,7 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useState, useRef, useCallback } from "react"
 import Button from "../button"
-import ContentPreview from "../upload-new-mint-information/content-preview"
+import ContentPreview from "../content-preview"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import useUploadProfilePicture from "../../hooks/personal-info/upload-profile-picture"
 

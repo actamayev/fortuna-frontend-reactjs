@@ -18,7 +18,7 @@ function SelectOfferingSharePriceUsd() {
 				max={50}
 				step={0.5}
 			/>
-			${solanaClass.newSplDetails.offeringSharePriceUsd} / Share
+			${solanaClass.newSplDetails.offeringSharePriceUsd}/Share
 		</div>
 	)
 }

@@ -11,14 +11,14 @@ function SelectOfferingSharePriceSol() {
 	return (
 		<div className="flex flex-col space-y-4">
 			<RangeSelectorSlider
-				title="Offering price per share (Sol)"
+				title="Offering price per share (SOL)"
 				value={solanaClass.newSplDetails.offeringSharePriceSol}
 				onChange={(event) => solanaClass.updateNewSplDetails("offeringSharePriceSol", Number(event.target.value))}
 				min={0.003}
 				max={0.3}
 				step={0.003}
 			/>
-			{solanaClass.newSplDetails.offeringSharePriceSol} Sol / Share
+			{solanaClass.newSplDetails.offeringSharePriceSol} Sol/Share
 		</div>
 	)
 }

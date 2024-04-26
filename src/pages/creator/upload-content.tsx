@@ -9,6 +9,7 @@ import VideoUploader from "../../components/upload-new-mint-information/video-up
 import SelectNumberShares from "../../components/upload-new-mint-information/select-number-shares"
 import SPLDescriptionInput from "../../components/upload-new-mint-information/spl-description-input"
 import UploadMintInfoButton from "../../components/upload-new-mint-information/upload-mint-info-button"
+import ContentShareBreakdown from "../../components/upload-new-mint-information/content-share-breakdown"
 import SelectOfferingSharePrice from "../../components/upload-new-mint-information/select-offering-share-price"
 import SelectCreatorOwnershipPercentage from "../../components/upload-new-mint-information/select-creator-ownership-percentage"
 
@@ -30,15 +31,18 @@ function UploadContent() {
 				<SPLNameInput />
 
 				<SPLDescriptionInput />
-
-				<div className="mb-4">
-					<SelectOfferingSharePrice />
+				<div className="flex w-full">
+					<div className="flex flex-col w-1/2">
+						<div className="mb-4">
+							<SelectOfferingSharePrice />
+						</div>
+						<SelectNumberShares />
+						<SelectCreatorOwnershipPercentage />
+					</div>
+					<div className="w-1/2">
+						<ContentShareBreakdown />
+					</div>
 				</div>
-
-				<SelectNumberShares />
-
-				<SelectCreatorOwnershipPercentage />
-
 				<UploadMintInfoButton />
 			</UploadContentTemplate>
 		</>

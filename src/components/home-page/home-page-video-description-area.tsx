@@ -1,3 +1,4 @@
+import _ from "lodash"
 import PricePerShareArea from "./price-per-share-area"
 import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
 import useNavigateToCreator from "../../hooks/navigate/navigate-to-creator"
@@ -23,7 +24,7 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 			)}
 			<div className="flex flex-col flex-grow">
 				<div className="text-lg font-semibold cursor-pointer" onClick={() => navigateToVideoPage(video.uuid)}>
-					{video.splName}
+					{_.truncate(video.splName, { length: 32, omission: "..."})}
 				</div>
 				<div
 					className="text-sm text-gray-600 hover:text-black dark:text-gray-300 hover:dark:text-gray-100 cursor-pointer"
