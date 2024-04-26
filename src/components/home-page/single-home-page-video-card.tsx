@@ -1,4 +1,5 @@
-import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
+import Thumbnail from "./thumbnail"
+import HomePageVideoDescriptionArea from "./home-page-video-description-area"
 
 interface Props {
 	video: VideoData
@@ -6,21 +7,11 @@ interface Props {
 
 export default function SingleHomePageVideoCard(props: Props) {
 	const { video } = props
-	const navigateToVideoPage = useNavigateToVideo()
 
 	return (
-		<div
-			className="flex flex-col items-center cursor-pointer w-full"
-			onClick={() => navigateToVideoPage(video.uuid)}
-		>
-			<img
-				src={video.imageUrl}
-				alt={video.splName}
-				className="w-full h-80 object-cover rounded-lg"
-			/>
-			<div className="mt-2 text-2xl font-semibold text-left dark:text-white w-full">
-				{video.splName}
-			</div>
+		<div className="flex flex-col w-full">
+			<Thumbnail video={video}/>
+			<HomePageVideoDescriptionArea video={video} />
 		</div>
 	)
 }

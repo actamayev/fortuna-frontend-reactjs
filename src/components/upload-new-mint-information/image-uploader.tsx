@@ -2,7 +2,7 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useState, ChangeEvent, useRef, useCallback } from "react"
 import Button from "../button"
-import ContentPreview from "./content-preview"
+import ContentPreview from "../content-preview"
 import { useSolanaContext } from "../../contexts/solana-context"
 
 function ImageUploader() {

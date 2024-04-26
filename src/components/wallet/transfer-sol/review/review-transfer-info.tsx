@@ -30,7 +30,7 @@ function ReviewTransferInfo() {
 				Sending
 				{personalInfoClass.getDefaultCurrency() === "usd" && (<> ${_.round(solanaClass.transferSolDetails.usdAmount, 2)} to </>)}
 				{personalInfoClass.getDefaultCurrency() === "sol" && (<> {_.round(solanaClass.transferSolDetails.solAmount, 4)}</>)}
-				{personalInfoClass.getDefaultCurrency() === "sol" && (<> Sol to </>)}
+				{personalInfoClass.getDefaultCurrency() === "sol" && (<> SOL to </>)}
 
 				{solanaClass.transferSolDetails.transferOption === "username" && solanaClass.transferSolDetails.username}
 				{solanaClass.transferSolDetails.transferOption === "publicKey" && solanaClass.transferSolDetails.publicKey}

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useMemo, useState } from "react"
 import useHandleLogout from "../../../hooks/auth/handle-logout"
 
-export default function DropdownItems () {
+export default function ProfileDropdownItems () {
 	const [logoutDisabled, setLogoutDisabled] = useState(false)
 	const handleLogout = useHandleLogout(setLogoutDisabled)
 
@@ -10,15 +10,14 @@ export default function DropdownItems () {
 
 	return (
 		<>
-			<Link to="/my-ownership" className={unboldedDropdownItemCSS} role="menuitem">My Ownership</Link>
-			<Link to="/my-wallet" className={unboldedDropdownItemCSS} role="menuitem">My Wallet</Link>
-			<Link to="/creator/my-content" className={unboldedDropdownItemCSS} role="menuitem">My Content</Link>
-			<Link to="/my-profile" className={unboldedDropdownItemCSS} role="menuitem">My Profile</Link>
+			<Link to="/my-ownership" className={unboldedDropdownItemCSS}>My Ownership</Link>
+			<Link to="/my-wallet" className={unboldedDropdownItemCSS}>My Wallet</Link>
+			<Link to="/creator/my-content" className={unboldedDropdownItemCSS}>My Content</Link>
+			<Link to="/my-profile" className={unboldedDropdownItemCSS}>My Profile</Link>
 			<div className = "block">
 				<button
 					onClick = {handleLogout}
 					className = {unboldedDropdownItemCSS + " w-full text-left"}
-					role = "menuitem"
 					disabled={logoutDisabled}
 				>
 					Sign out

@@ -15,7 +15,7 @@ function FeeSection() {
 		return <>Variable Fee (depends on network traffic)</>
 	}
 	if (personalInfoClass.getDefaultCurrency() === "sol") {
-		return <>0 Sol (internal transfer)</>
+		return <>0 SOL (internal transfer)</>
 	}
 	return <>$0.00 (internal transfer)</>
 

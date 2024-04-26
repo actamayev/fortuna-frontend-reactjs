@@ -1,6 +1,5 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useLocation } from "react-router-dom"
 import "../../styles/toggle-styles.css"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import useSetDefaultSiteTheme from "../../hooks/personal-info/set-default-site-theme"
@@ -9,12 +8,11 @@ import useSetDefaultSiteTheme from "../../hooks/personal-info/set-default-site-t
 function SiteThemeSlider() {
 	const personalInfoClass = usePersonalInfoContext()
 	const setDefaultSiteTheme = useSetDefaultSiteTheme()
-	const location = useLocation()
 
-	if (_.isNull(personalInfoClass) || location.pathname === "/login" || location.pathname === "/register") return null
+	if (_.isNull(personalInfoClass)) return null
 
 	return (
-		<div className="flex flex-col items-center z-20 mr-3">
+		<div className="flex flex-col items-center z-20">
 			<label className="toggle-pill">
 				<input
 					type="checkbox"
@@ -29,7 +27,7 @@ function SiteThemeSlider() {
 				>
 				</span>
 			</label>
-			<span className="text-sm font-medium text-white">
+			<span className="text-sm font-medium text-black">
 				{personalInfoClass.getDefaultSiteTheme().toUpperCase()}
 			</span>
 		</div>

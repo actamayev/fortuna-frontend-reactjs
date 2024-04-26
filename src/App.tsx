@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom"
 
 import Home from "./pages/home"
 import Video from "./pages/video"
+import Creator from "./pages/creator"
 import Missing from "./pages/missing"
 import MyProfile from "./pages/my-profile"
 import LoginPage from "./pages/auth/login-page"
@@ -38,6 +39,7 @@ function App() {
 			<Route path = "/my-wallet" element = {<SupporterWallet />} />
 			<Route path = "/v/:videoUUID" element = {<Video />} />
 			<Route path = "/my-profile" element = {<MyProfile />} />
+			<Route path = "/c/:creatorUsername" element = {<Creator />} />
 
 			<Route path = "/creator/*" element = {<CreatorRoutes />} />
 			<Route path = "*" element = {<Missing />} />
