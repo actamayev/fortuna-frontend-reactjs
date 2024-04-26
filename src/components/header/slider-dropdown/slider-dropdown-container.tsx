@@ -12,11 +12,10 @@ export default function SliderDropdownContainer (props: Props) {
 	return (
 		<div
 			className="origin-top-right absolute right-0 mt-2 w-24 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
-			role="menu"
 			aria-orientation="vertical"
 			aria-labelledby="menu-button"
 		>
-			<div className="pt-2 pb-1" role="none">
+			<div className="pt-2 pb-1">
 				<SliderDropdownItems />
 			</div>
 		</div>

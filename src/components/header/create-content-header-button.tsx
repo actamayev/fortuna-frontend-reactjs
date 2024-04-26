@@ -10,7 +10,7 @@ function CreateContentHeaderButton() {
 
 	if (_.isNull(authClass.accessToken)) return null
 	let classes
-	if (isActive) classes = "bg-blue-200 border-blue-300"
+	if (isActive === true) classes = "bg-blue-200 border-blue-300"
 	else classes = "bg-white border-blue-200 hover:bg-blue-300"
 
 	return (

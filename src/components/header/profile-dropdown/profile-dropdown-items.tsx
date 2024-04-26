@@ -10,15 +10,14 @@ export default function ProfileDropdownItems () {
 
 	return (
 		<>
-			<Link to="/my-ownership" className={unboldedDropdownItemCSS} role="menuitem">My Ownership</Link>
-			<Link to="/my-wallet" className={unboldedDropdownItemCSS} role="menuitem">My Wallet</Link>
-			<Link to="/creator/my-content" className={unboldedDropdownItemCSS} role="menuitem">My Content</Link>
-			<Link to="/my-profile" className={unboldedDropdownItemCSS} role="menuitem">My Profile</Link>
+			<Link to="/my-ownership" className={unboldedDropdownItemCSS}>My Ownership</Link>
+			<Link to="/my-wallet" className={unboldedDropdownItemCSS}>My Wallet</Link>
+			<Link to="/creator/my-content" className={unboldedDropdownItemCSS}>My Content</Link>
+			<Link to="/my-profile" className={unboldedDropdownItemCSS}>My Profile</Link>
 			<div className = "block">
 				<button
 					onClick = {handleLogout}
 					className = {unboldedDropdownItemCSS + " w-full text-left"}
-					role = "menuitem"
 					disabled={logoutDisabled}
 				>
 					Sign out

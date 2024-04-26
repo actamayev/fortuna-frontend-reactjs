@@ -11,11 +11,7 @@ function PricePerShareArea(props: Props) {
 	const personalInfoClass = usePersonalInfoContext()
 
 	if (_.isNull(personalInfoClass)) {
-		return (
-			<>
-				${_.round(video.offeringSharePriceUsd, 2)}/Share
-			</>
-		)
+		return <>${_.round(video.offeringSharePriceUsd, 2)}/Share</>
 	}
 	return (
 		<>

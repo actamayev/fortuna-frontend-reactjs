@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
-import useClickOutSideUseEffect from "../../../hooks/click-outside-use-effect"
 import SliderDropdownContainer from "./slider-dropdown-container"
+import useClickOutSideUseEffect from "../../../hooks/click-outside-use-effect"
 
 export default function SliderDropdown() {
 	const [isOpen, setIsOpen] = useState(false)
