@@ -1,5 +1,5 @@
 import Thumbnail from "./thumbnail"
-import VideoDescriptionArea from "./video-description-area"
+import HomePageVideoDescriptionArea from "./home-page-video-description-area"
 
 interface Props {
 	video: VideoData
@@ -11,7 +11,7 @@ export default function SingleHomePageVideoCard(props: Props) {
 	return (
 		<div className="flex flex-col w-full">
 			<Thumbnail video={video}/>
-			<VideoDescriptionArea video={video} />
+			<HomePageVideoDescriptionArea video={video} />
 		</div>
 	)
 }
