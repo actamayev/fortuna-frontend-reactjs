@@ -23,6 +23,16 @@ class VideoClass {
 		return this.videoSearchMap.get(searchTerm)
 	}
 
+	public findVideoInSearchMapByUUID(uuid: string): VideoData | null {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		for (const [key, searchDataArray] of this.videoSearchMap.entries()) {
+			const videoData = searchDataArray.find(data =>"videoUrl" in data && data.uuid === uuid) as VideoData | undefined
+
+			if (!_.isUndefined(videoData)) return videoData
+		}
+		return null
+	}
+
 	public setHomePageVideos = action((videoData: VideoData[]): void => {
 		if (_.isEmpty(videoData)) return
 		videoData.map(singleVideo => this.addVideoToVideosList(singleVideo))
@@ -34,7 +44,7 @@ class VideoClass {
 	})
 
 	public setVideoSearchMapData = action((searchTerm: string, videoSearchData: SearchData[]): void => {
-		if (_.isEmpty(videoSearchData)) return
+		if (_.isEmpty(videoSearchData)) this.videoSearchMap.set(searchTerm, videoSearchData)
 		videoSearchData.map(singleSearchData => this.addVideoSearchDataToMap(searchTerm, singleSearchData))
 	})
 

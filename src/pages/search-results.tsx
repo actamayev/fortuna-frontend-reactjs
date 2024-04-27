@@ -1,9 +1,9 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
+import useVideoSearch from "../hooks/search/video-search"
 import { useVideoContext } from "../contexts/video-context"
 import SingleSearchItem from "../components/search/single-search-item"
-import useVideoSearch from "../hooks/search/video-search"
 
 function SearchResults() {
 	const { searchTerm } = useParams<{ searchTerm: string }>()
@@ -23,12 +23,14 @@ function SearchResults() {
 	const searchResults = videoClass.contextForSearchMap(searchTerm)
 	if (_.isUndefined(searchResults)) return null
 
+	if (_.isEmpty(searchResults)) return <>No results</>
+
 	return (
-		<>
+		<div className="flex flex-col items-center">
 			{searchResults.map((searchResult, index) => {
-				return <SingleSearchItem key = {index} searchResult={searchResult} />
+				return <SingleSearchItem key={index} searchResult={searchResult} />
 			})}
-		</>
+		</div>
 	)
 }
 
