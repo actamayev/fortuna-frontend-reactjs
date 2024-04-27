@@ -20,4 +20,10 @@ export default class SearchDataService {
 			`/search/check-if-public-key-exists-on-solana/${publicKey}`
 		)
 	}
+
+	async generalSearch(searchTerm: string): Promise<AxiosResponse<GeneralSearchResponse | NonSuccessResponse>> {
+		return await this.httpClient.http.get<GeneralSearchResponse | NonSuccessResponse>(
+			`/search/general-search/${searchTerm}`, { headers: { "No-Auth-Required": "true" }}
+		)
+	}
 }

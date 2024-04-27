@@ -16,7 +16,8 @@ declare global {
 
 	type DynamicPageNames =
 		`/v/${string}` |
-		`/c/${string}`
+		`/c/${string}` |
+		`/s/${string}`
 
 	type PageNames = StaticPageNames | DynamicPageNames
 
