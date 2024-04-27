@@ -1,6 +1,6 @@
 import { isVideoData } from "../../utils/type-checks"
-import SingleCreatorSearchItem from "./single-creator-search-item"
 import SingleVideoSearchItem from "./single-video-search-item"
+import SingleCreatorSearchItem from "./single-creator-search-item"
 
 interface Props {
 	searchResult: SearchData
