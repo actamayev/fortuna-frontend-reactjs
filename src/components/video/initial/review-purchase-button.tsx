@@ -28,7 +28,7 @@ function ReviewPurchaseButton() {
 
 	const onClickButton = useCallback(() => {
 		if (_.isNull(solanaClass) || _.isUndefined(videoUUID)) return
-		const video = videoClass.contextForVideo(videoUUID)
+		const video = videoClass.findVideoFromUUID(videoUUID)
 		if (_.isUndefined(video)) return
 		solanaClass.updatePurchaseSplSharesDetails("purchaseStage", "review")
 		solanaClass.updatePurchaseSplSharesDetails("splPublicKey", video.splPublicKey)

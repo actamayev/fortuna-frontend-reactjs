@@ -24,7 +24,7 @@ export default function SingleVideoSearchItem(props: Props) {
 				<div className="text-3xl font-semibold truncate dark:text-white">
 					{videoData.splName}
 				</div>
-				<div className="flex items-center space-x-2"> {/* Added flex container for the image and username */}
+				<div className="flex items-center space-x-2">
 					{videoData.creatorProfilePictureUrl && (
 						<img
 							src={videoData.creatorProfilePictureUrl}

@@ -21,8 +21,8 @@ export default class SearchDataService {
 		)
 	}
 
-	async generalSearch(searchTerm: string): Promise<AxiosResponse<GeneralSearchResponse | NonSuccessResponse>> {
-		return await this.httpClient.http.get<GeneralSearchResponse | NonSuccessResponse>(
+	async generalSearch(searchTerm: string): Promise<AxiosResponse<GeneralSearchResponse | ErrorResponses>> {
+		return await this.httpClient.http.get<GeneralSearchResponse | ErrorResponses>(
 			`/search/general-search/${searchTerm}`, { headers: { "No-Auth-Required": "true" }}
 		)
 	}

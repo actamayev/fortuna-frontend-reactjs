@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { useCallback} from "react"
+import { isErrorResponses } from "../../utils/type-checks"
 import { useVideoContext } from "../../contexts/video-context"
-import { isNonSuccessResponse } from "../../utils/type-checks"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useVideoSearch(): () => Promise<void> {
@@ -19,7 +19,7 @@ export default function useVideoSearch(): () => Promise<void> {
 
 			videoClass.setIsCurrentlySearching(true)
 			const videoSearchResults = await fortunaApiClient.searchDataService.generalSearch(videoClass.searchTerm)
-			if (!_.isEqual(videoSearchResults.status, 200) || isNonSuccessResponse(videoSearchResults.data)) {
+			if (!_.isEqual(videoSearchResults.status, 200) || isErrorResponses(videoSearchResults.data)) {
 				throw Error("Unable to retrieve data")
 			}
 			videoClass.setVideoSearchMapData(videoClass.searchTerm, videoSearchResults.data.searchResults)

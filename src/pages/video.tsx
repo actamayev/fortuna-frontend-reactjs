@@ -20,9 +20,8 @@ function Video() {
 
 	if (isVideoNotFound === true) return <>Unable to find video.</>
 
-	let video: VideoData | undefined | null = videoClass.contextForVideo(videoUUID)
-	if (_.isNil(video)) video = videoClass.findVideoInSearchMapByUUID(videoUUID)
-	if (_.isNil(video)) return null
+	const video = videoClass.findVideoFromUUID(videoUUID)
+	if (_.isUndefined(video)) return null
 
 	return (
 		<>

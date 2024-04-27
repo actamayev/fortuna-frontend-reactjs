@@ -15,7 +15,14 @@ class VideoClass {
 		makeAutoObservable(this)
 	}
 
-	public contextForVideo(videoUUID: string): VideoData | undefined {
+	public findVideoFromUUID(videoUUID: string): VideoData | undefined {
+		let video = this.contextForVideo(videoUUID)
+		if (!_.isUndefined(video)) return video
+		video = this.findVideoInSearchMapByUUID(videoUUID)
+		return video
+	}
+
+	private contextForVideo(videoUUID: string): VideoData | undefined {
 		return this.videos.find(video => video.uuid === videoUUID)
 	}
 
@@ -23,14 +30,14 @@ class VideoClass {
 		return this.videoSearchMap.get(searchTerm)
 	}
 
-	public findVideoInSearchMapByUUID(uuid: string): VideoData | null {
+	private findVideoInSearchMapByUUID(videoUUID: string): VideoData | undefined {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		for (const [key, searchDataArray] of this.videoSearchMap.entries()) {
-			const videoData = searchDataArray.find(data =>"videoUrl" in data && data.uuid === uuid) as VideoData | undefined
+			const videoData = searchDataArray.find(data =>"videoUrl" in data && data.uuid === videoUUID) as VideoData | undefined
 
 			if (!_.isUndefined(videoData)) return videoData
 		}
-		return null
+		return
 	}
 
 	public setHomePageVideos = action((videoData: VideoData[]): void => {
