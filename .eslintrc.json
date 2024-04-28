@@ -104,7 +104,7 @@
 
     "overrides": [
 		{
-			"files": ["*.d.ts", "App.tsx"],
+			"files": ["*.d.ts", "App.tsx", "craco.config.ts"],
 			"rules": {
 				"filenames/match-regex": "off"
 			}
