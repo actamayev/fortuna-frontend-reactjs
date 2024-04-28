@@ -24,6 +24,7 @@ declare global {
 
 	// Search Responses:
 	type SearchForUsersResponse = { usernames: { username: string }[] }
+	type GeneralSearchResponse = { searchResults: SearchData[] }
 
 	// Solana Responses:
 	type MintSPLResponse = {

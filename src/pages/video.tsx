@@ -20,7 +20,7 @@ function Video() {
 
 	if (isVideoNotFound === true) return <>Unable to find video.</>
 
-	const video = videoClass.contextForVideo(videoUUID)
+	const video = videoClass.findVideoFromUUID(videoUUID)
 	if (_.isUndefined(video)) return null
 
 	return (

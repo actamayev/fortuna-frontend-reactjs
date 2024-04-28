@@ -13,6 +13,13 @@ declare global {
 		creatorUsername: string
 		creatorProfilePictureUrl: string | null
 	}
+
+	interface CreatorData {
+		creatorUsername: string
+		creatorProfilePictureUrl: string | null
+	}
+
+	type SearchData = VideoData | CreatorData
 }
 
 export {}
