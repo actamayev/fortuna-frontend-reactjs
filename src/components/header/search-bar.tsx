@@ -26,11 +26,12 @@ function SearchBar() {
 	}, [location.pathname, navigate, videoClass.searchTerm, videoSearch])
 
 	return (
-		<div className="flex items-center">
-			<div className="p-4">
+		<div className="flex justify-center items-center w-full">
+			<div className="p-4" style={{ width: "37.5%"}}>
 				<input
 					type="text"
-					className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 dark:border-yellow-400"
+					className="w-full p-2 border border-gray-300 rounded-lg
+						focus:outline-none focus:border-blue-500 dark:border-yellow-400 text-center"
 					placeholder="Search..."
 					value={videoClass.searchTerm || ""}
 					onChange={e => videoClass.setSearchTerm(e.target.value)}
