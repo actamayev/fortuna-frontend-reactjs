@@ -2,13 +2,15 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { Link, useLocation } from "react-router-dom"
 import { useAuthContext } from "../../contexts/auth-context"
+import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
 function CreateContentHeaderButton() {
 	const location = useLocation()
 	const isActive = location.pathname.startsWith("/creator/upload-content")
 	const authClass = useAuthContext()
+	const personalInfoClass = usePersonalInfoContext()
 
-	if (_.isNull(authClass.accessToken)) return null
+	if (_.isNull(authClass.accessToken) || personalInfoClass?.isApprovedToBeCreator !== true) return null
 	let classes
 	if (isActive === true) classes = "bg-blue-200 border-blue-300"
 	else classes = "bg-white border-blue-200 hover:bg-blue-300"

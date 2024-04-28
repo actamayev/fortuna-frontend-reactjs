@@ -19,6 +19,7 @@ declare global {
 		phoneNumber: string | null
 		defaultCurrency: Currencies
 		defaultSiteTheme: SiteThemes
+		isApprovedToBeCreator: boolean
 		profilePictureUrl: string | null
 	}
 
