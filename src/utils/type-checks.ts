@@ -26,3 +26,8 @@ export function isValidCurrency(value: any): value is Currencies {
 export function isValidSiteTheme(value: any): value is SiteThemes {
 	return ["light", "dark"].includes(value)
 }
+
+export function isVideoData(data: SearchData): data is VideoData {
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+	return (data as VideoData).videoUrl !== undefined
+}

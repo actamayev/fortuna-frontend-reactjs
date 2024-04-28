@@ -7,6 +7,7 @@ import Creator from "./pages/creator"
 import Missing from "./pages/missing"
 import MyProfile from "./pages/my-profile"
 import LoginPage from "./pages/auth/login-page"
+import SearchResults from "./pages/search-results"
 import RegisterPage from "./pages/auth/register-page"
 import MyOwnership from "./pages/supporter/my-ownership"
 import SupporterWallet from "./pages/supporter/supporter-wallet"
@@ -40,6 +41,7 @@ function App() {
 			<Route path = "/v/:videoUUID" element = {<Video />} />
 			<Route path = "/my-profile" element = {<MyProfile />} />
 			<Route path = "/c/:creatorUsername" element = {<Creator />} />
+			<Route path = "/s/:searchTerm" element = {<SearchResults />} />
 
 			<Route path = "/creator/*" element = {<CreatorRoutes />} />
 			<Route path = "*" element = {<Missing />} />

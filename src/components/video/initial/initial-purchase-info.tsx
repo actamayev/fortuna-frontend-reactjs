@@ -15,7 +15,7 @@ function InitialPurchaseInfo() {
 	const navigate = useTypedNavigate()
 
 	if (_.isUndefined(videoUUID)) return null
-	const video = videoClass.contextForVideo(videoUUID)
+	const video = videoClass.findVideoFromUUID(videoUUID)
 	if (_.isUndefined(video)) return null
 
 	if (_.isEqual(video.sharesRemainingForSale, 0)) {

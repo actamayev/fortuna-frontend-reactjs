@@ -22,7 +22,7 @@ export default function useSetSingleVideo(
 			if (!_.isEqual(response.status, 200) || isErrorResponse(response.data)) {
 				throw new Error("Failed to retrieve video")
 			}
-			videoClass.addVideoToMap(response.data.videoData)
+			videoClass.addVideoToVideosList(response.data.videoData)
 		} catch (error) {
 			console.error(error)
 			setIsVideoNotFound(true)
@@ -35,8 +35,9 @@ export default function useSetSingleVideo(
 	useEffect(() => {
 		if (_.isUndefined(videoUUID)) return
 
-		const video = videoClass.contextForVideo(videoUUID)
+		const video = videoClass.findVideoFromUUID(videoUUID)
 		if (!_.isUndefined(video)) return
+
 		void retrieveVideo()
 	}, [fortunaApiClient.httpClient.accessToken, retrieveVideo, videoClass, videoUUID])
 }

@@ -19,7 +19,7 @@ function ReviewPurchaseInfo() {
 	if (_.isNull(solanaClass) || _.isNull(personalInfoClass)) return null
 
 	if (_.isUndefined(videoUUID)) return null
-	const video = videoClass.contextForVideo(videoUUID)
+	const video = videoClass.findVideoFromUUID(videoUUID)
 	if (_.isUndefined(video)) return null
 
 	return (
