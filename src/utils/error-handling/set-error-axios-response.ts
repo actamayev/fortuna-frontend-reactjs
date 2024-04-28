@@ -9,11 +9,11 @@ export default function setErrorAxiosResponse(
 	console.error(error)
 	if (error instanceof AxiosError) {
 		if (isMessageResponse(error.response?.data)) {
-			setError(`${preErrorMessage}: ${error.response?.data.message}`)
+			setError(`${preErrorMessage}: ${error.response.data.message}`)
 		} else if (isValidationErrorResponse(error.response?.data)) {
-			setError(`${preErrorMessage}: ${error.response?.data.validationError}` )
+			setError(`${preErrorMessage}: ${error.response.data.validationError}` )
 		} else if (isErrorResponse(error.response?.data)) {
-			setError(`${preErrorMessage}: ${error.response?.data.error}` )
+			setError(`${preErrorMessage}: ${error.response.data.error}` )
 		} else if (error.response?.data) {
 			setError(`${preErrorMessage}, please try again`)
 		} else setError(`${preErrorMessage}, please try again`)

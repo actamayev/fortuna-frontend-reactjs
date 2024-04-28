@@ -24,7 +24,7 @@ export default function useClickOutSideUseEffect(
 
 	useEffect(() => {
 		document.addEventListener("mousedown", handleClickOutside)
-		return () => document.removeEventListener("mousedown", handleClickOutside)
+		return (): void => document.removeEventListener("mousedown", handleClickOutside)
 	}, [handleClickOutside])
 
 	useEffect(() => {
