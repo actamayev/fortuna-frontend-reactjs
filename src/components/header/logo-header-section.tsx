@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 export default function LogoHeaderSection() {
 	return (
-		<div className="flex items-center">
+		<div className="inline-flex items-center">
 			<Link
 				to="/"
 				className="flex items-center text-white font-bold text-4xl flex-shrink-0"
@@ -14,7 +14,6 @@ export default function LogoHeaderSection() {
 				/>
 				Fortuna
 			</Link>
-
 		</div>
 	)
 }
