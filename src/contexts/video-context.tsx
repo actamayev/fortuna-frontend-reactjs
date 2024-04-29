@@ -68,7 +68,17 @@ class VideoClass {
 
 	public addVideoToVideosList = action((video: VideoData): void => {
 		if (!_.isUndefined(this.contextForVideo(video.uuid))) return
-		this.videos.unshift(video)
+
+		if (_.isEmpty(this.videos)) {
+			this.videos.push(video)
+			return
+		}
+
+		const index = _.sortedIndexBy(this.videos, video, (vd) =>
+			-dayjs(vd.contentMintDate).unix()
+		)
+
+		this.videos.splice(index, 0, video)
 	})
 
 	public setVideoSearchMapData = action((searchTerm: string, videoSearchData: SearchData[]): void => {
