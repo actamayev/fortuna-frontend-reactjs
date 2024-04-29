@@ -1,6 +1,6 @@
+import FormData from "form-data"
 import { AxiosResponse } from "axios"
 import FortunaHttpClient from "../classes/fortuna-http-client"
-import FormData from "form-data"
 
 export default class UploadDataService {
 	constructor(private readonly httpClient: FortunaHttpClient) {

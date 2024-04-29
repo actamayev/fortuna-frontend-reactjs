@@ -4,6 +4,7 @@ import { isErrorResponses } from "../../utils/type-checks"
 import { useVideoContext } from "../../contexts/video-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
+// TODO: Go through all endpoints and make sure the error response type set is correct (errorResponse or errorResponses)
 export default function useSetSingleVideo(
 	videoUUID: string | undefined,
 	setIsVideoLoading: React.Dispatch<React.SetStateAction<boolean>>,

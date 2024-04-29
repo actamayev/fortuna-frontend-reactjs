@@ -17,8 +17,8 @@ export default class VideoDataService {
 		)
 	}
 
-	async getVideosByCreatorUsername(creatorUsername: string): Promise<AxiosResponse<CreatorDataResponse | ErrorResponses>> {
-		return await this.httpClient.http.get<CreatorDataResponse | ErrorResponses>(
+	async getVideosByCreatorUsername(creatorUsername: string): Promise<AxiosResponse<CreatorDataResponse | NonSuccessResponse>> {
+		return await this.httpClient.http.get<CreatorDataResponse | NonSuccessResponse>(
 			`/videos/get-creator-videos/${creatorUsername}`, { headers: { "No-Auth-Required": "true" }}
 		)
 	}

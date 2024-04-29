@@ -7,8 +7,8 @@ interface Props {
 
 export default function SingleCreatorPageVideo(props: Props) {
 	const { videoData } = props
-	const navigateToVideo = useNavigateToVideo()
 	const dateFormatter = useDateFormatter()
+	const navigateToVideo = useNavigateToVideo()
 
 	return (
 		<div

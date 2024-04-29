@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { useCallback, useEffect } from "react"
-import { isErrorResponses } from "../../utils/type-checks"
+import { isNonSuccessResponse } from "../../utils/type-checks"
 import { useVideoContext } from "../../contexts/video-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
@@ -19,7 +19,7 @@ export default function useRetrieveCreatorVideosAndData(creatorUsername: string 
 
 			const creatorDataResponse = await fortunaApiClient.videoDataService.getVideosByCreatorUsername(creatorUsername)
 
-			if (!_.isEqual(creatorDataResponse.status, 200) || isErrorResponses(creatorDataResponse.data)) {
+			if (!_.isEqual(creatorDataResponse.status, 200) || isNonSuccessResponse(creatorDataResponse.data)) {
 				throw Error("Unable to retrieve creator data")
 			}
 			videoClass.setIsCreatorDataBeingRetrieved(false)
