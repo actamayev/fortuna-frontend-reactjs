@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
+import ShowMyPublicKey from "./show-my-public-key"
 import { useSolanaContext } from "../../contexts/solana-context"
 import TransferSolButton from "./transfer-sol/transfer-sol-button"
 import RequestAirdropButton from "./request-airdrop/request-airdrop-button"
@@ -29,7 +30,10 @@ function WalletDetails () {
 				<div className="mr-4">
 					<TransferSolButton />
 				</div>
-				<RequestAirdropButton />
+				<div className="mr-4">
+					<RequestAirdropButton />
+				</div>
+				<ShowMyPublicKey />
 			</div>
 			<div className="bg-white shadow-lg rounded-md p-4 mt-4 grid grid-cols-1 grid-rows-1 border">
 				<div>
