@@ -57,7 +57,7 @@ class VideoClass {
 		for (const [key, creatorDataHeld] of this.creatorData.entries()) {
 			const videoData = creatorDataHeld.videoData.find(video => video.uuid === videoUUID)
 
-			if (videoData) return videoData
+			if (!_.isUndefined(videoData)) return videoData
 		}
 	}
 

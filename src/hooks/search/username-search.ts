@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import { isNonSuccessResponse } from "../../utils/type-checks"
+import { isErrorResponses } from "../../utils/type-checks"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
@@ -27,7 +27,7 @@ export default function useUsernameSearch(): (
 			setIsLoading(true)
 
 			const response = await fortunaApiClient.searchDataService.searchForUsername(solanaClass.transferSolDetails.username)
-			if (!_.isEqual(response.status, 200) || isNonSuccessResponse(response.data)) {
+			if (!_.isEqual(response.status, 200) || isErrorResponses(response.data)) {
 				throw new Error("User Search Failed")
 			}
 			setUsernameSearchResults(response.data.usernames)

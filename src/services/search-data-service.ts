@@ -5,8 +5,8 @@ export default class SearchDataService {
 	constructor(private readonly httpClient: FortunaHttpClient) {
 	}
 
-	async searchForUsername(username: string): Promise<AxiosResponse<SearchForUsersResponse | NonSuccessResponse>> {
-		return await this.httpClient.http.get<SearchForUsersResponse | NonSuccessResponse>(`/search/username/${username}`)
+	async searchForUsername(username: string): Promise<AxiosResponse<SearchForUsersResponse | ErrorResponses>> {
+		return await this.httpClient.http.get<SearchForUsersResponse | ErrorResponses>(`/search/username/${username}`)
 	}
 
 	async checkIfPublicKeyRegisteredOnFortuna(publicKey: string): Promise<AxiosResponse<BooleanResponse | ErrorResponses>> {
