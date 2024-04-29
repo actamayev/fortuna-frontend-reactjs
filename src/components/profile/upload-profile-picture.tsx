@@ -57,7 +57,7 @@ function UploadProfilePicture() {
 				ref={fileInputRef}
 				type="file"
 				onChange={handleImageChange}
-				accept="image/*"
+				accept="image/jpeg, image/png"
 				style={{ display: "none" }}
 				max={1}
 			/>

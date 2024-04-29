@@ -13,6 +13,7 @@ import SPLDescriptionInput from "../../components/upload-new-mint-information/sp
 import UploadMintInfoButton from "../../components/upload-new-mint-information/upload-mint-info-button"
 import ContentShareBreakdown from "../../components/upload-new-mint-information/content-share-breakdown"
 import SelectOfferingSharePrice from "../../components/upload-new-mint-information/select-offering-share-price"
+import SplOriginalContentUrlInput from "../../components/upload-new-mint-information/spl-original-content-url-input"
 import SelectCreatorOwnershipPercentage from "../../components/upload-new-mint-information/select-creator-ownership-percentage"
 
 function UploadContent() {
@@ -38,6 +39,8 @@ function UploadContent() {
 				<SPLNameInput />
 
 				<SPLDescriptionInput />
+
+				<SplOriginalContentUrlInput />
 				<div className="flex w-full">
 					<div className="flex flex-col w-1/2">
 						<div className="mb-4">

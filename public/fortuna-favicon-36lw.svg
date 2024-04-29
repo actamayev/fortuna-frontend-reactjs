@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg2"
+   width="816"
+   height="1056"
+   viewBox="0 0 816 1056"
+   sodipodi:docname="Fortuna Logo V1 36LW copy.ai"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath16">
+      <path
+         d="M 0,792 H 612 V 0 H 0 Z"
+         id="path14" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <g
+     id="g8"
+     inkscape:groupmode="layer"
+     inkscape:label="Fortuna Logo V1 36LW copy"
+     transform="matrix(1.3333333,0,0,-1.3333333,0,1056)">
+    <g
+       id="g10">
+      <g
+         id="g12"
+         clip-path="url(#clipPath16)">
+        <g
+           id="g18"
+           transform="translate(397.562,254.2893)">
+          <path
+             d="M 0,0 H -288 V 360 H 72 V 72 C 72,32.4 39.6,0 0,0 Z"
+             style="fill:none;stroke:#231f20;stroke-width:36;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+             id="path20" />
+        </g>
+        <path
+           d="m 325.562,398.289 h -216 v 216 h 216 z"
+           style="fill:none;stroke:#231f20;stroke-width:36;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+           id="path22" />
+        <g
+           id="g24"
+           transform="translate(217.562,470.2892)">
+          <path
+             d="M 0,0 H -108 V 144 H 36 V 36 C 36,16.118 19.882,0 0,0 Z"
+             style="fill:none;stroke:#231f20;stroke-width:36;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+             id="path26" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

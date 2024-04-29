@@ -6,6 +6,7 @@ declare global {
 		offeringSharePriceUsd: number
 		description: string
 		creatorOwnershipPercentage: number
+		originalContentUrl: string
 	}
 
 	interface NewSPLDetails extends CommonSplDetails {

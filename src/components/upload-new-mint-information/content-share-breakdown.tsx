@@ -13,7 +13,7 @@ function ContentShareBreakdown() {
 	const fanShares = solanaClass.newSplDetails.numberOfShares - creatorNumberShares - fortunaShares
 
 	return (
-		<div className = "bg-white border shadow rounded-lg w-full dark:border-b-2 ">
+		<div className = "bg-white border shadow rounded-lg w-full dark:border-b-2 p-2">
 			<h1 className = "flex text-xl text-center font-bold leading-none tracking-tight text-black">
 				Share Breakdown
 			</h1>
