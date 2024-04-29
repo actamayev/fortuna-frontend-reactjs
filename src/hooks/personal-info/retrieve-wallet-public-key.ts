@@ -22,7 +22,6 @@ export default function useRetrieveWalletPublicKey(): (
 			) return
 			setIsButtonDisabled(true)
 
-
 			const publicKeyResponse = await fortunaApiClient.personalInfoDataService.retrieveWalletPublicKey()
 			if (
 				!_.isEqual(publicKeyResponse.status, 200) ||
@@ -32,7 +31,6 @@ export default function useRetrieveWalletPublicKey(): (
 				throw Error("Unable to retrieve public key")
 			}
 			personalInfoClass.publicKey = publicKeyResponse.data.publicKey
-
 		} catch (error) {
 			console.error(error)
 		} finally {

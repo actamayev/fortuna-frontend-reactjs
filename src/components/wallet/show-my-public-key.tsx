@@ -21,14 +21,14 @@ function ShowMyPublicKey() {
 	}, [personalInfoClass])
 
 	const copyToClipboard = useCallback(async () => {
-		if (_.isNil(personalInfoClass?.publicKey) || isButtonDisabled) return
+		if (_.isNull(personalInfoClass) || _.isNull(personalInfoClass.publicKey) || isButtonDisabled) return
 
 		try {
 			await navigator.clipboard.writeText(personalInfoClass.publicKey)
-		} catch (err) {
-			console.error("Failed to copy text: ", err)
+		} catch (error) {
+			console.error("Failed to copy text: ", error)
 		}
-	}, [personalInfoClass?.publicKey, isButtonDisabled])
+	}, [personalInfoClass, isButtonDisabled])
 
 	if (_.isNull(personalInfoClass)) return null
 
@@ -38,10 +38,11 @@ function ShowMyPublicKey() {
 				<div className="mr-2 cursor-pointer" onClick={handleRetrievePublicKey}>
 					<FaEyeSlash />
 				</div>
-				<div className="flex-grow">My Public Key: ***********</div>
+				<div className="flex-grow">My Public Key: **********</div>
 			</div>
 		)
 	}
+
 	return (
 		<div className="font-semibold flex items-center">
 			<div
@@ -52,11 +53,10 @@ function ShowMyPublicKey() {
 			</div>
 			<div className="flex items-center">
 				<span className="mr-2">My Public Key:</span>
-				<div className="cursor-pointer" onClick={copyToClipboard} style={{ flexShrink: 0 }}>
+				<div className="cursor-pointer flex-shrink-0" onClick={copyToClipboard}>
 					{personalInfoClass.publicKey}
 				</div>
 			</div>
-
 		</div>
 	)
 }
