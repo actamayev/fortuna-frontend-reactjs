@@ -16,6 +16,7 @@ function SPLDescriptionInput() {
 			onChange = {(event) => solanaClass.updateNewSplDetails("description", event.target.value)}
 			required
 			value = {solanaClass.newSplDetails.description || ""}
+			multiline={true}
 		/>
 	)
 }
