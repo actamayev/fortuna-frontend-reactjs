@@ -7,6 +7,7 @@ class PersonalInfoClass {
 	private _email?: string | null = null
 	private _phoneNumber?: string | null = null
 	private _profilePictureUrl?: string | null = null
+	private _isApprovedToBeCreator: boolean = false
 
 	private _isRetrievingPersonalInfo = false
 	private _defaultCurrency: Currencies = "usd"
@@ -49,6 +50,14 @@ class PersonalInfoClass {
 		this._profilePictureUrl = profilePictureUrl
 	}
 
+	get isApprovedToBeCreator(): boolean {
+		return this._isApprovedToBeCreator
+	}
+
+	set isApprovedToBeCreator(isApprovedToBeCreator: boolean) {
+		this._isApprovedToBeCreator = isApprovedToBeCreator
+	}
+
 	public getIsRetrievingPersonalInfo(): boolean {
 		return this._isRetrievingPersonalInfo
 	}
@@ -81,6 +90,7 @@ class PersonalInfoClass {
 		this.email = retrievedData.email
 		this.phoneNumber = retrievedData.phoneNumber
 		this.profilePictureUrl = retrievedData.profilePictureUrl
+		this.isApprovedToBeCreator = retrievedData.isApprovedToBeCreator
 		this.setDefaultCurrency(retrievedData.defaultCurrency)
 		this.setDefaultSiteTheme(retrievedData.defaultSiteTheme)
 	})
@@ -101,6 +111,7 @@ class PersonalInfoClass {
 		this.username = null
 		this.email = null
 		this.phoneNumber = null
+		this.isApprovedToBeCreator = false
 		this.setIsRetrievingPersonalDetails(false)
 	}
 }

@@ -1,15 +1,21 @@
 import _ from "lodash"
+import dayjs from "dayjs"
 import { action, makeAutoObservable } from "mobx"
 import { useContext, useMemo, createContext } from "react"
 
 class VideoClass {
 	public searchTerm: string | null = null
+
 	public videos: VideoData[] = []
 	public videosBeingRetrieved: string[] = []
 	public areHomePageVideosRetrieved: boolean = false
 	public areHomePageVideosBeingRetrieved: boolean = false
-	public videoSearchMap: Map<string, SearchData[]> = new Map() // This maps the search term to SearchData.
+
+	private videoSearchMap: Map<string, SearchData[]> = new Map() // This maps the search term to SearchData.
 	public isCurrentlySearching: boolean = false
+
+	private creatorData: CreatorDataHeldInClass[] = []
+	public isCreatorDataBeingRetrieved: boolean = false
 
 	constructor() {
 		makeAutoObservable(this)
@@ -19,6 +25,8 @@ class VideoClass {
 		let video = this.contextForVideo(videoUUID)
 		if (!_.isUndefined(video)) return video
 		video = this.findVideoInSearchMapByUUID(videoUUID)
+		if (!_.isUndefined(video)) return video
+		video = this.findVideoInCreatorDataMapByUUID(videoUUID)
 		return video
 	}
 
@@ -28,6 +36,10 @@ class VideoClass {
 
 	public contextForSearchMap(searchTerm: string): SearchData[] | undefined {
 		return this.videoSearchMap.get(searchTerm)
+	}
+
+	public contextForCreatorData(creatorUsername: string): CreatorDataHeldInClass | undefined {
+		return this.creatorData.find(data => data.creatorUsername === creatorUsername)
 	}
 
 	private findVideoInSearchMapByUUID(videoUUID: string): VideoData | undefined {
@@ -40,6 +52,15 @@ class VideoClass {
 		return
 	}
 
+	private findVideoInCreatorDataMapByUUID(videoUUID: string): VideoData | undefined {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		for (const [key, creatorDataHeld] of this.creatorData.entries()) {
+			const videoData = creatorDataHeld.videoData.find(video => video.uuid === videoUUID)
+
+			if (!_.isUndefined(videoData)) return videoData
+		}
+	}
+
 	public setHomePageVideos = action((videoData: VideoData[]): void => {
 		if (_.isEmpty(videoData)) return
 		videoData.map(singleVideo => this.addVideoToVideosList(singleVideo))
@@ -47,7 +68,17 @@ class VideoClass {
 
 	public addVideoToVideosList = action((video: VideoData): void => {
 		if (!_.isUndefined(this.contextForVideo(video.uuid))) return
-		this.videos.unshift(video)
+
+		if (_.isEmpty(this.videos)) {
+			this.videos.push(video)
+			return
+		}
+
+		const index = _.sortedIndexBy(this.videos, video, (vd) =>
+			-dayjs(vd.contentMintDate).unix()
+		)
+
+		this.videos.splice(index, 0, video)
 	})
 
 	public setVideoSearchMapData = action((searchTerm: string, videoSearchData: SearchData[]): void => {
@@ -63,6 +94,25 @@ class VideoClass {
 		}
 		this.videoSearchMap.set(searchTerm, [...existingData, videoSearchData])
 	})
+
+	public addCreatorData (newCreatorData: CreatorDataHeldInClass): void {
+		const existingData = this.contextForCreatorData(newCreatorData.creatorUsername)
+		if (!_.isUndefined(existingData)) return
+
+		if (_.isEmpty(newCreatorData.videoData)) {
+			this.creatorData.push(newCreatorData)
+			return
+		}
+		// Sort videoData by date within the newCreatorData
+		newCreatorData.videoData.sort((a, b) => dayjs(b.contentMintDate).unix() - dayjs(a.contentMintDate).unix())
+
+		// Find the correct index to insert the new data based on the most recent video date
+		const index = _.sortedIndexBy(this.creatorData, newCreatorData, (data) =>
+			-dayjs(_.maxBy(data.videoData, (vd) => dayjs(vd.contentMintDate).unix())?.contentMintDate).unix()
+		)
+		// Insert the new creator data into the sorted position
+		this.creatorData.splice(index, 0, newCreatorData)
+	}
 
 	public tokenPurchaseUpdateAvailableShares = action((videoUUID: string, numberOfShares: number): void => {
 		const index = this.videos.findIndex(video => video.uuid === videoUUID)
@@ -84,6 +134,10 @@ class VideoClass {
 
 	public setIsCurrentlySearching = action((newState: boolean): void => {
 		this.isCurrentlySearching = newState
+	})
+
+	public setIsCreatorDataBeingRetrieved = action((newState: boolean): void => {
+		this.isCreatorDataBeingRetrieved = newState
 	})
 }
 

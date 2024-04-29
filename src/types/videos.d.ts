@@ -10,6 +10,7 @@ declare global {
 		uuid: string
 		totalNumberShares: number
 		sharesRemainingForSale: number
+		contentMintDate: Date
 		creatorUsername: string
 		creatorProfilePictureUrl: string | null
 	}
@@ -20,6 +21,10 @@ declare global {
 	}
 
 	type SearchData = VideoData | CreatorData
+
+	interface CreatorDataHeldInClass extends CreatorData {
+		videoData: VideoData[]
+	}
 }
 
 export {}

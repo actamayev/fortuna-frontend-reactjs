@@ -1,8 +1,11 @@
+import { observer } from "mobx-react"
 import { Link } from "react-router-dom"
 import { useMemo, useState } from "react"
 import useHandleLogout from "../../../hooks/auth/handle-logout"
+import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 
-export default function ProfileDropdownItems () {
+function ProfileDropdownItems() {
+	const personalInfoClass = usePersonalInfoContext()
 	const [logoutDisabled, setLogoutDisabled] = useState(false)
 	const handleLogout = useHandleLogout(setLogoutDisabled)
 
@@ -12,7 +15,9 @@ export default function ProfileDropdownItems () {
 		<>
 			<Link to="/my-ownership" className={unboldedDropdownItemCSS}>My Ownership</Link>
 			<Link to="/my-wallet" className={unboldedDropdownItemCSS}>My Wallet</Link>
-			<Link to="/creator/my-content" className={unboldedDropdownItemCSS}>My Content</Link>
+			{personalInfoClass?.isApprovedToBeCreator && (
+				<Link to="/creator/my-content" className={unboldedDropdownItemCSS}>My Content</Link>
+			)}
 			<Link to="/my-profile" className={unboldedDropdownItemCSS}>My Profile</Link>
 			<div className = "block">
 				<button
@@ -26,3 +31,5 @@ export default function ProfileDropdownItems () {
 		</>
 	)
 }
+
+export default observer(ProfileDropdownItems)

@@ -4,7 +4,9 @@ import useLogout from "./logout"
 import { isErrorResponse } from "../../utils/type-checks"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useHandleLogout(setLogoutDisabled: React.Dispatch<React.SetStateAction<boolean>>): (
+export default function useHandleLogout(
+	setLogoutDisabled: React.Dispatch<React.SetStateAction<boolean>>
+): (
 	e: React.MouseEvent<HTMLButtonElement>
 ) => void {
 	const fortunaApiClient = useApiClientContext()
@@ -18,7 +20,6 @@ export default function useHandleLogout(setLogoutDisabled: React.Dispatch<React.
 			if (!_.isEqual(response.status, 200) || isErrorResponse(response.data)) {
 				throw new Error("Failed to logout")
 			}
-			fortunaApiClient.logout()
 			logout()
 		} catch (error) {
 			console.error(error)

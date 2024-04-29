@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { useCallback, useEffect } from "react"
-import { isErrorResponse } from "../../utils/type-checks"
+import { isErrorResponses } from "../../utils/type-checks"
 import { useVideoContext } from "../../contexts/video-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
@@ -19,7 +19,7 @@ export default function useSetSingleVideo(
 			setIsVideoNotFound(false)
 			videoClass.addVideoUUIDToRetrievingList(videoUUID)
 			const response = await fortunaApiClient.videoDataService.getVideoById(videoUUID)
-			if (!_.isEqual(response.status, 200) || isErrorResponse(response.data)) {
+			if (!_.isEqual(response.status, 200) || isErrorResponses(response.data)) {
 				throw new Error("Failed to retrieve video")
 			}
 			videoClass.addVideoToVideosList(response.data.videoData)

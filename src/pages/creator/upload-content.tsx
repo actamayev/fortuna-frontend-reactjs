@@ -2,6 +2,8 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useAuthContext } from "../../contexts/auth-context"
 import ShowAuthToNullUser from "../../components/show-auth-to-null-user"
+import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import ShowMessageToNonCreators from "../../components/show-message-to-non-creators"
 import UploadContentTemplate from "../../components/templates/upload-content-template"
 import SPLNameInput from "../../components/upload-new-mint-information/spl-name-input"
 import ImageUploader from "../../components/upload-new-mint-information/image-uploader"
@@ -15,9 +17,14 @@ import SelectCreatorOwnershipPercentage from "../../components/upload-new-mint-i
 
 function UploadContent() {
 	const authClass = useAuthContext()
+	const personalInfoClass = usePersonalInfoContext()
 
 	if (_.isNull(authClass.accessToken)) {
 		return <ShowAuthToNullUser whereToNavigate="/creator/my-content" />
+	}
+
+	if (personalInfoClass?.isApprovedToBeCreator !== true) {
+		return <ShowMessageToNonCreators />
 	}
 
 	return (
