@@ -29,7 +29,7 @@ function SearchBar() {
 	}, [location.pathname, navigate, videoClass.searchTerm, videoSearch])
 
 	return (
-		<div className="flex justify-center items-center w-full">
+		<div className="flex justify-center items-center w-full flex-grow">
 			<div className="p-4" style={{ width: "37.5%" }}>
 				<input
 					type="text"

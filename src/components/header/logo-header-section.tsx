@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 export default function LogoHeaderSection() {
 	return (
-		<div className="inline-flex items-center">
+		<div className="inline-flex items-center flex-grow-0 flex-shrink-0">
 			<Link
 				to="/"
 				className="flex items-center text-white font-bold text-4xl flex-shrink-0"

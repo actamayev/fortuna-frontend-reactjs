@@ -10,7 +10,7 @@ export default function HeaderNav() {
 			<div className="flex justify-between items-center h-16 w-full">
 				<LogoHeaderSection />
 				<SearchBar />
-				<div className="flex items-center">
+				<div className="flex items-center flex-grow-0">
 					<CreateContentHeaderButton />
 					<SliderDropdown />
 					<LoginLogoutHeaderItem />
