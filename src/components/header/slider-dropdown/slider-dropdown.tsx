@@ -14,7 +14,7 @@ export default function SliderDropdown() {
 					<button
 						type="button"
 						className="bg-white hover:bg-gray-200 text-black border border-yellow-400 rounded px-4 flex
-							items-center text-md font-semibold hover:shadow-lg duration-75"
+							items-center text-md font-semibold hover:shadow-lg transition-all duration-50"
 						id="menu-button"
 						aria-expanded="false"
 						aria-haspopup="true"
@@ -24,7 +24,6 @@ export default function SliderDropdown() {
 						<div className="flex items-center">
 							:
 						</div>
-
 					</button>
 					<SliderDropdownContainer isOpen = {isOpen} />
 				</div>
