@@ -3,10 +3,12 @@ import { useEffect } from "react"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import usePublicKeySearch from "../../../../hooks/search/public-key-search"
+import useHandleTypePublicKey from "../../../../hooks/handle-type-validation/handle-public-key-validation"
 
 function PublicKeySearch() {
 	const solanaClass = useSolanaContext()
 	const publicKeySearch = usePublicKeySearch()
+	const handleTypePublicKey = useHandleTypePublicKey()
 
 	useEffect(() => {
 		void publicKeySearch()
@@ -20,7 +22,7 @@ function PublicKeySearch() {
 				<input
 					type="text"
 					value={solanaClass.transferSolDetails.publicKey}
-					onChange={(e) => solanaClass.updateTransferSolDetails("publicKey", e.target.value)}
+					onChange={(e) => solanaClass.updateTransferSolDetails("publicKey", handleTypePublicKey(e))}
 					className="p-2 rounded-lg w-full"
 					placeholder="123XYZ"
 				/>
