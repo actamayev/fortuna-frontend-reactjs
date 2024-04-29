@@ -52,7 +52,7 @@ function VideoUploader() {
 				ref={fileInputRef}
 				type="file"
 				onChange={handleVideoChange}
-				accept="video/*"
+				accept="video/mp4"
 				style={{ display: "none" }}
 				max={1}
 			/>

@@ -10,6 +10,7 @@ declare global {
 		uuid: string
 		totalNumberShares: number
 		sharesRemainingForSale: number
+		originalContentUrl: string
 		contentMintDate: Date
 		creatorUsername: string
 		creatorProfilePictureUrl: string | null

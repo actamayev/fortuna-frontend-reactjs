@@ -10,7 +10,7 @@ export default function LogoHeaderSection() {
 				<img
 					src="fortuna-favicon.svg"
 					alt="Logo"
-					className="mt-2 h-16 w-auto"
+					className="mt-2 h-24"
 				/>
                 Fortuna
 			</Link>
