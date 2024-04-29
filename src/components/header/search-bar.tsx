@@ -30,7 +30,7 @@ function SearchBar() {
 
 	return (
 		<div className="flex justify-center items-center w-full flex-grow">
-			<div className="p-4" style={{ width: "37.5%" }}>
+			<div className="p-4" style={{ width: "100%" }}>
 				<input
 					type="text"
 					className="w-full pl-4 p-2 border border-gray-300 rounded-lg
