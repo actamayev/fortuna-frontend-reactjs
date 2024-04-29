@@ -8,7 +8,7 @@ export default function LogoHeaderSection() {
 				className="flex items-center text-gray-200 hover:text-white font-bold text-4xl"
 			>
 				<img
-					src="fortuna-favicon.svg"
+					src="fortuna-logo-white.svg"
 					alt="Logo"
 					className="mt-2 h-24"
 				/>
