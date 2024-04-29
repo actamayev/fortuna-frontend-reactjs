@@ -7,7 +7,6 @@ import { useVideoContext } from "../../contexts/video-context"
 import useTypedNavigate from "../../hooks/navigate/typed-navigate"
 import useHandleTypeUsername from "../../hooks/handle-type-validation/handle-type-username"
 
-// TODO: Make sure that when the position of hte search bar is always the same, regardless of wheather the user is logged in.
 function SearchBar() {
 	const navigate = useTypedNavigate()
 	const videoClass = useVideoContext()
