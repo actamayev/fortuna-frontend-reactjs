@@ -7,6 +7,7 @@ class PersonalInfoClass {
 	private _email?: string | null = null
 	private _phoneNumber?: string | null = null
 	private _profilePictureUrl?: string | null = null
+	private _publicKey: string | null = null
 	private _isApprovedToBeCreator: boolean = false
 
 	private _isRetrievingPersonalInfo = false
@@ -48,6 +49,14 @@ class PersonalInfoClass {
 
 	set profilePictureUrl(profilePictureUrl: string | null | undefined) {
 		this._profilePictureUrl = profilePictureUrl
+	}
+
+	get publicKey(): string | null {
+		return this._publicKey
+	}
+
+	set publicKey(publicKey: string | null) {
+		this._publicKey = publicKey
 	}
 
 	get isApprovedToBeCreator(): boolean {
@@ -112,6 +121,7 @@ class PersonalInfoClass {
 		this.email = null
 		this.phoneNumber = null
 		this.isApprovedToBeCreator = false
+		this.publicKey = null
 		this.setIsRetrievingPersonalDetails(false)
 	}
 }

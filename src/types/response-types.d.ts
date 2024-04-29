@@ -22,6 +22,7 @@ declare global {
 		isApprovedToBeCreator: boolean
 		profilePictureUrl: string | null
 	}
+	type PublicKeyResponse = { publicKey: string }
 
 	// Search Responses:
 	type SearchForUsersResponse = { usernames: { username: string }[] }
