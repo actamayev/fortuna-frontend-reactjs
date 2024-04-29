@@ -2,17 +2,17 @@ import { Link } from "react-router-dom"
 
 export default function LogoHeaderSection() {
 	return (
-		<div className="flex items-center">
+		<div className="inline-flex items-center flex-grow-0 flex-shrink-0 z-10">
 			<Link
 				to="/"
-				className="flex items-center text-gray-200 hover:text-white font-bold text-4xl"
+				className="flex items-center text-white font-bold text-4xl flex-shrink-0"
 			>
 				<img
 					src="fortuna-logo-white.svg"
 					alt="Logo"
 					className="mt-2 h-24"
 				/>
-                Fortuna
+				Fortuna
 			</Link>
 		</div>
 	)

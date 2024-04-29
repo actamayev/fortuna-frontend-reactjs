@@ -13,7 +13,7 @@ function SearchResults() {
 	if (_.isUndefined(searchTerm)) return null
 
 	if (videoClass.isCurrentlySearching === true) {
-		return <div>Searching...</div>
+		return <div className="dark:text-white">Searching...</div>
 	}
 	if (_.isUndefined(videoClass.contextForSearchMap(searchTerm))) {
 		videoClass.setSearchTerm(searchTerm)
@@ -23,7 +23,9 @@ function SearchResults() {
 	const searchResults = videoClass.contextForSearchMap(searchTerm)
 	if (_.isUndefined(searchResults)) return null
 
-	if (_.isEmpty(searchResults)) return <>No results</>
+	if (_.isEmpty(searchResults)) {
+		return <div className="dark:text-white">No results</div>
+	}
 
 	return (
 		<div className="flex flex-col items-center">

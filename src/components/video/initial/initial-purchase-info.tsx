@@ -28,7 +28,7 @@ function InitialPurchaseInfo() {
 				onClick={() => navigate("/register")}
 				colorClass="bg-blue-200"
 				hoverClass="hover:bg-blue-300"
-				title="Please create an account with Fortuna to purchase shares"
+				title="Please create an account to purchase shares"
 				className="font-semibold"
 			/>
 		)

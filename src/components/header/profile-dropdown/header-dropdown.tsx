@@ -14,12 +14,12 @@ function HeaderDropdown () {
 	if (_.isNull(personalInfoClass)) return null
 
 	return (
-		<div className="pr-2 z-10">
+		<div className="z-10 ml-2">
 			<div className="flex items-center">
 				<div className="relative inline-block text-left" ref = {dropdownRef}>
 					<button
 						type="button"
-						className="bg-gray-100 text-black border border-yellow-400 rounded p-2 flex
+						className="bg-gray-100 hover:bg-gray-200 text-black border border-yellow-400 rounded p-2 flex
 							items-center text-md font-semibold hover:shadow-lg"
 						id="menu-button"
 						aria-expanded="false"
@@ -38,7 +38,6 @@ function HeaderDropdown () {
 							)}
 							<span className="max-w-xs truncate">{personalInfoClass.username || "Profile"}</span>
 						</div>
-
 					</button>
 					<DropdownItemsContainer isOpen = {isOpen} />
 				</div>
