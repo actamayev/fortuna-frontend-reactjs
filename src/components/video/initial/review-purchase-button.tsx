@@ -35,7 +35,7 @@ function ReviewPurchaseButton() {
 	}, [solanaClass, videoClass, videoUUID])
 
 	const createTitleForButton = useMemo(() => {
-		if (_.isNull(authClass.accessToken)) return "Please Create an Account with Fortuna to purchase shares"
+		if (_.isNull(authClass.accessToken)) return "Please Create an Account to purchase shares"
 		if (wasVideoCreatedByUser === true) return "Unable to purchase own shares"
 		else if (isAbleToPurchaseShares === false) return "Unable to purchase shares"
 		return "Review Purchase"
