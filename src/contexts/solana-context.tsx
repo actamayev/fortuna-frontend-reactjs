@@ -39,6 +39,7 @@ class SolanaClass {
 		offeringSharePriceSol: 0.003,
 		description: "",
 		creatorOwnershipPercentage: 50,
+		originalContentUrl: "",
 		selectedImage: null,
 		selectedVideo: null
 	}
@@ -260,6 +261,7 @@ class SolanaClass {
 			offeringSharePriceSol: 0.003,
 			description: "",
 			creatorOwnershipPercentage: 50,
+			originalContentUrl: "",
 			selectedImage: null,
 			selectedVideo: null
 		}
