@@ -13,7 +13,7 @@ export default function SliderDropdown() {
 				<div className="relative inline-block text-left" ref = {dropdownRef}>
 					<button
 						type="button"
-						className="bg-gray-100 text-black border border-yellow-400 rounded px-4 flex
+						className="bg-white hover:bg-gray-200 text-black border border-yellow-400 rounded px-4 flex
 							items-center text-md font-semibold hover:shadow-lg duration-75"
 						id="menu-button"
 						aria-expanded="false"

@@ -5,15 +5,16 @@ export default function LogoHeaderSection() {
 		<div className="flex items-center">
 			<Link
 				to="/"
-				className="flex items-center text-gray-200 hover:text-white font-bold text-4xl"
+				className="flex items-center text-white font-bold text-4xl flex-shrink-0"
 			>
 				<img
 					src="fortuna-logo-white.svg"
 					alt="Logo"
 					className="mt-2 h-24"
 				/>
-                Fortuna
+				Fortuna
 			</Link>
+
 		</div>
 	)
 }

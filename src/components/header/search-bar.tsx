@@ -32,8 +32,8 @@ function SearchBar() {
 			<div className="p-4" style={{ width: "37.5%"}}>
 				<input
 					type="text"
-					className="w-full p-2 border border-gray-300 rounded-lg
-						focus:outline-none focus:border-blue-500 dark:border-yellow-400 text-center"
+					className="w-full pl-4 p-2 border border-gray-300 rounded-lg
+						focus:outline-none focus:border-blue-500 dark:border-yellow-400 text-left"
 					placeholder="Search..."
 					value={videoClass.searchTerm || ""}
 					onChange={e => videoClass.setSearchTerm(handleTypeUsername(e))}
