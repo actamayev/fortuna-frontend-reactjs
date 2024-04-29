@@ -11,11 +11,7 @@ function MyOwnership() {
 		return <ShowAuthToNullUser whereToNavigate="/my-ownership" />
 	}
 
-	return (
-		<>
-			<MyOwnershipMap />
-		</>
-	)
+	return <MyOwnershipMap />
 }
 
 export default observer(MyOwnership)

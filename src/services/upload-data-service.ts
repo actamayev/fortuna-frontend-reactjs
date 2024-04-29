@@ -1,6 +1,6 @@
+import FormData from "form-data"
 import { AxiosResponse } from "axios"
 import FortunaHttpClient from "../classes/fortuna-http-client"
-import FormData from "form-data"
 
 export default class UploadDataService {
 	constructor(private readonly httpClient: FortunaHttpClient) {
@@ -25,11 +25,11 @@ export default class UploadDataService {
 		)
 	}
 
-	async uploadProfilePicture(file: File): Promise<AxiosResponse<ProfilePictureUrl | ErrorResponses>> {
+	async uploadProfilePicture(file: File): Promise<AxiosResponse<ProfilePictureUrl | NonSuccessResponse>> {
 		const formData = new FormData()
 		formData.append("file", file, file.name)
 
-		return await this.httpClient.http.post<ProfilePictureUrl | ErrorResponses>(
+		return await this.httpClient.http.post<ProfilePictureUrl | NonSuccessResponse>(
 			"/upload/upload-profile-picture", formData, { headers: { "Content-Type": file.type }}
 		)
 	}

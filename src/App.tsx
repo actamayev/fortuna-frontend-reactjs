@@ -5,12 +5,12 @@ import Home from "./pages/home"
 import Video from "./pages/video"
 import Creator from "./pages/creator"
 import Missing from "./pages/missing"
+import MyWallet from "./pages/my-wallet"
 import MyProfile from "./pages/my-profile"
 import LoginPage from "./pages/auth/login-page"
 import SearchResults from "./pages/search-results"
 import RegisterPage from "./pages/auth/register-page"
 import MyOwnership from "./pages/supporter/my-ownership"
-import SupporterWallet from "./pages/supporter/supporter-wallet"
 
 import CreatorRoutes from "./routes/creator-routes"
 
@@ -37,7 +37,7 @@ function App() {
 			<Route path = "/login" element = {<LoginPage />} />
 			<Route path = "/register" element = {<RegisterPage />} />
 			<Route path = "/my-ownership" element = {<MyOwnership />} />
-			<Route path = "/my-wallet" element = {<SupporterWallet />} />
+			<Route path = "/my-wallet" element = {<MyWallet />} />
 			<Route path = "/v/:videoUUID" element = {<Video />} />
 			<Route path = "/my-profile" element = {<MyProfile />} />
 			<Route path = "/c/:creatorUsername" element = {<Creator />} />

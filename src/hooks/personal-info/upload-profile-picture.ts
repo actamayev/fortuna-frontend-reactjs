@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import { isErrorResponses } from "../../utils/type-checks"
+import { isNonSuccessResponse } from "../../utils/type-checks"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
@@ -20,7 +20,7 @@ export default function useUploadProfilePicture(): (
 		try {
 			if (_.isNull(selectedImage) || _.isNull(personalInfoClass)) return
 			const uploadProfilePictureResponse = await fortunaApiClient.uploadDataService.uploadProfilePicture(selectedImage)
-			if (!_.isEqual(uploadProfilePictureResponse.status, 200) || isErrorResponses(uploadProfilePictureResponse.data)) {
+			if (!_.isEqual(uploadProfilePictureResponse.status, 200) || isNonSuccessResponse(uploadProfilePictureResponse.data)) {
 				return
 			}
 			personalInfoClass.profilePictureUrl = uploadProfilePictureResponse.data.profilePictureUrl

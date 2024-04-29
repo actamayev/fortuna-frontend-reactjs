@@ -19,6 +19,7 @@ declare global {
 		phoneNumber: string | null
 		defaultCurrency: Currencies
 		defaultSiteTheme: SiteThemes
+		isApprovedToBeCreator: boolean
 		profilePictureUrl: string | null
 	}
 
@@ -61,6 +62,10 @@ declare global {
 	// Video Responses:
 	type RetrievedVideo = { videoData: VideoData }
 	type HomePageVideos = { homePageVideos: VideoData[] }
+	type CreatorDataResponse = {
+		videoData: VideoData[]
+		creatorData: CreatorData
+	}
 }
 
 export {}
