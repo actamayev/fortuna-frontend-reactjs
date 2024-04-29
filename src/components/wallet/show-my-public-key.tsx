@@ -1,7 +1,7 @@
 import _ from "lodash"
-import { useState } from "react"
 import { observer } from "mobx-react"
-import Button from "../button"
+import { useCallback, useState } from "react"
+import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import useRetrieveWalletPublicKey from "../../hooks/personal-info/retrieve-wallet-public-key"
 
@@ -10,21 +10,54 @@ function ShowMyPublicKey() {
 	const [isButtonDisabled, setIsButtonDisabled] = useState(false)
 	const retrieveWalletPublicKey = useRetrieveWalletPublicKey()
 
+	const handleRetrievePublicKey = useCallback(() => {
+		if (isButtonDisabled === true) return
+		retrieveWalletPublicKey(setIsButtonDisabled)
+	}, [isButtonDisabled, retrieveWalletPublicKey])
+
+	const hidePublicKey = useCallback(() => {
+		if (_.isNull(personalInfoClass)) return
+		personalInfoClass.publicKey = null
+	}, [personalInfoClass])
+
+	const copyToClipboard = useCallback(async () => {
+		if (_.isNil(personalInfoClass?.publicKey) || isButtonDisabled) return
+
+		try {
+			await navigator.clipboard.writeText(personalInfoClass.publicKey)
+		} catch (err) {
+			console.error("Failed to copy text: ", err)
+		}
+	}, [personalInfoClass?.publicKey, isButtonDisabled])
+
 	if (_.isNull(personalInfoClass)) return null
 
-	// TODO: should be a way to hide public key (should remove from class as well)
-	if (!_.isNull(personalInfoClass.publicKey)) {
-		return <div className="font-semibold">{personalInfoClass.publicKey}</div>
+	if (_.isNull(personalInfoClass.publicKey)) {
+		return (
+			<div className="font-semibold flex items-center">
+				<div className="mr-2 cursor-pointer" onClick={handleRetrievePublicKey}>
+					<FaEyeSlash />
+				</div>
+				<div className="flex-grow">My Public Key: ***********</div>
+			</div>
+		)
 	}
 	return (
-		<Button
-			title="Show my Public Key"
-			colorClass="bg-purple-200"
-			hoverClass="hover:bg-purple-300"
-			onClick={() => retrieveWalletPublicKey(setIsButtonDisabled)}
-			className="font-semibold"
-			disabled={isButtonDisabled}
-		/>
+		<div className="font-semibold flex items-center">
+			<div
+				className={`cursor-pointer mr-2 ${isButtonDisabled ? "opacity-50 cursor-not-allowed" : ""}`}
+				onClick={hidePublicKey}
+			>
+				<FaEye />
+			</div>
+			<div className="flex items-center">
+				<span className="mr-2">My Public Key:</span>
+				<div className="cursor-pointer" onClick={copyToClipboard} style={{ flexShrink: 0 }}>
+					{personalInfoClass.publicKey}
+				</div>
+			</div>
+
+		</div>
 	)
 }
 

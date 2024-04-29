@@ -33,11 +33,13 @@ function WalletDetails () {
 				<div className="mr-4">
 					<RequestAirdropButton />
 				</div>
+			</div>
+			<div className="mt-3">
 				<ShowMyPublicKey />
 			</div>
-			<div className="bg-white shadow-lg rounded-md p-4 mt-4 grid grid-cols-1 grid-rows-1 border">
+			<div className="bg-white shadow-lg rounded-md p-4 mt-3 grid grid-cols-1 grid-rows-1 border">
 				<div>
-				Wallet Balance:
+					Wallet Balance:
 					{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
 					{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
 					{convertSolAmountToDefaultCurrency(solanaClass.walletBalanceSol || 0)}
