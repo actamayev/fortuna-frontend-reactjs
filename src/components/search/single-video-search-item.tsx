@@ -1,5 +1,5 @@
-import useNavigateToCreator from "../../hooks/navigate/navigate-to-creator"
 import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
+import useNavigateToCreator from "../../hooks/navigate/navigate-to-creator"
 
 interface Props {
 	videoData: VideoData

@@ -2,11 +2,11 @@ import { Link } from "react-router-dom"
 
 export default function NullUserNavLink() {
 	return (
-		<div className="flex flex-col items-stretch w-full">
+		<div className="flex flex-col items-stretch w-full ml-2">
 			<div className="flex justify-start mr-3">
 				<Link
 					to="/register"
-					className="text-gray-200 hover:text-white rounded-md font-bold text-2xl"
+					className="text-white hover:text-gray-200 rounded-md font-bold text-2xl"
 				>
                     Register
 				</Link>
@@ -14,7 +14,7 @@ export default function NullUserNavLink() {
 			<div className="flex justify-end mr-3">
 				<Link
 					to="/login"
-					className="text-gray-200 hover:text-white rounded-md font-bold text-xl"
+					className="text-white hover:text-gray-200 rounded-md font-bold text-xl"
 				>
                     Login
 				</Link>
