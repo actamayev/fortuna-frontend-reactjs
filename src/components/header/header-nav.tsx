@@ -9,10 +9,10 @@ export default function HeaderNav() {
 		<nav className="bg-blue-600 dark:bg-gray-950 border-yellow-200 border-b-2 rounded-b-md relative">
 			<div className="flex justify-between items-center h-16 w-full px-4">
 				<LogoHeaderSection />
-				<div className="absolute left-0 right-0 mx-auto w-full max-w-xs">
+				<div className="absolute left-0 right-0 mx-auto w-full" style={{ maxWidth: "none" }}>
 					<SearchBar />
 				</div>
-				<div className="flex items-center">
+				<div className="flex items-center z-10">
 					<CreateContentHeaderButton />
 					<SliderDropdown />
 					<LoginLogoutHeaderItem />
