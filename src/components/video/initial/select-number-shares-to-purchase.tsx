@@ -14,7 +14,8 @@ function SelectNumberSharesToPurchase() {
 	const wasVideoCreatedByUser = useMemo(() => {
 		if (_.isNull(solanaClass) || _.isUndefined(videoUUID)) return true
 		return solanaClass.checkIfUuidExistsInContentList(videoUUID)
-	}, [solanaClass, videoUUID])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [solanaClass, videoUUID, solanaClass?.myContent])
 
 	if (_.isNull(solanaClass) || _.isUndefined(videoUUID) || wasVideoCreatedByUser === true) return null
 

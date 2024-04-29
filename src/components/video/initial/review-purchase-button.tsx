@@ -18,7 +18,8 @@ function ReviewPurchaseButton() {
 	const wasVideoCreatedByUser = useMemo(() => {
 		if (_.isNull(solanaClass) || _.isUndefined(videoUUID)) return true
 		return solanaClass.checkIfUuidExistsInContentList(videoUUID)
-	}, [solanaClass, videoUUID])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [solanaClass, videoUUID, solanaClass?.myContent])
 
 	const isAbleToPurchaseShares = useMemo(() => {
 		if (_.isNull(solanaClass) || _.isUndefined(videoUUID)) return false
