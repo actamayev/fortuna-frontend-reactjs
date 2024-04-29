@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 export default function NullUserNavLink() {
 	return (
-		<div className="flex flex-col items-stretch w-full">
+		<div className="flex flex-col items-stretch w-full ml-2">
 			<div className="flex justify-start mr-3">
 				<Link
 					to="/register"
