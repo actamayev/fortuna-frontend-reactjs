@@ -5,12 +5,14 @@ import { useLocation } from "react-router-dom"
 import useVideoSearch from "../../hooks/search/video-search"
 import { useVideoContext } from "../../contexts/video-context"
 import useTypedNavigate from "../../hooks/navigate/typed-navigate"
+import useHandleTypeUsername from "../../hooks/handle-type-username"
 
 function SearchBar() {
 	const navigate = useTypedNavigate()
 	const videoClass = useVideoContext()
 	const location = useLocation()
 	const videoSearch = useVideoSearch()
+	const handleTypeUsername = useHandleTypeUsername()
 
 	const handleSearch = useCallback((event: React.KeyboardEvent<HTMLInputElement>) => {
 		if (
@@ -34,7 +36,7 @@ function SearchBar() {
 						focus:outline-none focus:border-blue-500 dark:border-yellow-400 text-center"
 					placeholder="Search..."
 					value={videoClass.searchTerm || ""}
-					onChange={e => videoClass.setSearchTerm(e.target.value)}
+					onChange={e => videoClass.setSearchTerm(handleTypeUsername(e))}
 					onKeyDown={handleSearch}
 				/>
 			</div>
