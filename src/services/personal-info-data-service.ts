@@ -20,4 +20,10 @@ export default class PersonalInfoDataService {
 			`/personal-info/set-default-site-theme/${newSiteTheme}`
 		)
 	}
+
+	async retrieveWalletPublicKey(): Promise<AxiosResponse<PublicKeyResponse | MessageResponse | ErrorResponse>> {
+		return await this.httpClient.http.get<PublicKeyResponse | MessageResponse | ErrorResponse>(
+			"/personal-info/retrieve-wallet-public-key"
+		)
+	}
 }
