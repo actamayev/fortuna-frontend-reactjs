@@ -4,12 +4,14 @@ import { useEffect, useState } from "react"
 import DisplayUsernames from "./display-usernames"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import useUsernameSearch from "../../../../hooks/search/username-search"
+import useHandleTypeUsername from "../../../../hooks/handle-type-username"
 
 function UsernameSearch() {
 	const [isLoading, setIsLoading] = useState(false)
 	const [usernameSearchResults, setUsernameSearchResults] = useState<{ username: string }[]>([])
 	const solanaClass = useSolanaContext()
 	const usernameSearch = useUsernameSearch()
+	const handleTypeUsername = useHandleTypeUsername()
 
 	useEffect(() => {
 		void usernameSearch(setIsLoading, setUsernameSearchResults)
@@ -24,7 +26,7 @@ function UsernameSearch() {
 					type="text"
 					value={solanaClass.transferSolDetails.username}
 					onChange={(e) => {
-						solanaClass.updateTransferSolDetails("username", e.target.value)
+						solanaClass.updateTransferSolDetails("username", handleTypeUsername(e))
 						solanaClass.updateTransferSolDetails("isUsernameSelected", false)
 					}}
 					className="p-2 rounded-lg w-full"

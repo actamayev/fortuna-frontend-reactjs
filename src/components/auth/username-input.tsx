@@ -1,4 +1,5 @@
 import FormGroup from "../form-group"
+import useHandleTypeUsername from "../../hooks/handle-type-username"
 
 interface Props {
 	credentials: RegisterCredentials
@@ -7,13 +8,14 @@ interface Props {
 
 export default function UsernameInput (props: Props) {
 	const { credentials, setCredentials } = props
+	const handleTypeUsername = useHandleTypeUsername()
 
 	return (
 		<FormGroup
 			label = "Username"
-			type = "username"
+			type = "text"
 			placeholder = "abc123"
-			onChange = {(event) => setCredentials({ ...credentials, username: event.target.value })}
+			onChange = {(event) => setCredentials({ ...credentials, username: handleTypeUsername(event) })}
 			required
 			value = {credentials.username || ""}
 		/>
