@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom"
 import useVideoSearch from "../../hooks/search/video-search"
 import { useVideoContext } from "../../contexts/video-context"
 import useTypedNavigate from "../../hooks/navigate/typed-navigate"
-import useHandleTypeUsername from "../../hooks/handle-type-username"
+import useHandleTypeUsername from "../../hooks/handle-type-validation/handle-type-username"
 
 function SearchBar() {
 	const navigate = useTypedNavigate()

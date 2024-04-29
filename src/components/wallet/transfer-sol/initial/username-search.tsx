@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import DisplayUsernames from "./display-usernames"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import useUsernameSearch from "../../../../hooks/search/username-search"
-import useHandleTypeUsername from "../../../../hooks/handle-type-username"
+import useHandleTypeUsername from "../../../../hooks/handle-type-validation/handle-type-username"
 
 function UsernameSearch() {
 	const [isLoading, setIsLoading] = useState(false)

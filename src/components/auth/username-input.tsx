@@ -1,5 +1,5 @@
 import FormGroup from "../form-group"
-import useHandleTypeUsername from "../../hooks/handle-type-username"
+import useHandleTypeUsername from "../../hooks/handle-type-validation/handle-type-username"
 
 interface Props {
 	credentials: RegisterCredentials
