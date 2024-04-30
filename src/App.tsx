@@ -20,6 +20,7 @@ import useGetAuthDataFromStorage from "./hooks/auth/get-auth-data-from-storage"
 import useInitializeTagManager from "./hooks/analytics/initiallize-tag-manager"
 import useRetrievePersonalInfoUseEffect from "./hooks/personal-info/retrieve-personal-info-use-effect"
 import useRetrieveWalletBalanceUseEffect from "./hooks/solana/wallet-balance/retrieve-wallet-balance-use-effect"
+import useResetPurchaseSplAfterNavigation from "./hooks/solana/purchase-spl-tokens/reset-purchase-spl-after-navigation"
 
 function App() {
 	// Don't change the getAuthData to a useEffect, or else it doesn't work immediately after login
@@ -30,6 +31,7 @@ function App() {
 	useRetrieveMyContent()
 	useRetrieveMyOwnership()
 	useInitializeTagManager()
+	useResetPurchaseSplAfterNavigation()
 
 	return (
 		<Routes>
