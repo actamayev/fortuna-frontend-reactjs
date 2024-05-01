@@ -18,7 +18,7 @@ function SelectOfferingSharePriceSol() {
 				max={0.3}
 				step={0.003}
 			/>
-			{solanaClass.newSplDetails.listingSharePrice} Sol/Share
+			{_.round(solanaClass.newSplDetails.listingSharePrice, 4)} Sol/Share
 		</div>
 	)
 }

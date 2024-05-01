@@ -11,9 +11,9 @@ function ChooseSplDefaultCurrency() {
 		const solPrice = solanaClass.solPriceDetails?.solPriceInUSD
 		if (_.isUndefined(solPrice)) return
 		if (currency === "sol") {
-			solanaClass.updateNewSplDetails("listingSharePrice", _.round(solanaClass.newSplDetails.listingSharePrice / solPrice, 4))
+			solanaClass.updateNewSplDetails("listingSharePrice", solanaClass.newSplDetails.listingSharePrice / solPrice)
 		} else {
-			solanaClass.updateNewSplDetails("listingSharePrice", _.round(solanaClass.newSplDetails.listingSharePrice * solPrice, 2))
+			solanaClass.updateNewSplDetails("listingSharePrice", solanaClass.newSplDetails.listingSharePrice * solPrice)
 		}
 		solanaClass.updateNewSplDetails("listingDefaultCurrency", currency)
 	}, [solanaClass])
@@ -23,7 +23,7 @@ function ChooseSplDefaultCurrency() {
 	return (
 		<div>
 			<div className="text-sm font-medium text-gray-600">
-				Choose Currency to peg to
+				Currency to peg to
 			</div>
 			<div className="flex flex-col space-y-4 mt-2">
 				<div className="flex space-x-4">

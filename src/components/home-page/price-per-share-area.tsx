@@ -10,8 +10,8 @@ interface Props {
 // eslint-disable-next-line complexity
 function PricePerShareArea(props: Props) {
 	const { video } = props
-	const personalInfoClass = usePersonalInfoContext()
 	const solanaClass = useSolanaContext()
+	const personalInfoClass = usePersonalInfoContext()
 
 	if (_.isNull(personalInfoClass)) {
 		if (video.listingDefaultCurrency === "usd") {
@@ -25,17 +25,17 @@ function PricePerShareArea(props: Props) {
 			return <>{_.round(video.listingSharePrice, 4)} SOL/Share</>
 		}
 		if (_.isNull(solanaClass)) return null
-		const solPrice = solanaClass.solPriceDetails?.solPriceInUSD
-		if (_.isUndefined(solPrice)) return null
-		return <>{_.round(video.listingSharePrice / solPrice, 4)} SOL/Share</>
+		const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
+		if (_.isUndefined(solPriceInUSD)) return null
+		return <>{_.round(video.listingSharePrice / solPriceInUSD, 4)} SOL/Share</>
 	} else {
 		if (video.listingDefaultCurrency === "usd") {
 			return <>${_.round(video.listingSharePrice, 2)}/Share</>
 		}
 		if (_.isNull(solanaClass)) return null
-		const solPrice = solanaClass.solPriceDetails?.solPriceInUSD
-		if (_.isUndefined(solPrice)) return null
-		return <>${_.round(video.listingSharePrice * solPrice, 2)}/Share</>
+		const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
+		if (_.isUndefined(solPriceInUSD)) return null
+		return <>${_.round(video.listingSharePrice * solPriceInUSD, 2)}/Share</>
 	}
 }
 
