@@ -40,8 +40,7 @@ function SingleTransaction(props: Props) {
 				{_.upperFirst(transaction.outgoingOrIncoming)} Transfer on {formattedDateTime}
 			</div>
 			{personalInfoClass.getDefaultCurrency() === "usd" && (<> ${_.round(transaction.usdAmountTransferred, 2)}</>)}
-			{personalInfoClass.getDefaultCurrency() === "sol" && (<> {_.round(transaction.solAmountTransferred, 4)}</>)}
-			{personalInfoClass.getDefaultCurrency() === "sol" && (<> SOL</>)}
+			{personalInfoClass.getDefaultCurrency() === "sol" && (<> {_.round(transaction.solAmountTransferred, 4)} SOL</>)}
 			{transaction.outgoingOrIncoming === "incoming" && (<> from {transaction.transferFromUsername}</>)}
 			{transaction.outgoingOrIncoming === "outgoing" &&
 				(<> to {transaction.transferToUsername || transaction.transferToPublicKey}</>)
