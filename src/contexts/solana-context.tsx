@@ -34,7 +34,7 @@ class SolanaClass {
 		numberOfShares: 100,
 		// TODO: Share price sol should change on the fly to adjust to be approximately $0.5
 		// Same for the min/max/step size when purchasing an Spl
-		listingSharePrice: 0.03,
+		listingSharePrice: 0.003,
 		listingDefaultCurrency: "sol",
 		description: "",
 		creatorOwnershipPercentage: 50,
