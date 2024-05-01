@@ -6,6 +6,8 @@ import ConfirmTransactionButton from "./confirm-transaction-button"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
 
+// ASAP TODO: Switching default currencty from SOL --> USD or the other way around should be reflected in the transferAmount
+// Do this on the setDefaultCurrency hook level.
 function ReviewTransferInfo() {
 	const solanaClass = useSolanaContext()
 	const personalInfoClass = usePersonalInfoContext()
@@ -28,11 +30,12 @@ function ReviewTransferInfo() {
 			</div>
 			<div>
 				Sending
-				{personalInfoClass.getDefaultCurrency() === "usd" && (
+				{personalInfoClass.defaultCurrency === "usd" && (
 					<> ${_.round(solanaClass.transferSolDetails.transferAmount, 2)} to </>
 				)}
-				{personalInfoClass.getDefaultCurrency() === "sol" && (<> {_.round(solanaClass.transferSolDetails.transferAmount, 4)}</>)}
-				{personalInfoClass.getDefaultCurrency() === "sol" && (<> SOL to </>)}
+				{personalInfoClass.defaultCurrency === "sol" && (
+					<> {_.round(solanaClass.transferSolDetails.transferAmount, 4)} SOL to </>
+				)}
 
 				{solanaClass.transferSolDetails.transferOption === "username" && solanaClass.transferSolDetails.username}
 				{solanaClass.transferSolDetails.transferOption === "publicKey" && solanaClass.transferSolDetails.publicKey}

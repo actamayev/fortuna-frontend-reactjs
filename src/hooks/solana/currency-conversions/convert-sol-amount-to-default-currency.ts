@@ -15,7 +15,7 @@ export default function useConvertSolAmountDefaultCurrency(): (
 		try {
 			if (_.isNull(personalInfoClass)) return 0
 
-			if (personalInfoClass.getDefaultCurrency() === "sol") {
+			if (personalInfoClass.defaultCurrency === "sol") {
 				return _.round(solAmountToConvert, 4)
 			}
 

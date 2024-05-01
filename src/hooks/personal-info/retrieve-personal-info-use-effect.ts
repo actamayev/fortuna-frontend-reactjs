@@ -12,7 +12,7 @@ export default function useRetrievePersonalInfoUseEffect(): void {
 		try {
 			if (
 				_.isNull(personalInfoClass) ||
-				personalInfoClass.getIsRetrievingPersonalInfo() === true ||
+				personalInfoClass.isRetrievingPersonalInfo === true ||
 				_.isNull(fortunaApiClient.httpClient.accessToken)
 			) return
 

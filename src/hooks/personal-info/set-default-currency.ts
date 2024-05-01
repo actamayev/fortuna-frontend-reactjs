@@ -16,7 +16,7 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 	const setDefaultCurrency = useCallback(async () => {
 		try {
 			if (_.isNull(personalInfoClass)) return
-			const newCurrency = personalInfoClass.getDefaultCurrency() === "usd" ? "sol" : "usd"
+			const newCurrency = personalInfoClass.defaultCurrency === "usd" ? "sol" : "usd"
 			personalInfoClass.setDefaultCurrency(newCurrency)
 
 			// If the last sol price was retrieved more than 60 seconds ago, retrieve it from the backend again.

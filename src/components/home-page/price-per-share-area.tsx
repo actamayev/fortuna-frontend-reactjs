@@ -20,7 +20,7 @@ function PricePerShareArea(props: Props) {
 			return <>{_.round(video.listingSharePrice, 4)} SOL/Share</>
 		}
 	}
-	if (personalInfoClass.getDefaultCurrency() === "sol") {
+	if (personalInfoClass.defaultCurrency === "sol") {
 		if (video.listingDefaultCurrency === "sol") {
 			return <>{_.round(video.listingSharePrice, 4)} SOL/Share</>
 		}

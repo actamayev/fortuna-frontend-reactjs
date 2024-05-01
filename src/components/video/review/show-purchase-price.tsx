@@ -16,7 +16,7 @@ function ShowPurchasePrice(props: Props) {
 	if (_.isNull(personalInfoClass) || _.isNull(solanaClass)) return null
 
 	if (video.listingDefaultCurrency === "sol") {
-		if (personalInfoClass.getDefaultCurrency() === "sol") {
+		if (personalInfoClass.defaultCurrency === "sol") {
 			return (
 				<>
 					<ShowNumberSharesPurchasing />
@@ -35,7 +35,7 @@ function ShowPurchasePrice(props: Props) {
 			</>
 		)
 	} else {
-		if (personalInfoClass.getDefaultCurrency() === "usd") {
+		if (personalInfoClass.defaultCurrency === "usd") {
 			return (
 				<>
 					<ShowNumberSharesPurchasing />

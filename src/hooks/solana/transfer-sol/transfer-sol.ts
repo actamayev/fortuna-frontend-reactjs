@@ -39,7 +39,7 @@ export default function useTransferSol(): (
 			const sendingSolTransfer: SendingSolTransfer = {
 				sendingTo,
 				transferAmount: solanaClass.transferSolDetails.transferAmount,
-				transferCurrency: personalInfoClass.getDefaultCurrency()
+				transferCurrency: personalInfoClass.defaultCurrency
 			}
 
 			let transferSolResponse

@@ -32,7 +32,7 @@ function SelectTransferAmount() {
 	}
 	if (_.isNull(personalInfoClass) || solanaClass.isPublicKeySearchLoading === true) return null
 
-	if (personalInfoClass.getDefaultCurrency() === "sol") {
+	if (personalInfoClass.defaultCurrency === "sol") {
 		return (
 			<div className="flex flex-col space-y-4">
 				<RangeSelectorSlider

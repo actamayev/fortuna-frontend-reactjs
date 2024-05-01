@@ -34,10 +34,10 @@ function WalletDetails () {
 			<div className="bg-white shadow-lg rounded-md p-4 mt-3 grid grid-cols-1 grid-rows-1 border">
 				<div>
 					Wallet Balance:
-					{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
-					{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
+					{personalInfoClass.defaultCurrency === "usd" && (<> $</>)}
+					{personalInfoClass.defaultCurrency === "sol" && (<> </>)}
 					{convertSolAmountToDefaultCurrency(solanaClass.walletBalanceSol || 0)}
-					{personalInfoClass.getDefaultCurrency() === "sol" && (<> SOL</>)}
+					{personalInfoClass.defaultCurrency === "sol" && (<> SOL</>)}
 				</div>
 				Last Solana price: ${solanaClass.solPriceDetails?.solPriceInUSD} {" "}
 				(Last updated {formattedTime})

@@ -27,7 +27,7 @@ export default function useConfirmUserHasEnoughSolToTransfer(): (
 				solanaClass.transferSolDetails.transferOption === "publicKey" &&
 				solanaClass.transferSolDetails.isPublicKeyRegisteredWithFortuna === false
 			) {
-				if (personalInfoClass.getDefaultCurrency() === "sol") {
+				if (personalInfoClass.defaultCurrency === "sol") {
 					if (myWalletBalanceSol < solanaClass.transferSolDetails.transferAmount + 0.000005) {
 						setDoesUserHaveEnoughSol(false)
 						return
@@ -42,7 +42,7 @@ export default function useConfirmUserHasEnoughSolToTransfer(): (
 					}
 				}
 			} else {
-				if (personalInfoClass.getDefaultCurrency() === "sol") {
+				if (personalInfoClass.defaultCurrency === "sol") {
 					if (myWalletBalanceSol < solanaClass.transferSolDetails.transferAmount) {
 						setDoesUserHaveEnoughSol(false)
 						return
