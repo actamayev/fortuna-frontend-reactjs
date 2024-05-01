@@ -8,7 +8,13 @@ function ChooseSplDefaultCurrency() {
 
 	const handleCurrencyChange = useCallback((currency: Currencies) => {
 		if (_.isNull(solanaClass)) return
-		// TODO: Depending on the currency change, do a currency conversion.
+		const solPrice = solanaClass.solPriceDetails?.solPriceInUSD
+		if (_.isUndefined(solPrice)) return
+		if (currency === "sol") {
+			solanaClass.updateNewSplDetails("listingSharePrice", _.round(solanaClass.newSplDetails.listingSharePrice / solPrice, 4))
+		} else {
+			solanaClass.updateNewSplDetails("listingSharePrice", _.round(solanaClass.newSplDetails.listingSharePrice * solPrice, 2))
+		}
 		solanaClass.updateNewSplDetails("listingDefaultCurrency", currency)
 	}, [solanaClass])
 

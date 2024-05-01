@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import { useSolanaContext } from "../../contexts/solana-context"
+import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
 interface Props {
 	video: VideoData
@@ -25,17 +25,17 @@ function PricePerShareArea(props: Props) {
 			return <>{_.round(video.listingSharePrice, 4)} SOL/Share</>
 		}
 		if (_.isNull(solanaClass)) return null
-		const solPrice = solanaClass.solPriceDetails
-		if (_.isNull(solPrice)) return null
-		return <>{_.round(video.listingSharePrice / solPrice.solPriceInUSD, 4)}SOL/Share</>
+		const solPrice = solanaClass.solPriceDetails?.solPriceInUSD
+		if (_.isUndefined(solPrice)) return null
+		return <>{_.round(video.listingSharePrice / solPrice, 4)} SOL/Share</>
 	} else {
 		if (video.listingDefaultCurrency === "usd") {
 			return <>${_.round(video.listingSharePrice, 2)}/Share</>
 		}
 		if (_.isNull(solanaClass)) return null
-		const solPrice = solanaClass.solPriceDetails
-		if (_.isNull(solPrice)) return null
-		return <>${_.round(video.listingSharePrice * solPrice.solPriceInUSD, 2)}/Share</>
+		const solPrice = solanaClass.solPriceDetails?.solPriceInUSD
+		if (_.isUndefined(solPrice)) return null
+		return <>${_.round(video.listingSharePrice * solPrice, 2)}/Share</>
 	}
 }
 

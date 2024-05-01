@@ -18,8 +18,9 @@ function ShowPurchasePrice(props: Props) {
 		if (personalInfoClass.getDefaultCurrency() === "sol") {
 			return (
 				<>
-					Purchasing {solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing} shares for
-					{video.listingSharePrice} SOL
+					Purchasing {solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing} shares for {" "}
+					{_.round(video.listingSharePrice * solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing, 4)} SOL
+					({_.round(video.listingSharePrice, 4)}SOL/Share)
 				</>
 			)
 		}
@@ -27,16 +28,18 @@ function ShowPurchasePrice(props: Props) {
 		if (_.isUndefined(solanaPrice)) return null
 		return (
 			<>
-				Purchasing {solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing} shares for
-				${video.listingSharePrice * solanaPrice}
+				Purchasing {solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing} shares for {" "}
+				${_.round(video.listingSharePrice * solanaPrice * solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing, 2)} {" "}
+				(${_.round(video.listingSharePrice * solanaPrice, 2)}/Share)
 			</>
 		)
 	} else {
 		if (personalInfoClass.getDefaultCurrency() === "usd") {
 			return (
 				<>
-					Purchasing {solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing} shares for
-					${video.listingSharePrice}
+					Purchasing {solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing} shares for {" "}
+					${_.round(video.listingSharePrice * solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing, 2)} {" "}
+					(${_.round(video.listingSharePrice, 2)}/Share)
 				</>
 			)
 		}
@@ -44,8 +47,9 @@ function ShowPurchasePrice(props: Props) {
 		if (_.isUndefined(solanaPrice)) return null
 		return (
 			<>
-				Purchasing {solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing} shares for
-				{video.listingSharePrice / solanaPrice} SOL
+				Purchasing {solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing} shares for {" "}
+				{_.round((video.listingSharePrice * solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing) / solanaPrice, 4)} SOL
+				({_.round(video.listingSharePrice / solanaPrice, 4)}SOL/Share)
 			</>
 		)
 	}

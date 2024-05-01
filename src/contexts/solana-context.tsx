@@ -32,9 +32,9 @@ class SolanaClass {
 	public newSplDetails: NewSPLDetails = {
 		splName: "",
 		numberOfShares: 100,
-		// TODO: Share price sol should change on the fly to adjust to be approximately $0.5
-		// Same for the min/max/step size when purchasing an Spl
 		listingSharePrice: 0.003,
+		// TODO: See if this can automatically default to the user's default currency (from personalInfoClass)
+		// Listing share price should also adjust as a result (currently, 0.003 is sol.)
 		listingDefaultCurrency: "sol",
 		description: "",
 		creatorOwnershipPercentage: 50,
