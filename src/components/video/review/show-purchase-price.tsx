@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../contexts/solana-context"
+import ShowNumberSharesPurchasing from "./show-number-shares-purchasing"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 
 interface Props {
@@ -9,8 +10,8 @@ interface Props {
 
 function ShowPurchasePrice(props: Props) {
 	const { video } = props
-	const personalInfoClass = usePersonalInfoContext()
 	const solanaClass = useSolanaContext()
+	const personalInfoClass = usePersonalInfoContext()
 
 	if (_.isNull(personalInfoClass) || _.isNull(solanaClass)) return null
 
@@ -18,38 +19,38 @@ function ShowPurchasePrice(props: Props) {
 		if (personalInfoClass.getDefaultCurrency() === "sol") {
 			return (
 				<>
-					Purchasing {solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing} shares for {" "}
+					<ShowNumberSharesPurchasing />
 					{_.round(video.listingSharePrice * solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing, 4)} SOL
-					({_.round(video.listingSharePrice, 4)}SOL/Share)
+					({_.round(video.listingSharePrice, 4)} SOL/share)
 				</>
 			)
 		}
-		const solanaPrice = solanaClass.solPriceDetails?.solPriceInUSD
-		if (_.isUndefined(solanaPrice)) return null
+		const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
+		if (_.isUndefined(solPriceInUSD)) return null
 		return (
 			<>
-				Purchasing {solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing} shares for {" "}
-				${_.round(video.listingSharePrice * solanaPrice * solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing, 2)} {" "}
-				(${_.round(video.listingSharePrice * solanaPrice, 2)}/Share)
+				<ShowNumberSharesPurchasing />
+				${_.round(video.listingSharePrice * solPriceInUSD * solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing, 2)} {" "}
+				(${_.round(video.listingSharePrice * solPriceInUSD, 2)}/share)
 			</>
 		)
 	} else {
 		if (personalInfoClass.getDefaultCurrency() === "usd") {
 			return (
 				<>
-					Purchasing {solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing} shares for {" "}
+					<ShowNumberSharesPurchasing />
 					${_.round(video.listingSharePrice * solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing, 2)} {" "}
-					(${_.round(video.listingSharePrice, 2)}/Share)
+					(${_.round(video.listingSharePrice, 2)}/share)
 				</>
 			)
 		}
-		const solanaPrice = solanaClass.solPriceDetails?.solPriceInUSD
-		if (_.isUndefined(solanaPrice)) return null
+		const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
+		if (_.isUndefined(solPriceInUSD)) return null
 		return (
 			<>
-				Purchasing {solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing} shares for {" "}
-				{_.round((video.listingSharePrice * solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing) / solanaPrice, 4)} SOL
-				({_.round(video.listingSharePrice / solanaPrice, 4)}SOL/Share)
+				<ShowNumberSharesPurchasing />
+				{_.round((video.listingSharePrice * solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing) / solPriceInUSD, 4)} SOL
+				({_.round(video.listingSharePrice / solPriceInUSD, 4)} SOL/share)
 			</>
 		)
 	}
