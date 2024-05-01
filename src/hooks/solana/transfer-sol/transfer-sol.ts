@@ -36,19 +36,10 @@ export default function useTransferSol(): (
 
 			await retrieveSolPrice()
 			if (_.isNull(solanaClass.solPriceDetails)) return
-			if (personalInfoClass.getDefaultCurrency() === "sol") {
-				solanaClass.updateTransferSolDetails("usdAmount",
-					solanaClass.transferSolDetails.solAmount * solanaClass.solPriceDetails.solPriceInUSD
-				)
-			} else {
-				solanaClass.updateTransferSolDetails("solAmount",
-					solanaClass.transferSolDetails.usdAmount / solanaClass.solPriceDetails.solPriceInUSD
-				)
-			}
 			const sendingSolTransfer: SendingSolTransfer = {
 				sendingTo,
-				transferAmountSol: solanaClass.transferSolDetails.solAmount,
-				transferAmountUsd: solanaClass.transferSolDetails.usdAmount
+				transferAmount: solanaClass.transferSolDetails.transferAmount,
+				transferCurrency: personalInfoClass.getDefaultCurrency()
 			}
 
 			let transferSolResponse

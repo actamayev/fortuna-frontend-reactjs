@@ -15,8 +15,7 @@ class SolanaClass {
 		publicKey: "",
 		isPublicKeyRegisteredWithFortuna: false,
 		doesPublicKeyExist: false,
-		solAmount: 0,
-		usdAmount: 0,
+		transferAmount: 0,
 		transferStage: "initial"
 	}
 	public isPublicKeySearchLoading = false
@@ -33,10 +32,10 @@ class SolanaClass {
 	public newSplDetails: NewSPLDetails = {
 		splName: "",
 		numberOfShares: 100,
-		offeringSharePriceUsd: 0.5,
 		// TODO: Share price sol should change on the fly to adjust to be approximately $0.5
 		// Same for the min/max/step size when purchasing an Spl
-		offeringSharePriceSol: 0.003,
+		listingSharePrice: 0.03,
+		listingDefaultCurrency: "sol",
 		description: "",
 		creatorOwnershipPercentage: 50,
 		originalContentUrl: "",
@@ -219,8 +218,7 @@ class SolanaClass {
 			publicKey: "",
 			isPublicKeyRegisteredWithFortuna: false,
 			doesPublicKeyExist: false,
-			solAmount: 0,
-			usdAmount: 0,
+			transferAmount: 0,
 			transferStage: "initial"
 		}
 	})
@@ -257,8 +255,8 @@ class SolanaClass {
 		this.newSplDetails = {
 			splName: "",
 			numberOfShares: 100,
-			offeringSharePriceUsd: 0.5,
-			offeringSharePriceSol: 0.003,
+			listingSharePrice: 0.03,
+			listingDefaultCurrency: "sol",
 			description: "",
 			creatorOwnershipPercentage: 50,
 			originalContentUrl: "",

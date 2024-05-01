@@ -8,7 +8,7 @@ function ReviewTransferButton() {
 
 	if (
 		_.isNull(solanaClass) ||
-		(_.isEqual(solanaClass.transferSolDetails.solAmount, 0) && _.isEqual(solanaClass.transferSolDetails.usdAmount, 0))
+		_.isEqual(solanaClass.transferSolDetails.transferAmount, 0)
 	) return null
 
 	return (

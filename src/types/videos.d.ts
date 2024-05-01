@@ -2,8 +2,8 @@ declare global {
 	interface VideoData {
 		splName: string
 		splPublicKey: string
-		offeringSharePriceSol: number
-		offeringSharePriceUsd: number
+		listingSharePrice: number
+		listingDefaultCurrency: Currencies
 		description: string
 		imageUrl: string
 		videoUrl: string

@@ -28,8 +28,10 @@ function ReviewTransferInfo() {
 			</div>
 			<div>
 				Sending
-				{personalInfoClass.getDefaultCurrency() === "usd" && (<> ${_.round(solanaClass.transferSolDetails.usdAmount, 2)} to </>)}
-				{personalInfoClass.getDefaultCurrency() === "sol" && (<> {_.round(solanaClass.transferSolDetails.solAmount, 4)}</>)}
+				{personalInfoClass.getDefaultCurrency() === "usd" && (
+					<> ${_.round(solanaClass.transferSolDetails.transferAmount, 2)} to </>
+				)}
+				{personalInfoClass.getDefaultCurrency() === "sol" && (<> {_.round(solanaClass.transferSolDetails.transferAmount, 4)}</>)}
 				{personalInfoClass.getDefaultCurrency() === "sol" && (<> SOL to </>)}
 
 				{solanaClass.transferSolDetails.transferOption === "username" && solanaClass.transferSolDetails.username}

@@ -37,18 +37,15 @@ function SelectTransferAmount() {
 			<div className="flex flex-col space-y-4">
 				<RangeSelectorSlider
 					title=""
-					value={solanaClass.transferSolDetails.solAmount}
+					value={solanaClass.transferSolDetails.transferAmount}
 					onChange={(e) => {
-						solanaClass.updateTransferSolDetails("solAmount", Number(e.target.value))
-						if (_.isNull(solanaClass.solPriceDetails)) return
-						// eslint-disable-next-line max-len
-						solanaClass.updateTransferSolDetails("usdAmount", Number(e.target.value) * solanaClass.solPriceDetails.solPriceInUSD)
+						solanaClass.updateTransferSolDetails("transferAmount", Number(e.target.value))
 					}}
 					min={0}
 					max={solanaClass.walletBalanceSol || 0}
 					step={0.01}
 				/>
-				{_.round(solanaClass.transferSolDetails.solAmount, 4)} Sol
+				{_.round(solanaClass.transferSolDetails.transferAmount, 4)} Sol
 			</div>
 		)
 	}
@@ -57,17 +54,15 @@ function SelectTransferAmount() {
 		<div className="flex flex-col space-y-4">
 			<RangeSelectorSlider
 				title=""
-				value={solanaClass.transferSolDetails.usdAmount}
+				value={solanaClass.transferSolDetails.transferAmount}
 				onChange={(e) => {
-					solanaClass.updateTransferSolDetails("usdAmount", Number(e.target.value))
-					if (_.isNull(solanaClass.solPriceDetails)) return
-					solanaClass.updateTransferSolDetails("solAmount", Number(e.target.value) / solanaClass.solPriceDetails.solPriceInUSD )
+					solanaClass.updateTransferSolDetails("transferAmount", Number(e.target.value))
 				}}
 				min={0}
 				max={convertSolAmountToDefaultCurrency(solanaClass.walletBalanceSol || 0)}
 				step={1}
 			/>
-			${_.round(solanaClass.transferSolDetails.usdAmount, 2)}
+			${_.round(solanaClass.transferSolDetails.transferAmount, 2)}
 		</div>
 	)
 }

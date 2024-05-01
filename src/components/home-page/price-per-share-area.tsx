@@ -1,24 +1,42 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import { useSolanaContext } from "../../contexts/solana-context"
 
 interface Props {
 	video: VideoData
 }
 
+// eslint-disable-next-line complexity
 function PricePerShareArea(props: Props) {
 	const { video } = props
 	const personalInfoClass = usePersonalInfoContext()
+	const solanaClass = useSolanaContext()
 
 	if (_.isNull(personalInfoClass)) {
-		return <>${_.round(video.offeringSharePriceUsd, 2)}/Share</>
+		if (video.listingDefaultCurrency === "usd") {
+			return <>${_.round(video.listingSharePrice, 2)}/Share</>
+		} else {
+			return <>{_.round(video.listingSharePrice, 4)} SOL/Share</>
+		}
 	}
-	return (
-		<>
-			{personalInfoClass.getDefaultCurrency() === "sol" && (<>{_.round(video.offeringSharePriceSol, 4)} SOL/Share</>)}
-			{personalInfoClass.getDefaultCurrency() === "usd" && (<>${_.round(video.offeringSharePriceUsd, 2)}/Share</>)}
-		</>
-	)
+	if (personalInfoClass.getDefaultCurrency() === "sol") {
+		if (video.listingDefaultCurrency === "sol") {
+			return <>{_.round(video.listingSharePrice, 4)} SOL/Share</>
+		}
+		if (_.isNull(solanaClass)) return null
+		const solPrice = solanaClass.solPriceDetails
+		if (_.isNull(solPrice)) return null
+		return <>{_.round(video.listingSharePrice / solPrice.solPriceInUSD, 4)}SOL/Share</>
+	} else {
+		if (video.listingDefaultCurrency === "usd") {
+			return <>${_.round(video.listingSharePrice, 2)}/Share</>
+		}
+		if (_.isNull(solanaClass)) return null
+		const solPrice = solanaClass.solPriceDetails
+		if (_.isNull(solPrice)) return null
+		return <>${_.round(video.listingSharePrice * solPrice.solPriceInUSD, 2)}/Share</>
+	}
 }
 
 export default observer(PricePerShareArea)
