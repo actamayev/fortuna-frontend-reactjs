@@ -24,17 +24,15 @@ function PricePerShareArea(props: Props) {
 		if (video.listingDefaultCurrency === "sol") {
 			return <>{_.round(video.listingSharePrice, 4)} SOL/Share</>
 		}
-		if (_.isNull(solanaClass)) return null
-		const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
-		if (_.isUndefined(solPriceInUSD)) return null
+		if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null
+		const solPriceInUSD = solanaClass.solPriceDetails.solPriceInUSD
 		return <>{_.round(video.listingSharePrice / solPriceInUSD, 4)} SOL/Share</>
 	} else {
 		if (video.listingDefaultCurrency === "usd") {
 			return <>${_.round(video.listingSharePrice, 2)}/Share</>
 		}
-		if (_.isNull(solanaClass)) return null
-		const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
-		if (_.isUndefined(solPriceInUSD)) return null
+		if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null
+		const solPriceInUSD = solanaClass.solPriceDetails.solPriceInUSD
 		return <>${_.round(video.listingSharePrice * solPriceInUSD, 2)}/Share</>
 	}
 }

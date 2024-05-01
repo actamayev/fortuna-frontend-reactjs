@@ -7,13 +7,12 @@ function ChooseSplDefaultCurrency() {
 	const solanaClass = useSolanaContext()
 
 	const handleCurrencyChange = useCallback((currency: Currencies) => {
-		if (_.isNull(solanaClass)) return
-		const solPrice = solanaClass.solPriceDetails?.solPriceInUSD
-		if (_.isUndefined(solPrice)) return
+		if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return
+		const solPriceInUSD = solanaClass.solPriceDetails.solPriceInUSD
 		if (currency === "sol") {
-			solanaClass.updateNewSplDetails("listingSharePrice", solanaClass.newSplDetails.listingSharePrice / solPrice)
+			solanaClass.updateNewSplDetails("listingSharePrice", solanaClass.newSplDetails.listingSharePrice / solPriceInUSD)
 		} else {
-			solanaClass.updateNewSplDetails("listingSharePrice", solanaClass.newSplDetails.listingSharePrice * solPrice)
+			solanaClass.updateNewSplDetails("listingSharePrice", solanaClass.newSplDetails.listingSharePrice * solPriceInUSD)
 		}
 		solanaClass.updateNewSplDetails("listingDefaultCurrency", currency)
 	}, [solanaClass])

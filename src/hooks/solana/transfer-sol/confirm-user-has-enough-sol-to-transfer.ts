@@ -36,7 +36,6 @@ export default function useConfirmUserHasEnoughSolToTransfer(): (
 					const solPrice = solanaClass.solPriceDetails?.solPriceInUSD
 					if (_.isUndefined(solPrice)) return
 					const myWalletBalanceUsd = myWalletBalanceSol * solPrice
-					// TODO: convert 0.00005 to usd eforeadding
 					if (myWalletBalanceUsd < solanaClass.transferSolDetails.transferAmount + (0.000005 * solPrice)) {
 						setDoesUserHaveEnoughSol(false)
 						return

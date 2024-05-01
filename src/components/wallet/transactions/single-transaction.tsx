@@ -3,18 +3,15 @@ import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
-import useConvertSolAmountDefaultCurrency from "../../../hooks/solana/currency-conversions/convert-sol-amount-to-default-currency"
 
 interface Props {
 	transaction: SolanaTransaction
 }
 
-// eslint-disable-next-line complexity
 function SingleTransaction(props: Props) {
 	const { transaction } = props
 	const solanaClass = useSolanaContext()
 	const personalInfoClass = usePersonalInfoContext()
-	const convertSolAmountToDefaultCurrency = useConvertSolAmountDefaultCurrency()
 
 	const formattedDateTime = useMemo(() => {
 		const lastRetrieved = transaction.transferDateTime
@@ -42,9 +39,8 @@ function SingleTransaction(props: Props) {
 			<div>
 				{_.upperFirst(transaction.outgoingOrIncoming)} Transfer on {formattedDateTime}
 			</div>
-			{personalInfoClass.getDefaultCurrency() === "usd" && (<> $</>)}
-			{personalInfoClass.getDefaultCurrency() === "sol" && (<> </>)}
-			{convertSolAmountToDefaultCurrency(transaction.solAmountTransferred || 0)}
+			{personalInfoClass.getDefaultCurrency() === "usd" && (<> ${_.round(transaction.usdAmountTransferred, 2)}</>)}
+			{personalInfoClass.getDefaultCurrency() === "sol" && (<> {_.round(transaction.solAmountTransferred, 4)}</>)}
 			{personalInfoClass.getDefaultCurrency() === "sol" && (<> SOL</>)}
 			{transaction.outgoingOrIncoming === "incoming" && (<> from {transaction.transferFromUsername}</>)}
 			{transaction.outgoingOrIncoming === "outgoing" &&
