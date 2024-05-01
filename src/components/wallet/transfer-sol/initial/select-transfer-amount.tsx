@@ -11,7 +11,7 @@ function SelectTransferAmount() {
 	const personalInfoClass = usePersonalInfoContext()
 	const convertSolAmountToDefaultCurrency = useConvertSolAmountDefaultCurrency()
 
-	if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null
+	if (_.isNull(solanaClass)) return null
 
 	if (
 		solanaClass.transferSolDetails.transferOption === "username" &&
