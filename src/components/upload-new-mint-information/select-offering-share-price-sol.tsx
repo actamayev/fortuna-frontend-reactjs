@@ -14,7 +14,7 @@ function SelectOfferingSharePriceSol() {
 				title="Offering price per share (SOL)"
 				value={solanaClass.newSplDetails.listingSharePrice}
 				onChange={(event) => solanaClass.updateNewSplDetails("listingSharePrice", Number(event.target.value))}
-				min={0.003}
+				min={0.0001}
 				max={0.3}
 				step={0.0001}
 			/>
