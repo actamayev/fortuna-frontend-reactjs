@@ -3,15 +3,13 @@ import { observer } from "mobx-react"
 import RangeSelectorSlider from "../../../range-selector-slider"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
-import useConvertSolAmountDefaultCurrency from "../../../../hooks/solana/currency-conversions/convert-sol-amount-to-default-currency"
 
 // eslint-disable-next-line complexity
 function SelectTransferAmount() {
 	const solanaClass = useSolanaContext()
 	const personalInfoClass = usePersonalInfoContext()
-	const convertSolAmountToDefaultCurrency = useConvertSolAmountDefaultCurrency()
 
-	if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null
+	if (_.isNull(solanaClass)) return null
 
 	if (
 		solanaClass.transferSolDetails.transferOption === "username" &&
@@ -32,23 +30,20 @@ function SelectTransferAmount() {
 	}
 	if (_.isNull(personalInfoClass) || solanaClass.isPublicKeySearchLoading === true) return null
 
-	if (personalInfoClass.getDefaultCurrency() === "sol") {
+	if (personalInfoClass.defaultCurrency === "sol") {
 		return (
 			<div className="flex flex-col space-y-4">
 				<RangeSelectorSlider
 					title=""
-					value={solanaClass.transferSolDetails.solAmount}
+					value={solanaClass.transferSolDetails.transferAmount}
 					onChange={(e) => {
-						solanaClass.updateTransferSolDetails("solAmount", Number(e.target.value))
-						if (_.isNull(solanaClass.solPriceDetails)) return
-						// eslint-disable-next-line max-len
-						solanaClass.updateTransferSolDetails("usdAmount", Number(e.target.value) * solanaClass.solPriceDetails.solPriceInUSD)
+						solanaClass.updateTransferSolDetails("transferAmount", Number(e.target.value))
 					}}
 					min={0}
 					max={solanaClass.walletBalanceSol || 0}
-					step={0.01}
+					step={0.0001}
 				/>
-				{_.round(solanaClass.transferSolDetails.solAmount, 4)} Sol
+				{_.round(solanaClass.transferSolDetails.transferAmount, 4)} Sol
 			</div>
 		)
 	}
@@ -57,17 +52,15 @@ function SelectTransferAmount() {
 		<div className="flex flex-col space-y-4">
 			<RangeSelectorSlider
 				title=""
-				value={solanaClass.transferSolDetails.usdAmount}
+				value={solanaClass.transferSolDetails.transferAmount}
 				onChange={(e) => {
-					solanaClass.updateTransferSolDetails("usdAmount", Number(e.target.value))
-					if (_.isNull(solanaClass.solPriceDetails)) return
-					solanaClass.updateTransferSolDetails("solAmount", Number(e.target.value) / solanaClass.solPriceDetails.solPriceInUSD )
+					solanaClass.updateTransferSolDetails("transferAmount", Number(e.target.value))
 				}}
 				min={0}
-				max={convertSolAmountToDefaultCurrency(solanaClass.walletBalanceSol || 0)}
-				step={1}
+				max={solanaClass.walletBalanceUSD.get()}
+				step={0.01}
 			/>
-			${_.round(solanaClass.transferSolDetails.usdAmount, 2)}
+			${_.round(solanaClass.transferSolDetails.transferAmount, 2)}
 		</div>
 	)
 }

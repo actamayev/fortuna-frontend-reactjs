@@ -9,17 +9,18 @@ export default function useCalculateMaxSharesToPurchase(): (
 	const solanaClass = useSolanaContext()
 	const videoClass = useVideoContext()
 
-	const calculateMaxSharesToPurchase = useCallback((
-		videoUUID: string
-	): number => {
+	const calculateMaxSharesToPurchase = useCallback((videoUUID: string): number => {
 		try {
-			if (_.isNull(solanaClass)) return 0
-			const walletBalanceSol = solanaClass.walletBalanceSol
-			if (_.isNull(walletBalanceSol)) return 0
+			if (_.isNull(solanaClass) || _.isNull(solanaClass.walletBalanceSol)) return 0
+
 			const video = videoClass.findVideoFromUUID(videoUUID)
-			if (_.isUndefined(video) || _.isEqual(video.offeringSharePriceSol, 0)) return 0
-			const maxSharesFromBalance = Math.floor(walletBalanceSol / video.offeringSharePriceSol)
-			return Math.min(maxSharesFromBalance, video.sharesRemainingForSale)
+			if (_.isUndefined(video) || _.isEqual(video.listingSharePrice, 0)) return 0
+
+			if (video.listingDefaultCurrency === "sol") {
+				return Math.floor(solanaClass.walletBalanceSol / video.listingSharePrice)
+			} else {
+				return Math.floor(solanaClass.walletBalanceUSD.get() / video.listingSharePrice)
+			}
 		} catch (error) {
 			return 0
 		}

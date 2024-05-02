@@ -27,13 +27,17 @@ function ReviewTransferInfo() {
 				</div>
 			</div>
 			<div>
-				Sending
-				{personalInfoClass.getDefaultCurrency() === "usd" && (<> ${_.round(solanaClass.transferSolDetails.usdAmount, 2)} to </>)}
-				{personalInfoClass.getDefaultCurrency() === "sol" && (<> {_.round(solanaClass.transferSolDetails.solAmount, 4)}</>)}
-				{personalInfoClass.getDefaultCurrency() === "sol" && (<> SOL to </>)}
-
-				{solanaClass.transferSolDetails.transferOption === "username" && solanaClass.transferSolDetails.username}
-				{solanaClass.transferSolDetails.transferOption === "publicKey" && solanaClass.transferSolDetails.publicKey}
+				Sending {" "}
+				{personalInfoClass.defaultCurrency === "usd" && (
+					<> ${_.round(solanaClass.transferSolDetails.transferAmount, 2)} to </>
+				)}
+				{personalInfoClass.defaultCurrency === "sol" && (
+					<> {_.round(solanaClass.transferSolDetails.transferAmount, 4)} SOL to </>
+				)}
+				<span className="font-semibold">
+					{solanaClass.transferSolDetails.transferOption === "username" && solanaClass.transferSolDetails.username}
+					{solanaClass.transferSolDetails.transferOption === "publicKey" && solanaClass.transferSolDetails.publicKey}
+				</span>
 			</div>
 			Fee: <FeeSection />
 			<ConfirmTransactionButton />

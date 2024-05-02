@@ -11,7 +11,7 @@ export default function useSetDefaultSiteTheme(): () => Promise<void> {
 	const setDefaultSiteTheme = useCallback(async () => {
 		try {
 			if (_.isNull(personalInfoClass)) return
-			const newSiteTheme = personalInfoClass.getDefaultSiteTheme() === "light" ? "dark" : "light"
+			const newSiteTheme = personalInfoClass.defaultSiteTheme === "light" ? "dark" : "light"
 			personalInfoClass.setDefaultSiteTheme(newSiteTheme)
 			if (!_.isNull(fortunaApiClient.httpClient.accessToken)) {
 				const siteThemeResponse = await fortunaApiClient.personalInfoDataService.setDefaultSiteTheme(newSiteTheme)

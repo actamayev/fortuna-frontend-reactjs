@@ -36,9 +36,9 @@ function ShowMyPublicKey() {
 		return (
 			<div className="font-semibold flex items-center">
 				<div className="mr-2 cursor-pointer" onClick={handleRetrievePublicKey}>
-					<FaEyeSlash />
+					<FaEyeSlash style={{ color: personalInfoClass.defaultSiteTheme === "dark" ? "white" : "" }}/>
 				</div>
-				<div className="flex-grow">My Public Key: **********</div>
+				<div className="flex-grow dark:text-white">My Public Key: **********</div>
 			</div>
 		)
 	}
@@ -49,9 +49,9 @@ function ShowMyPublicKey() {
 				className={`cursor-pointer mr-2 ${isButtonDisabled ? "opacity-50 cursor-not-allowed" : ""}`}
 				onClick={hidePublicKey}
 			>
-				<FaEye />
+				<FaEye style={{ color: personalInfoClass.defaultSiteTheme === "dark" ? "white" : "" }}/>
 			</div>
-			<div className="flex items-center">
+			<div className="flex items-center dark:text-white">
 				<span className="mr-2">My Public Key:</span>
 				<div className="cursor-pointer flex-shrink-0" onClick={copyToClipboard}>
 					{personalInfoClass.publicKey}

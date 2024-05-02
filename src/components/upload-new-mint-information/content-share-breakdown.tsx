@@ -26,6 +26,9 @@ function ContentShareBreakdown() {
 			<div>
 				Shares Available to fans: {fanShares} Shares
 			</div>
+			<div>
+				Pegging to {_.upperCase(solanaClass.newSplDetails.listingDefaultCurrency)}
+			</div>
 		</div>
 	)
 }
