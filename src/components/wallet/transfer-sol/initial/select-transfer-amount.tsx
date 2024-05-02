@@ -3,13 +3,11 @@ import { observer } from "mobx-react"
 import RangeSelectorSlider from "../../../range-selector-slider"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
-import useConvertSolAmountDefaultCurrency from "../../../../hooks/solana/currency-conversions/convert-sol-amount-to-default-currency"
 
 // eslint-disable-next-line complexity
 function SelectTransferAmount() {
 	const solanaClass = useSolanaContext()
 	const personalInfoClass = usePersonalInfoContext()
-	const convertSolAmountToDefaultCurrency = useConvertSolAmountDefaultCurrency()
 
 	if (_.isNull(solanaClass)) return null
 
@@ -59,7 +57,7 @@ function SelectTransferAmount() {
 					solanaClass.updateTransferSolDetails("transferAmount", Number(e.target.value))
 				}}
 				min={0}
-				max={convertSolAmountToDefaultCurrency(solanaClass.walletBalanceSol || 0)}
+				max={solanaClass.walletBalanceUSD.get()}
 				step={1}
 			/>
 			${_.round(solanaClass.transferSolDetails.transferAmount, 2)}

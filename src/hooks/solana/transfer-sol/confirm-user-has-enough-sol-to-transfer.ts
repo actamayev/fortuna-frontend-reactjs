@@ -33,10 +33,9 @@ export default function useConfirmUserHasEnoughSolToTransfer(): (
 						return
 					}
 				} else {
-					const solPrice = solanaClass.solPriceDetails?.solPriceInUSD
-					if (_.isUndefined(solPrice)) return
-					const myWalletBalanceUsd = myWalletBalanceSol * solPrice
-					if (myWalletBalanceUsd < solanaClass.transferSolDetails.transferAmount + (0.000005 * solPrice)) {
+					const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
+					if (_.isUndefined(solPriceInUSD)) return
+					if (solanaClass.walletBalanceUSD.get() < solanaClass.transferSolDetails.transferAmount + (0.000005 * solPriceInUSD)) {
 						setDoesUserHaveEnoughSol(false)
 						return
 					}
@@ -48,9 +47,9 @@ export default function useConfirmUserHasEnoughSolToTransfer(): (
 						return
 					}
 				} else {
-					const solPrice = solanaClass.solPriceDetails?.solPriceInUSD
-					if (_.isUndefined(solPrice)) return
-					const myWalletBalanceUsd = myWalletBalanceSol * solPrice
+					const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
+					if (_.isUndefined(solPriceInUSD)) return
+					const myWalletBalanceUsd = myWalletBalanceSol * solPriceInUSD
 					if (myWalletBalanceUsd < solanaClass.transferSolDetails.transferAmount) {
 						setDoesUserHaveEnoughSol(false)
 						return

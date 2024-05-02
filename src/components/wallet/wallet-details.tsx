@@ -1,29 +1,9 @@
-import _ from "lodash"
-import { useMemo } from "react"
-import { observer } from "mobx-react"
+import WalletBalance from "./wallet-balance"
 import ShowMyPublicKey from "./show-my-public-key"
-import { useSolanaContext } from "../../contexts/solana-context"
 import TransferSolButton from "./transfer-sol/transfer-sol-button"
 import RequestAirdropButton from "./request-airdrop/request-airdrop-button"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
-import useConvertSolAmountDefaultCurrency from "../../hooks/solana/currency-conversions/convert-sol-amount-to-default-currency"
 
-function WalletDetails () {
-	const solanaClass = useSolanaContext()
-	const personalInfoClass = usePersonalInfoContext()
-	const convertSolAmountToDefaultCurrency = useConvertSolAmountDefaultCurrency()
-
-	const formattedTime = useMemo(() => {
-		const lastRetrieved = solanaClass?.solPriceDetails?.lastRetrievedTime
-		return lastRetrieved ? new Date(lastRetrieved).toLocaleTimeString("en-US", {
-			hour: "numeric",
-			minute: "numeric",
-			hour12: true // Use AM/PM
-		}) : "unknown"
-	}, [solanaClass?.solPriceDetails?.lastRetrievedTime])
-
-	if (_.isNull(solanaClass) || _.isNull(personalInfoClass)) return null
-
+export default function WalletDetails () {
 	return (
 		<>
 			<div className="flex flex-row">
@@ -32,18 +12,8 @@ function WalletDetails () {
 			</div>
 			<div className="mt-3"><ShowMyPublicKey /></div>
 			<div className="bg-white shadow-lg rounded-md p-4 mt-3 grid grid-cols-1 grid-rows-1 border">
-				<div>
-					Wallet Balance:
-					{personalInfoClass.defaultCurrency === "usd" && (<> $</>)}
-					{personalInfoClass.defaultCurrency === "sol" && (<> </>)}
-					{convertSolAmountToDefaultCurrency(solanaClass.walletBalanceSol || 0)}
-					{personalInfoClass.defaultCurrency === "sol" && (<> SOL</>)}
-				</div>
-				Last Solana price: ${solanaClass.solPriceDetails?.solPriceInUSD} {" "}
-				(Last updated {formattedTime})
+				<WalletBalance />
 			</div>
 		</>
 	)
 }
-
-export default observer(WalletDetails)

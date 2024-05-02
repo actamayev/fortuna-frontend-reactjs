@@ -193,8 +193,8 @@ class SolanaClass {
 		this.isTransferSolButtonPressed = newState
 	})
 
-	public getWalletBalanceUSD = computed((): number | void => {
-		if (_.isNull(this.walletBalanceSol) || _.isNull(this.solPriceDetails)) return
+	public walletBalanceUSD = computed((): number => {
+		if (_.isNull(this.walletBalanceSol) || _.isNull(this.solPriceDetails)) return 0
 		return this.walletBalanceSol * this.solPriceDetails.solPriceInUSD
 	})
 
