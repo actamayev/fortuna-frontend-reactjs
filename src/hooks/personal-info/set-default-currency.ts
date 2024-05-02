@@ -22,7 +22,7 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 			personalInfoClass.setDefaultCurrency(newCurrency)
 			updateTransferSolDetailsNewDefaultCurrency(newCurrency)
 
-			// If the last sol price was retrieved more than 60 seconds ago, retrieve it from the backend again.
+			// If the last sol price was retrieved more than 30 seconds ago, retrieve it from the backend again.
 			const currentTime = new Date()
 			if (
 				!_.isNull(solanaClass) &&
