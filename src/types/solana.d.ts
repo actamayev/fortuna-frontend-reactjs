@@ -2,8 +2,8 @@ declare global {
 	interface CommonSplDetails {
 		splName: string
 		numberOfShares: number
-		offeringSharePriceSol: number
-		offeringSharePriceUsd: number
+		listingSharePrice: number
+		listingDefaultCurrency: Currencies
 		description: string
 		creatorOwnershipPercentage: number
 		originalContentUrl: string
@@ -48,15 +48,14 @@ declare global {
 		doesPublicKeyExist: boolean
 		isPublicKeyRegisteredWithFortuna: boolean
 
-		solAmount: number
-		usdAmount: number
+		transferAmount: number
 		transferStage: TransactionStage
 	}
 
 	interface SendingSolTransfer {
 		sendingTo: string
-		transferAmountSol: number
-		transferAmountUsd: number
+		transferAmount: number
+		transferCurrency: Currencies
 	}
 
 	interface SolanaTransaction {

@@ -15,8 +15,7 @@ class SolanaClass {
 		publicKey: "",
 		isPublicKeyRegisteredWithFortuna: false,
 		doesPublicKeyExist: false,
-		solAmount: 0,
-		usdAmount: 0,
+		transferAmount: 0,
 		transferStage: "initial"
 	}
 	public isPublicKeySearchLoading = false
@@ -33,10 +32,10 @@ class SolanaClass {
 	public newSplDetails: NewSPLDetails = {
 		splName: "",
 		numberOfShares: 100,
-		offeringSharePriceUsd: 0.5,
-		// TODO: Share price sol should change on the fly to adjust to be approximately $0.5
-		// Same for the min/max/step size when purchasing an Spl
-		offeringSharePriceSol: 0.003,
+		listingSharePrice: 0.003,
+		// TODO: See if this can automatically default to the user's default currency (from personalInfoClass)
+		// Listing share price should also adjust as a result (currently, 0.003 is sol.)
+		listingDefaultCurrency: "sol",
 		description: "",
 		creatorOwnershipPercentage: 50,
 		originalContentUrl: "",
@@ -194,8 +193,8 @@ class SolanaClass {
 		this.isTransferSolButtonPressed = newState
 	})
 
-	public getWalletBalanceUSD = computed((): number | void => {
-		if (_.isNull(this.walletBalanceSol) || _.isNull(this.solPriceDetails)) return
+	public walletBalanceUSD = computed((): number => {
+		if (_.isNull(this.walletBalanceSol) || _.isNull(this.solPriceDetails)) return 0
 		return this.walletBalanceSol * this.solPriceDetails.solPriceInUSD
 	})
 
@@ -219,8 +218,7 @@ class SolanaClass {
 			publicKey: "",
 			isPublicKeyRegisteredWithFortuna: false,
 			doesPublicKeyExist: false,
-			solAmount: 0,
-			usdAmount: 0,
+			transferAmount: 0,
 			transferStage: "initial"
 		}
 	})
@@ -257,8 +255,8 @@ class SolanaClass {
 		this.newSplDetails = {
 			splName: "",
 			numberOfShares: 100,
-			offeringSharePriceUsd: 0.5,
-			offeringSharePriceSol: 0.003,
+			listingSharePrice: 0.03,
+			listingDefaultCurrency: "sol",
 			description: "",
 			creatorOwnershipPercentage: 50,
 			originalContentUrl: "",

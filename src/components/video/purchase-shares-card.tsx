@@ -10,7 +10,7 @@ function PurchaseSharesCard() {
 	if (_.isNull(solanaClass)) return null
 
 	return (
-		<div className="bg-white dark:bg-slate-400 shadow-lg rounded-lg p-4 m-2 w-5/12">
+		<div className="bg-white dark:bg-slate-400 shadow-lg rounded-lg p-4 m-2 w-1/3">
 			{solanaClass.purchaseSplSharesDetails.purchaseStage === "initial" && <InitialPurchaseInfo />}
 			{solanaClass.purchaseSplSharesDetails.purchaseStage === "review" && <ReviewPurchaseInfo />}
 		</div>

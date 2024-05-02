@@ -8,7 +8,7 @@ function MyContentMap() {
 
 	if (_.isNull(solanaClass)) return null
 
-	// TODO: Add a button that leads the user to add a new piece of content if there is no content.
+	// FUTURE TODO: Add a button that leads the user to add a new piece of content if there is no content.
 	// Should be the same size as a piece of content
 	if (solanaClass.isRetrievingContent === true || solanaClass.hasContentToRetrieve === true) {
 		return <div className="dark:text-white">Retrieving Content...</div>

@@ -38,15 +38,6 @@ export default function useUploadMintInfoOnclick(): (
 
 			await retrieveSolPrice()
 			if (_.isNull(solanaClass.solPriceDetails)) return
-			if (personalInfoClass.getDefaultCurrency() === "sol") {
-				solanaClass.updateNewSplDetails("offeringSharePriceUsd",
-					solanaClass.newSplDetails.offeringSharePriceSol * solanaClass.solPriceDetails.solPriceInUSD
-				)
-			} else {
-				solanaClass.updateNewSplDetails("offeringSharePriceSol",
-					solanaClass.newSplDetails.offeringSharePriceUsd / solanaClass.solPriceDetails.solPriceInUSD
-				)
-			}
 
 			setStatus("Uploading Video")
 			const uploadVideoResponse = await fortunaApiClient.uploadDataService.uploadVideoToS3(solanaClass.newSplDetails.selectedVideo)

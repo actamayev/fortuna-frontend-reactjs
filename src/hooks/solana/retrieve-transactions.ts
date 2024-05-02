@@ -5,8 +5,8 @@ import { isErrorResponse, isMessageResponse } from "../../utils/type-checks"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useRetrieveTransactions(): () => Promise<void> {
-	const fortunaApiClient = useApiClientContext()
 	const solanaClass = useSolanaContext()
+	const fortunaApiClient = useApiClientContext()
 
 	// eslint-disable-next-line complexity
 	const retrieveTransactions = useCallback(async () => {

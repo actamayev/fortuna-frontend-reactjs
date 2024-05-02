@@ -67,15 +67,15 @@ class PersonalInfoClass {
 		this._isApprovedToBeCreator = isApprovedToBeCreator
 	}
 
-	public getIsRetrievingPersonalInfo(): boolean {
+	get isRetrievingPersonalInfo(): boolean {
 		return this._isRetrievingPersonalInfo
 	}
 
-	public getDefaultCurrency(): Currencies {
+	get defaultCurrency(): Currencies {
 		return this._defaultCurrency
 	}
 
-	public getDefaultSiteTheme(): SiteThemes {
+	get defaultSiteTheme(): SiteThemes {
 		return this._defaultSiteTheme
 	}
 

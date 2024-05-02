@@ -24,7 +24,7 @@ function UploadMintInfoButton() {
 
 	const buttonTitle = useMemo(() => {
 		if (_.isNull(solanaClass)) return ""
-		if (isImageAndVideoReadyToSubmit === false) return "Please upload an image (thumbnail) and video"
+		if (isImageAndVideoReadyToSubmit === false) return "Please upload a video and thumbnail"
 		if (confirmNewSPLDetails === false) return "Please finish filling out the fields"
 		if (solanaClass.newSplDetails.creatorOwnershipPercentage < 50) return "Creator ownership percentage must be at least 50%"
 		if (solanaClass.newSplDetails.creatorOwnershipPercentage > 90) return "Creator ownership percentage must be at most 90%"
