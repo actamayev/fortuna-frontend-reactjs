@@ -14,11 +14,11 @@ function SelectOfferingSharePriceSol() {
 				title="Offering price per share (SOL)"
 				value={solanaClass.newSplDetails.listingSharePrice}
 				onChange={(event) => solanaClass.updateNewSplDetails("listingSharePrice", Number(event.target.value))}
-				min={0.003}
+				min={0.0003}
 				max={0.3}
-				step={0.003}
+				step={0.0001}
 			/>
-			{_.round(solanaClass.newSplDetails.listingSharePrice, 4)} Sol/Share
+			{_.round(solanaClass.newSplDetails.listingSharePrice, 4)} SOL/Share
 		</div>
 	)
 }
