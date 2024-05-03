@@ -14,6 +14,7 @@ import MyOwnership from "./pages/supporter/my-ownership"
 
 import CreatorRoutes from "./routes/creator-routes"
 
+import useRetrieveSolPrice from "./hooks/solana/retrieve-sol-price"
 import useRetrieveMyContent from "./hooks/solana/retrieve-my-content"
 import useRetrieveMyOwnership from "./hooks/solana/retrieve-my-ownership"
 import useGetAuthDataFromStorage from "./hooks/auth/get-auth-data-from-storage"
@@ -25,7 +26,9 @@ import useResetPurchaseSplAfterNavigation from "./hooks/solana/purchase-spl-toke
 function App() {
 	// Don't change the getAuthData to a useEffect, or else it doesn't work immediately after login
 	const getAuthDataFromStorage = useGetAuthDataFromStorage()
+	const retrieveSolPrice = useRetrieveSolPrice()
 	getAuthDataFromStorage()
+	retrieveSolPrice()
 	useRetrieveWalletBalanceUseEffect()
 	useRetrievePersonalInfoUseEffect()
 	useRetrieveMyContent()
