@@ -11,6 +11,7 @@ import RegisterContactInput from "./register-contact-input"
 import useRegisterSubmit from "../../hooks/auth/register-submit"
 import ShowOrHidePasswordButton from "./show-or-hide-password-button"
 import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
+import GoogleSignIn from "./google/google-sign-in"
 
 interface Props {
 	whereToNavigate: PageNames
@@ -84,6 +85,8 @@ function Register(props: Props) {
 				/>
 			</form>
 			<SubRegisterInfo setLoginOrRegister = {setLoginOrRegister}/>
+
+			<GoogleSignIn />
 		</AuthTemplate>
 	)
 }

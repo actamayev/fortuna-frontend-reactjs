@@ -20,4 +20,10 @@ export default class AuthDataService {
 			"/auth/register", { registerInformation }, { headers: { "No-Auth-Required": "true" }}
 		)
 	}
+
+	async googleLoginCallback(code: string): Promise<AxiosResponse<SuccessResponse | ErrorResponse>> {
+		return await this.httpClient.http.post<SuccessResponse | ErrorResponse>(
+			"/auth/google-auth/login-callback", { code }, { headers: { "No-Auth-Required": "true" }}
+		)
+	}
 }
