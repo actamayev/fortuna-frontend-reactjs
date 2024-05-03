@@ -16,7 +16,7 @@ function SelectOfferingSharePriceUsd() {
 				onChange={(event) => solanaClass.updateNewSplDetails("listingSharePrice", Number(event.target.value))}
 				min={0.5}
 				max={50}
-				step={0.5}
+				step={0.01}
 			/>
 			${_.round(solanaClass.newSplDetails.listingSharePrice, 2)}/Share
 		</div>
