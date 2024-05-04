@@ -17,6 +17,7 @@ export default function PasswordInput (props: Props) {
 			onChange={(event) => setCredentials({ ...credentials, password: event.target.value })}
 			required
 			value = {credentials.password || ""}
+			maxLength={100}
 		/>
 	)
 }

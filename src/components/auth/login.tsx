@@ -1,9 +1,9 @@
-import { observer } from "mobx-react"
 import { useMemo, useState } from "react"
 import Button from "../button"
 import ErrorMessage from "../error-message"
 import SubLoginInfo from "./sub-login-info"
 import PasswordInput from "./password-input"
+import GoogleSignIn from "./google/google-sign-in"
 import LoginContactInput from "./login-contact-input"
 import AuthTemplate from "../templates/auth-template"
 import useLoginSubmit from "../../hooks/auth/login-submit"
@@ -15,7 +15,7 @@ interface Props {
 	setLoginOrRegister?: React.Dispatch<React.SetStateAction<LoginOrRegister>>
 }
 
-function Login(props: Props) {
+export default function Login(props: Props) {
 	const { whereToNavigate, setLoginOrRegister } = props
 	useRedirectKnownUser()
 	const [loginInformation, setLoginInformation] = useState<LoginCredentials>({
@@ -40,37 +40,40 @@ function Login(props: Props) {
 	}
 
 	return (
-		<AuthTemplate title="Login">
-			<form onSubmit={loginSubmit}>
-				<LoginContactInput
-					credentials={loginInformation}
-					setCredentials={setLoginInformation}
-				/>
+		<div>
+			<AuthTemplate title="Login">
+				<form onSubmit={loginSubmit}>
+					<LoginContactInput
+						credentials={loginInformation}
+						setCredentials={setLoginInformation}
+					/>
 
-				<PasswordInput
-					credentials = {loginInformation}
-					setCredentials = {createSetCredentialsFunction(setLoginInformation)}
-					showPassword = {isShowPassword}
-				/>
+					<PasswordInput
+						credentials = {loginInformation}
+						setCredentials = {createSetCredentialsFunction(setLoginInformation)}
+						showPassword = {isShowPassword}
+					/>
 
-				<ShowOrHidePasswordButton
-					showPassword = {showPassword}
-					setShowPassword = {setShowPassword}
-				/>
+					<ShowOrHidePasswordButton
+						showPassword = {showPassword}
+						setShowPassword = {setShowPassword}
+					/>
 
-				<ErrorMessage error={error} />
+					<ErrorMessage error={error} />
 
-				<Button
-					className = "mt-3 w-full font-bold text-lg text-white border-b-2"
-					colorClass = "bg-blue-600"
-					hoverClass = "hover:bg-blue-700 hover:border-yellow-400"
-					disabled = {loading}
-					title = "Login"
-				/>
-			</form>
-			<SubLoginInfo setLoginOrRegister={setLoginOrRegister}/>
-		</AuthTemplate>
+					<Button
+						className = "mt-3 w-full font-bold text-lg text-white border-b-2"
+						colorClass = "bg-blue-600"
+						hoverClass = "hover:bg-blue-700 hover:border-yellow-400"
+						disabled = {loading}
+						title = "Login"
+					/>
+				</form>
+				<SubLoginInfo setLoginOrRegister={setLoginOrRegister}/>
+			</AuthTemplate>
+			<div className="mt-4">
+				<GoogleSignIn />
+			</div>
+		</div>
 	)
 }
-
-export default observer(Login)

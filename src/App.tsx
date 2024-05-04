@@ -11,6 +11,7 @@ import LoginPage from "./pages/auth/login-page"
 import SearchResults from "./pages/search-results"
 import RegisterPage from "./pages/auth/register-page"
 import MyOwnership from "./pages/supporter/my-ownership"
+import RegisterUsername from "./pages/auth/register-username"
 
 import CreatorRoutes from "./routes/creator-routes"
 
@@ -19,6 +20,7 @@ import useRetrieveMyContent from "./hooks/solana/retrieve-my-content"
 import useRetrieveMyOwnership from "./hooks/solana/retrieve-my-ownership"
 import useGetAuthDataFromStorage from "./hooks/auth/get-auth-data-from-storage"
 import useInitializeTagManager from "./hooks/analytics/initiallize-tag-manager"
+import useRedirectBackToRegisterUsername from "./hooks/redirects/redirect-back-to-register-username"
 import useRetrievePersonalInfoUseEffect from "./hooks/personal-info/retrieve-personal-info-use-effect"
 import useRetrieveWalletBalanceUseEffect from "./hooks/solana/wallet-balance/retrieve-wallet-balance-use-effect"
 import useResetPurchaseSplAfterNavigation from "./hooks/solana/purchase-spl-tokens/reset-purchase-spl-after-navigation"
@@ -35,12 +37,15 @@ function App() {
 	useRetrieveMyOwnership()
 	useInitializeTagManager()
 	useResetPurchaseSplAfterNavigation()
+	useRedirectBackToRegisterUsername()
 
 	return (
 		<Routes>
 			<Route path = "/" element = {<Home />} />
 			<Route path = "/login" element = {<LoginPage />} />
 			<Route path = "/register" element = {<RegisterPage />} />
+			<Route path = "/register-username" element = {<RegisterUsername />} />
+
 			<Route path = "/my-ownership" element = {<MyOwnership />} />
 			<Route path = "/my-wallet" element = {<MyWallet />} />
 			<Route path = "/v/:videoUUID" element = {<Video />} />

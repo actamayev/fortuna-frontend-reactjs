@@ -1,6 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import { BrowserRouter } from "react-router-dom"
+import { GoogleOAuthProvider } from "@react-oauth/google"
 import { disableReactDevTools } from "@fvilers/disable-react-devtools"
 import App from "./App"
 import "../src/styles/index.css"
@@ -15,12 +16,14 @@ const root = ReactDOM.createRoot(
 
 root.render(
 	<React.StrictMode>
-		<ContextLevelComponent>
-			<BrowserRouter>
-				<Layout>
-					<App />
-				</Layout>
-			</BrowserRouter>
-		</ContextLevelComponent>
+		<GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID as string}>
+			<ContextLevelComponent>
+				<BrowserRouter>
+					<Layout>
+						<App />
+					</Layout>
+				</BrowserRouter>
+			</ContextLevelComponent>
+		</GoogleOAuthProvider>
 	</React.StrictMode>
 )

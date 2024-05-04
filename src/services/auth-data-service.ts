@@ -20,4 +20,14 @@ export default class AuthDataService {
 			"/auth/register", { registerInformation }, { headers: { "No-Auth-Required": "true" }}
 		)
 	}
+
+	async googleLoginCallback(idToken: string): Promise<AxiosResponse<GoogleAuthSuccess | ErrorResponses>> {
+		return await this.httpClient.http.post<GoogleAuthSuccess | ErrorResponses>(
+			"/auth/google-auth/login-callback", { idToken }, { headers: { "No-Auth-Required": "true" }}
+		)
+	}
+
+	async registerUsername(username: string): Promise<AxiosResponse<AllCommonResponses>> {
+		return await this.httpClient.http.post<AllCommonResponses>("/auth/set-username", { username })
+	}
 }
