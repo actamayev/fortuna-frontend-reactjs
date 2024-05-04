@@ -41,7 +41,6 @@ export default function Login(props: Props) {
 
 	return (
 		<div>
-
 			<AuthTemplate title="Login">
 				<form onSubmit={loginSubmit}>
 					<LoginContactInput
