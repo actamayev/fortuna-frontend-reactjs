@@ -1,0 +1,41 @@
+import _ from "lodash"
+import { useCallback } from "react"
+import useTypedNavigate from "../../navigate/typed-navigate"
+import { isNonSuccessResponse } from "../../../utils/type-checks"
+import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
+import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
+import setErrorAxiosResponse from "../../../utils/error-handling/set-error-axios-response"
+
+export default function useUsernameSubmit (
+	username: string,
+	setError: (error: string) => void,
+	setLoading: (loading: boolean) => void
+): (
+	e: React.FormEvent<HTMLFormElement>
+) => Promise<void> {
+	const fortunaApiClient = useApiClientContext()
+	const navigate = useTypedNavigate()
+	const personalInfoClass = usePersonalInfoContext()
+
+	const usernameSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+		e.preventDefault()
+		setError("")
+		try {
+			if (_.isNull(personalInfoClass)) return
+			setLoading(true)
+			const response = await fortunaApiClient.authDataService.registerUsername(username)
+			if (!_.isEqual(response.status, 200) || isNonSuccessResponse(response.data)) {
+				setError("Unable to register username. Please reload and try again.")
+				return
+			}
+			personalInfoClass.username = username
+			navigate("/my-ownership")
+		} catch (error: unknown) {
+			setErrorAxiosResponse(error, setError, "Unable to register username")
+		} finally {
+			setLoading(false)
+		}
+	}, [fortunaApiClient.authDataService, navigate, personalInfoClass, setError, setLoading, username])
+
+	return usernameSubmit
+}
