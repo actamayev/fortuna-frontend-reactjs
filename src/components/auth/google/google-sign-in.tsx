@@ -1,27 +1,25 @@
-import { useGoogleLogin } from "@react-oauth/google"
-import Button from "../../button"
-import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
+import { observer } from "mobx-react"
+import { GoogleLogin } from "@react-oauth/google"
+import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
+import useGoogleAuthCallback from "../../../hooks/auth/google/google-auth-callback"
 
-export default function GoogleSignIn() {
-	const fortunaApiClient = useApiClientContext()
-	const googleLogin = useGoogleLogin({
-		flow: "auth-code",
-		onSuccess: async ({ code }) => {
-			try {
-				await fortunaApiClient.authDataService.googleLoginCallback(code)
-			} catch (error) {
-				console.error(error)
-			}
-		},
-		scope: "https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.readonly"
-	})
+function GoogleSignIn() {
+	const personalInfoClass = usePersonalInfoContext()
+	const googleAuthCallback = useGoogleAuthCallback()
 
 	return (
-		<Button
-			title="Google Login"
-			onClick={googleLogin}
-			colorClass="bg-blue-300"
-			hoverClass="hover:bg-blue-400"
-		/>
+		<div className="flex justify-center">
+			<GoogleLogin
+				onSuccess={googleAuthCallback}
+				onError={() => console.error("Login Failed")}
+				shape="rectangular"
+				width={200}
+				theme={personalInfoClass?.defaultSiteTheme === "dark" ? "outline" : "filled_black"}
+				text="continue_with"
+				logo_alignment="center"
+			/>
+		</div>
 	)
 }
+
+export default observer(GoogleSignIn)

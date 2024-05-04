@@ -11,6 +11,7 @@ declare global {
 
 	//Auth Responses:
 	type LoginOrRegisterSuccess = { accessToken: string }
+	type GoogleAuthSuccess = { accessToken: string, isNewUser: boolean }
 
 	// Personal Info Responses:
 	type PersonalInfoResponse = {

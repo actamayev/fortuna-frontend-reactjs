@@ -1,4 +1,3 @@
-import { observer } from "mobx-react"
 import { useMemo, useState } from "react"
 import Button from "../button"
 import ErrorMessage from "../error-message"
@@ -6,19 +5,19 @@ import PasswordInput from "./password-input"
 import UsernameInput from "./username-input"
 import ConfirmPassword from "./confirm-password"
 import SubRegisterInfo from "./sub-register-info"
+import GoogleSignIn from "./google/google-sign-in"
 import AuthTemplate from "../templates/auth-template"
 import RegisterContactInput from "./register-contact-input"
 import useRegisterSubmit from "../../hooks/auth/register-submit"
 import ShowOrHidePasswordButton from "./show-or-hide-password-button"
 import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
-import GoogleSignIn from "./google/google-sign-in"
 
 interface Props {
 	whereToNavigate: PageNames
 	setLoginOrRegister?: React.Dispatch<React.SetStateAction<LoginOrRegister>>
 }
 
-function Register(props: Props) {
+export default function Register(props: Props) {
 	const { whereToNavigate, setLoginOrRegister } = props
 	useRedirectKnownUser()
 	const [registerInformation, setRegisterInformation] = useState<RegisterCredentials>({
@@ -45,50 +44,51 @@ function Register(props: Props) {
 	}
 
 	return (
-		<AuthTemplate title="Register">
-			<form onSubmit={registerSubmit}>
-				<RegisterContactInput
-					credentials={registerInformation}
-					setCredentials={setRegisterInformation}
-				/>
+		<div>
+			<AuthTemplate title="Register">
+				<form onSubmit={registerSubmit}>
+					<RegisterContactInput
+						credentials={registerInformation}
+						setCredentials={setRegisterInformation}
+					/>
 
-				<UsernameInput
-					credentials={registerInformation}
-					setCredentials={setRegisterInformation}
-				/>
+					<UsernameInput
+						credentials={registerInformation}
+						setCredentials={setRegisterInformation}
+					/>
 
-				<PasswordInput
-					credentials = {registerInformation}
-					setCredentials = {createSetCredentialsFunction(setRegisterInformation)}
-					showPassword = {isShowPassword}
-				/>
+					<PasswordInput
+						credentials = {registerInformation}
+						setCredentials = {createSetCredentialsFunction(setRegisterInformation)}
+						showPassword = {isShowPassword}
+					/>
 
-				<ConfirmPassword
-					credentials = {registerInformation}
-					setCredentials = {createSetCredentialsFunction(setRegisterInformation)}
-					showPassword = {isShowPassword}
-				/>
+					<ConfirmPassword
+						credentials = {registerInformation}
+						setCredentials = {createSetCredentialsFunction(setRegisterInformation)}
+						showPassword = {isShowPassword}
+					/>
 
-				<ShowOrHidePasswordButton
-					showPassword = {showPassword}
-					setShowPassword = {setShowPassword}
-				/>
+					<ShowOrHidePasswordButton
+						showPassword = {showPassword}
+						setShowPassword = {setShowPassword}
+					/>
 
-				<ErrorMessage error={error} />
+					<ErrorMessage error={error} />
 
-				<Button
-					className = "mt-3 w-full font-bold text-lg text-white border-b-2"
-					colorClass = "bg-blue-600"
-					hoverClass = "hover:bg-blue-700 hover:border-yellow-400"
-					disabled = {loading}
-					title = "Register"
-				/>
-			</form>
-			<SubRegisterInfo setLoginOrRegister = {setLoginOrRegister}/>
-
-			<GoogleSignIn />
-		</AuthTemplate>
+					<Button
+						className = "mt-3 w-full font-bold text-lg text-white border-b-2"
+						colorClass = "bg-blue-600"
+						hoverClass = "hover:bg-blue-700 hover:border-yellow-400"
+						disabled = {loading}
+						title = "Register"
+					/>
+				</form>
+				<SubRegisterInfo setLoginOrRegister = {setLoginOrRegister}/>
+			</AuthTemplate>
+			<div className="mt-4">
+				<GoogleSignIn />
+			</div>
+		</div>
 	)
 }
-
-export default observer(Register)
