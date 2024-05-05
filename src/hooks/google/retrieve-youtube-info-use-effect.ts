@@ -15,7 +15,7 @@ export default function useRetrieveYouTubeInfoUseEffect(): void {
 		try {
 			if (
 				_.isNull(youtubeClass) ||
-				_.isNull(personalInfoClass) ||
+				_.isNil(personalInfoClass?.username) ||
 				_.isNull(fortunaApiClient.httpClient.accessToken) ||
 				youtubeClass.hasYouTubeDataBeenRetrieved === true ||
 				youtubeClass.isRetrievingYouTubeData === true

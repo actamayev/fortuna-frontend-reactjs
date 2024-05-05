@@ -14,7 +14,6 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 	const retrieveSolPrice = useRetrieveSolPrice()
 	const updateTransferSolDetailsNewDefaultCurrency = useUpdateTransferSolDetiailsNewDefaultCurrency()
 
-	// eslint-disable-next-line complexity
 	const setDefaultCurrency = useCallback(async () => {
 		try {
 			if (_.isNull(personalInfoClass)) return

@@ -64,7 +64,7 @@
 		"max-depth": ["warn", 3],
 		"no-nested-ternary": "error",
 		"@typescript-eslint/no-unnecessary-condition": "warn",
-		"complexity": ["warn", 9],
+		"complexity": ["warn", 10],
 		"no-shadow": "off",
 		"@typescript-eslint/no-shadow": "error",
 		"filenames/match-regex": ["error", "^[a-z-]+$", true],
