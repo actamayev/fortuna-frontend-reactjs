@@ -34,7 +34,8 @@ export default function useRetrieveYouTubeInfoUseEffect(): void {
 		} finally {
 			if (!_.isNull(youtubeClass)) youtubeClass.isRetrievingYouTubeData = false
 		}
-	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.youtubeDataService, personalInfoClass, youtubeClass])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.youtubeDataService, personalInfoClass?.username, youtubeClass])
 
 	useEffect(() => {
 		void retrieveYouTubeInfo()
