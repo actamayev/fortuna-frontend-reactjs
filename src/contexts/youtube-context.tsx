@@ -4,6 +4,7 @@ import { createContext, useContext, useMemo } from "react"
 class YouTubeClass {
 	// FUTURE TODO: Later, add the user's Youtube subscriptions data, # subscribers here
 	private _hasYouTubeAccessTokens: boolean | null = null
+	private _isRetrievingYouTubeData: boolean = false
 	private _hasYouTubeDataBeenRetrieved: boolean = false
 
 	constructor() {
@@ -16,6 +17,14 @@ class YouTubeClass {
 
 	set hasYouTubeAccessTokens(hasYouTubeAccessTokens: boolean | null) {
 		this._hasYouTubeAccessTokens = hasYouTubeAccessTokens
+	}
+
+	get isRetrievingYouTubeData(): boolean {
+		return this._isRetrievingYouTubeData
+	}
+
+	set isRetrievingYouTubeData(isRetrievingYouTubeData: boolean) {
+		this._isRetrievingYouTubeData = isRetrievingYouTubeData
 	}
 
 	get hasYouTubeDataBeenRetrieved(): boolean {
@@ -33,6 +42,7 @@ class YouTubeClass {
 
 	public logout() {
 		this.hasYouTubeAccessTokens = null
+		this.isRetrievingYouTubeData = false
 		this.hasYouTubeDataBeenRetrieved = false
 	}
 }

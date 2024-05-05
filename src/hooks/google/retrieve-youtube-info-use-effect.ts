@@ -13,10 +13,12 @@ export default function useRetrieveYouTubeInfoUseEffect(): void {
 			if (
 				_.isNull(youTubeClass) ||
 				_.isNull(fortunaApiClient.httpClient.accessToken) ||
-				youTubeClass.hasYouTubeDataBeenRetrieved === true
+				youTubeClass.hasYouTubeDataBeenRetrieved === true ||
+				youTubeClass.isRetrievingYouTubeData === true
 			) {
 				return
 			}
+			youTubeClass.isRetrievingYouTubeData = true
 			const youTubeData = await fortunaApiClient.youTubeDataService.getUserYouTubeInfo()
 			if (!_.isEqual(youTubeData.status, 200) || isErrorResponse(youTubeData.data)) {
 				return
@@ -24,6 +26,8 @@ export default function useRetrieveYouTubeInfoUseEffect(): void {
 			youTubeClass.setYouTubeClassData(youTubeData.data)
 		} catch (error) {
 			console.error(error)
+		} finally {
+			if (!_.isNull(youTubeClass)) youTubeClass.isRetrievingYouTubeData = false
 		}
 	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.youTubeDataService, youTubeClass])
 
