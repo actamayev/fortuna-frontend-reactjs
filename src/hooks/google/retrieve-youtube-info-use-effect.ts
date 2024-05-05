@@ -1,35 +1,40 @@
 import _ from "lodash"
 import { useCallback, useEffect } from "react"
 import { isErrorResponse } from "../../utils/type-checks"
-import { useYoutTubeContext } from "../../contexts/youtube-context"
+import { useYouTubeContext } from "../../contexts/youtube-context"
+import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useRetrieveYouTubeInfoUseEffect(): void {
-	const youTubeClass = useYoutTubeContext()
+	const youtubeClass = useYouTubeContext()
+	const personalInfoClass = usePersonalInfoContext()
 	const fortunaApiClient = useApiClientContext()
 
+	// eslint-disable-next-line complexity
 	const retrieveYouTubeInfo = useCallback(async () => {
 		try {
 			if (
-				_.isNull(youTubeClass) ||
+				_.isNull(youtubeClass) ||
+				_.isNull(personalInfoClass) ||
 				_.isNull(fortunaApiClient.httpClient.accessToken) ||
-				youTubeClass.hasYouTubeDataBeenRetrieved === true ||
-				youTubeClass.isRetrievingYouTubeData === true
+				youtubeClass.hasYouTubeDataBeenRetrieved === true ||
+				youtubeClass.isRetrievingYouTubeData === true
 			) {
 				return
 			}
-			youTubeClass.isRetrievingYouTubeData = true
-			const youTubeData = await fortunaApiClient.youTubeDataService.getUserYouTubeInfo()
-			if (!_.isEqual(youTubeData.status, 200) || isErrorResponse(youTubeData.data)) {
+			youtubeClass.isRetrievingYouTubeData = true
+			const youtubeData = await fortunaApiClient.youtubeDataService.getUserYouTubeInfo()
+			if (!_.isEqual(youtubeData.status, 200) || isErrorResponse(youtubeData.data)) {
 				return
 			}
-			youTubeClass.setYouTubeClassData(youTubeData.data)
+			youtubeClass.setYouTubeClassData(youtubeData.data)
+			personalInfoClass.isApprovedToBeCreator = youtubeData.data.isApprovedToBeCreator
 		} catch (error) {
 			console.error(error)
 		} finally {
-			if (!_.isNull(youTubeClass)) youTubeClass.isRetrievingYouTubeData = false
+			if (!_.isNull(youtubeClass)) youtubeClass.isRetrievingYouTubeData = false
 		}
-	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.youTubeDataService, youTubeClass])
+	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.youtubeDataService, personalInfoClass, youtubeClass])
 
 	useEffect(() => {
 		void retrieveYouTubeInfo()

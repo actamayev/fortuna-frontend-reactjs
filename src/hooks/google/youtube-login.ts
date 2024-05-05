@@ -1,23 +1,26 @@
 import _ from "lodash"
 import { useGoogleLogin } from "@react-oauth/google"
-import { useYoutTubeContext } from "../../contexts/youtube-context"
-import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import { isNonSuccessResponse } from "../../utils/type-checks"
+import { useYouTubeContext } from "../../contexts/youtube-context"
+import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useYoutubeLogin(): () => void {
+export default function useYouTubeLogin(): () => void {
 	const fortunaApiClient = useApiClientContext()
-	const youTubeClass = useYoutTubeContext()
+	const youtubeClass = useYouTubeContext()
+	const personalInfoClass = usePersonalInfoContext()
 
-	const youTubeLogin = useGoogleLogin({
+	const youtubeLogin = useGoogleLogin({
 		flow: "auth-code",
 		onSuccess: async ({ code }) => {
 			try {
-				if (_.isNull(youTubeClass)) return
-				const response = await fortunaApiClient.authDataService.googleYoutubeCallback(code)
+				if (_.isNull(youtubeClass) || _.isNull(personalInfoClass)) return
+				const response = await fortunaApiClient.authDataService.youtubeCallback(code)
 				if (!_.isEqual(response.status, 200) || isNonSuccessResponse(response.data)) {
 					throw Error("Unable to Login with YouTube")
 				}
-				youTubeClass.hasYouTubeAccessTokens = true
+				youtubeClass.setYouTubeClassData(response.data)
+				personalInfoClass.isApprovedToBeCreator = response.data.isApprovedToBeCreator
 			} catch (error) {
 				console.error(error)
 			}
@@ -25,5 +28,5 @@ export default function useYoutubeLogin(): () => void {
 		scope: "https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.readonly"
 	})
 
-	return youTubeLogin
+	return youtubeLogin
 }
