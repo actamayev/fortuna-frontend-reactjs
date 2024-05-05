@@ -16,5 +16,7 @@
   "eslint.validate": [
     "typescript",
     "javascript"
-  ]
+  ],
+  "editor.insertSpaces": false,
+  "editor.tabSize": 4
 }
