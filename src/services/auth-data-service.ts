@@ -30,4 +30,8 @@ export default class AuthDataService {
 	async registerUsername(username: string): Promise<AxiosResponse<AllCommonResponses>> {
 		return await this.httpClient.http.post<AllCommonResponses>("/auth/set-username", { username })
 	}
+
+	async googleYoutubeCallback(code: string): Promise<AxiosResponse<AllCommonResponses>> {
+		return await this.httpClient.http.post<AllCommonResponses>("/auth/google-auth/youtube-callback", { code })
+	}
 }

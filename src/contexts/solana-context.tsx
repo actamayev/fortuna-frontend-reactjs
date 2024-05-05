@@ -44,6 +44,7 @@ class SolanaClass {
 	}
 
 	public solPriceDetails: SolPriceDetails | null = null
+	public isRetrievingSolPriceDetails = false
 
 	public hasContentToRetrieve = true
 	public isRetrievingContent = false
@@ -181,6 +182,10 @@ class SolanaClass {
 		this.isRetrievingWalletDetails = newState
 	})
 
+	public setIsRetrievingSolPriceDetails = action((newState: boolean): void => {
+		this.isRetrievingSolPriceDetails = newState
+	})
+
 	public setHasOwnershipToRetrieve = action((newState: boolean): void => {
 		this.hasOwnershipToRetrieve = newState
 	})
@@ -277,6 +282,7 @@ class SolanaClass {
 		this.resetPurchaseSplSharesDetails()
 		this.resetNewSplDetails()
 		this.solPriceDetails = null
+		this.isRetrievingSolPriceDetails = false
 		this.hasContentToRetrieve = true
 		this.isRetrievingContent = false
 		this.hasTransactionsToRetrieve = true
