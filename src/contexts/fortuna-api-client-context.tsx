@@ -5,6 +5,7 @@ import FortunaHttpClient from "../classes/fortuna-http-client"
 import UploadDataService from "../services/upload-data-service"
 import SolanaDataService from "../services/solana-data-service"
 import SearchDataService from "../services/search-data-service"
+import YouTubeDataService from "../services/youtube-data-service"
 import PersonalInfoDataService from "../services/personal-info-data-service"
 
 class FortunaApiClient {
@@ -15,6 +16,7 @@ class FortunaApiClient {
 	public solanaDataService: SolanaDataService = new SolanaDataService(this.httpClient)
 	public uploadDataService: UploadDataService = new UploadDataService(this.httpClient)
 	public videoDataService: VideoDataService = new VideoDataService(this.httpClient)
+	public youTubeDataService: YouTubeDataService = new YouTubeDataService(this.httpClient)
 
 	constructor() {
 	}
@@ -27,6 +29,7 @@ class FortunaApiClient {
 		this.solanaDataService = new SolanaDataService(this.httpClient)
 		this.uploadDataService = new UploadDataService(this.httpClient)
 		this.videoDataService = new VideoDataService(this.httpClient)
+		this.youTubeDataService = new YouTubeDataService(this.httpClient)
 	}
 
 	public logout() {

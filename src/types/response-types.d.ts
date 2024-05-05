@@ -68,6 +68,9 @@ declare global {
 		videoData: VideoData[]
 		creatorData: CreatorData
 	}
+
+	// YouTube Responses:
+	type UserYouTubeData = { userHasYouTubeAccessTokens: boolean } // Add more to this later
 }
 
 export {}
