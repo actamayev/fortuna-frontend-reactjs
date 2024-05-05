@@ -10,7 +10,8 @@ export default function useRetrieveSolPrice (): () => Promise<void> {
 
 	const retrieveSolPrice = useCallback(async () => {
 		try {
-			if (_.isNull(solanaClass)) return
+			if (_.isNull(solanaClass) || solanaClass.isRetrievingSolPriceDetails === true) return
+			solanaClass.setIsRetrievingSolPriceDetails(true)
 			const solPriceDetails = await fortunaApiClient.solanaDataService.retrieveSolPrice()
 			if (!_.isEqual(solPriceDetails.status, 200) || isErrorResponse(solPriceDetails.data)) {
 				throw Error("Unable to retrieve sol price details")
@@ -18,6 +19,8 @@ export default function useRetrieveSolPrice (): () => Promise<void> {
 			solanaClass.setSolPriceDetails(solPriceDetails.data)
 		} catch (error) {
 			console.error(error)
+		} finally {
+			if (!_.isNull(solanaClass)) solanaClass.setIsRetrievingSolPriceDetails(false)
 		}
 	}, [fortunaApiClient.solanaDataService, solanaClass])
 
