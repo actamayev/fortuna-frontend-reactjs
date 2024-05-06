@@ -2,7 +2,6 @@ import { action, makeAutoObservable } from "mobx"
 import { createContext, useContext, useMemo } from "react"
 
 class YouTubeClass {
-	// FUTURE TODO: Later, add the user's YouTube subscriptions data, # subscribers here
 	private _hasYouTubeAccessTokens: boolean | null = null
 	private _isRetrievingYouTubeData: boolean = false
 	private _hasYouTubeDataBeenRetrieved: boolean = false

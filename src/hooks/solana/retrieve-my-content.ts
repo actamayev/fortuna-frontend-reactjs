@@ -2,8 +2,8 @@ import _ from "lodash"
 import { useCallback, useEffect } from "react"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { isErrorResponse, isMessageResponse } from "../../utils/type-checks"
-import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useRetrieveMyContent(): void {
 	const fortunaApiClient = useApiClientContext()
