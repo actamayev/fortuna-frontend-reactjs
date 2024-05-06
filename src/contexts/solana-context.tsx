@@ -260,7 +260,7 @@ class SolanaClass {
 		this.newSplDetails = {
 			splName: "",
 			numberOfShares: 100,
-			listingSharePrice: 0.03,
+			listingSharePrice: 0.003,
 			listingDefaultCurrency: "sol",
 			description: "",
 			creatorOwnershipPercentage: 50,
