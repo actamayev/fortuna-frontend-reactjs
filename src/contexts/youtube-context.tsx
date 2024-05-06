@@ -44,7 +44,7 @@ class YouTubeClass {
 	}
 
 	public setYouTubeClassData = action((youtubeData: UserYouTubeData) => {
-		this.hasYouTubeAccessTokens = youtubeData.userHasYouTubeAccessTokens
+		this.hasYouTubeAccessTokens = true
 		this.subscriberCount = youtubeData.subscriberCount
 		this.hasYouTubeDataBeenRetrieved = true
 	})
