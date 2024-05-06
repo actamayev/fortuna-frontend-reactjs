@@ -16,7 +16,6 @@ export default function useTransferSol(): (
 	const retrieveSolPrice = useRetrieveSolPrice()
 	const retrieveWalletBalance = useRetrieveWalletBalance()
 
-	// eslint-disable-next-line complexity
 	const transferSol = useCallback(async (
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 	): Promise<void> => {
