@@ -2,10 +2,10 @@ import { action, makeAutoObservable } from "mobx"
 import { createContext, useContext, useMemo } from "react"
 
 class YouTubeClass {
-	// FUTURE TODO: Later, add the user's Youtube subscriptions data, # subscribers here
 	private _hasYouTubeAccessTokens: boolean | null = null
 	private _isRetrievingYouTubeData: boolean = false
 	private _hasYouTubeDataBeenRetrieved: boolean = false
+	private _subscriberCount: number | null = null
 
 	constructor() {
 		makeAutoObservable(this)
@@ -35,8 +35,17 @@ class YouTubeClass {
 		this._hasYouTubeDataBeenRetrieved = hasYouTubeDataBeenRetrieved
 	}
 
-	public setYouTubeClassData = action((youTubeData: UserYouTubeData) => {
-		this.hasYouTubeAccessTokens = youTubeData.userHasYouTubeAccessTokens
+	get subscriberCount(): number | null {
+		return this._subscriberCount
+	}
+
+	set subscriberCount(subscriberCount: number | null) {
+		this._subscriberCount = subscriberCount
+	}
+
+	public setYouTubeClassData = action((youtubeData: UserYouTubeData) => {
+		this.hasYouTubeAccessTokens = youtubeData.userHasYouTubeAccessTokens
+		this.subscriberCount = youtubeData.subscriberCount
 		this.hasYouTubeDataBeenRetrieved = true
 	})
 
@@ -44,6 +53,7 @@ class YouTubeClass {
 		this.hasYouTubeAccessTokens = null
 		this.isRetrievingYouTubeData = false
 		this.hasYouTubeDataBeenRetrieved = false
+		this.subscriberCount = null
 	}
 }
 
@@ -59,5 +69,5 @@ export default function YouTubeProvider ({ children }: { children: React.ReactNo
 	)
 }
 
-export const useYoutTubeContext = () => useContext(YouTubeContext)
+export const useYouTubeContext = () => useContext(YouTubeContext)
 

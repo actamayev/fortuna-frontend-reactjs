@@ -4,7 +4,6 @@ import { observer } from "mobx-react"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
-// eslint-disable-next-line complexity
 function WalletBalance() {
 	const solanaClass = useSolanaContext()
 	const personalInfoClass = usePersonalInfoContext()

@@ -7,7 +7,6 @@ interface Props {
 	video: VideoData
 }
 
-// eslint-disable-next-line complexity
 function PricePerShareArea(props: Props) {
 	const { video } = props
 	const solanaClass = useSolanaContext()

@@ -70,7 +70,11 @@ declare global {
 	}
 
 	// YouTube Responses:
-	type UserYouTubeData = { userHasYouTubeAccessTokens: boolean } // Add more to this later
+	type UserYouTubeData = {
+		userHasYouTubeAccessTokens: boolean
+		isApprovedToBeCreator: boolean
+		subscriberCount: number
+	}
 }
 
 export {}

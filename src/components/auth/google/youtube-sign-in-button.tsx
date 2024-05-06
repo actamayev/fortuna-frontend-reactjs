@@ -1,23 +1,24 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import Button from "../../button"
-import useYoutubeLogin from "../../../hooks/google/youtube-login"
-import { useYoutTubeContext } from "../../../contexts/youtube-context"
+import useYouTubeLogin from "../../../hooks/google/youtube-login"
+import { useYouTubeContext } from "../../../contexts/youtube-context"
 
-function YoutubeSignInButton() {
-	const youTubeClass = useYoutTubeContext()
-	const youTubeLogin = useYoutubeLogin()
+function YouTubeSignInButton() {
+	const youtubeClass = useYouTubeContext()
+	const youtubeLogin = useYouTubeLogin()
 
-	if (_.isNull(youTubeClass) || youTubeClass.hasYouTubeAccessTokens === true) return null
+	if (_.isNull(youtubeClass) || youtubeClass.hasYouTubeAccessTokens === true) return null
 
 	return (
 		<Button
 			title="YouTube sign-in"
-			onClick={youTubeLogin}
+			onClick={youtubeLogin}
 			colorClass="bg-red-300"
 			hoverClass="hover:bg-red-400"
+			className="mt-2"
 		/>
 	)
 }
 
-export default observer(YoutubeSignInButton)
+export default observer(YouTubeSignInButton)
