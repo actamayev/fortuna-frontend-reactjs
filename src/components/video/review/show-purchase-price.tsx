@@ -15,45 +15,24 @@ function ShowPurchasePrice(props: Props) {
 
 	if (_.isNull(personalInfoClass) || _.isNull(solanaClass)) return null
 
-	if (video.listingDefaultCurrency === "sol") {
-		if (personalInfoClass.defaultCurrency === "sol") {
-			return (
-				<>
-					<ShowNumberSharesPurchasing />
-					{_.round(video.listingSharePrice * solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing, 4)} SOL
-					({_.round(video.listingSharePrice, 4)} SOL/share)
-				</>
-			)
-		}
-		const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
-		if (_.isUndefined(solPriceInUSD)) return null
+	if (personalInfoClass.defaultCurrency === "usd") {
 		return (
 			<>
 				<ShowNumberSharesPurchasing />
-				${_.round(video.listingSharePrice * solPriceInUSD * solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing, 2)} {" "}
-				(${_.round(video.listingSharePrice * solPriceInUSD, 2)}/share)
-			</>
-		)
-	} else {
-		if (personalInfoClass.defaultCurrency === "usd") {
-			return (
-				<>
-					<ShowNumberSharesPurchasing />
-					${_.round(video.listingSharePrice * solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing, 2)} {" "}
-					(${_.round(video.listingSharePrice, 2)}/share)
-				</>
-			)
-		}
-		const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
-		if (_.isUndefined(solPriceInUSD)) return null
-		return (
-			<>
-				<ShowNumberSharesPurchasing />
-				{_.round((video.listingSharePrice * solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing) / solPriceInUSD, 4)} SOL
-				({_.round(video.listingSharePrice / solPriceInUSD, 4)} SOL/share)
+					${_.round(video.listingSharePriceUsd * solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing, 2)} {" "}
+					(${_.round(video.listingSharePriceUsd, 2)}/share)
 			</>
 		)
 	}
+	const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
+	if (_.isUndefined(solPriceInUSD)) return null
+	return (
+		<>
+			<ShowNumberSharesPurchasing />
+			{_.round((video.listingSharePriceUsd * solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing) / solPriceInUSD, 4)} SOL
+				({_.round(video.listingSharePriceUsd / solPriceInUSD, 4)} SOL/share)
+		</>
+	)
 }
 
 export default observer(ShowPurchasePrice)

@@ -2,8 +2,7 @@ declare global {
 	interface CommonSplDetails {
 		splName: string
 		numberOfShares: number
-		listingSharePrice: number
-		listingDefaultCurrency: Currencies
+		listingSharePriceUsd: number
 		description: string
 		creatorOwnershipPercentage: number
 		originalContentUrl: string

@@ -3,7 +3,7 @@ import { createContext, useContext, useMemo } from "react"
 import { action, computed, makeAutoObservable } from "mobx"
 
 class SolanaClass {
-	private _walletAddress: string | null = null
+	private _walletPublicKey: string | null = null
 	private _walletBalanceSol: number | null = null
 
 	private _myContent: MyContent[] = []
@@ -32,10 +32,7 @@ class SolanaClass {
 	public newSplDetails: NewSPLDetails = {
 		splName: "",
 		numberOfShares: 100,
-		listingSharePrice: 0.003,
-		// TODO: See if this can automatically default to the user's default currency (from personalInfoClass)
-		// Listing share price should also adjust as a result (currently, 0.003 is sol.)
-		listingDefaultCurrency: "sol",
+		listingSharePriceUsd: 0.5,
 		description: "",
 		creatorOwnershipPercentage: 50,
 		originalContentUrl: "",
@@ -61,12 +58,12 @@ class SolanaClass {
 		makeAutoObservable(this)
 	}
 
-	get walletAddress(): string | null {
-		return this._walletAddress
+	get walletPublicKey(): string | null {
+		return this._walletPublicKey
 	}
 
-	set walletAddress(walletAddress: string | null) {
-		this._walletAddress = walletAddress
+	set walletPublicKey(walletPublicKey: string | null) {
+		this._walletPublicKey = walletPublicKey
 	}
 
 	get walletBalanceSol(): number | null {
@@ -260,8 +257,7 @@ class SolanaClass {
 		this.newSplDetails = {
 			splName: "",
 			numberOfShares: 100,
-			listingSharePrice: 0.003,
-			listingDefaultCurrency: "sol",
+			listingSharePriceUsd: 0.5,
 			description: "",
 			creatorOwnershipPercentage: 50,
 			originalContentUrl: "",
@@ -271,7 +267,7 @@ class SolanaClass {
 	})
 
 	public logout() {
-		this.walletAddress = null
+		this.walletPublicKey = null
 		this.walletBalanceSol = null
 		this.myContent = []
 		this.isTransferSolButtonPressed = false
