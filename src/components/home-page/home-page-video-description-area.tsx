@@ -23,9 +23,9 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 					onClick={() => navigateToCreatorPage(video.creatorUsername)}
 				/>
 			)}
-			<div className="flex flex-col flex-grow">
+			<div className="flex flex-col">
 				<div className="text-lg font-semibold cursor-pointer" onClick={() => navigateToVideoPage(video.uuid)}>
-					{_.truncate(video.splName, { length: 32, omission: "..."})}
+					{_.truncate(video.splName, { length: 32, omission: "..." })}
 				</div>
 				<div
 					className="text-sm text-gray-600 hover:text-black dark:text-gray-300 hover:dark:text-gray-100 cursor-pointer"
@@ -34,15 +34,18 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 					{video.creatorUsername}
 				</div>
 			</div>
-			<div className="flex flex-col items-end">
+			<div className="ml-auto flex flex-col items-end"> {/* This pushes your element to the right */}
 				<div className="text-xs mt-1">
 					<PricePerShareArea video={video} />
 				</div>
-				<SharesAvailableProgressBar
-					sharesRemainingForSale={video.sharesRemainingForSale}
-					totalShares={video.totalNumberShares}
-				/>
+				<div className="w-full">
+					<SharesAvailableProgressBar
+						sharesRemainingForSale={video.sharesRemainingForSale}
+						totalShares={video.totalNumberShares}
+					/>
+				</div>
 			</div>
 		</div>
 	)
+
 }
