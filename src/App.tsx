@@ -12,6 +12,7 @@ import SearchResults from "./pages/search-results"
 import RegisterPage from "./pages/auth/register-page"
 import MyOwnership from "./pages/supporter/my-ownership"
 import RegisterUsername from "./pages/auth/register-username"
+import PrivacyPolicy from "./pages/compliance/privacy-policy"
 
 import CreatorRoutes from "./routes/creator-routes"
 
@@ -55,6 +56,9 @@ function App() {
 			<Route path = "/s/:searchTerm" element = {<SearchResults />} />
 
 			<Route path = "/creator/*" element = {<CreatorRoutes />} />
+
+			<Route path = "/privacy-policy" element = {<PrivacyPolicy />} />
+
 			<Route path = "*" element = {<Missing />} />
 		</Routes>
 	)
