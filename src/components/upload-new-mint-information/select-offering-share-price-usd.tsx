@@ -12,13 +12,13 @@ function SelectOfferingSharePriceUsd() {
 		<div className="flex flex-col space-y-4">
 			<RangeSelectorSlider
 				title="Offering price per share ($)"
-				value={solanaClass.newSplDetails.listingSharePrice}
-				onChange={(event) => solanaClass.updateNewSplDetails("listingSharePrice", Number(event.target.value))}
+				value={solanaClass.newSplDetails.listingSharePriceUsd}
+				onChange={(event) => solanaClass.updateNewSplDetails("listingSharePriceUsd", Number(event.target.value))}
 				min={0.5}
 				max={50}
 				step={0.01}
 			/>
-			${_.round(solanaClass.newSplDetails.listingSharePrice, 2)}/Share
+			${_.round(solanaClass.newSplDetails.listingSharePriceUsd, 2)}/Share
 		</div>
 	)
 }

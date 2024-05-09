@@ -13,26 +13,14 @@ function PricePerShareArea(props: Props) {
 	const personalInfoClass = usePersonalInfoContext()
 
 	if (_.isNull(personalInfoClass)) {
-		if (video.listingDefaultCurrency === "usd") {
-			return <>${_.round(video.listingSharePrice, 2)}/Share</>
-		} else {
-			return <>{_.round(video.listingSharePrice, 4)} SOL/Share</>
-		}
+		return <>${_.round(video.listingSharePriceUsd, 2)}/Share</>
 	}
 	if (personalInfoClass.defaultCurrency === "sol") {
-		if (video.listingDefaultCurrency === "sol") {
-			return <>{_.round(video.listingSharePrice, 4)} SOL/Share</>
-		}
 		if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null
 		const solPriceInUSD = solanaClass.solPriceDetails.solPriceInUSD
-		return <>{_.round(video.listingSharePrice / solPriceInUSD, 4)} SOL/Share</>
+		return <>{_.round(video.listingSharePriceUsd / solPriceInUSD, 4)} SOL/Share</>
 	} else {
-		if (video.listingDefaultCurrency === "usd") {
-			return <>${_.round(video.listingSharePrice, 2)}/Share</>
-		}
-		if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null
-		const solPriceInUSD = solanaClass.solPriceDetails.solPriceInUSD
-		return <>${_.round(video.listingSharePrice * solPriceInUSD, 2)}/Share</>
+		return <>${_.round(video.listingSharePriceUsd, 2)}/Share</>
 	}
 }
 

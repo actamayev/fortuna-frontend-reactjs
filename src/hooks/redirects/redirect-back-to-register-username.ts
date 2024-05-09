@@ -29,5 +29,5 @@ export default function useRedirectBackToRegisterUsername (): void  {
 		// If the user isn't trying to access a private page, no need to re-direct (return)
 		if (PrivatePageNames.includes(location.pathname) === false) return
 		navigate("/register-username")
-	}, [authClass.accessToken, location.pathname, navigate, personalInfoClass, personalInfoClass?.username, personalInfoClass?.publicKey])
+	}, [authClass.accessToken, location.pathname, navigate, personalInfoClass, personalInfoClass?.username, personalInfoClass?.email])
 }
