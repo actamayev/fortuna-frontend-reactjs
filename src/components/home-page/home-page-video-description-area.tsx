@@ -24,17 +24,22 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 				/>
 			)}
 			<div className="flex flex-col">
-				<div className="text-lg font-semibold cursor-pointer" onClick={() => navigateToVideoPage(video.uuid)}>
+				<div
+					className="text-lg font-semibold cursor-pointer"
+					style={{ maxWidth: "fit-content" }}
+					onClick={() => navigateToVideoPage(video.uuid)}
+				>
 					{_.truncate(video.splName, { length: 32, omission: "..." })}
 				</div>
 				<div
 					className="text-sm text-gray-600 hover:text-black dark:text-gray-300 hover:dark:text-gray-100 cursor-pointer"
+					style={{ maxWidth: "fit-content" }}
 					onClick={() => navigateToCreatorPage(video.creatorUsername)}
 				>
 					{video.creatorUsername}
 				</div>
 			</div>
-			<div className="ml-auto flex flex-col items-end"> {/* This pushes your element to the right */}
+			<div className="ml-auto flex flex-col items-end space-y-3">
 				<div className="text-xs mt-1">
 					<PricePerShareArea video={video} />
 				</div>

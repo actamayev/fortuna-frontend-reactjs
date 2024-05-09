@@ -24,7 +24,7 @@ export default function SharesAvailableProgressBar(props: Props) {
 				style={{ width: `${percent}%` }}
 			/>
 			<div
-				className={`absolute left-1/2 transform -translate-x-1/2 -translate-y-[calc(100%+30px)] mt-2 px-2 py-1 bg-black text-white text-xs rounded shadow-lg transition-opacity duration-100 ${showTooltip ? "opacity-100 visible" : "opacity-0 invisible"}`}
+				className={`absolute left-1/2 transform -translate-x-1/2 -translate-y-[calc(100%+40px)] mt-2 px-2 py-1 bg-black text-white text-xs rounded shadow-lg transition-opacity duration-100 ${showTooltip ? "opacity-100 visible" : "opacity-0 invisible"}`}
 				style={{ transition: "opacity 0.1s ease-in-out", minWidth: "125px" }}
 			>
 				<div>{`${_.round(percent)}% sold`}</div>
