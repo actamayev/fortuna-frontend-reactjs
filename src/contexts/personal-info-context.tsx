@@ -4,6 +4,7 @@ import { isValidCurrency, isValidSiteTheme } from "../utils/type-checks"
 
 class PersonalInfoClass {
 	private _username: string | null = null
+	private _email?: string | null = null
 	private _profilePictureUrl?: string | null = null
 	private _publicKey: string | null = null
 	private _isApprovedToBeCreator: boolean = false
@@ -23,6 +24,14 @@ class PersonalInfoClass {
 
 	set username(username: string | null) {
 		this._username = username
+	}
+
+	get email(): string | null | undefined {
+		return this._email
+	}
+
+	set email(email: string | null | undefined) {
+		this._email = email
 	}
 
 	get profilePictureUrl(): string | null | undefined {
@@ -78,6 +87,7 @@ class PersonalInfoClass {
 
 	public setRetrievedPersonalData = action((retrievedData: PersonalInfoResponse): void => {
 		this.username = retrievedData.username
+		this.email = retrievedData.email
 		this.profilePictureUrl = retrievedData.profilePictureUrl
 		this.isApprovedToBeCreator = retrievedData.isApprovedToBeCreator
 		this.setDefaultCurrency(retrievedData.defaultCurrency)
@@ -98,6 +108,7 @@ class PersonalInfoClass {
 
 	public logout() {
 		this.username = null
+		this.email = null
 		this.isApprovedToBeCreator = false
 		this.publicKey = null
 		this.setIsRetrievingPersonalDetails(false)
