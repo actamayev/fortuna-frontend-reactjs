@@ -22,11 +22,12 @@ export default function useRedirectBackToRegisterUsername (): void  {
 	const navigate = useTypedNavigate()
 
 	useEffect(() => {
-		// If the user isn't logged in, return
+		// If the user isn't logged in, no need to re-direct (return)
 		if (_.isNull(authClass.accessToken) || _.isNull(personalInfoClass)) return
-		// If the user has a username, or doesn't have an email, return
+		// If the user already has a username, no need to re-direct (return)
 		if (!_.isNull(personalInfoClass.username) || _.isNull(personalInfoClass.email)) return
+		// If the user isn't trying to access a private page, no need to re-direct (return)
 		if (PrivatePageNames.includes(location.pathname) === false) return
 		navigate("/register-username")
-	}, [authClass.accessToken, location.pathname, navigate, personalInfoClass, personalInfoClass?.username, personalInfoClass?.email])
+	}, [authClass.accessToken, location.pathname, navigate, personalInfoClass, personalInfoClass?.username, personalInfoClass?.publicKey])
 }

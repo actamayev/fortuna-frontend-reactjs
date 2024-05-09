@@ -1,4 +1,4 @@
-import HeaderNav from "./header/header-nav"
+import HeaderNav from "./site-header/header-nav"
 
 interface Props {
 	children: React.ReactNode

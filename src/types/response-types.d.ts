@@ -17,7 +17,6 @@ declare global {
 	type PersonalInfoResponse = {
 		username: string
 		email: string | null
-		phoneNumber: string | null
 		defaultCurrency: Currencies
 		defaultSiteTheme: SiteThemes
 		isApprovedToBeCreator: boolean
