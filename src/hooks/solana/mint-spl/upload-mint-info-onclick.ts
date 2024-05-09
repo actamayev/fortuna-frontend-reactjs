@@ -10,7 +10,6 @@ import { useApiClientContext } from "../../../contexts/fortuna-api-client-contex
 
 export default function useUploadMintInfoOnclick(): (
 	setError: React.Dispatch<React.SetStateAction<string>>,
-	setLoading: React.Dispatch<React.SetStateAction<boolean>>,
 	setStatus: React.Dispatch<React.SetStateAction<string>>
 ) => Promise<void> {
 	const navigate = useTypedNavigate()
@@ -23,11 +22,9 @@ export default function useUploadMintInfoOnclick(): (
 	// eslint-disable-next-line complexity
 	const uploadMintInfoOnclick = useCallback(async (
 		setError: React.Dispatch<React.SetStateAction<string>>,
-		setLoading: React.Dispatch<React.SetStateAction<boolean>>,
 		setStatus: React.Dispatch<React.SetStateAction<string>>
 	): Promise<void> => {
 		try {
-			setLoading(true)
 			if (
 				_.isNull(solanaClass) ||
 				_.isNull(personalInfoClass) ||
@@ -35,6 +32,8 @@ export default function useUploadMintInfoOnclick(): (
 				_.isNull(solanaClass.newSplDetails.selectedImage) ||
 				confirmNewSplDetails === false
 			) return
+
+			solanaClass.setIsNewSplLoading(true)
 
 			await retrieveSolPrice()
 			if (_.isNull(solanaClass.solPriceDetails)) return
@@ -91,8 +90,8 @@ export default function useUploadMintInfoOnclick(): (
 		} catch (error) {
 			console.error(error)
 		} finally {
-			setLoading(false)
 			setStatus("")
+			if (!_.isNull(solanaClass)) solanaClass.setIsNewSplLoading(false)
 		}
 	}, [confirmNewSplDetails, fortunaApiClient.solanaDataService,fortunaApiClient.uploadDataService,
 		navigate,personalInfoClass, retrieveSolPrice, solanaClass

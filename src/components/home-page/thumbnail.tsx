@@ -16,7 +16,7 @@ export default function Thumbnail(props: Props) {
 					alt={video.splName}
 					className="absolute top-0 left-0 w-full h-full object-cover rounded-lg border dark:border-yellow-400"
 				/>
-				{video.sharesRemainingForSale === 0 && (
+				{video.splListingStatus === "SOLDOUT" && (
 					<div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
 						Sold Out
 					</div>
