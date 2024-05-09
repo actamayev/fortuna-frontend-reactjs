@@ -1,6 +1,7 @@
 import _ from "lodash"
 import PricePerShareArea from "./price-per-share-area"
 import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
+import SharesAvailableProgressBar from "./shares-available-progress-bar"
 import useNavigateToCreator from "../../hooks/navigate/navigate-to-creator"
 
 interface Props {
@@ -13,7 +14,7 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 	const navigateToCreatorPage = useNavigateToCreator()
 
 	return (
-		<div className="flex items-center pt-1 dark:text-white rounded-lg ml-1">
+		<div className="flex items-center pt-1 dark:text-white rounded-lg mx-1">
 			{video.creatorProfilePictureUrl && (
 				<img
 					src={video.creatorProfilePictureUrl}
@@ -33,13 +34,14 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 					{video.creatorUsername}
 				</div>
 			</div>
-			<div className="flex flex-col items-end mr-1">
+			<div className="flex flex-col items-end">
 				<div className="text-xs mt-1">
 					<PricePerShareArea video={video} />
 				</div>
-				<div className="text-xs">
-					<span className="font-bold">Shares Available:</span> {video.sharesRemainingForSale}
-				</div>
+				<SharesAvailableProgressBar
+					sharesRemainingForSale={video.sharesRemainingForSale}
+					totalShares={video.totalNumberShares}
+				/>
 			</div>
 		</div>
 	)
