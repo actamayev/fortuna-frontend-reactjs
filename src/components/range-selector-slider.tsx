@@ -5,10 +5,11 @@ interface Props {
 	min: number
 	max: number
 	step: number
+	disabled?: boolean
 }
 
 export default function RangeSelectorSlider(props: Props) {
-	const { title, value, onChange, min, max, step } = props
+	const { title, value, onChange, min, max, step, disabled } = props
 
 	return (
 		<>
@@ -21,6 +22,7 @@ export default function RangeSelectorSlider(props: Props) {
 				value={value}
 				onChange={onChange}
 				className="w-64 h-2 bg-gray-400 rounded-lg appearance-none cursor-pointer dark:bg-gray-800"
+				disabled={disabled}
 			/>
 		</>
 	)

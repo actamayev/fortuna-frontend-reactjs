@@ -17,6 +17,7 @@ function SelectOfferingSharePriceUsd() {
 				min={0.5}
 				max={50}
 				step={0.01}
+				disabled={solanaClass.isNewSplLoading}
 			/>
 			${_.round(solanaClass.newSplDetails.listingSharePriceUsd, 2)}/Share
 		</div>

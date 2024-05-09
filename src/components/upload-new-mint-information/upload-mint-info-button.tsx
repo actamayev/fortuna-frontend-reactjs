@@ -10,7 +10,6 @@ import useUploadMintInfoOnclick from "../../hooks/solana/mint-spl/upload-mint-in
 
 function UploadMintInfoButton() {
 	const solanaClass = useSolanaContext()
-	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState("")
 	const [status, setStatus] = useState("")
 	const uploadMintInfoOnclick = useUploadMintInfoOnclick()
@@ -28,10 +27,11 @@ function UploadMintInfoButton() {
 		if (confirmNewSPLDetails === false) return "Please finish filling out the fields"
 		if (solanaClass.newSplDetails.creatorOwnershipPercentage < 50) return "Creator ownership percentage must be at least 50%"
 		if (solanaClass.newSplDetails.creatorOwnershipPercentage > 90) return "Creator ownership percentage must be at most 90%"
-		if (loading === true) return "Loading..."
+		if (solanaClass.isNewSplLoading === true) return "Loading..."
 		return "Submit"
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [isImageAndVideoReadyToSubmit, loading, solanaClass, solanaClass?.newSplDetails.creatorOwnershipPercentage, confirmNewSPLDetails])
+	}, [isImageAndVideoReadyToSubmit, solanaClass, solanaClass?.isNewSplLoading,
+		solanaClass?.newSplDetails.creatorOwnershipPercentage, confirmNewSPLDetails])
 
 	if (_.isNull(solanaClass)) return null
 
@@ -42,11 +42,11 @@ function UploadMintInfoButton() {
 				disabled={
 					isImageAndVideoReadyToSubmit === false || confirmNewSPLDetails === false ||
 					solanaClass.newSplDetails.creatorOwnershipPercentage < 50 ||
-					solanaClass.newSplDetails.creatorOwnershipPercentage > 90 || loading
+					solanaClass.newSplDetails.creatorOwnershipPercentage > 90 || solanaClass.isNewSplLoading
 				}
 				colorClass="bg-yellow-400"
 				hoverClass="hover:bg-yellow-500"
-				onClick={() => uploadMintInfoOnclick(setError, setLoading, setStatus)}
+				onClick={() => uploadMintInfoOnclick(setError, setStatus)}
 			/>
 
 			<StatusMessage status={status} />

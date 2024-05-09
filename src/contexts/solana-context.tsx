@@ -39,6 +39,7 @@ class SolanaClass {
 		selectedImage: null,
 		selectedVideo: null
 	}
+	public isNewSplLoading = false
 
 	public solPriceDetails: SolPriceDetails | null = null
 	public isRetrievingSolPriceDetails = false
@@ -142,6 +143,10 @@ class SolanaClass {
 			return
 		}
 		this.myOwnership[index].numberOfShares += newOwnership.numberOfShares
+	})
+
+	public setIsNewSplLoading = action((newState: boolean): void => {
+		this.isNewSplLoading = newState
 	})
 
 	public setHasContentToRetrieve = action((newState: boolean): void => {
@@ -277,6 +282,7 @@ class SolanaClass {
 		this.myOwnership = []
 		this.resetPurchaseSplSharesDetails()
 		this.resetNewSplDetails()
+		this.isNewSplLoading = false
 		this.solPriceDetails = null
 		this.isRetrievingSolPriceDetails = false
 		this.hasContentToRetrieve = true

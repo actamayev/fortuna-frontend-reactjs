@@ -18,6 +18,7 @@ function SelectCreatorOwnershipPercentage() {
 					min={50}
 					max={90}
 					step={1}
+					disabled={solanaClass.isNewSplLoading}
 				/>
 				{solanaClass.newSplDetails.creatorOwnershipPercentage}%
 			</div>

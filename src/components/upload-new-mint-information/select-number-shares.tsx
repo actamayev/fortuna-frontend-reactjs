@@ -18,6 +18,7 @@ function SelectNumberShares() {
 					min={100}
 					max={1000}
 					step={1}
+					disabled={solanaClass.isNewSplLoading}
 				/>
 				{solanaClass.newSplDetails.numberOfShares} Shares
 			</div>

@@ -18,7 +18,7 @@ function InitialPurchaseInfo() {
 	const video = videoClass.findVideoFromUUID(videoUUID)
 	if (_.isUndefined(video)) return null
 
-	if (_.isEqual(video.sharesRemainingForSale, 0)) {
+	if (_.isEqual(video.sharesRemainingForSale, 0) || video.splListingStatus === "SOLDOUT") {
 		return <div className="dark:text-white">Sold out</div>
 	}
 
