@@ -6,11 +6,13 @@ import UploadDataService from "../services/upload-data-service"
 import SolanaDataService from "../services/solana-data-service"
 import SearchDataService from "../services/search-data-service"
 import YouTubeDataService from "../services/youtube-data-service"
+import ExchangeDataService from "../services/exchange-data-service"
 import PersonalInfoDataService from "../services/personal-info-data-service"
 
 class FortunaApiClient {
 	public httpClient: FortunaHttpClient = new FortunaHttpClient()
 	public authDataService: AuthDataService = new AuthDataService(this.httpClient)
+	public exchangeDataService: ExchangeDataService = new ExchangeDataService(this.httpClient)
 	public personalInfoDataService: PersonalInfoDataService = new PersonalInfoDataService(this.httpClient)
 	public searchDataService: SearchDataService = new SearchDataService(this.httpClient)
 	public solanaDataService: SolanaDataService = new SolanaDataService(this.httpClient)
@@ -24,6 +26,7 @@ class FortunaApiClient {
 	private initializeServices() {
 		this.httpClient = new FortunaHttpClient()
 		this.authDataService = new AuthDataService(this.httpClient)
+		this.exchangeDataService = new ExchangeDataService(this.httpClient)
 		this.personalInfoDataService = new PersonalInfoDataService(this.httpClient)
 		this.searchDataService = new SearchDataService(this.httpClient)
 		this.solanaDataService = new SolanaDataService(this.httpClient)

@@ -26,7 +26,7 @@ export default function usePurchaseSplTokens(): (
 				numberOfTokensPurchasing: solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing,
 				splPublicKey: solanaClass.purchaseSplSharesDetails.splPublicKey
 			}
-			const purchaseResponse = await fortunaApiClient.solanaDataService.purchaseSplTokens(purchaseSplTokensData)
+			const purchaseResponse = await fortunaApiClient.exchangeDataService.primarySplTokenPurchase(purchaseSplTokensData)
 			if (!_.isEqual(purchaseResponse.status, 200) || isNonSuccessResponse(purchaseResponse.data)) {
 				throw Error ("Error purchasing sol")
 			}
@@ -42,7 +42,7 @@ export default function usePurchaseSplTokens(): (
 		} finally {
 			setIsLoading(false)
 		}
-	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService, retrieveWalletBalance, solanaClass, videoClass])
+	}, [fortunaApiClient.exchangeDataService, fortunaApiClient.httpClient.accessToken, retrieveWalletBalance, solanaClass, videoClass])
 
 	return purchaseSplTokens
 }

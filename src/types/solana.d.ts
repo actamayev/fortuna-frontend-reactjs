@@ -72,11 +72,6 @@ declare global {
 		createdAt: Date
 	}
 
-	interface PurchaseSplTokensData {
-		numberOfTokensPurchasing: number
-		splPublicKey: string
-	}
-
 	interface PurchaseSplSharesDetails extends PurchaseSplTokensData {
 		purchaseStage: TransactionStage
 	}
