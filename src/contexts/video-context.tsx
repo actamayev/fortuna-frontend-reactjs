@@ -118,6 +118,9 @@ class VideoClass {
 		const index = this.videos.findIndex(video => video.uuid === videoUUID)
 		if (_.isEqual(index, -1)) return
 		this.videos[index].sharesRemainingForSale -= numberOfShares
+		if (this.videos[index].sharesRemainingForSale === 0) {
+			this.videos[index].splListingStatus = "SOLDOUT"
+		}
 	})
 
 	public addVideoUUIDToRetrievingList(videoUUID: string): void {

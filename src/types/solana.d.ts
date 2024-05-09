@@ -89,6 +89,12 @@ declare global {
 		uuid: string
 		isMyContent: boolean
 	}
+
+	type SPLListingStatus =
+		"PRELISTING" |
+		"LISTED" |
+		"SOLDOUT" |
+		"REMOVED"
 }
 
 export {}

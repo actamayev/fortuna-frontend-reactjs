@@ -3,6 +3,7 @@ declare global {
 		splName: string
 		splPublicKey: string
 		listingSharePriceUsd: number
+		splListingStatus: SPLListingStatus
 		description: string
 		imageUrl: string
 		videoUrl: string

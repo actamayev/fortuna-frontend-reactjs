@@ -14,9 +14,10 @@ export default function useCalculateMaxSharesToPurchase(): (
 			if (_.isNull(solanaClass) || _.isNull(solanaClass.walletBalanceSol)) return 0
 
 			const video = videoClass.findVideoFromUUID(videoUUID)
-			if (_.isUndefined(video) || _.isEqual(video.listingSharePriceUsd, 0)) return 0
+			if (_.isUndefined(video) || _.isEqual(video.listingSharePriceUsd, 0) || _.isEqual(video.sharesRemainingForSale, 0)) return 0
+			const amountOfSharesUserAffords = Math.floor(solanaClass.walletBalanceUSD.get() / video.listingSharePriceUsd)
 
-			return Math.floor(solanaClass.walletBalanceUSD.get() / video.listingSharePriceUsd)
+			return Math.min(amountOfSharesUserAffords, video.sharesRemainingForSale)
 		} catch (error) {
 			return 0
 		}
