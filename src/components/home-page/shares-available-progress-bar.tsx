@@ -15,7 +15,8 @@ export default function SharesAvailableProgressBar(props: Props) {
 
 	return (
 		<div
-			className="w-full bg-gray-400 rounded-full h-1.5 dark:bg-white relative"
+			className="bg-gray-400 rounded-full h-1.5 dark:bg-white relative"
+			style={{ width: "110px" }} // Set a fixed width for the progress bar container
 			onMouseEnter={() => setShowTooltip(true)}
 			onMouseLeave={() => setShowTooltip(false)}
 		>
@@ -25,7 +26,7 @@ export default function SharesAvailableProgressBar(props: Props) {
 			/>
 			<div
 				className={`absolute left-1/2 transform -translate-x-1/2 -translate-y-[calc(100%+40px)] mt-2 px-2 py-1 bg-black \
-				text-white text-xs rounded shadow-lg transition-opacity duration-100 ${showTooltip ? "opacity-100 visible border dark:border-yellow-200" : "opacity-0 invisible"}`}
+                text-white text-xs rounded shadow-lg transition-opacity duration-100 ${showTooltip ? "opacity-100 visible border dark:border-yellow-200" : "opacity-0 invisible"}`}
 				style={{ transition: "opacity 0.1s ease-in-out", minWidth: "130px" }}
 			>
 				<div>{`${_.round(percent)}% sold`}</div>
@@ -33,4 +34,5 @@ export default function SharesAvailableProgressBar(props: Props) {
 			</div>
 		</div>
 	)
+
 }

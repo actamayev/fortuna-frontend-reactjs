@@ -52,5 +52,4 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 			</div>
 		</div>
 	)
-
 }
