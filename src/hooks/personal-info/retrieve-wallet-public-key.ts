@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { useCallback } from "react"
+import { useSolanaContext } from "../../contexts/solana-context"
 import { isErrorResponse, isMessageResponse } from "../../utils/type-checks"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useRetrieveWalletPublicKey(): (
@@ -9,16 +9,16 @@ export default function useRetrieveWalletPublicKey(): (
 
 ) => Promise<void> {
 	const fortunaApiClient = useApiClientContext()
-	const personalInfoClass = usePersonalInfoContext()
+	const solanaClass = useSolanaContext()
 
 	const retrieveWalletPublicKey = useCallback(async (
 		setIsButtonDisabled: React.Dispatch<React.SetStateAction<boolean>>
 	) => {
 		try {
 			if (
-				_.isNull(personalInfoClass) ||
+				_.isNull(solanaClass) ||
 				_.isNull(fortunaApiClient.httpClient.accessToken) ||
-				!_.isNull(personalInfoClass.publicKey)
+				!_.isNull(solanaClass.walletPublicKey)
 			) return
 			setIsButtonDisabled(true)
 
@@ -30,13 +30,13 @@ export default function useRetrieveWalletPublicKey(): (
 			) {
 				throw Error("Unable to retrieve public key")
 			}
-			personalInfoClass.publicKey = publicKeyResponse.data.publicKey
+			solanaClass.walletPublicKey = publicKeyResponse.data.publicKey
 		} catch (error) {
 			console.error(error)
 		} finally {
 			setIsButtonDisabled(false)
 		}
-	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService, personalInfoClass])
+	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService, solanaClass])
 
 	return retrieveWalletPublicKey
 }

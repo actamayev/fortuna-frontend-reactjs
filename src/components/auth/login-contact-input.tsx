@@ -10,7 +10,7 @@ export default function LoginContactInput (props: Props) {
 
 	return (
 		<FormGroup
-			label = "Email/Username"
+			label = "Username or Email/Phone Number"
 			type = "contact"
 			placeholder = "abc@123.com"
 			onChange = {(event) => setCredentials({ ...credentials, contact: event.target.value })}
