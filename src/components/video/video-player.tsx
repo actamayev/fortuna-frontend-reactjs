@@ -2,7 +2,7 @@ interface Props {
 	videoUrl: string
 }
 
-// TODO: Make the aspect ratio of the video player the same as the home screen thumnail picture.
+// FUTURE TODO: Make the aspect ratio of the video player the same as the home screen thumnail picture.
 export default function VideoPlayer(props: Props) {
 	const { videoUrl } = props
 

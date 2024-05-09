@@ -34,7 +34,7 @@ export default function usePurchaseSplTokens(): (
 			videoClass.tokenPurchaseUpdateAvailableShares(videoUUID, purchaseSplTokensData.numberOfTokensPurchasing)
 			solanaClass.resetPurchaseSplSharesDetails()
 			await retrieveWalletBalance()
-			// TODO: Add this transaction to my transactions (don't just call retrieveTransactions - redundant)
+			// FUTURE TODO: Add this transaction to my transactions (don't just call retrieveTransactions - redundant)
 			// Consider returning the sol transfer details with the purchaseSplTokens response.
 			// Add that single new transaction to the transaction array
 		} catch (error) {
