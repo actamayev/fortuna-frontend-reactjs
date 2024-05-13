@@ -1,7 +1,9 @@
 declare global {
-	interface TransactionsGridRowData {
-		usdAmountTransferred: number
-		transferDateTime: Date
+	interface OwnershipGridRowData {
+		splName: string
+		numberShares: number
+		videoUUID: string
+		imageUrl: string
 	}
 }
 
