@@ -6,20 +6,22 @@ import Button from "../../button"
 import { useAuthContext } from "../../../contexts/auth-context"
 import { useVideoContext } from "../../../contexts/video-context"
 import { useSolanaContext } from "../../../contexts/solana-context"
+import { useExchangeContext } from "../../../contexts/exchange-context"
 import useCalculateMaxSharesToPurchase from "../../../hooks/solana/purchase-spl-tokens/calculate-max-shares-to-purchase"
 
 function ReviewPurchaseButton() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const solanaClass = useSolanaContext()
+	const exchangeClass = useExchangeContext()
 	const videoClass = useVideoContext()
 	const authClass = useAuthContext()
 	const calculateMaxSharesToPurchase = useCalculateMaxSharesToPurchase()
 
 	const wasVideoCreatedByUser = useMemo(() => {
-		if (_.isNull(solanaClass) || _.isUndefined(videoUUID)) return true
-		return solanaClass.checkIfUuidExistsInContentList(videoUUID)
+		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return true
+		return exchangeClass.checkIfUuidExistsInContentList(videoUUID)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [solanaClass, videoUUID, solanaClass?.myContent])
+	}, [exchangeClass, videoUUID, exchangeClass?.myContent])
 
 	const isAbleToPurchaseShares = useMemo(() => {
 		if (_.isNull(solanaClass) || _.isUndefined(videoUUID)) return false

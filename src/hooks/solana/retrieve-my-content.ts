@@ -1,26 +1,26 @@
 import _ from "lodash"
 import { useCallback, useEffect } from "react"
-import { useSolanaContext } from "../../contexts/solana-context"
+import { useExchangeContext } from "../../contexts/exchange-context"
 import { isErrorResponse, isMessageResponse } from "../../utils/type-checks"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useRetrieveMyContent(): void {
 	const fortunaApiClient = useApiClientContext()
-	const solanaClass = useSolanaContext()
+	const exchangeClass = useExchangeContext()
 	const personalInfoClass = usePersonalInfoContext()
 
 	// eslint-disable-next-line complexity
 	const retrieveMyContent = useCallback(async () => {
 		try {
 			if (
-				_.isNull(solanaClass) ||
+				_.isNull(exchangeClass) ||
 				personalInfoClass?.isApprovedToBeCreator !== true ||
-				solanaClass.hasContentToRetrieve === false ||
-				solanaClass.isRetrievingContent === true ||
-				!_.isEmpty(solanaClass.myContent)
+				exchangeClass.hasContentToRetrieve === false ||
+				exchangeClass.isRetrievingContent === true ||
+				!_.isEmpty(exchangeClass.myContent)
 			) return
-			solanaClass.setIsRetrievingContent(true)
+			exchangeClass.setIsRetrievingContent(true)
 			const myContentResponse = await fortunaApiClient.solanaDataService.retrieveMyContent()
 
 			if (
@@ -29,14 +29,14 @@ export default function useRetrieveMyContent(): void {
 				isErrorResponse(myContentResponse.data)
 			) return
 
-			solanaClass.setContent(myContentResponse.data.creatorContentList)
-			solanaClass.setHasContentToRetrieve(false)
+			exchangeClass.setContent(myContentResponse.data.creatorContentList)
+			exchangeClass.setHasContentToRetrieve(false)
 		} catch (error) {
 			console.error(error)
 		} finally {
-			if (!_.isNull(solanaClass)) solanaClass.setIsRetrievingContent(false)
+			if (!_.isNull(exchangeClass)) exchangeClass.setIsRetrievingContent(false)
 		}
-	}, [fortunaApiClient.solanaDataService, personalInfoClass?.isApprovedToBeCreator, solanaClass])
+	}, [fortunaApiClient.solanaDataService, personalInfoClass?.isApprovedToBeCreator, exchangeClass])
 
 	useEffect(() => {
 		if (_.isNull(fortunaApiClient.httpClient.accessToken)) return

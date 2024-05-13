@@ -3,6 +3,7 @@ import { useCallback } from "react"
 import { isNonSuccessResponse } from "../../../utils/type-checks"
 import { useVideoContext } from "../../../contexts/video-context"
 import { useSolanaContext } from "../../../contexts/solana-context"
+import { useExchangeContext } from "../../../contexts/exchange-context"
 import useRetrieveWalletBalance from "../wallet-balance/retrieve-wallet-balance"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 
@@ -12,6 +13,7 @@ export default function usePurchaseSplTokens(): (
 ) => Promise<void> {
 	const videoClass = useVideoContext()
 	const solanaClass = useSolanaContext()
+	const exchangeClass = useExchangeContext()
 	const fortunaApiClient = useApiClientContext()
 	const retrieveWalletBalance = useRetrieveWalletBalance()
 
@@ -20,7 +22,11 @@ export default function usePurchaseSplTokens(): (
 		videoUUID: string
 	): Promise<void> => {
 		try {
-			if (_.isNull(solanaClass) || _.isNull(fortunaApiClient.httpClient.accessToken)) return
+			if (
+				_.isNull(solanaClass) ||
+				_.isNull(exchangeClass) ||
+				_.isNull(fortunaApiClient.httpClient.accessToken)
+			) return
 			setIsLoading(true)
 			const purchaseSplTokensData: PurchaseSplTokensData = {
 				numberOfTokensPurchasing: solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing,
@@ -30,7 +36,7 @@ export default function usePurchaseSplTokens(): (
 			if (!_.isEqual(purchaseResponse.status, 200) || isNonSuccessResponse(purchaseResponse.data)) {
 				throw Error ("Error purchasing sol")
 			}
-			solanaClass.addOwnership(purchaseResponse.data)
+			exchangeClass.addOwnership(purchaseResponse.data)
 			videoClass.tokenPurchaseUpdateAvailableShares(videoUUID, purchaseSplTokensData.numberOfTokensPurchasing)
 			solanaClass.resetPurchaseSplSharesDetails()
 			await retrieveWalletBalance()
@@ -42,7 +48,8 @@ export default function usePurchaseSplTokens(): (
 		} finally {
 			setIsLoading(false)
 		}
-	}, [fortunaApiClient.exchangeDataService, fortunaApiClient.httpClient.accessToken, retrieveWalletBalance, solanaClass, videoClass])
+	}, [exchangeClass, fortunaApiClient.exchangeDataService, fortunaApiClient.httpClient.accessToken,
+		retrieveWalletBalance, solanaClass, videoClass])
 
 	return purchaseSplTokens
 }
