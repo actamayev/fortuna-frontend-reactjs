@@ -4,7 +4,6 @@ import { createContext, useContext, useMemo } from "react"
 
 class ExchangeClass {
 	private _myContent: MyContent[] = []
-
 	private _myOwnership: MyOwnership[] = []
 
 	public hasContentToRetrieve = true
