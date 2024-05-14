@@ -5,6 +5,7 @@ import useTypedNavigate from "../../navigate/typed-navigate"
 import useConfirmNewSplDetails from "./confirm-new-spl-details"
 import { isNonSuccessResponse } from "../../../utils/type-checks"
 import { useSolanaContext } from "../../../contexts/solana-context"
+import { useExchangeContext } from "../../../contexts/exchange-context"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 
@@ -15,6 +16,7 @@ export default function useUploadMintInfoOnclick(): (
 	const navigate = useTypedNavigate()
 	const fortunaApiClient = useApiClientContext()
 	const solanaClass = useSolanaContext()
+	const exchangeClass = useExchangeContext()
 	const personalInfoClass = usePersonalInfoContext()
 	const retrieveSolPrice = useRetrieveSolPrice()
 	const confirmNewSplDetails = useConfirmNewSplDetails()
@@ -28,6 +30,7 @@ export default function useUploadMintInfoOnclick(): (
 			if (
 				_.isNull(solanaClass) ||
 				_.isNull(personalInfoClass) ||
+				_.isNull(exchangeClass) ||
 				_.isNull(solanaClass.newSplDetails.selectedVideo) ||
 				_.isNull(solanaClass.newSplDetails.selectedImage) ||
 				confirmNewSplDetails === false
@@ -83,7 +86,7 @@ export default function useUploadMintInfoOnclick(): (
 				mintAddress: createAndMintResponse.data.mintAddress
 			}
 
-			solanaClass.addContent(myContent)
+			exchangeClass.addContent(myContent)
 			solanaClass.resetNewSplDetails()
 
 			navigate("/creator/my-content")
@@ -93,9 +96,8 @@ export default function useUploadMintInfoOnclick(): (
 			setStatus("")
 			if (!_.isNull(solanaClass)) solanaClass.setIsNewSplLoading(false)
 		}
-	}, [confirmNewSplDetails, fortunaApiClient.solanaDataService,fortunaApiClient.uploadDataService,
-		navigate,personalInfoClass, retrieveSolPrice, solanaClass
-	])
+	}, [confirmNewSplDetails, exchangeClass, fortunaApiClient.solanaDataService,
+		fortunaApiClient.uploadDataService, navigate, personalInfoClass, retrieveSolPrice, solanaClass])
 
 	return uploadMintInfoOnclick
 }

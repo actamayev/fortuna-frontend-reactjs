@@ -1,26 +1,26 @@
 import _ from "lodash"
 import { useCallback, useEffect } from "react"
-import { useSolanaContext } from "../../contexts/solana-context"
+import { useExchangeContext } from "../../contexts/exchange-context"
 import { isErrorResponse, isMessageResponse } from "../../utils/type-checks"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useRetrieveMyOwnership(): void {
 	const fortunaApiClient = useApiClientContext()
-	const solanaClass = useSolanaContext()
+	const exchangeClass = useExchangeContext()
 	const personalInfoClass = usePersonalInfoContext()
 
 	// eslint-disable-next-line complexity
 	const retrieveMyOwnership = useCallback(async () => {
 		try {
 			if (
-				_.isNull(solanaClass) ||
+				_.isNull(exchangeClass) ||
 				_.isNil(personalInfoClass?.username) ||
-				solanaClass.hasOwnershipToRetrieve === false ||
-				solanaClass.isRetrievingOwnership === true ||
-				!_.isEmpty(solanaClass.myOwnership)
+				exchangeClass.hasOwnershipToRetrieve === false ||
+				exchangeClass.isRetrievingOwnership === true ||
+				!_.isEmpty(exchangeClass.myOwnership)
 			) return
-			solanaClass.setIsRetrievingOwnership(true)
+			exchangeClass.setIsRetrievingOwnership(true)
 			const myOwnershipResponse = await fortunaApiClient.solanaDataService.retrieveMyOwnership()
 
 			if (
@@ -29,14 +29,14 @@ export default function useRetrieveMyOwnership(): void {
 				isErrorResponse(myOwnershipResponse.data)
 			) return
 
-			solanaClass.setMyOwnership(myOwnershipResponse.data.myOwnershipList)
-			solanaClass.setHasOwnershipToRetrieve(false)
+			exchangeClass.setMyOwnership(myOwnershipResponse.data.myOwnershipList)
+			exchangeClass.setHasOwnershipToRetrieve(false)
 		} catch (error) {
 			console.error(error)
 		} finally {
-			if (!_.isNull(solanaClass)) solanaClass.setIsRetrievingOwnership(false)
+			if (!_.isNull(exchangeClass)) exchangeClass.setIsRetrievingOwnership(false)
 		}
-	}, [fortunaApiClient.solanaDataService, personalInfoClass?.username, solanaClass])
+	}, [fortunaApiClient.solanaDataService, personalInfoClass?.username, exchangeClass])
 
 	useEffect(() => {
 		if (_.isNull(fortunaApiClient.httpClient.accessToken)) return

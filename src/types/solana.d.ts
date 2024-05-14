@@ -76,15 +76,6 @@ declare global {
 		purchaseStage: TransactionStage
 	}
 
-	interface MyOwnership {
-		splName: string
-		splPublicKey: string
-		numberOfShares: number
-		imageUrl: string
-		uuid: string
-		isMyContent: boolean
-	}
-
 	type SPLListingStatus =
 		"PRELISTING" |
 		"LISTED" |
