@@ -1,8 +1,8 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useAuthContext } from "../contexts/auth-context"
-import WalletDetails from "../components/my-wallet/wallet-details"
 import SectionHeader from "../components/headers/section-header"
+import WalletDetails from "../components/my-wallet/wallet-details"
 import ShowAuthToNullUser from "../components/show-auth-to-null-user"
 import Transactions from "../components/my-wallet/transactions/transactions"
 

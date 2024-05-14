@@ -76,6 +76,11 @@ declare global {
 		purchaseStage: TransactionStage
 	}
 
+	interface PurchaseData {
+		number_of_shares: number
+		purchase_price_per_share_usd: number
+	}
+
 	interface MyOwnership {
 		splName: string
 		splPublicKey: string
@@ -83,24 +88,6 @@ declare global {
 		imageUrl: string
 		uuid: string
 		isMyContent: boolean
-	}
-
-	interface PurchaseData {
-		number_of_shares: number
-		purchase_price_per_share_usd: number
-	}
-
-	interface MyOwnershipDataInMap {
-		purchaseData: PurchaseData[]
-		spl: {
-			public_key_address: string
-			creator_wallet_id: number
-			spl_name: string
-			uploaded_image: {
-				image_url: string
-				uuid: string
-			}
-		}
 	}
 
 	type SPLListingStatus =
