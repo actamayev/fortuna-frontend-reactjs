@@ -71,7 +71,7 @@ class ExchangeClass {
 			this.myOwnership.unshift(newOwnership)
 			return
 		}
-		this.myOwnership[index].numberOfShares += newOwnership.numberOfShares
+		this.myOwnership[index].purchaseData = newOwnership.purchaseData
 	})
 
 	public setHasContentToRetrieve = action((newState: boolean): void => {

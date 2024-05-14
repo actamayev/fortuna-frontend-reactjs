@@ -6,6 +6,7 @@ const myOwnershipColumns: ColDef[] = [
 	{ headerName: "Thumbnail", field: "thumbnailUrl", cellRenderer: ThumbnailImageViewer, width: 120 },
 	{ headerName: "Token Name", field: "splName", comparator: caseInsensitiveComparator, width: 175 },
 	{ headerName: "Number of Shares", field: "numberShares", comparator: caseInsensitiveComparator, width: 175 },
+	{ headerName: "Average Price Per share ($)", field: "averagePricePerShareUsd", comparator: caseInsensitiveComparator, width: 175 },
 	{ headerName: "videoUUID", field: "videoUUID", hide: true}
 ]
 
