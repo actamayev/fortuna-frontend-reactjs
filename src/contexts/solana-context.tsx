@@ -6,7 +6,6 @@ class SolanaClass {
 	private _walletPublicKey: string | null = null
 	private _walletBalanceSol: number | null = null
 
-	private _myContent: MyContent[] = []
 	public isTransferSolButtonPressed = false
 	public transferSolDetails: TransferSolDetails = {
 		transferOption: "username",
@@ -20,8 +19,6 @@ class SolanaClass {
 	}
 	public isPublicKeySearchLoading = false
 	private _myTransactions: SolanaTransaction[] = []
-
-	private _myOwnership: MyOwnership[] = []
 
 	public purchaseSplSharesDetails: PurchaseSplSharesDetails = {
 		numberOfTokensPurchasing: 0,
@@ -44,16 +41,10 @@ class SolanaClass {
 	public solPriceDetails: SolPriceDetails | null = null
 	public isRetrievingSolPriceDetails = false
 
-	public hasContentToRetrieve = true
-	public isRetrievingContent = false
-
 	public hasTransactionsToRetrieve = true
 	public isRetrievingTransactions = false
 
 	public isRetrievingWalletDetails = false
-
-	public hasOwnershipToRetrieve = true
-	public isRetrievingOwnership = false
 
 	constructor() {
 		makeAutoObservable(this)
@@ -83,78 +74,12 @@ class SolanaClass {
 		this._myTransactions = myTransactions
 	}
 
-	get myContent(): MyContent[] {
-		return this._myContent
-	}
-
-	set myContent(myContent: MyContent[]) {
-		this._myContent = myContent
-	}
-
-	get myOwnership(): MyOwnership[] {
-		return this._myOwnership
-	}
-
-	set myOwnership(myOwnership: MyOwnership[]) {
-		this._myOwnership = myOwnership
-	}
-
-	public contextForMyContent(mintAddress: string): MyContent | undefined {
-		return this.myContent.find(content => content.mintAddress === mintAddress)
-	}
-
 	public contextForMyTransaction(transactionId: number): SolanaTransaction | undefined {
 		return this.myTransactions.find(transaction => transaction.solTransferId === transactionId)
 	}
 
-	public contextForMyOwnership(splPublicKey: string): MyOwnership | undefined {
-		return this.myOwnership.find(ownership => ownership.splPublicKey === splPublicKey)
-	}
-
-	public setContent = action((newContentList: MyContent[]): void => {
-		this.myContent = []
-		if (_.isEmpty(newContentList)) return
-		newContentList.map(singleNewContent => this.addContent(singleNewContent))
-	})
-
-	public addContent = action((newContent: MyContent): void => {
-		const retrievedContent = this.contextForMyContent(newContent.mintAddress)
-		if (!_.isUndefined(retrievedContent)) return
-		this.myContent.unshift(newContent)
-	})
-
-	public checkIfUuidExistsInContentList(uuid: string): boolean {
-		for (const content of this.myContent) {
-			if (_.isEqual(content.uuid, uuid)) return true
-		}
-		return false
-	}
-
-	public setMyOwnership = action((newOwnershipList: MyOwnership[]): void => {
-		this.myOwnership = []
-		if (_.isEmpty(newOwnershipList)) return
-		newOwnershipList.map(singleNewOwnership => this.addOwnership(singleNewOwnership))
-	})
-
-	public addOwnership = action((newOwnership: MyOwnership): void => {
-		const index = this.myOwnership.findIndex(ownership => ownership.splPublicKey === newOwnership.splPublicKey)
-		if (_.isEqual(index, -1)) {
-			this.myOwnership.unshift(newOwnership)
-			return
-		}
-		this.myOwnership[index].numberOfShares += newOwnership.numberOfShares
-	})
-
 	public setIsNewSplLoading = action((newState: boolean): void => {
 		this.isNewSplLoading = newState
-	})
-
-	public setHasContentToRetrieve = action((newState: boolean): void => {
-		this.hasContentToRetrieve = newState
-	})
-
-	public setIsRetrievingContent = action((newState: boolean): void => {
-		this.isRetrievingContent = newState
 	})
 
 	public setIsPublicKeySearchLoading = action((newState: boolean): void => {
@@ -186,14 +111,6 @@ class SolanaClass {
 
 	public setIsRetrievingSolPriceDetails = action((newState: boolean): void => {
 		this.isRetrievingSolPriceDetails = newState
-	})
-
-	public setHasOwnershipToRetrieve = action((newState: boolean): void => {
-		this.hasOwnershipToRetrieve = newState
-	})
-
-	public setIsRetrievingOwnership = action((newState: boolean): void => {
-		this.isRetrievingOwnership = newState
 	})
 
 	public setIsTransferSolButtonPressed = action((newState: boolean): void => {
@@ -274,24 +191,18 @@ class SolanaClass {
 	public logout() {
 		this.walletPublicKey = null
 		this.walletBalanceSol = null
-		this.myContent = []
 		this.isTransferSolButtonPressed = false
 		this.resetTransferSolDetails()
 		this.isPublicKeySearchLoading = false
 		this.myTransactions = []
-		this.myOwnership = []
 		this.resetPurchaseSplSharesDetails()
 		this.resetNewSplDetails()
 		this.isNewSplLoading = false
 		this.solPriceDetails = null
 		this.isRetrievingSolPriceDetails = false
-		this.hasContentToRetrieve = true
-		this.isRetrievingContent = false
 		this.hasTransactionsToRetrieve = true
 		this.isRetrievingTransactions = false
 		this.isRetrievingWalletDetails = false
-		this.hasOwnershipToRetrieve = true
-		this.isRetrievingOwnership = false
 	}
 }
 

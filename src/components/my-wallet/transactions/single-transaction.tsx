@@ -35,11 +35,11 @@ function SingleTransaction(props: Props) {
 	if (_.isNull(solanaClass) || _.isNull(personalInfoClass)) return null
 
 	return (
-		<div className="card-container dark:text-white">
+		<div className="bg-white border shadow-sm mt-2 p-2 rounded-sm dark:text-white">
 			<div>
 				{_.upperFirst(transaction.outgoingOrIncoming)} Transfer on {formattedDateTime}
 			</div>
-			<div className="ml-3">
+			<div>
 				{personalInfoClass.defaultCurrency === "usd" && (<> ${_.round(transaction.usdAmountTransferred, 2)}</>)}
 				{personalInfoClass.defaultCurrency === "sol" && (<> {_.round(transaction.solAmountTransferred, 4)} SOL</>)}
 				{transaction.outgoingOrIncoming === "incoming" && (<> from {transaction.transferFromUsername}</>)}

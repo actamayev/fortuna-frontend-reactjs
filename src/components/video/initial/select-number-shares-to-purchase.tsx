@@ -4,18 +4,20 @@ import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import RangeSelectorSlider from "../../range-selector-slider"
 import { useSolanaContext } from "../../../contexts/solana-context"
+import { useExchangeContext } from "../../../contexts/exchange-context"
 import useCalculateMaxSharesToPurchase from "../../../hooks/solana/purchase-spl-tokens/calculate-max-shares-to-purchase"
 
 function SelectNumberSharesToPurchase() {
 	const solanaClass = useSolanaContext()
+	const exchangeClass = useExchangeContext()
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const calculateMaxSharesToPurchase = useCalculateMaxSharesToPurchase()
 
 	const wasVideoCreatedByUser = useMemo(() => {
-		if (_.isNull(solanaClass) || _.isUndefined(videoUUID)) return true
-		return solanaClass.checkIfUuidExistsInContentList(videoUUID)
+		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return true
+		return exchangeClass.checkIfUuidExistsInContentList(videoUUID)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [solanaClass, videoUUID, solanaClass?.myContent])
+	}, [exchangeClass, videoUUID, exchangeClass?.myContent])
 
 	if (_.isNull(solanaClass) || _.isUndefined(videoUUID) || wasVideoCreatedByUser === true) return null
 
