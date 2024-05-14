@@ -1,9 +1,8 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { GridApi } from "ag-grid-community"
+import { useEffect, useState } from "react"
 import { AgGridReact } from "ag-grid-react"
 import "ag-grid-community/styles/ag-grid.css"
-import { useEffect, useRef, useState } from "react"
 import "ag-grid-community/styles/ag-theme-alpine.css"
 import { useExchangeContext } from "../../contexts/exchange-context"
 import useSetGridHeight from "../../hooks/set-grid-height-use-effect"
@@ -13,11 +12,9 @@ import createOwnershipArrayForGrid from "../../utils/grids/ownership-grid/create
 
 function MyOwnershipGrid() {
 	const exchangeClass = useExchangeContext()
-	const gridRef = useRef<AgGridReact | null>(null)
 	const [rowData, setRowData] = useState<OwnershipGridRowData[]>([])
-	const [gridApi, setGridApi] = useState<GridApi | null>(null)
 	const [gridHeight, setGridHeight] = useState<string | number>("100%")
-	useSetGridHeight(setGridHeight, gridApi, rowData.length)
+	useSetGridHeight(rowData.length, setGridHeight)
 	const navigateToVideo = useNavigateToVideo()
 
 	useEffect(() => {
@@ -38,10 +35,8 @@ function MyOwnershipGrid() {
 		<div className="flex-1">
 			<div className="ag-theme-alpine" style={{ height: gridHeight, width: "100%" }}>
 				<AgGridReact
-					ref={gridRef}
 					columnDefs={myOwnershipColumns}
 					rowData={rowData}
-					onGridReady={(params) => setGridApi(params.api)}
 					pagination={true}
 					headerHeight={40}
 					paginationPageSize={50}

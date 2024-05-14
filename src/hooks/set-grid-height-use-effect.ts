@@ -1,11 +1,8 @@
 import { useEffect } from "react"
-import { GridApi } from "ag-grid-community"
 
 export default function useSetGridHeight(
-	setGridHeight: React.Dispatch<React.SetStateAction<string | number>>,
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	gridApi: GridApi<any> | null,
-	rowDataLength: number
+	rowDataLength: number,
+	setGridHeight: React.Dispatch<React.SetStateAction<string | number>>
 ): void {
 	useEffect(() => {
 		const rowHeight = 40 // Your row height
@@ -17,5 +14,5 @@ export default function useSetGridHeight(
 		// Set maximum height if total height is greater than a certain value
 		const maxHeight = 1500
 		setGridHeight(Math.min(totalGridHeight, maxHeight))
-	}, [gridApi, rowDataLength, setGridHeight])
+	}, [rowDataLength, setGridHeight])
 }
