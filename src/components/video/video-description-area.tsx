@@ -1,6 +1,5 @@
 import PricePerShareArea from "../home-page/price-per-share-area"
 import useNavigateToCreator from "../../hooks/navigate/navigate-to-creator"
-import SecondarySharesButton from "./purchase-secondary-shares/secondary-shares-button"
 
 interface Props {
 	video: VideoData
@@ -42,10 +41,6 @@ export default function VideoDescriptionArea(props: Props) {
 					<PricePerShareArea video={video}/>
 				</div>
                 Total Outstanding shares: {video.totalNumberShares}
-			</div>
-
-			<div className="flex-1">
-				<SecondarySharesButton />
 			</div>
 		</div>
 	)
