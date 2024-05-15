@@ -28,10 +28,14 @@ function Video() {
 			<div className="grid grid-cols-12 gap-4">
 				<div className="col-span-9">
 					<VideoPlayer videoUrl={video.videoUrl} />
-					<VideoDescriptionArea video={video} />
 				</div>
 				<div className="col-span-3 flex flex-col">
 					<PurchaseSharesCard video={video} />
+				</div>
+			</div>
+			<div className="grid grid-cols-12 gap-4">
+				<div className="col-span-9">
+					<VideoDescriptionArea video={video} />
 				</div>
 			</div>
 		</div>

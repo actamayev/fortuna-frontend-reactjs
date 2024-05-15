@@ -11,7 +11,7 @@ export default function VideoPlayer(props: Props) {
 			<video
 				controls
 				autoPlay
-				className="w-full rounded-lg"
+				className="w-full h-full rounded-lg"
 			>
 				<source src={videoUrl} type="video/mp4" />
                 Your browser does not support the video tag.
