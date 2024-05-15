@@ -1,20 +1,18 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
-import Button from "../../button"
+import Button from "../../../button"
 import ShowPurchasePrice from "./show-purchase-price"
 import ConfirmPurchaseButton from "./confirm-purchase-button"
-import { useVideoContext } from "../../../contexts/video-context"
-import { useSolanaContext } from "../../../contexts/solana-context"
-import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
+import { useVideoContext } from "../../../../contexts/video-context"
+import { useExchangeContext } from "../../../../contexts/exchange-context"
 
 function ReviewPurchaseInfo() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const videoClass = useVideoContext()
-	const solanaClass = useSolanaContext()
-	const personalInfoClass = usePersonalInfoContext()
+	const exchangeClass = useExchangeContext()
 
-	if (_.isNull(solanaClass) || _.isNull(personalInfoClass)) return null
+	if (_.isNull(exchangeClass)) return null
 
 	if (_.isUndefined(videoUUID)) return null
 	const video = videoClass.findVideoFromUUID(videoUUID)
@@ -28,7 +26,7 @@ function ReviewPurchaseInfo() {
 						title="<"
 						colorClass="bg-blue-200"
 						hoverClass="hover:bg-blue-300"
-						onClick={() => solanaClass.updatePurchaseSplSharesDetails("purchaseStage", "initial")}
+						onClick={() => exchangeClass.updatePurchaseSplSharesDetails("purchaseStage", "initial")}
 						className="font-semibold"
 					/>
 				</div>

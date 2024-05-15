@@ -11,11 +11,12 @@ export default function DropdownItemsContainer (props: Props) {
 
 	return (
 		<div
-			className="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+			className="origin-top-right absolute right-0 mt-1 rounded-md shadow-md bg-white ring-1 ring-black ring-opacity-5"
+			style={{ width: "132px"}}
 			aria-orientation="vertical"
 			aria-labelledby="menu-button"
 		>
-			<div className="py-1">
+			<div>
 				<ProfileDropdownItems />
 			</div>
 		</div>

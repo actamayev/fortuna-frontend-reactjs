@@ -12,6 +12,14 @@ class ExchangeClass {
 	public hasOwnershipToRetrieve = true
 	public isRetrievingOwnership = false
 
+	public openOrders: Map<string, OpenOrders> = new Map() // maps an spl public key to it's open orders.
+
+	public purchaseSplSharesDetails: PurchaseSplSharesDetails = {
+		numberOfTokensPurchasing: 0,
+		splPublicKey: "",
+		purchaseStage: "initial"
+	}
+
 	constructor() {
 		makeAutoObservable(this)
 	}
@@ -39,6 +47,28 @@ class ExchangeClass {
 	public contextForMyOwnership(splPublicKey: string): MyOwnership | undefined {
 		return this.myOwnership.find(ownership => ownership.splPublicKey === splPublicKey)
 	}
+
+	public contextForVideoOpenTrades(splPublicKey: string): OpenOrders | undefined {
+		return this.openOrders.get(splPublicKey)
+	}
+
+	public updatePurchaseSplSharesDetails = action(<K extends keyof PurchaseSplSharesDetails>(
+		key: K, value: PurchaseSplSharesDetails[K]
+	) => {
+		if (typeof this.purchaseSplSharesDetails[key] !== typeof value) {
+			console.warn(`Type mismatch when trying to set ${key}`)
+			return
+		}
+		this.purchaseSplSharesDetails[key] = value
+	})
+
+	public resetPurchaseSplSharesDetails = action(() => {
+		this.purchaseSplSharesDetails = {
+			numberOfTokensPurchasing: 0,
+			splPublicKey: "",
+			purchaseStage: "initial"
+		}
+	})
 
 	public setContent = action((newContentList: MyContent[]): void => {
 		this.myContent = []
@@ -74,6 +104,10 @@ class ExchangeClass {
 		this.myOwnership[index].purchaseData = newOwnership.purchaseData
 	})
 
+	public addOpenOrdersToVideo(splPublicKey: string, openOrders: OpenOrders): void {
+		this.openOrders.set(splPublicKey, openOrders)
+	}
+
 	public setHasContentToRetrieve = action((newState: boolean): void => {
 		this.hasContentToRetrieve = newState
 	})
@@ -97,6 +131,8 @@ class ExchangeClass {
 		this.isRetrievingContent = false
 		this.hasOwnershipToRetrieve = true
 		this.isRetrievingOwnership = false
+		this.openOrders.clear()
+		this.resetPurchaseSplSharesDetails()
 	}
 }
 

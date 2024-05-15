@@ -2,13 +2,11 @@ import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
-import RangeSelectorSlider from "../../range-selector-slider"
-import { useSolanaContext } from "../../../contexts/solana-context"
-import { useExchangeContext } from "../../../contexts/exchange-context"
-import useCalculateMaxSharesToPurchase from "../../../hooks/solana/purchase-spl-tokens/calculate-max-shares-to-purchase"
+import RangeSelectorSlider from "../../../range-selector-slider"
+import { useExchangeContext } from "../../../../contexts/exchange-context"
+import useCalculateMaxSharesToPurchase from "../../../../hooks/solana/purchase-spl-tokens/calculate-max-shares-to-purchase"
 
 function SelectNumberSharesToPurchase() {
-	const solanaClass = useSolanaContext()
 	const exchangeClass = useExchangeContext()
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const calculateMaxSharesToPurchase = useCalculateMaxSharesToPurchase()
@@ -19,20 +17,20 @@ function SelectNumberSharesToPurchase() {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [exchangeClass, videoUUID, exchangeClass?.myContent])
 
-	if (_.isNull(solanaClass) || _.isUndefined(videoUUID) || wasVideoCreatedByUser === true) return null
+	if (_.isNull(exchangeClass) || _.isUndefined(videoUUID) || wasVideoCreatedByUser === true) return null
 
 	return (
 		<div className="flex flex-col space-y-4">
 			<RangeSelectorSlider
 				title="Shares to purchase"
-				value={solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing}
-				onChange={(e) => solanaClass.updatePurchaseSplSharesDetails("numberOfTokensPurchasing", Number(e.target.value))}
+				value={exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing}
+				onChange={(e) => exchangeClass.updatePurchaseSplSharesDetails("numberOfTokensPurchasing", Number(e.target.value))}
 				min={0}
 				max={calculateMaxSharesToPurchase(videoUUID)}
 				step={1}
 			/>
 			<div>
-				{solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing}
+				{exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing}
 			</div>
 		</div>
 	)

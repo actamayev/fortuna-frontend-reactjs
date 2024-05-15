@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom"
 import VideoPlayer from "../components/video/video-player"
 import { useVideoContext } from "../contexts/video-context"
 import useSetSingleVideo from "../hooks/videos/set-single-video"
-import PurchaseSharesCard from "../components/video/purchase-shares-card"
+import PurchaseSharesCard from "../components/video/purchase-primary-shares/purchase-shares-card"
 import VideoDescriptionArea from "../components/video/video-description-area"
 
 function Video() {
@@ -24,15 +24,19 @@ function Video() {
 	if (_.isUndefined(video)) return null
 
 	return (
-		<>
-			<div className="dark:text-white">
-				<div>
+		<div className="dark:text-white">
+			<div className="flex">
+				<div className="flex-1">
 					<VideoPlayer videoUrl={video.videoUrl} />
+					<VideoDescriptionArea video={video} />
 				</div>
-				<VideoDescriptionArea video={video} />
+				<div className="flex-1 ml-4 flex flex-col justify-start">
+					<div className="h-full">
+						<PurchaseSharesCard />
+					</div>
+				</div>
 			</div>
-			<PurchaseSharesCard />
-		</>
+		</div>
 	)
 }
 

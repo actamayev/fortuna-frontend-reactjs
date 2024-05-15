@@ -29,6 +29,24 @@ declare global {
 		uuid: string
 		isMyContent: boolean
 	}
+
+	interface TransformedAskOrderData {
+		secondaryMarketAskId: number
+		splId: number
+		askPricePerShareUsd: number
+	}
+
+
+	interface TransformedBidOrderData {
+		secondaryMarketBidId: number
+		splId: number
+		bidPricePerShareUsd: number
+	}
+
+	interface OpenOrders {
+		bids: TransformedBidOrderData[]
+		asks: TransformedAskOrderData[]
+	}
 }
 
 export {}

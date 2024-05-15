@@ -2,16 +2,14 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import { useParams } from "react-router-dom"
-import Button from "../../button"
-import { useAuthContext } from "../../../contexts/auth-context"
-import { useVideoContext } from "../../../contexts/video-context"
-import { useSolanaContext } from "../../../contexts/solana-context"
-import { useExchangeContext } from "../../../contexts/exchange-context"
-import useCalculateMaxSharesToPurchase from "../../../hooks/solana/purchase-spl-tokens/calculate-max-shares-to-purchase"
+import Button from "../../../button"
+import { useAuthContext } from "../../../../contexts/auth-context"
+import { useVideoContext } from "../../../../contexts/video-context"
+import { useExchangeContext } from "../../../../contexts/exchange-context"
+import useCalculateMaxSharesToPurchase from "../../../../hooks/solana/purchase-spl-tokens/calculate-max-shares-to-purchase"
 
 function ReviewPurchaseButton() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
-	const solanaClass = useSolanaContext()
 	const exchangeClass = useExchangeContext()
 	const videoClass = useVideoContext()
 	const authClass = useAuthContext()
@@ -24,18 +22,18 @@ function ReviewPurchaseButton() {
 	}, [exchangeClass, videoUUID, exchangeClass?.myContent])
 
 	const isAbleToPurchaseShares = useMemo(() => {
-		if (_.isNull(solanaClass) || _.isUndefined(videoUUID)) return false
-		return solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing <= calculateMaxSharesToPurchase(videoUUID)
+		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return false
+		return exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing <= calculateMaxSharesToPurchase(videoUUID)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [solanaClass?.purchaseSplSharesDetails.numberOfTokensPurchasing, videoUUID])
+	}, [exchangeClass?.purchaseSplSharesDetails.numberOfTokensPurchasing, videoUUID])
 
 	const onClickButton = useCallback(() => {
-		if (_.isNull(solanaClass) || _.isUndefined(videoUUID)) return
+		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return
 		const video = videoClass.findVideoFromUUID(videoUUID)
 		if (_.isUndefined(video)) return
-		solanaClass.updatePurchaseSplSharesDetails("purchaseStage", "review")
-		solanaClass.updatePurchaseSplSharesDetails("splPublicKey", video.splPublicKey)
-	}, [solanaClass, videoClass, videoUUID])
+		exchangeClass.updatePurchaseSplSharesDetails("purchaseStage", "review")
+		exchangeClass.updatePurchaseSplSharesDetails("splPublicKey", video.splPublicKey)
+	}, [exchangeClass, videoClass, videoUUID])
 
 	const createTitleForButton = useMemo(() => {
 		if (_.isNull(authClass.accessToken)) return "Please Create an Account to purchase shares"
@@ -44,7 +42,7 @@ function ReviewPurchaseButton() {
 		return "Review Purchase"
 	}, [authClass.accessToken, isAbleToPurchaseShares, wasVideoCreatedByUser])
 
-	if (_.isNull(solanaClass)) return null
+	if (_.isNull(exchangeClass)) return null
 
 	return (
 		<div className="flex justify-center">
@@ -54,7 +52,7 @@ function ReviewPurchaseButton() {
 				hoverClass="hover:bg-blue-300"
 				title={createTitleForButton}
 				disabled={wasVideoCreatedByUser || !isAbleToPurchaseShares ||
-					solanaClass.purchaseSplSharesDetails.numberOfTokensPurchasing === 0
+					exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing === 0
 				}
 				className="font-semibold"
 			/>

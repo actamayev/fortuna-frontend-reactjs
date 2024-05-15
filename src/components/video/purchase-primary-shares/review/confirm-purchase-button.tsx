@@ -2,8 +2,8 @@ import _ from "lodash"
 import { useState } from "react"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
-import Button from "../../button"
-import usePurchaseSplTokens from "../../../hooks/solana/purchase-spl-tokens/purchase-spl-tokens"
+import Button from "../../../button"
+import usePurchaseSplTokens from "../../../../hooks/solana/purchase-spl-tokens/purchase-spl-tokens"
 
 function ConfirmPurchaseButton() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()

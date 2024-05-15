@@ -9,7 +9,7 @@ export default function VideoPlayer(props: Props) {
 	return (
 		<div>
 			<video
-				width="1280"
+				width="960"
 				controls
 				autoPlay
 				className="rounded-lg"
