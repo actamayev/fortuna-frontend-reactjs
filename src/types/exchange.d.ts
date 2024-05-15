@@ -8,9 +8,18 @@ declare global {
 		purchaseStage: TransactionStage
 	}
 
-	interface PurchaseSecondarySplSharesDetails extends PurchaseSplTokensData {
+	interface PurchaseSecondarySplSharesDetails {
+		splPublicKey: string
 		purchaseStage: TransactionStage
-		pricePerShareUsd: number
+		bidPricePerShareUsd: number
+		numberOfSharesBiddingFor: number
+	}
+
+	interface SellSecondarySplSharesDetails {
+		splPublicKey: string
+		saleStage: TransactionStage
+		askPricePerShareUsd: number
+		numberofSharesAskingFor: number
 	}
 
 	interface CreateSPLBidData {
@@ -58,6 +67,11 @@ declare global {
 	}
 
 	type BuyOrSell = "Buy" | "Sell"
+
+	interface TransactionsMap {
+		fillPriceUsd: number
+		numberOfShares: number
+	}
 }
 
 export {}

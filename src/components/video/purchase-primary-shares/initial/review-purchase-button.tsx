@@ -15,12 +15,6 @@ function ReviewPurchaseButton() {
 	const authClass = useAuthContext()
 	const calculateMaxSharesToPurchase = useCalculateMaxSharesToPurchase()
 
-	const wasVideoCreatedByUser = useMemo(() => {
-		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return true
-		return exchangeClass.checkIfUuidExistsInContentList(videoUUID)
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [exchangeClass, videoUUID, exchangeClass?.myContent])
-
 	const isAbleToPurchaseShares = useMemo(() => {
 		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return false
 		return exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing <= calculateMaxSharesToPurchase(videoUUID)
@@ -37,10 +31,9 @@ function ReviewPurchaseButton() {
 
 	const createTitleForButton = useMemo(() => {
 		if (_.isNull(authClass.accessToken)) return "Please Create an Account to purchase shares"
-		if (wasVideoCreatedByUser === true) return "Unable to purchase own shares"
 		else if (isAbleToPurchaseShares === false) return "Unable to purchase shares"
 		return "Review Purchase"
-	}, [authClass.accessToken, isAbleToPurchaseShares, wasVideoCreatedByUser])
+	}, [authClass.accessToken, isAbleToPurchaseShares])
 
 	if (_.isNull(exchangeClass)) return null
 
@@ -51,9 +44,7 @@ function ReviewPurchaseButton() {
 				colorClass="bg-blue-200"
 				hoverClass="hover:bg-blue-300"
 				title={createTitleForButton}
-				disabled={wasVideoCreatedByUser || !isAbleToPurchaseShares ||
-					exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing === 0
-				}
+				disabled={!isAbleToPurchaseShares || _.isEqual(exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, 0)}
 				className="font-semibold"
 			/>
 		</div>

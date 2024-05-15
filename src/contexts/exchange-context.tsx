@@ -22,11 +22,18 @@ class ExchangeClass {
 
 	public buyOrSellSecondarySplShares: BuyOrSell  = "Buy"
 
-	public purchaseSecondarySplSharesDetails: PurchaseSecondarySplSharesDetails = {
-		numberOfTokensPurchasing: 0,
+	public bidForSplSharesDetails: PurchaseSecondarySplSharesDetails = {
+		numberOfSharesBiddingFor: 0,
 		splPublicKey: "",
 		purchaseStage: "initial",
-		pricePerShareUsd: 0
+		bidPricePerShareUsd: 0
+	}
+
+	public asForSplSharesDetails: SellSecondarySplSharesDetails = {
+		numberofSharesAskingFor: 0,
+		splPublicKey: "",
+		saleStage: "initial",
+		askPricePerShareUsd: 0
 	}
 
 	constructor() {
@@ -82,19 +89,19 @@ class ExchangeClass {
 	public updatePurchaseSecondarySplSharesDetails = action(<K extends keyof PurchaseSecondarySplSharesDetails>(
 		key: K, value: PurchaseSecondarySplSharesDetails[K]
 	) => {
-		if (typeof this.purchaseSecondarySplSharesDetails[key] !== typeof value) {
+		if (typeof this.bidForSplSharesDetails[key] !== typeof value) {
 			console.warn(`Type mismatch when trying to set ${key}`)
 			return
 		}
-		this.purchaseSecondarySplSharesDetails[key] = value
+		this.bidForSplSharesDetails[key] = value
 	})
 
 	public resetPurchaseSecondarySplSharesDetails = action(() => {
-		this.purchaseSecondarySplSharesDetails = {
-			numberOfTokensPurchasing: 0,
+		this.bidForSplSharesDetails = {
+			numberOfSharesBiddingFor: 0,
 			splPublicKey: "",
 			purchaseStage: "initial",
-			pricePerShareUsd: 0
+			bidPricePerShareUsd: 0
 		}
 	})
 
@@ -150,6 +157,10 @@ class ExchangeClass {
 
 	public setIsRetrievingOwnership = action((newState: boolean): void => {
 		this.isRetrievingOwnership = newState
+	})
+
+	public setBuyOrSellSecondaryShares = action((newValue: BuyOrSell): void => {
+		this.buyOrSellSecondarySplShares = newValue
 	})
 
 	public logout() {

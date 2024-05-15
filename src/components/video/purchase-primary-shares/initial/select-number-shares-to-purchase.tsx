@@ -1,5 +1,4 @@
 import _ from "lodash"
-import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import RangeSelectorSlider from "../../../range-selector-slider"
@@ -11,20 +10,16 @@ function SelectNumberSharesToPurchase() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const calculateMaxSharesToPurchase = useCalculateMaxSharesToPurchase()
 
-	const wasVideoCreatedByUser = useMemo(() => {
-		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return true
-		return exchangeClass.checkIfUuidExistsInContentList(videoUUID)
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [exchangeClass, videoUUID, exchangeClass?.myContent])
-
-	if (_.isNull(exchangeClass) || _.isUndefined(videoUUID) || wasVideoCreatedByUser === true) return null
+	if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return null
 
 	return (
 		<div>
 			<RangeSelectorSlider
 				title="Shares to purchase"
 				value={exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing}
-				onChange={(e) => exchangeClass.updatePurchasePrimarySplSharesDetails("numberOfTokensPurchasing", Number(e.target.value))}
+				onChange={(e) => {
+					exchangeClass.updatePurchasePrimarySplSharesDetails("numberOfTokensPurchasing", parseInt(e.target.value, 10))
+				}}
 				min={0}
 				max={calculateMaxSharesToPurchase(videoUUID)}
 				step={1}

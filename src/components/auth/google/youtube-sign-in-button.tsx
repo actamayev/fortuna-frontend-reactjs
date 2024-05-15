@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import Button from "../../button"
-import useYouTubeLogin from "../../../hooks/google/youtube-login"
+import useYouTubeLogin from "../../../hooks/youtube/youtube-login"
 import { useYouTubeContext } from "../../../contexts/youtube-context"
 
 function YouTubeSignInButton() {

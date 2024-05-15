@@ -1,8 +1,8 @@
 import Tooltip from "../../../tooltip"
 import CostPerShareArea from "./cost-per-share-area"
+import ShowTradingBalance from "../../show-trading-balance"
 import ReviewPurchaseButton from "./review-purchase-button"
 import SelectNumberSharesToPurchase from "./select-number-shares-to-purchase"
-import ShowAvailableTradingBalance from "../../show-available-trading-balance"
 
 export default function InitialPrimaryPurchaseInfo() {
 	return (
@@ -14,7 +14,7 @@ export default function InitialPrimaryPurchaseInfo() {
 				/>
 			</div>
 			<div className="mt-3">
-				<ShowAvailableTradingBalance />
+				<ShowTradingBalance />
 			</div>
 			<div className="mt-3">
 				<SelectNumberSharesToPurchase />

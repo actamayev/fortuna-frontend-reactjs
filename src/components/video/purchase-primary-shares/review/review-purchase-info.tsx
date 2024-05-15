@@ -3,7 +3,7 @@ import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import Button from "../../../button"
 import ShowPurchasePrice from "./show-purchase-price"
-import ConfirmPurchaseButton from "./confirm-purchase-button"
+import ConfirmPrimaryPurchaseButton from "./confirm-primary-purchase-button"
 import { useVideoContext } from "../../../../contexts/video-context"
 import ShowRemainingWalletBalance from "./show-remaining-wallet-balance"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
@@ -44,7 +44,7 @@ function ReviewPurchaseInfo() {
 					<ShowRemainingWalletBalance video={video} />
 				</div>
 			</div>
-			<ConfirmPurchaseButton />
+			<ConfirmPrimaryPurchaseButton />
 		</>
 	)
 }

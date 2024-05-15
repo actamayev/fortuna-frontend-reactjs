@@ -13,7 +13,7 @@ function SelectOfferingSharePriceUsd() {
 			<RangeSelectorSlider
 				title="Offering price per share ($)"
 				value={solanaClass.newSplDetails.listingSharePriceUsd}
-				onChange={(event) => solanaClass.updateNewSplDetails("listingSharePriceUsd", Number(event.target.value))}
+				onChange={(event) => solanaClass.updateNewSplDetails("listingSharePriceUsd", parseInt(event.target.value, 10))}
 				min={0.5}
 				max={50}
 				step={0.01}

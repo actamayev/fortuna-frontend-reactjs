@@ -14,7 +14,7 @@ function SelectNumberShares() {
 				<RangeSelectorSlider
 					title="Number of Shares"
 					value={solanaClass.newSplDetails.numberOfShares}
-					onChange={(event) => solanaClass.updateNewSplDetails("numberOfShares", Number(event.target.value))}
+					onChange={(event) => solanaClass.updateNewSplDetails("numberOfShares", parseInt(event.target.value, 10))}
 					min={100}
 					max={1000}
 					step={1}

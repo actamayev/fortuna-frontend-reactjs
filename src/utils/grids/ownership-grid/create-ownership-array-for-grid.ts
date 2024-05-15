@@ -1,3 +1,5 @@
+import _ from "lodash"
+
 export default function createOwnershipArrayForGrid(ownershipArray: MyOwnership[]): OwnershipGridRowData[] {
 	const ownershipGridArray = ownershipArray.map(ownership => {
 		// Calculate the total number of shares and the weighted average price per share
@@ -14,7 +16,7 @@ export default function createOwnershipArrayForGrid(ownershipArray: MyOwnership[
 		return {
 			splName: ownership.splName,
 			numberShares: totalShares,
-			averagePricePerShareUsd: averagePricePerShareUsd,
+			averagePricePerShareUsd: _.round(averagePricePerShareUsd, 2),
 			videoUUID: ownership.uuid,
 			imageUrl: ownership.imageUrl
 		}

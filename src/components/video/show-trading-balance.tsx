@@ -3,7 +3,7 @@ import { observer } from "mobx-react"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
-function ShowAvailableTradingBalance() {
+function ShowTradingBalance() {
 	const solanaClass = useSolanaContext()
 	const personalInfoClass = usePersonalInfoContext()
 
@@ -18,4 +18,4 @@ function ShowAvailableTradingBalance() {
 	)
 }
 
-export default observer(ShowAvailableTradingBalance)
+export default observer(ShowTradingBalance)

@@ -1,21 +1,24 @@
-import ChooseBuyOrSellSecondaryShares from "./choose-buy-or-sell-secondary-shares"
+import ChooseBidOrAsk from "./choose-bid-or-ask"
+import TradeSecondarySharesTitle from "./trade-secondary-shares-title"
+import BidForSecondarySharesOptions from "./bid/bid-for-secondary-shares-options"
 
 export default function TradeSecondaryShares() {
 	return (
 		<div className="flex flex-col h-full">
-			<div>
-				<div className="flex-1 flex justify-center p-4">
-					<div className="text-center font-semibold flex justify-center items-center">
-					Trade Secondary Shares
+			<div className="h-2/3">
+				<div className="flex-1 flex justify-center">
+					<div className="text-center font-semibold items-center">
+						<TradeSecondarySharesTitle />
 					</div>
 				</div>
-				<div className="mt-3">
-					<ChooseBuyOrSellSecondaryShares />
-				</div>
+				<ChooseBidOrAsk />
+				<BidForSecondarySharesOptions />
 			</div>
 			<hr className="border-t border-gray-300 w-full" />
-			<div className="flex-1 flex justify-center p-4">
-				Order Book
+			<div className="flex-1 flex justify-center">
+				<div className="text-center font-semibold items-center">
+					Order Book
+				</div>
 			</div>
 		</div>
 	)

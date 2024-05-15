@@ -1,12 +1,12 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import { isNonSuccessResponse } from "../../../utils/type-checks"
-import { useVideoContext } from "../../../contexts/video-context"
-import { useExchangeContext } from "../../../contexts/exchange-context"
-import useRetrieveWalletBalance from "../wallet-balance/retrieve-wallet-balance"
-import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
+import { isNonSuccessResponse } from "../../utils/type-checks"
+import { useVideoContext } from "../../contexts/video-context"
+import { useExchangeContext } from "../../contexts/exchange-context"
+import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
+import useRetrieveWalletBalance from "../solana/wallet-balance/retrieve-wallet-balance"
 
-export default function usePurchaseSplTokens(): (
+export default function usePurchasePrimarySplTokens(): (
 	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
 	videoUUID: string
 ) => Promise<void> {
@@ -15,15 +15,12 @@ export default function usePurchaseSplTokens(): (
 	const fortunaApiClient = useApiClientContext()
 	const retrieveWalletBalance = useRetrieveWalletBalance()
 
-	const purchaseSplTokens = useCallback(async (
+	const purchasePrimarySplTokens = useCallback(async (
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
 		videoUUID: string
 	): Promise<void> => {
 		try {
-			if (
-				_.isNull(exchangeClass) ||
-				_.isNull(fortunaApiClient.httpClient.accessToken)
-			) return
+			if (_.isNull(exchangeClass) || _.isNull(fortunaApiClient.httpClient.accessToken)) return
 			setIsLoading(true)
 			const purchaseSplTokensData: PurchaseSplTokensData = {
 				numberOfTokensPurchasing: exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing,
@@ -31,7 +28,7 @@ export default function usePurchaseSplTokens(): (
 			}
 			const purchaseResponse = await fortunaApiClient.exchangeDataService.primarySplTokenPurchase(purchaseSplTokensData)
 			if (!_.isEqual(purchaseResponse.status, 200) || isNonSuccessResponse(purchaseResponse.data)) {
-				throw Error ("Error purchasing sol")
+				throw Error ("Error completing primary SPL purchase")
 			}
 			exchangeClass.addOwnership(purchaseResponse.data)
 			videoClass.tokenPurchaseUpdateAvailableShares(videoUUID, purchaseSplTokensData.numberOfTokensPurchasing)
@@ -48,5 +45,5 @@ export default function usePurchaseSplTokens(): (
 	}, [exchangeClass, fortunaApiClient.exchangeDataService, fortunaApiClient.httpClient.accessToken,
 		retrieveWalletBalance, videoClass])
 
-	return purchaseSplTokens
+	return purchasePrimarySplTokens
 }
