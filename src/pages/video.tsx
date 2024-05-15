@@ -25,15 +25,15 @@ function Video() {
 
 	return (
 		<div className="dark:text-white">
-			<div className="grid grid-cols-12 gap-4">
+			<div className="grid grid-cols-12">
 				<div className="col-span-9">
 					<VideoPlayer videoUrl={video.videoUrl} />
 				</div>
-				<div className="col-span-3 flex flex-col">
+				<div className="col-span-3 flex flex-col ml-10">
 					<PurchaseSharesCard video={video} />
 				</div>
 			</div>
-			<div className="grid grid-cols-12 gap-4">
+			<div className="grid grid-cols-12">
 				<div className="col-span-9">
 					<VideoDescriptionArea video={video} />
 				</div>
