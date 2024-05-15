@@ -27,7 +27,7 @@ function ReviewPurchaseInfo() {
 						title="<"
 						colorClass="bg-blue-200"
 						hoverClass="hover:bg-blue-300"
-						onClick={() => exchangeClass.updatePurchaseSplSharesDetails("purchaseStage", "initial")}
+						onClick={() => exchangeClass.updatePurchasePrimarySplSharesDetails("purchaseStage", "initial")}
 						className="font-semibold"
 					/>
 				</div>

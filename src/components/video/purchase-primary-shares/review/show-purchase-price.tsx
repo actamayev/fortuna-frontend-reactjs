@@ -20,10 +20,10 @@ function ShowPurchasePrice(props: Props) {
 		return (
 			<div className="flex justify-between">
 				<div>
-					${_.round(video.listingSharePriceUsd, 2)} X {exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing} Shares
+					${_.round(video.listingSharePriceUsd, 2)} X {exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing} Shares
 				</div>
 				<div>
-					${_.round(video.listingSharePriceUsd * exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing, 2).toFixed(2)}
+					${_.round(video.listingSharePriceUsd * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, 2).toFixed(2)}
 				</div>
 			</div>
 		)
@@ -36,10 +36,10 @@ function ShowPurchasePrice(props: Props) {
 	return (
 		<div className="flex justify-between">
 			<div>
-				{_.round(videoListingSharePriceSol, 4)} SOL X {exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing} Shares
+				{_.round(videoListingSharePriceSol, 4)} SOL X {exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing} Shares
 			</div>
 			<div>
-				{_.round(videoListingSharePriceSol * exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing, 4).toFixed(4)} SOL
+				{_.round(videoListingSharePriceSol * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, 4).toFixed(4)} SOL
 			</div>
 		</div>
 	)

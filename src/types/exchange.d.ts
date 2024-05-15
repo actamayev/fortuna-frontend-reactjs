@@ -4,6 +4,15 @@ declare global {
 		splPublicKey: string
 	}
 
+	interface PurchasePrimarySplSharesDetails extends PurchaseSplTokensData {
+		purchaseStage: TransactionStage
+	}
+
+	interface PurchaseSecondarySplSharesDetails extends PurchaseSplTokensData {
+		purchaseStage: TransactionStage
+		pricePerShareUsd: number
+	}
+
 	interface CreateSPLBidData {
 		splPublicKey: string
 		numberOfSharesBiddingFor: number
@@ -47,6 +56,8 @@ declare global {
 		bids: TransformedBidOrderData[]
 		asks: TransformedAskOrderData[]
 	}
+
+	type BuyOrSell = "Buy" | "Sell"
 }
 
 export {}

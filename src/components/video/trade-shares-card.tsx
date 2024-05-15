@@ -3,14 +3,14 @@ import { observer } from "mobx-react"
 import Button from "../button"
 import { useAuthContext } from "../../contexts/auth-context"
 import useTypedNavigate from "../../hooks/navigate/typed-navigate"
+import TradeSecondaryShares from "./secondary/trade-secondary-shares"
 import PurchasePrimarySharesOptions from "./purchase-primary-shares/purchase-primary-shares-options"
-import PurchaseSecondarySharesOptions from "./purchase-secondary-shares/purchase-secondary-shares-options"
 
 interface Props {
 	video: VideoData
 }
 
-function PurchaseSharesCard(props: Props) {
+function TradeSharesCard(props: Props) {
 	const { video } = props
 	const authClass = useAuthContext()
 	const navigate = useTypedNavigate()
@@ -26,10 +26,11 @@ function PurchaseSharesCard(props: Props) {
 			/>
 		)
 	}
+
 	return (
 		<div className="bg-white dark:bg-slate-400 shadow-lg rounded-lg p-4 h-full">
-			{video.splListingStatus === "SOLDOUT" ? (
-				<PurchaseSecondarySharesOptions />
+			{video.splListingStatus !== "SOLDOUT" ? (
+				<TradeSecondaryShares />
 			) : (
 				<PurchasePrimarySharesOptions />
 			)}
@@ -37,4 +38,4 @@ function PurchaseSharesCard(props: Props) {
 	)
 }
 
-export default observer(PurchaseSharesCard)
+export default observer(TradeSharesCard)

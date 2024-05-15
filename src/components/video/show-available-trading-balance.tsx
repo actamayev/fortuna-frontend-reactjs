@@ -11,7 +11,7 @@ function ShowAvailableTradingBalance() {
 
 	return (
 		<>
-			Available trading balance: {" "}
+			Trading balance: {" "}
 			{personalInfoClass.defaultCurrency === "usd" && (<>${_.round(solanaClass.walletBalanceUSD.get(), 2)}</>)}
 			{personalInfoClass.defaultCurrency === "sol" && (<>{_.round(solanaClass.walletBalanceSol || 0, 4)} SOL</>)}
 		</>

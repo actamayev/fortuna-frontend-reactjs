@@ -23,14 +23,14 @@ function SelectNumberSharesToPurchase() {
 		<div>
 			<RangeSelectorSlider
 				title="Shares to purchase"
-				value={exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing}
-				onChange={(e) => exchangeClass.updatePurchaseSplSharesDetails("numberOfTokensPurchasing", Number(e.target.value))}
+				value={exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing}
+				onChange={(e) => exchangeClass.updatePurchasePrimarySplSharesDetails("numberOfTokensPurchasing", Number(e.target.value))}
 				min={0}
 				max={calculateMaxSharesToPurchase(videoUUID)}
 				step={1}
 			/>
 			<div>
-				{exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing}
+				{exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing}
 			</div>
 		</div>
 	)

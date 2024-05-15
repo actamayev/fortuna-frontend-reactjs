@@ -23,16 +23,16 @@ function ReviewPurchaseButton() {
 
 	const isAbleToPurchaseShares = useMemo(() => {
 		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return false
-		return exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing <= calculateMaxSharesToPurchase(videoUUID)
+		return exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing <= calculateMaxSharesToPurchase(videoUUID)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [exchangeClass?.purchaseSplSharesDetails.numberOfTokensPurchasing, videoUUID])
+	}, [exchangeClass?.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, videoUUID])
 
 	const onClickButton = useCallback(() => {
 		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return
 		const video = videoClass.findVideoFromUUID(videoUUID)
 		if (_.isUndefined(video)) return
-		exchangeClass.updatePurchaseSplSharesDetails("purchaseStage", "review")
-		exchangeClass.updatePurchaseSplSharesDetails("splPublicKey", video.splPublicKey)
+		exchangeClass.updatePurchasePrimarySplSharesDetails("purchaseStage", "review")
+		exchangeClass.updatePurchasePrimarySplSharesDetails("splPublicKey", video.splPublicKey)
 	}, [exchangeClass, videoClass, videoUUID])
 
 	const createTitleForButton = useMemo(() => {
@@ -52,7 +52,7 @@ function ReviewPurchaseButton() {
 				hoverClass="hover:bg-blue-300"
 				title={createTitleForButton}
 				disabled={wasVideoCreatedByUser || !isAbleToPurchaseShares ||
-					exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing === 0
+					exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing === 0
 				}
 				className="font-semibold"
 			/>

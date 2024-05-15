@@ -4,7 +4,7 @@ import ReviewPurchaseButton from "./review-purchase-button"
 import SelectNumberSharesToPurchase from "./select-number-shares-to-purchase"
 import ShowAvailableTradingBalance from "../../show-available-trading-balance"
 
-export default function InitialPurchaseInfo() {
+export default function InitialPrimaryPurchaseInfo() {
 	return (
 		<div>
 			<div className="text-center font-semibold flex justify-center items-center">

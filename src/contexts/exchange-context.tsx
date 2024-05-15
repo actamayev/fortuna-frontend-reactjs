@@ -14,10 +14,19 @@ class ExchangeClass {
 
 	public openOrders: Map<string, OpenOrders> = new Map() // maps an spl public key to it's open orders.
 
-	public purchaseSplSharesDetails: PurchaseSplSharesDetails = {
+	public purchasePrimarySplSharesDetails: PurchasePrimarySplSharesDetails = {
 		numberOfTokensPurchasing: 0,
 		splPublicKey: "",
 		purchaseStage: "initial"
+	}
+
+	public buyOrSellSecondarySplShares: BuyOrSell  = "Buy"
+
+	public purchaseSecondarySplSharesDetails: PurchaseSecondarySplSharesDetails = {
+		numberOfTokensPurchasing: 0,
+		splPublicKey: "",
+		purchaseStage: "initial",
+		pricePerShareUsd: 0
 	}
 
 	constructor() {
@@ -52,21 +61,40 @@ class ExchangeClass {
 		return this.openOrders.get(splPublicKey)
 	}
 
-	public updatePurchaseSplSharesDetails = action(<K extends keyof PurchaseSplSharesDetails>(
-		key: K, value: PurchaseSplSharesDetails[K]
+	public updatePurchasePrimarySplSharesDetails = action(<K extends keyof PurchasePrimarySplSharesDetails>(
+		key: K, value: PurchasePrimarySplSharesDetails[K]
 	) => {
-		if (typeof this.purchaseSplSharesDetails[key] !== typeof value) {
+		if (typeof this.purchasePrimarySplSharesDetails[key] !== typeof value) {
 			console.warn(`Type mismatch when trying to set ${key}`)
 			return
 		}
-		this.purchaseSplSharesDetails[key] = value
+		this.purchasePrimarySplSharesDetails[key] = value
 	})
 
 	public resetPurchaseSplSharesDetails = action(() => {
-		this.purchaseSplSharesDetails = {
+		this.purchasePrimarySplSharesDetails = {
 			numberOfTokensPurchasing: 0,
 			splPublicKey: "",
 			purchaseStage: "initial"
+		}
+	})
+
+	public updatePurchaseSecondarySplSharesDetails = action(<K extends keyof PurchaseSecondarySplSharesDetails>(
+		key: K, value: PurchaseSecondarySplSharesDetails[K]
+	) => {
+		if (typeof this.purchaseSecondarySplSharesDetails[key] !== typeof value) {
+			console.warn(`Type mismatch when trying to set ${key}`)
+			return
+		}
+		this.purchaseSecondarySplSharesDetails[key] = value
+	})
+
+	public resetPurchaseSecondarySplSharesDetails = action(() => {
+		this.purchaseSecondarySplSharesDetails = {
+			numberOfTokensPurchasing: 0,
+			splPublicKey: "",
+			purchaseStage: "initial",
+			pricePerShareUsd: 0
 		}
 	})
 
@@ -133,6 +161,8 @@ class ExchangeClass {
 		this.isRetrievingOwnership = false
 		this.openOrders.clear()
 		this.resetPurchaseSplSharesDetails()
+		this.resetPurchaseSecondarySplSharesDetails()
+		this.buyOrSellSecondarySplShares = "Buy"
 	}
 }
 

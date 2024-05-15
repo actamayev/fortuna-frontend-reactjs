@@ -1,8 +1,8 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import ReviewPurchaseInfo from "./review/review-purchase-info"
-import InitialPurchaseInfo from "./initial/initial-purchase-info"
 import { useExchangeContext } from "../../../contexts/exchange-context"
+import InitialPrimaryPurchaseInfo from "./initial/initial-primary-purchase-info"
 
 function PurchasePrimarySharesOptions() {
 	const exchangeClass = useExchangeContext()
@@ -10,8 +10,8 @@ function PurchasePrimarySharesOptions() {
 	if (_.isNull(exchangeClass)) return null
 	return (
 		<>
-			{exchangeClass.purchaseSplSharesDetails.purchaseStage === "initial" && <InitialPurchaseInfo />}
-			{exchangeClass.purchaseSplSharesDetails.purchaseStage === "review" && <ReviewPurchaseInfo />}
+			{exchangeClass.purchasePrimarySplSharesDetails.purchaseStage === "initial" && <InitialPrimaryPurchaseInfo />}
+			{exchangeClass.purchasePrimarySplSharesDetails.purchaseStage === "review" && <ReviewPurchaseInfo />}
 		</>
 	)
 }

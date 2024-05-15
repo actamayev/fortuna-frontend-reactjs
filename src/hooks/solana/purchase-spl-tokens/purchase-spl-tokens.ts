@@ -26,8 +26,8 @@ export default function usePurchaseSplTokens(): (
 			) return
 			setIsLoading(true)
 			const purchaseSplTokensData: PurchaseSplTokensData = {
-				numberOfTokensPurchasing: exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing,
-				splPublicKey: exchangeClass.purchaseSplSharesDetails.splPublicKey
+				numberOfTokensPurchasing: exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing,
+				splPublicKey: exchangeClass.purchasePrimarySplSharesDetails.splPublicKey
 			}
 			const purchaseResponse = await fortunaApiClient.exchangeDataService.primarySplTokenPurchase(purchaseSplTokensData)
 			if (!_.isEqual(purchaseResponse.status, 200) || isNonSuccessResponse(purchaseResponse.data)) {

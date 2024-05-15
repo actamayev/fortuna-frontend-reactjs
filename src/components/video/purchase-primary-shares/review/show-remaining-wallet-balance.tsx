@@ -22,7 +22,7 @@ function ShowRemainingWalletBalance(props: Props) {
 	) return null
 
 	const remainingWalletBalanceUsd =
-		solanaClass.walletBalanceUSD.get() - video.listingSharePriceUsd * exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing
+		solanaClass.walletBalanceUSD.get() - video.listingSharePriceUsd * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing
 
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return <>${_.round(remainingWalletBalanceUsd, 2)}</>

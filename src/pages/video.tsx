@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom"
 import VideoPlayer from "../components/video/video-player"
 import { useVideoContext } from "../contexts/video-context"
 import useSetSingleVideo from "../hooks/videos/set-single-video"
-import PurchaseSharesCard from "../components/video/purchase-shares-card"
+import TradeSharesCard from "../components/video/trade-shares-card"
 import VideoDescriptionArea from "../components/video/video-description-area"
 
 function Video() {
@@ -30,7 +30,7 @@ function Video() {
 					<VideoPlayer videoUrl={video.videoUrl} />
 				</div>
 				<div className="col-span-3 flex flex-col ml-10">
-					<PurchaseSharesCard video={video} />
+					<TradeSharesCard video={video} />
 				</div>
 			</div>
 			<div className="grid grid-cols-12">
