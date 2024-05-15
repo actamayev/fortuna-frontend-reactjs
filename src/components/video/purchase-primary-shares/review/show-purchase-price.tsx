@@ -18,12 +18,12 @@ function ShowPurchasePrice(props: Props) {
 
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return (
-			<div>
+			<div className="flex justify-between">
 				<div>
 					${_.round(video.listingSharePriceUsd, 2)} X {exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing} Shares
 				</div>
 				<div>
-					${video.listingSharePriceUsd * exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing}
+					${_.round(video.listingSharePriceUsd * exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing, 2).toFixed(2)}
 				</div>
 			</div>
 		)
@@ -34,12 +34,12 @@ function ShowPurchasePrice(props: Props) {
 	if (_.isUndefined(solPriceInUSD)) return null
 	const videoListingSharePriceSol = video.listingSharePriceUsd / solPriceInUSD
 	return (
-		<div>
+		<div className="flex justify-between">
 			<div>
 				{_.round(videoListingSharePriceSol, 4)} SOL X {exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing} Shares
 			</div>
 			<div>
-				{_.round(videoListingSharePriceSol * exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing, 4)}
+				{_.round(videoListingSharePriceSol * exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing, 4).toFixed(4)} SOL
 			</div>
 		</div>
 	)

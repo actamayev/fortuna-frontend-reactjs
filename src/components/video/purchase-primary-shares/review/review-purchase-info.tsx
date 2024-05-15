@@ -36,9 +36,13 @@ function ReviewPurchaseInfo() {
 				</div>
 			</div>
 			<ShowPurchasePrice video={video}/>
-			<div>
-				Remaining Wallet Balance: {" "}
-				<ShowRemainingWalletBalance video={video} />
+			<div className="flex justify-between">
+				<div>
+					Remaining Wallet Balance: {" "}
+				</div>
+				<div>
+					<ShowRemainingWalletBalance video={video} />
+				</div>
 			</div>
 			<ConfirmPurchaseButton />
 		</>

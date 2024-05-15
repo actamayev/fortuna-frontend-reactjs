@@ -13,7 +13,6 @@ function PurchasePrimarySharesOptions() {
 			{exchangeClass.purchaseSplSharesDetails.purchaseStage === "initial" && <InitialPurchaseInfo />}
 			{exchangeClass.purchaseSplSharesDetails.purchaseStage === "review" && <ReviewPurchaseInfo />}
 		</>
-
 	)
 }
 
