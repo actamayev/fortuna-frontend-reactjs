@@ -5,8 +5,8 @@ import { useParams } from "react-router-dom"
 import VideoPlayer from "../components/video/video-player"
 import { useVideoContext } from "../contexts/video-context"
 import useSetSingleVideo from "../hooks/videos/set-single-video"
-import PurchaseSharesCard from "../components/video/purchase-primary-shares/purchase-shares-card"
 import VideoDescriptionArea from "../components/video/video-description-area"
+import PurchaseSharesCard from "../components/video/purchase-primary-shares/purchase-shares-card"
 
 function Video() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
@@ -25,15 +25,13 @@ function Video() {
 
 	return (
 		<div className="dark:text-white">
-			<div className="flex">
-				<div className="flex-1">
+			<div className="grid grid-cols-12 gap-4">
+				<div className="col-span-9">
 					<VideoPlayer videoUrl={video.videoUrl} />
 					<VideoDescriptionArea video={video} />
 				</div>
-				<div className="flex-1 ml-4 flex flex-col justify-start">
-					<div className="h-full">
-						<PurchaseSharesCard />
-					</div>
+				<div className="col-span-3 flex flex-col">
+					<PurchaseSharesCard video={video} />
 				</div>
 			</div>
 		</div>

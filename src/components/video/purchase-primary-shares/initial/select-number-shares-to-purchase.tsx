@@ -20,7 +20,7 @@ function SelectNumberSharesToPurchase() {
 	if (_.isNull(exchangeClass) || _.isUndefined(videoUUID) || wasVideoCreatedByUser === true) return null
 
 	return (
-		<div className="flex flex-col space-y-4">
+		<div>
 			<RangeSelectorSlider
 				title="Shares to purchase"
 				value={exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing}

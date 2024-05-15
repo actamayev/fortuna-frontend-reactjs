@@ -7,15 +7,14 @@ export default function VideoPlayer(props: Props) {
 	const { videoUrl } = props
 
 	return (
-		<div>
+		<div className="w-full">
 			<video
-				width="960"
 				controls
 				autoPlay
-				className="rounded-lg"
+				className="w-full rounded-lg"
 			>
 				<source src={videoUrl} type="video/mp4" />
-				Your browser does not support the video tag.
+                Your browser does not support the video tag.
 			</video>
 		</div>
 	)
