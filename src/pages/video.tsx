@@ -5,8 +5,8 @@ import { useParams } from "react-router-dom"
 import VideoPlayer from "../components/video/video-player"
 import { useVideoContext } from "../contexts/video-context"
 import useSetSingleVideo from "../hooks/videos/set-single-video"
+import PurchaseSharesCard from "../components/video/purchase-shares-card"
 import VideoDescriptionArea from "../components/video/video-description-area"
-import PurchaseSharesCard from "../components/video/purchase-primary-shares/purchase-shares-card"
 
 function Video() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()

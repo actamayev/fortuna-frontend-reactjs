@@ -5,6 +5,7 @@ import Button from "../../../button"
 import ShowPurchasePrice from "./show-purchase-price"
 import ConfirmPurchaseButton from "./confirm-purchase-button"
 import { useVideoContext } from "../../../../contexts/video-context"
+import ShowRemainingWalletBalance from "./show-remaining-wallet-balance"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
 
 function ReviewPurchaseInfo() {
@@ -34,8 +35,10 @@ function ReviewPurchaseInfo() {
 					Review Purchase
 				</div>
 			</div>
+			<ShowPurchasePrice video={video}/>
 			<div>
-				<ShowPurchasePrice video={video}/>
+				Remaining Wallet Balance: {" "}
+				<ShowRemainingWalletBalance video={video} />
 			</div>
 			<ConfirmPurchaseButton />
 		</>

@@ -1,7 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
-import ShowNumberSharesPurchasing from "./show-number-shares-purchasing"
 import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
 
@@ -19,23 +18,30 @@ function ShowPurchasePrice(props: Props) {
 
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return (
-			<>
-				<ShowNumberSharesPurchasing />
-					${_.round(video.listingSharePriceUsd * exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing, 2)} {" "}
-					(${_.round(video.listingSharePriceUsd, 2)}/share)
-			</>
+			<div>
+				<div>
+					${_.round(video.listingSharePriceUsd, 2)} X {exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing} Shares
+				</div>
+				<div>
+					${video.listingSharePriceUsd * exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing}
+				</div>
+			</div>
 		)
 	}
 
 	if (_.isNull(solanaClass)) return null
 	const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
 	if (_.isUndefined(solPriceInUSD)) return null
+	const videoListingSharePriceSol = video.listingSharePriceUsd / solPriceInUSD
 	return (
-		<>
-			<ShowNumberSharesPurchasing />
-			{_.round((video.listingSharePriceUsd * exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing) / solPriceInUSD, 4)} SOL
-				({_.round(video.listingSharePriceUsd / solPriceInUSD, 4)} SOL/share)
-		</>
+		<div>
+			<div>
+				{_.round(videoListingSharePriceSol, 4)} SOL X {exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing} Shares
+			</div>
+			<div>
+				{_.round(videoListingSharePriceSol * exchangeClass.purchaseSplSharesDetails.numberOfTokensPurchasing, 4)}
+			</div>
+		</div>
 	)
 }
 
