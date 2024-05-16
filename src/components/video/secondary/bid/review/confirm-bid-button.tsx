@@ -3,19 +3,19 @@ import { useState } from "react"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import Button from "../../../../button"
-import useBidForSecondarySplTokens from "../../../../../hooks/exchange/bid-for-secondary-spl-tokens"
+import useSplTokenBid from "../../../../../hooks/exchange/spl-token-bid"
 
 function ConfirmBidButton() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const [isLoading, setIsLoading] = useState(false)
-	const bidForSecondarySplTokens = useBidForSecondarySplTokens()
+	const splTokenBid = useSplTokenBid()
 
 	if (_.isUndefined(videoUUID)) return null
 
 	return (
 		<div className="flex justify-center mt-2">
 			<Button
-				onClick={() => bidForSecondarySplTokens(setIsLoading)}
+				onClick={() => splTokenBid(setIsLoading)}
 				colorClass="bg-emerald-200"
 				hoverClass="hover:bg-emerald-300"
 				title="Confirm Bid"

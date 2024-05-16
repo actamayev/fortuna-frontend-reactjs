@@ -47,8 +47,7 @@ function TradeSharesCard(props: Props) {
 
 	return (
 		<div className="bg-white dark:bg-slate-400 shadow-lg rounded-lg p-3 h-full">
-			{/* TODO: Change to === "SOLDOUT" after testing complete */}
-			{video.splListingStatus !== "SOLDOUT" ? (
+			{video.splListingStatus === "SOLDOUT" ? (
 				<TradeSecondaryShares />
 			) : (
 				<PurchasePrimarySharesOptions />

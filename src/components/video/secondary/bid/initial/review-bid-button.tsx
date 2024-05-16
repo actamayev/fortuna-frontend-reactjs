@@ -1,13 +1,17 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
+import { useParams } from "react-router-dom"
 import Button from "../../../../button"
+import { useVideoContext } from "../../../../../contexts/video-context"
 import { useSolanaContext } from "../../../../../contexts/solana-context"
 import { useExchangeContext } from "../../../../../contexts/exchange-context"
 
 function ReviewBidButton() {
+	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const solanaClass = useSolanaContext()
 	const exchangeClass = useExchangeContext()
+	const videoClass = useVideoContext()
 
 	const isAbleToPurchaseShares = useMemo(() => {
 		if (_.isNull(exchangeClass) || _.isNull(solanaClass)) return false
@@ -23,13 +27,16 @@ function ReviewBidButton() {
 	])
 
 	const onClickButton = useCallback(() => {
-		if (_.isNull(exchangeClass)) return
+		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return
+		const video = videoClass.findVideoFromUUID(videoUUID)
+		if (_.isUndefined(video)) return
 		exchangeClass.updateSplBidDetails("purchaseStage", "review")
-	}, [exchangeClass])
+		exchangeClass.updateSplBidDetails("splPublicKey", video.splPublicKey)
+	}, [exchangeClass, videoClass, videoUUID])
 
 	const createTitleForButton = useMemo(() => {
-		if (isAbleToPurchaseShares === false) return "Unable to purchase shares"
-		return "Review Purchase"
+		if (isAbleToPurchaseShares === false) return "Unable to bid for shares"
+		return "Review Bid"
 	}, [isAbleToPurchaseShares])
 
 	if (_.isNull(exchangeClass)) return null
