@@ -12,8 +12,7 @@ function ShowTradingBalance() {
 
 	return (
 		<>
-			Trading balance: {" "}
-			<WalletBalance />
+			Trading balance: <WalletBalance />
 		</>
 	)
 }

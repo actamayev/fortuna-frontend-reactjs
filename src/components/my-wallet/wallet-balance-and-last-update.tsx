@@ -3,11 +3,9 @@ import { useMemo } from "react"
 import { observer } from "mobx-react"
 import WalletBalance from "./wallet-balance"
 import { useSolanaContext } from "../../contexts/solana-context"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
 function WalletBalanceAndLastUpdate() {
 	const solanaClass = useSolanaContext()
-	const personalInfoClass = usePersonalInfoContext()
 
 	const formattedTime = useMemo(() => {
 		const lastRetrieved = solanaClass?.solPriceDetails?.lastRetrievedTime
@@ -18,13 +16,12 @@ function WalletBalanceAndLastUpdate() {
 		}) : "unknown"
 	}, [solanaClass?.solPriceDetails?.lastRetrievedTime])
 
-	if (_.isNull(solanaClass) || _.isNull(personalInfoClass)) return null
+	if (_.isNull(solanaClass)) return null
 
 	return (
 		<div>
 			<div>
-				Wallet Balance:
-				<WalletBalance />
+				Wallet Balance: <WalletBalance />
 			</div>
 			<div>
 				Last Solana price: {" "}
