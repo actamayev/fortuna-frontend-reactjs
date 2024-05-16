@@ -12,7 +12,7 @@ function SelectLimitBidPrice() {
 	return (
 		<div>
 			<FormGroup
-				label="Limit Price ($)"
+				label="Limit Price Per Share ($)"
 				type="number"
 				onChange={(e) => exchangeClass.updateSplBidDetails("bidPricePerShareUsd", Number(e.target.value))}
 				required

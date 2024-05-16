@@ -7,7 +7,7 @@ import SelectNumberSharesToPurchase from "./select-number-shares-to-purchase"
 export default function InitialPrimaryPurchaseInfo() {
 	return (
 		<div>
-			<div className="text-center font-semibold flex justify-center items-center">
+			<div className="text-center font-semibold flex justify-center items-center text-xl">
 				Purchase Primary Shares
 				<Tooltip
 					message="All proceeds go to the creator"

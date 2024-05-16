@@ -12,7 +12,7 @@ function SelectLimitAskPrice() {
 	return (
 		<div>
 			<FormGroup
-				label="Limit Price ($)"
+				label="Limit Price Per Share ($)"
 				type="number"
 				onChange={(e) => exchangeClass.updateSplAskDetails("askPricePerShareUsd", Number(e.target.value))}
 				required
