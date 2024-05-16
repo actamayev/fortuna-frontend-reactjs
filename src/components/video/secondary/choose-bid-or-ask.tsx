@@ -5,7 +5,11 @@ import { useExchangeContext } from "../../../contexts/exchange-context"
 function ChooseBidOrAsk() {
 	const exchangeClass = useExchangeContext()
 
-	if (_.isNull(exchangeClass)) return null
+	if (
+		_.isNull(exchangeClass) ||
+		exchangeClass.bidForSplSharesDetails.purchaseStage === "review" ||
+		exchangeClass.askForSplSharesDetails.saleStage === "review"
+	) return null
 
 	return (
 		<select

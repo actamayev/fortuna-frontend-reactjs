@@ -6,11 +6,12 @@ import { useSolanaContext } from "../../../../../contexts/solana-context"
 import { useExchangeContext } from "../../../../../contexts/exchange-context"
 
 function ReviewBidButton() {
-	const exchangeClass = useExchangeContext()
 	const solanaClass = useSolanaContext()
+	const exchangeClass = useExchangeContext()
 
 	const isAbleToPurchaseShares = useMemo(() => {
 		if (_.isNull(exchangeClass) || _.isNull(solanaClass)) return false
+		if (exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd === 0) return false
 		// eslint-disable-next-line max-len
 		const sharePurchaseValueUsd = exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor * exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd
 		return sharePurchaseValueUsd < solanaClass.walletBalanceUSD.get()
@@ -23,7 +24,7 @@ function ReviewBidButton() {
 
 	const onClickButton = useCallback(() => {
 		if (_.isNull(exchangeClass)) return
-		exchangeClass.updatePurchaseSecondarySplSharesDetails("purchaseStage", "review")
+		exchangeClass.updateSplBidDetails("purchaseStage", "review")
 	}, [exchangeClass])
 
 	const createTitleForButton = useMemo(() => {

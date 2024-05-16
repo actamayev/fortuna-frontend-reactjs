@@ -14,7 +14,7 @@ function SelectLimitBidPrice() {
 			<FormGroup
 				label="Limit Price ($)"
 				type="number"
-				onChange={(e) => exchangeClass.updatePurchaseSecondarySplSharesDetails("bidPricePerShareUsd", Number(e.target.value))}
+				onChange={(e) => exchangeClass.updateSplBidDetails("bidPricePerShareUsd", Number(e.target.value))}
 				required
 				value={exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd.toString()}
 				minValue={0}

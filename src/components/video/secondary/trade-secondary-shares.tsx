@@ -1,13 +1,15 @@
 import ChooseBidOrAsk from "./choose-bid-or-ask"
 import TradeSecondarySharesTitle from "./trade-secondary-shares-title"
+import BackButtonSecondaryTransaction from "./back-button-secondary-transaction"
 import BidForSecondarySharesOptions from "./bid/bid-for-secondary-shares-options"
 
 export default function TradeSecondaryShares() {
 	return (
 		<div className="flex flex-col h-full">
 			<div className="h-2/3">
-				<div className="flex-1 flex justify-center">
-					<div className="text-center font-semibold items-center">
+				<div className="flex-1 flex justify-center items-center">
+					<div className="text-center font-semibold flex items-center">
+						<BackButtonSecondaryTransaction />
 						<TradeSecondarySharesTitle />
 					</div>
 				</div>

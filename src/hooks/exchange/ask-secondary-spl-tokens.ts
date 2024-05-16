@@ -18,9 +18,9 @@ export default function useAskSecondarySplTokens(): (
 			setIsLoading(true)
 
 			const ask: CreateSPLAskData = {
-				splPublicKey: exchangeClass.asForSplSharesDetails.splPublicKey,
-				numberOfSharesAskingFor: exchangeClass.asForSplSharesDetails.numberofSharesAskingFor,
-				askPricePerShareUsd: exchangeClass.asForSplSharesDetails.askPricePerShareUsd
+				splPublicKey: exchangeClass.askForSplSharesDetails.splPublicKey,
+				numberOfSharesAskingFor: exchangeClass.askForSplSharesDetails.numberofSharesAskingFor,
+				askPricePerShareUsd: exchangeClass.askForSplSharesDetails.askPricePerShareUsd
 			}
 
 			const askResponse = await fortunaApiClient.exchangeDataService.placeSecondaryMarketSplAsk(ask)

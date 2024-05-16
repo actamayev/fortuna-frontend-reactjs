@@ -8,14 +8,14 @@ declare global {
 		purchaseStage: TransactionStage
 	}
 
-	interface PurchaseSecondarySplSharesDetails {
+	interface SecondarySplBidDetails {
 		splPublicKey: string
 		purchaseStage: TransactionStage
 		bidPricePerShareUsd: number
 		numberOfSharesBiddingFor: number
 	}
 
-	interface SellSecondarySplSharesDetails {
+	interface SecondarySplAskDetails {
 		splPublicKey: string
 		saleStage: TransactionStage
 		askPricePerShareUsd: number

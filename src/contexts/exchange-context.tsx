@@ -22,14 +22,14 @@ class ExchangeClass {
 
 	public buyOrSellSecondarySplShares: BuyOrSell  = "Buy"
 
-	public bidForSplSharesDetails: PurchaseSecondarySplSharesDetails = {
+	public bidForSplSharesDetails: SecondarySplBidDetails = {
 		numberOfSharesBiddingFor: 0,
 		splPublicKey: "",
 		purchaseStage: "initial",
 		bidPricePerShareUsd: 0
 	}
 
-	public asForSplSharesDetails: SellSecondarySplSharesDetails = {
+	public askForSplSharesDetails: SecondarySplAskDetails = {
 		numberofSharesAskingFor: 0,
 		splPublicKey: "",
 		saleStage: "initial",
@@ -86,8 +86,8 @@ class ExchangeClass {
 		}
 	})
 
-	public updatePurchaseSecondarySplSharesDetails = action(<K extends keyof PurchaseSecondarySplSharesDetails>(
-		key: K, value: PurchaseSecondarySplSharesDetails[K]
+	public updateSplBidDetails = action(<K extends keyof SecondarySplBidDetails>(
+		key: K, value: SecondarySplBidDetails[K]
 	) => {
 		if (typeof this.bidForSplSharesDetails[key] !== typeof value) {
 			console.warn(`Type mismatch when trying to set ${key}`)
@@ -96,7 +96,7 @@ class ExchangeClass {
 		this.bidForSplSharesDetails[key] = value
 	})
 
-	public resetPurchaseSecondarySplSharesDetails = action(() => {
+	public resetSplBidDetails = action(() => {
 		this.bidForSplSharesDetails = {
 			numberOfSharesBiddingFor: 0,
 			splPublicKey: "",
@@ -104,6 +104,26 @@ class ExchangeClass {
 			bidPricePerShareUsd: 0
 		}
 	})
+
+	public updateSplAskDetails = action(<K extends keyof SecondarySplAskDetails>(
+		key: K, value: SecondarySplAskDetails[K]
+	) => {
+		if (typeof this.askForSplSharesDetails[key] !== typeof value) {
+			console.warn(`Type mismatch when trying to set ${key}`)
+			return
+		}
+		this.askForSplSharesDetails[key] = value
+	})
+
+	public resetSplAskDetails = action(() => {
+		this.askForSplSharesDetails = {
+			numberofSharesAskingFor: 0,
+			splPublicKey: "",
+			saleStage: "initial",
+			askPricePerShareUsd: 0
+		}
+	})
+
 
 	public setContent = action((newContentList: MyContent[]): void => {
 		this.myContent = []
@@ -172,7 +192,8 @@ class ExchangeClass {
 		this.isRetrievingOwnership = false
 		this.openOrders.clear()
 		this.resetPurchaseSplSharesDetails()
-		this.resetPurchaseSecondarySplSharesDetails()
+		this.resetSplBidDetails()
+		this.resetSplAskDetails()
 		this.buyOrSellSecondarySplShares = "Buy"
 	}
 }

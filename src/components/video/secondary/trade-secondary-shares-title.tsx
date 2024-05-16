@@ -9,9 +9,9 @@ function TradeSecondarySharesTitle() {
 	let title = "Trade Secondary Shares"
 
 	if (exchangeClass.bidForSplSharesDetails.purchaseStage !== "initial") {
-		title = "Place Bid on Secondary Shares"
-	} else if (exchangeClass.asForSplSharesDetails.saleStage !== "initial") {
-		title = "Place Ask on Secondary Shares"
+		title = "Review Bid"
+	} else if (exchangeClass.askForSplSharesDetails.saleStage !== "initial") {
+		title = "Review Ask"
 	}
 	return <>{title}</>
 }

@@ -16,7 +16,7 @@ function SelectNumberSharesBiddingFor() {
 				label="Number Shares to buy"
 				type="number"
 				onChange={(e) => {
-					exchangeClass.updatePurchaseSecondarySplSharesDetails(
+					exchangeClass.updateSplBidDetails(
 						"numberOfSharesBiddingFor",
 						formatNumberToWholeNumber(e.target.value)
 					)
