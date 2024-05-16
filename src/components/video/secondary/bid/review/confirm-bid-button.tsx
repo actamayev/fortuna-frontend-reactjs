@@ -18,7 +18,7 @@ function ConfirmBidButton() {
 				onClick={() => bidForSecondarySplTokens(setIsLoading)}
 				colorClass="bg-emerald-200"
 				hoverClass="hover:bg-emerald-300"
-				title="Confirm Purchase"
+				title="Confirm Bid"
 				disabled={isLoading}
 				className="font-semibold"
 			/>

@@ -1,28 +1,24 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useSolanaContext } from "../../../../contexts/solana-context"
-import { useExchangeContext } from "../../../../contexts/exchange-context"
-import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
+import { useSolanaContext } from "../../../../../contexts/solana-context"
+import { useExchangeContext } from "../../../../../contexts/exchange-context"
+import { usePersonalInfoContext } from "../../../../../contexts/personal-info-context"
 
-interface Props {
-	video: VideoData
-}
-
-function ShowRemainingWalletBalance(props: Props) {
-	const { video } = props
+function ShowRemainingWalletBalanceAfterBid() {
 	const solanaClass = useSolanaContext()
 	const exchangeClass = useExchangeContext()
 	const personalInfoClass = usePersonalInfoContext()
 
+
 	if (
 		_.isNull(solanaClass) ||
-		// _.isNull(solanaClass.walletBalanceUSD) ||
 		_.isNull(exchangeClass) ||
 		_.isNull(personalInfoClass)
 	) return null
 
 	const remainingWalletBalanceUsd =
-		solanaClass.walletBalanceUSD.get() - video.listingSharePriceUsd * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing
+		// eslint-disable-next-line max-len
+		solanaClass.walletBalanceUSD.get() - exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd * exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor
 
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return <>${_.round(remainingWalletBalanceUsd, 2)}</>
@@ -33,4 +29,4 @@ function ShowRemainingWalletBalance(props: Props) {
 	return <>{_.round(remainingWalletBalanceUsd / solPriceInUSD, 4)} SOL</>
 }
 
-export default observer(ShowRemainingWalletBalance)
+export default observer(ShowRemainingWalletBalanceAfterBid)

@@ -1,8 +1,9 @@
+/* eslint-disable max-len */
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
-import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
+import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
 
 interface Props {
 	video: VideoData
@@ -20,7 +21,7 @@ function ShowPurchasePrice(props: Props) {
 		return (
 			<div className="flex justify-between">
 				<div>
-					${_.round(video.listingSharePriceUsd, 2)} X {exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing} Shares
+					${_.round(video.listingSharePriceUsd, 2)} X {exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing} Share{exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing > 1 ? "s" : ""}
 				</div>
 				<div>
 					${_.round(video.listingSharePriceUsd * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, 2).toFixed(2)}
@@ -36,7 +37,7 @@ function ShowPurchasePrice(props: Props) {
 	return (
 		<div className="flex justify-between">
 			<div>
-				{_.round(videoListingSharePriceSol, 4)} SOL X {exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing} Shares
+				{_.round(videoListingSharePriceSol, 4)} SOL X {exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing} Share{exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing > 1 ? "s" : ""}
 			</div>
 			<div>
 				{_.round(videoListingSharePriceSol * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, 4).toFixed(4)} SOL

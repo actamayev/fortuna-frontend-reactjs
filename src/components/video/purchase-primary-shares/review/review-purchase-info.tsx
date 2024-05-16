@@ -3,10 +3,10 @@ import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import Button from "../../../button"
 import ShowPurchasePrice from "./show-purchase-price"
-import ConfirmPrimaryPurchaseButton from "./confirm-primary-purchase-button"
 import { useVideoContext } from "../../../../contexts/video-context"
-import ShowRemainingWalletBalance from "./show-remaining-wallet-balance"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
+import ConfirmPrimaryPurchaseButton from "./confirm-primary-purchase-button"
+import ShowRemainingWalletBalanceAfterPrimaryPurchase from "./show-remaining-wallet-balance-after-primary-purchase"
 
 function ReviewPurchaseInfo() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
@@ -41,7 +41,7 @@ function ReviewPurchaseInfo() {
 					Remaining Wallet Balance: {" "}
 				</div>
 				<div>
-					<ShowRemainingWalletBalance video={video} />
+					<ShowRemainingWalletBalanceAfterPrimaryPurchase video={video} />
 				</div>
 			</div>
 			<ConfirmPrimaryPurchaseButton />

@@ -1,6 +1,6 @@
-import WalletBalance from "./wallet-balance"
 import ShowMyPublicKey from "./show-my-public-key"
 import TransferSolButton from "./transfer-sol/transfer-sol-button"
+import WalletBalanceAndLastUpdate from "./wallet-balance-and-last-update"
 import RequestAirdropButton from "./request-airdrop/request-airdrop-button"
 
 export default function WalletDetails () {
@@ -12,7 +12,7 @@ export default function WalletDetails () {
 			</div>
 			<div className="mt-3"><ShowMyPublicKey /></div>
 			<div className="bg-white shadow-lg rounded-md p-4 mt-3 grid grid-cols-1 grid-rows-1 border">
-				<WalletBalance />
+				<WalletBalanceAndLastUpdate />
 			</div>
 		</>
 	)

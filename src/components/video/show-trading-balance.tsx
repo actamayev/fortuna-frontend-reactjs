@@ -1,5 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
+import WalletBalance from "../my-wallet/wallet-balance"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
@@ -12,8 +13,7 @@ function ShowTradingBalance() {
 	return (
 		<>
 			Trading balance: {" "}
-			{personalInfoClass.defaultCurrency === "usd" && (<>${_.round(solanaClass.walletBalanceUSD.get(), 2)}</>)}
-			{personalInfoClass.defaultCurrency === "sol" && (<>{_.round(solanaClass.walletBalanceSol || 0, 4)} SOL</>)}
+			<WalletBalance />
 		</>
 	)
 }
