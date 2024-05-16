@@ -38,7 +38,7 @@ function ReviewPurchaseInfo() {
 			<ShowPurchasePrice video={video}/>
 			<div className="flex justify-between">
 				<div>
-					Remaining Wallet Balance: {" "}
+					New Balance: {" "}
 				</div>
 				<div>
 					<ShowRemainingWalletBalanceAfterPrimaryPurchase video={video} />

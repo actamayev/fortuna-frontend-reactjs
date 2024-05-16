@@ -12,7 +12,7 @@ export default function TradeSecondaryShares() {
 					<div>
 						<BackButtonSecondaryTransaction />
 					</div>
-					<div className="text-center flex-1">
+					<div className="text-center flex-1 text-xl">
 						<TradeSecondarySharesTitle />
 					</div>
 				</div>

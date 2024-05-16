@@ -16,6 +16,7 @@ function SelectNumberSharesAskingFor() {
 		let value = formatNumberToWholeNumber(e.target.value)
 		if (isNaN(value)) value = 0
 		const numberSharesOwned = exchangeClass.getNumberSharesOwnedByUUID(videoUUID)
+		// TODO: Here, subtract the number of shares the user was already asking for
 		if (value > numberSharesOwned) value = numberSharesOwned
 		exchangeClass.updateSplAskDetails("numberofSharesAskingFor", value)
 	}, [exchangeClass, formatNumberToWholeNumber, videoUUID])

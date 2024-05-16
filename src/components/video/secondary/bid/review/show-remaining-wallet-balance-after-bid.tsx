@@ -9,24 +9,43 @@ function ShowRemainingWalletBalanceAfterBid() {
 	const exchangeClass = useExchangeContext()
 	const personalInfoClass = usePersonalInfoContext()
 
-
 	if (
 		_.isNull(solanaClass) ||
 		_.isNull(exchangeClass) ||
 		_.isNull(personalInfoClass)
 	) return null
 
-	const remainingWalletBalanceUsd =
-		// eslint-disable-next-line max-len
-		solanaClass.walletBalanceUSD.get() - exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd * exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor
+	const amountSpendingOnBidUsd =
+		exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd * exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor
+	const remainingWalletBalanceUsd = solanaClass.walletBalanceUSD.get() - amountSpendingOnBidUsd
 
 	if (personalInfoClass.defaultCurrency === "usd") {
-		return <>${_.round(remainingWalletBalanceUsd, 2)}</>
+		return (
+			<div className="flex justify-between">
+				<div>New Balance: {" "}</div>
+				<div>
+					${_.round(remainingWalletBalanceUsd, 2)} {" "}
+					<span className="text-red-600">
+						(-${_.round(amountSpendingOnBidUsd, 2)})
+					</span>
+				</div>
+			</div>
+		)
 	}
 
 	const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
 	if (_.isUndefined(solPriceInUSD)) return null
-	return <>{_.round(remainingWalletBalanceUsd / solPriceInUSD, 4)} SOL</>
+	return (
+		<div className="flex justify-between">
+			<div>New Balance: {" "}</div>
+			<div>
+				{_.round(remainingWalletBalanceUsd / solPriceInUSD, 4)} SOL {" "}
+				<span className="text-red-600">
+					(-{_.round(amountSpendingOnBidUsd / solPriceInUSD, 4)} SOL)
+				</span>
+			</div>
+		</div>
+	)
 }
 
 export default observer(ShowRemainingWalletBalanceAfterBid)

@@ -3,27 +3,27 @@ import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import { useExchangeContext } from "../../../../../contexts/exchange-context"
 
-function ShowRemainingNumberSharesAfterAsk() {
+function ShowNewShareCountAfterBid() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const exchangeClass = useExchangeContext()
 
 	if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return null
 
 	const numberSharesOwned = exchangeClass.getNumberSharesOwnedByUUID(videoUUID)
-	const numberSharesAskingFor = exchangeClass.askForSplSharesDetails.numberofSharesAskingFor
-	const remainingShares = numberSharesOwned - numberSharesAskingFor
+	const numberSharesBiddingFor = exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor
+	const newShareCount = numberSharesOwned + numberSharesBiddingFor
 
 	return (
 		<div className="flex justify-between">
 			<div>New Share Count: {" "}</div>
 			<div>
-				{remainingShares} {" "}
-				<span className="text-red-600">
-					(-{numberSharesAskingFor})
+				{newShareCount} {" "}
+				<span className="text-green-600">
+					(+{numberSharesBiddingFor})
 				</span>
 			</div>
 		</div>
 	)
 }
 
-export default observer(ShowRemainingNumberSharesAfterAsk)
+export default observer(ShowNewShareCountAfterBid)
