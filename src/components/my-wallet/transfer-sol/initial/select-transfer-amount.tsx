@@ -37,7 +37,7 @@ function SelectTransferAmount() {
 					title=""
 					value={solanaClass.transferSolDetails.transferAmount}
 					onChange={(e) => {
-						solanaClass.updateTransferSolDetails("transferAmount", parseInt(e.target.value, 10))
+						solanaClass.updateTransferSolDetails("transferAmount", Number(e.target.value))
 					}}
 					min={0}
 					max={solanaClass.walletBalanceSol || 0}
@@ -54,7 +54,7 @@ function SelectTransferAmount() {
 				title=""
 				value={solanaClass.transferSolDetails.transferAmount}
 				onChange={(e) => {
-					solanaClass.updateTransferSolDetails("transferAmount", parseInt(e.target.value, 10))
+					solanaClass.updateTransferSolDetails("transferAmount", Number(e.target.value))
 				}}
 				min={0}
 				max={solanaClass.walletBalanceUSD.get()}
