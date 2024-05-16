@@ -8,9 +8,11 @@ export default function TradeSecondaryShares() {
 	return (
 		<div className="flex flex-col h-full">
 			<div className="h-2/3">
-				<div className="flex-1 flex justify-center items-center">
-					<div className="text-center font-semibold flex items-center">
+				<div className="flex flex-row justify-between items-center font-semibold w-full">
+					<div>
 						<BackButtonSecondaryTransaction />
+					</div>
+					<div className="text-center flex-1">
 						<TradeSecondarySharesTitle />
 					</div>
 				</div>

@@ -16,6 +16,6 @@ export default class ExchangeDataService {
 	}
 
 	async placeSecondaryMarketSplAsk(createSplAsk: CreateSPLAskData): Promise<AxiosResponse<AllCommonResponses | AskResponse>> {
-		return await this.httpClient.http.post<AllCommonResponses | AskResponse>("/exchange/primary-spl-token-purchase", { createSplAsk })
+		return await this.httpClient.http.post<AllCommonResponses | AskResponse>("/exchange/create-spl-ask", { createSplAsk })
 	}
 }

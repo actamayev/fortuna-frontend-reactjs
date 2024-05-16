@@ -24,7 +24,6 @@ function BackButtonSecondaryTransaction() {
 			colorClass="bg-blue-200"
 			hoverClass="hover:bg-blue-300"
 			onClick={resetBidAndAskDetails}
-			className="font-semibold"
 		/>
 	)
 }
