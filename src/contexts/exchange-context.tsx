@@ -60,8 +60,8 @@ class ExchangeClass {
 		return this.myContent.find(content => content.mintAddress === mintAddress)
 	}
 
-	public contextForMyOwnership(splPublicKey: string): MyOwnership | undefined {
-		return this.myOwnership.find(ownership => ownership.splPublicKey === splPublicKey)
+	public contextForMyOwnership(uuid: string): MyOwnership | undefined {
+		return this.myOwnership.find(ownership => ownership.uuid === uuid)
 	}
 
 	public contextForVideoOpenTrades(splPublicKey: string): OpenOrders | undefined {
@@ -124,7 +124,6 @@ class ExchangeClass {
 		}
 	})
 
-
 	public setContent = action((newContentList: MyContent[]): void => {
 		this.myContent = []
 		if (_.isEmpty(newContentList)) return
@@ -159,7 +158,15 @@ class ExchangeClass {
 		this.myOwnership[index].purchaseData = newOwnership.purchaseData
 	})
 
-	public addOpenOrdersToVideo(splPublicKey: string, openOrders: OpenOrders): void {
+	public getNumberSharesOwnedByUUID(uuid: string): number {
+		const ownershipData = this.contextForMyOwnership(uuid)
+		if (_.isUndefined(ownershipData)) return 0
+		let numberShares = 0
+		ownershipData.purchaseData.map(ownership => numberShares += ownership.number_of_shares)
+		return numberShares
+	}
+
+	public addOpenOrder(splPublicKey: string, openOrders: OpenOrders): void {
 		this.openOrders.set(splPublicKey, openOrders)
 	}
 

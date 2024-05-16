@@ -2,7 +2,7 @@ interface Props {
 	as?: React.ElementType
 	className?: string
 	label?: string
-	max?: string
+	maxValue?: number
 	minDate?: string
 	minValue?: number
 	maxLength?: number
@@ -24,7 +24,7 @@ export default function FormGroup(props: Props) {
 		as,
 		className,
 		label,
-		max,
+		maxValue,
 		minDate,
 		minValue,
 		maxLength,
@@ -50,7 +50,7 @@ export default function FormGroup(props: Props) {
 			{label && <label className = "block text-sm font-medium text-gray-600">{label}</label>}
 			<Component
 				className ="mt-1 p-2 w-full border rounded-md text-black"
-				max={max}
+				max={maxValue}
 				min = {minAttribute}
 				maxLength = {maxLength}
 				name = {name}

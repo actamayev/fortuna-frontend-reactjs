@@ -1,6 +1,6 @@
 import BidValue from "./bid-value"
 import ReviewBidButton from "./review-bid-button"
-import ImpliedVideoValue from "./implied-video-value"
+import ImpliedVideoValue from "../../implied-video-value"
 import SelectLimitBidPrice from "./select-limit-bid-price"
 import ShowTradingBalance from "../../../show-trading-balance"
 import SelectNumberSharesBiddingFor from "./select-number-shares-bidding-for"

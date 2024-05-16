@@ -7,7 +7,7 @@ import { useVideoContext } from "../../../../../contexts/video-context"
 import { useSolanaContext } from "../../../../../contexts/solana-context"
 import { useExchangeContext } from "../../../../../contexts/exchange-context"
 
-function ReviewBidButton() {
+function ReviewAskButton() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const solanaClass = useSolanaContext()
 	const exchangeClass = useExchangeContext()
@@ -15,24 +15,18 @@ function ReviewBidButton() {
 
 	const isAbleToPurchaseShares = useMemo(() => {
 		if (_.isNull(exchangeClass) || _.isNull(solanaClass)) return false
-		if (exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd === 0) return false
-		if (_.isEqual(exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor, 0)) return false
-		// eslint-disable-next-line max-len
-		const sharePurchaseValueUsd = exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor * exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd
-		return sharePurchaseValueUsd < solanaClass.walletBalanceUSD.get()
+		if (exchangeClass.askForSplSharesDetails.askPricePerShareUsd === 0) return false
+		if (_.isEqual(exchangeClass.askForSplSharesDetails.numberofSharesAskingFor, 0)) return false
+		return true
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [
-		exchangeClass?.bidForSplSharesDetails.numberOfSharesBiddingFor,
-		exchangeClass?.bidForSplSharesDetails.bidPricePerShareUsd,
-		solanaClass
-	])
+	}, [exchangeClass, solanaClass, exchangeClass?.askForSplSharesDetails.askPricePerShareUsd])
 
 	const onClickButton = useCallback(() => {
 		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return
 		const video = videoClass.findVideoFromUUID(videoUUID)
 		if (_.isUndefined(video)) return
-		exchangeClass.updateSplBidDetails("purchaseStage", "review")
-		exchangeClass.updateSplBidDetails("splPublicKey", video.splPublicKey)
+		exchangeClass.updateSplAskDetails("saleStage", "review")
+		exchangeClass.updateSplAskDetails("splPublicKey", video.splPublicKey)
 	}, [exchangeClass, videoClass, videoUUID])
 
 	if (_.isNull(exchangeClass)) return null
@@ -43,7 +37,7 @@ function ReviewBidButton() {
 				onClick={onClickButton}
 				colorClass="bg-blue-200"
 				hoverClass="hover:bg-blue-300"
-				title="Review Bid"
+				title="Review Ask"
 				disabled={!isAbleToPurchaseShares}
 				className="font-semibold"
 			/>
@@ -51,4 +45,4 @@ function ReviewBidButton() {
 	)
 }
 
-export default observer(ReviewBidButton)
+export default observer(ReviewAskButton)

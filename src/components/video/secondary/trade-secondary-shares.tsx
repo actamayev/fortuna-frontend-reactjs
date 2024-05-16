@@ -2,6 +2,7 @@ import ChooseBidOrAsk from "./choose-bid-or-ask"
 import TradeSecondarySharesTitle from "./trade-secondary-shares-title"
 import BackButtonSecondaryTransaction from "./back-button-secondary-transaction"
 import BidForSecondarySharesOptions from "./bid/bid-for-secondary-shares-options"
+import AskForSecondarySharesOptions from "./ask/ask-for-secondary-shares-options"
 
 export default function TradeSecondaryShares() {
 	return (
@@ -15,6 +16,7 @@ export default function TradeSecondaryShares() {
 				</div>
 				<ChooseBidOrAsk />
 				<BidForSecondarySharesOptions />
+				<AskForSecondarySharesOptions />
 			</div>
 			<hr className="border-t border-gray-300 w-full" />
 			<div className="flex-1 flex justify-center">

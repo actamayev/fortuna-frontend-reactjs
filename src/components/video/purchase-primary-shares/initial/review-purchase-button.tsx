@@ -17,6 +17,7 @@ function ReviewPurchaseButton() {
 
 	const isAbleToPurchaseShares = useMemo(() => {
 		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return false
+		if (_.isEqual(exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, 0)) return false
 		return exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing <= calculateMaxSharesToPurchase(videoUUID)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [exchangeClass?.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, videoUUID])
@@ -44,7 +45,7 @@ function ReviewPurchaseButton() {
 				colorClass="bg-blue-200"
 				hoverClass="hover:bg-blue-300"
 				title={createTitleForButton}
-				disabled={!isAbleToPurchaseShares || _.isEqual(exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, 0)}
+				disabled={!isAbleToPurchaseShares}
 				className="font-semibold"
 			/>
 		</div>
