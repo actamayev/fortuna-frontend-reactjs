@@ -8,14 +8,10 @@ import { usePersonalInfoContext } from "../../../../contexts/personal-info-conte
 function CostPerShareArea() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const videoClass = useVideoContext()
-	const personalInfoClass = usePersonalInfoContext()
 	const solanaClass = useSolanaContext()
+	const personalInfoClass = usePersonalInfoContext()
 
-	if (
-		_.isUndefined(videoUUID) ||
-		_.isNull(personalInfoClass) ||
-		_.isNull(solanaClass)
-	) return null
+	if (_.isUndefined(videoUUID) || _.isNull(personalInfoClass)) return null
 	const video = videoClass.findVideoFromUUID(videoUUID)
 	if (_.isUndefined(video)) return null
 
@@ -28,7 +24,7 @@ function CostPerShareArea() {
 		)
 	}
 
-	if (_.isNull(solanaClass.solPriceDetails)) return null
+	if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null
 
 	const solPriceInUSD = solanaClass.solPriceDetails.solPriceInUSD
 	return (
