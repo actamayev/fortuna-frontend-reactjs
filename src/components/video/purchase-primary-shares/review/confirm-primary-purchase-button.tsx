@@ -7,8 +7,8 @@ import usePurchasePrimarySplTokens from "../../../../hooks/exchange/purchase-pri
 
 function ConfirmPrimaryPurchaseButton() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
-	const purchaseSplTokens = usePurchasePrimarySplTokens()
 	const [isLoading, setIsLoading] = useState(false)
+	const purchaseSplTokens = usePurchasePrimarySplTokens()
 
 	if (_.isUndefined(videoUUID)) return null
 

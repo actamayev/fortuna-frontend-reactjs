@@ -18,7 +18,7 @@ function ReviewPurchaseButton() {
 		if (_.isEqual(exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, 0)) return false
 		return exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing <= calculateMaxSharesToPurchase(videoUUID)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [exchangeClass?.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, videoUUID])
+	}, [exchangeClass, exchangeClass?.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, videoUUID])
 
 	const onClickButton = useCallback(() => {
 		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return
