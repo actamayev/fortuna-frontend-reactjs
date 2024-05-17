@@ -1,24 +1,27 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
+import { useParams } from "react-router-dom"
+import { useVideoContext } from "../../../../contexts/video-context"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
 import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
 
-interface Props {
-	video: VideoData
-}
-
-function ShowRemainingWalletBalanceAfterPrimaryPurchase(props: Props) {
-	const { video } = props
+function ShowRemainingWalletBalanceAfterPrimaryPurchase() {
+	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const solanaClass = useSolanaContext()
 	const exchangeClass = useExchangeContext()
 	const personalInfoClass = usePersonalInfoContext()
+	const videoClass = useVideoContext()
 
 	if (
 		_.isNull(solanaClass) ||
 		_.isNull(exchangeClass) ||
-		_.isNull(personalInfoClass)
+		_.isNull(personalInfoClass) ||
+		_.isUndefined(videoUUID)
 	) return null
+
+	const video = videoClass.findVideoFromUUID(videoUUID)
+	if (_.isUndefined(video)) return null
 
 	const remainingWalletBalanceUsd =
 		// eslint-disable-next-line max-len

@@ -1,21 +1,23 @@
 /* eslint-disable max-len */
 import _ from "lodash"
 import { observer } from "mobx-react"
+import { useParams } from "react-router-dom"
+import { useVideoContext } from "../../../../contexts/video-context"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
 import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
 
-interface Props {
-	video: VideoData
-}
-
-function ShowPurchasePrice(props: Props) {
-	const { video } = props
+function ShowPurchasePrice() {
+	const { videoUUID } = useParams<{ videoUUID: string }>()
+	const videoClass = useVideoContext()
 	const solanaClass = useSolanaContext()
 	const exchangeClass = useExchangeContext()
 	const personalInfoClass = usePersonalInfoContext()
 
-	if (_.isNull(personalInfoClass) || _.isNull(exchangeClass)) return null
+	if (_.isNull(personalInfoClass) || _.isNull(exchangeClass) || _.isUndefined(videoUUID)) return null
+
+	const video = videoClass.findVideoFromUUID(videoUUID)
+	if (_.isUndefined(video)) return null
 
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return (

@@ -8,6 +8,7 @@ function PurchasePrimarySharesOptions() {
 	const exchangeClass = useExchangeContext()
 
 	if (_.isNull(exchangeClass)) return null
+
 	return (
 		<>
 			{exchangeClass.purchasePrimarySplSharesDetails.purchaseStage === "initial" && <InitialPrimaryPurchaseInfo />}
