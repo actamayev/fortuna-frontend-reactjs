@@ -13,16 +13,14 @@ function ConfirmAskButton() {
 	if (_.isUndefined(videoUUID)) return null
 
 	return (
-		<div className="flex justify-center mt-2">
-			<Button
-				onClick={() => splTokenAsk(setIsLoading)}
-				colorClass="bg-emerald-200"
-				hoverClass="hover:bg-emerald-300"
-				title="Confirm Ask"
-				disabled={isLoading}
-				className="font-semibold"
-			/>
-		</div>
+		<Button
+			onClick={() => splTokenAsk(setIsLoading)}
+			colorClass="bg-emerald-200"
+			hoverClass="hover:bg-emerald-300"
+			title="Confirm Ask"
+			disabled={isLoading}
+			className="font-semibold"
+		/>
 	)
 }
 

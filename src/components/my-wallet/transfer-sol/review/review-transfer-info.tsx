@@ -1,8 +1,8 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import Button from "../../../button"
 import FeeSection from "./fee-section"
 import ConfirmTransactionButton from "./confirm-transaction-button"
+import ReviewTransferBackButton from "./review-transfer-back-button"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
 
@@ -15,13 +15,7 @@ function ReviewTransferInfo() {
 	return (
 		<>
 			<div className="flex flex-row justify-between items-center font-semibold w-full">
-				<Button
-					title="<"
-					colorClass="bg-blue-200"
-					hoverClass="hover:bg-blue-300"
-					onClick={() => solanaClass.updateTransferSolDetails("transferStage", "initial")}
-					className="font-semibold"
-				/>
+				<ReviewTransferBackButton />
 				<div className="text-center flex-1">
 					Review Transfer
 				</div>

@@ -23,7 +23,7 @@ export default function InitialAskInfo() {
 			<div className="mt-2">
 				<ImpliedVideoValue />
 			</div>
-			<div className="mt-2">
+			<div className="mt-2 flex justify-center">
 				<ReviewAskButton />
 			</div>
 		</div>

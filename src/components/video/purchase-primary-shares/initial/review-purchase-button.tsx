@@ -39,16 +39,14 @@ function ReviewPurchaseButton() {
 	if (_.isNull(exchangeClass)) return null
 
 	return (
-		<div className="flex justify-center">
-			<Button
-				onClick={onClickButton}
-				colorClass="bg-blue-200"
-				hoverClass="hover:bg-blue-300"
-				title={createTitleForButton}
-				disabled={!isAbleToPurchaseShares}
-				className="font-semibold"
-			/>
-		</div>
+		<Button
+			onClick={onClickButton}
+			colorClass="bg-blue-200"
+			hoverClass="hover:bg-blue-300"
+			title={createTitleForButton}
+			disabled={!isAbleToPurchaseShares}
+			className="font-semibold"
+		/>
 	)
 }
 

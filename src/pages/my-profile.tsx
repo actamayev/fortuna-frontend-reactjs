@@ -9,7 +9,9 @@ export default function MyProfile() {
 		<>
 			<SectionHeader siteTitle="My Profile" />
 			<UploadProfilePicture />
-			<YouTubeSignInButton />
+			<div className="mt-2">
+				<YouTubeSignInButton />
+			</div>
 			<ShowIfUserIsFortunaCreator />
 		</>
 	)

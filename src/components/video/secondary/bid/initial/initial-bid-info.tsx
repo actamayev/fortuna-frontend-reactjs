@@ -23,7 +23,7 @@ export default function InitialBidInfo() {
 			<div className="mt-2">
 				<ImpliedVideoValue />
 			</div>
-			<div className="mt-2">
+			<div className="mt-2 flex justify-center">
 				<ReviewBidButton />
 			</div>
 		</div>

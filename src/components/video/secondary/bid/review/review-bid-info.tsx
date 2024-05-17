@@ -16,7 +16,9 @@ function ReviewBidInfo() {
 			<ShowBidPrice />
 			<ShowNewShareCountAfterBid />
 			<ShowRemainingWalletBalanceAfterBid />
-			<ConfirmBidButton />
+			<div className="flex justify-center mt-2">
+				<ConfirmBidButton />
+			</div>
 		</>
 	)
 }

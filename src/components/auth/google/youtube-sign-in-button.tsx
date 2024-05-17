@@ -16,7 +16,7 @@ function YouTubeSignInButton() {
 			onClick={youtubeLogin}
 			colorClass="bg-red-300"
 			hoverClass="hover:bg-red-400"
-			className="mt-2"
+			className="font-semibold"
 		/>
 	)
 }

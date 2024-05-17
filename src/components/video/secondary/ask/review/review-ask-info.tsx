@@ -16,7 +16,9 @@ function ReviewAskInfo() {
 			<ShowAskPrice />
 			<ShowRemainingNumberSharesAfterAsk />
 			<ShowNewWalletBalanceAfterAsk />
-			<ConfirmAskButton />
+			<div className="flex justify-center mt-2">
+				<ConfirmAskButton />
+			</div>
 		</>
 	)
 }

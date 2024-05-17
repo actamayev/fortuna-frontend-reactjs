@@ -20,7 +20,7 @@ export default function InitialPrimaryPurchaseInfo() {
 			<div className="mt-3">
 				<CostPerShareArea />
 			</div>
-			<div className="mt-3">
+			<div className="mt-3 flex justify-center">
 				<ReviewPurchaseButton />
 			</div>
 		</div>

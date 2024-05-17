@@ -1,9 +1,9 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
-import Button from "../../../button"
 import ShowPurchasePrice from "./show-purchase-price"
 import { useVideoContext } from "../../../../contexts/video-context"
+import PrimaryPurchaseBackButton from "./primary-purchase-back-button"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
 import ConfirmPrimaryPurchaseButton from "./confirm-primary-purchase-button"
 import ShowRemainingWalletBalanceAfterPrimaryPurchase from "./show-remaining-wallet-balance-after-primary-purchase"
@@ -22,15 +22,7 @@ function ReviewPurchaseInfo() {
 	return (
 		<>
 			<div className="flex flex-row justify-between items-center font-semibold w-full">
-				<div>
-					<Button
-						title="<"
-						colorClass="bg-blue-200"
-						hoverClass="hover:bg-blue-300"
-						onClick={() => exchangeClass.updatePurchasePrimarySplSharesDetails("purchaseStage", "initial")}
-						className="font-semibold"
-					/>
-				</div>
+				<PrimaryPurchaseBackButton />
 				<div className="text-center flex-1">
 					Review Purchase
 				</div>
@@ -44,7 +36,9 @@ function ReviewPurchaseInfo() {
 					<ShowRemainingWalletBalanceAfterPrimaryPurchase video={video} />
 				</div>
 			</div>
-			<ConfirmPrimaryPurchaseButton />
+			<div className="flex justify-center mt-2">
+				<ConfirmPrimaryPurchaseButton />
+			</div>
 		</>
 	)
 }
