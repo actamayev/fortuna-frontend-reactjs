@@ -9,9 +9,8 @@ function BidValue() {
 
 	return (
 		<>
-		Purchase Value:
-			${exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor *
-				exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd}
+			Purchase Value:
+			${exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor * exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd}
 		</>
 	)
 }

@@ -9,9 +9,8 @@ function AskValue() {
 
 	return (
 		<>
-		Sale Value:
-			${exchangeClass.askForSplSharesDetails.numberofSharesAskingFor *
-				exchangeClass.askForSplSharesDetails.askPricePerShareUsd}
+			Sale Value:
+			${exchangeClass.askForSplSharesDetails.numberofSharesAskingFor * exchangeClass.askForSplSharesDetails.askPricePerShareUsd}
 		</>
 	)
 }
