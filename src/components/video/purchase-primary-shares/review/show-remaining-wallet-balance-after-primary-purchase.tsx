@@ -8,10 +8,10 @@ import { usePersonalInfoContext } from "../../../../contexts/personal-info-conte
 
 function ShowRemainingWalletBalanceAfterPrimaryPurchase() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
+	const videoClass = useVideoContext()
 	const solanaClass = useSolanaContext()
 	const exchangeClass = useExchangeContext()
 	const personalInfoClass = usePersonalInfoContext()
-	const videoClass = useVideoContext()
 
 	if (
 		_.isNull(solanaClass) ||

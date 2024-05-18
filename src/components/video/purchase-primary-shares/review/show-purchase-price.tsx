@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"

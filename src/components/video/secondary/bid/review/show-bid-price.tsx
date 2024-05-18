@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../../../contexts/solana-context"
@@ -13,6 +12,9 @@ function ShowBidPrice() {
 	if (_.isNull(personalInfoClass) || _.isNull(exchangeClass)) return null
 
 	if (personalInfoClass.defaultCurrency === "usd") {
+		const numberSharesBiddingFor = exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor
+		const bidPricePerShareUsd = exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd
+
 		return (
 			<div className="flex justify-between">
 				<div>
@@ -21,7 +23,7 @@ function ShowBidPrice() {
 					X ${_.round(exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd, 2)}
 				</div>
 				<div>
-					${(exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd * exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor).toFixed(2)}
+					${(bidPricePerShareUsd * numberSharesBiddingFor).toFixed(2)}
 				</div>
 			</div>
 		)
