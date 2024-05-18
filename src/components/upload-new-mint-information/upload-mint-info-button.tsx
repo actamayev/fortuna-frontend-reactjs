@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useMemo, useState } from "react"
@@ -20,7 +21,6 @@ function UploadMintInfoButton() {
 	const isImageAndVideoReadyToSubmit = useMemo(() => {
 		if (_.isNull(solanaClass)) return false
 		return !_.isNull(solanaClass.newSplDetails.selectedImage) && !_.isNull(solanaClass.newSplDetails.selectedVideo)
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [solanaClass, solanaClass?.newSplDetails.selectedImage, solanaClass?.newSplDetails.selectedVideo])
 
 	const buttonTitle = useMemo(() => {
@@ -31,14 +31,12 @@ function UploadMintInfoButton() {
 		if (solanaClass.newSplDetails.creatorOwnershipPercentage > 90) return "Creator ownership percentage must be at most 90%"
 		if (solanaClass.isNewSplLoading === true) return "Loading..."
 		return "Submit"
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isImageAndVideoReadyToSubmit, solanaClass, solanaClass?.isNewSplLoading,
 		solanaClass?.newSplDetails.creatorOwnershipPercentage, confirmNewSPLDetails])
 
 	const creatorOwnershipPercentage = useMemo(() => {
 		if (_.isNull(solanaClass)) return 0
 		return solanaClass.newSplDetails.creatorOwnershipPercentage
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [solanaClass, solanaClass?.newSplDetails.creatorOwnershipPercentage])
 
 	return (

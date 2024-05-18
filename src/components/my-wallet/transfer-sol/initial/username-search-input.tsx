@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
@@ -11,13 +12,11 @@ function UsernameSearchInput() {
 	const transferSolUsername = useMemo(() => {
 		if (_.isNull(solanaClass)) return ""
 		return solanaClass.transferSolDetails.username
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [solanaClass, solanaClass?.transferSolDetails.username])
 
 	const isUsernameSelected = useMemo(() => {
 		if (_.isNull(solanaClass)) return false
 		return solanaClass.transferSolDetails.isUsernameSelected
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [solanaClass, solanaClass?.transferSolDetails.isUsernameSelected])
 
 	const updateTransferSolDetails = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {

@@ -5,7 +5,6 @@ import SingleUsernameSearch from "./single-username-search"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import useUsernameSearch from "../../../../hooks/search/username-search"
 
-
 function DisplayUsernames() {
 	const solanaClass = useSolanaContext()
 	const [isLoading, setIsLoading] = useState(false)

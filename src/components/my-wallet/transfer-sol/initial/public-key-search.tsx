@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useEffect, useMemo } from "react"
@@ -17,19 +18,16 @@ function PublicKeySearch() {
 	const publicKey = useMemo(() => {
 		if (_.isNull(solanaClass)) return ""
 		return solanaClass.transferSolDetails.publicKey
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [solanaClass, solanaClass?.transferSolDetails.publicKey])
 
 	const doesPublicKeyExist = useMemo(() => {
 		if (_.isNull(solanaClass)) return false
 		return solanaClass.transferSolDetails.doesPublicKeyExist
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [solanaClass, solanaClass?.transferSolDetails.doesPublicKeyExist])
 
 	const isPublicKeySearchLoading = useMemo(() => {
 		if (_.isNull(solanaClass)) return false
 		return solanaClass.isPublicKeySearchLoading
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [solanaClass, solanaClass?.isPublicKeySearchLoading])
 
 	const updateTransferSolDetails = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {

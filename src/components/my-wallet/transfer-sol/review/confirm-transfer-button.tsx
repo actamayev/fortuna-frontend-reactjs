@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useEffect, useMemo, useState } from "react"
@@ -15,13 +16,11 @@ function ConfirmTransferButton() {
 
 	useEffect(() => {
 		confirmUserHasEnoughSolToTransfer(setDoesUserHaveEnoughSol)
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [solanaClass?.transferSolDetails.transferStage])
 
 	const isTransferAmountZero = useMemo(() => {
 		if (_.isNull(solanaClass)) return true
 		return _.isEqual(solanaClass.transferSolDetails.transferAmount, 0)
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [solanaClass, solanaClass?.transferSolDetails.transferAmount])
 
 	return (
