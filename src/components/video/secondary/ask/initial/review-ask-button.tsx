@@ -9,9 +9,9 @@ import { useExchangeContext } from "../../../../../contexts/exchange-context"
 
 function ReviewAskButton() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
+	const videoClass = useVideoContext()
 	const solanaClass = useSolanaContext()
 	const exchangeClass = useExchangeContext()
-	const videoClass = useVideoContext()
 
 	const isAbleToPurchaseShares = useMemo(() => {
 		if (_.isNull(exchangeClass) || _.isNull(solanaClass)) return false
@@ -19,7 +19,8 @@ function ReviewAskButton() {
 		if (_.isEqual(exchangeClass.askForSplSharesDetails.numberofSharesAskingFor, 0)) return false
 		return true
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [exchangeClass, solanaClass, exchangeClass?.askForSplSharesDetails.askPricePerShareUsd])
+	}, [exchangeClass, solanaClass,
+		exchangeClass?.askForSplSharesDetails.askPricePerShareUsd, exchangeClass?.askForSplSharesDetails.numberofSharesAskingFor])
 
 	const onClickButton = useCallback(() => {
 		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return

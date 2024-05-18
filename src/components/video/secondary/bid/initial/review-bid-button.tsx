@@ -9,9 +9,9 @@ import { useExchangeContext } from "../../../../../contexts/exchange-context"
 
 function ReviewBidButton() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
+	const videoClass = useVideoContext()
 	const solanaClass = useSolanaContext()
 	const exchangeClass = useExchangeContext()
-	const videoClass = useVideoContext()
 
 	const isAbleToPurchaseShares = useMemo(() => {
 		if (_.isNull(exchangeClass) || _.isNull(solanaClass)) return false
@@ -22,9 +22,9 @@ function ReviewBidButton() {
 		return sharePurchaseValueUsd < solanaClass.walletBalanceUSD.get()
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [
+		solanaClass,
 		exchangeClass?.bidForSplSharesDetails.numberOfSharesBiddingFor,
-		exchangeClass?.bidForSplSharesDetails.bidPricePerShareUsd,
-		solanaClass
+		exchangeClass?.bidForSplSharesDetails.bidPricePerShareUsd
 	])
 
 	const onClickButton = useCallback(() => {

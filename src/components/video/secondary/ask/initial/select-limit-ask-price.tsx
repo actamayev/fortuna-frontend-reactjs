@@ -8,7 +8,6 @@ function SelectLimitAskPrice() {
 
 	if (_.isNull(exchangeClass)) return null
 
-	// TODO: Add Sol price as well
 	return (
 		<div>
 			<FormGroup
