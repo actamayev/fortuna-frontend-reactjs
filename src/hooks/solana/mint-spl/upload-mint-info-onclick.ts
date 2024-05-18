@@ -96,8 +96,8 @@ export default function useUploadMintInfoOnclick(): (
 			setStatus("")
 			if (!_.isNull(solanaClass)) solanaClass.setIsNewSplLoading(false)
 		}
-	}, [confirmNewSplDetails, exchangeClass, fortunaApiClient.solanaDataService,
-		fortunaApiClient.uploadDataService, navigate, personalInfoClass, retrieveSolPrice, solanaClass])
+	}, [solanaClass, confirmNewSplDetails, exchangeClass, fortunaApiClient.solanaDataService,
+		fortunaApiClient.uploadDataService, navigate, personalInfoClass, retrieveSolPrice])
 
 	return uploadMintInfoOnclick
 }

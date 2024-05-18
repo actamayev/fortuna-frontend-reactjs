@@ -36,7 +36,7 @@ export default function useRetrieveMyContent(): void {
 		} finally {
 			if (!_.isNull(exchangeClass)) exchangeClass.setIsRetrievingContent(false)
 		}
-	}, [fortunaApiClient.solanaDataService, personalInfoClass?.isApprovedToBeCreator, exchangeClass])
+	}, [exchangeClass, fortunaApiClient.solanaDataService, personalInfoClass?.isApprovedToBeCreator])
 
 	useEffect(() => {
 		if (_.isNull(fortunaApiClient.httpClient.accessToken)) return

@@ -35,7 +35,7 @@ export default function useRequestAirdrop(): (
 		} finally {
 			setIsButtonDisabled(false)
 		}
-	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService, solanaClass])
+	}, [solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService])
 
 	return requestAirdop
 }

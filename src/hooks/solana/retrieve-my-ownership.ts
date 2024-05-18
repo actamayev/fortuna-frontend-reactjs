@@ -36,7 +36,7 @@ export default function useRetrieveMyOwnership(): void {
 		} finally {
 			if (!_.isNull(exchangeClass)) exchangeClass.setIsRetrievingOwnership(false)
 		}
-	}, [fortunaApiClient.solanaDataService, personalInfoClass?.username, exchangeClass])
+	}, [exchangeClass, fortunaApiClient.solanaDataService, personalInfoClass?.username])
 
 	useEffect(() => {
 		if (_.isNull(fortunaApiClient.httpClient.accessToken)) return

@@ -34,7 +34,7 @@ export default function useRetrieveCreatorVideosAndDataUseEffect(creatorUsername
 		} finally {
 			videoClass.setIsCreatorDataBeingRetrieved(false)
 		}
-	}, [creatorUsername, fortunaApiClient.videoDataService, videoClass])
+	}, [videoClass, creatorUsername, fortunaApiClient.videoDataService])
 
 	useEffect(() => {
 		void retrieveCreatorVideosAndData()

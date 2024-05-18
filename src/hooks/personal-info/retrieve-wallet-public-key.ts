@@ -36,7 +36,7 @@ export default function useRetrieveWalletPublicKey(): (
 		} finally {
 			setIsButtonDisabled(false)
 		}
-	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService, solanaClass])
+	}, [solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService])
 
 	return retrieveWalletPublicKey
 }

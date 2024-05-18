@@ -48,7 +48,8 @@ function ChooseProfilePictureButton(props: Props) {
 			return "Choose a Profile Picture"
 		}
 		return "Choose a new Profile Picture"
-	}, [personalInfoClass])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [personalInfoClass, personalInfoClass?.profilePictureUrl])
 
 	// Do not remove this just because it doesn't appear in the JSX.
 	// This button just shouldn't show if there is a previewUrl

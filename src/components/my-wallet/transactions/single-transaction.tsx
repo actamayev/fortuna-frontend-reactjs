@@ -30,16 +30,17 @@ function SingleTransaction(props: Props) {
 		return `${dateString} at ${timeString}`
 	}, [transaction.transferDateTime])
 
-	if (_.isNull(personalInfoClass)) return null
-
 	return (
 		<div className="bg-white border shadow-sm mt-2 p-2 rounded-sm dark:text-white">
 			<div>
 				{_.upperFirst(transaction.outgoingOrIncoming)} Transfer on {formattedDateTime}
 			</div>
 			<div>
-				{personalInfoClass.defaultCurrency === "usd" && (<> ${(transaction.usdAmountTransferred).toFixed(2)}</>)}
-				{personalInfoClass.defaultCurrency === "sol" && (<> {(transaction.solAmountTransferred).toFixed(4)} SOL</>)}
+				{(_.isNull(personalInfoClass) || personalInfoClass.defaultCurrency === "usd") ? (
+					<> ${(transaction.usdAmountTransferred).toFixed(2)}</>
+				) : (
+					<> {(transaction.solAmountTransferred).toFixed(4)} SOL</>
+				)}
 				{transaction.outgoingOrIncoming === "incoming" && (<> from {transaction.transferFromUsername}</>)}
 				{transaction.outgoingOrIncoming === "outgoing" &&
 					(<> to {transaction.transferToUsername || transaction.transferToPublicKey}</>)

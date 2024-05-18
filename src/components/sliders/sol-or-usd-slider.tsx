@@ -12,7 +12,8 @@ function SolOrUsdSlider() {
 	const defaultCurrency = useMemo(() => {
 		if (_.isNull(personalInfoClass)) return "usd"
 		return personalInfoClass.defaultCurrency
-	}, [personalInfoClass])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [personalInfoClass, personalInfoClass?.defaultCurrency])
 
 	return (
 		<div className="flex flex-col items-center z-20">

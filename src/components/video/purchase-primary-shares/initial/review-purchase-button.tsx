@@ -33,7 +33,7 @@ function ReviewPurchaseButton() {
 			onClick={onClickButton}
 			colorClass="bg-blue-200"
 			hoverClass="hover:bg-blue-300"
-			title={isAbleToPurchaseShares ? "Review Purchase" : "Unable to purchase shares"}
+			title={"Review Purchase"}
 			disabled={!isAbleToPurchaseShares}
 			className="font-semibold"
 		/>

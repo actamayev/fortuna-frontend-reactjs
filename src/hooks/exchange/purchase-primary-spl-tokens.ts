@@ -42,7 +42,7 @@ export default function usePurchasePrimarySplTokens(): (
 		} finally {
 			setIsLoading(false)
 		}
-	}, [exchangeClass, fortunaApiClient.exchangeDataService, fortunaApiClient.httpClient.accessToken, retrieveWalletBalance, videoClass])
+	}, [exchangeClass, videoClass, fortunaApiClient.exchangeDataService, fortunaApiClient.httpClient.accessToken, retrieveWalletBalance])
 
 	return purchasePrimarySplTokens
 }

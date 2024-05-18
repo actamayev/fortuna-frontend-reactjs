@@ -21,7 +21,8 @@ export default function useCalculateMaxSharesToPurchase(): (
 		} catch (error) {
 			return 0
 		}
-	}, [solanaClass, videoClass])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [solanaClass, videoClass, solanaClass?.walletBalanceSol])
 
 	return calculateMaxSharesToPurchase
 }
