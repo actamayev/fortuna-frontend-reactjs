@@ -13,8 +13,8 @@ function WalletBalance() {
 		<>
 			{_.isNull(solanaClass.walletBalanceSol) ? (<> Loading...</>) : (
 				<> {" "}
-					{personalInfoClass.defaultCurrency === "usd" && (<>${(solanaClass.walletBalanceUSD.get()).toFixed(2)}</>)}
-					{personalInfoClass.defaultCurrency === "sol" && (<>{(solanaClass.walletBalanceSol || 0).toFixed(4)} SOL</>)}
+					{personalInfoClass.defaultCurrency === "usd" && (<>${solanaClass.walletBalanceUSD.get().toFixed(2)}</>)}
+					{personalInfoClass.defaultCurrency === "sol" && (<>{solanaClass.walletBalanceSol.toFixed(4)} SOL</>)}
 				</>
 			)}
 		</>
