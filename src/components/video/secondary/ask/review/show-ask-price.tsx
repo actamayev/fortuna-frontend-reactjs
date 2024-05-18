@@ -16,7 +16,9 @@ function ShowAskPrice() {
 		return (
 			<div className="flex justify-between">
 				<div>
-					${_.round(exchangeClass.askForSplSharesDetails.askPricePerShareUsd, 2)} X {exchangeClass.askForSplSharesDetails.numberofSharesAskingFor} Share{exchangeClass.askForSplSharesDetails.numberofSharesAskingFor > 1 ? "s" : ""}
+					{exchangeClass.askForSplSharesDetails.numberofSharesAskingFor} {" "}
+					Share{exchangeClass.askForSplSharesDetails.numberofSharesAskingFor > 1 ? "s" : ""} {" "}
+					X ${_.round(exchangeClass.askForSplSharesDetails.askPricePerShareUsd, 2)}
 				</div>
 				<div>
 					${_.round(exchangeClass.askForSplSharesDetails.askPricePerShareUsd * exchangeClass.askForSplSharesDetails.numberofSharesAskingFor, 2).toFixed(2)}
@@ -32,7 +34,9 @@ function ShowAskPrice() {
 	return (
 		<div className="flex justify-between">
 			<div>
-				{_.round(videoListingSharePriceSol, 4)} SOL X {exchangeClass.askForSplSharesDetails.numberofSharesAskingFor} Share{exchangeClass.askForSplSharesDetails.numberofSharesAskingFor > 1 ? "s" : ""}
+				{exchangeClass.askForSplSharesDetails.numberofSharesAskingFor} {" "}
+				Share{exchangeClass.askForSplSharesDetails.numberofSharesAskingFor > 1 ? "s" : ""} {" "}
+				X {_.round(videoListingSharePriceSol, 4)} SOL
 			</div>
 			<div>
 				{_.round(videoListingSharePriceSol * exchangeClass.askForSplSharesDetails.numberofSharesAskingFor, 4).toFixed(4)} SOL
