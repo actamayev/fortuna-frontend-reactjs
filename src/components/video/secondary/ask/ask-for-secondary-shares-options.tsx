@@ -7,8 +7,7 @@ import { useExchangeContext } from "../../../../contexts/exchange-context"
 function AskForSecondarySharesOptions() {
 	const exchangeClass = useExchangeContext()
 
-	if (_.isNull(exchangeClass)) return null
-	if (exchangeClass.buyOrSellSecondarySplShares !== "Sell") return null
+	if (_.isNull(exchangeClass) || exchangeClass.buyOrSellSecondarySplShares !== "Sell") return null
 
 	return (
 		<>

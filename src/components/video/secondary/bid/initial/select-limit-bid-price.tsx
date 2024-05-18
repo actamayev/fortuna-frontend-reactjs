@@ -9,16 +9,14 @@ function SelectLimitBidPrice() {
 	if (_.isNull(exchangeClass)) return null
 
 	return (
-		<div>
-			<FormGroup
-				label="Limit Price Per Share ($)"
-				type="number"
-				onChange={(e) => exchangeClass.updateSplBidDetails("bidPricePerShareUsd", Number(e.target.value))}
-				required
-				value={exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd.toString()}
-				minValue={0}
-			/>
-		</div>
+		<FormGroup
+			label="Limit Price Per Share ($)"
+			type="number"
+			onChange={(e) => exchangeClass.updateSplBidDetails("bidPricePerShareUsd", Number(e.target.value))}
+			required
+			value={exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd.toString()}
+			minValue={0}
+		/>
 	)
 }
 

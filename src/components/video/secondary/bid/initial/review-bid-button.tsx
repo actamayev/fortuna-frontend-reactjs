@@ -13,13 +13,14 @@ function ReviewBidButton() {
 	const solanaClass = useSolanaContext()
 	const exchangeClass = useExchangeContext()
 
-	const isAbleToPurchaseShares = useMemo(() => {
+	const isAbleToBidForShares = useMemo(() => {
 		if (_.isNull(exchangeClass) || _.isNull(solanaClass)) return false
 		if (_.isEqual(exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd, 0)) return false
 		if (_.isEqual(exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor, 0)) return false
 		// eslint-disable-next-line max-len
 		const sharePurchaseValueUsd = exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor * exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd
-		return sharePurchaseValueUsd < solanaClass.walletBalanceUSD.get()
+		if (sharePurchaseValueUsd > solanaClass.walletBalanceUSD.get()) return false
+		return true
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [
 		solanaClass,
@@ -43,7 +44,7 @@ function ReviewBidButton() {
 			colorClass="bg-blue-200"
 			hoverClass="hover:bg-blue-300"
 			title="Review Bid"
-			disabled={!isAbleToPurchaseShares}
+			disabled={!isAbleToBidForShares}
 			className="font-semibold"
 		/>
 	)

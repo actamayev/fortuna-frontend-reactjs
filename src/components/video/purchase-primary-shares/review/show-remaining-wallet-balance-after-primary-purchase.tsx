@@ -16,8 +16,8 @@ function ShowRemainingWalletBalanceAfterPrimaryPurchase() {
 	if (
 		_.isNull(solanaClass) ||
 		_.isNull(exchangeClass) ||
-		_.isNull(personalInfoClass) ||
-		_.isUndefined(videoUUID)
+		_.isUndefined(videoUUID) ||
+		_.isNull(personalInfoClass)
 	) return null
 
 	const video = videoClass.findVideoFromUUID(videoUUID)

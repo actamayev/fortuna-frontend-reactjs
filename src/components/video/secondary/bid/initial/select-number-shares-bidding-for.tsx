@@ -11,21 +11,19 @@ function SelectNumberSharesBiddingFor() {
 	if (_.isNull(exchangeClass)) return null
 
 	return (
-		<div>
-			<FormGroup
-				label="Number Shares to buy"
-				type="number"
-				onChange={(e) => {
-					exchangeClass.updateSplBidDetails(
-						"numberOfSharesBiddingFor",
-						formatNumberToWholeNumber(e.target.value)
-					)
-				}}
-				required
-				value={exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor.toString()}
-				minValue={0}
-			/>
-		</div>
+		<FormGroup
+			label="Number Shares to buy"
+			type="number"
+			onChange={(e) => {
+				exchangeClass.updateSplBidDetails(
+					"numberOfSharesBiddingFor",
+					formatNumberToWholeNumber(e.target.value)
+				)
+			}}
+			required
+			value={exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor.toString()}
+			minValue={0}
+		/>
 	)
 }
 

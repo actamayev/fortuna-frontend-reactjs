@@ -21,16 +21,14 @@ export default function ContentPreview(props: Props) {
 
 	return (
 		<div className="preview-container">
-			<div>
-				{ children }
-				<Button
-					title="Remove"
-					colorClass="bg-red-600"
-					hoverClass="hover:bg-red-700"
-					onClick={removeContent}
-					className="text-white font-semibold"
-				/>
-			</div>
+			{ children }
+			<Button
+				title="Remove"
+				colorClass="bg-red-600"
+				hoverClass="hover:bg-red-700"
+				onClick={removeContent}
+				className="text-white font-semibold"
+			/>
 		</div>
 	)
 }

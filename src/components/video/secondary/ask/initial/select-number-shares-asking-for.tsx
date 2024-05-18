@@ -24,16 +24,14 @@ function SelectNumberSharesAskingFor() {
 	if (_.isNull(exchangeClass)) return null
 
 	return (
-		<div>
-			<FormGroup
-				label="Number Shares to Sell"
-				type="number"
-				onChange={handleChangeShareNumber}
-				required
-				value={exchangeClass.askForSplSharesDetails.numberofSharesAskingFor.toString()}
-				minValue={0}
-			/>
-		</div>
+		<FormGroup
+			label="Number Shares to Sell"
+			type="number"
+			onChange={handleChangeShareNumber}
+			required
+			value={exchangeClass.askForSplSharesDetails.numberofSharesAskingFor.toString()}
+			minValue={0}
+		/>
 	)
 }
 

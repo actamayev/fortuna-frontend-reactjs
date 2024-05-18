@@ -16,9 +16,7 @@ export default function DropdownItemsContainer (props: Props) {
 			aria-orientation="vertical"
 			aria-labelledby="menu-button"
 		>
-			<div>
-				<ProfileDropdownItems />
-			</div>
+			<ProfileDropdownItems />
 		</div>
 	)
 }
