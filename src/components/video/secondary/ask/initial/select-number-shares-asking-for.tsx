@@ -21,7 +21,7 @@ function SelectNumberSharesAskingFor() {
 		exchangeClass.updateSplAskDetails("numberofSharesAskingFor", value)
 	}, [exchangeClass, formatNumberToWholeNumber, videoUUID])
 
-	if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return null
+	if (_.isNull(exchangeClass)) return null
 
 	return (
 		<div>

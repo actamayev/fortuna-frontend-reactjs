@@ -1,16 +1,11 @@
-import _ from "lodash"
 import { useState } from "react"
 import { observer } from "mobx-react"
-import { useParams } from "react-router-dom"
 import Button from "../../../../button"
 import useAskSecondarySplTokens from "../../../../../hooks/exchange/spl-token-ask"
 
 function ConfirmAskButton() {
-	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const [isLoading, setIsLoading] = useState(false)
 	const splTokenAsk = useAskSecondarySplTokens()
-
-	if (_.isUndefined(videoUUID)) return null
 
 	return (
 		<Button

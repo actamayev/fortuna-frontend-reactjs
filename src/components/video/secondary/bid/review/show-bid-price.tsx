@@ -31,6 +31,7 @@ function ShowBidPrice() {
 	const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
 	if (_.isUndefined(solPriceInUSD)) return null
 	const videoListingSharePriceSol = exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd / solPriceInUSD
+
 	return (
 		<div className="flex justify-between">
 			<div>

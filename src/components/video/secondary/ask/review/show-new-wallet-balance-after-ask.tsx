@@ -20,9 +20,9 @@ function ShowNewWalletBalanceAfterAsk() {
 			<div className="flex justify-between">
 				<div>New Balance: {" "}</div>
 				<div>
-				${_.round(walletBalanceUsd + numberSharesAskingFor * pricePerAskedShareUsd, 2)} {" "}
+					${(walletBalanceUsd + numberSharesAskingFor * pricePerAskedShareUsd).toFixed(2)} {" "}
 					<span className="text-green-600">
-						(+${_.round(numberSharesAskingFor * pricePerAskedShareUsd, 2)})
+						(+${(numberSharesAskingFor * pricePerAskedShareUsd).toFixed(2)})
 					</span>
 				</div>
 			</div>
@@ -40,9 +40,9 @@ function ShowNewWalletBalanceAfterAsk() {
 		<div className="flex justify-between">
 			<div>New Balance: {" "}</div>
 			<div>
-				{_.round(walletBalanceSol + numberSharesAskingFor * pricePerAskedShareSol, 4)} SOL {" "}
+				{(walletBalanceSol + numberSharesAskingFor * pricePerAskedShareSol).toFixed(4)} SOL {" "}
 				<span className="text-green-600">
-					(+{_.round(numberSharesAskingFor * pricePerAskedShareSol, 4)} SOL)
+					(+{(numberSharesAskingFor * pricePerAskedShareSol).toFixed(4)} SOL)
 				</span>
 			</div>
 		</div>

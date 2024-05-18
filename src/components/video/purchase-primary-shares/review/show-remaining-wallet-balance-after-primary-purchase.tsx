@@ -28,12 +28,12 @@ function ShowRemainingWalletBalanceAfterPrimaryPurchase() {
 		solanaClass.walletBalanceUSD.get() - video.listingSharePriceUsd * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing
 
 	if (personalInfoClass.defaultCurrency === "usd") {
-		return <>${_.round(remainingWalletBalanceUsd, 2)}</>
+		return <>${remainingWalletBalanceUsd.toFixed(2)}</>
 	}
 
 	const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
 	if (_.isUndefined(solPriceInUSD)) return null
-	return <>{_.round(remainingWalletBalanceUsd / solPriceInUSD, 4)} SOL</>
+	return <>{(remainingWalletBalanceUsd / solPriceInUSD).toFixed(4)} SOL</>
 }
 
 export default observer(ShowRemainingWalletBalanceAfterPrimaryPurchase)

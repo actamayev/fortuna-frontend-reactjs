@@ -27,7 +27,7 @@ function WalletBalanceAndLastUpdate() {
 				Last Solana price: {" "}
 				{_.isUndefined(solanaClass.solPriceDetails?.solPriceInUSD) ? (<>Loading...</>) : (
 					<>
-						${_.round(solanaClass.solPriceDetails.solPriceInUSD || 0, 2)} {" "}
+						${(solanaClass.solPriceDetails.solPriceInUSD).toFixed(2)} {" "}
 						(Last updated {formattedTime})
 					</>
 				)}

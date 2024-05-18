@@ -24,9 +24,9 @@ function ShowRemainingWalletBalanceAfterBid() {
 			<div className="flex justify-between">
 				<div>New Balance: {" "}</div>
 				<div>
-					${_.round(remainingWalletBalanceUsd, 2)} {" "}
+					${remainingWalletBalanceUsd.toFixed(2)} {" "}
 					<span className="text-red-600">
-						(-${_.round(amountSpendingOnBidUsd, 2)})
+						(-${amountSpendingOnBidUsd.toFixed(2)})
 					</span>
 				</div>
 			</div>
@@ -39,9 +39,9 @@ function ShowRemainingWalletBalanceAfterBid() {
 		<div className="flex justify-between">
 			<div>New Balance: {" "}</div>
 			<div>
-				{_.round(remainingWalletBalanceUsd / solPriceInUSD, 4)} SOL {" "}
+				{(remainingWalletBalanceUsd / solPriceInUSD).toFixed(4)} SOL {" "}
 				<span className="text-red-600">
-					(-{_.round(amountSpendingOnBidUsd / solPriceInUSD, 4)} SOL)
+					(-{(amountSpendingOnBidUsd / solPriceInUSD).toFixed(4)} SOL)
 				</span>
 			</div>
 		</div>
