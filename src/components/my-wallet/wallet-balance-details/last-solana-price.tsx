@@ -1,10 +1,9 @@
 import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
-import WalletBalance from "./wallet-balance"
-import { useSolanaContext } from "../../contexts/solana-context"
+import { useSolanaContext } from "../../../contexts/solana-context"
 
-function WalletBalanceAndLastUpdate() {
+function LastSolanaPrice() {
 	const solanaClass = useSolanaContext()
 
 	const formattedTime = useMemo(() => {
@@ -20,20 +19,15 @@ function WalletBalanceAndLastUpdate() {
 
 	return (
 		<div>
-			<div>
-				Wallet Balance: <WalletBalance />
-			</div>
-			<div>
-				Last Solana price: {" "}
-				{_.isUndefined(solanaClass.solPriceDetails?.solPriceInUSD) ? (<>Loading...</>) : (
-					<>
-						${(solanaClass.solPriceDetails.solPriceInUSD).toFixed(2)} {" "}
-						(Last updated {formattedTime})
-					</>
-				)}
-			</div>
+			Last Solana price: {" "}
+			{_.isUndefined(solanaClass.solPriceDetails?.solPriceInUSD) ? (<>Loading...</>) : (
+				<>
+					${(solanaClass.solPriceDetails.solPriceInUSD).toFixed(2)} {" "}
+					(Last updated {formattedTime})
+				</>
+			)}
 		</div>
 	)
 }
 
-export default observer(WalletBalanceAndLastUpdate)
+export default observer(LastSolanaPrice)

@@ -1,7 +1,7 @@
-import ShowMyPublicKey from "./show-my-public-key"
-import TransferSolButton from "./transfer-sol/transfer-sol-button"
+import ShowMyPublicKey from "../show-my-public-key"
+import TransferSolButton from "../transfer-sol/transfer-sol-button"
 import WalletBalanceAndLastUpdate from "./wallet-balance-and-last-update"
-import RequestAirdropButton from "./request-airdrop/request-airdrop-button"
+import RequestAirdropButton from "../request-airdrop/request-airdrop-button"
 
 export default function WalletDetails () {
 	return (
