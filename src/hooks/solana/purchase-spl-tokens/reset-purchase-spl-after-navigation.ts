@@ -12,6 +12,8 @@ export default function useResetPurchaseSplAfterNavigation(): void {
 			if (_.isNull(exchangeClass)) return
 			exchangeClass.resetPurchaseSplSharesDetails()
 			exchangeClass.resetSplBidDetails()
+			exchangeClass.resetSplAskDetails()
+			exchangeClass.setBuyOrSellSecondaryShares("Buy")
 		} catch (error) {
 			console.error(error)
 		}

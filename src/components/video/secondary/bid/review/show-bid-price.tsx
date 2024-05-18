@@ -21,7 +21,7 @@ function ShowBidPrice() {
 					X ${_.round(exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd, 2)}
 				</div>
 				<div>
-					${_.round(exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd * exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor, 2).toFixed(2)}
+					${(exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd * exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor).toFixed(2)}
 				</div>
 			</div>
 		)
@@ -39,7 +39,7 @@ function ShowBidPrice() {
 				X {_.round(videoListingSharePriceSol, 4)} SOL
 			</div>
 			<div>
-				{_.round(videoListingSharePriceSol * exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor, 4).toFixed(4)} SOL
+				{(videoListingSharePriceSol * exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor).toFixed(4)} SOL
 			</div>
 		</div>
 	)

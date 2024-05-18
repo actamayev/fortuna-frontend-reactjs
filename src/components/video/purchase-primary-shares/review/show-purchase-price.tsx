@@ -28,7 +28,7 @@ function ShowPurchasePrice() {
 					X ${_.round(video.listingSharePriceUsd, 2)}
 				</div>
 				<div>
-					${_.round(video.listingSharePriceUsd * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, 2).toFixed(2)}
+					${(video.listingSharePriceUsd * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing).toFixed(2)}
 				</div>
 			</div>
 		)
@@ -38,6 +38,7 @@ function ShowPurchasePrice() {
 	const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
 	if (_.isUndefined(solPriceInUSD)) return null
 	const videoListingSharePriceSol = video.listingSharePriceUsd / solPriceInUSD
+
 	return (
 		<div className="flex justify-between">
 			<div>
@@ -46,7 +47,7 @@ function ShowPurchasePrice() {
 				X {_.round(videoListingSharePriceSol, 4)} SOL
 			</div>
 			<div>
-				{_.round(videoListingSharePriceSol * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, 4).toFixed(4)} SOL
+				{(videoListingSharePriceSol * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing).toFixed(4)} SOL
 			</div>
 		</div>
 	)

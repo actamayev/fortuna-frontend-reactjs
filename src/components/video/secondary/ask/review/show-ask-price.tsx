@@ -21,7 +21,7 @@ function ShowAskPrice() {
 					X ${_.round(exchangeClass.askForSplSharesDetails.askPricePerShareUsd, 2)}
 				</div>
 				<div>
-					${_.round(exchangeClass.askForSplSharesDetails.askPricePerShareUsd * exchangeClass.askForSplSharesDetails.numberofSharesAskingFor, 2).toFixed(2)}
+					${(exchangeClass.askForSplSharesDetails.askPricePerShareUsd * exchangeClass.askForSplSharesDetails.numberofSharesAskingFor).toFixed(2)}
 				</div>
 			</div>
 		)
@@ -39,7 +39,7 @@ function ShowAskPrice() {
 				X {_.round(videoListingSharePriceSol, 4)} SOL
 			</div>
 			<div>
-				{_.round(videoListingSharePriceSol * exchangeClass.askForSplSharesDetails.numberofSharesAskingFor, 4).toFixed(4)} SOL
+				{(videoListingSharePriceSol * exchangeClass.askForSplSharesDetails.numberofSharesAskingFor).toFixed(4)} SOL
 			</div>
 		</div>
 	)
