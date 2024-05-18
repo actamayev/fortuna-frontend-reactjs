@@ -15,7 +15,8 @@ function SelectLimitAskPrice() {
 	const askPricePerShareUsd = useMemo(() => {
 		if (_.isNull(exchangeClass)) return ""
 		return exchangeClass.askForSplSharesDetails.askPricePerShareUsd.toString()
-	}, [exchangeClass])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [exchangeClass, exchangeClass?.askForSplSharesDetails.askPricePerShareUsd])
 
 	return (
 		<FormGroup

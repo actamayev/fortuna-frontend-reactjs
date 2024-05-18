@@ -15,7 +15,8 @@ function SelectLimitBidPrice() {
 	const bidPricePerShareUsd = useMemo(() => {
 		if (_.isNull(exchangeClass)) return ""
 		return exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd.toString()
-	}, [exchangeClass])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [exchangeClass, exchangeClass?.bidForSplSharesDetails.bidPricePerShareUsd])
 
 	return (
 		<FormGroup
