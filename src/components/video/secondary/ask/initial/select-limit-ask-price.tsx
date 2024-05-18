@@ -1,20 +1,29 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
+import { useCallback, useMemo } from "react"
 import FormGroup from "../../../../form-group"
 import { useExchangeContext } from "../../../../../contexts/exchange-context"
 
 function SelectLimitAskPrice() {
 	const exchangeClass = useExchangeContext()
 
-	if (_.isNull(exchangeClass)) return null
+	const updateSplAskDetails = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+		if (_.isNull(exchangeClass)) return
+		exchangeClass.updateSplAskDetails("askPricePerShareUsd", Number(e.target.value))
+	}, [exchangeClass])
+
+	const askPricePerShareUsd = useMemo(() => {
+		if (_.isNull(exchangeClass)) return ""
+		return exchangeClass.askForSplSharesDetails.askPricePerShareUsd.toString()
+	}, [exchangeClass])
 
 	return (
 		<FormGroup
 			label="Limit Price Per Share ($)"
 			type="number"
-			onChange={(e) => exchangeClass.updateSplAskDetails("askPricePerShareUsd", Number(e.target.value))}
+			onChange={updateSplAskDetails}
 			required
-			value={exchangeClass.askForSplSharesDetails.askPricePerShareUsd.toString()}
+			value={askPricePerShareUsd}
 			minValue={0}
 		/>
 	)

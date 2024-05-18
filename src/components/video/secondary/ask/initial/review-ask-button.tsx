@@ -31,8 +31,6 @@ function ReviewAskButton() {
 		exchangeClass.updateSplAskDetails("splPublicKey", video.splPublicKey)
 	}, [exchangeClass, videoClass, videoUUID])
 
-	if (_.isNull(exchangeClass)) return null
-
 	return (
 		<Button
 			onClick={onClickButton}

@@ -1,5 +1,5 @@
 import _ from "lodash"
-import { useCallback } from "react"
+import { useCallback, useMemo } from "react"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import FormGroup from "../../../../form-group"
@@ -16,12 +16,14 @@ function SelectNumberSharesAskingFor() {
 		let value = formatNumberToWholeNumber(e.target.value)
 		if (isNaN(value)) value = 0
 		const numberSharesOwned = exchangeClass.getNumberSharesOwnedByUUID(videoUUID)
-		// TODO: Here, subtract the number of shares the user was already asking for
 		if (value > numberSharesOwned) value = numberSharesOwned
 		exchangeClass.updateSplAskDetails("numberofSharesAskingFor", value)
 	}, [exchangeClass, formatNumberToWholeNumber, videoUUID])
 
-	if (_.isNull(exchangeClass)) return null
+	const numberofSharesAskingFor = useMemo(() => {
+		if (_.isNull(exchangeClass)) return ""
+		return exchangeClass.askForSplSharesDetails.numberofSharesAskingFor.toString()
+	}, [exchangeClass])
 
 	return (
 		<FormGroup
@@ -29,7 +31,7 @@ function SelectNumberSharesAskingFor() {
 			type="number"
 			onChange={handleChangeShareNumber}
 			required
-			value={exchangeClass.askForSplSharesDetails.numberofSharesAskingFor.toString()}
+			value={numberofSharesAskingFor}
 			minValue={0}
 		/>
 	)
