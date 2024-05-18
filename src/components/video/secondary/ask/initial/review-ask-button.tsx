@@ -15,7 +15,7 @@ function ReviewAskButton() {
 
 	const isAbleToPurchaseShares = useMemo(() => {
 		if (_.isNull(exchangeClass) || _.isNull(solanaClass)) return false
-		if (exchangeClass.askForSplSharesDetails.askPricePerShareUsd === 0) return false
+		if (_.isEqual(exchangeClass.askForSplSharesDetails.askPricePerShareUsd, 0)) return false
 		if (_.isEqual(exchangeClass.askForSplSharesDetails.numberofSharesAskingFor, 0)) return false
 		return true
 	// eslint-disable-next-line react-hooks/exhaustive-deps

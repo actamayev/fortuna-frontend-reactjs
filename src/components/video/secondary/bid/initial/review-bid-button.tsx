@@ -15,7 +15,7 @@ function ReviewBidButton() {
 
 	const isAbleToPurchaseShares = useMemo(() => {
 		if (_.isNull(exchangeClass) || _.isNull(solanaClass)) return false
-		if (exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd === 0) return false
+		if (_.isEqual(exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd, 0)) return false
 		if (_.isEqual(exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor, 0)) return false
 		// eslint-disable-next-line max-len
 		const sharePurchaseValueUsd = exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor * exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd
