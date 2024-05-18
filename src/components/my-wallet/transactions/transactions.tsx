@@ -17,9 +17,9 @@ function Transactions() {
 
 	return (
 		<>
-			{solanaClass.myTransactions.map((item) => {
-				return <SingleTransaction key={item.solTransferId} transaction={item} />
-			})}
+			{solanaClass.myTransactions.map((item) => (
+				<SingleTransaction key={item.solTransferId} transaction={item} />
+			))}
 		</>
 	)
 }

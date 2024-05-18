@@ -38,7 +38,8 @@ class VideoClass {
 		return this.videoSearchMap.get(searchTerm)
 	}
 
-	public contextForCreatorData(creatorUsername: string): CreatorDataHeldInClass | undefined {
+	public contextForCreatorData(creatorUsername: string | undefined): CreatorDataHeldInClass | undefined {
+		if (_.isUndefined(creatorUsername)) return undefined
 		return this.creatorData.find(data => data.creatorUsername === creatorUsername)
 	}
 

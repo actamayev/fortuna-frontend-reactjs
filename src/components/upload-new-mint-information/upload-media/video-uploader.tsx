@@ -14,8 +14,6 @@ function VideoUploader() {
 		solanaClass.updateNewSplDetails("selectedVideo", null)
 	}, [solanaClass])
 
-	if (_.isNull(solanaClass)) return null
-
 	return (
 		<div className="mb-2">
 			<ChooseVideoToUploadButton

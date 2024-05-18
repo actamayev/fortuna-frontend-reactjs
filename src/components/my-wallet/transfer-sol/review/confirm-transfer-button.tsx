@@ -1,12 +1,12 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import Button from "../../../button"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import useTransferSol from "../../../../hooks/solana/transfer-sol/transfer-sol"
 import useConfirmUserHasEnoughSolToTransfer from "../../../../hooks/solana/transfer-sol/confirm-user-has-enough-sol-to-transfer"
 
-function ConfirmTransactionButton() {
+function ConfirmTransferButton() {
 	const solanaClass = useSolanaContext()
 	const transferSol = useTransferSol()
 	const [isLoading, setIsLoading] = useState(false)
@@ -18,10 +18,11 @@ function ConfirmTransactionButton() {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [solanaClass?.transferSolDetails.transferStage])
 
-	if (
-		_.isNull(solanaClass) ||
-		_.isEqual(solanaClass.transferSolDetails.transferAmount, 0)
-	) return null
+	const isTransferAmountZero = useMemo(() => {
+		if (_.isNull(solanaClass)) return true
+		return _.isEqual(solanaClass.transferSolDetails.transferAmount, 0)
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [solanaClass, solanaClass?.transferSolDetails.transferAmount])
 
 	return (
 		<>
@@ -30,7 +31,7 @@ function ConfirmTransactionButton() {
 				colorClass="bg-blue-200"
 				hoverClass="hover:bg-blue-300"
 				title="Confirm Transfer"
-				disabled={isLoading || !doesUserHaveEnoughSol}
+				disabled={isLoading || !doesUserHaveEnoughSol || isTransferAmountZero}
 				className="font-semibold"
 			/>
 			{!doesUserHaveEnoughSol && <>Not enough Sol to complete transfer</>}
@@ -38,4 +39,4 @@ function ConfirmTransactionButton() {
 	)
 }
 
-export default observer(ConfirmTransactionButton)
+export default observer(ConfirmTransferButton)

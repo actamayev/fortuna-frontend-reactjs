@@ -2,19 +2,29 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import FormGroup from "../form-group"
 import { useSolanaContext } from "../../contexts/solana-context"
+import { useCallback, useMemo } from "react"
 
 function SPLOriginalContentUrlInput() {
 	const solanaClass = useSolanaContext()
 
-	if (_.isNull(solanaClass)) return null
+	const originalContentUrl = useMemo(() => {
+		if (_.isNull(solanaClass)) return ""
+		return solanaClass.newSplDetails.originalContentUrl
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [solanaClass, solanaClass?.newSplDetails.originalContentUrl])
+
+	const updateNewSplDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+		if (_.isNull(solanaClass)) return
+		return solanaClass.updateNewSplDetails("originalContentUrl", event.target.value)
+	}, [solanaClass])
 
 	return (
 		<FormGroup
 			label = "Original Content URL (optional)"
 			type = "text"
 			placeholder = "https://www.youtube.com/watch?v=_OBlgSz8sSM"
-			onChange = {(event) => solanaClass.updateNewSplDetails("originalContentUrl", event.target.value)}
-			value = {solanaClass.newSplDetails.originalContentUrl}
+			onChange = {updateNewSplDetails}
+			value = {originalContentUrl}
 		/>
 	)
 }

@@ -1,6 +1,6 @@
 import FeeSection from "./fee-section"
 import TransferAmountSection from "./transfer-amount-section"
-import ConfirmTransactionButton from "./confirm-transaction-button"
+import ConfirmTransferButton from "./confirm-transfer-button"
 import ReviewTransferBackButton from "./review-transfer-back-button"
 
 export default function ReviewTransferInfo() {
@@ -14,7 +14,7 @@ export default function ReviewTransferInfo() {
 			</div>
 			<TransferAmountSection />
 			Fee: <FeeSection />
-			<ConfirmTransactionButton />
+			<ConfirmTransferButton />
 		</>
 	)
 }

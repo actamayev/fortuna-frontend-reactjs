@@ -1,6 +1,6 @@
 import _ from "lodash"
-import { useEffect } from "react"
 import { observer } from "mobx-react"
+import { useCallback, useEffect, useMemo } from "react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import usePublicKeySearch from "../../../../hooks/search/public-key-search"
 import useHandleTypePublicKey from "../../../../hooks/handle-type-validation/handle-public-key-validation"
@@ -14,25 +14,46 @@ function PublicKeySearch() {
 		void publicKeySearch()
 	}, [publicKeySearch])
 
-	if (_.isNull(solanaClass)) return null
+	const publicKey = useMemo(() => {
+		if (_.isNull(solanaClass)) return ""
+		return solanaClass.transferSolDetails.publicKey
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [solanaClass, solanaClass?.transferSolDetails.publicKey])
+
+	const doesPublicKeyExist = useMemo(() => {
+		if (_.isNull(solanaClass)) return false
+		return solanaClass.transferSolDetails.doesPublicKeyExist
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [solanaClass, solanaClass?.transferSolDetails.doesPublicKeyExist])
+
+	const isPublicKeySearchLoading = useMemo(() => {
+		if (_.isNull(solanaClass)) return false
+		return solanaClass.isPublicKeySearchLoading
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [solanaClass, solanaClass?.isPublicKeySearchLoading])
+
+	const updateTransferSolDetails = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+		if (_.isNull(solanaClass)) return false
+		solanaClass.updateTransferSolDetails("publicKey", handleTypePublicKey(e))
+	}, [handleTypePublicKey, solanaClass])
 
 	return (
 		<>
 			<div className="relative border rounded-lg">
 				<input
 					type="text"
-					value={solanaClass.transferSolDetails.publicKey}
-					onChange={(e) => solanaClass.updateTransferSolDetails("publicKey", handleTypePublicKey(e))}
+					value={publicKey}
+					onChange={updateTransferSolDetails}
 					className="p-2 rounded-lg w-full"
 					placeholder="123XYZ"
 				/>
-				{solanaClass.transferSolDetails.doesPublicKeyExist && (
+				{doesPublicKeyExist && (
 					<span className="absolute inset-y-0 right-0 flex items-center pr-3">
 						✓
 					</span>
 				)}
 			</div>
-			{solanaClass.isPublicKeySearchLoading && (<>Loading...</>)}
+			{isPublicKeySearchLoading && (<>Loading...</>)}
 		</>
 	)
 }

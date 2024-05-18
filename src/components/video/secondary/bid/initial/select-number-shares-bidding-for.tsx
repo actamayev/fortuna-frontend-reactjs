@@ -16,8 +16,9 @@ function SelectNumberSharesBiddingFor() {
 
 	const numberOfSharesBiddingFor = useMemo(() => {
 		if (_.isNull(exchangeClass)) return ""
-		exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor.toString()
-	}, [exchangeClass])
+		return exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor.toString()
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [exchangeClass, exchangeClass?.bidForSplSharesDetails.numberOfSharesBiddingFor])
 
 	return (
 		<FormGroup

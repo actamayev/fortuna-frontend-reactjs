@@ -1,6 +1,6 @@
 import _ from "lodash"
-import { useCallback, useMemo } from "react"
 import { observer } from "mobx-react"
+import { useCallback, useMemo } from "react"
 import { useParams } from "react-router-dom"
 import FormGroup from "../../../../form-group"
 import { useExchangeContext } from "../../../../../contexts/exchange-context"
@@ -23,7 +23,8 @@ function SelectNumberSharesAskingFor() {
 	const numberofSharesAskingFor = useMemo(() => {
 		if (_.isNull(exchangeClass)) return ""
 		return exchangeClass.askForSplSharesDetails.numberofSharesAskingFor.toString()
-	}, [exchangeClass])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [exchangeClass, exchangeClass?.askForSplSharesDetails.numberofSharesAskingFor])
 
 	return (
 		<FormGroup

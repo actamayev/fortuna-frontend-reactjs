@@ -1,16 +1,20 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
+import { useEffect, useState } from "react"
 import SingleUsernameSearch from "./single-username-search"
 import { useSolanaContext } from "../../../../contexts/solana-context"
+import useUsernameSearch from "../../../../hooks/search/username-search"
 
-interface Props {
-	isLoading: boolean
-	usernameSearchResults: { username: string }[]
-}
 
-function DisplayUsernames(props: Props) {
-	const { isLoading, usernameSearchResults } = props
+function DisplayUsernames() {
 	const solanaClass = useSolanaContext()
+	const [isLoading, setIsLoading] = useState(false)
+	const [usernameSearchResults, setUsernameSearchResults] = useState<{ username: string }[]>([])
+	const usernameSearch = useUsernameSearch()
+
+	useEffect(() => {
+		void usernameSearch(setIsLoading, setUsernameSearchResults)
+	}, [usernameSearch])
 
 	if (_.isNull(solanaClass)) return null
 	if (isLoading === true) return <>Loading...</>
@@ -18,14 +22,9 @@ function DisplayUsernames(props: Props) {
 
 	return (
 		<>
-			{usernameSearchResults.map((item) => {
-				return (
-					<SingleUsernameSearch
-						key = {item.username}
-						searchResultsUsername={item.username}
-					/>
-				)
-			})}
+			{usernameSearchResults.map((item) => (
+				<SingleUsernameSearch key = {item.username} searchResultsUsername={item.username} />
+			))}
 		</>
 	)
 }

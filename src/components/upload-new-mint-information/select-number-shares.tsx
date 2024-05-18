@@ -1,26 +1,38 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
+import { useCallback, useMemo } from "react"
 import RangeSelectorSlider from "../range-selector-slider"
 import { useSolanaContext } from "../../contexts/solana-context"
+import useIsNewSplLoading from "../../hooks/solana/mint-spl/is-new-spl-leading"
 
 function SelectNumberShares() {
 	const solanaClass = useSolanaContext()
+	const isNewSplLoading = useIsNewSplLoading()
 
-	if (_.isNull(solanaClass)) return null
+	const numberOfShares = useMemo(() => {
+		if (_.isNull(solanaClass)) return 0
+		return solanaClass.newSplDetails.numberOfShares
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [solanaClass, solanaClass?.newSplDetails.numberOfShares])
+
+	const updateNewSplDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+		if (_.isNull(solanaClass)) return
+		solanaClass.updateNewSplDetails("numberOfShares", parseInt(event.target.value, 10))
+	}, [solanaClass])
 
 	return (
 		<div className="mb-4">
 			<div className="flex flex-col space-y-4">
 				<RangeSelectorSlider
 					title="Number of Shares"
-					value={solanaClass.newSplDetails.numberOfShares}
-					onChange={(event) => solanaClass.updateNewSplDetails("numberOfShares", parseInt(event.target.value, 10))}
+					value={numberOfShares}
+					onChange={updateNewSplDetails}
 					min={100}
 					max={1000}
 					step={1}
-					disabled={solanaClass.isNewSplLoading}
+					disabled={isNewSplLoading}
 				/>
-				{solanaClass.newSplDetails.numberOfShares} Shares
+				{numberOfShares} Shares
 			</div>
 		</div>
 	)
