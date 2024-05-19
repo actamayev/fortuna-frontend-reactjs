@@ -1,15 +1,12 @@
-import _ from "lodash"
 import { useState } from "react"
-import Button from "../button"
 import ContentPreview from "../content-preview"
 import ShowProfilePicture from "./show-profile-picture"
+import SaveProfilePictureButton from "./save-profile-picture-button"
 import ChooseProfilePictureButton from "./choose-profile-picture-button"
-import useUploadProfilePicture from "../../hooks/personal-info/upload-profile-picture"
 
 export default function UploadProfilePicture() {
 	const [previewUrl, setPreviewUrl] = useState<null | string>(null)
 	const [selectedImage, setSelectedImage] = useState<File | null>(null)
-	const uploadProfilePicture = useUploadProfilePicture()
 
 	return (
 		<div>
@@ -33,15 +30,12 @@ export default function UploadProfilePicture() {
 					style={{ maxWidth: "35%", height: "auto" }}
 				/>
 			</ContentPreview>
-			{!_.isNull(previewUrl) && !_.isNull(selectedImage) && (
-				<Button
-					title="Save"
-					colorClass="bg-emerald-200"
-					hoverClass="hover:bg-emerald-300"
-					onClick={() => uploadProfilePicture(selectedImage, setSelectedImage, setPreviewUrl)}
-					className="font-semibold"
-				/>
-			)}
+			<SaveProfilePictureButton
+				previewUrl={previewUrl}
+				selectedImage={selectedImage}
+				setSelectedImage={setSelectedImage}
+				setPreviewUrl={setPreviewUrl}
+			/>
 		</div>
 	)
 }
