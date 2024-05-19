@@ -1,8 +1,8 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
+import { useCallback, useMemo } from "react"
 import FormGroup from "../form-group"
 import { useSolanaContext } from "../../contexts/solana-context"
-import { useCallback, useMemo } from "react"
 
 function SPLOriginalContentUrlInput() {
 	const solanaClass = useSolanaContext()
