@@ -6,8 +6,8 @@ import useUploadProfilePicture from "../../hooks/personal-info/upload-profile-pi
 interface Props {
 	previewUrl: string | null
 	selectedImage: File | null
-	setSelectedImage: React.Dispatch<React.SetStateAction<File | null>>
 	setPreviewUrl: React.Dispatch<React.SetStateAction<string | null>>
+	setSelectedImage: React.Dispatch<React.SetStateAction<File | null>>
 }
 
 function SaveProfilePictureButton(props: Props) {

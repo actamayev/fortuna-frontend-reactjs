@@ -21,19 +21,17 @@ function SelectNumberShares() {
 	}, [solanaClass])
 
 	return (
-		<div className="mb-4">
-			<div className="flex flex-col space-y-4">
-				<RangeSelectorSlider
-					title="Number of Shares"
-					value={numberOfShares}
-					onChange={updateNewSplDetails}
-					min={100}
-					max={1000}
-					step={1}
-					disabled={isNewSplLoading}
-				/>
-				{numberOfShares} Shares
-			</div>
+		<div className="flex flex-col space-y-4">
+			<RangeSelectorSlider
+				title="Number of Shares"
+				value={numberOfShares}
+				onChange={updateNewSplDetails}
+				min={100}
+				max={1000}
+				step={1}
+				disabled={isNewSplLoading}
+			/>
+			{numberOfShares} Shares
 		</div>
 	)
 }

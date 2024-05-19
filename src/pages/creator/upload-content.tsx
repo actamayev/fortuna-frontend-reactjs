@@ -32,10 +32,12 @@ function UploadContent() {
 		<>
 			<UploadContentTemplate>
 
-				<VideoUploader />
-
-				<ImageUploader />
-
+				<div className="mb-2">
+					<VideoUploader />
+				</div>
+				<div className="mb-2">
+					<ImageUploader />
+				</div>
 				<SPLNameInput />
 
 				<SPLDescriptionInput />
@@ -46,8 +48,12 @@ function UploadContent() {
 						<div className="mb-4">
 							<SelectOfferingSharePriceUsd />
 						</div>
-						<SelectNumberShares />
-						<SelectCreatorOwnershipPercentage />
+						<div className="mb-4">
+							<SelectNumberShares />
+						</div>
+						<div className="mb-2">
+							<SelectCreatorOwnershipPercentage />
+						</div>
 					</div>
 					<div className="w-1/2">
 						<ContentShareBreakdown />

@@ -15,7 +15,7 @@ function VideoUploader() {
 	}, [solanaClass])
 
 	return (
-		<div className="mb-2">
+		<>
 			<ChooseVideoToUploadButton
 				previewUrl={previewUrl}
 				setPreviewUrl={setPreviewUrl}
@@ -32,7 +32,7 @@ function VideoUploader() {
 					className="max-w-[100%] h-auto rounded-lg"
 				/>
 			</ContentPreview>
-		</div>
+		</>
 	)
 }
 

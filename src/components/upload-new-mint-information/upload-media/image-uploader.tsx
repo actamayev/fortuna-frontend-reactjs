@@ -15,7 +15,7 @@ function ImageUploader() {
 	}, [solanaClass])
 
 	return (
-		<div className="mb-2">
+		<>
 			<ChooseThumbnailToUploadButton
 				previewUrl={previewUrl}
 				setPreviewUrl={setPreviewUrl}
@@ -31,7 +31,7 @@ function ImageUploader() {
 					className="max-w-[35%] h-auto rounded-lg"
 				/>
 			</ContentPreview>
-		</div>
+		</>
 	)
 }
 
