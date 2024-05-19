@@ -13,7 +13,7 @@ function Home() {
 
 	return (
 		<div className="grid grid-cols-4 gap-4 p-4">
-			{videoClass.videos.map((video) => (
+			{videoClass.videos.map(video => (
 				<SingleHomePageVideoCard key={video.uuid} video={video} />
 			))}
 		</div>

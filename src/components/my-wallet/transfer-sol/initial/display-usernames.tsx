@@ -21,8 +21,8 @@ function DisplayUsernames() {
 
 	return (
 		<>
-			{usernameSearchResults.map((item) => (
-				<SingleUsernameSearch key = {item.username} searchResultsUsername={item.username} />
+			{usernameSearchResults.map(usernameResult => (
+				<SingleUsernameSearch key = {usernameResult.username} searchResultsUsername={usernameResult.username} />
 			))}
 		</>
 	)

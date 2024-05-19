@@ -13,7 +13,7 @@ function CreatorPageVideoMap() {
 
 	return (
 		<>
-			{creatorData.videoData.map((videoData) => (
+			{creatorData.videoData.map(videoData => (
 				<SingleCreatorPageVideo key={videoData.uuid} videoData={videoData} />
 			))}
 		</>
