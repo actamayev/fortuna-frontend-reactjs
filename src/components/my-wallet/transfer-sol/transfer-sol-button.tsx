@@ -1,6 +1,6 @@
 import _ from "lodash"
-import { useCallback, useRef } from "react"
 import { observer } from "mobx-react"
+import { useCallback, useRef } from "react"
 import Button from "../../button"
 import TransferSolCard from "./transfer-sol-card"
 import { useSolanaContext } from "../../../contexts/solana-context"

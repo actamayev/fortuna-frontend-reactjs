@@ -23,7 +23,7 @@ function UsernameSearchInput() {
 		if (_.isNull(solanaClass)) return
 		solanaClass.updateTransferSolDetails("username", handleTypeUsername(e))
 		solanaClass.updateTransferSolDetails("isUsernameSelected", false)
-	}, [handleTypeUsername, solanaClass])
+	}, [solanaClass, handleTypeUsername])
 
 	return (
 		<div className="relative border rounded-lg">
