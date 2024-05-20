@@ -28,9 +28,7 @@ export default function useRetrievePersonalInfoUseEffect(): void {
 		} finally {
 			if (!_.isNull(personalInfoClass)) personalInfoClass.setIsRetrievingPersonalDetails(false)
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [personalInfoClass, personalInfoClass?.isRetrievingPersonalInfo,
-		fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService])
+	}, [personalInfoClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService])
 
 	useEffect(() => {
 		void retrievePersonalInfo()
