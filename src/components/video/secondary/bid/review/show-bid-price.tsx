@@ -11,19 +11,19 @@ function ShowBidPrice() {
 
 	if (_.isNull(personalInfoClass) || _.isNull(exchangeClass)) return null
 
-	if (personalInfoClass.defaultCurrency === "usd") {
-		const numberSharesBiddingFor = exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor
-		const bidPricePerShareUsd = exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd
+	const bidPricePerShareUsd = exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd
+	const numberOfSharesBiddingFor = exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor
 
+	if (personalInfoClass.defaultCurrency === "usd") {
 		return (
 			<div className="flex justify-between">
 				<div>
-					{exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor} {" "}
-					Share{exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor > 1 ? "s" : ""} {" "}
-					X ${_.round(exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd, 2)}
+					{numberOfSharesBiddingFor} {" "}
+					Share{numberOfSharesBiddingFor > 1 ? "s" : ""} {" "}
+					X ${_.round(bidPricePerShareUsd, 2)}
 				</div>
 				<div>
-					${(bidPricePerShareUsd * numberSharesBiddingFor).toFixed(2)}
+					${(bidPricePerShareUsd * numberOfSharesBiddingFor).toFixed(2)}
 				</div>
 			</div>
 		)
@@ -32,17 +32,17 @@ function ShowBidPrice() {
 	if (_.isNull(solanaClass)) return null
 	const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
 	if (_.isUndefined(solPriceInUSD)) return null
-	const videoListingSharePriceSol = exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd / solPriceInUSD
+	const videoListingSharePriceSol = bidPricePerShareUsd / solPriceInUSD
 
 	return (
 		<div className="flex justify-between">
 			<div>
-				{exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor} {" "}
-				Share{exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor > 1 ? "s" : ""} {" "}
+				{numberOfSharesBiddingFor} {" "}
+				Share{numberOfSharesBiddingFor > 1 ? "s" : ""} {" "}
 				X {_.round(videoListingSharePriceSol, 4)} SOL
 			</div>
 			<div>
-				{(videoListingSharePriceSol * exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor).toFixed(4)} SOL
+				{(videoListingSharePriceSol * numberOfSharesBiddingFor).toFixed(4)} SOL
 			</div>
 		</div>
 	)
