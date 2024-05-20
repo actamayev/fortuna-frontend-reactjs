@@ -1,6 +1,6 @@
 import _ from "lodash"
-import { useRef } from "react"
 import { observer } from "mobx-react"
+import { useCallback, useRef } from "react"
 import Button from "../../button"
 import TransferSolCard from "./transfer-sol-card"
 import { useSolanaContext } from "../../../contexts/solana-context"
@@ -11,7 +11,10 @@ function TransferSolButton() {
 	const solanaClass = useSolanaContext()
 	useClickOutSideUseEffect(dropdownRef, solanaClass?.setIsTransferSolButtonPressed)
 
-	if (_.isNull(solanaClass)) return null
+	const setIsTransferSolButtonPressed = useCallback(() => {
+		if (_.isNull(solanaClass)) return
+		solanaClass.setIsTransferSolButtonPressed(!solanaClass.isTransferSolButtonPressed)
+	}, [solanaClass])
 
 	return (
 		<>
@@ -19,11 +22,11 @@ function TransferSolButton() {
 				title="Transfer Funds"
 				colorClass="bg-blue-200"
 				hoverClass="hover:bg-blue-300"
-				onClick={() => solanaClass.setIsTransferSolButtonPressed(!solanaClass.isTransferSolButtonPressed)}
+				onClick={setIsTransferSolButtonPressed}
 				className="font-semibold"
 			/>
 			<div ref = {dropdownRef}>
-				{solanaClass.isTransferSolButtonPressed && <TransferSolCard />}
+				<TransferSolCard />
 			</div>
 		</>
 	)

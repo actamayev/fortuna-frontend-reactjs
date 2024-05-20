@@ -12,6 +12,30 @@ class ExchangeClass {
 	public hasOwnershipToRetrieve = true
 	public isRetrievingOwnership = false
 
+	// public openOrders: TransformedOrderData[] = []
+
+	public purchasePrimarySplSharesDetails: PurchasePrimarySplSharesDetails = {
+		numberOfTokensPurchasing: 0,
+		splPublicKey: "",
+		purchaseStage: "initial"
+	}
+
+	public buyOrSellSecondarySplShares: BuyOrSell  = "Buy"
+
+	public bidForSplSharesDetails: SecondarySplBidDetails = {
+		numberOfSharesBiddingFor: 0,
+		splPublicKey: "",
+		purchaseStage: "initial",
+		bidPricePerShareUsd: 0
+	}
+
+	public askForSplSharesDetails: SecondarySplAskDetails = {
+		numberofSharesAskingFor: 0,
+		splPublicKey: "",
+		saleStage: "initial",
+		askPricePerShareUsd: 0
+	}
+
 	constructor() {
 		makeAutoObservable(this)
 	}
@@ -36,9 +60,69 @@ class ExchangeClass {
 		return this.myContent.find(content => content.mintAddress === mintAddress)
 	}
 
-	public contextForMyOwnership(splPublicKey: string): MyOwnership | undefined {
-		return this.myOwnership.find(ownership => ownership.splPublicKey === splPublicKey)
+	public contextForMyOwnership(uuid: string): MyOwnership | undefined {
+		return this.myOwnership.find(ownership => ownership.uuid === uuid)
 	}
+
+	// public contextForOpenOrders(splId: number): TransformedOrderData | undefined {
+	// 	return this.openOrders.find(openOrder => openOrder.splId === splId)
+	// }
+
+	public updatePurchasePrimarySplSharesDetails = action(<K extends keyof PurchasePrimarySplSharesDetails>(
+		key: K, value: PurchasePrimarySplSharesDetails[K]
+	) => {
+		if (typeof this.purchasePrimarySplSharesDetails[key] !== typeof value) {
+			console.warn(`Type mismatch when trying to set ${key}`)
+			return
+		}
+		this.purchasePrimarySplSharesDetails[key] = value
+	})
+
+	public resetPurchaseSplSharesDetails = action(() => {
+		this.purchasePrimarySplSharesDetails = {
+			numberOfTokensPurchasing: 0,
+			splPublicKey: "",
+			purchaseStage: "initial"
+		}
+	})
+
+	public updateSplBidDetails = action(<K extends keyof SecondarySplBidDetails>(
+		key: K, value: SecondarySplBidDetails[K]
+	) => {
+		if (typeof this.bidForSplSharesDetails[key] !== typeof value) {
+			console.warn(`Type mismatch when trying to set ${key}`)
+			return
+		}
+		this.bidForSplSharesDetails[key] = value
+	})
+
+	public resetSplBidDetails = action(() => {
+		this.bidForSplSharesDetails = {
+			numberOfSharesBiddingFor: 0,
+			splPublicKey: "",
+			purchaseStage: "initial",
+			bidPricePerShareUsd: 0
+		}
+	})
+
+	public updateSplAskDetails = action(<K extends keyof SecondarySplAskDetails>(
+		key: K, value: SecondarySplAskDetails[K]
+	) => {
+		if (typeof this.askForSplSharesDetails[key] !== typeof value) {
+			console.warn(`Type mismatch when trying to set ${key}`)
+			return
+		}
+		this.askForSplSharesDetails[key] = value
+	})
+
+	public resetSplAskDetails = action(() => {
+		this.askForSplSharesDetails = {
+			numberofSharesAskingFor: 0,
+			splPublicKey: "",
+			saleStage: "initial",
+			askPricePerShareUsd: 0
+		}
+	})
 
 	public setContent = action((newContentList: MyContent[]): void => {
 		this.myContent = []
@@ -74,6 +158,18 @@ class ExchangeClass {
 		this.myOwnership[index].purchaseData = newOwnership.purchaseData
 	})
 
+	public getNumberSharesOwnedByUUID(uuid: string): number {
+		const ownershipData = this.contextForMyOwnership(uuid)
+		if (_.isUndefined(ownershipData)) return 0
+		let numberShares = 0
+		ownershipData.purchaseData.map(ownership => numberShares += ownership.number_of_shares)
+		return numberShares
+	}
+
+	// public addOpenOrder(openOrder: TransformedOrderData): void {
+	// 	this.openOrders.unshift(openOrder)
+	// }
+
 	public setHasContentToRetrieve = action((newState: boolean): void => {
 		this.hasContentToRetrieve = newState
 	})
@@ -90,13 +186,22 @@ class ExchangeClass {
 		this.isRetrievingOwnership = newState
 	})
 
+	public setBuyOrSellSecondaryShares = action((newValue: BuyOrSell): void => {
+		this.buyOrSellSecondarySplShares = newValue
+	})
+
 	public logout() {
 		this.myContent = []
 		this.myOwnership = []
+		// this.openOrders = []
 		this.hasContentToRetrieve = true
 		this.isRetrievingContent = false
 		this.hasOwnershipToRetrieve = true
 		this.isRetrievingOwnership = false
+		this.resetPurchaseSplSharesDetails()
+		this.resetSplBidDetails()
+		this.resetSplAskDetails()
+		this.buyOrSellSecondarySplShares = "Buy"
 	}
 }
 

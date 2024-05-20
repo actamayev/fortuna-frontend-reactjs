@@ -37,7 +37,9 @@ export default function useRetrieveTransactions(): () => Promise<void> {
 		} finally {
 			if (!_.isNull(solanaClass)) solanaClass.setIsRetrievingTransactions(false)
 		}
-	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService, solanaClass])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [solanaClass, solanaClass?.hasTransactionsToRetrieve, solanaClass?.isRetrievingTransactions, solanaClass?.myTransactions,
+		fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService])
 
 	return retrieveTransactions
 }

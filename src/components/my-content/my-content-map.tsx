@@ -18,9 +18,9 @@ function MyContentMap() {
 
 	return (
 		<div className="grid grid-cols-4">
-			{exchangeClass.myContent.map((item) => {
-				return <SingleContent key={item.mintAddress} content={item} />
-			})}
+			{exchangeClass.myContent.map(singleContent => (
+				<SingleContent key={singleContent.mintAddress} content={singleContent} />
+			))}
 		</div>
 	)
 }

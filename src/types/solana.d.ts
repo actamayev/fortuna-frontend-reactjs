@@ -72,10 +72,6 @@ declare global {
 		createdAt: Date
 	}
 
-	interface PurchaseSplSharesDetails extends PurchaseSplTokensData {
-		purchaseStage: TransactionStage
-	}
-
 	type SPLListingStatus =
 		"PRELISTING" |
 		"LISTED" |

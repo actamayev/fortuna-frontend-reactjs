@@ -1,20 +1,23 @@
 import _ from "lodash"
 import { useCallback, useEffect } from "react"
 import { useLocation } from "react-router-dom"
-import { useSolanaContext } from "../../../contexts/solana-context"
+import { useExchangeContext } from "../../../contexts/exchange-context"
 
 export default function useResetPurchaseSplAfterNavigation(): void {
 	const location = useLocation()
-	const solanaClass = useSolanaContext()
+	const exchangeClass = useExchangeContext()
 
 	const resetPurchaseSplAfterNavigation = useCallback(() => {
 		try {
-			if (_.isNull(solanaClass)) return
-			solanaClass.resetPurchaseSplSharesDetails()
+			if (_.isNull(exchangeClass)) return
+			exchangeClass.resetPurchaseSplSharesDetails()
+			exchangeClass.resetSplBidDetails()
+			exchangeClass.resetSplAskDetails()
+			exchangeClass.setBuyOrSellSecondaryShares("Buy")
 		} catch (error) {
 			console.error(error)
 		}
-	}, [solanaClass])
+	}, [exchangeClass])
 
 	useEffect(() => {
 		resetPurchaseSplAfterNavigation()

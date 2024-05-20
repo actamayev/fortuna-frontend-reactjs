@@ -29,7 +29,7 @@ export default function useUploadProfilePicture(): (
 		} catch (error) {
 			console.error(error)
 		}
-	}, [fortunaApiClient.uploadDataService, personalInfoClass])
+	}, [personalInfoClass, fortunaApiClient.uploadDataService])
 
 	return uploadProfilePicture
 }

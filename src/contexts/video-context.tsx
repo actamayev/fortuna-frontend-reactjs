@@ -38,7 +38,8 @@ class VideoClass {
 		return this.videoSearchMap.get(searchTerm)
 	}
 
-	public contextForCreatorData(creatorUsername: string): CreatorDataHeldInClass | undefined {
+	public contextForCreatorData(creatorUsername: string | undefined): CreatorDataHeldInClass | undefined {
+		if (_.isUndefined(creatorUsername)) return undefined
 		return this.creatorData.find(data => data.creatorUsername === creatorUsername)
 	}
 
@@ -118,9 +119,8 @@ class VideoClass {
 		const index = this.videos.findIndex(video => video.uuid === videoUUID)
 		if (_.isEqual(index, -1)) return
 		this.videos[index].sharesRemainingForSale -= numberOfShares
-		if (this.videos[index].sharesRemainingForSale === 0) {
-			this.videos[index].splListingStatus = "SOLDOUT"
-		}
+		if (this.videos[index].sharesRemainingForSale !== 0) return
+		this.videos[index].splListingStatus = "SOLDOUT"
 	})
 
 	public addVideoUUIDToRetrievingList(videoUUID: string): void {

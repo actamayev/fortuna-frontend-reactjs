@@ -31,9 +31,9 @@ export default function useRetrieveHomePageVideos(
 			setAreVideosLoading(false)
 			videoClass.areHomePageVideosBeingRetrieved = false
 		}
-	}, [fortunaApiClient.videoDataService, setAreVideosLoading, videoClass])
+	}, [videoClass, fortunaApiClient.videoDataService, setAreVideosLoading])
 
 	useEffect(() => {
 		void retrieveHomePageVideos()
-	}, [fortunaApiClient.httpClient.accessToken, retrieveHomePageVideos, videoClass])
+	}, [fortunaApiClient.httpClient.accessToken, retrieveHomePageVideos])
 }

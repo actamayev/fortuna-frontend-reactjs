@@ -1,9 +1,14 @@
-interface Props {
-	creatorData: CreatorDataHeldInClass
-}
+import _ from "lodash"
+import { observer } from "mobx-react"
+import { useParams } from "react-router-dom"
+import { useVideoContext } from "../../contexts/video-context"
 
-export default function CreatorPageHeaderArea(props: Props) {
-	const { creatorData } = props
+function CreatorPageHeaderArea() {
+	const { creatorUsername } = useParams<{ creatorUsername: string }>()
+	const videoClass = useVideoContext()
+
+	const creatorData = videoClass.contextForCreatorData(creatorUsername)
+	if (_.isUndefined(creatorData)) return null
 
 	return (
 		<div className="flex items-center p-4 space-x-4">
@@ -20,3 +25,5 @@ export default function CreatorPageHeaderArea(props: Props) {
 		</div>
 	)
 }
+
+export default observer(CreatorPageHeaderArea)

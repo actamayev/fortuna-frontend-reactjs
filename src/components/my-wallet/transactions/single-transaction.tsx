@@ -1,7 +1,6 @@
 import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
-import { useSolanaContext } from "../../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 
 interface Props {
@@ -10,7 +9,6 @@ interface Props {
 
 function SingleTransaction(props: Props) {
 	const { transaction } = props
-	const solanaClass = useSolanaContext()
 	const personalInfoClass = usePersonalInfoContext()
 
 	const formattedDateTime = useMemo(() => {
@@ -32,16 +30,17 @@ function SingleTransaction(props: Props) {
 		return `${dateString} at ${timeString}`
 	}, [transaction.transferDateTime])
 
-	if (_.isNull(solanaClass) || _.isNull(personalInfoClass)) return null
-
 	return (
 		<div className="bg-white border shadow-sm mt-2 p-2 rounded-sm dark:text-white">
 			<div>
 				{_.upperFirst(transaction.outgoingOrIncoming)} Transfer on {formattedDateTime}
 			</div>
 			<div>
-				{personalInfoClass.defaultCurrency === "usd" && (<> ${_.round(transaction.usdAmountTransferred, 2)}</>)}
-				{personalInfoClass.defaultCurrency === "sol" && (<> {_.round(transaction.solAmountTransferred, 4)} SOL</>)}
+				{(_.isNull(personalInfoClass) || personalInfoClass.defaultCurrency === "usd") ? (
+					<> ${(transaction.usdAmountTransferred).toFixed(2)}</>
+				) : (
+					<> {(transaction.solAmountTransferred).toFixed(4)} SOL</>
+				)}
 				{transaction.outgoingOrIncoming === "incoming" && (<> from {transaction.transferFromUsername}</>)}
 				{transaction.outgoingOrIncoming === "outgoing" &&
 					(<> to {transaction.transferToUsername || transaction.transferToPublicKey}</>)

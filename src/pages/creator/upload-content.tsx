@@ -6,10 +6,10 @@ import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import ShowMessageToNonCreators from "../../components/show-message-to-non-creators"
 import UploadContentTemplate from "../../components/templates/upload-content-template"
 import SPLNameInput from "../../components/upload-new-mint-information/spl-name-input"
-import ImageUploader from "../../components/upload-new-mint-information/image-uploader"
-import VideoUploader from "../../components/upload-new-mint-information/video-uploader"
 import SelectNumberShares from "../../components/upload-new-mint-information/select-number-shares"
 import SPLDescriptionInput from "../../components/upload-new-mint-information/spl-description-input"
+import ImageUploader from "../../components/upload-new-mint-information/upload-media/image-uploader"
+import VideoUploader from "../../components/upload-new-mint-information/upload-media/video-uploader"
 import UploadMintInfoButton from "../../components/upload-new-mint-information/upload-mint-info-button"
 import ContentShareBreakdown from "../../components/upload-new-mint-information/content-share-breakdown"
 import SplOriginalContentUrlInput from "../../components/upload-new-mint-information/spl-original-content-url-input"
@@ -32,10 +32,12 @@ function UploadContent() {
 		<>
 			<UploadContentTemplate>
 
-				<VideoUploader />
-
-				<ImageUploader />
-
+				<div className="mb-2">
+					<VideoUploader />
+				</div>
+				<div className="mb-2">
+					<ImageUploader />
+				</div>
 				<SPLNameInput />
 
 				<SPLDescriptionInput />
@@ -46,8 +48,12 @@ function UploadContent() {
 						<div className="mb-4">
 							<SelectOfferingSharePriceUsd />
 						</div>
-						<SelectNumberShares />
-						<SelectCreatorOwnershipPercentage />
+						<div className="mb-4">
+							<SelectNumberShares />
+						</div>
+						<div className="mb-2">
+							<SelectCreatorOwnershipPercentage />
+						</div>
 					</div>
 					<div className="w-1/2">
 						<ContentShareBreakdown />

@@ -22,7 +22,7 @@ export default function useSetDefaultSiteTheme(): () => Promise<void> {
 		} catch (error) {
 			console.error(error)
 		}
-	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService, personalInfoClass])
+	}, [personalInfoClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService])
 
 	return setDefaultSiteTheme
 }

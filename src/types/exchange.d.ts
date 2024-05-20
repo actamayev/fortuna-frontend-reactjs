@@ -4,6 +4,24 @@ declare global {
 		splPublicKey: string
 	}
 
+	interface PurchasePrimarySplSharesDetails extends PurchaseSplTokensData {
+		purchaseStage: TransactionStage
+	}
+
+	interface SecondarySplBidDetails {
+		splPublicKey: string
+		purchaseStage: TransactionStage
+		bidPricePerShareUsd: number
+		numberOfSharesBiddingFor: number
+	}
+
+	interface SecondarySplAskDetails {
+		splPublicKey: string
+		saleStage: TransactionStage
+		askPricePerShareUsd: number
+		numberofSharesAskingFor: number
+	}
+
 	interface CreateSPLBidData {
 		splPublicKey: string
 		numberOfSharesBiddingFor: number
@@ -28,6 +46,28 @@ declare global {
 		imageUrl: string
 		uuid: string
 		isMyContent: boolean
+	}
+
+	// interface TransformedAskOrderData {
+	// 	secondaryMarketAskId: number
+	// 	splId: number
+	// 	askPricePerShareUsd: number
+	// }
+
+
+	// interface TransformedBidOrderData {
+	// 	secondaryMarketBidId: number
+	// 	splId: number
+	// 	bidPricePerShareUsd: number
+	// }
+
+	// type TransformedOrderData = TransformedBidOrderData | TransformedAskOrderData
+
+	type BuyOrSell = "Buy" | "Sell"
+
+	interface TransactionsMap {
+		fillPriceUsd: number
+		numberOfShares: number
 	}
 }
 

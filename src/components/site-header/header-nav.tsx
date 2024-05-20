@@ -6,8 +6,8 @@ import CreateContentHeaderButton from "./create-content-header-button"
 
 export default function HeaderNav() {
 	return (
-		<nav className="bg-blue-600 dark:bg-gray-950 border-yellow-200 border-b-2 rounded-b-md relative">
-			<div className="flex justify-between items-center h-16 w-full pr-2">
+		<nav className="bg-blue-600 dark:bg-gray-950 border-yellow-400 border-b-2 rounded-b-md fixed top-0 left-0 w-full z-20">
+			<div className="flex justify-between items-center h-14 w-full pr-2 relative">
 				<LogoHeaderSection />
 				<div className="absolute left-0 right-0 mx-auto w-full max-w-none">
 					<SearchBar />

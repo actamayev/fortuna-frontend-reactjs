@@ -1,25 +1,15 @@
-import _ from "lodash"
-import { observer } from "mobx-react"
-import UsernameSearch from "./username-search"
-import PublicKeySearch from "./public-key-search"
 import SelectTransferAmount from "./select-transfer-amount"
 import ReviewTransferButton from "./review-transfer-button"
 import SelectTransferOption from "./select-transfer-option"
-import { useSolanaContext } from "../../../../contexts/solana-context"
+import TransferSolByOptions from "./transfer-sol-by-options"
 
-function InitialTransferInfo() {
-	const solanaClass = useSolanaContext()
-
-	if (_.isNull(solanaClass)) return null
-
+export default function InitialTransferInfo() {
 	return (
 		<>
 			<div className="text-center font-semibold">Transfer Funds</div>
 			<SelectTransferOption />
 
-			{solanaClass.transferSolDetails.transferOption === "username" && <UsernameSearch />}
-
-			{solanaClass.transferSolDetails.transferOption === "publicKey" && <PublicKeySearch />}
+			<TransferSolByOptions />
 
 			<SelectTransferAmount />
 
@@ -27,5 +17,3 @@ function InitialTransferInfo() {
 		</>
 	)
 }
-
-export default observer(InitialTransferInfo)

@@ -59,8 +59,8 @@ export default function useTransferSol(): (
 		} finally {
 			setIsLoading(false)
 		}
-	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService,
-		personalInfoClass, retrieveSolPrice, retrieveWalletBalance, solanaClass])
+	}, [solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService,
+		personalInfoClass, retrieveSolPrice, retrieveWalletBalance])
 
 	return transferSol
 }
