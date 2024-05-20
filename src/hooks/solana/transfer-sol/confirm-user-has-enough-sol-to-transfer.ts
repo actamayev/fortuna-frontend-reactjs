@@ -60,7 +60,8 @@ export default function useConfirmUserHasEnoughSolToTransfer(): (
 		} catch (error) {
 			console.error(error)
 		}
-	}, [personalInfoClass, solanaClass])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [personalInfoClass, solanaClass, solanaClass?.walletBalanceSol])
 
 	return confirmUserHasEnoughSolToTransfer
 }

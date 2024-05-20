@@ -1,10 +1,12 @@
 import _ from "lodash"
+import { useParams } from "react-router-dom"
 import { useCallback, useEffect } from "react"
 import { isNonSuccessResponse } from "../../utils/type-checks"
 import { useVideoContext } from "../../contexts/video-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useRetrieveCreatorVideosAndDataUseEffect(creatorUsername: string | undefined): void {
+export default function useRetrieveCreatorVideosAndDataUseEffect(): void {
+	const { creatorUsername } = useParams<{ creatorUsername: string }>()
 	const videoClass = useVideoContext()
 	const fortunaApiClient = useApiClientContext()
 

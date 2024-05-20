@@ -32,10 +32,10 @@ export default function useBidForSecondarySplTokens(): (
 			}
 
 			exchangeClass.resetSplBidDetails()
+
 			if (_.isEqual(bidResponse.status, 200)) {
 				// This is if the bid is added, but there aren't any matching asks.
 				// In this situation, add the bid to the user's open orders.
-
 			} else if (_.isEqual(bidResponse.status, 201)) {
 				// This is if the bid is added, and at least one share is transferred.
 				// in this situation, update the user's ownership, add to orders/open orders
