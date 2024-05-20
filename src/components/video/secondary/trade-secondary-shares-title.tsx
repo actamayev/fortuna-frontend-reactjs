@@ -5,8 +5,8 @@ import { useExchangeContext } from "../../../contexts/exchange-context"
 function TradeSecondarySharesTitle() {
 	const exchangeClass = useExchangeContext()
 
-	if (_.isNull(exchangeClass)) return null
 	let title = "Trade Secondary Shares"
+	if (_.isNull(exchangeClass)) return <>{title}</>
 
 	if (exchangeClass.bidForSplSharesDetails.purchaseStage !== "initial") {
 		title = "Review Bid"

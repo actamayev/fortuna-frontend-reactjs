@@ -1,12 +1,12 @@
 import _ from "lodash"
+import { useMemo } from "react"
 import { observer } from "mobx-react"
 import Button from "../button"
 import { useAuthContext } from "../../contexts/auth-context"
 import useTypedNavigate from "../../hooks/navigate/typed-navigate"
+import { useExchangeContext } from "../../contexts/exchange-context"
 import TradeSecondaryShares from "./secondary/trade-secondary-shares"
 import PurchasePrimarySharesOptions from "./purchase-primary-shares/purchase-primary-shares-options"
-import { useMemo } from "react"
-import { useExchangeContext } from "../../contexts/exchange-context"
 
 interface Props {
 	video: VideoData
@@ -21,9 +21,7 @@ function TradeSharesCard(props: Props) {
 	const wasVideoCreatedByUser = useMemo(() => {
 		if (_.isNull(exchangeClass) || _.isUndefined(video.uuid)) return true
 		return exchangeClass.checkIfUuidExistsInContentList(video.uuid)
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [exchangeClass, video.uuid, exchangeClass?.myContent])
-
+	}, [exchangeClass, video.uuid])
 
 	if (_.isNull(authClass.accessToken)) {
 		return (

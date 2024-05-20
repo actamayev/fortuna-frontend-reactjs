@@ -43,7 +43,7 @@ function ReviewBidButton() {
 			hoverClass="hover:bg-blue-300"
 			title="Review Bid"
 			disabled={!isAbleToBidForShares}
-			className="font-semibold"
+			className="font-semibold dark:text-black"
 		/>
 	)
 }

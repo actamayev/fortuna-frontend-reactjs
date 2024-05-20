@@ -14,7 +14,7 @@ function ConfirmAskButton() {
 			hoverClass="hover:bg-emerald-300"
 			title="Confirm Ask"
 			disabled={isLoading}
-			className="font-semibold"
+			className="font-semibold dark:text-black"
 		/>
 	)
 }
