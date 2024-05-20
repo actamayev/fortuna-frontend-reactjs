@@ -45,7 +45,7 @@ export default function usePublicKeySearch(): () => Promise<void> {
 			if (!_.isNull(solanaClass)) solanaClass.setIsPublicKeySearchLoading(false)
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [fortunaApiClient.searchDataService, solanaClass, solanaClass?.transferSolDetails.publicKey])
+	}, [solanaClass, solanaClass?.transferSolDetails.publicKey, fortunaApiClient.searchDataService])
 
 	return publicKeySearch
 }
