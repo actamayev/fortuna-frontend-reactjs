@@ -29,8 +29,6 @@ export default function useRetrieveMyOrders(): void {
 				isErrorResponse(myOrdersResponse.data)
 			) return
 
-			console.log(myOrdersResponse.data)
-
 			exchangeClass.setMyOrders(myOrdersResponse.data)
 			exchangeClass.setHasOrdersToRetrieve(false)
 		} catch (error) {
