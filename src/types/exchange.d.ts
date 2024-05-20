@@ -48,20 +48,20 @@ declare global {
 		isMyContent: boolean
 	}
 
-	interface TransformedAskOrderData {
-		secondaryMarketAskId: number
-		splId: number
-		askPricePerShareUsd: number
-	}
+	// interface TransformedAskOrderData {
+	// 	secondaryMarketAskId: number
+	// 	splId: number
+	// 	askPricePerShareUsd: number
+	// }
 
 
-	interface TransformedBidOrderData {
-		secondaryMarketBidId: number
-		splId: number
-		bidPricePerShareUsd: number
-	}
+	// interface TransformedBidOrderData {
+	// 	secondaryMarketBidId: number
+	// 	splId: number
+	// 	bidPricePerShareUsd: number
+	// }
 
-	type TransformedOrderData = TransformedBidOrderData | TransformedAskOrderData
+	// type TransformedOrderData = TransformedBidOrderData | TransformedAskOrderData
 
 	type BuyOrSell = "Buy" | "Sell"
 

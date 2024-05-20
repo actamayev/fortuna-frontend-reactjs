@@ -12,7 +12,7 @@ class ExchangeClass {
 	public hasOwnershipToRetrieve = true
 	public isRetrievingOwnership = false
 
-	public openOrders: TransformedOrderData[] = []
+	// public openOrders: TransformedOrderData[] = []
 
 	public purchasePrimarySplSharesDetails: PurchasePrimarySplSharesDetails = {
 		numberOfTokensPurchasing: 0,
@@ -64,9 +64,9 @@ class ExchangeClass {
 		return this.myOwnership.find(ownership => ownership.uuid === uuid)
 	}
 
-	public contextForOpenOrders(splId: number): TransformedOrderData | undefined {
-		return this.openOrders.find(openOrder => openOrder.splId === splId)
-	}
+	// public contextForOpenOrders(splId: number): TransformedOrderData | undefined {
+	// 	return this.openOrders.find(openOrder => openOrder.splId === splId)
+	// }
 
 	public updatePurchasePrimarySplSharesDetails = action(<K extends keyof PurchasePrimarySplSharesDetails>(
 		key: K, value: PurchasePrimarySplSharesDetails[K]
@@ -166,9 +166,9 @@ class ExchangeClass {
 		return numberShares
 	}
 
-	public addOpenOrder(openOrder: TransformedOrderData): void {
-		this.openOrders.unshift(openOrder)
-	}
+	// public addOpenOrder(openOrder: TransformedOrderData): void {
+	// 	this.openOrders.unshift(openOrder)
+	// }
 
 	public setHasContentToRetrieve = action((newState: boolean): void => {
 		this.hasContentToRetrieve = newState
@@ -193,7 +193,7 @@ class ExchangeClass {
 	public logout() {
 		this.myContent = []
 		this.myOwnership = []
-		this.openOrders = []
+		// this.openOrders = []
 		this.hasContentToRetrieve = true
 		this.isRetrievingContent = false
 		this.hasOwnershipToRetrieve = true
