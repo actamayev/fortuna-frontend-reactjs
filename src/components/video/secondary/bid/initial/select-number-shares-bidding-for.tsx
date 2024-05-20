@@ -11,7 +11,7 @@ function SelectNumberSharesBiddingFor() {
 
 	const updateSplBidDetails = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(exchangeClass)) return
-		exchangeClass.updateSplBidDetails("numberOfSharesBiddingFor", formatNumberToWholeNumber(e.target.value))
+		exchangeClass.updateSplBidDetails("numberOfSharesBiddingFor", formatNumberToWholeNumber(e.target.value) || 0)
 	}, [exchangeClass, formatNumberToWholeNumber])
 
 	const numberOfSharesBiddingFor = useMemo(() => {

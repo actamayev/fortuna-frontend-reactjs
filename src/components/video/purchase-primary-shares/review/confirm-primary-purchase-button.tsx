@@ -1,7 +1,7 @@
 import _ from "lodash"
-import { useCallback, useState } from "react"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
+import { useCallback, useState } from "react"
 import Button from "../../../button"
 import usePurchasePrimarySplTokens from "../../../../hooks/exchange/purchase-primary-spl-tokens"
 

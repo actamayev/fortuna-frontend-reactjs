@@ -16,7 +16,7 @@ function ChooseBidOrAsk() {
 			id="transactionType"
 			value={exchangeClass.buyOrSellSecondarySplShares}
 			onChange={event => exchangeClass.setBuyOrSellSecondaryShares(event.target.value as BuyOrSell)}
-			className="border rounded p-1"
+			className="border rounded p-1 dark:text-black"
 		>
 			<option value="Buy">Buy</option>
 			<option value="Sell">Sell</option>
