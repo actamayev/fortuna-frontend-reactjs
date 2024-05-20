@@ -18,16 +18,17 @@ function ShowPurchasePrice() {
 	const video = videoClass.findVideoFromUUID(videoUUID)
 	if (_.isUndefined(video)) return null
 
+	const numberOfTokensPurchasing = exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return (
 			<div className="flex justify-between">
 				<div>
-					{exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing} {" "}
-					Share{exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing > 1 ? "s" : ""} {" "}
+					{numberOfTokensPurchasing} {" "}
+					Share{numberOfTokensPurchasing > 1 ? "s" : ""} {" "}
 					X ${_.round(video.listingSharePriceUsd, 2)}
 				</div>
 				<div>
-					${(video.listingSharePriceUsd * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing).toFixed(2)}
+					${(video.listingSharePriceUsd * numberOfTokensPurchasing).toFixed(2)}
 				</div>
 			</div>
 		)
@@ -41,12 +42,12 @@ function ShowPurchasePrice() {
 	return (
 		<div className="flex justify-between">
 			<div>
-				{exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing} {" "}
-				Share{exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing > 1 ? "s" : ""} {" "}
+				{numberOfTokensPurchasing} {" "}
+				Share{numberOfTokensPurchasing > 1 ? "s" : ""} {" "}
 				X {_.round(videoListingSharePriceSol, 4)} SOL
 			</div>
 			<div>
-				{(videoListingSharePriceSol * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing).toFixed(4)} SOL
+				{(videoListingSharePriceSol * numberOfTokensPurchasing).toFixed(4)} SOL
 			</div>
 		</div>
 	)
