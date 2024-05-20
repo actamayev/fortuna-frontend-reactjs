@@ -25,7 +25,7 @@ export default function useBidForSecondarySplTokens(): (
 				bidPricePerShareUsd: exchangeClass.bidForSplSharesDetails.bidPricePerShareUsd
 			}
 
-			const bidResponse = await fortunaApiClient.exchangeDataService.placeSecondaryMarketSplBid(bid)
+			const bidResponse = await fortunaApiClient.exchangeDataService.placeSplBid(bid)
 
 			if (isNonSuccessResponse(bidResponse.data)) {
 				throw Error("Unable to place SPL bid")

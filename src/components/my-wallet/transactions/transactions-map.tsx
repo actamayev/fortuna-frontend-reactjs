@@ -5,7 +5,7 @@ import SingleTransaction from "./single-transaction"
 import { useSolanaContext } from "../../../contexts/solana-context"
 import useRetrieveTransactions from "../../../hooks/solana/retrieve-transactions"
 
-function Transactions() {
+function TransactionsMap() {
 	const solanaClass = useSolanaContext()
 	const retrieveTransactions = useRetrieveTransactions()
 
@@ -24,4 +24,4 @@ function Transactions() {
 	)
 }
 
-export default observer(Transactions)
+export default observer(TransactionsMap)

@@ -5,6 +5,7 @@ import { createContext, useContext, useMemo } from "react"
 class ExchangeClass {
 	private _myContent: MyContent[] = []
 	private _myOwnership: MyOwnership[] = []
+	private _myOrders: MyOrder[] = []
 
 	public hasContentToRetrieve = true
 	public isRetrievingContent = false
@@ -12,7 +13,8 @@ class ExchangeClass {
 	public hasOwnershipToRetrieve = true
 	public isRetrievingOwnership = false
 
-	// public openOrders: TransformedOrderData[] = []
+	public hasOrdersToRetrieve = true
+	public isRetrievingOrders = false
 
 	public purchasePrimarySplSharesDetails: PurchasePrimarySplSharesDetails = {
 		numberOfTokensPurchasing: 0,
@@ -56,6 +58,14 @@ class ExchangeClass {
 		this._myOwnership = myOwnership
 	}
 
+	get myOrders(): MyOrder[] {
+		return this._myOrders
+	}
+
+	set myOrders(myOrders: MyOrder[]) {
+		this._myOrders = myOrders
+	}
+
 	public contextForMyContent(mintAddress: string): MyContent | undefined {
 		return this.myContent.find(content => content.mintAddress === mintAddress)
 	}
@@ -64,9 +74,9 @@ class ExchangeClass {
 		return this.myOwnership.find(ownership => ownership.uuid === uuid)
 	}
 
-	// public contextForOpenOrders(splId: number): TransformedOrderData | undefined {
-	// 	return this.openOrders.find(openOrder => openOrder.splId === splId)
-	// }
+	public contextForMyOrder(splId: number): MyOrder | undefined {
+		return this.myOrders.find(myOrder => myOrder.splId === splId)
+	}
 
 	public updatePurchasePrimarySplSharesDetails = action(<K extends keyof PurchasePrimarySplSharesDetails>(
 		key: K, value: PurchasePrimarySplSharesDetails[K]
@@ -166,9 +176,16 @@ class ExchangeClass {
 		return numberShares
 	}
 
-	// public addOpenOrder(openOrder: TransformedOrderData): void {
-	// 	this.openOrders.unshift(openOrder)
-	// }
+	public setMyOrders = action((newOrdersList: RetrievedOrdersResponse): void => {
+		this.myOrders = []
+		if (_.isEmpty(newOrdersList)) return
+		newOrdersList.asks.map(singleOrder => this.addOrder(singleOrder))
+		newOrdersList.bids.map(singleOrder => this.addOrder(singleOrder))
+	})
+
+	public addOrder = action((newOrder: MyOrder): void => {
+		this.myOrders.unshift(newOrder)
+	})
 
 	public setHasContentToRetrieve = action((newState: boolean): void => {
 		this.hasContentToRetrieve = newState
@@ -186,6 +203,14 @@ class ExchangeClass {
 		this.isRetrievingOwnership = newState
 	})
 
+	public setHasOrdersToRetrieve = action((newState: boolean): void => {
+		this.hasOrdersToRetrieve = newState
+	})
+
+	public setIsRetrievingOrders = action((newState: boolean): void => {
+		this.isRetrievingOrders = newState
+	})
+
 	public setBuyOrSellSecondaryShares = action((newValue: BuyOrSell): void => {
 		this.buyOrSellSecondarySplShares = newValue
 	})
@@ -193,11 +218,14 @@ class ExchangeClass {
 	public logout() {
 		this.myContent = []
 		this.myOwnership = []
-		// this.openOrders = []
+		this.myOrders = []
 		this.hasContentToRetrieve = true
 		this.isRetrievingContent = false
 		this.hasOwnershipToRetrieve = true
 		this.isRetrievingOwnership = false
+		this.isRetrievingContent = false
+		this.hasOrdersToRetrieve = true
+		this.isRetrievingOrders = false
 		this.resetPurchaseSplSharesDetails()
 		this.resetSplBidDetails()
 		this.resetSplAskDetails()

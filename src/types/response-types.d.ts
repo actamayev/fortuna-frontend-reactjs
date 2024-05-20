@@ -26,6 +26,11 @@ declare global {
 		transactionsMap: TransactionsMap[]
 	}
 
+	type RetrievedOrdersResponse = {
+		asks: AskOrderData[]
+		bids: BidOrderData[]
+	}
+
 	// Personal Info Responses:
 	type PersonalInfoResponse = {
 		username: string

@@ -25,7 +25,7 @@ export default function useAskSecondarySplTokens(): (
 				askPricePerShareUsd: exchangeClass.askForSplSharesDetails.askPricePerShareUsd
 			}
 
-			const askResponse = await fortunaApiClient.exchangeDataService.placeSecondaryMarketSplAsk(ask)
+			const askResponse = await fortunaApiClient.exchangeDataService.placeSplAsk(ask)
 
 			if (isNonSuccessResponse(askResponse.data)) {
 				throw Error("Unable to place SPL ask")

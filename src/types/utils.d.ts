@@ -9,6 +9,7 @@ declare global {
 		"/register" |
 		"/register-username" |
 		"/my-ownership" |
+		"/my-orders" |
 		"/my-wallet" |
 		"/my-profile" |
 
