@@ -22,7 +22,8 @@ export default function useRetrieveSolPrice (): () => Promise<void> {
 		} finally {
 			if (!_.isNull(solanaClass)) solanaClass.setIsRetrievingSolPriceDetails(false)
 		}
-	}, [fortunaApiClient.solanaDataService, solanaClass])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [solanaClass, solanaClass?.isRetrievingSolPriceDetails, fortunaApiClient.solanaDataService])
 
 	return retrieveSolPrice
 }

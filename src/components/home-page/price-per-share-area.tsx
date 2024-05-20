@@ -12,10 +12,7 @@ function PricePerShareArea(props: Props) {
 	const solanaClass = useSolanaContext()
 	const personalInfoClass = usePersonalInfoContext()
 
-	if (_.isNull(personalInfoClass)) {
-		return <>${_.round(video.listingSharePriceUsd, 2)}/Share</>
-	}
-	if (personalInfoClass.defaultCurrency === "usd") {
+	if (_.isNull(personalInfoClass) || personalInfoClass.defaultCurrency === "usd") {
 		return <>${_.round(video.listingSharePriceUsd, 2)}/Share</>
 	}
 	if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null

@@ -20,12 +20,6 @@ class SolanaClass {
 	public isPublicKeySearchLoading = false
 	private _myTransactions: SolanaTransaction[] = []
 
-	public purchaseSplSharesDetails: PurchaseSplSharesDetails = {
-		numberOfTokensPurchasing: 0,
-		splPublicKey: "",
-		purchaseStage: "initial"
-	}
-
 	public newSplDetails: NewSPLDetails = {
 		splName: "",
 		numberOfShares: 100,
@@ -147,24 +141,6 @@ class SolanaClass {
 		}
 	})
 
-	public updatePurchaseSplSharesDetails = action(<K extends keyof PurchaseSplSharesDetails>(
-		key: K, value: PurchaseSplSharesDetails[K]
-	) => {
-		if (typeof this.purchaseSplSharesDetails[key] !== typeof value) {
-			console.warn(`Type mismatch when trying to set ${key}`)
-			return
-		}
-		this.purchaseSplSharesDetails[key] = value
-	})
-
-	public resetPurchaseSplSharesDetails = action(() => {
-		this.purchaseSplSharesDetails = {
-			numberOfTokensPurchasing: 0,
-			splPublicKey: "",
-			purchaseStage: "initial"
-		}
-	})
-
 	public updateNewSplDetails = action(<K extends keyof NewSPLDetails>(
 		key: K, value: NewSPLDetails[K]
 	) => {
@@ -195,7 +171,6 @@ class SolanaClass {
 		this.resetTransferSolDetails()
 		this.isPublicKeySearchLoading = false
 		this.myTransactions = []
-		this.resetPurchaseSplSharesDetails()
 		this.resetNewSplDetails()
 		this.isNewSplLoading = false
 		this.solPriceDetails = null

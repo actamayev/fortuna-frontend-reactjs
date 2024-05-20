@@ -18,8 +18,13 @@ function SingleUsernameSearch(props: Props) {
 	}, [solanaClass, searchResultsUsername])
 
 	return (
-		<div onClick={selectUsername}>
-			{searchResultsUsername}
+		<div>
+			<span
+				onClick={selectUsername}
+				className="hover:underline cursor-pointer"
+			>
+				{searchResultsUsername}
+			</span>
 		</div>
 	)
 }

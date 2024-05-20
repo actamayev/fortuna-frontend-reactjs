@@ -24,7 +24,8 @@ export default function useUpdateTransferSolDetiailsNewDefaultCurrency() : (
 		} catch (error) {
 			console.error(error)
 		}
-	}, [solanaClass])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [solanaClass, solanaClass?.solPriceDetails?.solPriceInUSD])
 
 	return updateTransferSolDetailsNewDefaultCurrency
 }

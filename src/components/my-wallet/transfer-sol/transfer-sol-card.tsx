@@ -7,7 +7,7 @@ import { useSolanaContext } from "../../../contexts/solana-context"
 function TransferSolCard() {
 	const solanaClass = useSolanaContext()
 
-	if (_.isNull(solanaClass)) return null
+	if (_.isNull(solanaClass) || solanaClass.isTransferSolButtonPressed === false) return null
 
 	return (
 		<div

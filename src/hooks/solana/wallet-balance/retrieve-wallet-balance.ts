@@ -39,7 +39,7 @@ export default function useRetrieveWalletBalance(): () => Promise<void> {
 		} finally {
 			if (!_.isNull(solanaClass)) solanaClass.setIsRetrievingWalletDetails(false)
 		}
-	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService, personalInfoClass?.username, solanaClass])
+	}, [solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService, personalInfoClass?.username])
 
 	return retrieveWalletBalance
 }

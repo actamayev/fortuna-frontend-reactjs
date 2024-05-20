@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useMemo, useState } from "react"
@@ -5,6 +6,7 @@ import Button from "../button"
 import ErrorMessage from "../error-message"
 import StatusMessage from "../status-message"
 import { useSolanaContext } from "../../contexts/solana-context"
+import useIsNewSplLoading from "../../hooks/solana/mint-spl/is-new-spl-leading"
 import useConfirmNewSplDetails from "../../hooks/solana/mint-spl/confirm-new-spl-details"
 import useUploadMintInfoOnclick from "../../hooks/solana/mint-spl/upload-mint-info-onclick"
 
@@ -14,11 +16,11 @@ function UploadMintInfoButton() {
 	const [status, setStatus] = useState("")
 	const uploadMintInfoOnclick = useUploadMintInfoOnclick()
 	const confirmNewSPLDetails = useConfirmNewSplDetails()
+	const isNewSplLoading = useIsNewSplLoading()
 
 	const isImageAndVideoReadyToSubmit = useMemo(() => {
 		if (_.isNull(solanaClass)) return false
 		return !_.isNull(solanaClass.newSplDetails.selectedImage) && !_.isNull(solanaClass.newSplDetails.selectedVideo)
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [solanaClass, solanaClass?.newSplDetails.selectedImage, solanaClass?.newSplDetails.selectedVideo])
 
 	const buttonTitle = useMemo(() => {
@@ -29,11 +31,13 @@ function UploadMintInfoButton() {
 		if (solanaClass.newSplDetails.creatorOwnershipPercentage > 90) return "Creator ownership percentage must be at most 90%"
 		if (solanaClass.isNewSplLoading === true) return "Loading..."
 		return "Submit"
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isImageAndVideoReadyToSubmit, solanaClass, solanaClass?.isNewSplLoading,
 		solanaClass?.newSplDetails.creatorOwnershipPercentage, confirmNewSPLDetails])
 
-	if (_.isNull(solanaClass)) return null
+	const creatorOwnershipPercentage = useMemo(() => {
+		if (_.isNull(solanaClass)) return 0
+		return solanaClass.newSplDetails.creatorOwnershipPercentage
+	}, [solanaClass, solanaClass?.newSplDetails.creatorOwnershipPercentage])
 
 	return (
 		<>
@@ -41,8 +45,7 @@ function UploadMintInfoButton() {
 				title={buttonTitle}
 				disabled={
 					isImageAndVideoReadyToSubmit === false || confirmNewSPLDetails === false ||
-					solanaClass.newSplDetails.creatorOwnershipPercentage < 50 ||
-					solanaClass.newSplDetails.creatorOwnershipPercentage > 90 || solanaClass.isNewSplLoading
+					creatorOwnershipPercentage < 50 || creatorOwnershipPercentage > 90 || isNewSplLoading
 				}
 				colorClass="bg-yellow-400"
 				hoverClass="hover:bg-yellow-500"
