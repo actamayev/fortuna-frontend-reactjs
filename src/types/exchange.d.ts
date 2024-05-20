@@ -61,10 +61,7 @@ declare global {
 		bidPricePerShareUsd: number
 	}
 
-	interface OpenOrders {
-		bids: TransformedBidOrderData[]
-		asks: TransformedAskOrderData[]
-	}
+	type TransformedOrderData = TransformedBidOrderData | TransformedAskOrderData
 
 	type BuyOrSell = "Buy" | "Sell"
 

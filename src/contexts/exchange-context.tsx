@@ -12,7 +12,7 @@ class ExchangeClass {
 	public hasOwnershipToRetrieve = true
 	public isRetrievingOwnership = false
 
-	public openOrders: Map<string, OpenOrders> = new Map() // maps an spl public key to it's open orders.
+	public openOrders: TransformedOrderData[] = []
 
 	public purchasePrimarySplSharesDetails: PurchasePrimarySplSharesDetails = {
 		numberOfTokensPurchasing: 0,
@@ -64,8 +64,8 @@ class ExchangeClass {
 		return this.myOwnership.find(ownership => ownership.uuid === uuid)
 	}
 
-	public contextForVideoOpenTrades(splPublicKey: string): OpenOrders | undefined {
-		return this.openOrders.get(splPublicKey)
+	public contextForOpenOrders(splId: number): TransformedOrderData | undefined {
+		return this.openOrders.find(openOrder => openOrder.splId === splId)
 	}
 
 	public updatePurchasePrimarySplSharesDetails = action(<K extends keyof PurchasePrimarySplSharesDetails>(
@@ -166,8 +166,8 @@ class ExchangeClass {
 		return numberShares
 	}
 
-	public addOpenOrder(splPublicKey: string, openOrders: OpenOrders): void {
-		this.openOrders.set(splPublicKey, openOrders)
+	public addOpenOrder(openOrder: TransformedOrderData): void {
+		this.openOrders.unshift(openOrder)
 	}
 
 	public setHasContentToRetrieve = action((newState: boolean): void => {
@@ -193,11 +193,11 @@ class ExchangeClass {
 	public logout() {
 		this.myContent = []
 		this.myOwnership = []
+		this.openOrders = []
 		this.hasContentToRetrieve = true
 		this.isRetrievingContent = false
 		this.hasOwnershipToRetrieve = true
 		this.isRetrievingOwnership = false
-		this.openOrders.clear()
 		this.resetPurchaseSplSharesDetails()
 		this.resetSplBidDetails()
 		this.resetSplAskDetails()
