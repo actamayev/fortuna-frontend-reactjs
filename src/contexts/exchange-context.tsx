@@ -23,7 +23,7 @@ class ExchangeClass {
 		purchaseStage: "initial"
 	}
 
-	public buyOrSellSecondarySplShares: BuyOrSell  = "Buy"
+	public buyOrSellSecondarySplShares: BuyOrSell = "Buy"
 
 	public bidForSplSharesDetails: SecondarySplBidDetails = {
 		numberOfSharesBiddingFor: 0,
