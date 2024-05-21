@@ -1,6 +1,7 @@
 import _ from "lodash"
-import { action, makeAutoObservable } from "mobx"
 import { createContext, useContext, useMemo } from "react"
+import { action, computed, makeAutoObservable } from "mobx"
+import { isSplAsk } from "../utils/type-checks"
 
 class ExchangeClass {
 	private _myContent: MyContent[] = []
@@ -64,6 +65,10 @@ class ExchangeClass {
 
 	set myOrders(myOrders: MyOrder[]) {
 		this._myOrders = myOrders
+	}
+
+	@computed get splAsks () {
+		return this.myOrders.filter(order => isSplAsk(order)) as AskOrderData[]
 	}
 
 	public contextForMyContent(mintAddress: string): MyContent | undefined {
@@ -182,6 +187,19 @@ class ExchangeClass {
 		newOrdersList.asks.map(singleOrder => this.addOrder(singleOrder))
 		newOrdersList.bids.map(singleOrder => this.addOrder(singleOrder))
 	})
+
+	public getRemainingSharesForSale(uuid: string): number {
+		return this.splAsks
+			.filter(order => order.uuid === uuid)
+			.reduce((sum, order) => sum + order.remainingNumberOfSharesForSale, 0)
+	}
+
+	public getNumberSharesAbleToSell(uuid: string): number {
+		const numberSharesOwned = this.getNumberSharesOwnedByUUID(uuid)
+		const sumOfSharesAsked = this.getRemainingSharesForSale(uuid)
+
+		return numberSharesOwned - sumOfSharesAsked
+	}
 
 	public addOrder = action((newOrder: MyOrder): void => {
 		this.myOrders.unshift(newOrder)
