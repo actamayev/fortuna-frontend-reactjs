@@ -34,7 +34,7 @@ export default function useSplTokenAsk(): (
 			}
 
 			exchangeClass.resetSplAskDetails()
-			exchangeClass.addOrder(askResponse.data.askOrderData)
+			exchangeClass.addOrderToBeginning(askResponse.data.askOrderData)
 
 			if (_.isEqual(
 				askResponse.data.askOrderData.numberOfsharesForSale,

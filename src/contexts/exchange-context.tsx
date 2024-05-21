@@ -195,7 +195,7 @@ class ExchangeClass {
 			return dateB - dateA
 		})
 
-		combinedOrders.forEach(order => this.addOrder(order))
+		combinedOrders.forEach(order => this.myOrders.push(order))
 	})
 
 	public getRemainingSharesForSale(uuid: string): number {
@@ -211,8 +211,8 @@ class ExchangeClass {
 		return numberSharesOwned - sumOfSharesAsked
 	}
 
-	public addOrder = action((newOrder: MyOrder): void => {
-		this.myOrders.push(newOrder)
+	public addOrderToBeginning = action((newOrder: MyOrder): void => {
+		this.myOrders.unshift(newOrder)
 	})
 
 	public setHasContentToRetrieve = action((newState: boolean): void => {

@@ -32,7 +32,7 @@ export default function useSplTokenBid(): (
 			}
 
 			exchangeClass.resetSplBidDetails()
-			exchangeClass.addOrder(bidResponse.data.bidOrderData)
+			exchangeClass.addOrderToBeginning(bidResponse.data.bidOrderData)
 
 			if (_.isEqual(
 				bidResponse.data.bidOrderData.numberOfSharesBiddingFor,
