@@ -24,9 +24,9 @@ import useRetrieveMyOrdersUseEffect from "./hooks/exchange/retrieve-my-orders-us
 import useRetrieveMyContentUseEffect from "./hooks/exchange/retrieve-my-content-use-effect"
 import useRetrieveYouTubeInfoUseEffect from "./hooks/youtube/retrieve-youtube-info-use-effect"
 import useRetrieveMyOwnershipUseEffect from "./hooks/exchange/retrieve-my-ownership-use-effect"
+import useRetrieveWalletBalanceUseEffect from "./hooks/solana/retrieve-wallet-balance-use-effect"
 import useRedirectBackToRegisterUsername from "./hooks/redirects/redirect-back-to-register-username"
 import useRetrievePersonalInfoUseEffect from "./hooks/personal-info/retrieve-personal-info-use-effect"
-import useRetrieveWalletBalanceUseEffect from "./hooks/solana/wallet-balance/retrieve-wallet-balance-use-effect"
 import useResetPurchaseSplAfterNavigation from "./hooks/exchange/purchase-spl-tokens/reset-purchase-spl-after-navigation"
 
 function App() {

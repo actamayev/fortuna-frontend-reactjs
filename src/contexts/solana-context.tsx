@@ -128,7 +128,7 @@ class SolanaClass {
 		this.transferSolDetails[key] = value
 	})
 
-	private alterWalletBalanceSol = action((solToIncrementBy: number): void => {
+	public alterWalletBalanceSol = action((solToIncrementBy: number): void => {
 		if (_.isNull(this.walletBalanceSol)) return
 		this.walletBalanceSol += solToIncrementBy
 	})
