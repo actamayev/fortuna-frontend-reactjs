@@ -13,7 +13,7 @@ function ShowAskOrder(props: Props) {
 	const dateFormatter = useDateFormatter()
 
 	const isOrderFilled = useMemo(() => {
-		return bidOrder.remainingNumberOfSharesBiddingFor
+		return bidOrder.remainingNumberOfSharesBiddingFor === 0
 	}, [bidOrder.remainingNumberOfSharesBiddingFor])
 
 	return (
@@ -30,7 +30,7 @@ function ShowAskOrder(props: Props) {
                 at ${bidOrder.bidPricePerShareUsd}/Share
 			</div>
 			<span className="mx-auto">
-				{isOrderFilled === 0 && <> ORDER FILLED</>}
+				{isOrderFilled && <> ORDER FILLED</>}
 			</span>
 			<span className="ml-auto">
 				{dateFormatter(bidOrder.createdAt)}

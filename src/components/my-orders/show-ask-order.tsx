@@ -13,14 +13,13 @@ function ShowAskOrder(props: Props) {
 	const dateFormatter = useDateFormatter()
 
 	const isOrderFilled = useMemo(() => {
-		return askOrder.remainingNumberOfSharesForSale
+		return askOrder.remainingNumberOfSharesForSale === 0
 	}, [askOrder.remainingNumberOfSharesForSale])
 
 	return (
 		<div className="flex justify-between items-center">
 			<div>
-
-			Asking for {" "}
+				Asking for {" "}
 				<span
 					className="hover:underline cursor-pointer font-bold"
 					onClick={() => navigateToVideoPage(askOrder.uuid)}
@@ -28,10 +27,10 @@ function ShowAskOrder(props: Props) {
 					{askOrder.splName}
 				</span>, {" "}
 				{askOrder.numberOfsharesForSale} Share{askOrder.numberOfsharesForSale > 1 ? "s" : ""} {" "}
-			at ${askOrder.askPricePerShareUsd}/Share
+				at ${askOrder.askPricePerShareUsd}/Share
 			</div>
 			<span className="mx-auto">
-				{isOrderFilled === 0 && <> ORDER FILLED</>}
+				{isOrderFilled && <> ORDER FILLED</>}
 			</span>
 			<span className="ml-auto">
 				{dateFormatter(askOrder.createdAt)}

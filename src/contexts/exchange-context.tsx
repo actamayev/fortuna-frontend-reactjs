@@ -79,10 +79,6 @@ class ExchangeClass {
 		return this.myOwnership.find(ownership => ownership.uuid === uuid)
 	}
 
-	public contextForMyOrder(splId: number): MyOrder | undefined {
-		return this.myOrders.find(myOrder => myOrder.splId === splId)
-	}
-
 	public updatePurchasePrimarySplSharesDetails = action(<K extends keyof PurchasePrimarySplSharesDetails>(
 		key: K, value: PurchasePrimarySplSharesDetails[K]
 	) => {
