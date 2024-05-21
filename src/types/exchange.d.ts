@@ -64,7 +64,7 @@ declare global {
 		splId: number
 		bidPricePerShareUsd: number
 		wasBidCancelledDueToFundRequirements: boolean
-		nuberOfSharesBiddingFor: number
+		numberOfSharesBiddingFor: number
 		remainingNumberOfSharesBiddingFor: umber
 		createdAt: Date
 		splName: string
@@ -78,6 +78,11 @@ declare global {
 	interface TransactionsMap {
 		fillPriceUsd: number
 		numberOfShares: number
+	}
+
+	interface AverageFillPrice {
+		sharesTransacted: number
+		averageFillPrice: number
 	}
 }
 

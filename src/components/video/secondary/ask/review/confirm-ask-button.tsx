@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { observer } from "mobx-react"
 import Button from "../../../../button"
-import useAskSecondarySplTokens from "../../../../../hooks/exchange/spl-token-ask"
+import useSplTokenAsk from "../../../../../hooks/exchange/spl-token-ask"
 
 function ConfirmAskButton() {
 	const [isLoading, setIsLoading] = useState(false)
-	const splTokenAsk = useAskSecondarySplTokens()
+	const splTokenAsk = useSplTokenAsk()
 
 	return (
 		<Button

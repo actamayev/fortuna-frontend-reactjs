@@ -5,14 +5,14 @@ import { useExchangeContext } from "../../contexts/exchange-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import useRetrieveWalletBalance from "../solana/wallet-balance/retrieve-wallet-balance"
 
-export default function useAskSecondarySplTokens(): (
+export default function useSplTokenAsk(): (
 	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => Promise<void> {
 	const exchangeClass = useExchangeContext()
 	const fortunaApiClient = useApiClientContext()
 	const retrieveWalletBalance = useRetrieveWalletBalance()
 
-	const askSecondarySplTokens = useCallback(async (
+	const splTokenAsk = useCallback(async (
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 	): Promise<void> =>  {
 		try {
@@ -27,21 +27,20 @@ export default function useAskSecondarySplTokens(): (
 
 			const askResponse = await fortunaApiClient.exchangeDataService.placeSplAsk(ask)
 
-			if (isNonSuccessResponse(askResponse.data)) {
+			if (!_.isEqual(askResponse.status, 200) || isNonSuccessResponse(askResponse.data)) {
 				throw Error("Unable to place SPL ask")
 			}
 
 			exchangeClass.resetSplAskDetails()
+			exchangeClass.addOrder(askResponse.data.askOrderData)
 
-			if (_.isEqual(askResponse.status, 200)) {
-				// This is if the ask is added, but there aren't any matching bids.
-				// In this situation, add the ask to the user's open orders.
-			} else if (_.isEqual(askResponse.status, 201)) {
-				// This is if the ask is added, and at least one share is transferred.
-				// eslint-disable-next-line max-len
-				// in this situation, update the user's ownership, add to orders/open orders (will need to check if all the shares found a match or not)
-				await retrieveWalletBalance()
+			if (_.isEqual(
+				askResponse.data.askOrderData.numberOfsharesForSale,
+				askResponse.data.askOrderData.remainingNumberOfSharesForSale)
+			) {
+				return
 			}
+			await retrieveWalletBalance()
 		} catch (error) {
 			console.error(error)
 		} finally {
@@ -49,5 +48,5 @@ export default function useAskSecondarySplTokens(): (
 		}
 	}, [exchangeClass, fortunaApiClient.exchangeDataService, fortunaApiClient.httpClient.accessToken, retrieveWalletBalance])
 
-	return askSecondarySplTokens
+	return splTokenAsk
 }

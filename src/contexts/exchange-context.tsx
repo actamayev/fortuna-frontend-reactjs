@@ -183,9 +183,17 @@ class ExchangeClass {
 
 	public setMyOrders = action((newOrdersList: RetrievedOrdersResponse): void => {
 		this.myOrders = []
-		if (_.isEmpty(newOrdersList)) return
-		newOrdersList.asks.map(singleOrder => this.addOrder(singleOrder))
-		newOrdersList.bids.map(singleOrder => this.addOrder(singleOrder))
+
+		if (_.isEmpty(newOrdersList.asks) && _.isEmpty(newOrdersList.bids)) return
+
+		const combinedOrders = [...newOrdersList.asks, ...newOrdersList.bids]
+		combinedOrders.sort((a, b) => {
+			const dateA = new Date(a.createdAt).getTime()
+			const dateB = new Date(b.createdAt).getTime()
+			return dateB - dateA
+		})
+
+		combinedOrders.forEach(order => this.addOrder(order))
 	})
 
 	public getRemainingSharesForSale(uuid: string): number {
@@ -202,7 +210,7 @@ class ExchangeClass {
 	}
 
 	public addOrder = action((newOrder: MyOrder): void => {
-		this.myOrders.unshift(newOrder)
+		this.myOrders.push(newOrder)
 	})
 
 	public setHasContentToRetrieve = action((newState: boolean): void => {

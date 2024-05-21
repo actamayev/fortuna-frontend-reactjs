@@ -11,12 +11,12 @@ export default class ExchangeDataService {
 		)
 	}
 
-	async placeSplBid(createSplBid: CreateSPLBidData): Promise<AxiosResponse<AllCommonResponses | BidResponse>> {
-		return await this.httpClient.http.post<AllCommonResponses | BidResponse>("/exchange/create-spl-bid", { createSplBid })
+	async placeSplBid(createSplBid: CreateSPLBidData): Promise<AxiosResponse<BidOrderResponse | NonSuccessResponse>> {
+		return await this.httpClient.http.post<BidOrderResponse | NonSuccessResponse>("/exchange/create-spl-bid", { createSplBid })
 	}
 
-	async placeSplAsk(createSplAsk: CreateSPLAskData): Promise<AxiosResponse<AllCommonResponses | AskResponse>> {
-		return await this.httpClient.http.post<AllCommonResponses | AskResponse>("/exchange/create-spl-ask", { createSplAsk })
+	async placeSplAsk(createSplAsk: CreateSPLAskData): Promise<AxiosResponse<AskOrderResponse | NonSuccessResponse>> {
+		return await this.httpClient.http.post<AskOrderResponse | NonSuccessResponse>("/exchange/create-spl-ask", { createSplAsk })
 	}
 
 	async retrieveOrders(): Promise<AxiosResponse<RetrievedOrdersResponse | MessageResponse | ErrorResponse>> {

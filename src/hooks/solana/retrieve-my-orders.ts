@@ -6,8 +6,8 @@ import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useRetrieveMyOrders(): void {
-	const fortunaApiClient = useApiClientContext()
 	const exchangeClass = useExchangeContext()
+	const fortunaApiClient = useApiClientContext()
 	const personalInfoClass = usePersonalInfoContext()
 
 	// eslint-disable-next-line complexity
