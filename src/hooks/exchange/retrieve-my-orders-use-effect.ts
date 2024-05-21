@@ -5,7 +5,7 @@ import { isErrorResponse, isMessageResponse } from "../../utils/type-checks"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useRetrieveMyOrders(): void {
+export default function useRetrieveMyOrdersUseEffect(): void {
 	const exchangeClass = useExchangeContext()
 	const fortunaApiClient = useApiClientContext()
 	const personalInfoClass = usePersonalInfoContext()

@@ -17,11 +17,11 @@ import PrivacyPolicy from "./pages/compliance/privacy-policy"
 
 import CreatorRoutes from "./routes/creator-routes"
 
-import useRetrieveMyOrders from "./hooks/exchange/retrieve-my-orders"
-import useRetrieveMyContent from "./hooks/exchange/retrieve-my-content"
 import useGetAuthDataFromStorage from "./hooks/auth/get-auth-data-from-storage"
 import useInitializeTagManager from "./hooks/analytics/initiallize-tag-manager"
 import useRetrieveSolPriceUseEffect from "./hooks/solana/retrieve-sol-price-use-effect"
+import useRetrieveMyOrdersUseEffect from "./hooks/exchange/retrieve-my-orders-use-effect"
+import useRetrieveMyContentUseEffect from "./hooks/exchange/retrieve-my-content-use-effect"
 import useRetrieveYouTubeInfoUseEffect from "./hooks/youtube/retrieve-youtube-info-use-effect"
 import useRetrieveMyOwnershipUseEffect from "./hooks/exchange/retrieve-my-ownership-use-effect"
 import useRedirectBackToRegisterUsername from "./hooks/redirects/redirect-back-to-register-username"
@@ -36,9 +36,9 @@ function App() {
 	useRetrieveWalletBalanceUseEffect()
 	useRetrievePersonalInfoUseEffect()
 	useRetrieveSolPriceUseEffect()
-	useRetrieveMyContent()
+	useRetrieveMyContentUseEffect()
 	useRetrieveMyOwnershipUseEffect()
-	useRetrieveMyOrders()
+	useRetrieveMyOrdersUseEffect()
 	useInitializeTagManager()
 	useResetPurchaseSplAfterNavigation()
 	useRedirectBackToRegisterUsername()

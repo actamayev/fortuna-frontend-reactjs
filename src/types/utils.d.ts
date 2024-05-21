@@ -8,10 +8,10 @@ declare global {
 		"/login" |
 		"/register" |
 		"/register-username" |
-		"/my-ownership" |
 		"/my-orders" |
-		"/my-wallet" |
+		"/my-ownership" |
 		"/my-profile" |
+		"/my-wallet" |
 
 		"/creator/my-content" |
 		"/creator/my-wallet" |

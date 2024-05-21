@@ -11,7 +11,7 @@ function SingleOrder(props: Props) {
 	const { order } = props
 
 	return (
-		<div className="bg-white border shadow-sm mt-2 p-2 rounded-sm dark:text-white">
+		<div className="bg-white border shadow-sm mt-2 p-2 rounded-sm">
 			{isSplBid(order) ? (
 				<ShowBidOrder bidOrder={order} />
 			) : (
