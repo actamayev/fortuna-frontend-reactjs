@@ -31,7 +31,7 @@ function SingleTransaction(props: Props) {
 	}, [transaction.transferDateTime])
 
 	return (
-		<div className="bg-white border shadow-sm mt-2 p-2 rounded-sm dark:text-white">
+		<div className="bg-white border shadow-sm mt-2 p-2 rounded-sm">
 			<div>
 				{_.upperFirst(transaction.outgoingOrIncoming)} Transfer on {formattedDateTime}
 			</div>

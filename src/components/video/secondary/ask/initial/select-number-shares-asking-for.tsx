@@ -15,8 +15,8 @@ function SelectNumberSharesAskingFor() {
 		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return
 		let value = formatNumberToWholeNumber(e.target.value)
 		if (isNaN(value)) value = 0
-		const numberSharesOwned = exchangeClass.getNumberSharesOwnedByUUID(videoUUID)
-		if (value > numberSharesOwned) value = numberSharesOwned
+		const numberSharesAbleToSell = exchangeClass.getNumberSharesAbleToSell(videoUUID)
+		if (value > numberSharesAbleToSell) value = numberSharesAbleToSell
 		exchangeClass.updateSplAskDetails("numberofSharesAskingFor", value)
 	}, [exchangeClass, formatNumberToWholeNumber, videoUUID])
 
@@ -26,6 +26,11 @@ function SelectNumberSharesAskingFor() {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [exchangeClass, exchangeClass?.askForSplSharesDetails.numberofSharesAskingFor])
 
+	const numberSharesAbleToSell = useMemo(() => {
+		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return 0
+		return exchangeClass.getNumberSharesAbleToSell(videoUUID)
+	}, [exchangeClass, videoUUID])
+
 	return (
 		<FormGroup
 			label="Number Shares to Sell"
@@ -34,6 +39,7 @@ function SelectNumberSharesAskingFor() {
 			required
 			value={numberofSharesAskingFor}
 			minValue={0}
+			maxValue={numberSharesAbleToSell}
 		/>
 	)
 }

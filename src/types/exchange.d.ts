@@ -35,8 +35,8 @@ declare global {
 	}
 
 	interface PurchaseData {
-		number_of_shares: number
-		purchase_price_per_share_usd: number
+		numberOfShares: number
+		purchasePricePerShareUsd: number
 	}
 
 	interface MyOwnership {
@@ -48,20 +48,30 @@ declare global {
 		isMyContent: boolean
 	}
 
-	// interface TransformedAskOrderData {
-	// 	secondaryMarketAskId: number
-	// 	splId: number
-	// 	askPricePerShareUsd: number
-	// }
+	interface AskOrderData {
+		secondaryMarketAskId: number
+		splId: number
+		askPricePerShareUsd: number
+		numberOfsharesForSale: number
+		remainingNumberOfSharesForSale: number
+		createdAt: Date
+		splName: string
+		uuid: string
+	}
 
+	interface BidOrderData {
+		secondaryMarketBidId: number
+		splId: number
+		bidPricePerShareUsd: number
+		wasBidCancelledDueToFundRequirements: boolean
+		numberOfSharesBiddingFor: number
+		remainingNumberOfSharesBiddingFor: umber
+		createdAt: Date
+		splName: string
+		uuid: string
+	}
 
-	// interface TransformedBidOrderData {
-	// 	secondaryMarketBidId: number
-	// 	splId: number
-	// 	bidPricePerShareUsd: number
-	// }
-
-	// type TransformedOrderData = TransformedBidOrderData | TransformedAskOrderData
+	type MyOrder = BidOrderData | AskOrderData
 
 	type BuyOrSell = "Buy" | "Sell"
 

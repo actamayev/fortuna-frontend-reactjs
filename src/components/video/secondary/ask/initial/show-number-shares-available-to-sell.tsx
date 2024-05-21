@@ -9,11 +9,11 @@ function ShowNumberSharesUserHolds() {
 
 	if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return null
 
-	const numberSharesOwned = exchangeClass.getNumberSharesOwnedByUUID(videoUUID)
+	const numberSharesAbleToSell = exchangeClass.getNumberSharesAbleToSell(videoUUID)
 
 	return (
 		<>
-			Shares available to sell: {numberSharesOwned}
+			Shares available to sell: {numberSharesAbleToSell}
 		</>
 	)
 }

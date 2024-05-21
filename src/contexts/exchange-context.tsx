@@ -1,10 +1,12 @@
 import _ from "lodash"
-import { action, makeAutoObservable } from "mobx"
 import { createContext, useContext, useMemo } from "react"
+import { action, computed, makeAutoObservable } from "mobx"
+import { isSplAsk } from "../utils/type-checks"
 
 class ExchangeClass {
 	private _myContent: MyContent[] = []
 	private _myOwnership: MyOwnership[] = []
+	private _myOrders: MyOrder[] = []
 
 	public hasContentToRetrieve = true
 	public isRetrievingContent = false
@@ -12,7 +14,8 @@ class ExchangeClass {
 	public hasOwnershipToRetrieve = true
 	public isRetrievingOwnership = false
 
-	// public openOrders: TransformedOrderData[] = []
+	public hasOrdersToRetrieve = true
+	public isRetrievingOrders = false
 
 	public purchasePrimarySplSharesDetails: PurchasePrimarySplSharesDetails = {
 		numberOfTokensPurchasing: 0,
@@ -20,7 +23,7 @@ class ExchangeClass {
 		purchaseStage: "initial"
 	}
 
-	public buyOrSellSecondarySplShares: BuyOrSell  = "Buy"
+	public buyOrSellSecondarySplShares: BuyOrSell = "Buy"
 
 	public bidForSplSharesDetails: SecondarySplBidDetails = {
 		numberOfSharesBiddingFor: 0,
@@ -56,6 +59,18 @@ class ExchangeClass {
 		this._myOwnership = myOwnership
 	}
 
+	get myOrders(): MyOrder[] {
+		return this._myOrders
+	}
+
+	set myOrders(myOrders: MyOrder[]) {
+		this._myOrders = myOrders
+	}
+
+	@computed get splAsks () {
+		return this.myOrders.filter(order => isSplAsk(order)) as AskOrderData[]
+	}
+
 	public contextForMyContent(mintAddress: string): MyContent | undefined {
 		return this.myContent.find(content => content.mintAddress === mintAddress)
 	}
@@ -63,10 +78,6 @@ class ExchangeClass {
 	public contextForMyOwnership(uuid: string): MyOwnership | undefined {
 		return this.myOwnership.find(ownership => ownership.uuid === uuid)
 	}
-
-	// public contextForOpenOrders(splId: number): TransformedOrderData | undefined {
-	// 	return this.openOrders.find(openOrder => openOrder.splId === splId)
-	// }
 
 	public updatePurchasePrimarySplSharesDetails = action(<K extends keyof PurchasePrimarySplSharesDetails>(
 		key: K, value: PurchasePrimarySplSharesDetails[K]
@@ -155,20 +166,54 @@ class ExchangeClass {
 			this.myOwnership.unshift(newOwnership)
 			return
 		}
-		this.myOwnership[index].purchaseData = newOwnership.purchaseData
+		this.incremenetOwnership(newOwnership.splPublicKey, newOwnership.purchaseData)
+	})
+
+	public incremenetOwnership = action((splPublicKey: string, purchaseData: PurchaseData[]): void => {
+		const index = this.myOwnership.findIndex(ownership => ownership.splPublicKey === splPublicKey)
+		if (_.isEqual(index, -1)) return
+		this.myOwnership[index].purchaseData.push(...purchaseData)
 	})
 
 	public getNumberSharesOwnedByUUID(uuid: string): number {
 		const ownershipData = this.contextForMyOwnership(uuid)
 		if (_.isUndefined(ownershipData)) return 0
 		let numberShares = 0
-		ownershipData.purchaseData.map(ownership => numberShares += ownership.number_of_shares)
+		ownershipData.purchaseData.map(ownership => numberShares += ownership.numberOfShares)
 		return numberShares
 	}
 
-	// public addOpenOrder(openOrder: TransformedOrderData): void {
-	// 	this.openOrders.unshift(openOrder)
-	// }
+	public setMyOrders = action((newOrdersList: RetrievedOrdersResponse): void => {
+		this.myOrders = []
+
+		if (_.isEmpty(newOrdersList.asks) && _.isEmpty(newOrdersList.bids)) return
+
+		const combinedOrders = [...newOrdersList.asks, ...newOrdersList.bids]
+		combinedOrders.sort((a, b) => {
+			const dateA = new Date(a.createdAt).getTime()
+			const dateB = new Date(b.createdAt).getTime()
+			return dateB - dateA
+		})
+
+		combinedOrders.forEach(order => this.myOrders.push(order))
+	})
+
+	public getRemainingSharesForSale(uuid: string): number {
+		return this.splAsks
+			.filter(order => order.uuid === uuid)
+			.reduce((sum, order) => sum + order.remainingNumberOfSharesForSale, 0)
+	}
+
+	public getNumberSharesAbleToSell(uuid: string): number {
+		const numberSharesOwned = this.getNumberSharesOwnedByUUID(uuid)
+		const sumOfSharesAsked = this.getRemainingSharesForSale(uuid)
+
+		return numberSharesOwned - sumOfSharesAsked
+	}
+
+	public addOrderToBeginning = action((newOrder: MyOrder): void => {
+		this.myOrders.unshift(newOrder)
+	})
 
 	public setHasContentToRetrieve = action((newState: boolean): void => {
 		this.hasContentToRetrieve = newState
@@ -186,6 +231,14 @@ class ExchangeClass {
 		this.isRetrievingOwnership = newState
 	})
 
+	public setHasOrdersToRetrieve = action((newState: boolean): void => {
+		this.hasOrdersToRetrieve = newState
+	})
+
+	public setIsRetrievingOrders = action((newState: boolean): void => {
+		this.isRetrievingOrders = newState
+	})
+
 	public setBuyOrSellSecondaryShares = action((newValue: BuyOrSell): void => {
 		this.buyOrSellSecondarySplShares = newValue
 	})
@@ -193,11 +246,14 @@ class ExchangeClass {
 	public logout() {
 		this.myContent = []
 		this.myOwnership = []
-		// this.openOrders = []
+		this.myOrders = []
 		this.hasContentToRetrieve = true
 		this.isRetrievingContent = false
 		this.hasOwnershipToRetrieve = true
 		this.isRetrievingOwnership = false
+		this.isRetrievingContent = false
+		this.hasOrdersToRetrieve = true
+		this.isRetrievingOrders = false
 		this.resetPurchaseSplSharesDetails()
 		this.resetSplBidDetails()
 		this.resetSplAskDetails()

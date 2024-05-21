@@ -1,11 +1,11 @@
 import _ from "lodash"
-import { useCallback } from "react"
-import { useSolanaContext } from "../../../contexts/solana-context"
-import { isErrorResponse, isMessageResponse } from "../../../utils/type-checks"
-import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
-import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
+import { useCallback, useEffect } from "react"
+import { useSolanaContext } from "../../contexts/solana-context"
+import { isErrorResponse, isMessageResponse } from "../../utils/type-checks"
+import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useRetrieveWalletBalance(): () => Promise<void> {
+export default function useRetrieveWalletBalanceUseEffect(): void {
 	const fortunaApiClient = useApiClientContext()
 	const solanaClass = useSolanaContext()
 	const personalInfoClass = usePersonalInfoContext()
@@ -41,5 +41,8 @@ export default function useRetrieveWalletBalance(): () => Promise<void> {
 		}
 	}, [solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService, personalInfoClass?.username])
 
-	return retrieveWalletBalance
+	useEffect(() => {
+		if (!_.isNil(solanaClass?.walletBalanceSol)) return
+		void retrieveWalletBalance()
+	}, [retrieveWalletBalance, solanaClass?.walletBalanceSol])
 }
