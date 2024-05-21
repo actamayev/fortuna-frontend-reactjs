@@ -55,6 +55,8 @@ declare global {
 		numberOfsharesForSale: number
 		remainingNumberOfSharesForSale: number
 		createdAt: Date
+		splName: string
+		uuid: string
 	}
 
 	interface BidOrderData {
@@ -65,6 +67,8 @@ declare global {
 		nuberOfSharesBiddingFor: number
 		remainingNumberOfSharesBiddingFor: umber
 		createdAt: Date
+		splName: string
+		uuid: string
 	}
 
 	type MyOrder = BidOrderData | AskOrderData

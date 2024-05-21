@@ -1,4 +1,6 @@
 import { observer } from "mobx-react"
+import ShowBidOrder from "./show-bid-order"
+import ShowAskOrder from "./show-ask-order"
 import { isSplBid } from "../../utils/type-checks"
 
 interface Props {
@@ -11,9 +13,9 @@ function SingleOrder(props: Props) {
 	return (
 		<div className="bg-white border shadow-sm mt-2 p-2 rounded-sm dark:text-white">
 			{isSplBid(order) ? (
-				<>Bidding for {order.splId}, {order.nuberOfSharesBiddingFor} Shares at ${order.bidPricePerShareUsd}/Share </>
+				<ShowBidOrder bidOrder={order} />
 			) : (
-				<>Asking for {order.splId}, {order.numberOfsharesForSale} Shares at ${order.askPricePerShareUsd}/Share</>
+				<ShowAskOrder askOrder={order} />
 			)}
 		</div>
 	)
