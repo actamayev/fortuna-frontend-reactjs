@@ -1,11 +1,11 @@
 import _ from "lodash"
-import { useCallback, useEffect } from "react"
+import { useCallback } from "react"
 import { useExchangeContext } from "../../contexts/exchange-context"
 import { isErrorResponse, isMessageResponse } from "../../utils/type-checks"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useRetrieveMyOwnership(): void {
+export default function useRetrieveMyOwnership(): () => Promise<void> {
 	const fortunaApiClient = useApiClientContext()
 	const exchangeClass = useExchangeContext()
 	const personalInfoClass = usePersonalInfoContext()
@@ -38,8 +38,5 @@ export default function useRetrieveMyOwnership(): void {
 		}
 	}, [exchangeClass, fortunaApiClient.solanaDataService, personalInfoClass?.username])
 
-	useEffect(() => {
-		if (_.isNull(fortunaApiClient.httpClient.accessToken)) return
-		void retrieveMyOwnership()
-	}, [fortunaApiClient.httpClient.accessToken, retrieveMyOwnership])
+	return retrieveMyOwnership
 }

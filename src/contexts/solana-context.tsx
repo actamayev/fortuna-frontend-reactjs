@@ -128,6 +128,17 @@ class SolanaClass {
 		this.transferSolDetails[key] = value
 	})
 
+	private alterWalletBalanceSol = action((solToIncrementBy: number): void => {
+		if (_.isNull(this.walletBalanceSol)) return
+		this.walletBalanceSol += solToIncrementBy
+	})
+
+	public alterWalletBalanceUsd = action((usdToIncrementBy: number): void => {
+		const solPriceUSD = this.solPriceDetails?.solPriceInUSD
+		if (_.isUndefined(solPriceUSD)) return
+		this.alterWalletBalanceSol(usdToIncrementBy / solPriceUSD)
+	})
+
 	public resetTransferSolDetails = action(() => {
 		this.transferSolDetails = {
 			transferOption: "username",

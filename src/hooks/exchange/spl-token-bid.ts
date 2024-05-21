@@ -1,22 +1,22 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import { isNonSuccessResponse } from "../../utils/type-checks"
+import { useSolanaContext } from "../../contexts/solana-context"
 import { useExchangeContext } from "../../contexts/exchange-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
-import useRetrieveWalletBalance from "../solana/wallet-balance/retrieve-wallet-balance"
 
 export default function useSplTokenBid(): (
 	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => Promise<void> {
 	const exchangeClass = useExchangeContext()
 	const fortunaApiClient = useApiClientContext()
-	const retrieveWalletBalance = useRetrieveWalletBalance()
+	const solanaClass = useSolanaContext()
 
 	const splTokenBid = useCallback(async (
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 	): Promise<void> =>  {
 		try {
-			if (_.isNull(exchangeClass) || _.isNull(fortunaApiClient.httpClient.accessToken)) return
+			if (_.isNull(exchangeClass) || _.isNull(solanaClass) || _.isNull(fortunaApiClient.httpClient.accessToken)) return
 			setIsLoading(true)
 
 			const bid: CreateSPLBidData = {
@@ -40,13 +40,23 @@ export default function useSplTokenBid(): (
 			) {
 				return
 			}
-			await retrieveWalletBalance()
+
+			let purchaseValueUsd = 0
+			bidResponse.data.transactionsMap.map(transaction => {
+				purchaseValueUsd += transaction.fillPriceUsd * transaction.numberOfShares
+			})
+			solanaClass.alterWalletBalanceUsd(-purchaseValueUsd)
+			const mappedTransactions = bidResponse.data.transactionsMap.map(transaction => ({
+				numberOfShares: transaction.numberOfShares,
+				purchasePricePerShareUsd: transaction.fillPriceUsd
+			}))
+			exchangeClass.incremenetOwnership(bid.splPublicKey, mappedTransactions)
 		} catch (error) {
 			console.error(error)
 		} finally {
 			setIsLoading(false)
 		}
-	}, [exchangeClass, fortunaApiClient.exchangeDataService, fortunaApiClient.httpClient.accessToken, retrieveWalletBalance])
+	}, [exchangeClass, solanaClass, fortunaApiClient.exchangeDataService, fortunaApiClient.httpClient.accessToken])
 
 	return splTokenBid
 }

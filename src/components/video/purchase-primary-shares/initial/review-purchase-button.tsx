@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom"
 import Button from "../../../button"
 import { useVideoContext } from "../../../../contexts/video-context"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
-import useCalculateMaxSharesToPurchase from "../../../../hooks/solana/purchase-spl-tokens/calculate-max-shares-to-purchase"
+import useCalculateMaxSharesToPurchase from "../../../../hooks/exchange/purchase-spl-tokens/calculate-max-shares-to-purchase"
 
 function ReviewPurchaseButton() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()

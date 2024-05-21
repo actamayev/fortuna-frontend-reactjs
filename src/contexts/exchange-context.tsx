@@ -166,7 +166,13 @@ class ExchangeClass {
 			this.myOwnership.unshift(newOwnership)
 			return
 		}
-		this.myOwnership[index].purchaseData.push(...newOwnership.purchaseData)
+		this.incremenetOwnership(newOwnership.splPublicKey, newOwnership.purchaseData)
+	})
+
+	public incremenetOwnership = action((splPublicKey: string, purchaseData: PurchaseData[]): void => {
+		const index = this.myOwnership.findIndex(ownership => ownership.splPublicKey === splPublicKey)
+		if (_.isEqual(index, -1)) return
+		this.myOwnership[index].purchaseData.push(...purchaseData)
 	})
 
 	public getNumberSharesOwnedByUUID(uuid: string): number {

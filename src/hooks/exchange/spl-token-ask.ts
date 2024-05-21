@@ -1,22 +1,24 @@
 import _ from "lodash"
 import { useCallback } from "react"
+import useRetrieveMyOwnership from "./retrieve-my-ownership"
 import { isNonSuccessResponse } from "../../utils/type-checks"
+import { useSolanaContext } from "../../contexts/solana-context"
 import { useExchangeContext } from "../../contexts/exchange-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
-import useRetrieveWalletBalance from "../solana/wallet-balance/retrieve-wallet-balance"
 
 export default function useSplTokenAsk(): (
 	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => Promise<void> {
 	const exchangeClass = useExchangeContext()
 	const fortunaApiClient = useApiClientContext()
-	const retrieveWalletBalance = useRetrieveWalletBalance()
+	const solanaClass = useSolanaContext()
+	const retrieveMyOwnership = useRetrieveMyOwnership()
 
 	const splTokenAsk = useCallback(async (
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 	): Promise<void> =>  {
 		try {
-			if (_.isNull(exchangeClass) || _.isNull(fortunaApiClient.httpClient.accessToken)) return
+			if (_.isNull(exchangeClass) || _.isNull(solanaClass) || _.isNull(fortunaApiClient.httpClient.accessToken)) return
 			setIsLoading(true)
 
 			const ask: CreateSPLAskData = {
@@ -40,13 +42,18 @@ export default function useSplTokenAsk(): (
 			) {
 				return
 			}
-			await retrieveWalletBalance()
+			let saleValueUsd = 0
+			askResponse.data.transactionsMap.map(transaction => {
+				saleValueUsd += transaction.fillPriceUsd * transaction.numberOfShares
+			})
+			solanaClass.alterWalletBalanceUsd(saleValueUsd)
+			await retrieveMyOwnership()
 		} catch (error) {
 			console.error(error)
 		} finally {
 			setIsLoading(false)
 		}
-	}, [exchangeClass, fortunaApiClient.exchangeDataService, fortunaApiClient.httpClient.accessToken, retrieveWalletBalance])
+	}, [exchangeClass, solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.exchangeDataService, retrieveMyOwnership])
 
 	return splTokenAsk
 }

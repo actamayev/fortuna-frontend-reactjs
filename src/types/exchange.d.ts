@@ -79,11 +79,6 @@ declare global {
 		fillPriceUsd: number
 		numberOfShares: number
 	}
-
-	interface AverageFillPrice {
-		sharesTransacted: number
-		averageFillPrice: number
-	}
 }
 
 export {}

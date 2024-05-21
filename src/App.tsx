@@ -17,17 +17,17 @@ import PrivacyPolicy from "./pages/compliance/privacy-policy"
 
 import CreatorRoutes from "./routes/creator-routes"
 
-import useRetrieveMyOrders from "./hooks/solana/retrieve-my-orders"
-import useRetrieveMyContent from "./hooks/solana/retrieve-my-content"
-import useRetrieveMyOwnership from "./hooks/solana/retrieve-my-ownership"
+import useRetrieveMyOrders from "./hooks/exchange/retrieve-my-orders"
+import useRetrieveMyContent from "./hooks/exchange/retrieve-my-content"
 import useGetAuthDataFromStorage from "./hooks/auth/get-auth-data-from-storage"
 import useInitializeTagManager from "./hooks/analytics/initiallize-tag-manager"
 import useRetrieveSolPriceUseEffect from "./hooks/solana/retrieve-sol-price-use-effect"
 import useRetrieveYouTubeInfoUseEffect from "./hooks/youtube/retrieve-youtube-info-use-effect"
+import useRetrieveMyOwnershipUseEffect from "./hooks/exchange/retrieve-my-ownership-use-effect"
 import useRedirectBackToRegisterUsername from "./hooks/redirects/redirect-back-to-register-username"
 import useRetrievePersonalInfoUseEffect from "./hooks/personal-info/retrieve-personal-info-use-effect"
 import useRetrieveWalletBalanceUseEffect from "./hooks/solana/wallet-balance/retrieve-wallet-balance-use-effect"
-import useResetPurchaseSplAfterNavigation from "./hooks/solana/purchase-spl-tokens/reset-purchase-spl-after-navigation"
+import useResetPurchaseSplAfterNavigation from "./hooks/exchange/purchase-spl-tokens/reset-purchase-spl-after-navigation"
 
 function App() {
 	// Don't change the getAuthData to a useEffect, or else it doesn't work immediately after login
@@ -37,7 +37,7 @@ function App() {
 	useRetrievePersonalInfoUseEffect()
 	useRetrieveSolPriceUseEffect()
 	useRetrieveMyContent()
-	useRetrieveMyOwnership()
+	useRetrieveMyOwnershipUseEffect()
 	useRetrieveMyOrders()
 	useInitializeTagManager()
 	useResetPurchaseSplAfterNavigation()

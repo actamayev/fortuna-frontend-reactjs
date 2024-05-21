@@ -15,12 +15,12 @@ declare global {
 
 	type BidOrderResponse = {
 		bidOrderData: BidOrderData
-		averageFillPrice: AverageFillPrice
+		transactionsMap: TransactionsMap[]
 	}
 
 	type AskOrderResponse = {
 		askOrderData: AskOrderData
-		averageFillPrice: AverageFillPrice
+		transactionsMap: TransactionsMap[]
 	}
 
 	type RetrievedOrdersResponse = {
