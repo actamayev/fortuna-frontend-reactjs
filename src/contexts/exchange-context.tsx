@@ -166,14 +166,14 @@ class ExchangeClass {
 			this.myOwnership.unshift(newOwnership)
 			return
 		}
-		this.myOwnership[index].purchaseData = newOwnership.purchaseData
+		this.myOwnership[index].purchaseData.push(...newOwnership.purchaseData)
 	})
 
 	public getNumberSharesOwnedByUUID(uuid: string): number {
 		const ownershipData = this.contextForMyOwnership(uuid)
 		if (_.isUndefined(ownershipData)) return 0
 		let numberShares = 0
-		ownershipData.purchaseData.map(ownership => numberShares += ownership.number_of_shares)
+		ownershipData.purchaseData.map(ownership => numberShares += ownership.numberOfShares)
 		return numberShares
 	}
 
