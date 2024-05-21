@@ -42,6 +42,7 @@ export default function useSplTokenAsk(): (
 			) {
 				return
 			}
+
 			let saleValueUsd = 0
 			askResponse.data.transactionsMap.map(transaction => {
 				saleValueUsd += transaction.fillPriceUsd * transaction.numberOfShares
