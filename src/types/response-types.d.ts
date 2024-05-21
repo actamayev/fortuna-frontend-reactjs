@@ -13,17 +13,19 @@ declare global {
 	type LoginOrRegisterSuccess = { accessToken: string }
 	type GoogleAuthSuccess = { accessToken: string, isNewUser: boolean }
 
-	// Exchange Responses:
-	type BidResponse = {
-		sharesPurchased: number
-		averageFillPrice: number
+	type BidOrderResponse = {
+		bidOrderData: BidOrderData
 		transactionsMap: TransactionsMap[]
 	}
 
-	type AskResponse = {
-		sharesSold: number
-		averageFillPrice: number
+	type AskOrderResponse = {
+		askOrderData: AskOrderData
 		transactionsMap: TransactionsMap[]
+	}
+
+	type RetrievedOrdersResponse = {
+		asks: AskOrderData[]
+		bids: BidOrderData[]
 	}
 
 	// Personal Info Responses:

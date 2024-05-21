@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { observer } from "mobx-react"
 import Button from "../../../../button"
-import useBidForSecondarySplTokens from "../../../../../hooks/exchange/spl-token-bid"
+import useSplTokenBid from "../../../../../hooks/exchange/spl-token-bid"
 
 function ConfirmBidButton() {
 	const [isLoading, setIsLoading] = useState(false)
-	const splTokenBid = useBidForSecondarySplTokens()
+	const splTokenBid = useSplTokenBid()
 
 	return (
 		<Button

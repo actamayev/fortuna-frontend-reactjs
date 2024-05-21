@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom"
 import { useCallback, useMemo } from "react"
 import RangeSelectorSlider from "../../../range-selector-slider"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
-import useCalculateMaxSharesToPurchase from "../../../../hooks/solana/purchase-spl-tokens/calculate-max-shares-to-purchase"
+import useCalculateMaxSharesToPurchase from "../../../../hooks/exchange/purchase-spl-tokens/calculate-max-shares-to-purchase"
 
 function SelectNumberSharesToPurchase() {
 	const exchangeClass = useExchangeContext()

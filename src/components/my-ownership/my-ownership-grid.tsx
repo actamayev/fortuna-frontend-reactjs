@@ -7,8 +7,8 @@ import "ag-grid-community/styles/ag-theme-alpine.css"
 import { useExchangeContext } from "../../contexts/exchange-context"
 import useSetGridHeight from "../../hooks/set-grid-height-use-effect"
 import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
-import myOwnershipColumns from "../../utils/grids/ownership-grid/my-ownership-columns"
-import createOwnershipArrayForGrid from "../../utils/grids/ownership-grid/create-ownership-array-for-grid"
+import myOwnershipColumns from "../../utils/grids/my-ownership/my-ownership-columns"
+import createOwnershipArrayForGrid from "../../utils/grids/my-ownership/create-ownership-array-for-grid"
 
 function MyOwnershipGrid() {
 	const exchangeClass = useExchangeContext()
