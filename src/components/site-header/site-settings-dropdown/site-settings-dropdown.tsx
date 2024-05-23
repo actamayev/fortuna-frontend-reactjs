@@ -1,8 +1,8 @@
 import { useRef, useState } from "react"
-import SliderDropdownContainer from "./slider-dropdown-container"
+import SiteSettingsDropdownContainer from "./site-settings-dropdown-container"
 import useClickOutSideUseEffect from "../../../hooks/click-outside-use-effect"
 
-export default function SliderDropdown() {
+export default function SiteSettingsDropdown() {
 	const [isOpen, setIsOpen] = useState(false)
 	const dropdownRef = useRef<HTMLDivElement>(null)
 	useClickOutSideUseEffect(dropdownRef, setIsOpen)
@@ -25,7 +25,7 @@ export default function SliderDropdown() {
 							:
 						</div>
 					</button>
-					<SliderDropdownContainer isOpen = {isOpen} />
+					<SiteSettingsDropdownContainer isOpen = {isOpen} />
 				</div>
 			</div>
 		</div>

@@ -7,14 +7,21 @@ import ShowMessageToNonCreators from "../../components/show-message-to-non-creat
 import UploadContentTemplate from "../../components/templates/upload-content-template"
 import SPLNameInput from "../../components/upload-new-mint-information/spl-name-input"
 import SelectNumberShares from "../../components/upload-new-mint-information/select-number-shares"
+import CreateTokenSummary from "../../components/upload-new-mint-information/create-token-summary"
 import SPLDescriptionInput from "../../components/upload-new-mint-information/spl-description-input"
 import ImageUploader from "../../components/upload-new-mint-information/upload-media/image-uploader"
 import VideoUploader from "../../components/upload-new-mint-information/upload-media/video-uploader"
 import UploadMintInfoButton from "../../components/upload-new-mint-information/upload-mint-info-button"
-import ContentShareBreakdown from "../../components/upload-new-mint-information/content-share-breakdown"
+import ValueNeededToAccessExclusiveContent
+	from "../../components/upload-new-mint-information/exclusive-content/value-needed-to-access-exclusive-content"
 import SplOriginalContentUrlInput from "../../components/upload-new-mint-information/spl-original-content-url-input"
 import SelectOfferingSharePriceUsd from "../../components/upload-new-mint-information/select-offering-share-price-usd"
+import ListingPriceToAccessExclusiveContentUsd
+	from "../../components/upload-new-mint-information/exclusive-content/listing-price-to-access-exclusive-content-usd"
 import SelectCreatorOwnershipPercentage from "../../components/upload-new-mint-information/select-creator-ownership-percentage"
+import IsContentExclusiveSlider from "../../components/upload-new-mint-information/exclusive-content/is-content-exclusive-slider"
+import AllowValueFromSameCreatorTokensForExclusiveContent
+	from "../../components/upload-new-mint-information/exclusive-content/allow-value-from-same-creator-tokens-for-exclusive-content"
 
 function UploadContent() {
 	const authClass = useAuthContext()
@@ -44,7 +51,7 @@ function UploadContent() {
 
 				<SplOriginalContentUrlInput />
 				<div className="flex w-full">
-					<div className="flex flex-col w-1/2">
+					<div className="flex flex-col w-1/3">
 						<div className="mb-4">
 							<SelectOfferingSharePriceUsd />
 						</div>
@@ -55,8 +62,22 @@ function UploadContent() {
 							<SelectCreatorOwnershipPercentage />
 						</div>
 					</div>
-					<div className="w-1/2">
-						<ContentShareBreakdown />
+					<div className="w-1/3">
+						<div className="mb-4">
+							<IsContentExclusiveSlider />
+						</div>
+						<div className="mb-4">
+							<ValueNeededToAccessExclusiveContent />
+						</div>
+						<div className="mb-4">
+							<ListingPriceToAccessExclusiveContentUsd />
+						</div>
+						<div className="mb-4">
+							<AllowValueFromSameCreatorTokensForExclusiveContent />
+						</div>
+					</div>
+					<div className="w-1/3">
+						<CreateTokenSummary />
 					</div>
 				</div>
 				<UploadMintInfoButton />

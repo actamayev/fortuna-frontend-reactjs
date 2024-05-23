@@ -1,10 +1,10 @@
-import SliderDropdownItems from "./slider-dropdown-items"
+import SiteSettingsDropdownItems from "./site-settings-dropdown-items"
 
 interface Props {
 	isOpen: boolean
 }
 
-export default function SliderDropdownContainer (props: Props) {
+export default function SiteSettingsDropdownContainer (props: Props) {
 	const { isOpen } = props
 
 	if (isOpen === false) return null
@@ -16,7 +16,7 @@ export default function SliderDropdownContainer (props: Props) {
 			aria-labelledby="menu-button"
 		>
 			<div className="pt-2 pb-1">
-				<SliderDropdownItems />
+				<SiteSettingsDropdownItems />
 			</div>
 		</div>
 	)
