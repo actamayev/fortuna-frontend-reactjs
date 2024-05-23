@@ -28,7 +28,8 @@ class SolanaClass {
 		creatorOwnershipPercentage: 50,
 		originalContentUrl: "",
 		selectedImage: null,
-		selectedVideo: null
+		selectedVideo: null,
+		isContentExclusive: false
 	}
 	public isNewSplLoading = false
 
@@ -155,11 +156,23 @@ class SolanaClass {
 	public updateNewSplDetails = action(<K extends keyof NewSPLDetails>(
 		key: K, value: NewSPLDetails[K]
 	) => {
+
 		if (typeof this.newSplDetails[key] !== typeof value) {
 			console.warn(`Type mismatch when trying to set ${key}`)
 			return
 		}
 		this.newSplDetails[key] = value
+		if (key === "isContentExclusive" && value === true) {
+			if (_.isUndefined(this.newSplDetails.allowValueFromSameCreatorTokensForExclusiveContent)) {
+				this.newSplDetails.allowValueFromSameCreatorTokensForExclusiveContent = true
+			}
+			if (_.isUndefined(this.newSplDetails.listingPriceToAccessExclusiveContentUsd)) {
+				this.newSplDetails.listingPriceToAccessExclusiveContentUsd = 50
+			}
+			if (_.isUndefined(this.newSplDetails.valueNeededToAccessExclusiveContentUsd)) {
+				this.newSplDetails.valueNeededToAccessExclusiveContentUsd =  10 * this.newSplDetails.listingSharePriceUsd
+			}
+		}
 	})
 
 	public resetNewSplDetails = action(() => {
@@ -171,7 +184,8 @@ class SolanaClass {
 			creatorOwnershipPercentage: 50,
 			originalContentUrl: "",
 			selectedImage: null,
-			selectedVideo: null
+			selectedVideo: null,
+			isContentExclusive: false
 		}
 	})
 

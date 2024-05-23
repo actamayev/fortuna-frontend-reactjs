@@ -59,6 +59,11 @@ export default function useUploadMintInfoOnclick(): (
 
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			const { selectedImage, selectedVideo, ...restOfSplDetails } = solanaClass.newSplDetails
+			if (restOfSplDetails.isContentExclusive === false) {
+				delete restOfSplDetails.valueNeededToAccessExclusiveContentUsd
+				delete restOfSplDetails.listingPriceToAccessExclusiveContentUsd
+				delete restOfSplDetails.allowValueFromSameCreatorTokensForExclusiveContent
+			}
 
 			const createAndMintSPL: CreateAndMintSPL = {
 				...restOfSplDetails,

@@ -6,6 +6,10 @@ declare global {
 		description: string
 		creatorOwnershipPercentage: number
 		originalContentUrl: string
+		isContentExclusive: boolean
+		valueNeededToAccessExclusiveContentUsd?: number
+		listingPriceToAccessExclusiveContentUsd?: number
+		allowValueFromSameCreatorTokensForExclusiveContent?: boolean
 	}
 
 	interface NewSPLDetails extends CommonSplDetails {

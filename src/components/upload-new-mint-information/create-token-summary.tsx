@@ -2,7 +2,7 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../contexts/solana-context"
 
-function ContentShareBreakdown() {
+function CreateTokenSummary() {
 	const solanaClass = useSolanaContext()
 
 	if (_.isNull(solanaClass)) return null
@@ -15,7 +15,7 @@ function ContentShareBreakdown() {
 	return (
 		<div className = "bg-white border shadow rounded-lg w-full dark:border-b-2 p-2">
 			<h1 className = "flex text-xl text-center font-bold leading-none tracking-tight text-black">
-				Share Breakdown
+				Create Token Summary
 			</h1>
 			<div>
 				You will receive {" "} {creatorNumberShares} {" "} Shares
@@ -29,8 +29,11 @@ function ContentShareBreakdown() {
 			<div>
 				Pegging to USD
 			</div>
+			<div className="font-bold">
+				Exclusive content summary
+			</div>
 		</div>
 	)
 }
 
-export default observer(ContentShareBreakdown)
+export default observer(CreateTokenSummary)
