@@ -2,10 +2,10 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { FaMoon } from "react-icons/fa"
 import { IoMdSunny } from "react-icons/io"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
-import useSetDefaultSiteTheme from "../../hooks/personal-info/set-default-site-theme"
+import { usePersonalInfoContext } from "../contexts/personal-info-context"
+import useSetDefaultSiteTheme from "../hooks/personal-info/set-default-site-theme"
 
-function SiteThemeSlider() {
+function ChooseSiteTheme() {
 	const personalInfoClass = usePersonalInfoContext()
 	const setDefaultSiteTheme = useSetDefaultSiteTheme()
 
@@ -19,4 +19,4 @@ function SiteThemeSlider() {
 	)
 }
 
-export default observer(SiteThemeSlider)
+export default observer(ChooseSiteTheme)

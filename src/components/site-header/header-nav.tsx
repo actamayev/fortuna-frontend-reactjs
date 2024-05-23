@@ -1,6 +1,6 @@
 import SearchBar from "./search-bar"
 import LogoHeaderSection from "./logo-header-section"
-import SliderDropdown from "./slider-dropdown/slider-dropdown"
+import SiteSettingsDropdown from "./site-settings-dropdown/site-settings-dropdown"
 import LoginLogoutHeaderItem from "./login-logout-header-item"
 import CreateContentHeaderButton from "./create-content-header-button"
 
@@ -14,7 +14,7 @@ export default function HeaderNav() {
 				</div>
 				<div className="flex items-center z-10">
 					<CreateContentHeaderButton />
-					<SliderDropdown />
+					<SiteSettingsDropdown />
 					<LoginLogoutHeaderItem />
 				</div>
 			</div>
