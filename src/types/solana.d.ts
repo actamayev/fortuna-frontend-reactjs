@@ -27,7 +27,6 @@ declare global {
 
 	interface CreateAndMintSPL extends CommonSplDetails {
 		imageUrl: string
-		videoUrl: string
 		uuid: string
 		uploadedImageId: number
 		uploadedVideoId: number

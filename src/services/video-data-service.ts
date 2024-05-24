@@ -11,8 +11,8 @@ export default class VideoDataService {
 		)
 	}
 
-	async getVideoById(videoUUID: string): Promise<AxiosResponse<RetrievedVideo | ErrorResponses>> {
-		return await this.httpClient.http.get<RetrievedVideo | ErrorResponses>(
+	async getVideoById(videoUUID: string): Promise<AxiosResponse<RetrievedVideo | NonSuccessResponse>> {
+		return await this.httpClient.http.get<RetrievedVideo | NonSuccessResponse>(
 			`/videos/get-video/${videoUUID}`, { headers: { "No-Auth-Required": "true" }}
 		)
 	}
@@ -20,6 +20,12 @@ export default class VideoDataService {
 	async getVideosByCreatorUsername(creatorUsername: string): Promise<AxiosResponse<CreatorDataResponse | NonSuccessResponse>> {
 		return await this.httpClient.http.get<CreatorDataResponse | NonSuccessResponse>(
 			`/videos/get-creator-videos/${creatorUsername}`, { headers: { "No-Auth-Required": "true" }}
+		)
+	}
+
+	async getVideoUrl(videoUUID: string): Promise<AxiosResponse<RetrievedVideoUrl | NonSuccessResponse>> {
+		return await this.httpClient.http.get<RetrievedVideoUrl | NonSuccessResponse>(
+			`/videos/get-video-url/${videoUUID}`, { headers: { "No-Auth-Required": "true" }}
 		)
 	}
 }

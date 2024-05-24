@@ -76,12 +76,13 @@ declare global {
 	type ProfilePictureUrl = { profilePictureUrl: string }
 
 	// Video Responses:
-	type RetrievedVideo = { videoData: VideoData }
-	type HomePageVideos = { homePageVideos: VideoData[] }
+	type RetrievedVideo = { videoData: SingleVideoDataFromBackend }
+	type HomePageVideos = { homePageVideos: VideoDataLessVideoUrl[] }
 	type CreatorDataResponse = {
-		videoData: VideoData[]
+		videoData: VideoDataLessVideoUrl[]
 		creatorData: CreatorData
 	}
+	type RetrievedVideoUrl = { videoUrl: string | undefined }
 
 	// YouTube Responses:
 	type UserYouTubeData = {

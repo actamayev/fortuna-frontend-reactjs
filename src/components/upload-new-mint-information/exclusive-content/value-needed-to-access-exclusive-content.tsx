@@ -35,7 +35,7 @@ function ValueNeededToAccessExclusiveContent() {
 	return (
 		<div className="flex flex-col space-y-4">
 			<RangeSelectorSlider
-				title="USD Needed to access content ($)"
+				title="Token Value needed to access ($)"
 				value={valueNeededToAccessExclusiveContent}
 				onChange={updateNewSplDetails}
 				min={50}

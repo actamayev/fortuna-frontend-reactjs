@@ -2,7 +2,7 @@ import Thumbnail from "./thumbnail"
 import HomePageVideoDescriptionArea from "./home-page-video-description-area"
 
 interface Props {
-	video: VideoData
+	video: VideoDataLessVideoUrl
 }
 
 export default function SingleHomePageVideoCard(props: Props) {

@@ -1,7 +1,7 @@
 import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
 
 interface Props {
-	video: VideoData
+	video: VideoDataLessVideoUrl
 }
 
 export default function Thumbnail(props: Props) {

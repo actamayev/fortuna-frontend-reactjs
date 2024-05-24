@@ -4,7 +4,7 @@ import { useSolanaContext } from "../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
 interface Props {
-	video: VideoData
+	video: VideoDataWithVideoUrl
 }
 
 function PricePerShareArea(props: Props) {

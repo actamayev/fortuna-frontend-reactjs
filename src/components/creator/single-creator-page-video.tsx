@@ -2,7 +2,7 @@ import useDateFormatter from "../../hooks/date-formatter"
 import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
 
 interface Props {
-	videoData: VideoData
+	videoData: VideoDataLessVideoUrl
 }
 
 export default function SingleCreatorPageVideo(props: Props) {

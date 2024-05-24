@@ -2,7 +2,7 @@ import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
 import useNavigateToCreator from "../../hooks/navigate/navigate-to-creator"
 
 interface Props {
-	videoData: VideoData
+	videoData: VideoDataLessVideoUrl
 }
 
 export default function SingleVideoSearchItem(props: Props) {

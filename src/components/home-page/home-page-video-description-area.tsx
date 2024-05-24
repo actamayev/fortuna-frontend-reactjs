@@ -5,7 +5,7 @@ import SharesAvailableProgressBar from "./shares-available-progress-bar"
 import useNavigateToCreator from "../../hooks/navigate/navigate-to-creator"
 
 interface Props {
-	video: VideoData
+	video: VideoDataLessVideoUrl
 }
 
 export default function HomePageVideoDescriptionArea(props: Props) {

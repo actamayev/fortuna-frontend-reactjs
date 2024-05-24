@@ -9,7 +9,7 @@ import TradeSecondaryShares from "./secondary/trade-secondary-shares"
 import PurchasePrimarySharesOptions from "./purchase-primary-shares/purchase-primary-shares-options"
 
 interface Props {
-	video: VideoData
+	video: VideoDataWithVideoUrl
 }
 
 function TradeSharesCard(props: Props) {

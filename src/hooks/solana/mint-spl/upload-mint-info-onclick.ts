@@ -68,7 +68,6 @@ export default function useUploadMintInfoOnclick(): (
 			const createAndMintSPL: CreateAndMintSPL = {
 				...restOfSplDetails,
 				imageUrl: uploadImageResponse.data.imageUploadUrl,
-				videoUrl: uploadVideoResponse.data.videoUploadUrl,
 				uuid: uploadVideoResponse.data.uuid,
 				uploadedImageId: uploadImageResponse.data.uploadedImageId,
 				uploadedVideoId: uploadVideoResponse.data.uploadedVideoId,
