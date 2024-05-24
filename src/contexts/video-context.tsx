@@ -8,6 +8,8 @@ class VideoClass {
 
 	public videos: VideoDataWithVideoUrl[] = []
 	public videosBeingRetrieved: string[] = []
+	public isRetrievingVideoUrl = false
+
 	public areHomePageVideosRetrieved: boolean = false
 	public areHomePageVideosBeingRetrieved: boolean = false
 
@@ -146,6 +148,10 @@ class VideoClass {
 
 	public setSearchTerm = action((newSearchTerm: string): void => {
 		this.searchTerm = newSearchTerm
+	})
+
+	public setIsRetrievingVideoUrl = action((newState: boolean): void => {
+		this.isRetrievingVideoUrl = newState
 	})
 
 	public setIsCurrentlySearching = action((newState: boolean): void => {
