@@ -161,6 +161,13 @@ class VideoClass {
 	public setIsCreatorDataBeingRetrieved = action((newState: boolean): void => {
 		this.isCreatorDataBeingRetrieved = newState
 	})
+
+	public logout() {
+		this.videos = []
+		this.videoSearchMap.clear()
+		this.creatorData = []
+		this.videosBeingRetrieved = []
+	}
 }
 
 const VideoContext = createContext(new VideoClass())

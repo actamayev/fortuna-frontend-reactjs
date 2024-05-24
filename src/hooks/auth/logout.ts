@@ -1,6 +1,7 @@
 import { useCallback } from "react"
 import useTypedNavigate from "../navigate/typed-navigate"
 import { useAuthContext } from "../../contexts/auth-context"
+import { useVideoContext } from "../../contexts/video-context"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { useYouTubeContext } from "../../contexts/youtube-context"
 import { useExchangeContext } from "../../contexts/exchange-context"
@@ -14,17 +15,19 @@ export default function useLogout(): () => void {
 	const fortunaApiClient = useApiClientContext()
 	const solanaClass = useSolanaContext()
 	const youtubeClass = useYouTubeContext()
+	const videoClass = useVideoContext()
 	const navigate = useTypedNavigate()
 
 	const logout = useCallback((): void => {
 		personalInfoClass?.logout()
 		solanaClass?.logout()
+		videoClass.logout()
 		exchangeClass?.logout()
 		youtubeClass?.logout()
 		authClass.logout()
 		fortunaApiClient.logout()
 		navigate("/")
-	}, [authClass, exchangeClass, fortunaApiClient, navigate, personalInfoClass, solanaClass, youtubeClass])
+	}, [authClass, exchangeClass, fortunaApiClient, personalInfoClass, solanaClass, videoClass, youtubeClass, navigate])
 
 	return logout
 }

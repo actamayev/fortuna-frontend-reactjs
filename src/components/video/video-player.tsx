@@ -8,7 +8,20 @@ interface Props {
 export default function VideoPlayer(props: Props) {
 	const { videoUrl } = props
 
-	if (_.isUndefined(videoUrl)) return <>Video not found</>
+	if (_.isUndefined(videoUrl)) {
+		return (
+			<div className="w-full">
+				<video
+					controls
+					autoPlay
+					className="w-full h-full rounded-lg"
+					controlsList="nodownload"
+				>
+					Exclusiv content
+				</video>
+			</div>
+		)
+	}
 
 	return (
 		<div className="w-full">
