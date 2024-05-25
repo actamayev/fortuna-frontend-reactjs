@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { createContext, useContext, useMemo } from "react"
 import AuthDataService from "../services/auth-data-service"
 import VideoDataService from "../services/video-data-service"
@@ -8,31 +9,34 @@ import SearchDataService from "../services/search-data-service"
 import YouTubeDataService from "../services/youtube-data-service"
 import ExchangeDataService from "../services/exchange-data-service"
 import PersonalInfoDataService from "../services/personal-info-data-service"
+import PositionsAndTransactionsDataService from "../services/positions-and-transactions-data-service"
 
 class FortunaApiClient {
 	public httpClient: FortunaHttpClient = new FortunaHttpClient()
-	public authDataService: AuthDataService = new AuthDataService(this.httpClient)
-	public exchangeDataService: ExchangeDataService = new ExchangeDataService(this.httpClient)
-	public personalInfoDataService: PersonalInfoDataService = new PersonalInfoDataService(this.httpClient)
-	public searchDataService: SearchDataService = new SearchDataService(this.httpClient)
-	public solanaDataService: SolanaDataService = new SolanaDataService(this.httpClient)
-	public uploadDataService: UploadDataService = new UploadDataService(this.httpClient)
-	public videoDataService: VideoDataService = new VideoDataService(this.httpClient)
-	public youtubeDataService: YouTubeDataService = new YouTubeDataService(this.httpClient)
+	public authDataService: AuthDataService = new AuthDataService("/auth", this.httpClient)
+	public exchangeDataService: ExchangeDataService = new ExchangeDataService("/exchange", this.httpClient)
+	public positionsAndTransactionsDataService: PositionsAndTransactionsDataService = new PositionsAndTransactionsDataService("/positions-and-transactions", this.httpClient)
+	public personalInfoDataService: PersonalInfoDataService = new PersonalInfoDataService("/personal-info", this.httpClient)
+	public searchDataService: SearchDataService = new SearchDataService("/search", this.httpClient)
+	public solanaDataService: SolanaDataService = new SolanaDataService("/solana", this.httpClient)
+	public uploadDataService: UploadDataService = new UploadDataService("/upload", this.httpClient)
+	public videoDataService: VideoDataService = new VideoDataService("/videos", this.httpClient)
+	public youtubeDataService: YouTubeDataService = new YouTubeDataService("/youtube", this.httpClient)
 
 	constructor() {
 	}
 
 	private initializeServices() {
 		this.httpClient = new FortunaHttpClient()
-		this.authDataService = new AuthDataService(this.httpClient)
-		this.exchangeDataService = new ExchangeDataService(this.httpClient)
-		this.personalInfoDataService = new PersonalInfoDataService(this.httpClient)
-		this.searchDataService = new SearchDataService(this.httpClient)
-		this.solanaDataService = new SolanaDataService(this.httpClient)
-		this.uploadDataService = new UploadDataService(this.httpClient)
-		this.videoDataService = new VideoDataService(this.httpClient)
-		this.youtubeDataService = new YouTubeDataService(this.httpClient)
+		this.authDataService = new AuthDataService("/auth", this.httpClient)
+		this.exchangeDataService = new ExchangeDataService("/exchange", this.httpClient)
+		this.positionsAndTransactionsDataService = new PositionsAndTransactionsDataService("/positions-and-transactions", this.httpClient)
+		this.personalInfoDataService = new PersonalInfoDataService("/personal-info", this.httpClient)
+		this.searchDataService = new SearchDataService("/search", this.httpClient)
+		this.solanaDataService = new SolanaDataService("/solana", this.httpClient)
+		this.uploadDataService = new UploadDataService("/upload", this.httpClient)
+		this.videoDataService = new VideoDataService("/videos", this.httpClient)
+		this.youtubeDataService = new YouTubeDataService("/youtube", this.httpClient)
 	}
 
 	public logout() {

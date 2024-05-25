@@ -1,27 +1,27 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import { useExchangeContext } from "../../contexts/exchange-context"
 import { isErrorResponse, isMessageResponse } from "../../utils/type-checks"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
+import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
 
 export default function useRetrieveMyOwnership(): () => Promise<void> {
 	const fortunaApiClient = useApiClientContext()
-	const exchangeClass = useExchangeContext()
+	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const personalInfoClass = usePersonalInfoContext()
 
 	// eslint-disable-next-line complexity
 	const retrieveMyOwnership = useCallback(async () => {
 		try {
 			if (
-				_.isNull(exchangeClass) ||
+				_.isNull(positionsAndTransactionsClass) ||
 				_.isNil(personalInfoClass?.username) ||
-				exchangeClass.hasOwnershipToRetrieve === false ||
-				exchangeClass.isRetrievingOwnership === true ||
-				!_.isEmpty(exchangeClass.myOwnership)
+				positionsAndTransactionsClass.hasOwnershipToRetrieve === false ||
+				positionsAndTransactionsClass.isRetrievingOwnership === true ||
+				!_.isEmpty(positionsAndTransactionsClass.myOwnership)
 			) return
-			exchangeClass.setIsRetrievingOwnership(true)
-			const myOwnershipResponse = await fortunaApiClient.solanaDataService.retrieveMyOwnership()
+			positionsAndTransactionsClass.setIsRetrievingOwnership(true)
+			const myOwnershipResponse = await fortunaApiClient.positionsAndTransactionsDataService.retrieveMyOwnership()
 
 			if (
 				!_.isEqual(myOwnershipResponse.status, 200) ||
@@ -29,14 +29,14 @@ export default function useRetrieveMyOwnership(): () => Promise<void> {
 				isErrorResponse(myOwnershipResponse.data)
 			) return
 
-			exchangeClass.setMyOwnership(myOwnershipResponse.data.myOwnershipList)
-			exchangeClass.setHasOwnershipToRetrieve(false)
+			positionsAndTransactionsClass.setMyOwnership(myOwnershipResponse.data.myOwnershipList)
+			positionsAndTransactionsClass.setHasOwnershipToRetrieve(false)
 		} catch (error) {
 			console.error(error)
 		} finally {
-			if (!_.isNull(exchangeClass)) exchangeClass.setIsRetrievingOwnership(false)
+			if (!_.isNull(positionsAndTransactionsClass)) positionsAndTransactionsClass.setIsRetrievingOwnership(false)
 		}
-	}, [exchangeClass, fortunaApiClient.solanaDataService, personalInfoClass?.username])
+	}, [positionsAndTransactionsClass, personalInfoClass?.username, fortunaApiClient.positionsAndTransactionsDataService])
 
 	return retrieveMyOwnership
 }

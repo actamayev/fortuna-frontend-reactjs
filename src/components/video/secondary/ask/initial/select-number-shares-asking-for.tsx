@@ -5,20 +5,23 @@ import { useParams } from "react-router-dom"
 import FormGroup from "../../../../form-group"
 import { useExchangeContext } from "../../../../../contexts/exchange-context"
 import useFormatNumberToWholeNumber from "../../../../../hooks/format-number-to-whole-number"
+import { usePositionsAndTransactionsContext } from "../../../../../contexts/positions-and-transactions-context"
 
 function SelectNumberSharesAskingFor() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const exchangeClass = useExchangeContext()
+	const positionsAndTransactionClass = usePositionsAndTransactionsContext()
 	const formatNumberToWholeNumber = useFormatNumberToWholeNumber()
 
 	const handleChangeShareNumber = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return
+		if (_.isNull(exchangeClass) || _.isNull(positionsAndTransactionClass) || _.isUndefined(videoUUID)) return
 		let value = formatNumberToWholeNumber(e.target.value)
 		if (isNaN(value)) value = 0
-		const numberSharesAbleToSell = exchangeClass.getNumberSharesAbleToSell(videoUUID)
+		const remainingSharesForSale = exchangeClass.getRemainingSharesForSale(videoUUID)
+		const numberSharesAbleToSell = positionsAndTransactionClass.getNumberSharesAbleToSell(videoUUID, remainingSharesForSale)
 		if (value > numberSharesAbleToSell) value = numberSharesAbleToSell
 		exchangeClass.updateSplAskDetails("numberofSharesAskingFor", value)
-	}, [exchangeClass, formatNumberToWholeNumber, videoUUID])
+	}, [exchangeClass, formatNumberToWholeNumber, positionsAndTransactionClass, videoUUID])
 
 	const numberofSharesAskingFor = useMemo(() => {
 		if (_.isNull(exchangeClass)) return ""
@@ -27,9 +30,10 @@ function SelectNumberSharesAskingFor() {
 	}, [exchangeClass, exchangeClass?.askForSplSharesDetails.numberofSharesAskingFor])
 
 	const numberSharesAbleToSell = useMemo(() => {
-		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return 0
-		return exchangeClass.getNumberSharesAbleToSell(videoUUID)
-	}, [exchangeClass, videoUUID])
+		if (_.isNull(exchangeClass) || _.isNull(positionsAndTransactionClass) || _.isUndefined(videoUUID)) return 0
+		const remainingSharesForSale = exchangeClass.getRemainingSharesForSale(videoUUID)
+		return positionsAndTransactionClass.getNumberSharesAbleToSell(videoUUID, remainingSharesForSale)
+	}, [exchangeClass, positionsAndTransactionClass, videoUUID])
 
 	return (
 		<FormGroup

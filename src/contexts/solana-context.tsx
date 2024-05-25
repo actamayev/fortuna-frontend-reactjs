@@ -18,7 +18,6 @@ class SolanaClass {
 		transferStage: "initial"
 	}
 	public isPublicKeySearchLoading = false
-	private _myTransactions: SolanaTransaction[] = []
 
 	public newSplDetails: NewSPLDetails = {
 		splName: "",
@@ -35,9 +34,6 @@ class SolanaClass {
 
 	public solPriceDetails: SolPriceDetails | null = null
 	public isRetrievingSolPriceDetails = false
-
-	public hasTransactionsToRetrieve = true
-	public isRetrievingTransactions = false
 
 	public isRetrievingWalletDetails = false
 
@@ -61,43 +57,12 @@ class SolanaClass {
 		this._walletBalanceSol = walletBalanceSol
 	}
 
-	get myTransactions(): SolanaTransaction[] {
-		return this._myTransactions
-	}
-
-	set myTransactions(myTransactions: SolanaTransaction[]) {
-		this._myTransactions = myTransactions
-	}
-
-	public contextForMyTransaction(transactionId: number): SolanaTransaction | undefined {
-		return this.myTransactions.find(transaction => transaction.solTransferId === transactionId)
-	}
-
 	public setIsNewSplLoading = action((newState: boolean): void => {
 		this.isNewSplLoading = newState
 	})
 
 	public setIsPublicKeySearchLoading = action((newState: boolean): void => {
 		this.isPublicKeySearchLoading = newState
-	})
-
-	public setHasTransactionsToRetrieve = action((newState: boolean): void => {
-		this.hasTransactionsToRetrieve = newState
-	})
-
-	public setIsRetrievingTransactions = action((newState: boolean): void => {
-		this.isRetrievingTransactions = newState
-	})
-
-	public setTransactions = action((solanaTransactions: SolanaTransaction[]): void => {
-		this.myTransactions = []
-		solanaTransactions.forEach(transaction => this.addSolanaTransaction(transaction))
-	})
-
-	public addSolanaTransaction = action((solanaTransaction: SolanaTransaction): void => {
-		const retrievedTransaction = this.contextForMyTransaction(solanaTransaction.solTransferId)
-		if (!_.isUndefined(retrievedTransaction)) return
-		this.myTransactions.unshift(solanaTransaction)
 	})
 
 	public setIsRetrievingWalletDetails = action((newState: boolean): void => {
@@ -195,13 +160,10 @@ class SolanaClass {
 		this.isTransferSolButtonPressed = false
 		this.resetTransferSolDetails()
 		this.isPublicKeySearchLoading = false
-		this.myTransactions = []
 		this.resetNewSplDetails()
 		this.isNewSplLoading = false
 		this.solPriceDetails = null
 		this.isRetrievingSolPriceDetails = false
-		this.hasTransactionsToRetrieve = true
-		this.isRetrievingTransactions = false
 		this.isRetrievingWalletDetails = false
 	}
 }

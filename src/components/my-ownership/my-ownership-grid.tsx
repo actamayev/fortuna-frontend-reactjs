@@ -4,30 +4,30 @@ import { useEffect, useState } from "react"
 import { AgGridReact } from "ag-grid-react"
 import "ag-grid-community/styles/ag-grid.css"
 import "ag-grid-community/styles/ag-theme-alpine.css"
-import { useExchangeContext } from "../../contexts/exchange-context"
 import useSetGridHeight from "../../hooks/set-grid-height-use-effect"
 import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
 import myOwnershipColumns from "../../utils/grids/my-ownership/my-ownership-columns"
 import createOwnershipArrayForGrid from "../../utils/grids/my-ownership/create-ownership-array-for-grid"
+import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
 
 function MyOwnershipGrid() {
-	const exchangeClass = useExchangeContext()
+	const positionsAndTransactionClass = usePositionsAndTransactionsContext()
 	const [rowData, setRowData] = useState<OwnershipGridRowData[]>([])
 	const [gridHeight, setGridHeight] = useState<string | number>("100%")
 	useSetGridHeight(rowData.length, setGridHeight)
 	const navigateToVideo = useNavigateToVideo()
 
 	useEffect(() => {
-		if (_.isNull(exchangeClass)) return
-		const eventTypesArray = createOwnershipArrayForGrid(exchangeClass.myOwnership)
+		if (_.isNull(positionsAndTransactionClass)) return
+		const eventTypesArray = createOwnershipArrayForGrid(positionsAndTransactionClass.myOwnership)
 		setRowData(eventTypesArray)
-	}, [exchangeClass, exchangeClass?.myOwnership])
+	}, [positionsAndTransactionClass, positionsAndTransactionClass?.myOwnership])
 
-	if (_.isNull(exchangeClass)) return null
+	if (_.isNull(positionsAndTransactionClass)) return null
 
-	if (exchangeClass.isRetrievingOwnership === true || exchangeClass.hasOwnershipToRetrieve === true) {
+	if (positionsAndTransactionClass.isRetrievingOwnership === true || positionsAndTransactionClass.hasOwnershipToRetrieve === true) {
 		return <div className="dark:text-white">Retrieving Ownership...</div>
-	} else if (_.isEmpty(exchangeClass.myOwnership)) {
+	} else if (_.isEmpty(positionsAndTransactionClass.myOwnership)) {
 		return <div className="dark:text-white">No ownership</div>
 	}
 
