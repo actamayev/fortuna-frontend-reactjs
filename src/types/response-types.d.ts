@@ -57,7 +57,10 @@ declare global {
 		solPriceRetrievedTime: Date
 	}
 	type TransactionsResponse = { transactions: SolanaTransaction[] }
-	type MyOwnershipResponse = { myOwnershipList: MyOwnership[] }
+	type MyOwnershipResponse = {
+		myOwnershipList: MyOwnership[]
+		myExclusiveContentList: MyExclusiveContentData[]
+	}
 	type SolPriceResponse = {
 		solPriceInUSD: number
 		lastRetrievedTime: Date

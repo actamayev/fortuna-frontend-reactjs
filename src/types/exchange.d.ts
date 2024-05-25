@@ -39,15 +39,6 @@ declare global {
 		purchasePricePerShareUsd: number
 	}
 
-	interface MyOwnership {
-		splName: string
-		splPublicKey: string
-		purchaseData: PurchaseData[]
-		imageUrl: string
-		uuid: string
-		isMyContent: boolean
-	}
-
 	interface AskOrderData {
 		secondaryMarketAskId: number
 		splId: number

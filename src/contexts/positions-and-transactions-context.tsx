@@ -6,6 +6,7 @@ class PositionsAndTransactionsClass {
 	private _myContent: MyContent[] = []
 	private _myOwnership: MyOwnership[] = []
 	private _myTransactions: SolanaTransaction[] = []
+	private _myExclusiveContent: MyExclusiveContentData[] = []
 
 	public hasContentToRetrieve = true
 	public isRetrievingContent = false
@@ -36,13 +37,20 @@ class PositionsAndTransactionsClass {
 		this._myOwnership = myOwnership
 	}
 
-
 	get myTransactions(): SolanaTransaction[] {
 		return this._myTransactions
 	}
 
 	set myTransactions(myTransactions: SolanaTransaction[]) {
 		this._myTransactions = myTransactions
+	}
+
+	get myExclusiveContent(): MyExclusiveContentData[] {
+		return this._myExclusiveContent
+	}
+
+	set myExclusiveContent(myExclusiveContent: MyExclusiveContentData[]) {
+		this._myExclusiveContent = myExclusiveContent
 	}
 
 	public contextForMyContent(mintAddress: string): MyContent | undefined {
@@ -55,6 +63,10 @@ class PositionsAndTransactionsClass {
 
 	public contextForMyTransaction(transactionId: number): SolanaTransaction | undefined {
 		return this.myTransactions.find(transaction => transaction.solTransferId === transactionId)
+	}
+
+	public contextForMyExclusiveContent(uuid: string): MyExclusiveContentData | undefined {
+		return this.myExclusiveContent.find(exclusiveContent => exclusiveContent.uuid === uuid)
 	}
 
 	public setTransactions = action((solanaTransactions: SolanaTransaction[]): void => {
@@ -76,6 +88,25 @@ class PositionsAndTransactionsClass {
 
 	public checkIfUuidExistsInContentList(uuid: string): boolean {
 		for (const content of this.myContent) {
+			if (_.isEqual(content.uuid, uuid)) return true
+		}
+		return false
+	}
+
+	public setExclusiveContent = action((newExclusiveContent: MyExclusiveContentData[]): void => {
+		this.myExclusiveContent = []
+		if (_.isEmpty(newExclusiveContent)) return
+		newExclusiveContent.map(singleExclusiveContent => this.addExclusiveContent(singleExclusiveContent))
+	})
+
+	public addExclusiveContent = action((newExclusiveContent: MyExclusiveContentData): void => {
+		const retrievedExclusiveContent = this.contextForMyExclusiveContent(newExclusiveContent.uuid)
+		if (!_.isUndefined(retrievedExclusiveContent)) return
+		this.myExclusiveContent.unshift(newExclusiveContent)
+	})
+
+	public checkIfUuidExistsInExclusiveContentList(uuid: string): boolean {
+		for (const content of this.myExclusiveContent) {
 			if (_.isEqual(content.uuid, uuid)) return true
 		}
 		return false
@@ -151,6 +182,7 @@ class PositionsAndTransactionsClass {
 		this.myContent = []
 		this.myOwnership = []
 		this.myTransactions = []
+		this.myExclusiveContent = []
 
 		this.hasContentToRetrieve = true
 		this.isRetrievingContent = false
