@@ -40,6 +40,7 @@ export default function usePurchaseInstantAccess(): (
 				imageUrl: video.imageUrl,
 				uuid: video.uuid
 			}
+			videoClass.addVideoUrlToVideo(videoUUID, purchaseResponse.data.videoUrl)
 			positionsAndTransactionsClass.addExclusiveContent(exclusiveContentToAddToList)
 			exchangeClass.setInstantAccessToExclusiveContentStage("initial")
 			if (_.isNull(video.listingPriceToAccessContentUsd)) return
