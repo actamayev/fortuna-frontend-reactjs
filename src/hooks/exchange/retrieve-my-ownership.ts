@@ -30,7 +30,7 @@ export default function useRetrieveMyOwnership(): () => Promise<void> {
 			) return
 
 			positionsAndTransactionsClass.setMyOwnership(myOwnershipResponse.data.myOwnershipList)
-			positionsAndTransactionsClass.setExclusiveContent(myOwnershipResponse.data.myOwnershipList)
+			positionsAndTransactionsClass.setExclusiveContent(myOwnershipResponse.data.myExclusiveContentList)
 			positionsAndTransactionsClass.setHasOwnershipToRetrieve(false)
 		} catch (error) {
 			console.error(error)

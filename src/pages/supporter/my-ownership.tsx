@@ -3,7 +3,8 @@ import { observer } from "mobx-react"
 import { useAuthContext } from "../../contexts/auth-context"
 import SectionHeader from "../../components/headers/section-header"
 import ShowAuthToNullUser from "../../components/show-auth-to-null-user"
-import MyOwnershipGrid from "../../components/my-ownership/my-ownership-grid"
+import MySharesOwnershipGrid from "../../components/my-ownership/my-shares-ownership/my-ownership-grid"
+import MyExclusiveContentOwnershipMap from "../../components/my-ownership/my-exclusive-content-ownership/my-exclusive-content-ownership-map"
 
 function MyOwnership() {
 	const authClass = useAuthContext()
@@ -15,7 +16,8 @@ function MyOwnership() {
 	return (
 		<>
 			<SectionHeader siteTitle="My Ownership" />
-			<MyOwnershipGrid />
+			<MySharesOwnershipGrid />
+			<MyExclusiveContentOwnershipMap />
 		</>
 	)
 }

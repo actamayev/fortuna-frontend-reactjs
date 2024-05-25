@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import SingleContent from "./single-content"
+import SingleMyContent from "./single-my-content"
 import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
 
 function MyContentMap() {
@@ -18,8 +18,8 @@ function MyContentMap() {
 
 	return (
 		<div className="grid grid-cols-4">
-			{positionsAndTransactionClass.myContent.map(singleContent => (
-				<SingleContent key={singleContent.mintAddress} content={singleContent} />
+			{positionsAndTransactionClass.myContent.map(singleMyContent => (
+				<SingleMyContent key={singleMyContent.mintAddress} content={singleMyContent} />
 			))}
 		</div>
 	)

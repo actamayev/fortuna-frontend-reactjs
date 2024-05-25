@@ -4,13 +4,13 @@ import { useEffect, useState } from "react"
 import { AgGridReact } from "ag-grid-react"
 import "ag-grid-community/styles/ag-grid.css"
 import "ag-grid-community/styles/ag-theme-alpine.css"
-import useSetGridHeight from "../../hooks/set-grid-height-use-effect"
-import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
-import myOwnershipColumns from "../../utils/grids/my-ownership/my-ownership-columns"
-import createOwnershipArrayForGrid from "../../utils/grids/my-ownership/create-ownership-array-for-grid"
-import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
+import useSetGridHeight from "../../../hooks/set-grid-height-use-effect"
+import useNavigateToVideo from "../../../hooks/navigate/navigate-to-video"
+import myOwnershipColumns from "../../../utils/grids/my-ownership/my-ownership-columns"
+import createOwnershipArrayForGrid from "../../../utils/grids/my-ownership/create-ownership-array-for-grid"
+import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 
-function MyOwnershipGrid() {
+function MySharesOwnershipGrid() {
 	const positionsAndTransactionClass = usePositionsAndTransactionsContext()
 	const [rowData, setRowData] = useState<OwnershipGridRowData[]>([])
 	const [gridHeight, setGridHeight] = useState<string | number>("100%")
@@ -33,6 +33,7 @@ function MyOwnershipGrid() {
 
 	return (
 		<div className="flex-1">
+			Shares
 			<div className="ag-theme-alpine" style={{ height: gridHeight, width: "100%" }}>
 				<AgGridReact
 					columnDefs={myOwnershipColumns}
@@ -48,4 +49,4 @@ function MyOwnershipGrid() {
 	)
 }
 
-export default observer(MyOwnershipGrid)
+export default observer(MySharesOwnershipGrid)
