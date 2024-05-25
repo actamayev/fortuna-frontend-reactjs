@@ -132,10 +132,10 @@ class SolanaClass {
 				this.newSplDetails.allowValueFromSameCreatorTokensForExclusiveContent = true
 			}
 			if (_.isUndefined(this.newSplDetails.listingPriceToAccessExclusiveContentUsd)) {
-				this.newSplDetails.listingPriceToAccessExclusiveContentUsd = 50
+				this.newSplDetails.listingPriceToAccessExclusiveContentUsd = 5
 			}
 			if (_.isUndefined(this.newSplDetails.valueNeededToAccessExclusiveContentUsd)) {
-				this.newSplDetails.valueNeededToAccessExclusiveContentUsd =  10 * this.newSplDetails.listingSharePriceUsd
+				this.newSplDetails.valueNeededToAccessExclusiveContentUsd =  1
 			}
 		}
 	})

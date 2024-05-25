@@ -28,8 +28,8 @@ function ListingPriceToAccessExclusiveContentUsd() {
 				title="Instant content access price ($)"
 				value={listingPriceToAccessExclusiveContentUsd}
 				onChange={updateNewSplDetails}
-				min={50}
-				max={90}
+				min={5}
+				max={100}
 				step={1}
 				disabled={isNewSplLoading}
 			/>

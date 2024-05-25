@@ -5,11 +5,13 @@ import InstantAccessCost from "./instant-access-cost"
 import { useVideoContext } from "../../../../contexts/video-context"
 import ReviewInstantAccessButton from "./review-instant-access-button"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
+import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
 
 function InitialInstantAccessInfo() {
 	const { videoUUID } = useParams<{ videoUUID: string}>()
 	const videoClass = useVideoContext()
 	const exchangeClass = useExchangeContext()
+	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
 	const video = videoClass.findVideoFromUUID(videoUUID)
 
@@ -17,6 +19,8 @@ function InitialInstantAccessInfo() {
 		_.isUndefined(video) ||
 		video.isSplExclusive === false ||
 		_.isNull(exchangeClass) ||
+		_.isNull(positionsAndTransactionsClass) ||
+		positionsAndTransactionsClass.checkIfUuidExistsInExclusiveContentList(videoUUID) === true ||
 		exchangeClass.instantAccessToExclusiveContentStage !== "initial"
 	) return null
 

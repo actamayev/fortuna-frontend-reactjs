@@ -29,9 +29,6 @@ function CreateTokenSummary() {
 			<div>
 				Pegging to USD
 			</div>
-			<div className="font-bold">
-				Exclusive content summary
-			</div>
 		</div>
 	)
 }

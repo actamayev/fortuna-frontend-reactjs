@@ -105,7 +105,8 @@ class PositionsAndTransactionsClass {
 		this.myExclusiveContent.unshift(newExclusiveContent)
 	})
 
-	public checkIfUuidExistsInExclusiveContentList(uuid: string): boolean {
+	public checkIfUuidExistsInExclusiveContentList(uuid: string | undefined): boolean {
+		if (_.isUndefined(uuid)) return true
 		for (const content of this.myExclusiveContent) {
 			if (_.isEqual(content.uuid, uuid)) return true
 		}

@@ -51,7 +51,7 @@ export default function useUploadMintInfoOnclick(): (
 				return
 			}
 
-			setStatus("Uploading Thumbnail/picture")
+			setStatus("Uploading Thumbnail")
 			const uploadImageResponse = await fortunaApiClient.uploadDataService.uploadImageToS3(
 				solanaClass.newSplDetails.selectedImage, uploadVideoResponse.data.uuid
 			)
