@@ -17,7 +17,7 @@ export default function VideoPlayer(props: Props) {
 					className="w-full h-full rounded-lg"
 					controlsList="nodownload"
 				>
-					Exclusiv content
+					Exclusivew content
 				</video>
 			</div>
 		)

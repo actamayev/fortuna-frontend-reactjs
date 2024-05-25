@@ -22,4 +22,10 @@ export default class ExchangeDataService {
 	async retrieveOrders(): Promise<AxiosResponse<RetrievedOrdersResponse | MessageResponse | ErrorResponse>> {
 		return await this.httpClient.http.get<RetrievedOrdersResponse | MessageResponse | ErrorResponse>("/exchange/retrieve-my-orders")
 	}
+
+	async purchaseExclusiveContentAccess(videoUUID: string): Promise<AxiosResponse<RetrievedVideoUrl | NonSuccessResponse>> {
+		return await this.httpClient.http.post<RetrievedVideoUrl | NonSuccessResponse>(
+			"/exchange/purchase-exclusive-content-access", { videoUUID }
+		)
+	}
 }

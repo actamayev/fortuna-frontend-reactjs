@@ -11,7 +11,7 @@ export default function useCalculateMaxSharesToPurchase(): (
 
 	const calculateMaxSharesToPurchase = useCallback((videoUUID: string | undefined): number => {
 		try {
-			if (_.isNull(solanaClass) || _.isUndefined(videoUUID) || _.isNull(solanaClass.walletBalanceSol)) return 0
+			if (_.isNull(solanaClass) || _.isNull(solanaClass.walletBalanceSol)) return 0
 
 			const video = videoClass.findVideoFromUUID(videoUUID)
 			if (_.isUndefined(video) || _.isEqual(video.listingSharePriceUsd, 0) || _.isEqual(video.sharesRemainingForSale, 0)) return 0

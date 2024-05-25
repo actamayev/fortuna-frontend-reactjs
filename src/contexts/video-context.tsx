@@ -23,7 +23,8 @@ class VideoClass {
 		makeAutoObservable(this)
 	}
 
-	public findVideoFromUUID(videoUUID: string): VideoDataWithVideoUrl | undefined {
+	public findVideoFromUUID(videoUUID: string | undefined): VideoDataWithVideoUrl | undefined {
+		if (_.isUndefined(videoUUID)) return undefined
 		let video = this.contextForVideo(videoUUID)
 		if (!_.isUndefined(video)) return video
 		video = this.findVideoInSearchMapByUUID(videoUUID)
@@ -162,8 +163,15 @@ class VideoClass {
 		this.isCreatorDataBeingRetrieved = newState
 	})
 
+	private clearVideoDataOnLogout = action((): void => {
+		this.videos.map(video => {
+			delete video.videoUrl
+			delete video.isUserAbleToAccessVideo
+		})
+	})
+
 	public logout() {
-		this.videos = []
+		this.clearVideoDataOnLogout()
 		this.videoSearchMap.clear()
 		this.creatorData = []
 		this.videosBeingRetrieved = []

@@ -17,7 +17,6 @@ function Video() {
 	useSetSingleVideo(videoUUID, setIsVideoLoading, setIsVideoNotFound)
 	useRetrieveVideoUrlData(videoUUID)
 
-	if (_.isUndefined(videoUUID)) return null
 	if (isVideoLoading === true) return <>Loading...</>
 
 	if (isVideoNotFound === true) return <>Unable to find video.</>

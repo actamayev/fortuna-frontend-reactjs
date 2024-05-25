@@ -9,7 +9,7 @@ function ImpliedVideoValue() {
 	const exchangeClass = useExchangeContext()
 	const videoClass = useVideoContext()
 
-	if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return null
+	if (_.isNull(exchangeClass)) return null
 	const video = videoClass.findVideoFromUUID(videoUUID)
 	if (_.isUndefined(video)) return null
 

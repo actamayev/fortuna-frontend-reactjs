@@ -21,7 +21,7 @@ function ReviewPurchaseButton() {
 	}, [exchangeClass, exchangeClass?.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, videoUUID])
 
 	const onClickButton = useCallback(() => {
-		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return
+		if (_.isNull(exchangeClass)) return
 		const video = videoClass.findVideoFromUUID(videoUUID)
 		if (_.isUndefined(video)) return
 		exchangeClass.updatePurchasePrimarySplSharesDetails("purchaseStage", "review")
@@ -33,7 +33,7 @@ function ReviewPurchaseButton() {
 			onClick={onClickButton}
 			colorClass="bg-blue-200"
 			hoverClass="hover:bg-blue-300"
-			title={"Review Purchase"}
+			title="Review Purchase"
 			disabled={!isAbleToPurchaseShares}
 			className="font-semibold"
 		/>

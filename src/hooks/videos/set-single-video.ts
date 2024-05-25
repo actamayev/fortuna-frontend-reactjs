@@ -33,8 +33,6 @@ export default function useSetSingleVideo(
 	}, [fortunaApiClient.videoDataService, setIsVideoLoading, setIsVideoNotFound, videoClass, videoUUID])
 
 	useEffect(() => {
-		if (_.isUndefined(videoUUID)) return
-
 		const video = videoClass.findVideoFromUUID(videoUUID)
 		if (!_.isUndefined(video)) return
 

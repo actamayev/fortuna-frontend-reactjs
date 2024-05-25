@@ -24,7 +24,7 @@ function ReviewAskButton() {
 		exchangeClass?.askForSplSharesDetails.askPricePerShareUsd, exchangeClass?.askForSplSharesDetails.numberofSharesAskingFor])
 
 	const onClickButton = useCallback(() => {
-		if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return
+		if (_.isNull(exchangeClass)) return
 		const video = videoClass.findVideoFromUUID(videoUUID)
 		if (_.isUndefined(video)) return
 		exchangeClass.updateSplAskDetails("saleStage", "review")

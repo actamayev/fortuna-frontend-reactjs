@@ -13,6 +13,10 @@ declare global {
 		contentMintDate: Date
 		creatorUsername: string
 		creatorProfilePictureUrl: string | null
+		isSplExclusive: boolean
+		valueNeededToAccessExclusiveContentUsd: number | null
+		listingPriceToAccessContentUsd: number | null
+		allowValueFromSameCreatorTokensForExclusiveContent: boolean | null
 	}
 
 	interface SingleVideoDataFromBackend extends VideoDataLessVideoUrl {

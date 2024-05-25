@@ -6,7 +6,7 @@ import { useSolanaContext } from "../../../../contexts/solana-context"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
 import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
 
-function ShowRemainingWalletBalanceAfterPrimaryPurchase() {
+function ShowRemainingWalletBalanceAfterInstantAccessPurchase() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const videoClass = useVideoContext()
 	const solanaClass = useSolanaContext()
@@ -20,11 +20,9 @@ function ShowRemainingWalletBalanceAfterPrimaryPurchase() {
 	) return null
 
 	const video = videoClass.findVideoFromUUID(videoUUID)
-	if (_.isUndefined(video)) return null
+	if (_.isUndefined(video) || _.isNull(video.listingPriceToAccessContentUsd)) return null
 
-	const remainingWalletBalanceUsd =
-		// eslint-disable-next-line max-len
-		solanaClass.walletBalanceUSD.get() - video.listingSharePriceUsd * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing
+	const remainingWalletBalanceUsd = solanaClass.walletBalanceUSD.get() - video.listingPriceToAccessContentUsd
 
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return <>${remainingWalletBalanceUsd.toFixed(2)}</>
@@ -35,4 +33,4 @@ function ShowRemainingWalletBalanceAfterPrimaryPurchase() {
 	return <>{(remainingWalletBalanceUsd / solPriceInUSD).toFixed(4)} SOL</>
 }
 
-export default observer(ShowRemainingWalletBalanceAfterPrimaryPurchase)
+export default observer(ShowRemainingWalletBalanceAfterInstantAccessPurchase)

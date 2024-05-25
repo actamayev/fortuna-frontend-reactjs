@@ -1,14 +1,14 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import { isNonSuccessResponse } from "../../utils/type-checks"
-import { useVideoContext } from "../../contexts/video-context"
-import { useSolanaContext } from "../../contexts/solana-context"
-import { useExchangeContext } from "../../contexts/exchange-context"
-import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
+import { isNonSuccessResponse } from "../../../utils/type-checks"
+import { useVideoContext } from "../../../contexts/video-context"
+import { useSolanaContext } from "../../../contexts/solana-context"
+import { useExchangeContext } from "../../../contexts/exchange-context"
+import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 
 export default function usePurchasePrimarySplTokens(): (
-	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
-	videoUUID: string
+	videoUUID: string,
+	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => Promise<void> {
 	const videoClass = useVideoContext()
 	const solanaClass = useSolanaContext()
@@ -16,8 +16,8 @@ export default function usePurchasePrimarySplTokens(): (
 	const fortunaApiClient = useApiClientContext()
 
 	const purchasePrimarySplTokens = useCallback(async (
-		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
-		videoUUID: string
+		videoUUID: string,
+		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 	): Promise<void> => {
 		try {
 			if (_.isNull(exchangeClass) || _.isNull(solanaClass) || _.isNull(fortunaApiClient.httpClient.accessToken)) return

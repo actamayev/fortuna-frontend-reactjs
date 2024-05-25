@@ -39,6 +39,8 @@ class ExchangeClass {
 		askPricePerShareUsd: 0
 	}
 
+	public instantAccessToExclusiveContentStage: TransactionStage = "initial"
+
 	constructor() {
 		makeAutoObservable(this)
 	}
@@ -243,6 +245,10 @@ class ExchangeClass {
 		this.buyOrSellSecondarySplShares = newValue
 	})
 
+	public setInstantAccessToExclusiveContentStage = action((newValue: TransactionStage): void => {
+		this.instantAccessToExclusiveContentStage = newValue
+	})
+
 	public logout() {
 		this.myContent = []
 		this.myOwnership = []
@@ -258,6 +264,7 @@ class ExchangeClass {
 		this.resetSplBidDetails()
 		this.resetSplAskDetails()
 		this.buyOrSellSecondarySplShares = "Buy"
+		this.setInstantAccessToExclusiveContentStage("initial")
 	}
 }
 

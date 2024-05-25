@@ -5,7 +5,7 @@ import { useVideoContext } from "../../../../contexts/video-context"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
 
-function CostPerShareArea() {
+function InstantAccessCost() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const videoClass = useVideoContext()
 	const solanaClass = useSolanaContext()
@@ -13,13 +13,13 @@ function CostPerShareArea() {
 
 	if (_.isNull(personalInfoClass)) return null
 	const video = videoClass.findVideoFromUUID(videoUUID)
-	if (_.isUndefined(video)) return null
+	if (_.isUndefined(video) || _.isNull(video.listingPriceToAccessContentUsd)) return null
 
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return (
 			<>
-				Cost per share: {" "}
-				${_.round(video.listingSharePriceUsd, 2)}
+				Instant access cost:
+				${_.round(video.listingPriceToAccessContentUsd, 2)}
 			</>
 		)
 	}
@@ -29,10 +29,10 @@ function CostPerShareArea() {
 	const solPriceInUSD = solanaClass.solPriceDetails.solPriceInUSD
 	return (
 		<>
-			Cost per share: {" "}
-			{_.round(video.listingSharePriceUsd / solPriceInUSD, 4)} SOL
+			Instant access cost: {" "}
+			{_.round(video.listingPriceToAccessContentUsd / solPriceInUSD, 4)} SOL
 		</>
 	)
 }
 
-export default observer(CostPerShareArea)
+export default observer(InstantAccessCost)
