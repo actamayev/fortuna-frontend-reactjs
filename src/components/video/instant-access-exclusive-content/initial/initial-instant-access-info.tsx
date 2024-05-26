@@ -17,6 +17,7 @@ function InitialInstantAccessInfo(props: Props) {
 	if (
 		_.isUndefined(video) ||
 		video.isSplExclusive === false ||
+		!_.isUndefined(video.videoUrl) ||
 		_.isNull(positionsAndTransactionsClass) ||
 		positionsAndTransactionsClass.checkIfUuidExistsInExclusiveContentList(video.uuid) === true ||
 		_.isNull(exchangeClass) ||
@@ -34,7 +35,9 @@ function InitialInstantAccessInfo(props: Props) {
 				Instant Access
 			</div>
 			<InstantAccessCost video={video}/>
-			<ReviewInstantAccessButton video={video}/>
+			<div className="mt-3 mb-3 flex justify-center">
+				<ReviewInstantAccessButton video={video}/>
+			</div>
 		</>
 	)
 }

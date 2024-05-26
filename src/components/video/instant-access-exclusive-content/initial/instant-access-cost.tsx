@@ -19,7 +19,7 @@ function InstantAccessCost(props: Props) {
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return (
 			<>
-				Instant access cost:
+				Instant access price:
 				${_.round(video.listingPriceToAccessContentUsd, 2)}
 			</>
 		)
@@ -31,7 +31,7 @@ function InstantAccessCost(props: Props) {
 
 	return (
 		<>
-			Instant access cost: {" "}
+			Instant access price: {" "}
 			{_.round(video.listingPriceToAccessContentUsd / solPriceInUSD, 4)} SOL
 		</>
 	)
