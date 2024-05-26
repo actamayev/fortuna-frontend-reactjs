@@ -34,7 +34,9 @@ function HowIsUserAbleToAccessExclusiveContent(props: Props) {
 					you hold enough value from other videos to access this video.`
 				}
 				width="250px"
-			/>
+			>
+				ℹ️
+			</Tooltip>
 		</div>
 	)
 }

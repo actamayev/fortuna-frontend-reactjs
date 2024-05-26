@@ -28,7 +28,9 @@ function InitialPrimaryPurchaseInfo() {
 				<Tooltip
 					message="All proceeds go to the creator"
 					width="225px"
-				/>
+				>
+					ℹ️
+				</Tooltip>
 			</div>
 			<div className="mt-3">
 				<ShowTradingBalance />

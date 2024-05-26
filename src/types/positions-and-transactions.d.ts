@@ -14,6 +14,8 @@ declare global {
 		imageUrl: string
 		uuid: string
 		isMyContent: boolean
+		creatorUsername: string
+		originalListingPricePerShareUsd: number
 	}
 
 	interface SolanaTransaction {

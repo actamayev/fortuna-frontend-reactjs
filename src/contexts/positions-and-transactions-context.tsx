@@ -134,6 +134,17 @@ class PositionsAndTransactionsClass {
 		this.myOwnership[index].purchaseData.push(...purchaseData)
 	})
 
+	public getSumOfValueOfTokensByThisCreator(creatorUsername: string): number {
+		let valueofTokensByThisCreator = 0
+		this.myOwnership.map(ownership => {
+			if (ownership.creatorUsername !== creatorUsername) return
+			const numberSharesOwned = this.getNumberSharesOwnedByUUID(ownership.uuid)
+			valueofTokensByThisCreator += ownership.originalListingPricePerShareUsd * numberSharesOwned
+		})
+
+		return valueofTokensByThisCreator
+	}
+
 	public getNumberSharesOwnedByUUID(uuid: string): number {
 		const ownershipData = this.contextForMyOwnership(uuid)
 		if (_.isUndefined(ownershipData)) return 0
