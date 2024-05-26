@@ -40,7 +40,10 @@ export default function usePurchasePrimarySplTokens(): (
 				throw Error ("Error completing primary SPL purchase")
 			}
 			positionsAndTransactionsClass.addOwnership(purchaseResponse.data)
+
 			videoClass.tokenPurchaseUpdateAvailableShares(videoUUID, purchaseSplTokensData.numberOfTokensPurchasing)
+			if (!_.isUndefined(purchaseResponse.data.videoUrl)) videoClass.addVideoUrlToVideo(videoUUID, purchaseResponse.data.videoUrl)
+
 			exchangeClass.resetPurchaseSplSharesDetails()
 			const purchaseValue = purchaseSplTokensData.numberOfTokensPurchasing * video.listingSharePriceUsd
 			solanaClass.alterWalletBalanceUsd(-purchaseValue)

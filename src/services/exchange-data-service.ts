@@ -5,8 +5,10 @@ export default class ExchangeDataService {
 	constructor(private readonly pathHeader: PathHeaders, private readonly httpClient: FortunaHttpClient) {
 	}
 
-	async primarySplTokenPurchase(purchaseSplTokensData: PurchaseSplTokensData): Promise<AxiosResponse<MyOwnership | NonSuccessResponse>> {
-		return await this.httpClient.http.post<MyOwnership | NonSuccessResponse>(
+	async primarySplTokenPurchase(
+		purchaseSplTokensData: PurchaseSplTokensData
+	): Promise<AxiosResponse<PrimarySplTokenPurchaseResponse | NonSuccessResponse>> {
+		return await this.httpClient.http.post<PrimarySplTokenPurchaseResponse | NonSuccessResponse>(
 			`${this.pathHeader}/primary-spl-token-purchase`, { purchaseSplTokensData }
 		)
 	}

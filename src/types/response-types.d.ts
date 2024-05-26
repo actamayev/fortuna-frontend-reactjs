@@ -13,6 +13,7 @@ declare global {
 	type LoginOrRegisterSuccess = { accessToken: string }
 	type GoogleAuthSuccess = { accessToken: string, isNewUser: boolean }
 
+	// Exchange Resposnes:
 	type BidOrderResponse = {
 		bidOrderData: BidOrderData
 		transactionsMap: TransactionsMap[]
@@ -26,6 +27,10 @@ declare global {
 	type RetrievedOrdersResponse = {
 		asks: AskOrderData[]
 		bids: BidOrderData[]
+	}
+
+	interface PrimarySplTokenPurchaseResponse extends MyOwnership {
+		videoUrl: string | undefined
 	}
 
 	// Personal Info Responses:
