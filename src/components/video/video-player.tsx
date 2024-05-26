@@ -1,5 +1,3 @@
-import _ from "lodash"
-
 interface Props {
 	videoUrl: string | undefined
 }
@@ -8,30 +6,15 @@ interface Props {
 export default function VideoPlayer(props: Props) {
 	const { videoUrl } = props
 
-	if (_.isUndefined(videoUrl)) {
-		return (
-			<div className="w-full">
-				<video
-					controls
-					autoPlay
-					className="w-full h-full rounded-lg"
-					controlsList="nodownload"
-				>
-					Exclusivew content
-				</video>
-			</div>
-		)
-	}
-
 	return (
 		<div className="w-full">
 			<video
 				controls
 				autoPlay
 				className="w-full h-full rounded-lg"
-				controlsList="nodownload" // Prevent download button
+				controlsList="nodownload"
 			>
-				<source src={videoUrl} type="video/mp4" />
+				{videoUrl && <source src={videoUrl} type="video/mp4" />}
                 Your browser does not support the video tag.
 			</video>
 		</div>
