@@ -31,7 +31,7 @@ export default class ExchangeDataService {
 
 	async purchaseExclusiveContentAccess(videoUUID: string): Promise<AxiosResponse<RetrievedVideoUrl | NonSuccessResponse>> {
 		return await this.httpClient.http.post<RetrievedVideoUrl | NonSuccessResponse>(
-			`${this.pathHeader}/purchase-exclusive-content-access`, { videoUUID }
+			`${this.pathHeader}/purchase-exclusive-content-access/${videoUUID}`
 		)
 	}
 }
