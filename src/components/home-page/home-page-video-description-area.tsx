@@ -25,14 +25,14 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 			)}
 			<div className="flex flex-col">
 				<div
-					className="text-lg font-semibold cursor-pointer"
+					className="text-md font-semibold cursor-pointer"
 					style={{ maxWidth: "fit-content" }}
 					onClick={() => navigateToVideoPage(video.uuid)}
 				>
-					{_.truncate(video.splName, { length: 32, omission: "..." })}
+					{_.truncate(video.splName, { length: 24, omission: "..." })}
 				</div>
 				<div
-					className="text-sm text-gray-600 hover:text-black dark:text-gray-300 hover:dark:text-gray-100 cursor-pointer"
+					className="text-xs text-gray-600 hover:text-black dark:text-gray-300 hover:dark:text-gray-100 cursor-pointer"
 					style={{ maxWidth: "fit-content" }}
 					onClick={() => navigateToCreatorPage(video.creatorUsername)}
 				>

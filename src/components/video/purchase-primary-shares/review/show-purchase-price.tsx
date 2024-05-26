@@ -21,7 +21,7 @@ function ShowPurchasePrice() {
 	const numberOfTokensPurchasing = exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return (
-			<div className="flex justify-between mb-2">
+			<div className="flex justify-between mb-1">
 				<div>
 					{numberOfTokensPurchasing} {" "}
 					Share{numberOfTokensPurchasing > 1 ? "s" : ""} {" "}
@@ -40,7 +40,7 @@ function ShowPurchasePrice() {
 	const videoListingSharePriceSol = video.listingSharePriceUsd / solPriceInUSD
 
 	return (
-		<div className="flex justify-between mb-2">
+		<div className="flex justify-between mb-1">
 			<div>
 				{numberOfTokensPurchasing} {" "}
 				Share{numberOfTokensPurchasing > 1 ? "s" : ""} {" "}

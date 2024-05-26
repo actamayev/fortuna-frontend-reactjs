@@ -21,11 +21,12 @@ function LockedContentIcon(props: Props) {
 
 	const sharesNeededToAccessExclusiveContent = valueNeededToAccessContentUsd / video.listingSharePriceUsd
 
+	let message = `Purchase ${sharesNeededToAccessExclusiveContent - numberSharesUserOwns} more shares to unlock.`
 	if (video.allowValueFromSameCreatorTokensForExclusiveContent === false) {
 		return (
 			<Tooltip
-				message={`Purchase ${sharesNeededToAccessExclusiveContent - numberSharesUserOwns} more shares to unlock.`}
-				width="200px"
+				message={message}
+				width="250px"
 			>
 				<FaLock />
 			</Tooltip>
@@ -36,14 +37,16 @@ function LockedContentIcon(props: Props) {
 
 	const valueLeftToPurchaseUsd = valueNeededToAccessContentUsd - sumOfValueOfTokensByThisCreatorUsd
 	const sharesNeededToPurchase = Math.ceil(valueLeftToPurchaseUsd / video.listingSharePriceUsd)
+	if (sumOfValueOfTokensByThisCreatorUsd !== 0) {
+		message = `${video.creatorUsername} has enabled cross-token value.
+		Since you already own $${sumOfValueOfTokensByThisCreatorUsd}
+		of ${video.creatorUsername}'s tokens from other videos, you only need
+		to purchase ${valueLeftToPurchaseUsd} more shares ($${sharesNeededToPurchase}) to unlock access.`
+	}
 	return (
 		<Tooltip
-			message={
-				`${video.creatorUsername} has enabled cross-token value.
-				Since you already own $${sumOfValueOfTokensByThisCreatorUsd}
-				of ${video.creatorUsername}'s tokens from other videos, you only need
-				to purchase ${valueLeftToPurchaseUsd} more shares (${sharesNeededToPurchase}) to unlock access.`
-			}
+			message={message}
+			width={sumOfValueOfTokensByThisCreatorUsd === 0 ? "250px" : "350px"}
 		>
 			<FaLock />
 		</Tooltip>

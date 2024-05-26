@@ -26,7 +26,7 @@ function UnlockedContentIcon(props: Props) {
 					`You own $${valueOfSharesOwnedUsd} of this token, which is more than $${valueNeededToAccessContentUsd}
 					(value necessary to access this exclusive content)`
 				}
-				width="200px"
+				width="250px"
 			>
 				<FaUnlock />
 			</Tooltip>
@@ -36,16 +36,16 @@ function UnlockedContentIcon(props: Props) {
 	let text
 	if (valueNeededToAccessContentUsd) {
 		if (valueOfSharesOwnedUsd < valueNeededToAccessContentUsd) {
-			text = `Even though you don't have ${valueNeededToAccessContentUsd} of this token, you own other tokens by this creator`
+			text = `Even though you don't have $${valueNeededToAccessContentUsd} of this token, you own other tokens by this creator`
 		}
 	}
 	return (
 		<Tooltip
 			message={
 				`${video.creatorUsername} has enabled cross-token value.
-				The sum of the value of the tokens that you own that were created by this creator
-				exceeds the value needed to access this exclusive content. ${text}`
+				The total value of your tokens from this creator exceeds the required value for exclusive content access. ${text}`
 			}
+			width="700px"
 		>
 			<FaUnlock />
 		</Tooltip>

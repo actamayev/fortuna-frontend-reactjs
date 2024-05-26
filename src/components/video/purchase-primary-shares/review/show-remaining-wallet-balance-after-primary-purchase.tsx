@@ -28,7 +28,7 @@ function ShowRemainingWalletBalanceAfterPrimaryPurchase() {
 
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return (
-			<div className="flex justify-between mb-2">
+			<div className="flex justify-between mb-1">
 				<div>New Balance: {" "}</div>
 				<div>
 					${remainingWalletBalanceUsd.toFixed(2)} {" "}
