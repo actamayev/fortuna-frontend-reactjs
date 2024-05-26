@@ -32,18 +32,14 @@ function ReviewInstantAccessInfo() {
 			</div>
 
 			<div className="flex justify-between mb-1">
-				<div>
-					Instant Access Price:
-				</div>
+				<div>Instant Access Price:</div>
 				<div>
 					<ShowInstantAccessPurchasePrice video={video}/>
 				</div>
 			</div>
 
 			<div className="flex justify-between mb-2">
-				<div>
-					New Balance:
-				</div>
+				<div>New Balance:</div>
 				<div>
 					<ShowRemainingWalletBalanceAfterInstantAccessPurchase video={video}/>
 				</div>

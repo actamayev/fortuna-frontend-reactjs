@@ -31,8 +31,8 @@ declare global {
 	type PathHeaders =
 		"/auth" |
 		"/exchange" |
-		"/positions-and-transactions" |
 		"/personal-info" |
+		"/positions-and-transactions" |
 		"/search" |
 		"/solana" |
 		"/upload" |

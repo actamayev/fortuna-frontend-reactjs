@@ -1,9 +1,14 @@
 declare global {
-	interface MyContent extends CommonSplDetails {
-		imageUrl: string
-		videoUrl: string
-		uuid: string
+	interface MyContent {
 		splId: number
+		splName: string
+		numberOfShares: number
+		listingSharePriceUsd: number
+		splListingStatus: SPLListingStatus
+		description: string
+		creatorOwnershipPercentage: number
+		imageUrl: string
+		uuid: string
 		mintAddress: string
 	}
 

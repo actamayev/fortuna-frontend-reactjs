@@ -17,10 +17,9 @@ function ShowRemainingWalletBalanceAfterInstantAccessPurchase(props: Props) {
 	if (
 		_.isNull(solanaClass) ||
 		_.isNull(exchangeClass) ||
-		_.isNull(personalInfoClass)
+		_.isNull(personalInfoClass) ||
+		_.isNull(video.listingPriceToAccessContentUsd)
 	) return null
-
-	if (_.isNull(video.listingPriceToAccessContentUsd)) return null
 
 	const remainingWalletBalanceUsd = solanaClass.walletBalanceUSD.get() - video.listingPriceToAccessContentUsd
 

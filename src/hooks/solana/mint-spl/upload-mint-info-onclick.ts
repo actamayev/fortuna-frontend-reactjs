@@ -86,10 +86,10 @@ export default function useUploadMintInfoOnclick(): (
 
 			const myContent: MyContent = {
 				...restOfSplDetails,
-				imageUrl: uploadImageResponse.data.imageUploadUrl,
-				videoUrl: uploadVideoResponse.data.videoUploadUrl,
-				uuid: uploadVideoResponse.data.uuid,
 				splId: createAndMintResponse.data.newSPLId,
+				splListingStatus: "LISTED",
+				imageUrl: uploadImageResponse.data.imageUploadUrl,
+				uuid: uploadVideoResponse.data.uuid,
 				mintAddress: createAndMintResponse.data.mintAddress
 			}
 
