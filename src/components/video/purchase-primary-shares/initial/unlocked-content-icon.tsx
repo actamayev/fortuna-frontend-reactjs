@@ -12,12 +12,14 @@ function UnlockedContentIcon(props: Props) {
 	const { video } = props
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
-	if (_.isNull(positionsAndTransactionsClass) || _.isUndefined(video.videoUrl)) return null
+	const { videoUrl, uuid, listingSharePriceUsd, valueNeededToAccessExclusiveContentUsd,
+		allowValueFromSameCreatorTokensForExclusiveContent, creatorUsername } = video
 
-	const numberSharesUserOwns = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(video.uuid)
-	const valueOfSharesOwnedUsd = numberSharesUserOwns * video.listingSharePriceUsd
+	if (_.isNull(positionsAndTransactionsClass) || _.isUndefined(videoUrl)) return null
 
-	const { valueNeededToAccessExclusiveContentUsd, allowValueFromSameCreatorTokensForExclusiveContent, creatorUsername } = video
+	const numberSharesUserOwns = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(uuid)
+	const valueOfSharesOwnedUsd = numberSharesUserOwns * listingSharePriceUsd
+
 
 	if (_.isNull(allowValueFromSameCreatorTokensForExclusiveContent)) return null
 
