@@ -22,17 +22,37 @@ function ShowRemainingWalletBalanceAfterPrimaryPurchase() {
 	const video = videoClass.findVideoFromUUID(videoUUID)
 	if (_.isUndefined(video)) return null
 
-	const remainingWalletBalanceUsd =
-		// eslint-disable-next-line max-len
-		solanaClass.walletBalanceUSD.get() - video.listingSharePriceUsd * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing
+	const amountSpendingOnBidUsd = video.listingSharePriceUsd * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing
+
+	const remainingWalletBalanceUsd = solanaClass.walletBalanceUSD.get() - amountSpendingOnBidUsd
 
 	if (personalInfoClass.defaultCurrency === "usd") {
-		return <>${remainingWalletBalanceUsd.toFixed(2)}</>
+		return (
+			<div className="flex justify-between">
+				<div>New Balance: {" "}</div>
+				<div>
+					${remainingWalletBalanceUsd.toFixed(2)} {" "}
+					<span className="text-red-600">
+						(-${amountSpendingOnBidUsd.toFixed(2)})
+					</span>
+				</div>
+			</div>
+		)
 	}
 
 	const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
 	if (_.isUndefined(solPriceInUSD)) return null
-	return <>{(remainingWalletBalanceUsd / solPriceInUSD).toFixed(4)} SOL</>
+	return (
+		<div className="flex justify-between">
+			<div>New Balance: {" "}</div>
+			<div>
+				{(remainingWalletBalanceUsd / solPriceInUSD).toFixed(4)} SOL {" "}
+				<span className="text-red-600">
+					(-{(amountSpendingOnBidUsd / solPriceInUSD).toFixed(4)} SOL)
+				</span>
+			</div>
+		</div>
+	)
 }
 
 export default observer(ShowRemainingWalletBalanceAfterPrimaryPurchase)

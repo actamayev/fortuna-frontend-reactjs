@@ -20,7 +20,7 @@ function ShowInstantAccessPurchasePrice(props: Props) {
 		return (
 			<div className="flex justify-between">
 				<div>
-					Instant Access Price (USD):
+					Instant Access Price:
 				</div>
 				<div>
 					${(video.listingPriceToAccessContentUsd).toFixed(2)}
@@ -37,7 +37,7 @@ function ShowInstantAccessPurchasePrice(props: Props) {
 	return (
 		<div className="flex justify-between">
 			<div>
-				Instant Access Price (SOL):
+				Instant Access Price:
 			</div>
 			<div>
 				{(videoListingSharePriceSol).toFixed(4)} SOL
