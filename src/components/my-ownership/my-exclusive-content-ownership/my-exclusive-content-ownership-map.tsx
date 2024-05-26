@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import SingleMyExclusiveContent from "./single-exclusive-content"
+import SingleMyExclusiveContent from "./single-my-exclusive-content"
 import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 
 function MyExclusiveContentOwnershipMap() {
@@ -18,7 +18,9 @@ function MyExclusiveContentOwnershipMap() {
 
 	return (
 		<>
-			My Exlusive Content
+			<div className="dark:text-white">
+				My Exlusive Content
+			</div>
 			<div className="grid grid-cols-4">
 				{positionsAndTransactionClass.myExclusiveContent.map(exclusiveCotent => (
 					<SingleMyExclusiveContent key={exclusiveCotent.uuid} myExclusiveContent={exclusiveCotent} />

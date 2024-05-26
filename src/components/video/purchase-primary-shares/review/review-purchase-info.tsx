@@ -3,6 +3,7 @@ import PrimaryPurchaseBackButton from "./primary-purchase-back-button"
 import ConfirmPrimaryPurchaseButton from "./confirm-primary-purchase-button"
 import ShowRemainingWalletBalanceAfterPrimaryPurchase from "./show-remaining-wallet-balance-after-primary-purchase"
 
+// ASAP TODO: Add a section which shows the number of shares before and after the purchase (similar to bid/ask area)
 export default function ReviewPurchaseInfo() {
 	return (
 		<>

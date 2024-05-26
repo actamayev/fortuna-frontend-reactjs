@@ -33,7 +33,9 @@ function MySharesOwnershipGrid() {
 
 	return (
 		<div className="flex-1">
-			Shares
+			<div className="dark:text-white">
+				Shares
+			</div>
 			<div className="ag-theme-alpine" style={{ height: gridHeight, width: "100%" }}>
 				<AgGridReact
 					columnDefs={myOwnershipColumns}
