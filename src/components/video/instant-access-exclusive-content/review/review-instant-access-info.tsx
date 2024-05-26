@@ -3,10 +3,10 @@ import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import InstantAccessBackButton from "./instant-access-back-button"
 import { useVideoContext } from "../../../../contexts/video-context"
+import ConfirmInstantAccessButton from "./confirm-instant-access-button"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
 import ShowInstantAccessPurchasePrice from "./show-instant-access-purchase-price"
 import ShowRemainingWalletBalanceAfterInstantAccessPurchase from "./show-remaining-wallet-balance-after-instant-access-purchase"
-import ConfirmInstantAccessButton from "./confirm-instant-access-button"
 
 function ReviewInstantAccessInfo() {
 	const { videoUUID } = useParams<{ videoUUID: string}>()
@@ -30,13 +30,13 @@ function ReviewInstantAccessInfo() {
 					Review Instant Access Purchase
 				</div>
 			</div>
-			<ShowInstantAccessPurchasePrice />
+			<ShowInstantAccessPurchasePrice video={video}/>
 			<div className="flex justify-between">
 				<div>
 					New Balance: {" "}
 				</div>
 				<div>
-					<ShowRemainingWalletBalanceAfterInstantAccessPurchase />
+					<ShowRemainingWalletBalanceAfterInstantAccessPurchase video={video}/>
 				</div>
 			</div>
 			<div className="flex justify-center mt-2">

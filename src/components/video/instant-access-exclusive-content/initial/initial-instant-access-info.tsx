@@ -1,26 +1,25 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useParams } from "react-router-dom"
 import InstantAccessCost from "./instant-access-cost"
-import { useVideoContext } from "../../../../contexts/video-context"
 import ReviewInstantAccessButton from "./review-instant-access-button"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
 import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
 
-function InitialInstantAccessInfo() {
-	const { videoUUID } = useParams<{ videoUUID: string}>()
-	const videoClass = useVideoContext()
+interface Props {
+	video: VideoDataWithVideoUrl
+}
+
+function InitialInstantAccessInfo(props: Props) {
+	const { video } = props
 	const exchangeClass = useExchangeContext()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
-
-	const video = videoClass.findVideoFromUUID(videoUUID)
 
 	if (
 		_.isUndefined(video) ||
 		video.isSplExclusive === false ||
-		_.isNull(exchangeClass) ||
 		_.isNull(positionsAndTransactionsClass) ||
-		positionsAndTransactionsClass.checkIfUuidExistsInExclusiveContentList(videoUUID) === true ||
+		positionsAndTransactionsClass.checkIfUuidExistsInExclusiveContentList(video.uuid) === true ||
+		_.isNull(exchangeClass) ||
 		exchangeClass.instantAccessToExclusiveContentStage !== "initial"
 	) return null
 
@@ -34,8 +33,8 @@ function InitialInstantAccessInfo() {
 			<div className="text-center font-semibold flex justify-center items-center text-xl">
 				Instant Access
 			</div>
-			<InstantAccessCost />
-			<ReviewInstantAccessButton />
+			<InstantAccessCost video={video}/>
+			<ReviewInstantAccessButton video={video}/>
 		</>
 	)
 }

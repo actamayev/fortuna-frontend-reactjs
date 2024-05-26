@@ -1,14 +1,15 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useParams } from "react-router-dom"
-import { useVideoContext } from "../../../../contexts/video-context"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
 import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
 
-function ShowRemainingWalletBalanceAfterInstantAccessPurchase() {
-	const { videoUUID } = useParams<{ videoUUID: string }>()
-	const videoClass = useVideoContext()
+interface Props {
+	video: VideoDataWithVideoUrl
+}
+
+function ShowRemainingWalletBalanceAfterInstantAccessPurchase(props: Props) {
+	const { video } = props
 	const solanaClass = useSolanaContext()
 	const exchangeClass = useExchangeContext()
 	const personalInfoClass = usePersonalInfoContext()
@@ -19,8 +20,7 @@ function ShowRemainingWalletBalanceAfterInstantAccessPurchase() {
 		_.isNull(personalInfoClass)
 	) return null
 
-	const video = videoClass.findVideoFromUUID(videoUUID)
-	if (_.isUndefined(video) || _.isNull(video.listingPriceToAccessContentUsd)) return null
+	if (_.isNull(video.listingPriceToAccessContentUsd)) return null
 
 	const remainingWalletBalanceUsd = solanaClass.walletBalanceUSD.get() - video.listingPriceToAccessContentUsd
 
