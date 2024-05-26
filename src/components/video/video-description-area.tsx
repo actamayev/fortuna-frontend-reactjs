@@ -9,38 +9,47 @@ export default function VideoDescriptionArea(props: Props) {
 	const { video } = props
 	const navigateToCreatorPage = useNavigateToCreator()
 
+	const {
+		splName,
+		creatorProfilePictureUrl,
+		creatorUsername,
+		description,
+		sharesRemainingForSale,
+		totalNumberShares
+	} = video
+
 	return (
 		<div className="flex"> {/* This div will align its children side by side */}
 			<div className="flex-1"> {/* Existing content takes up the space it needs */}
 				<div className="text-2xl font-semibold">
-					{video.splName}
+					{splName}
 				</div>
 				<div className="flex items-center">
-					{video.creatorProfilePictureUrl && (
+					{creatorProfilePictureUrl && (
 						<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center mr-2">
 							<img
-								src={video.creatorProfilePictureUrl}
+								src={creatorProfilePictureUrl}
 								alt="Creator's Profile"
 								className="min-w-full min-h-full object-cover cursor-pointer"
-								onClick={() => navigateToCreatorPage(video.creatorUsername)}
+								onClick={() => navigateToCreatorPage(creatorUsername)}
 							/>
 						</div>
 					)}
 					<span
 						className="text-sm font-medium cursor-pointer"
-						onClick={() => navigateToCreatorPage(video.creatorUsername)}
+						onClick={() => navigateToCreatorPage(creatorUsername)}
 					>
-						{video.creatorUsername}
+						{creatorUsername}
 					</span>
 				</div>
 				<div>
-					{video.description}
+					{description}
 				</div>
 				<div>
-					{video.sharesRemainingForSale} Shares Remaining for {" "}
+					{sharesRemainingForSale} Shares Remaining for {" "}
 					<PricePerShareArea video={video}/>
 				</div>
-                Total Outstanding shares: {video.totalNumberShares}
+                Total Outstanding shares: {totalNumberShares}
 			</div>
 		</div>
 	)

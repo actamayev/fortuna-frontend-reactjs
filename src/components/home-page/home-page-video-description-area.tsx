@@ -13,30 +13,39 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 	const navigateToVideoPage = useNavigateToVideo()
 	const navigateToCreatorPage = useNavigateToCreator()
 
+	const {
+		splName,
+		creatorProfilePictureUrl,
+		creatorUsername,
+		uuid,
+		sharesRemainingForSale,
+		totalNumberShares
+	} = video
+
 	return (
 		<div className="flex items-center pt-1 dark:text-white rounded-lg mx-1">
-			{video.creatorProfilePictureUrl && (
+			{creatorProfilePictureUrl && (
 				<img
-					src={video.creatorProfilePictureUrl}
+					src={creatorProfilePictureUrl}
 					alt="Creator's Profile"
 					className="w-8 h-8 rounded-full mr-2 object-cover cursor-pointer"
-					onClick={() => navigateToCreatorPage(video.creatorUsername)}
+					onClick={() => navigateToCreatorPage(creatorUsername)}
 				/>
 			)}
 			<div className="flex flex-col">
 				<div
 					className="text-md font-semibold cursor-pointer"
 					style={{ maxWidth: "fit-content" }}
-					onClick={() => navigateToVideoPage(video.uuid)}
+					onClick={() => navigateToVideoPage(uuid)}
 				>
-					{_.truncate(video.splName, { length: 24, omission: "..." })}
+					{_.truncate(splName, { length: 24, omission: "..." })}
 				</div>
 				<div
 					className="text-xs text-gray-600 hover:text-black dark:text-gray-300 hover:dark:text-gray-100 cursor-pointer"
 					style={{ maxWidth: "fit-content" }}
-					onClick={() => navigateToCreatorPage(video.creatorUsername)}
+					onClick={() => navigateToCreatorPage(creatorUsername)}
 				>
-					{video.creatorUsername}
+					{creatorUsername}
 				</div>
 			</div>
 			<div className="ml-auto flex flex-col items-end space-y-3">
@@ -45,8 +54,8 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 				</div>
 				<div className="w-full">
 					<SharesAvailableProgressBar
-						sharesRemainingForSale={video.sharesRemainingForSale}
-						totalShares={video.totalNumberShares}
+						sharesRemainingForSale={sharesRemainingForSale}
+						totalShares={totalNumberShares}
 					/>
 				</div>
 			</div>

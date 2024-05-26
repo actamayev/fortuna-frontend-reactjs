@@ -17,14 +17,16 @@ function UnlockedContentIcon(props: Props) {
 	const numberSharesUserOwns = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(video.uuid)
 	const valueOfSharesOwnedUsd = numberSharesUserOwns * video.listingSharePriceUsd
 
-	const valueNeededToAccessContentUsd = video.valueNeededToAccessExclusiveContentUsd
+	const { valueNeededToAccessExclusiveContentUsd, allowValueFromSameCreatorTokensForExclusiveContent, creatorUsername } = video
 
-	if (video.allowValueFromSameCreatorTokensForExclusiveContent === false) {
+	if (_.isNull(allowValueFromSameCreatorTokensForExclusiveContent)) return null
+
+	if (allowValueFromSameCreatorTokensForExclusiveContent === false) {
 		return (
 			<Tooltip
 				message={
-					`You own $${valueOfSharesOwnedUsd} of this token, which is more than $${valueNeededToAccessContentUsd}
-					(value necessary to access this exclusive content)`
+					`You own $${valueOfSharesOwnedUsd} of this token, which is greater than or equal to 
+					the value necessary to access this exclusive content ($${valueNeededToAccessExclusiveContentUsd})`
 				}
 				width="250px"
 			>
@@ -34,15 +36,16 @@ function UnlockedContentIcon(props: Props) {
 	}
 
 	let text
-	if (valueNeededToAccessContentUsd) {
-		if (valueOfSharesOwnedUsd < valueNeededToAccessContentUsd) {
-			text = `Even though you don't have $${valueNeededToAccessContentUsd} of this token, you own other tokens by this creator`
+	if (valueNeededToAccessExclusiveContentUsd) {
+		if (valueOfSharesOwnedUsd < valueNeededToAccessExclusiveContentUsd) {
+			text = `Even though you don't have $${valueNeededToAccessExclusiveContentUsd}
+				of this token, you own other tokens by this creator`
 		}
 	}
 	return (
 		<Tooltip
 			message={
-				`${video.creatorUsername} has enabled cross-token value.
+				`${creatorUsername} has enabled cross-token value.
 				The total value of your tokens from this creator exceeds the required value for exclusive content access. ${text}`
 			}
 			width="700px"

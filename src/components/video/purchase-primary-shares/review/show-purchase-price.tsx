@@ -19,16 +19,18 @@ function ShowPurchasePrice() {
 	if (_.isUndefined(video)) return null
 
 	const numberOfTokensPurchasing = exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing
+	const { listingSharePriceUsd } = video
+
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return (
 			<div className="flex justify-between mb-1">
 				<div>
 					{numberOfTokensPurchasing} {" "}
 					Share{numberOfTokensPurchasing > 1 ? "s" : ""} {" "}
-					X ${_.round(video.listingSharePriceUsd, 2)}
+					X ${_.round(listingSharePriceUsd, 2)}
 				</div>
 				<div>
-					${(video.listingSharePriceUsd * numberOfTokensPurchasing).toFixed(2)}
+					${(listingSharePriceUsd * numberOfTokensPurchasing).toFixed(2)}
 				</div>
 			</div>
 		)
@@ -37,7 +39,7 @@ function ShowPurchasePrice() {
 	if (_.isNull(solanaClass)) return null
 	const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
 	if (_.isUndefined(solPriceInUSD)) return null
-	const videoListingSharePriceSol = video.listingSharePriceUsd / solPriceInUSD
+	const videoListingSharePriceSol = listingSharePriceUsd / solPriceInUSD
 
 	return (
 		<div className="flex justify-between mb-1">

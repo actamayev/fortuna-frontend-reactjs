@@ -16,13 +16,13 @@ function LockedContentIcon(props: Props) {
 
 	const numberSharesUserOwns = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(video.uuid)
 
-	const valueNeededToAccessContentUsd = video.valueNeededToAccessExclusiveContentUsd
-	if (_.isNull(valueNeededToAccessContentUsd)) return null
+	const { valueNeededToAccessExclusiveContentUsd, listingSharePriceUsd, allowValueFromSameCreatorTokensForExclusiveContent } = video
+	if (_.isNull(valueNeededToAccessExclusiveContentUsd) || _.isNull(allowValueFromSameCreatorTokensForExclusiveContent)) return null
 
-	const sharesNeededToAccessExclusiveContent = valueNeededToAccessContentUsd / video.listingSharePriceUsd
+	const sharesNeededToAccessExclusiveContent = Math.ceil(valueNeededToAccessExclusiveContentUsd / listingSharePriceUsd)
 
 	let message = `Purchase ${sharesNeededToAccessExclusiveContent - numberSharesUserOwns} more shares to unlock.`
-	if (video.allowValueFromSameCreatorTokensForExclusiveContent === false) {
+	if (allowValueFromSameCreatorTokensForExclusiveContent === false) {
 		return (
 			<Tooltip
 				message={message}
@@ -35,14 +35,14 @@ function LockedContentIcon(props: Props) {
 
 	const sumOfValueOfTokensByThisCreatorUsd = positionsAndTransactionsClass.getSumOfValueOfTokensByThisCreator(video.creatorUsername)
 
-	const valueLeftToPurchaseUsd = valueNeededToAccessContentUsd - sumOfValueOfTokensByThisCreatorUsd
-	const sharesNeededToPurchase = Math.ceil(valueLeftToPurchaseUsd / video.listingSharePriceUsd)
+	const valueLeftToPurchaseUsd = valueNeededToAccessExclusiveContentUsd - sumOfValueOfTokensByThisCreatorUsd
+	const sharesNeededToPurchase = Math.ceil(valueLeftToPurchaseUsd / listingSharePriceUsd)
 	if (sumOfValueOfTokensByThisCreatorUsd !== 0) {
 		message = `${video.creatorUsername} has enabled cross-token value.
 			Since you already own $${sumOfValueOfTokensByThisCreatorUsd}
 			of ${video.creatorUsername}'s tokens from other videos, you only need
 			to purchase ${sharesNeededToPurchase} more shares ($${valueLeftToPurchaseUsd})
-			to unlock access (originally $${valueNeededToAccessContentUsd})`
+			to unlock access (originally $${valueNeededToAccessExclusiveContentUsd})`
 	}
 	return (
 		<Tooltip
