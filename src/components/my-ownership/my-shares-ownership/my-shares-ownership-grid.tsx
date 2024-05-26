@@ -7,8 +7,8 @@ import "ag-grid-community/styles/ag-theme-alpine.css"
 import useSetGridHeight from "../../../hooks/set-grid-height-use-effect"
 import useNavigateToVideo from "../../../hooks/navigate/navigate-to-video"
 import myOwnershipColumns from "../../../utils/grids/my-ownership/my-ownership-columns"
-import createOwnershipArrayForGrid from "../../../utils/grids/my-ownership/create-ownership-array-for-grid"
 import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
+import createOwnershipArrayForGrid from "../../../utils/grids/my-ownership/create-ownership-array-for-grid"
 
 function MySharesOwnershipGrid() {
 	const positionsAndTransactionClass = usePositionsAndTransactionsContext()
