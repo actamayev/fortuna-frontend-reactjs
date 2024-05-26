@@ -25,13 +25,19 @@ function UnlockedContentIcon(props: Props) {
 	const numberSharesUserOwns = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(uuid)
 	const valueOfSharesOwnedUsd = numberSharesUserOwns * listingSharePriceUsd
 
+	const doesUserHaveInstantExclusiveAccess = positionsAndTransactionsClass.checkIfUuidExistsInExclusiveContentList(uuid)
+
 	if (allowValueFromSameCreatorTokensForExclusiveContent === false) {
+		let message
+		if (doesUserHaveInstantExclusiveAccess === true) {
+			message = "You purchased instant access to this exclusive video"
+		} else {
+			message = `You own $${valueOfSharesOwnedUsd} of this token, which is greater than or equal to 
+			the value necessary to access this exclusive content ($${valueNeededToAccessExclusiveContentUsd})`
+		}
 		return (
 			<Tooltip
-				message={
-					`You own $${valueOfSharesOwnedUsd} of this token, which is greater than or equal to 
-					the value necessary to access this exclusive content ($${valueNeededToAccessExclusiveContentUsd})`
-				}
+				message={message}
 				width="250px"
 			>
 				<FaUnlock />
@@ -39,17 +45,22 @@ function UnlockedContentIcon(props: Props) {
 		)
 	}
 
-	let text
-	if (valueOfSharesOwnedUsd < valueNeededToAccessExclusiveContentUsd) {
-		text = `Even though you don't have $${valueNeededToAccessExclusiveContentUsd}
+	let message
+	if (doesUserHaveInstantExclusiveAccess === true) {
+		message = "You purchased instant access to this exclusive video"
+	} else if (valueOfSharesOwnedUsd < valueNeededToAccessExclusiveContentUsd) {
+		message = `${creatorUsername} has enabled cross-token value.
+			The total value of your tokens from this creator exceeds the required value for exclusive content access.
+			Even though you don't have $${valueNeededToAccessExclusiveContentUsd}
 			of this token, you own other tokens by this creator`
+	} else {
+		message = `${creatorUsername} has enabled cross-token value.
+		The total value of your tokens from this creator exceeds the required value for exclusive content access.`
 	}
+
 	return (
 		<Tooltip
-			message={
-				`${creatorUsername} has enabled cross-token value.
-				The total value of your tokens from this creator exceeds the required value for exclusive content access. ${text}`
-			}
+			message={message}
 			width="700px"
 		>
 			<FaUnlock />
