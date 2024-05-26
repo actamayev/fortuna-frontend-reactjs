@@ -41,7 +41,8 @@ function LockedContentIcon(props: Props) {
 		message = `${video.creatorUsername} has enabled cross-token value.
 		Since you already own $${sumOfValueOfTokensByThisCreatorUsd}
 		of ${video.creatorUsername}'s tokens from other videos, you only need
-		to purchase ${valueLeftToPurchaseUsd} more shares ($${sharesNeededToPurchase}) to unlock access.`
+		to purchase ${sharesNeededToPurchase} more shares ($${valueLeftToPurchaseUsd})
+		to unlock access (originally $${valueNeededToAccessContentUsd})`
 	}
 	return (
 		<Tooltip
