@@ -153,13 +153,6 @@ class PositionsAndTransactionsClass {
 		return numberShares
 	}
 
-	public getNumberSharesAbleToSell(uuid: string, remainingSharesForSale: number): number {
-		const numberSharesOwned = this.getNumberSharesOwnedByUUID(uuid)
-		const sumOfSharesAsked = remainingSharesForSale
-
-		return numberSharesOwned - sumOfSharesAsked
-	}
-
 	public addSolanaTransaction = action((solanaTransaction: SolanaTransaction): void => {
 		const retrievedTransaction = this.contextForMyTransaction(solanaTransaction.solTransferId)
 		if (!_.isUndefined(retrievedTransaction)) return

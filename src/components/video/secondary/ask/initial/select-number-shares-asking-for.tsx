@@ -10,18 +10,19 @@ import { usePositionsAndTransactionsContext } from "../../../../../contexts/posi
 function SelectNumberSharesAskingFor() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const exchangeClass = useExchangeContext()
-	const positionsAndTransactionClass = usePositionsAndTransactionsContext()
+	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const formatNumberToWholeNumber = useFormatNumberToWholeNumber()
 
 	const handleChangeShareNumber = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-		if (_.isNull(exchangeClass) || _.isNull(positionsAndTransactionClass) || _.isUndefined(videoUUID)) return
+		if (_.isNull(exchangeClass) || _.isNull(positionsAndTransactionsClass) || _.isUndefined(videoUUID)) return
 		let value = formatNumberToWholeNumber(e.target.value)
 		if (isNaN(value)) value = 0
-		const remainingSharesForSale = exchangeClass.getRemainingSharesForSale(videoUUID)
-		const numberSharesAbleToSell = positionsAndTransactionClass.getNumberSharesAbleToSell(videoUUID, remainingSharesForSale)
-		if (value > numberSharesAbleToSell) value = numberSharesAbleToSell
+		const numberSharesOwned = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(videoUUID)
+		const numberSharesAskingFor = exchangeClass.getRemainingSharesForSale(videoUUID)
+		const numberSharesAbleToAskFor = numberSharesOwned - numberSharesAskingFor
+		if (value > numberSharesAbleToAskFor) value = numberSharesAbleToAskFor
 		exchangeClass.updateSplAskDetails("numberofSharesAskingFor", value)
-	}, [exchangeClass, formatNumberToWholeNumber, positionsAndTransactionClass, videoUUID])
+	}, [exchangeClass, formatNumberToWholeNumber, positionsAndTransactionsClass, videoUUID])
 
 	const numberofSharesAskingFor = useMemo(() => {
 		if (_.isNull(exchangeClass)) return ""
@@ -30,10 +31,12 @@ function SelectNumberSharesAskingFor() {
 	}, [exchangeClass, exchangeClass?.askForSplSharesDetails.numberofSharesAskingFor])
 
 	const numberSharesAbleToSell = useMemo(() => {
-		if (_.isNull(exchangeClass) || _.isNull(positionsAndTransactionClass) || _.isUndefined(videoUUID)) return 0
-		const remainingSharesForSale = exchangeClass.getRemainingSharesForSale(videoUUID)
-		return positionsAndTransactionClass.getNumberSharesAbleToSell(videoUUID, remainingSharesForSale)
-	}, [exchangeClass, positionsAndTransactionClass, videoUUID])
+		if (_.isNull(exchangeClass) || _.isNull(positionsAndTransactionsClass) || _.isUndefined(videoUUID)) return 0
+		const numberSharesOwned = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(videoUUID)
+		const numberSharesAskingFor = exchangeClass.getRemainingSharesForSale(videoUUID)
+		const numberSharesAbleToAskFor = numberSharesOwned - numberSharesAskingFor
+		return numberSharesAbleToAskFor
+	}, [exchangeClass, positionsAndTransactionsClass, videoUUID])
 
 	return (
 		<FormGroup
