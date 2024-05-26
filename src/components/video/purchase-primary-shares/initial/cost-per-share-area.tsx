@@ -25,7 +25,7 @@ function CostPerShareArea(props: Props) {
 
 	if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null
 
-	const solPriceInUSD = solanaClass.solPriceDetails.solPriceInUSD
+	const { solPriceInUSD } = solanaClass.solPriceDetails
 	return (
 		<>
 			Cost per share: {" "}

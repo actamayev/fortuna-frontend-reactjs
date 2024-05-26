@@ -33,7 +33,7 @@ function UnlockedContentIcon(props: Props) {
 			message = "You purchased instant access to this exclusive video"
 		} else {
 			message = `You own $${valueOfSharesOwnedUsd} of this token, which is greater than or equal to 
-			the value necessary to access this exclusive content ($${valueNeededToAccessExclusiveContentUsd})`
+				the value necessary to access this exclusive content ($${valueNeededToAccessExclusiveContentUsd})`
 		}
 		return (
 			<Tooltip
@@ -55,7 +55,7 @@ function UnlockedContentIcon(props: Props) {
 			of this token, you own other tokens by this creator`
 	} else {
 		message = `${creatorUsername} has enabled cross-token value.
-		The total value of your tokens from this creator exceeds the required value for exclusive content access.`
+			The total value of your tokens from this creator exceeds the required value for exclusive content access.`
 	}
 
 	return (

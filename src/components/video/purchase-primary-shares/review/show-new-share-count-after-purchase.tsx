@@ -12,8 +12,8 @@ function ShowNewShareCountAfterPurchase() {
 	if (_.isNull(exchangeClass) || _.isNull(positionsAndTransactionsClass) || _.isUndefined(videoUUID)) return null
 
 	const numberSharesOwned = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(videoUUID)
-	const numberSharesBiddingFor = exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing
-	const newShareCount = numberSharesOwned + numberSharesBiddingFor
+	const { numberOfTokensPurchasing } = exchangeClass.purchasePrimarySplSharesDetails
+	const newShareCount = numberSharesOwned + numberOfTokensPurchasing
 
 	return (
 		<div className="flex justify-between mb-1">
@@ -21,7 +21,7 @@ function ShowNewShareCountAfterPurchase() {
 			<div>
 				{newShareCount} {" "}
 				<span className="text-green-600">
-					(+{numberSharesBiddingFor})
+					(+{numberOfTokensPurchasing})
 				</span>
 			</div>
 		</div>

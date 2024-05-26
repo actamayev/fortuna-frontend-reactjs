@@ -18,7 +18,7 @@ function ShowPurchasePrice() {
 	const video = videoClass.findVideoFromUUID(videoUUID)
 	if (_.isUndefined(video)) return null
 
-	const numberOfTokensPurchasing = exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing
+	const { numberOfTokensPurchasing } = exchangeClass.purchasePrimarySplSharesDetails
 	const { listingSharePriceUsd } = video
 
 	if (personalInfoClass.defaultCurrency === "usd") {

@@ -43,7 +43,7 @@ function ShowRemainingWalletBalanceAfterPrimaryPurchase() {
 	const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
 	if (_.isUndefined(solPriceInUSD)) return null
 	return (
-		<div className="flex justify-between mb-2">
+		<div className="flex justify-between mb-1">
 			<div>New Balance:</div>
 			<div>
 				{(remainingWalletBalanceUsd / solPriceInUSD).toFixed(4)} SOL {" "}
