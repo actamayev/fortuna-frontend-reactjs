@@ -15,13 +15,15 @@ function UnlockedContentIcon(props: Props) {
 	const { videoUrl, uuid, listingSharePriceUsd, valueNeededToAccessExclusiveContentUsd,
 		allowValueFromSameCreatorTokensForExclusiveContent, creatorUsername } = video
 
-	if (_.isNull(positionsAndTransactionsClass) || _.isUndefined(videoUrl)) return null
+	if (
+		_.isNull(positionsAndTransactionsClass) ||
+		_.isUndefined(videoUrl) ||
+		_.isNull(valueNeededToAccessExclusiveContentUsd) ||
+		_.isNull(allowValueFromSameCreatorTokensForExclusiveContent)
+	) return null
 
 	const numberSharesUserOwns = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(uuid)
 	const valueOfSharesOwnedUsd = numberSharesUserOwns * listingSharePriceUsd
-
-
-	if (_.isNull(allowValueFromSameCreatorTokensForExclusiveContent)) return null
 
 	if (allowValueFromSameCreatorTokensForExclusiveContent === false) {
 		return (
@@ -38,11 +40,9 @@ function UnlockedContentIcon(props: Props) {
 	}
 
 	let text
-	if (valueNeededToAccessExclusiveContentUsd) {
-		if (valueOfSharesOwnedUsd < valueNeededToAccessExclusiveContentUsd) {
-			text = `Even though you don't have $${valueNeededToAccessExclusiveContentUsd}
-				of this token, you own other tokens by this creator`
-		}
+	if (valueOfSharesOwnedUsd < valueNeededToAccessExclusiveContentUsd) {
+		text = `Even though you don't have $${valueNeededToAccessExclusiveContentUsd}
+			of this token, you own other tokens by this creator`
 	}
 	return (
 		<Tooltip
