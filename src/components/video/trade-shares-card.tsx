@@ -21,7 +21,8 @@ function TradeSharesCard(props: Props) {
 	const wasVideoCreatedByUser = useMemo(() => {
 		if (_.isNull(positionsAndTransactionsClass) || _.isUndefined(video.uuid)) return true
 		return positionsAndTransactionsClass.checkIfUuidExistsInContentList(video.uuid)
-	}, [positionsAndTransactionsClass, video.uuid])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [positionsAndTransactionsClass, positionsAndTransactionsClass?.myContent, video.uuid])
 
 	if (_.isNull(authClass.accessToken)) {
 		return (

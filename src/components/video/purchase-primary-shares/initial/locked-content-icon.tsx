@@ -16,13 +16,17 @@ function LockedContentIcon(props: Props) {
 		videoUrl, uuid, valueNeededToAccessExclusiveContentUsd, listingSharePriceUsd,
 		allowValueFromSameCreatorTokensForExclusiveContent, creatorUsername
 	} = video
-	if (_.isNull(positionsAndTransactionsClass) || !_.isUndefined(videoUrl)) return null
 
-	const numberSharesUserOwns = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(uuid)
-
-	if (_.isNull(valueNeededToAccessExclusiveContentUsd) || _.isNull(allowValueFromSameCreatorTokensForExclusiveContent)) return null
+	if (
+		_.isNull(positionsAndTransactionsClass) ||
+		!_.isUndefined(videoUrl) ||
+		_.isNull(valueNeededToAccessExclusiveContentUsd) ||
+		_.isNull(allowValueFromSameCreatorTokensForExclusiveContent)
+	) return null
 
 	const sharesNeededToAccessExclusiveContent = Math.ceil(valueNeededToAccessExclusiveContentUsd / listingSharePriceUsd)
+
+	const numberSharesUserOwns = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(uuid)
 
 	let message = `Purchase ${sharesNeededToAccessExclusiveContent - numberSharesUserOwns} more shares to unlock.`
 	if (allowValueFromSameCreatorTokensForExclusiveContent === false) {
@@ -35,6 +39,8 @@ function LockedContentIcon(props: Props) {
 
 	const sumOfValueOfTokensByThisCreatorUsd = positionsAndTransactionsClass.getSumOfValueOfTokensByThisCreator(creatorUsername)
 
+	// This will never be negative because if the sumOfValueOfTokensByThisCreatorUsd exceeds valueNeededToAccessExclusiveContentUsd,
+	// the videoUrl would have been fetched from the backend
 	const valueLeftToPurchaseUsd = valueNeededToAccessExclusiveContentUsd - sumOfValueOfTokensByThisCreatorUsd
 	const sharesNeededToPurchase = Math.ceil(valueLeftToPurchaseUsd / listingSharePriceUsd)
 	if (sumOfValueOfTokensByThisCreatorUsd !== 0) {

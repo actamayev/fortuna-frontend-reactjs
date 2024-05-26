@@ -129,7 +129,7 @@ class SolanaClass {
 		this.newSplDetails[key] = value
 		if (key === "isContentExclusive" && value === true) {
 			if (_.isUndefined(this.newSplDetails.allowValueFromSameCreatorTokensForExclusiveContent)) {
-				this.newSplDetails.allowValueFromSameCreatorTokensForExclusiveContent = true
+				this.newSplDetails.allowValueFromSameCreatorTokensForExclusiveContent = false
 			}
 			if (_.isUndefined(this.newSplDetails.listingPriceToAccessExclusiveContentUsd)) {
 				this.newSplDetails.listingPriceToAccessExclusiveContentUsd = 5

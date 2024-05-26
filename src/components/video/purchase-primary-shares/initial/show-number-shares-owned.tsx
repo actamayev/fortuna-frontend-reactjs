@@ -18,7 +18,7 @@ function ShowNumberSharesOwned(props: Props) {
 
 	return (
 		<div className="flex">
-			Number Shares Owned: {numberSharesOwned}
+			Shares Owned: {numberSharesOwned}
 			<UnlockedContentIcon video={video} />
 			<LockedContentIcon video={video} />
 		</div>
