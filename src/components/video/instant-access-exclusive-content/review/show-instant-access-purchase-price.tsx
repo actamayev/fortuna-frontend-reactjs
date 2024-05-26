@@ -12,21 +12,10 @@ function ShowInstantAccessPurchasePrice(props: Props) {
 	const solanaClass = useSolanaContext()
 	const personalInfoClass = usePersonalInfoContext()
 
-	if (_.isNull(personalInfoClass)) return null
-
-	if (_.isNull(video.listingPriceToAccessContentUsd)) return null
+	if (_.isNull(personalInfoClass) || _.isNull(video.listingPriceToAccessContentUsd)) return null
 
 	if (personalInfoClass.defaultCurrency === "usd") {
-		return (
-			<div className="flex justify-between mb-2">
-				<div>
-					Instant Access Price:
-				</div>
-				<div>
-					${(video.listingPriceToAccessContentUsd).toFixed(2)}
-				</div>
-			</div>
-		)
+		return <>${(video.listingPriceToAccessContentUsd).toFixed(2)}</>
 	}
 
 	if (_.isNull(solanaClass)) return null
@@ -34,16 +23,7 @@ function ShowInstantAccessPurchasePrice(props: Props) {
 	if (_.isUndefined(solPriceInUSD)) return null
 	const videoListingSharePriceSol = video.listingPriceToAccessContentUsd / solPriceInUSD
 
-	return (
-		<div className="flex justify-between mb-2">
-			<div>
-				Instant Access Price:
-			</div>
-			<div>
-				{(videoListingSharePriceSol).toFixed(4)} SOL
-			</div>
-		</div>
-	)
+	return <>{(videoListingSharePriceSol).toFixed(4)} SOL</>
 }
 
 export default observer(ShowInstantAccessPurchasePrice)

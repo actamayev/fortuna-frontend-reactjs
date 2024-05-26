@@ -18,7 +18,7 @@ function ReviewInstantAccessButton(props: Props) {
 		if (_.isNull(solanaClass) || _.isNull(video.listingPriceToAccessContentUsd)) return false
 		return solanaClass.walletBalanceUSD.get() >= video.listingPriceToAccessContentUsd
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [solanaClass, solanaClass?.walletBalanceUSD.get()])
+	}, [solanaClass, solanaClass?.walletBalanceUSD.get(), video.listingPriceToAccessContentUsd])
 
 	const onClickButton = useCallback(() => {
 		if (_.isNull(exchangeClass)) return

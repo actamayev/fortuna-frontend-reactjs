@@ -3,7 +3,6 @@ import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
 
-// ASAP TODO: Display somewhere how many shares the user currently has, and how many they need to access the content instantly
 interface Props {
 	video: VideoDataWithVideoUrl
 }

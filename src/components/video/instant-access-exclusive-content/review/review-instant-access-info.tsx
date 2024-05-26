@@ -30,15 +30,25 @@ function ReviewInstantAccessInfo() {
 					Review Instant Access Purchase
 				</div>
 			</div>
-			<ShowInstantAccessPurchasePrice video={video}/>
+
+			<div className="flex justify-between mb-1">
+				<div>
+					Instant Access Price:
+				</div>
+				<div>
+					<ShowInstantAccessPurchasePrice video={video}/>
+				</div>
+			</div>
+
 			<div className="flex justify-between mb-2">
 				<div>
-					New Balance: {" "}
+					New Balance:
 				</div>
 				<div>
 					<ShowRemainingWalletBalanceAfterInstantAccessPurchase video={video}/>
 				</div>
 			</div>
+
 			<div className="flex justify-center mt-2">
 				<ConfirmInstantAccessButton />
 			</div>
