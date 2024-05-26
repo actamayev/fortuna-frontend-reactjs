@@ -18,7 +18,7 @@ function ShowInstantAccessPurchasePrice(props: Props) {
 
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return (
-			<div className="flex justify-between">
+			<div className="flex justify-between mb-2">
 				<div>
 					Instant Access Price:
 				</div>
@@ -35,7 +35,7 @@ function ShowInstantAccessPurchasePrice(props: Props) {
 	const videoListingSharePriceSol = video.listingPriceToAccessContentUsd / solPriceInUSD
 
 	return (
-		<div className="flex justify-between">
+		<div className="flex justify-between mb-2">
 			<div>
 				Instant Access Price:
 			</div>

@@ -28,7 +28,7 @@ function ShowRemainingWalletBalanceAfterPrimaryPurchase() {
 
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return (
-			<div className="flex justify-between">
+			<div className="flex justify-between mb-2">
 				<div>New Balance: {" "}</div>
 				<div>
 					${remainingWalletBalanceUsd.toFixed(2)} {" "}
@@ -43,7 +43,7 @@ function ShowRemainingWalletBalanceAfterPrimaryPurchase() {
 	const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
 	if (_.isUndefined(solPriceInUSD)) return null
 	return (
-		<div className="flex justify-between">
+		<div className="flex justify-between mb-2">
 			<div>New Balance: {" "}</div>
 			<div>
 				{(remainingWalletBalanceUsd / solPriceInUSD).toFixed(4)} SOL {" "}

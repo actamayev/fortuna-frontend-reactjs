@@ -16,7 +16,7 @@ function ShowNewShareCountAfterPurchase() {
 	const newShareCount = numberSharesOwned + numberSharesBiddingFor
 
 	return (
-		<div className="flex justify-between">
+		<div className="flex justify-between mb-2">
 			<div>New Share Count: {" "}</div>
 			<div>
 				{newShareCount} {" "}

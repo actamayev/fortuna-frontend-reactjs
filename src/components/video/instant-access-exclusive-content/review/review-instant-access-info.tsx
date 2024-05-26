@@ -31,7 +31,7 @@ function ReviewInstantAccessInfo() {
 				</div>
 			</div>
 			<ShowInstantAccessPurchasePrice video={video}/>
-			<div className="flex justify-between">
+			<div className="flex justify-between mb-2">
 				<div>
 					New Balance: {" "}
 				</div>
