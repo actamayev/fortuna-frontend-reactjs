@@ -11,7 +11,7 @@ function ShowNumberSharesUserHolds() {
 
 	if (_.isNull(exchangeClass) || _.isNull(positionsAndTransactionsClass) || _.isUndefined(videoUUID)) return null
 
-	const numberSharesOwned = positionsAndTransactionClass.getNumberSharesOwnedByUUID(videoUUID)
+	const numberSharesOwned = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(videoUUID)
 	const numberSharesAskingFor = exchangeClass.getRemainingSharesForSale(videoUUID)
 	const numberSharesAbleToAskFor = numberSharesOwned - numberSharesAskingFor
 
