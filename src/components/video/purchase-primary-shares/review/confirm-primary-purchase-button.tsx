@@ -3,7 +3,7 @@ import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import { useCallback, useState } from "react"
 import Button from "../../../button"
-import usePurchasePrimarySplTokens from "../../../../hooks/exchange/purchase-primary-spl-tokens"
+import usePurchasePrimarySplTokens from "../../../../hooks/exchange/purchase-spl-tokens/purchase-primary-spl-tokens"
 
 function ConfirmPrimaryPurchaseButton() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
@@ -12,7 +12,7 @@ function ConfirmPrimaryPurchaseButton() {
 
 	const purchaseSplTokensHook = useCallback(() => {
 		if (_.isUndefined(videoUUID)) return
-		purchaseSplTokens(setIsLoading, videoUUID)
+		purchaseSplTokens(videoUUID, setIsLoading)
 	}, [purchaseSplTokens, videoUUID])
 
 	return (

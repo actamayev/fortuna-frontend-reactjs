@@ -8,7 +8,7 @@ export default function ShowMessageToNonCreators() {
 				to="/"
 				className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 			>
-			Back to home
+				Back to home
 			</Link>
 		</article>
 	)

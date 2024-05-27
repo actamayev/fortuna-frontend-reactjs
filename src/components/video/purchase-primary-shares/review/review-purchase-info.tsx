@@ -1,6 +1,7 @@
 import ShowPurchasePrice from "./show-purchase-price"
 import PrimaryPurchaseBackButton from "./primary-purchase-back-button"
 import ConfirmPrimaryPurchaseButton from "./confirm-primary-purchase-button"
+import ShowNewShareCountAfterPurchase from "./show-new-share-count-after-purchase"
 import ShowRemainingWalletBalanceAfterPrimaryPurchase from "./show-remaining-wallet-balance-after-primary-purchase"
 
 export default function ReviewPurchaseInfo() {
@@ -13,14 +14,8 @@ export default function ReviewPurchaseInfo() {
 				</div>
 			</div>
 			<ShowPurchasePrice />
-			<div className="flex justify-between">
-				<div>
-					New Balance: {" "}
-				</div>
-				<div>
-					<ShowRemainingWalletBalanceAfterPrimaryPurchase />
-				</div>
-			</div>
+			<ShowNewShareCountAfterPurchase />
+			<ShowRemainingWalletBalanceAfterPrimaryPurchase />
 			<div className="flex justify-center mt-2">
 				<ConfirmPrimaryPurchaseButton />
 			</div>

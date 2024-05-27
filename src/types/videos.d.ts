@@ -1,12 +1,11 @@
 declare global {
-	interface VideoData {
+	interface VideoDataLessVideoUrl {
 		splName: string
 		splPublicKey: string
 		listingSharePriceUsd: number
 		splListingStatus: SPLListingStatus
 		description: string
 		imageUrl: string
-		videoUrl: string
 		uuid: string
 		totalNumberShares: number
 		sharesRemainingForSale: number
@@ -14,6 +13,18 @@ declare global {
 		contentMintDate: Date
 		creatorUsername: string
 		creatorProfilePictureUrl: string | null
+		isSplExclusive: boolean
+		valueNeededToAccessExclusiveContentUsd: number | null
+		listingPriceToAccessContentUsd: number | null
+		allowValueFromSameCreatorTokensForExclusiveContent: boolean | null
+	}
+
+	interface SingleVideoDataFromBackend extends VideoDataLessVideoUrl {
+		videoUrl?: string
+	}
+
+	interface VideoDataWithVideoUrl extends SingleVideoDataFromBackend {
+		isUserAbleToAccessVideo?: boolean
 	}
 
 	interface CreatorData {
@@ -21,10 +32,10 @@ declare global {
 		creatorProfilePictureUrl: string | null
 	}
 
-	type SearchData = VideoData | CreatorData
+	type SearchData = VideoDataLessVideoUrl | CreatorData
 
 	interface CreatorDataHeldInClass extends CreatorData {
-		videoData: VideoData[]
+		videoData: VideoDataLessVideoUrl[]
 	}
 }
 

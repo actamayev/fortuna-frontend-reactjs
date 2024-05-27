@@ -4,19 +4,26 @@ import { isNonSuccessResponse } from "../../utils/type-checks"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { useExchangeContext } from "../../contexts/exchange-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
+import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
 
 export default function useSplTokenBid(): (
 	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => Promise<void> {
 	const exchangeClass = useExchangeContext()
 	const fortunaApiClient = useApiClientContext()
+	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const solanaClass = useSolanaContext()
 
 	const splTokenBid = useCallback(async (
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 	): Promise<void> =>  {
 		try {
-			if (_.isNull(exchangeClass) || _.isNull(solanaClass) || _.isNull(fortunaApiClient.httpClient.accessToken)) return
+			if (
+				_.isNull(exchangeClass) ||
+				_.isNull(positionsAndTransactionsClass) ||
+				_.isNull(solanaClass) ||
+				_.isNull(fortunaApiClient.httpClient.accessToken)
+			) return
 			setIsLoading(true)
 
 			const bid: CreateSPLBidData = {
@@ -50,13 +57,14 @@ export default function useSplTokenBid(): (
 				numberOfShares: transaction.numberOfShares,
 				purchasePricePerShareUsd: transaction.fillPriceUsd
 			}))
-			exchangeClass.incremenetOwnership(bid.splPublicKey, mappedTransactions)
+			positionsAndTransactionsClass.incremenetOwnership(bid.splPublicKey, mappedTransactions)
 		} catch (error) {
 			console.error(error)
 		} finally {
 			setIsLoading(false)
 		}
-	}, [exchangeClass, solanaClass, fortunaApiClient.exchangeDataService, fortunaApiClient.httpClient.accessToken])
+	}, [exchangeClass, positionsAndTransactionsClass, solanaClass,
+		fortunaApiClient.httpClient.accessToken, fortunaApiClient.exchangeDataService])
 
 	return splTokenBid
 }

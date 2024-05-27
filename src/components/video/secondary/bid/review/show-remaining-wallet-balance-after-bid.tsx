@@ -22,7 +22,7 @@ function ShowRemainingWalletBalanceAfterBid() {
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return (
 			<div className="flex justify-between">
-				<div>New Balance: {" "}</div>
+				<div>New Balance:</div>
 				<div>
 					${remainingWalletBalanceUsd.toFixed(2)} {" "}
 					<span className="text-red-600">
@@ -37,7 +37,7 @@ function ShowRemainingWalletBalanceAfterBid() {
 	if (_.isUndefined(solPriceInUSD)) return null
 	return (
 		<div className="flex justify-between">
-			<div>New Balance: {" "}</div>
+			<div>New Balance:</div>
 			<div>
 				{(remainingWalletBalanceUsd / solPriceInUSD).toFixed(4)} SOL {" "}
 				<span className="text-red-600">

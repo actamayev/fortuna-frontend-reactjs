@@ -1,27 +1,27 @@
 import _ from "lodash"
 import { useCallback, useEffect } from "react"
-import { useExchangeContext } from "../../contexts/exchange-context"
 import { isErrorResponse, isMessageResponse } from "../../utils/type-checks"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
+import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
 
 export default function useRetrieveMyContentUseEffect(): void {
 	const fortunaApiClient = useApiClientContext()
-	const exchangeClass = useExchangeContext()
+	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const personalInfoClass = usePersonalInfoContext()
 
 	// eslint-disable-next-line complexity
 	const retrieveMyContent = useCallback(async () => {
 		try {
 			if (
-				_.isNull(exchangeClass) ||
+				_.isNull(positionsAndTransactionsClass) ||
 				personalInfoClass?.isApprovedToBeCreator !== true ||
-				exchangeClass.hasContentToRetrieve === false ||
-				exchangeClass.isRetrievingContent === true ||
-				!_.isEmpty(exchangeClass.myContent)
+				positionsAndTransactionsClass.hasContentToRetrieve === false ||
+				positionsAndTransactionsClass.isRetrievingContent === true ||
+				!_.isEmpty(positionsAndTransactionsClass.myContent)
 			) return
-			exchangeClass.setIsRetrievingContent(true)
-			const myContentResponse = await fortunaApiClient.solanaDataService.retrieveMyContent()
+			positionsAndTransactionsClass.setIsRetrievingContent(true)
+			const myContentResponse = await fortunaApiClient.positionsAndTransactionsDataService.retrieveMyContent()
 
 			if (
 				!_.isEqual(myContentResponse.status, 200) ||
@@ -29,14 +29,14 @@ export default function useRetrieveMyContentUseEffect(): void {
 				isErrorResponse(myContentResponse.data)
 			) return
 
-			exchangeClass.setContent(myContentResponse.data.creatorContentList)
-			exchangeClass.setHasContentToRetrieve(false)
+			positionsAndTransactionsClass.setContent(myContentResponse.data.creatorContentList)
+			positionsAndTransactionsClass.setHasContentToRetrieve(false)
 		} catch (error) {
 			console.error(error)
 		} finally {
-			if (!_.isNull(exchangeClass)) exchangeClass.setIsRetrievingContent(false)
+			if (!_.isNull(positionsAndTransactionsClass)) positionsAndTransactionsClass.setIsRetrievingContent(false)
 		}
-	}, [exchangeClass, fortunaApiClient.solanaDataService, personalInfoClass?.isApprovedToBeCreator])
+	}, [positionsAndTransactionsClass, personalInfoClass?.isApprovedToBeCreator, fortunaApiClient.positionsAndTransactionsDataService])
 
 	useEffect(() => {
 		if (_.isNull(fortunaApiClient.httpClient.accessToken)) return

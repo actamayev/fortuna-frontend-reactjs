@@ -5,6 +5,7 @@ import { isNonSuccessResponse } from "../../../utils/type-checks"
 import { useSolanaContext } from "../../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
+import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 
 export default function useTransferSol(): (
 	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
@@ -12,6 +13,7 @@ export default function useTransferSol(): (
 	const solanaClass = useSolanaContext()
 	const fortunaApiClient = useApiClientContext()
 	const personalInfoClass = usePersonalInfoContext()
+	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const retrieveSolPrice = useRetrieveSolPrice()
 
 	// eslint-disable-next-line complexity
@@ -22,7 +24,8 @@ export default function useTransferSol(): (
 			if (
 				_.isNull(solanaClass) ||
 				_.isNull(fortunaApiClient.httpClient.accessToken) ||
-				_.isNull(personalInfoClass)
+				_.isNull(personalInfoClass) ||
+				_.isNull(positionsAndTransactionsClass)
 			) return
 			setIsLoading(true)
 			let sendingTo
@@ -51,7 +54,7 @@ export default function useTransferSol(): (
 			}
 			solanaClass.setIsTransferSolButtonPressed(false)
 			solanaClass.resetTransferSolDetails()
-			solanaClass.addSolanaTransaction(transferSolResponse.data.solTransferData)
+			positionsAndTransactionsClass.addSolanaTransaction(transferSolResponse.data.solTransferData)
 			if (sendingSolTransfer.transferCurrency === "sol") {
 				solanaClass.alterWalletBalanceSol(-sendingSolTransfer.transferAmount)
 			} else {
@@ -62,7 +65,8 @@ export default function useTransferSol(): (
 		} finally {
 			setIsLoading(false)
 		}
-	}, [solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService, personalInfoClass, retrieveSolPrice])
+	}, [solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService,
+		personalInfoClass, positionsAndTransactionsClass, retrieveSolPrice])
 
 	return transferSol
 }

@@ -7,6 +7,7 @@ import { useVideoContext } from "../contexts/video-context"
 import useSetSingleVideo from "../hooks/videos/set-single-video"
 import TradeSharesCard from "../components/video/trade-shares-card"
 import VideoDescriptionArea from "../components/video/video-description-area"
+import useRetrieveVideoUrlData from "../hooks/videos/retrieve-video-url-data"
 
 function Video() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
@@ -14,8 +15,8 @@ function Video() {
 	const [isVideoLoading, setIsVideoLoading] = useState(false)
 	const [isVideoNotFound, setIsVideoNotFound] = useState(false)
 	useSetSingleVideo(videoUUID, setIsVideoLoading, setIsVideoNotFound)
+	useRetrieveVideoUrlData(videoUUID)
 
-	if (_.isUndefined(videoUUID)) return null
 	if (isVideoLoading === true) return <>Loading...</>
 
 	if (isVideoNotFound === true) return <>Unable to find video.</>

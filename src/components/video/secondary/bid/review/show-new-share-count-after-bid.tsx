@@ -2,14 +2,16 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import { useExchangeContext } from "../../../../../contexts/exchange-context"
+import { usePositionsAndTransactionsContext } from "../../../../../contexts/positions-and-transactions-context"
 
 function ShowNewShareCountAfterBid() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const exchangeClass = useExchangeContext()
+	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
-	if (_.isNull(exchangeClass) || _.isUndefined(videoUUID)) return null
+	if (_.isNull(exchangeClass) || _.isNull(positionsAndTransactionsClass) || _.isUndefined(videoUUID)) return null
 
-	const numberSharesOwned = exchangeClass.getNumberSharesOwnedByUUID(videoUUID)
+	const numberSharesOwned = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(videoUUID)
 	const numberSharesBiddingFor = exchangeClass.bidForSplSharesDetails.numberOfSharesBiddingFor
 	const newShareCount = numberSharesOwned + numberSharesBiddingFor
 

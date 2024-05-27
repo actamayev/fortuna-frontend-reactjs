@@ -27,6 +27,17 @@ declare global {
 	type Currencies = "sol" | "usd"
 
 	type SiteThemes = "light" | "dark"
+
+	type PathHeaders =
+		"/auth" |
+		"/exchange" |
+		"/personal-info" |
+		"/positions-and-transactions" |
+		"/search" |
+		"/solana" |
+		"/upload" |
+		"/videos" |
+		"/youtube"
 }
 
 export {}

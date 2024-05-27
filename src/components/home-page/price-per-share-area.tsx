@@ -4,7 +4,7 @@ import { useSolanaContext } from "../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
 interface Props {
-	video: VideoData
+	video: VideoDataWithVideoUrl
 }
 
 function PricePerShareArea(props: Props) {
@@ -13,11 +13,21 @@ function PricePerShareArea(props: Props) {
 	const personalInfoClass = usePersonalInfoContext()
 
 	if (_.isNull(personalInfoClass) || personalInfoClass.defaultCurrency === "usd") {
-		return <>${_.round(video.listingSharePriceUsd, 2)}/Share</>
+		return (
+			<>
+				${_.round(video.listingSharePriceUsd, 2)}/Share
+			</>
+		)
 	}
+
 	if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null
 	const solPriceInUSD = solanaClass.solPriceDetails.solPriceInUSD
-	return <>{_.round(video.listingSharePriceUsd / solPriceInUSD, 4)} SOL/Share</>
+
+	return (
+		<>
+			{_.round(video.listingSharePriceUsd / solPriceInUSD, 4)} SOL/Share
+		</>
+	)
 }
 
 export default observer(PricePerShareArea)

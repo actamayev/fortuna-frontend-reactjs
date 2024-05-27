@@ -5,21 +5,24 @@ import YouTubeProvider from "./contexts/youtube-context"
 import ExchangeProvider from "./contexts/exchange-context"
 import PersonalInfoProvider from "./contexts/personal-info-context"
 import FortunaApiClientProvider from "./contexts/fortuna-api-client-context"
+import PositionsAndTransactionsProvider from "./contexts/positions-and-transactions-context"
 
 export default function ContextLevelComponent ({ children } : { children: React.ReactNode }) {
 	return (
 		<AuthProvider>
 			<VideoProvider>
 				<SolanaProvider>
-					<ExchangeProvider>
-						<PersonalInfoProvider>
-							<YouTubeProvider>
-								<FortunaApiClientProvider>
-									{children}
-								</FortunaApiClientProvider>
-							</YouTubeProvider>
-						</PersonalInfoProvider>
-					</ExchangeProvider>
+					<PositionsAndTransactionsProvider>
+						<ExchangeProvider>
+							<PersonalInfoProvider>
+								<YouTubeProvider>
+									<FortunaApiClientProvider>
+										{children}
+									</FortunaApiClientProvider>
+								</YouTubeProvider>
+							</PersonalInfoProvider>
+						</ExchangeProvider>
+					</PositionsAndTransactionsProvider>
 				</SolanaProvider>
 			</VideoProvider>
 		</AuthProvider>
