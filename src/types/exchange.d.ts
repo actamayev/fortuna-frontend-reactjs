@@ -12,11 +12,6 @@ declare global {
 		numberOfShares: number
 		purchasePricePerShareUsd: number
 	}
-
-	interface TransactionsMap {
-		fillPriceUsd: number
-		numberOfShares: number
-	}
 }
 
 export {}
