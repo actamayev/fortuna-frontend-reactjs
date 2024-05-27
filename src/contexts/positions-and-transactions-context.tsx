@@ -74,6 +74,12 @@ class PositionsAndTransactionsClass {
 		solanaTransactions.forEach(transaction => this.addSolanaTransaction(transaction))
 	})
 
+	public addSolanaTransaction = action((solanaTransaction: SolanaTransaction): void => {
+		const retrievedTransaction = this.contextForMyTransaction(solanaTransaction.solTransferId)
+		if (!_.isUndefined(retrievedTransaction)) return
+		this.myTransactions.unshift(solanaTransaction)
+	})
+
 	public setContent = action((newContentList: MyContent[]): void => {
 		this.myContent = []
 		if (_.isEmpty(newContentList)) return
@@ -153,12 +159,6 @@ class PositionsAndTransactionsClass {
 		return numberShares
 	}
 
-	public addSolanaTransaction = action((solanaTransaction: SolanaTransaction): void => {
-		const retrievedTransaction = this.contextForMyTransaction(solanaTransaction.solTransferId)
-		if (!_.isUndefined(retrievedTransaction)) return
-		this.myTransactions.unshift(solanaTransaction)
-	})
-
 	public setHasContentToRetrieve = action((newState: boolean): void => {
 		this.hasContentToRetrieve = newState
 	})
@@ -203,10 +203,10 @@ class PositionsAndTransactionsClass {
 const PositionsAndTransactionsContext = createContext<PositionsAndTransactionsClass | null>(null)
 
 export default function PositionsAndTransactionsProvider ({ children }: { children: React.ReactNode }) {
-	const solanaClass = useMemo(() => new PositionsAndTransactionsClass(), [])
+	const positionsAndTransactionsClass = useMemo(() => new PositionsAndTransactionsClass(), [])
 
 	return (
-		<PositionsAndTransactionsContext.Provider value={solanaClass}>
+		<PositionsAndTransactionsContext.Provider value={positionsAndTransactionsClass}>
 			{children}
 		</PositionsAndTransactionsContext.Provider>
 	)
