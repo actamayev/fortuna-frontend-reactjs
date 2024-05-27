@@ -35,12 +35,12 @@ export default function usePurchaseInstantAccess(): (
 			if (!_.isEqual(purchaseResponse.status, 200) || isNonSuccessResponse(purchaseResponse.data)) {
 				throw Error ("Error completing primary SPL purchase")
 			}
+			videoClass.addVideoUrlToVideo(videoUUID, purchaseResponse.data.videoUrl)
 			const exclusiveContentToAddToList: MyExclusiveContentData = {
 				splName: video.splName,
 				imageUrl: video.imageUrl,
 				uuid: video.uuid
 			}
-			videoClass.addVideoUrlToVideo(videoUUID, purchaseResponse.data.videoUrl)
 			positionsAndTransactionsClass.addExclusiveContent(exclusiveContentToAddToList)
 			exchangeClass.setInstantAccessToExclusiveContentStage("initial")
 			if (_.isNull(video.listingPriceToAccessContentUsd)) return
@@ -54,7 +54,7 @@ export default function usePurchaseInstantAccess(): (
 			setIsLoading(false)
 		}
 	}, [exchangeClass, solanaClass, positionsAndTransactionsClass, videoClass,
-		fortunaApiClient.httpClient.accessToken, fortunaApiClient.exchangeDataService, ])
+		fortunaApiClient.httpClient.accessToken, fortunaApiClient.exchangeDataService])
 
 	return purchaseInstantAccess
 }

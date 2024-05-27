@@ -40,7 +40,7 @@ class VideoClass {
 		)
 	}
 
-	public contextForVideo(videoUUID: string): VideoDataWithVideoUrl | undefined {
+	private contextForVideo(videoUUID: string): VideoDataWithVideoUrl | undefined {
 		return this.videos.find(video => video.uuid === videoUUID)
 	}
 
