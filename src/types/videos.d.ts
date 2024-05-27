@@ -35,7 +35,7 @@ declare global {
 	type SearchData = VideoDataLessVideoUrl | CreatorData
 
 	interface CreatorDataHeldInClass extends CreatorData {
-		videoData: VideoData[]
+		videoData: VideoDataLessVideoUrl[]
 	}
 }
 

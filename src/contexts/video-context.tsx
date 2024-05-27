@@ -29,12 +29,18 @@ class VideoClass {
 		return (
 			// Would return the first one:
 			this.contextForVideo(videoUUID) ||
+			this.findVideoNotInVideosArray(videoUUID)
+		)
+	}
+
+	private findVideoNotInVideosArray(videoUUID: string): VideoDataWithVideoUrl | undefined {
+		return (
 			this.findVideoInSearchMapByUUID(videoUUID) ||
 			this.findVideoInCreatorDataMapByUUID(videoUUID)
 		)
 	}
 
-	private contextForVideo(videoUUID: string): VideoDataWithVideoUrl | undefined {
+	public contextForVideo(videoUUID: string): VideoDataWithVideoUrl | undefined {
 		return this.videos.find(video => video.uuid === videoUUID)
 	}
 
@@ -51,7 +57,7 @@ class VideoClass {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		for (const [key, searchDataArray] of this.videoSearchMap.entries()) {
 			const videoData = searchDataArray.find(
-				data => "uuid" in data && data.uuid === videoUUID
+				data => _.has(data, "uuid") && data.uuid === videoUUID
 			) as VideoDataWithVideoUrl | undefined
 
 			if (!_.isUndefined(videoData)) return videoData
@@ -90,7 +96,17 @@ class VideoClass {
 
 	public addVideoUrlToVideo = action((videoUUID: string, videoUrl: string | undefined): void => {
 		const index = this.videos.findIndex(video => video.uuid === videoUUID)
-		if (_.isEqual(index, -1)) return
+		if (_.isEqual(index, -1)) {
+			// This logic is run when there is a video that is in the search map or the creator data, but isn't in the videos list.
+			// Since the search map and creator data hold data without the videoUrl,
+			// need to first copy the data over, and then add the video url
+			const existingVideo = this.findVideoNotInVideosArray(videoUUID)
+			if (_.isUndefined(existingVideo)) return
+			existingVideo.isUserAbleToAccessVideo = true
+			existingVideo.videoUrl = videoUrl
+			this.addVideoToVideosList(existingVideo)
+			return
+		}
 		if (_.isUndefined(videoUrl)) {
 			this.videos[index].isUserAbleToAccessVideo = false
 			return
