@@ -14,7 +14,7 @@ function ShowMyPublicKey() {
 		if (_.isNull(solanaClass) || _.isNull(solanaClass.walletPublicKey)) return
 
 		try {
-			await navigator.clipboard.writeText(solanaClass.walletPublicKey)
+			await navigator.clipboard.writeText(solanaClass.walletPublicKey.toString())
 		} catch (error) {
 			console.error("Failed to copy text: ", error)
 		}
@@ -44,7 +44,7 @@ function ShowMyPublicKey() {
 			<div className="flex items-center dark:text-white">
 				<span className="mr-2">My Public Key:</span>
 				<div className="cursor-pointer flex-shrink-0" onClick={copyToClipboard}>
-					{solanaClass.walletPublicKey}
+					{solanaClass.walletPublicKey.toString()}
 				</div>
 			</div>
 		</div>

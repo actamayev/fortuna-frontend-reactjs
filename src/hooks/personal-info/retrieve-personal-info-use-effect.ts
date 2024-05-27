@@ -1,4 +1,5 @@
 import _ from "lodash"
+import { PublicKey } from "@solana/web3.js"
 import { useCallback, useEffect } from "react"
 import { isErrorResponse } from "../../utils/type-checks"
 import { useSolanaContext } from "../../contexts/solana-context"
@@ -26,7 +27,7 @@ export default function useRetrievePersonalInfoUseEffect(): void {
 				throw Error ("Unable to retrieve personal info")
 			}
 			personalInfoClass.setRetrievedPersonalData(personalInfoResponse.data)
-			solanaClass.walletPublicKey = personalInfoResponse.data.publicKey
+			solanaClass.walletPublicKey = new PublicKey(personalInfoResponse.data.publicKey)
 		} catch (error) {
 			console.error(error)
 		} finally {

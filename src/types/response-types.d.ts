@@ -40,12 +40,6 @@ declare global {
 	}
 	type RetrieveMyContentResponse = { creatorContentList: MyContent[] }
 	type TransferSolResponse = { solTransferData: SolanaTransaction }
-	type WalletBalanceResponse = {
-		balanceInSol: number
-		balanceInUsd: number
-		solPriceInUSD: number
-		solPriceRetrievedTime: Date
-	}
 	type TransactionsResponse = { transactions: SolanaTransaction[] }
 	type MyOwnershipResponse = {
 		myOwnershipList: MyOwnership[]
