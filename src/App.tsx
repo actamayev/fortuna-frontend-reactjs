@@ -9,7 +9,6 @@ import MyWallet from "./pages/my-wallet"
 import MyProfile from "./pages/my-profile"
 import LoginPage from "./pages/auth/login-page"
 import SearchResults from "./pages/search-results"
-import MyOrders from "./pages/supporter/my-orders"
 import RegisterPage from "./pages/auth/register-page"
 import MyOwnership from "./pages/supporter/my-ownership"
 import RegisterUsername from "./pages/auth/register-username"
@@ -20,7 +19,6 @@ import CreatorRoutes from "./routes/creator-routes"
 import useGetAuthDataFromStorage from "./hooks/auth/get-auth-data-from-storage"
 import useInitializeTagManager from "./hooks/analytics/initiallize-tag-manager"
 import useRetrieveSolPriceUseEffect from "./hooks/solana/retrieve-sol-price-use-effect"
-import useRetrieveMyOrdersUseEffect from "./hooks/exchange/retrieve-my-orders-use-effect"
 import useRetrieveMyContentUseEffect from "./hooks/exchange/retrieve-my-content-use-effect"
 import useRetrieveYouTubeInfoUseEffect from "./hooks/youtube/retrieve-youtube-info-use-effect"
 import useRetrieveMyOwnershipUseEffect from "./hooks/exchange/retrieve-my-ownership-use-effect"
@@ -38,7 +36,6 @@ function App() {
 	useRetrieveSolPriceUseEffect()
 	useRetrieveMyContentUseEffect()
 	useRetrieveMyOwnershipUseEffect()
-	useRetrieveMyOrdersUseEffect()
 	useInitializeTagManager()
 	useResetPurchaseSplAfterNavigation()
 	useRedirectBackToRegisterUsername()
@@ -52,7 +49,6 @@ function App() {
 			<Route path = "/register-username" element = {<RegisterUsername />} />
 
 			<Route path = "/my-ownership" element = {<MyOwnership />} />
-			<Route path = "/my-orders" element = {<MyOrders />} />
 			<Route path = "/my-wallet" element = {<MyWallet />} />
 			<Route path = "/v/:videoUUID" element = {<Video />} />
 			<Route path = "/my-profile" element = {<MyProfile />} />

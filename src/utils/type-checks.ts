@@ -31,13 +31,3 @@ export function isVideoData(data: SearchData): data is VideoDataLessVideoUrl {
 	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 	return (data as VideoDataLessVideoUrl).uuid !== undefined
 }
-
-export function isSplBid(data: MyOrder): data is BidOrderData {
-	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-	return (data as BidOrderData).secondaryMarketBidId !== undefined
-}
-
-export function isSplAsk(data: MyOrder): data is AskOrderData {
-	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-	return (data as AskOrderData).secondaryMarketAskId !== undefined
-}

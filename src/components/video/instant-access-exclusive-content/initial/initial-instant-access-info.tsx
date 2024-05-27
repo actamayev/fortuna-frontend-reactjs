@@ -7,10 +7,11 @@ import { usePositionsAndTransactionsContext } from "../../../../contexts/positio
 
 interface Props {
 	video: VideoDataWithVideoUrl
+	orNeeded: boolean
 }
 
 function InitialInstantAccessInfo(props: Props) {
-	const { video } = props
+	const { video, orNeeded } = props
 	const exchangeClass = useExchangeContext()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
@@ -27,9 +28,13 @@ function InitialInstantAccessInfo(props: Props) {
 	return (
 		<>
 			<div className="flex items-center w-full">
-				<hr className="flex-grow border-t border-gray-300" />
-				<span className="px-4 text-gray-500">or</span>
-				<hr className="flex-grow border-t border-gray-300" />
+				{orNeeded && (
+					<>
+						<hr className="flex-grow border-t border-gray-300" />
+						<span className="px-4 text-gray-500">or</span>
+						<hr className="flex-grow border-t border-gray-300" />
+					</>
+				)}
 			</div>
 			<div className="text-center font-semibold flex justify-center items-center text-xl">
 				Instant Access

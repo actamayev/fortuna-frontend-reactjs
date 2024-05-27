@@ -13,24 +13,6 @@ export default class ExchangeDataService {
 		)
 	}
 
-	async placeSplBid(createSplBid: CreateSPLBidData): Promise<AxiosResponse<BidOrderResponse | NonSuccessResponse>> {
-		return await this.httpClient.http.post<BidOrderResponse | NonSuccessResponse>(
-			`${this.pathHeader}/create-spl-bid`, { createSplBid }
-		)
-	}
-
-	async placeSplAsk(createSplAsk: CreateSPLAskData): Promise<AxiosResponse<AskOrderResponse | NonSuccessResponse>> {
-		return await this.httpClient.http.post<AskOrderResponse | NonSuccessResponse>(
-			`${this.pathHeader}/create-spl-ask`, { createSplAsk }
-		)
-	}
-
-	async retrieveOrders(): Promise<AxiosResponse<RetrievedOrdersResponse | MessageResponse | ErrorResponse>> {
-		return await this.httpClient.http.get<RetrievedOrdersResponse | MessageResponse | ErrorResponse>(
-			`${this.pathHeader}/retrieve-my-orders`
-		)
-	}
-
 	async purchaseExclusiveContentAccess(videoUUID: string): Promise<AxiosResponse<RetrievedVideoUrl | NonSuccessResponse>> {
 		return await this.httpClient.http.post<RetrievedVideoUrl | NonSuccessResponse>(
 			`${this.pathHeader}/purchase-exclusive-content-access/${videoUUID}`

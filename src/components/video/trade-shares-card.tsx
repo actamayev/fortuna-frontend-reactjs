@@ -4,7 +4,6 @@ import { observer } from "mobx-react"
 import Button from "../button"
 import { useAuthContext } from "../../contexts/auth-context"
 import useTypedNavigate from "../../hooks/navigate/typed-navigate"
-import TradeSecondaryShares from "./secondary/trade-secondary-shares"
 import PurchasePrimarySharesOptions from "./purchase-primary-shares/purchase-primary-shares-options"
 import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
 
@@ -46,11 +45,7 @@ function TradeSharesCard(props: Props) {
 
 	return (
 		<div className="bg-white dark:bg-slate-400 shadow-lg rounded-lg p-3 h-full">
-			{video.splListingStatus === "SOLDOUT" ? (
-				<TradeSecondaryShares />
-			) : (
-				<PurchasePrimarySharesOptions />
-			)}
+			<PurchasePrimarySharesOptions />
 		</div>
 	)
 }

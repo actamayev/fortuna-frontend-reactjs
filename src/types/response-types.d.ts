@@ -14,21 +14,6 @@ declare global {
 	type GoogleAuthSuccess = { accessToken: string, isNewUser: boolean }
 
 	// Exchange Resposnes:
-	type BidOrderResponse = {
-		bidOrderData: BidOrderData
-		transactionsMap: TransactionsMap[]
-	}
-
-	type AskOrderResponse = {
-		askOrderData: AskOrderData
-		transactionsMap: TransactionsMap[]
-	}
-
-	type RetrievedOrdersResponse = {
-		asks: AskOrderData[]
-		bids: BidOrderData[]
-	}
-
 	interface PrimarySplTokenPurchaseResponse extends MyOwnership {
 		videoUrl: string | undefined
 	}
