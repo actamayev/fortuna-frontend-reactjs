@@ -25,12 +25,13 @@ class VideoClass {
 
 	public findVideoFromUUID(videoUUID: string | undefined): VideoDataWithVideoUrl | undefined {
 		if (_.isUndefined(videoUUID)) return undefined
-		let video = this.contextForVideo(videoUUID)
-		if (!_.isUndefined(video)) return video
-		video = this.findVideoInSearchMapByUUID(videoUUID)
-		if (!_.isUndefined(video)) return video
-		video = this.findVideoInCreatorDataMapByUUID(videoUUID)
-		return video
+
+		return (
+			// Would return the first one:
+			this.contextForVideo(videoUUID) ||
+			this.findVideoInSearchMapByUUID(videoUUID) ||
+			this.findVideoInCreatorDataMapByUUID(videoUUID)
+		)
 	}
 
 	private contextForVideo(videoUUID: string): VideoDataWithVideoUrl | undefined {
