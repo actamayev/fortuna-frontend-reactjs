@@ -164,7 +164,7 @@ class VideoClass {
 		this.videosBeingRetrieved.filter(item => item !== videoUUID)
 	})
 
-	public setSearchTerm = action((newSearchTerm: string): void => {
+	public setSearchTerm = action((newSearchTerm: string | null): void => {
 		this.searchTerm = newSearchTerm
 	})
 
@@ -189,9 +189,14 @@ class VideoClass {
 
 	public logout() {
 		this.clearVideoDataOnLogout()
-		this.videoSearchMap.clear()
-		this.creatorData = []
 		this.videosBeingRetrieved = []
+		this.isRetrievingVideoUrl = false
+
+		this.isCurrentlySearching = false
+		// Don't clear video search map on logout - no need.
+		this.creatorData = []
+		this.isCreatorDataBeingRetrieved = false
+		this.setSearchTerm(null)
 	}
 }
 

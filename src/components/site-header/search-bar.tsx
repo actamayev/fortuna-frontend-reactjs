@@ -14,14 +14,14 @@ function SearchBar() {
 	const videoSearch = useVideoSearch()
 	const handleTypeUsername = useHandleTypeUsername()
 
-	const handleSearch = useCallback((event: React.KeyboardEvent<HTMLInputElement>) => {
+	const handleSearch = useCallback(async (event: React.KeyboardEvent<HTMLInputElement>) => {
 		if (
 			event.key !== "Enter" ||
 			_.isNull(videoClass.searchTerm) ||
 			_.isEmpty(videoClass.searchTerm.trim())
 		) return
-		videoSearch()
-		if (location.pathname !== (`/s/${videoClass.searchTerm}`) ) {
+		await videoSearch()
+		if (location.pathname !== (`/s/${videoClass.searchTerm}`)) {
 			navigate(`/s/${videoClass.searchTerm}`)
 
 		}
