@@ -31,7 +31,7 @@ function Video() {
 					<VideoPlayer videoUrl={video.videoUrl} />
 				</div>
 				<div className="col-span-3 flex flex-col ml-10">
-					<TradeSharesCard video={video} />
+					<TradeSharesCard videoUUID={video.uuid} />
 				</div>
 			</div>
 			<div className="grid grid-cols-12">

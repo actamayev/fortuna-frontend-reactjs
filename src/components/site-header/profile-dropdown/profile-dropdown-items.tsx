@@ -22,7 +22,6 @@ function ProfileDropdownItems() {
 	return (
 		<>
 			<Link to="/my-ownership" className={classes.top}>My Ownership</Link>
-			<Link to="/my-orders" className={classes.middle}>My Orders</Link>
 			<Link to="/my-wallet" className={classes.middle}>My Wallet</Link>
 			{personalInfoClass?.isApprovedToBeCreator && (
 				<Link to="/creator/my-content" className={classes.middle}>My Content</Link>
