@@ -18,23 +18,33 @@ function InitialInstantAccessInfo(props: Props) {
 	if (
 		_.isUndefined(video) ||
 		video.isSplExclusive === false ||
-		!_.isUndefined(video.videoUrl) ||
 		_.isNull(positionsAndTransactionsClass) ||
-		positionsAndTransactionsClass.checkIfUuidExistsInExclusiveContentList(video.uuid) === true ||
 		_.isNull(exchangeClass) ||
 		exchangeClass.instantAccessToExclusiveContentStage !== "initial"
 	) return null
 
+	if (
+		positionsAndTransactionsClass.checkIfUuidExistsInExclusiveContentList(video.uuid) === true ||
+		!_.isUndefined(video.videoUrl)
+	) {
+		return (
+			<div className="w-full">
+				<div className="flex items-center w-full">
+					<hr className="flex-grow border-t border-gray-300" />
+				</div>
+				<div className="flex items-center w-full">
+					<span>You have already purchased exclusive access to this video</span>
+				</div>
+			</div>
+		)
+	}
+
 	return (
 		<>
 			<div className="flex items-center w-full">
-				{orNeeded && (
-					<>
-						<hr className="flex-grow border-t border-gray-300" />
-						<span className="px-4 text-gray-500">or</span>
-						<hr className="flex-grow border-t border-gray-300" />
-					</>
-				)}
+				<hr className="flex-grow border-t border-gray-300" />
+				{orNeeded && <span className="px-4 text-gray-500">or</span> }
+				<hr className="flex-grow border-t border-gray-300" />
 			</div>
 			<div className="text-center font-semibold flex justify-center items-center text-xl">
 				Instant Access

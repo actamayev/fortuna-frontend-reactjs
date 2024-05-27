@@ -20,10 +20,14 @@ function InitialPrimaryPurchaseInfo() {
 	if (video.splListingStatus === "SOLDOUT") {
 		return (
 			<div>
+				<span className="font-semibold text-xl">
+					Primary Shares Have Sold Out
+				</span>
 				<InitialInstantAccessInfo video={video} orNeeded={false}/>
 			</div>
 		)
 	}
+
 	return (
 		<div>
 			<div className="text-center flex justify-center items-center">
