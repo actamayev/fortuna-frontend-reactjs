@@ -46,6 +46,7 @@ function UploadContent() {
 
 				<SplOriginalContentUrlInput />
 				<div className="flex w-full">
+
 					<div className="flex flex-col w-1/3">
 						<div className="mb-4">
 							<SelectOfferingSharePriceUsd />
@@ -57,12 +58,15 @@ function UploadContent() {
 							<SelectCreatorOwnershipPercentage />
 						</div>
 					</div>
+
 					<div className="w-1/3">
 						<ExclusiveContentOptionsSection />
 					</div>
+
 					<div className="w-1/3">
 						<CreateTokenSummary />
 					</div>
+
 				</div>
 				<UploadMintInfoButton />
 			</UploadContentTemplate>
