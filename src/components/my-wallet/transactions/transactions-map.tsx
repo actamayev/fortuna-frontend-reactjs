@@ -2,22 +2,22 @@ import _ from "lodash"
 import { useEffect } from "react"
 import { observer } from "mobx-react"
 import SingleTransaction from "./single-transaction"
-import { useSolanaContext } from "../../../contexts/solana-context"
 import useRetrieveTransactions from "../../../hooks/solana/retrieve-transactions"
+import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 
 function TransactionsMap() {
-	const solanaClass = useSolanaContext()
+	const positionsAndTransactionClass = usePositionsAndTransactionsContext()
 	const retrieveTransactions = useRetrieveTransactions()
 
 	useEffect(() => {
 		void retrieveTransactions()
 	}, [retrieveTransactions])
 
-	if (_.isNull(solanaClass)) return null
+	if (_.isNull(positionsAndTransactionClass)) return null
 
 	return (
 		<>
-			{solanaClass.myTransactions.map(transaction => (
+			{positionsAndTransactionClass.myTransactions.map(transaction => (
 				<SingleTransaction key={transaction.solTransferId} transaction={transaction} />
 			))}
 		</>

@@ -1,6 +1,6 @@
 import { ColDef } from "ag-grid-community"
 import { caseInsensitiveComparator, numberComparator } from "../comparators"
-import ThumbnailImageViewer from "../../../components/my-ownership/thumbnail-image-viewer"
+import ThumbnailImageViewer from "../../../components/my-ownership/my-shares-ownership/thumbnail-image-viewer"
 
 const myOwnershipColumns: ColDef[] = [
 	{ headerName: "Thumbnail", field: "thumbnailUrl", cellRenderer: ThumbnailImageViewer, width: 120 },

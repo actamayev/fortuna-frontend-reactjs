@@ -4,7 +4,7 @@ interface Props {
 	content: MyContent
 }
 
-export default function SingleContent(props: Props) {
+export default function SingleMyContent(props: Props) {
 	const { content } = props
 	const navigateToVideoPage = useNavigateToVideo()
 

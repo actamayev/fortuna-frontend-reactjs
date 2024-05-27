@@ -17,17 +17,8 @@ declare global {
 		selectedVideo: File | null
 	}
 
-	interface MyContent extends CommonSplDetails {
-		imageUrl: string
-		videoUrl: string
-		uuid: string
-		splId: number
-		mintAddress: string
-	}
-
 	interface CreateAndMintSPL extends CommonSplDetails {
 		imageUrl: string
-		videoUrl: string
 		uuid: string
 		uploadedImageId: number
 		uploadedVideoId: number
@@ -59,21 +50,6 @@ declare global {
 		sendingTo: string
 		transferAmount: number
 		transferCurrency: Currencies
-	}
-
-	interface SolanaTransaction {
-		solTransferId: number
-		solAmountTransferred: number
-		usdAmountTransferred: number
-		outgoingOrIncoming: "outgoing" | "incoming"
-
-		transferDateTime: Date
-		transferToUsername?: string
-		transferToPublicKey?: string
-		transferFromUsername: string
-		transferFeeSol?: number
-		transferFeeUsd?: number
-		createdAt: Date
 	}
 
 	type SPLListingStatus =

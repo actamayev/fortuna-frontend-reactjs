@@ -8,6 +8,7 @@ import { useSolanaContext } from "../../../contexts/solana-context"
 import { useExchangeContext } from "../../../contexts/exchange-context"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
+import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 
 export default function useUploadMintInfoOnclick(): (
 	setError: React.Dispatch<React.SetStateAction<string>>,
@@ -18,6 +19,7 @@ export default function useUploadMintInfoOnclick(): (
 	const solanaClass = useSolanaContext()
 	const exchangeClass = useExchangeContext()
 	const personalInfoClass = usePersonalInfoContext()
+	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const retrieveSolPrice = useRetrieveSolPrice()
 	const confirmNewSplDetails = useConfirmNewSplDetails()
 
@@ -31,6 +33,7 @@ export default function useUploadMintInfoOnclick(): (
 				_.isNull(solanaClass) ||
 				_.isNull(personalInfoClass) ||
 				_.isNull(exchangeClass) ||
+				_.isNull(positionsAndTransactionsClass) ||
 				_.isNull(solanaClass.newSplDetails.selectedVideo) ||
 				_.isNull(solanaClass.newSplDetails.selectedImage) ||
 				confirmNewSplDetails === false
@@ -48,7 +51,7 @@ export default function useUploadMintInfoOnclick(): (
 				return
 			}
 
-			setStatus("Uploading Thumbnail/picture")
+			setStatus("Uploading Thumbnail")
 			const uploadImageResponse = await fortunaApiClient.uploadDataService.uploadImageToS3(
 				solanaClass.newSplDetails.selectedImage, uploadVideoResponse.data.uuid
 			)
@@ -68,7 +71,6 @@ export default function useUploadMintInfoOnclick(): (
 			const createAndMintSPL: CreateAndMintSPL = {
 				...restOfSplDetails,
 				imageUrl: uploadImageResponse.data.imageUploadUrl,
-				videoUrl: uploadVideoResponse.data.videoUploadUrl,
 				uuid: uploadVideoResponse.data.uuid,
 				uploadedImageId: uploadImageResponse.data.uploadedImageId,
 				uploadedVideoId: uploadVideoResponse.data.uploadedVideoId,
@@ -84,14 +86,14 @@ export default function useUploadMintInfoOnclick(): (
 
 			const myContent: MyContent = {
 				...restOfSplDetails,
-				imageUrl: uploadImageResponse.data.imageUploadUrl,
-				videoUrl: uploadVideoResponse.data.videoUploadUrl,
-				uuid: uploadVideoResponse.data.uuid,
 				splId: createAndMintResponse.data.newSPLId,
+				splListingStatus: "LISTED",
+				imageUrl: uploadImageResponse.data.imageUploadUrl,
+				uuid: uploadVideoResponse.data.uuid,
 				mintAddress: createAndMintResponse.data.mintAddress
 			}
 
-			exchangeClass.addContent(myContent)
+			positionsAndTransactionsClass.addContent(myContent)
 			solanaClass.resetNewSplDetails()
 
 			navigate("/creator/my-content")
@@ -101,8 +103,8 @@ export default function useUploadMintInfoOnclick(): (
 			setStatus("")
 			if (!_.isNull(solanaClass)) solanaClass.setIsNewSplLoading(false)
 		}
-	}, [solanaClass, confirmNewSplDetails, exchangeClass, fortunaApiClient.solanaDataService,
-		fortunaApiClient.uploadDataService, navigate, personalInfoClass, retrieveSolPrice])
+	}, [solanaClass, personalInfoClass, exchangeClass, positionsAndTransactionsClass, confirmNewSplDetails,
+		retrieveSolPrice, fortunaApiClient.uploadDataService, fortunaApiClient.solanaDataService, navigate])
 
 	return uploadMintInfoOnclick
 }

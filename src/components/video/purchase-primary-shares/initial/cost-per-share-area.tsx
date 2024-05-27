@@ -1,19 +1,18 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useParams } from "react-router-dom"
-import { useVideoContext } from "../../../../contexts/video-context"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
 
-function CostPerShareArea() {
-	const { videoUUID } = useParams<{ videoUUID: string }>()
-	const videoClass = useVideoContext()
+interface Props {
+	video: VideoDataWithVideoUrl
+}
+
+function CostPerShareArea(props: Props) {
+	const { video } = props
 	const solanaClass = useSolanaContext()
 	const personalInfoClass = usePersonalInfoContext()
 
-	if (_.isUndefined(videoUUID) || _.isNull(personalInfoClass)) return null
-	const video = videoClass.findVideoFromUUID(videoUUID)
-	if (_.isUndefined(video)) return null
+	if (_.isNull(personalInfoClass)) return null
 
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return (
@@ -26,7 +25,7 @@ function CostPerShareArea() {
 
 	if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null
 
-	const solPriceInUSD = solanaClass.solPriceDetails.solPriceInUSD
+	const { solPriceInUSD } = solanaClass.solPriceDetails
 	return (
 		<>
 			Cost per share: {" "}

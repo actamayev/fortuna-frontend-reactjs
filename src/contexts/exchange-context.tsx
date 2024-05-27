@@ -4,15 +4,7 @@ import { action, computed, makeAutoObservable } from "mobx"
 import { isSplAsk } from "../utils/type-checks"
 
 class ExchangeClass {
-	private _myContent: MyContent[] = []
-	private _myOwnership: MyOwnership[] = []
 	private _myOrders: MyOrder[] = []
-
-	public hasContentToRetrieve = true
-	public isRetrievingContent = false
-
-	public hasOwnershipToRetrieve = true
-	public isRetrievingOwnership = false
 
 	public hasOrdersToRetrieve = true
 	public isRetrievingOrders = false
@@ -39,24 +31,10 @@ class ExchangeClass {
 		askPricePerShareUsd: 0
 	}
 
+	public instantAccessToExclusiveContentStage: TransactionStage = "initial"
+
 	constructor() {
 		makeAutoObservable(this)
-	}
-
-	get myContent(): MyContent[] {
-		return this._myContent
-	}
-
-	set myContent(myContent: MyContent[]) {
-		this._myContent = myContent
-	}
-
-	get myOwnership(): MyOwnership[] {
-		return this._myOwnership
-	}
-
-	set myOwnership(myOwnership: MyOwnership[]) {
-		this._myOwnership = myOwnership
 	}
 
 	get myOrders(): MyOrder[] {
@@ -69,14 +47,6 @@ class ExchangeClass {
 
 	@computed get splAsks () {
 		return this.myOrders.filter(order => isSplAsk(order)) as AskOrderData[]
-	}
-
-	public contextForMyContent(mintAddress: string): MyContent | undefined {
-		return this.myContent.find(content => content.mintAddress === mintAddress)
-	}
-
-	public contextForMyOwnership(uuid: string): MyOwnership | undefined {
-		return this.myOwnership.find(ownership => ownership.uuid === uuid)
 	}
 
 	public updatePurchasePrimarySplSharesDetails = action(<K extends keyof PurchasePrimarySplSharesDetails>(
@@ -135,54 +105,6 @@ class ExchangeClass {
 		}
 	})
 
-	public setContent = action((newContentList: MyContent[]): void => {
-		this.myContent = []
-		if (_.isEmpty(newContentList)) return
-		newContentList.map(singleNewContent => this.addContent(singleNewContent))
-	})
-
-	public addContent = action((newContent: MyContent): void => {
-		const retrievedContent = this.contextForMyContent(newContent.mintAddress)
-		if (!_.isUndefined(retrievedContent)) return
-		this.myContent.unshift(newContent)
-	})
-
-	public checkIfUuidExistsInContentList(uuid: string): boolean {
-		for (const content of this.myContent) {
-			if (_.isEqual(content.uuid, uuid)) return true
-		}
-		return false
-	}
-
-	public setMyOwnership = action((newOwnershipList: MyOwnership[]): void => {
-		this.myOwnership = []
-		if (_.isEmpty(newOwnershipList)) return
-		newOwnershipList.map(singleNewOwnership => this.addOwnership(singleNewOwnership))
-	})
-
-	public addOwnership = action((newOwnership: MyOwnership): void => {
-		const index = this.myOwnership.findIndex(ownership => ownership.splPublicKey === newOwnership.splPublicKey)
-		if (_.isEqual(index, -1)) {
-			this.myOwnership.unshift(newOwnership)
-			return
-		}
-		this.incremenetOwnership(newOwnership.splPublicKey, newOwnership.purchaseData)
-	})
-
-	public incremenetOwnership = action((splPublicKey: string, purchaseData: PurchaseData[]): void => {
-		const index = this.myOwnership.findIndex(ownership => ownership.splPublicKey === splPublicKey)
-		if (_.isEqual(index, -1)) return
-		this.myOwnership[index].purchaseData.push(...purchaseData)
-	})
-
-	public getNumberSharesOwnedByUUID(uuid: string): number {
-		const ownershipData = this.contextForMyOwnership(uuid)
-		if (_.isUndefined(ownershipData)) return 0
-		let numberShares = 0
-		ownershipData.purchaseData.map(ownership => numberShares += ownership.numberOfShares)
-		return numberShares
-	}
-
 	public setMyOrders = action((newOrdersList: RetrievedOrdersResponse): void => {
 		this.myOrders = []
 
@@ -204,31 +126,8 @@ class ExchangeClass {
 			.reduce((sum, order) => sum + order.remainingNumberOfSharesForSale, 0)
 	}
 
-	public getNumberSharesAbleToSell(uuid: string): number {
-		const numberSharesOwned = this.getNumberSharesOwnedByUUID(uuid)
-		const sumOfSharesAsked = this.getRemainingSharesForSale(uuid)
-
-		return numberSharesOwned - sumOfSharesAsked
-	}
-
 	public addOrderToBeginning = action((newOrder: MyOrder): void => {
 		this.myOrders.unshift(newOrder)
-	})
-
-	public setHasContentToRetrieve = action((newState: boolean): void => {
-		this.hasContentToRetrieve = newState
-	})
-
-	public setIsRetrievingContent = action((newState: boolean): void => {
-		this.isRetrievingContent = newState
-	})
-
-	public setHasOwnershipToRetrieve = action((newState: boolean): void => {
-		this.hasOwnershipToRetrieve = newState
-	})
-
-	public setIsRetrievingOwnership = action((newState: boolean): void => {
-		this.isRetrievingOwnership = newState
 	})
 
 	public setHasOrdersToRetrieve = action((newState: boolean): void => {
@@ -243,21 +142,19 @@ class ExchangeClass {
 		this.buyOrSellSecondarySplShares = newValue
 	})
 
+	public setInstantAccessToExclusiveContentStage = action((newValue: TransactionStage): void => {
+		this.instantAccessToExclusiveContentStage = newValue
+	})
+
 	public logout() {
-		this.myContent = []
-		this.myOwnership = []
 		this.myOrders = []
-		this.hasContentToRetrieve = true
-		this.isRetrievingContent = false
-		this.hasOwnershipToRetrieve = true
-		this.isRetrievingOwnership = false
-		this.isRetrievingContent = false
 		this.hasOrdersToRetrieve = true
 		this.isRetrievingOrders = false
 		this.resetPurchaseSplSharesDetails()
 		this.resetSplBidDetails()
 		this.resetSplAskDetails()
 		this.buyOrSellSecondarySplShares = "Buy"
+		this.setInstantAccessToExclusiveContentStage("initial")
 	}
 }
 

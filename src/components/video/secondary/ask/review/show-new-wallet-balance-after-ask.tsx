@@ -18,7 +18,7 @@ function ShowNewWalletBalanceAfterAsk() {
 
 		return (
 			<div className="flex justify-between">
-				<div>New Balance: {" "}</div>
+				<div>New Balance:</div>
 				<div>
 					${(walletBalanceUsd + numberSharesAskingFor * pricePerAskedShareUsd).toFixed(2)} {" "}
 					<span className="text-green-600">
@@ -38,7 +38,7 @@ function ShowNewWalletBalanceAfterAsk() {
 
 	return (
 		<div className="flex justify-between">
-			<div>New Balance: {" "}</div>
+			<div>New Balance:</div>
 			<div>
 				{(walletBalanceSol + numberSharesAskingFor * pricePerAskedShareSol).toFixed(4)} SOL {" "}
 				<span className="text-green-600">

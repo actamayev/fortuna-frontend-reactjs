@@ -13,22 +13,24 @@ function ShowPurchasePrice() {
 	const exchangeClass = useExchangeContext()
 	const personalInfoClass = usePersonalInfoContext()
 
-	if (_.isNull(personalInfoClass) || _.isNull(exchangeClass) || _.isUndefined(videoUUID)) return null
+	if (_.isNull(personalInfoClass) || _.isNull(exchangeClass)) return null
 
 	const video = videoClass.findVideoFromUUID(videoUUID)
 	if (_.isUndefined(video)) return null
 
-	const numberOfTokensPurchasing = exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing
+	const { numberOfTokensPurchasing } = exchangeClass.purchasePrimarySplSharesDetails
+	const { listingSharePriceUsd } = video
+
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return (
-			<div className="flex justify-between">
+			<div className="flex justify-between mb-1">
 				<div>
 					{numberOfTokensPurchasing} {" "}
 					Share{numberOfTokensPurchasing > 1 ? "s" : ""} {" "}
-					X ${_.round(video.listingSharePriceUsd, 2)}
+					X ${_.round(listingSharePriceUsd, 2)}
 				</div>
 				<div>
-					${(video.listingSharePriceUsd * numberOfTokensPurchasing).toFixed(2)}
+					${(listingSharePriceUsd * numberOfTokensPurchasing).toFixed(2)}
 				</div>
 			</div>
 		)
@@ -37,10 +39,10 @@ function ShowPurchasePrice() {
 	if (_.isNull(solanaClass)) return null
 	const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
 	if (_.isUndefined(solPriceInUSD)) return null
-	const videoListingSharePriceSol = video.listingSharePriceUsd / solPriceInUSD
+	const videoListingSharePriceSol = listingSharePriceUsd / solPriceInUSD
 
 	return (
-		<div className="flex justify-between">
+		<div className="flex justify-between mb-1">
 			<div>
 				{numberOfTokensPurchasing} {" "}
 				Share{numberOfTokensPurchasing > 1 ? "s" : ""} {" "}
