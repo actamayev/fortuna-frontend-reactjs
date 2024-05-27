@@ -8,20 +8,20 @@ import PurchasePrimarySharesOptions from "./purchase-primary-shares/purchase-pri
 import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
 
 interface Props {
-	video: VideoDataWithVideoUrl
+	videoUUID: string
 }
 
 function TradeSharesCard(props: Props) {
-	const { video } = props
+	const { videoUUID } = props
 	const authClass = useAuthContext()
 	const navigate = useTypedNavigate()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
 	const wasVideoCreatedByUser = useMemo(() => {
-		if (_.isNull(positionsAndTransactionsClass) || _.isUndefined(video.uuid)) return true
-		return positionsAndTransactionsClass.checkIfUuidExistsInContentList(video.uuid)
+		if (_.isNull(positionsAndTransactionsClass) || _.isUndefined(videoUUID)) return true
+		return positionsAndTransactionsClass.checkIfUuidExistsInContentList(videoUUID)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [positionsAndTransactionsClass, positionsAndTransactionsClass?.myContent, video.uuid])
+	}, [positionsAndTransactionsClass, positionsAndTransactionsClass?.myContent, videoUUID])
 
 	if (_.isNull(authClass.accessToken)) {
 		return (
