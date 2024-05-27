@@ -6,7 +6,6 @@ import { useAuthContext } from "../../contexts/auth-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
 const PrivatePageNames = [
-	"/my-orders",
 	"/my-ownership",
 	"/my-profile",
 	"/my-wallet",

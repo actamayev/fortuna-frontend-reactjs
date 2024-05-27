@@ -22,9 +22,10 @@ function ShowRemainingWalletBalanceAfterPrimaryPurchase() {
 	const video = videoClass.findVideoFromUUID(videoUUID)
 	if (_.isUndefined(video)) return null
 
-	const amountSpendingOnBidUsd = video.listingSharePriceUsd * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing
+	const amountSpendingOnPrimaryPurchaseUsd =
+		video.listingSharePriceUsd * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing
 
-	const remainingWalletBalanceUsd = solanaClass.walletBalanceUSD.get() - amountSpendingOnBidUsd
+	const remainingWalletBalanceUsd = solanaClass.walletBalanceUSD.get() - amountSpendingOnPrimaryPurchaseUsd
 
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return (
@@ -33,7 +34,7 @@ function ShowRemainingWalletBalanceAfterPrimaryPurchase() {
 				<div>
 					${remainingWalletBalanceUsd.toFixed(2)} {" "}
 					<span className="text-red-600">
-						(-${amountSpendingOnBidUsd.toFixed(2)})
+						(-${amountSpendingOnPrimaryPurchaseUsd.toFixed(2)})
 					</span>
 				</div>
 			</div>
@@ -48,7 +49,7 @@ function ShowRemainingWalletBalanceAfterPrimaryPurchase() {
 			<div>
 				{(remainingWalletBalanceUsd / solPriceInUSD).toFixed(4)} SOL {" "}
 				<span className="text-red-600">
-					(-{(amountSpendingOnBidUsd / solPriceInUSD).toFixed(4)} SOL)
+					(-{(amountSpendingOnPrimaryPurchaseUsd / solPriceInUSD).toFixed(4)} SOL)
 				</span>
 			</div>
 		</div>

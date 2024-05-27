@@ -17,6 +17,17 @@ function InitialPrimaryPurchaseInfo() {
 
 	if (_.isUndefined(video)) return null
 
+	if (video.splListingStatus === "SOLDOUT") {
+		return (
+			<div>
+				<span className="font-semibold text-xl">
+					Primary Shares Have Sold Out
+				</span>
+				<InitialInstantAccessInfo video={video} orNeeded={false}/>
+			</div>
+		)
+	}
+
 	return (
 		<div>
 			<div className="text-center flex justify-center items-center">
@@ -45,7 +56,7 @@ function InitialPrimaryPurchaseInfo() {
 			<div className="mt-3 mb-3 flex justify-center">
 				<ReviewPurchaseButton video={video}/>
 			</div>
-			<InitialInstantAccessInfo video={video}/>
+			<InitialInstantAccessInfo video={video} orNeeded={true}/>
 		</div>
 	)
 }

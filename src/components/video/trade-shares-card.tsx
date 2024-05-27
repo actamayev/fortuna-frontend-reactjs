@@ -4,25 +4,24 @@ import { observer } from "mobx-react"
 import Button from "../button"
 import { useAuthContext } from "../../contexts/auth-context"
 import useTypedNavigate from "../../hooks/navigate/typed-navigate"
-import TradeSecondaryShares from "./secondary/trade-secondary-shares"
 import PurchasePrimarySharesOptions from "./purchase-primary-shares/purchase-primary-shares-options"
 import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
 
 interface Props {
-	video: VideoDataWithVideoUrl
+	videoUUID: string
 }
 
 function TradeSharesCard(props: Props) {
-	const { video } = props
+	const { videoUUID } = props
 	const authClass = useAuthContext()
 	const navigate = useTypedNavigate()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
 	const wasVideoCreatedByUser = useMemo(() => {
-		if (_.isNull(positionsAndTransactionsClass) || _.isUndefined(video.uuid)) return true
-		return positionsAndTransactionsClass.checkIfUuidExistsInContentList(video.uuid)
+		if (_.isNull(positionsAndTransactionsClass) || _.isUndefined(videoUUID)) return true
+		return positionsAndTransactionsClass.checkIfUuidExistsInContentList(videoUUID)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [positionsAndTransactionsClass, positionsAndTransactionsClass?.myContent, video.uuid])
+	}, [positionsAndTransactionsClass, positionsAndTransactionsClass?.myContent, videoUUID])
 
 	if (_.isNull(authClass.accessToken)) {
 		return (
@@ -46,11 +45,7 @@ function TradeSharesCard(props: Props) {
 
 	return (
 		<div className="bg-white dark:bg-slate-400 shadow-lg rounded-lg p-3 h-full">
-			{video.splListingStatus === "SOLDOUT" ? (
-				<TradeSecondaryShares />
-			) : (
-				<PurchasePrimarySharesOptions />
-			)}
+			<PurchasePrimarySharesOptions />
 		</div>
 	)
 }
