@@ -1,17 +1,20 @@
 import _ from "lodash"
 import { useCallback, useEffect } from "react"
 import { isErrorResponse } from "../../utils/type-checks"
+import { useSolanaContext } from "../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useRetrievePersonalInfoUseEffect(): void {
 	const fortunaApiClient = useApiClientContext()
 	const personalInfoClass = usePersonalInfoContext()
+	const solanaClass = useSolanaContext()
 
 	const retrievePersonalInfo = useCallback(async () => {
 		try {
 			if (
 				_.isNull(personalInfoClass) ||
+				_.isNull(solanaClass) ||
 				personalInfoClass.isRetrievingPersonalInfo === true ||
 				_.isNull(fortunaApiClient.httpClient.accessToken)
 			) return
@@ -23,12 +26,13 @@ export default function useRetrievePersonalInfoUseEffect(): void {
 				throw Error ("Unable to retrieve personal info")
 			}
 			personalInfoClass.setRetrievedPersonalData(personalInfoResponse.data)
+			solanaClass.walletPublicKey = personalInfoResponse.data.publicKey
 		} catch (error) {
 			console.error(error)
 		} finally {
 			if (!_.isNull(personalInfoClass)) personalInfoClass.setIsRetrievingPersonalDetails(false)
 		}
-	}, [personalInfoClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService])
+	}, [personalInfoClass, solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService])
 
 	useEffect(() => {
 		void retrievePersonalInfo()

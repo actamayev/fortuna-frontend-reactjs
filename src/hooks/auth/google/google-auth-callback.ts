@@ -20,7 +20,7 @@ export default function useGoogleAuthCallback(): (successResponse: CredentialRes
 			if (!_.isEqual(googleCallbackResponse.status, 200) || isErrorResponses(googleCallbackResponse.data)) {
 				throw Error("Unable to login")
 			}
-			setDataAfterLogin(googleCallbackResponse.data.accessToken)
+			setDataAfterLogin(googleCallbackResponse.data)
 			if (googleCallbackResponse.data.isNewUser === true) {
 				navigate("/register-username")
 				return

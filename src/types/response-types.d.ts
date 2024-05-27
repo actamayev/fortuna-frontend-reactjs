@@ -10,8 +10,8 @@ declare global {
 	type BooleanResponse = { exists: boolean }
 
 	//Auth Responses:
-	type LoginOrRegisterSuccess = { accessToken: string }
-	type GoogleAuthSuccess = { accessToken: string, isNewUser: boolean }
+	type LoginOrRegisterSuccess = { accessToken: string, publicKey: string }
+	type GoogleAuthSuccess = { accessToken: string, isNewUser: boolean, publicKey: string }
 
 	// Exchange Resposnes:
 	interface PrimarySplTokenPurchaseResponse extends MyOwnership {
@@ -26,8 +26,8 @@ declare global {
 		defaultSiteTheme: SiteThemes
 		isApprovedToBeCreator: boolean
 		profilePictureUrl: string | null
+		publicKey: string
 	}
-	type PublicKeyResponse = { publicKey: string }
 
 	// Search Responses:
 	type SearchForUsersResponse = { usernames: { username: string }[] }
@@ -62,7 +62,6 @@ declare global {
 		uploadedImageId: number
 	}
 	type UploadVideoToS3 = {
-		videoUploadUrl: string
 		uploadedVideoId: number
 		uuid: string
 	}
