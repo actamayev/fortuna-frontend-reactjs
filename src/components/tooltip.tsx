@@ -1,5 +1,5 @@
 import _ from "lodash"
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 
 interface Props {
 	message: string
@@ -12,24 +12,24 @@ export default function Tooltip(props: Props) {
 	const [isVisible, setIsVisible] = useState(false)
 	const [timeoutId, setTimeoutId] = useState<number | null>(null)
 
-	const showTooltip = () => {
+	const showTooltip = useCallback(() => {
 		if (!_.isNull(timeoutId)) {
 			clearTimeout(timeoutId)
 			setTimeoutId(null)
 		}
 		setIsVisible(true)
-	}
+	}, [timeoutId])
 
-	const hideTooltip = () => {
+	const hideTooltip = useCallback(() => {
 		const id = setTimeout(() => {
 			setIsVisible(false)
-		}, 200)
+		}, 150)
 		setTimeoutId(id as unknown as number)
-	}
+	}, [])
 
 	useEffect(() => {
 		return () => {
-			if (timeoutId) {
+			if (!_.isNull(timeoutId)) {
 				clearTimeout(timeoutId)
 			}
 		}
