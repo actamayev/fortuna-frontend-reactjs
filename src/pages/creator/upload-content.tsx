@@ -6,8 +6,8 @@ import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import ShowMessageToNonCreators from "../../components/show-message-to-non-creators"
 import UploadContentTemplate from "../../components/templates/upload-content-template"
 import SPLNameInput from "../../components/upload-new-mint-information/spl-name-input"
+import NewTokenSummary from "../../components/upload-new-mint-information/new-token-summary"
 import SelectNumberShares from "../../components/upload-new-mint-information/select-number-shares"
-import CreateTokenSummary from "../../components/upload-new-mint-information/create-token-summary"
 import SPLDescriptionInput from "../../components/upload-new-mint-information/spl-description-input"
 import ImageUploader from "../../components/upload-new-mint-information/upload-media/image-uploader"
 import VideoUploader from "../../components/upload-new-mint-information/upload-media/video-uploader"
@@ -64,7 +64,7 @@ function UploadContent() {
 					</div>
 
 					<div className="w-1/3">
-						<CreateTokenSummary />
+						<NewTokenSummary />
 					</div>
 
 				</div>

@@ -46,7 +46,7 @@ export default function VideoDescriptionArea(props: Props) {
 					{description}
 				</div>
 				<div>
-					{sharesRemainingForSale} Shares Remaining for {" "}
+					{sharesRemainingForSale} Share{sharesRemainingForSale === 1 ? "" : "s"} Remaining for {" "}
 					<PricePerShareArea video={video}/>
 				</div>
                 Total Outstanding shares: {totalNumberShares}

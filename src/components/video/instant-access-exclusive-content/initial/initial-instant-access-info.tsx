@@ -23,10 +23,7 @@ function InitialInstantAccessInfo(props: Props) {
 		exchangeClass.instantAccessToExclusiveContentStage !== "initial"
 	) return null
 
-	if (
-		positionsAndTransactionsClass.checkIfUuidExistsInExclusiveContentList(video.uuid) === true ||
-		!_.isUndefined(video.videoUrl)
-	) {
+	if (positionsAndTransactionsClass.checkIfUuidExistsInExclusiveContentList(video.uuid) === true) {
 		return (
 			<div className="w-full">
 				<div className="flex items-center w-full">
@@ -35,6 +32,21 @@ function InitialInstantAccessInfo(props: Props) {
 				<div className="flex items-center w-full">
 					<span>You have already purchased exclusive access to this video</span>
 				</div>
+			</div>
+		)
+	}
+
+	if (!_.isUndefined(video.videoUrl)) {
+		const sharesOwned = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(video.uuid)
+		return (
+			<div className="w-full">
+				<div className="flex items-center w-full">
+					<hr className="flex-grow border-t border-gray-300" />
+				</div>
+				<div className="flex items-center w-full">
+					<span>You have access to this exclusive video through share ownership</span>
+				</div>
+				Shares owned: {sharesOwned}
 			</div>
 		)
 	}
