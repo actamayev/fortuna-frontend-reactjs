@@ -18,7 +18,7 @@ function UnlockedContentIcon(props: Props) {
 	if (isSplExclusive === false) {
 		return (
 			<Tooltip
-				message="This content is not exclusive"
+				message="This video is not exclusive"
 				width="200px"
 			>
 				<FaUnlock />
@@ -50,7 +50,7 @@ function UnlockedContentIcon(props: Props) {
 
 	if (allowValueFromSameCreatorTokensForExclusiveContent === false) {
 		const message = `You own $${valueOfSharesOwnedUsd} of this token, which is greater than or equal to 
-		the value necessary to access this exclusive content ($${valueNeededToAccessExclusiveContentUsd})`
+			the value necessary to access this exclusive video ($${valueNeededToAccessExclusiveContentUsd})`
 		return (
 			<Tooltip
 				message={message}
@@ -65,13 +65,13 @@ function UnlockedContentIcon(props: Props) {
 	let width
 	if (valueOfSharesOwnedUsd < valueNeededToAccessExclusiveContentUsd) {
 		message = `${creatorUsername} has enabled cross-token value.
-			The total value of your tokens from this creator exceeds the required value for exclusive content access.
+			The total value of your tokens from this creator exceeds the required value for exclusive video access.
 			Even though you don't have $${valueNeededToAccessExclusiveContentUsd}
 			of this token, you own other tokens by this creator`
 		width = "700px"
 	} else {
 		message = `${creatorUsername} has enabled cross-token value.
-			The total value of your tokens from this creator exceeds the required value for exclusive content access`
+			The total value of your tokens from this creator exceeds the required value for exclusive video access`
 		width = "450px"
 	}
 
