@@ -54,10 +54,8 @@ declare global {
 	}
 
 	type SPLListingStatus =
-		"PRELISTING" |
 		"LISTED" |
-		"SOLDOUT" |
-		"REMOVED"
+		"SOLDOUT"
 }
 
 export {}

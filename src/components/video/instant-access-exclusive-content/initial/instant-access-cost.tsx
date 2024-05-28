@@ -12,8 +12,7 @@ function InstantAccessCost(props: Props) {
 	const solanaClass = useSolanaContext()
 	const personalInfoClass = usePersonalInfoContext()
 
-	if (_.isNull(personalInfoClass)) return null
-	if (_.isNull(video.priceToInstantlyAccessExclusiveContentUsd)) return null
+	if (_.isNull(personalInfoClass) || _.isNull(video.priceToInstantlyAccessExclusiveContentUsd)) return null
 
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return (
