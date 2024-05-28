@@ -5,7 +5,7 @@ import RangeSelectorSlider from "../../range-selector-slider"
 import { useSolanaContext } from "../../../contexts/solana-context"
 import useIsNewSplLoading from "../../../hooks/solana/mint-spl/is-new-spl-leading"
 
-function ListingPriceToAccessExclusiveContentUsd() {
+function InstantAccessPriceToExclusiveContentUsd() {
 	const solanaClass = useSolanaContext()
 	const isNewSplLoading = useIsNewSplLoading()
 
@@ -42,4 +42,4 @@ function ListingPriceToAccessExclusiveContentUsd() {
 	)
 }
 
-export default observer(ListingPriceToAccessExclusiveContentUsd)
+export default observer(InstantAccessPriceToExclusiveContentUsd)

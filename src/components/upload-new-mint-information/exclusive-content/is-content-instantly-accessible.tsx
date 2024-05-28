@@ -27,7 +27,7 @@ function IsContentInstantlyAccessible() {
 
 	return (
 		<>
-			Allow fans to to instantly access this video for a fixed amount
+			Allow fans to to instantly access this video for a fixed price
 			<div>
 				<Slider
 					checkedCondition={isContentInstantlyAccessible === true}
