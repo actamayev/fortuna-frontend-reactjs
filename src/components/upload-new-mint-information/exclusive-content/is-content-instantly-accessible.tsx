@@ -5,21 +5,21 @@ import Slider from "../../slider"
 import { useSolanaContext } from "../../../contexts/solana-context"
 import useIsNewSplLoading from "../../../hooks/solana/mint-spl/is-new-spl-leading"
 
-function AllowValueFromSameCreatorTokensForExclusiveContent() {
+function IsContentInstantlyAccessible() {
 	const solanaClass = useSolanaContext()
 	const isNewSplLoading = useIsNewSplLoading()
 
-	const allowValueFromSameCreatorTokensForExclusiveContent = useMemo(() => {
+	const isContentInstantlyAccessible = useMemo(() => {
 		if (_.isNull(solanaClass)) return false
-		return solanaClass.newSplDetails.allowValueFromSameCreatorTokensForExclusiveContent
+		return solanaClass.newSplDetails.isContentInstantlyAccessible
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [solanaClass, solanaClass?.newSplDetails.allowValueFromSameCreatorTokensForExclusiveContent])
+	}, [solanaClass, solanaClass?.newSplDetails.isContentInstantlyAccessible])
 
 	const updateNewSplDetails = useCallback(() => {
 		if (_.isNull(solanaClass)) return
 		solanaClass.updateNewSplDetails(
-			"allowValueFromSameCreatorTokensForExclusiveContent",
-			!solanaClass.newSplDetails.allowValueFromSameCreatorTokensForExclusiveContent
+			"isContentInstantlyAccessible",
+			!solanaClass.newSplDetails.isContentInstantlyAccessible
 		)
 	}, [solanaClass])
 
@@ -27,10 +27,10 @@ function AllowValueFromSameCreatorTokensForExclusiveContent() {
 
 	return (
 		<>
-			Allow value from other tokens to count for value to access this video
+			Allow fans to to instantly access this video for a fixed amount
 			<div>
 				<Slider
-					checkedCondition={allowValueFromSameCreatorTokensForExclusiveContent === true}
+					checkedCondition={isContentInstantlyAccessible === true}
 					onChangeCheckedCondition={updateNewSplDetails}
 					disabledCondition={isNewSplLoading}
 					colorChangeOnToggle={true}
@@ -40,4 +40,4 @@ function AllowValueFromSameCreatorTokensForExclusiveContent() {
 	)
 }
 
-export default observer(AllowValueFromSameCreatorTokensForExclusiveContent)
+export default observer(IsContentInstantlyAccessible)

@@ -1,5 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
+import Tooltip from "../tooltip"
 import ImpliedVideoValue from "./implied-video-value"
 import { useSolanaContext } from "../../contexts/solana-context"
 
@@ -34,7 +35,15 @@ function NewTokenSummary() {
 				Token Value information
 			</h2>
 			Implied Video Value: <ImpliedVideoValue />
-			<div>Pegging to USD</div>
+			<div className="flex">
+				Pegging to USD
+				<Tooltip
+					message="The USD value of your token will not change with Solana's price fluctuations"
+					width="200px"
+				>
+					ℹ️
+				</Tooltip>
+			</div>
 		</div>
 	)
 }

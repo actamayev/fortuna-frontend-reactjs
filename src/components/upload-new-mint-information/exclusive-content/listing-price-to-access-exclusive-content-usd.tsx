@@ -20,7 +20,11 @@ function ListingPriceToAccessExclusiveContentUsd() {
 		solanaClass.updateNewSplDetails("listingPriceToAccessExclusiveContentUsd", Number(event.target.value))
 	}, [solanaClass])
 
-	if (_.isNull(solanaClass) || solanaClass.newSplDetails.isContentExclusive === false) return null
+	if (
+		_.isNull(solanaClass) ||
+		solanaClass.newSplDetails.isContentExclusive === false ||
+		solanaClass.newSplDetails.isContentInstantlyAccessible === false
+	) return null
 
 	return (
 		<div className="flex flex-col space-y-4">

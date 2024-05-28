@@ -27,6 +27,7 @@ function IsContentExclusiveSlider() {
 				checkedCondition={isContentExclusive === true}
 				onChangeCheckedCondition={updateNewSplDetails}
 				disabledCondition={isNewSplLoading}
+				colorChangeOnToggle={true}
 			/>
 		</>
 	)

@@ -8,6 +8,7 @@ declare global {
 		originalContentUrl: string
 		isContentExclusive: boolean
 		valueNeededToAccessExclusiveContentUsd?: number
+		isContentInstantlyAccessible?: boolean
 		listingPriceToAccessExclusiveContentUsd?: number
 		allowValueFromSameCreatorTokensForExclusiveContent?: boolean
 	}
