@@ -40,7 +40,6 @@ export default function FormGroup(props: Props) {
 		value,
 		children,
 	} = props
-	// eslint-disable-next-line @typescript-eslint/naming-convention
 	const Component = as || (multiline ? "textarea" : "input")
 
 	const minAttribute = type === "datetime-local" ? minDate : minValue
