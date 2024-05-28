@@ -9,15 +9,15 @@ function ListingPriceToAccessExclusiveContentUsd() {
 	const solanaClass = useSolanaContext()
 	const isNewSplLoading = useIsNewSplLoading()
 
-	const listingPriceToAccessExclusiveContentUsd = useMemo(() => {
-		if (_.isNull(solanaClass) || _.isUndefined(solanaClass.newSplDetails.listingPriceToAccessExclusiveContentUsd)) return 0
-		return solanaClass.newSplDetails.listingPriceToAccessExclusiveContentUsd
+	const instantAccessPriceToExclusiveContentUsd = useMemo(() => {
+		if (_.isNull(solanaClass) || _.isUndefined(solanaClass.newSplDetails.instantAccessPriceToExclusiveContentUsd)) return 0
+		return solanaClass.newSplDetails.instantAccessPriceToExclusiveContentUsd
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [solanaClass, solanaClass?.newSplDetails.listingPriceToAccessExclusiveContentUsd])
+	}, [solanaClass, solanaClass?.newSplDetails.instantAccessPriceToExclusiveContentUsd])
 
 	const updateNewSplDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(solanaClass)) return
-		solanaClass.updateNewSplDetails("listingPriceToAccessExclusiveContentUsd", Number(event.target.value))
+		solanaClass.updateNewSplDetails("instantAccessPriceToExclusiveContentUsd", Number(event.target.value))
 	}, [solanaClass])
 
 	if (
@@ -30,14 +30,14 @@ function ListingPriceToAccessExclusiveContentUsd() {
 		<div className="flex flex-col space-y-4">
 			<RangeSelectorSlider
 				title="Instant access price ($)"
-				value={listingPriceToAccessExclusiveContentUsd}
+				value={instantAccessPriceToExclusiveContentUsd}
 				onChange={updateNewSplDetails}
 				min={5}
 				max={100}
 				step={1}
 				disabled={isNewSplLoading}
 			/>
-			${listingPriceToAccessExclusiveContentUsd}
+			${instantAccessPriceToExclusiveContentUsd}
 		</div>
 	)
 }

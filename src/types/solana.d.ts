@@ -9,7 +9,7 @@ declare global {
 		isContentExclusive: boolean
 		valueNeededToAccessExclusiveContentUsd?: number
 		isContentInstantlyAccessible?: boolean
-		listingPriceToAccessExclusiveContentUsd?: number
+		instantAccessPriceToExclusiveContentUsd?: number
 		allowValueFromSameCreatorTokensForExclusiveContent?: boolean
 	}
 
