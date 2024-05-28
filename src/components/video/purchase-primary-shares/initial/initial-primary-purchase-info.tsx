@@ -9,6 +9,7 @@ import ShowNumberSharesOwned from "./show-number-shares-owned"
 import { useVideoContext } from "../../../../contexts/video-context"
 import SelectNumberSharesToPurchase from "./select-number-shares-to-purchase"
 import InitialInstantAccessInfo from "../../instant-access-exclusive-content/initial/initial-instant-access-info"
+import ShowNumberSharesNeededToAccessExclusiveContent from "./show-number-shares-needed-to-access-exclusive-content"
 
 function InitialPrimaryPurchaseInfo() {
 	const { videoUUID } = useParams<{ videoUUID: string}>()
@@ -46,6 +47,9 @@ function InitialPrimaryPurchaseInfo() {
 			</div>
 			<div className="mt-3">
 				<ShowNumberSharesOwned video={video}/>
+			</div>
+			<div className="mt-3">
+				<ShowNumberSharesNeededToAccessExclusiveContent video={video}/>
 			</div>
 			<div className="mt-3">
 				<SelectNumberSharesToPurchase />

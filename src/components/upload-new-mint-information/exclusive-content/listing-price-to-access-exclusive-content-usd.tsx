@@ -25,7 +25,7 @@ function ListingPriceToAccessExclusiveContentUsd() {
 	return (
 		<div className="flex flex-col space-y-4">
 			<RangeSelectorSlider
-				title="Instant content access price ($)"
+				title="Instant access price ($)"
 				value={listingPriceToAccessExclusiveContentUsd}
 				onChange={updateNewSplDetails}
 				min={5}
