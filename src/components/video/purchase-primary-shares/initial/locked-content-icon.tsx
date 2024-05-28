@@ -5,7 +5,7 @@ import Tooltip from "../../../tooltip"
 import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
 
 interface Props {
-	video: VideoDataWithVideoUrl
+	video: SingleVideoDataFromBackend
 }
 
 function LockedContentIcon(props: Props) {
@@ -32,9 +32,15 @@ function LockedContentIcon(props: Props) {
 	let message = `Purchase ${sharesNeededToPurchase} more share${sharesNeededToPurchase === 1 ? "" : "s"} to unlock`
 	if (allowValueFromSameCreatorTokensForExclusiveContent === false) {
 		return (
-			<Tooltip message={message} width="250px">
-				<FaLock />
-			</Tooltip>
+			<div className="flex ml-2">
+				<Tooltip
+					message={message}
+					width="250px"
+					messageStart="center"
+				>
+					<FaLock />
+				</Tooltip>
+			</div>
 		)
 	}
 
@@ -54,12 +60,15 @@ function LockedContentIcon(props: Props) {
 		width = "500px"
 	}
 	return (
-		<Tooltip
-			message={message}
-			width={width}
-		>
-			<FaLock />
-		</Tooltip>
+		<div className="flex ml-2">
+			<Tooltip
+				message={message}
+				width={width}
+				messageStart="center"
+			>
+				<FaLock />
+			</Tooltip>
+		</div>
 	)
 }
 

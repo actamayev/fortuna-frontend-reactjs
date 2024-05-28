@@ -18,14 +18,11 @@ declare global {
 		isContentInstantlyAccessible: boolean | null
 		priceToInstantlyAccessExclusiveContentUsd: number | null
 		allowValueFromSameCreatorTokensForExclusiveContent: boolean | null
+		isUserAbleToAccessVideo: boolean
 	}
 
 	interface SingleVideoDataFromBackend extends VideoDataLessVideoUrl {
 		videoUrl?: string
-	}
-
-	interface VideoDataWithVideoUrl extends SingleVideoDataFromBackend {
-		isUserAbleToAccessVideo?: boolean
 	}
 
 	interface CreatorData {

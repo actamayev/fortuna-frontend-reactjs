@@ -6,7 +6,7 @@ import { useExchangeContext } from "../../../../contexts/exchange-context"
 import useCalculateMaxSharesToPurchase from "../../../../hooks/exchange/purchase-spl-tokens/calculate-max-shares-to-purchase"
 
 interface Props {
-	video: VideoDataWithVideoUrl
+	video: SingleVideoDataFromBackend
 }
 
 function ReviewPurchaseButton(props: Props) {

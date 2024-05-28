@@ -2,7 +2,7 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 
 interface Props {
-	video: VideoDataWithVideoUrl
+	video: SingleVideoDataFromBackend
 }
 
 function ShowNumberSharesNeededToAccessExclusiveContent(props: Props) {

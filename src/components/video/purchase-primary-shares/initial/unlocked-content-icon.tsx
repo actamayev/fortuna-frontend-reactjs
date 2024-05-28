@@ -5,7 +5,7 @@ import Tooltip from "../../../tooltip"
 import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
 
 interface Props {
-	video: VideoDataWithVideoUrl
+	video: SingleVideoDataFromBackend
 }
 
 function UnlockedContentIcon(props: Props) {
@@ -17,12 +17,15 @@ function UnlockedContentIcon(props: Props) {
 
 	if (isSplExclusive === false) {
 		return (
-			<Tooltip
-				message="This video is not exclusive"
-				width="200px"
-			>
-				<FaUnlock />
-			</Tooltip>
+			<div className="flex ml-2">
+				<Tooltip
+					message="This video is not exclusive"
+					width="200px"
+					messageStart="center"
+				>
+					<FaUnlock />
+				</Tooltip>
+			</div>
 		)
 	}
 
@@ -32,12 +35,17 @@ function UnlockedContentIcon(props: Props) {
 
 	if (doesUserHaveInstantExclusiveAccess === true) {
 		return (
-			<Tooltip
-				message="You purchased instant access to this exclusive video"
-				width="225px"
-			>
-				<FaUnlock />
-			</Tooltip>
+			<div className="flex ml-2">
+
+				<Tooltip
+					message="You purchased instant access to this exclusive video"
+					width="225px"
+					messageStart="center"
+				>
+					<FaUnlock />
+				</Tooltip>
+			</div>
+
 		)
 	}
 
@@ -52,12 +60,16 @@ function UnlockedContentIcon(props: Props) {
 		message = `You own $${valueOfSharesOwnedUsd} of this token, which is greater than or equal to 
 			the value necessary to access this exclusive video ($${valueNeededToAccessExclusiveContentUsd})`
 		return (
-			<Tooltip
-				message={message}
-				width={width}
-			>
-				<FaUnlock />
-			</Tooltip>
+			<div className="flex ml-2">
+				<Tooltip
+					message={message}
+					width={width}
+					messageStart="center"
+				>
+					<FaUnlock />
+				</Tooltip>
+			</div>
+
 		)
 	}
 
@@ -72,12 +84,16 @@ function UnlockedContentIcon(props: Props) {
 	}
 
 	return (
-		<Tooltip
-			message={message}
-			width={width}
-		>
-			<FaUnlock />
-		</Tooltip>
+		<div className="flex ml-2">
+			<Tooltip
+				message={message}
+				width={width}
+				messageStart="center"
+			>
+				<FaUnlock />
+			</Tooltip>
+		</div>
+
 	)
 }
 

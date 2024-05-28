@@ -21,9 +21,6 @@ export default function useRetrieveVideoUrlData(videoUUID: string | undefined): 
 			// If there is already a videoUrl, there's no point to re-fetch it
 			if (!_.isUndefined(video) && !_.isUndefined(video.videoUrl)) return
 
-			// If we already know if the user is or is not able to access the video, there is not point in re-fetching.
-			if (!_.isUndefined(video) && !_.isUndefined(video.isUserAbleToAccessVideo)) return
-
 			videoClass.setIsRetrievingVideoUrl(true)
 
 			const videoUrlData = await fortunaApiClient.videoDataService.getVideoUrl(videoUUID)
