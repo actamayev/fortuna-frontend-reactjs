@@ -1,7 +1,7 @@
 import IsContentExclusiveSlider from "./is-content-exclusive-slider"
 import IsContentInstantlyAccessible from "./is-content-instantly-accessible"
 import ValueNeededToAccessExclusiveContent from "./value-needed-to-access-exclusive-content"
-import InstantAccessPriceToExclusiveContentUsd from "./insstant-access-price-to-exclusive-content-usd"
+import InstantAccessPriceToExclusiveContentUsd from "./instant-access-price-to-exclusive-content-usd"
 import AllowValueFromSameCreatorTokensForExclusiveContent from "./allow-value-from-same-creator-tokens-for-exclusive-content"
 
 export default function ExclusiveContentOptionsSection() {
