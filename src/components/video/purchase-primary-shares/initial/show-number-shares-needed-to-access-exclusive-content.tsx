@@ -22,7 +22,7 @@ function ShowNumberSharesNeededToAccessExclusiveContent(props: Props) {
 			<span className="font-bold">
 				{sharesNeededToAccessExclusiveContent}
 			</span> {" "}
-			more shares to unlock
+			more share{sharesNeededToAccessExclusiveContent === 1 ? "" : "s"} to unlock
 		</>
 	)
 }

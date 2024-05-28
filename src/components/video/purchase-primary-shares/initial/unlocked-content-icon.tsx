@@ -33,26 +33,28 @@ function UnlockedContentIcon(props: Props) {
 		_.isNull(allowValueFromSameCreatorTokensForExclusiveContent)
 	) return null
 
+	const doesUserHaveInstantExclusiveAccess = positionsAndTransactionsClass.checkIfUuidExistsInExclusiveContentList(uuid)
+
+	if (doesUserHaveInstantExclusiveAccess === true) {
+		return (
+			<Tooltip
+				message="You purchased instant access to this exclusive video"
+				width="150px"
+			>
+				<FaUnlock />
+			</Tooltip>
+		)
+	}
 	const numberSharesUserOwns = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(uuid)
 	const valueOfSharesOwnedUsd = numberSharesUserOwns * listingSharePriceUsd
 
-	const doesUserHaveInstantExclusiveAccess = positionsAndTransactionsClass.checkIfUuidExistsInExclusiveContentList(uuid)
-
 	if (allowValueFromSameCreatorTokensForExclusiveContent === false) {
-		let message
-		let width
-		if (doesUserHaveInstantExclusiveAccess === true) {
-			message = "You purchased instant access to this exclusive video"
-			width = "150px"
-		} else {
-			message = `You own $${valueOfSharesOwnedUsd} of this token, which is greater than or equal to 
-				the value necessary to access this exclusive content ($${valueNeededToAccessExclusiveContentUsd})`
-			width = "500px"
-		}
+		const message = `You own $${valueOfSharesOwnedUsd} of this token, which is greater than or equal to 
+		the value necessary to access this exclusive content ($${valueNeededToAccessExclusiveContentUsd})`
 		return (
 			<Tooltip
 				message={message}
-				width={width}
+				width="500px"
 			>
 				<FaUnlock />
 			</Tooltip>
@@ -61,10 +63,7 @@ function UnlockedContentIcon(props: Props) {
 
 	let message
 	let width
-	if (doesUserHaveInstantExclusiveAccess === true) {
-		message = "You purchased instant access to this exclusive video"
-		width = "355px"
-	} else if (valueOfSharesOwnedUsd < valueNeededToAccessExclusiveContentUsd) {
+	if (valueOfSharesOwnedUsd < valueNeededToAccessExclusiveContentUsd) {
 		message = `${creatorUsername} has enabled cross-token value.
 			The total value of your tokens from this creator exceeds the required value for exclusive content access.
 			Even though you don't have $${valueNeededToAccessExclusiveContentUsd}

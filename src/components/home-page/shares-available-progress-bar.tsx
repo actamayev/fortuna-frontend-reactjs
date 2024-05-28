@@ -32,9 +32,8 @@ export default function SharesAvailableProgressBar(props: Props) {
 				style={{ transition: "opacity 0.1s ease-in-out", minWidth: "130px" }}
 			>
 				<div>{`${_.round(percent)}% sold`}</div>
-				<div>{`${sharesRemainingForSale} shares available`}</div>
+				<div>{`${sharesRemainingForSale} share${sharesRemainingForSale === 1 ? "" : "s"} available`}</div>
 			</div>
 		</div>
 	)
-
 }
