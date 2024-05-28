@@ -21,16 +21,16 @@ function IsContentExclusiveSlider() {
 	}, [solanaClass])
 
 	return (
-		<>
-			Exclusive Content
+		<div className="flex flex-row items-center space-x-2">
+			<span>Exclusive Content</span>
 			<Slider
 				checkedCondition={isContentExclusive === true}
 				onChangeCheckedCondition={updateNewSplDetails}
 				disabledCondition={isNewSplLoading}
+				colorChangeOnToggle={true}
 			/>
-		</>
+		</div>
 	)
-
 }
 
 export default observer(IsContentExclusiveSlider)

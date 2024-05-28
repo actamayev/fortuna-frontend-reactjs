@@ -8,7 +8,8 @@ declare global {
 		originalContentUrl: string
 		isContentExclusive: boolean
 		valueNeededToAccessExclusiveContentUsd?: number
-		listingPriceToAccessExclusiveContentUsd?: number
+		isContentInstantlyAccessible?: boolean
+		priceToInstantlyAccessExclusiveContentUsd?: number
 		allowValueFromSameCreatorTokensForExclusiveContent?: boolean
 	}
 
@@ -53,10 +54,8 @@ declare global {
 	}
 
 	type SPLListingStatus =
-		"PRELISTING" |
 		"LISTED" |
-		"SOLDOUT" |
-		"REMOVED"
+		"SOLDOUT"
 }
 
 export {}

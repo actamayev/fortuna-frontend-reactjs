@@ -43,7 +43,7 @@ function ValueNeededToAccessExclusiveContent() {
 				step={1}
 				disabled={isNewSplLoading}
 			/>
-			${valueNeededToAccessExclusiveContent}
+			${valueNeededToAccessExclusiveContent} {" "}
 			({minNumberSharesToAccessExclusiveContent} share{minNumberSharesToAccessExclusiveContent === 1 ? "" : "s"})
 		</div>
 	)

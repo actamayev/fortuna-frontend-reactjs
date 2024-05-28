@@ -36,7 +36,7 @@ export default function VideoDescriptionArea(props: Props) {
 						</div>
 					)}
 					<span
-						className="text-sm font-medium cursor-pointer"
+						className="text-sm font-medium cursor-pointer hover:font-semibold"
 						onClick={() => navigateToCreatorPage(creatorUsername)}
 					>
 						{creatorUsername}

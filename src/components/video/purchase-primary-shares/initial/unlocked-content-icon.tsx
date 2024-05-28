@@ -34,7 +34,7 @@ function UnlockedContentIcon(props: Props) {
 		return (
 			<Tooltip
 				message="You purchased instant access to this exclusive video"
-				width="150px"
+				width="225px"
 			>
 				<FaUnlock />
 			</Tooltip>

@@ -15,7 +15,8 @@ declare global {
 		creatorProfilePictureUrl: string | null
 		isSplExclusive: boolean
 		valueNeededToAccessExclusiveContentUsd: number | null
-		listingPriceToAccessContentUsd: number | null
+		isContentInstantlyAccessible: boolean | null
+		priceToInstantlyAccessExclusiveContentUsd: number | null
 		allowValueFromSameCreatorTokensForExclusiveContent: boolean | null
 	}
 
