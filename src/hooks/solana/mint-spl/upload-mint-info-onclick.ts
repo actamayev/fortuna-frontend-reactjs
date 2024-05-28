@@ -66,6 +66,10 @@ export default function useUploadMintInfoOnclick(): (
 				delete restOfSplDetails.valueNeededToAccessExclusiveContentUsd
 				delete restOfSplDetails.listingPriceToAccessExclusiveContentUsd
 				delete restOfSplDetails.allowValueFromSameCreatorTokensForExclusiveContent
+				delete restOfSplDetails.isContentInstantlyAccessible
+			}
+			if (restOfSplDetails.isContentInstantlyAccessible === false) {
+				delete restOfSplDetails.listingPriceToAccessExclusiveContentUsd
 			}
 
 			const createAndMintSPL: CreateAndMintSPL = {
