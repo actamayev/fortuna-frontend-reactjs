@@ -16,7 +16,7 @@ declare global {
 		isSplExclusive: boolean
 		valueNeededToAccessExclusiveContentUsd: number | null
 		isContentInstantlyAccessible: boolean | null
-		listingPriceToAccessContentUsd: number | null
+		instantAccessPriceToExclusiveContentUsd: number | null
 		allowValueFromSameCreatorTokensForExclusiveContent: boolean | null
 	}
 

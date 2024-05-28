@@ -43,8 +43,8 @@ export default function usePurchaseInstantAccess(): (
 			}
 			positionsAndTransactionsClass.addExclusiveContent(exclusiveContentToAddToList)
 			exchangeClass.setInstantAccessToExclusiveContentStage("initial")
-			if (_.isNull(video.listingPriceToAccessContentUsd)) return
-			solanaClass.alterWalletBalanceUsd(-video.listingPriceToAccessContentUsd)
+			if (_.isNull(video.instantAccessPriceToExclusiveContentUsd)) return
+			solanaClass.alterWalletBalanceUsd(-video.instantAccessPriceToExclusiveContentUsd)
 			// FUTURE TODO: Add this transaction to my transactions (don't just call retrieveTransactions - redundant)
 			// Consider returning the sol transfer details with the purchaseSplTokens response.
 			// Add that single new transaction to the transaction array

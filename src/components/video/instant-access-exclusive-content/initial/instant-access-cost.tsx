@@ -13,13 +13,13 @@ function InstantAccessCost(props: Props) {
 	const personalInfoClass = usePersonalInfoContext()
 
 	if (_.isNull(personalInfoClass)) return null
-	if (_.isNull(video.listingPriceToAccessContentUsd)) return null
+	if (_.isNull(video.instantAccessPriceToExclusiveContentUsd)) return null
 
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return (
 			<>
 				Instant access price:
-				${_.round(video.listingPriceToAccessContentUsd, 2)}
+				${_.round(video.instantAccessPriceToExclusiveContentUsd, 2)}
 			</>
 		)
 	}
@@ -31,7 +31,7 @@ function InstantAccessCost(props: Props) {
 	return (
 		<>
 			Instant access price: {" "}
-			{_.round(video.listingPriceToAccessContentUsd / solPriceInUSD, 4)} SOL
+			{_.round(video.instantAccessPriceToExclusiveContentUsd / solPriceInUSD, 4)} SOL
 		</>
 	)
 }
