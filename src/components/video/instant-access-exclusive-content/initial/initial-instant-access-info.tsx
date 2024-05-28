@@ -37,14 +37,16 @@ function InitialInstantAccessInfo(props: Props) {
 	}
 
 	if (!_.isUndefined(video.videoUrl)) {
+		const sharesOwned = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(video.uuid)
 		return (
 			<div className="w-full">
 				<div className="flex items-center w-full">
 					<hr className="flex-grow border-t border-gray-300" />
 				</div>
 				<div className="flex items-center w-full">
-					<span>You already have access to this exclusive video through share ownership</span>
+					<span>You have access to this exclusive video through share ownership</span>
 				</div>
+				Shares owned: {sharesOwned}
 			</div>
 		)
 	}

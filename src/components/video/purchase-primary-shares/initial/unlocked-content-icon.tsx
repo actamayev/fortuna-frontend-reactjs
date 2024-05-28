@@ -26,12 +26,7 @@ function UnlockedContentIcon(props: Props) {
 		)
 	}
 
-	if (
-		_.isNull(positionsAndTransactionsClass) ||
-		_.isUndefined(videoUrl) ||
-		_.isNull(valueNeededToAccessExclusiveContentUsd) ||
-		_.isNull(allowValueFromSameCreatorTokensForExclusiveContent)
-	) return null
+	if (_.isNull(positionsAndTransactionsClass) || _.isUndefined(videoUrl)) return null
 
 	const doesUserHaveInstantExclusiveAccess = positionsAndTransactionsClass.checkIfUuidExistsInExclusiveContentList(uuid)
 
@@ -45,34 +40,35 @@ function UnlockedContentIcon(props: Props) {
 			</Tooltip>
 		)
 	}
+
+	if (_.isNull(valueNeededToAccessExclusiveContentUsd) || _.isNull(allowValueFromSameCreatorTokensForExclusiveContent)) return null
+
 	const numberSharesUserOwns = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(uuid)
 	const valueOfSharesOwnedUsd = numberSharesUserOwns * listingSharePriceUsd
 
+	let message
+	let width = "500px"
 	if (allowValueFromSameCreatorTokensForExclusiveContent === false) {
-		const message = `You own $${valueOfSharesOwnedUsd} of this token, which is greater than or equal to 
+		message = `You own $${valueOfSharesOwnedUsd} of this token, which is greater than or equal to 
 			the value necessary to access this exclusive video ($${valueNeededToAccessExclusiveContentUsd})`
 		return (
 			<Tooltip
 				message={message}
-				width="500px"
+				width={width}
 			>
 				<FaUnlock />
 			</Tooltip>
 		)
 	}
 
-	let message
-	let width
-	if (valueOfSharesOwnedUsd < valueNeededToAccessExclusiveContentUsd) {
-		message = `${creatorUsername} has enabled cross-token value.
-			The total value of your tokens from this creator exceeds the required value for exclusive video access.
-			Even though you don't have $${valueNeededToAccessExclusiveContentUsd}
-			of this token, you own other tokens by this creator`
-		width = "700px"
-	} else {
+	if (valueOfSharesOwnedUsd >= valueNeededToAccessExclusiveContentUsd) {
 		message = `${creatorUsername} has enabled cross-token value.
 			The total value of your tokens from this creator exceeds the required value for exclusive video access`
-		width = "450px"
+	} else {
+		message = `${creatorUsername} has enabled cross-token value.
+			The total value of your tokens from this creator exceeds the required value for exclusive video access.
+			Even though you don't hold $${valueNeededToAccessExclusiveContentUsd} of this token, you own other tokens by this creator`
+		width = "700px"
 	}
 
 	return (
