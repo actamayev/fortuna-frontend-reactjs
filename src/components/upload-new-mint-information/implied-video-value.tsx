@@ -11,15 +11,14 @@ function ImpliedVideoValue() {
 	if (_.isNull(personalInfoClass) || _.isNull(solanaClass)) return null
 
 	const { listingSharePriceUsd, numberOfShares } = solanaClass.newSplDetails
+	let videoValue = listingSharePriceUsd * numberOfShares
 
-	let videoValue = 0
 	if (personalInfoClass.defaultCurrency === "usd") {
-		videoValue = listingSharePriceUsd * numberOfShares
 		return <>${numberWithCommas(videoValue)}</>
 	}
 	const solPriceUSD = solanaClass.solPriceDetails?.solPriceInUSD
 	if (!_.isUndefined(solPriceUSD)) {
-		videoValue = listingSharePriceUsd * numberOfShares / solPriceUSD
+		videoValue = videoValue / solPriceUSD
 	}
 	return <>{numberWithCommas(videoValue)} SOL</>
 }

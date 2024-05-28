@@ -32,14 +32,14 @@ function NewTokenSummary() {
 				Available to fans: {fanShares} Shares
 			</div>
 			<h2 className = "flex text-md text-center font-semibold leading-none tracking-tight text-black mt-3">
-				Token Value information
+				Token Value Information
 			</h2>
 			Implied Video Value: <ImpliedVideoValue />
 			<div className="flex">
 				Pegging to USD
 				<Tooltip
-					message="The USD value of your token will not change with Solana's price fluctuations"
-					width="200px"
+					message="The value of your token (in USD) will not change with Solana's price fluctuations"
+					width="275px"
 				>
 					ℹ️
 				</Tooltip>
