@@ -68,7 +68,7 @@ export default function useUploadMintInfoOnclick(): (
 				delete restOfSplDetails.allowValueFromSameCreatorTokensForExclusiveContent
 				delete restOfSplDetails.isContentInstantlyAccessible
 			}
-			if (restOfSplDetails.isContentInstantlyAccessible === false) {
+			if (restOfSplDetails.isContentInstantlyAccessible !== true) {
 				delete restOfSplDetails.priceToInstantlyAccessExclusiveContentUsd
 			}
 
