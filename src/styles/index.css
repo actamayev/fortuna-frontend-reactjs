@@ -16,24 +16,21 @@
 }
 
 .slider {
-    position: absolute;
-    cursor: pointer;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    transition: .075s;
+    transition: .05s;
     border-radius: 17px;
 }
 
 .knob {
-    position: absolute;
     content: "";
     height: 13px;
     width: 13px;
     left: 2px;
     bottom: 2px;
-    transition: .075s;
+    transition: .05s;
     border-radius: 50%;
 }

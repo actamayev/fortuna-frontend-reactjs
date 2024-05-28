@@ -14,16 +14,15 @@ export default function Slider(props: Props) {
 			<label className="toggle-pill">
 				<input
 					type="checkbox"
-					className="opacity-0 w-0 h-0"
 					checked={checkedCondition}
 					onChange={onChangeCheckedCondition}
 					disabled={disabledCondition}
 				/>
-				<span className="slider absolute cursor-pointer inset-0 transition duration-50 rounded-full">
+				<span className="slider absolute cursor-pointer inset-0 transition">
 				</span>
 				<span
 					className={
-						`knob absolute left-1 bottom-1 h-6 w-6 rounded-full transition-transform duration-50 \
+						`knob absolute left-1 bottom-1 rounded-full transition-transform \
 							${colorChangeOnToggle && checkedCondition ? "bg-blue-600" : "bg-white"}`
 					}
 					style={{ transform: checkedCondition ? "translateX(13px)" : "translateX(0)" }}
