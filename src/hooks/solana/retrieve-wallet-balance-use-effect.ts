@@ -1,12 +1,10 @@
 import _ from "lodash"
-import { useCallback, useEffect } from "react"
+import { useEffect, useCallback } from "react"
+import { Connection, LAMPORTS_PER_SOL, clusterApiUrl } from "@solana/web3.js"
 import { useSolanaContext } from "../../contexts/solana-context"
-import { isErrorResponse, isMessageResponse } from "../../utils/type-checks"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
-import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useRetrieveWalletBalanceUseEffect(): void {
-	const fortunaApiClient = useApiClientContext()
 	const solanaClass = useSolanaContext()
 	const personalInfoClass = usePersonalInfoContext()
 
@@ -14,32 +12,24 @@ export default function useRetrieveWalletBalanceUseEffect(): void {
 		try {
 			if (
 				_.isNull(solanaClass) ||
+				_.isNull(solanaClass.walletPublicKey) ||
 				_.isNil(personalInfoClass?.username) ||
-				solanaClass.isRetrievingWalletDetails === true ||
-				_.isNull(fortunaApiClient.httpClient.accessToken)
+				solanaClass.isRetrievingWalletDetails === true
 			) return
 
 			solanaClass.setIsRetrievingWalletDetails(true)
-			const myWalletResponse = await fortunaApiClient.solanaDataService.retrieveWalletBalance()
-			if (
-				!_.isEqual(myWalletResponse.status, 200) ||
-				isMessageResponse(myWalletResponse.data) ||
-				isErrorResponse(myWalletResponse.data)
-			) {
-				return
-			}
+			const connection = new Connection(clusterApiUrl("devnet"), "confirmed")
 
-			solanaClass.walletBalanceSol = myWalletResponse.data.balanceInSol
-			solanaClass.setSolPriceDetails({
-				solPriceInUSD: myWalletResponse.data.solPriceInUSD,
-				lastRetrievedTime: myWalletResponse.data.solPriceRetrievedTime
-			})
+			const balanceInLamports = await connection.getBalance(solanaClass.walletPublicKey)
+			const balanceInSol = balanceInLamports / LAMPORTS_PER_SOL
+
+			solanaClass.walletBalanceSol = balanceInSol
 		} catch (error) {
 			console.error(error)
 		} finally {
 			if (!_.isNull(solanaClass)) solanaClass.setIsRetrievingWalletDetails(false)
 		}
-	}, [solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService, personalInfoClass?.username])
+	}, [solanaClass, personalInfoClass?.username])
 
 	useEffect(() => {
 		if (!_.isNil(solanaClass?.walletBalanceSol)) return

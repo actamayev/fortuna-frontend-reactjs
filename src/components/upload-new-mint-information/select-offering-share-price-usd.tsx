@@ -28,7 +28,7 @@ function SelectOfferingSharePriceUsd() {
 				onChange={updateNewSplDetails}
 				min={0.5}
 				max={50}
-				step={0.01}
+				step={0.05}
 				disabled={isNewSplLoading}
 			/>
 			${_.round(listingSharePriceUsd, 2)}/Share

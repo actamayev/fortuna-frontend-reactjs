@@ -22,10 +22,4 @@ export default class PersonalInfoDataService {
 			`${this.pathHeader}/set-default-site-theme/${newSiteTheme}`
 		)
 	}
-
-	async retrieveWalletPublicKey(): Promise<AxiosResponse<PublicKeyResponse | MessageResponse | ErrorResponse>> {
-		return await this.httpClient.http.get<PublicKeyResponse | MessageResponse | ErrorResponse>(
-			`${this.pathHeader}/retrieve-wallet-public-key`
-		)
-	}
 }

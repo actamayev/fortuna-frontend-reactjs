@@ -15,7 +15,7 @@ function CreateTokenSummary() {
 	return (
 		<div className = "bg-white border shadow rounded-lg w-full dark:border-b-2 p-2">
 			<h1 className = "flex text-xl text-center font-bold leading-none tracking-tight text-black">
-				Create Token Summary
+				Share Distribution
 			</h1>
 			<div>
 				You will receive {" "} {creatorNumberShares} {" "} Shares
