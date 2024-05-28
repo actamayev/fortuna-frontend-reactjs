@@ -35,7 +35,7 @@ export default function useRegisterSubmit (
 				setError("Unable to register. Please reload and try again.")
 				return
 			}
-			setDataAfterRegister(response.data.accessToken)
+			setDataAfterRegister(response.data)
 			navigate(whereToNavigate)
 		} catch (error: unknown) {
 			setErrorAxiosResponse(error, setError, "Unable to Register")

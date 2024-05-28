@@ -1,9 +1,10 @@
 import _ from "lodash"
+import { PublicKey } from "@solana/web3.js"
 import { createContext, useContext, useMemo } from "react"
 import { action, computed, makeAutoObservable } from "mobx"
 
 class SolanaClass {
-	private _walletPublicKey: string | null = null
+	private _walletPublicKey: PublicKey | null = null
 	private _walletBalanceSol: number | null = null
 
 	public isTransferSolButtonPressed = false
@@ -41,11 +42,11 @@ class SolanaClass {
 		makeAutoObservable(this)
 	}
 
-	get walletPublicKey(): string | null {
+	get walletPublicKey(): PublicKey | null {
 		return this._walletPublicKey
 	}
 
-	set walletPublicKey(walletPublicKey: string | null) {
+	set walletPublicKey(walletPublicKey: PublicKey | null) {
 		this._walletPublicKey = walletPublicKey
 	}
 

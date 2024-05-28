@@ -32,7 +32,7 @@ export default function useLoginSubmit (
 				setError("Unable to login. Please reload and try again.")
 				return
 			}
-			setDataAfterLogin(response.data.accessToken)
+			setDataAfterLogin(response.data)
 			navigate(whereToNavigate)
 		} catch (error: unknown) {
 			setErrorAxiosResponse(error, setError, "Unable to login")

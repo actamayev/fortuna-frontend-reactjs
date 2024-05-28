@@ -100,6 +100,7 @@ class PersonalInfoClass {
 	public logout() {
 		this.username = null
 		this.email = null
+		this.profilePictureUrl = null
 		this.isApprovedToBeCreator = false
 		this.setIsRetrievingPersonalDetails(false)
 	}
