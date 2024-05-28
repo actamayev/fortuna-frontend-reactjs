@@ -18,10 +18,10 @@ function ShowRemainingWalletBalanceAfterInstantAccessPurchase(props: Props) {
 		_.isNull(solanaClass) ||
 		_.isNull(exchangeClass) ||
 		_.isNull(personalInfoClass) ||
-		_.isNull(video.listingPriceToAccessContentUsd)
+		_.isNull(video.priceToInstantlyAccessExclusiveContentUsd)
 	) return null
 
-	const remainingWalletBalanceUsd = solanaClass.walletBalanceUSD.get() - video.listingPriceToAccessContentUsd
+	const remainingWalletBalanceUsd = solanaClass.walletBalanceUSD.get() - video.priceToInstantlyAccessExclusiveContentUsd
 
 	if (personalInfoClass.defaultCurrency === "usd") {
 		return <>${remainingWalletBalanceUsd.toFixed(2)}</>

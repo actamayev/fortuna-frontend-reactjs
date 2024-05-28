@@ -3,6 +3,7 @@ import { observer } from "mobx-react"
 import InstantAccessCost from "./instant-access-cost"
 import ReviewInstantAccessButton from "./review-instant-access-button"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
+import useNavigateToCreator from "../../../../hooks/navigate/navigate-to-creator"
 import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
 
 interface Props {
@@ -14,6 +15,7 @@ function InitialInstantAccessInfo(props: Props) {
 	const { video, orNeeded } = props
 	const exchangeClass = useExchangeContext()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
+	const navigateToCreatorPage = useNavigateToCreator()
 
 	if (
 		_.isUndefined(video) ||
@@ -22,6 +24,27 @@ function InitialInstantAccessInfo(props: Props) {
 		_.isNull(exchangeClass) ||
 		exchangeClass.instantAccessToExclusiveContentStage !== "initial"
 	) return null
+
+	if (video.isContentInstantlyAccessible !== true) {
+		return (
+			<div className="w-full">
+				<div className="flex items-center w-full">
+					<hr className="flex-grow border-t border-gray-300" />
+				</div>
+				<div className="flex items-center w-full">
+					<div>
+						<span
+							className="font-medium hover:underline cursor-pointer"
+							onClick={() => navigateToCreatorPage(video.creatorUsername)}
+						>
+							{video.creatorUsername}
+						</span> {" "}
+						has disabled instant access for this video
+					</div>
+				</div>
+			</div>
+		)
+	}
 
 	if (positionsAndTransactionsClass.checkIfUuidExistsInExclusiveContentList(video.uuid) === true) {
 		return (

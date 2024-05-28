@@ -44,8 +44,8 @@ export default function Tooltip(props: Props) {
 			<div className="cursor-pointer">{children}</div>
 			{isVisible && (
 				<div
-					className="absolute bottom-full right-0 mb-1 flex items-center justify-center \
-          				p-1.5 bg-white text-black text-sm rounded-md shadow-lg whitespace-normal max-w-sm min-w-max border border-gray-300"
+					className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-1 flex items-center justify-center \
+                    p-1.5 bg-white text-black text-sm rounded-md shadow-lg whitespace-normal max-w-sm min-w-max border border-gray-300"
 					style={{ width: width || "auto", minWidth: "10rem" }}
 					onMouseEnter={showTooltip}
 					onMouseLeave={hideTooltip}

@@ -132,8 +132,11 @@ class SolanaClass {
 			if (_.isUndefined(this.newSplDetails.allowValueFromSameCreatorTokensForExclusiveContent)) {
 				this.newSplDetails.allowValueFromSameCreatorTokensForExclusiveContent = false
 			}
-			if (_.isUndefined(this.newSplDetails.listingPriceToAccessExclusiveContentUsd)) {
-				this.newSplDetails.listingPriceToAccessExclusiveContentUsd = 5
+			if (_.isUndefined(this.newSplDetails.isContentInstantlyAccessible)) {
+				this.newSplDetails.isContentInstantlyAccessible = true
+			}
+			if (_.isUndefined(this.newSplDetails.priceToInstantlyAccessExclusiveContentUsd)) {
+				this.newSplDetails.priceToInstantlyAccessExclusiveContentUsd = 5
 			}
 			if (_.isUndefined(this.newSplDetails.valueNeededToAccessExclusiveContentUsd)) {
 				this.newSplDetails.valueNeededToAccessExclusiveContentUsd =  1
