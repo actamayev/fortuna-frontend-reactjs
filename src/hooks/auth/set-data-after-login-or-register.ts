@@ -5,9 +5,7 @@ import { useAuthContext } from "../../contexts/auth-context"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useSetDataAfterLoginOrRegister(): (
-	authData: LoginOrRegisterSuccess
-) => void {
+export default function useSetDataAfterLoginOrRegister(): (authData: LoginOrRegisterSuccess) => void {
 	const authClass = useAuthContext()
 	const fortunaApiClient = useApiClientContext()
 	const solanaClass = useSolanaContext()
