@@ -135,8 +135,8 @@ class SolanaClass {
 			if (_.isUndefined(this.newSplDetails.isContentInstantlyAccessible)) {
 				this.newSplDetails.isContentInstantlyAccessible = true
 			}
-			if (_.isUndefined(this.newSplDetails.instantAccessPriceToExclusiveContentUsd)) {
-				this.newSplDetails.instantAccessPriceToExclusiveContentUsd = 5
+			if (_.isUndefined(this.newSplDetails.priceToInstantlyAccessExclusiveContentUsd)) {
+				this.newSplDetails.priceToInstantlyAccessExclusiveContentUsd = 5
 			}
 			if (_.isUndefined(this.newSplDetails.valueNeededToAccessExclusiveContentUsd)) {
 				this.newSplDetails.valueNeededToAccessExclusiveContentUsd =  1

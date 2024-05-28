@@ -12,17 +12,17 @@ function ShowInstantAccessPurchasePrice(props: Props) {
 	const solanaClass = useSolanaContext()
 	const personalInfoClass = usePersonalInfoContext()
 
-	const { instantAccessPriceToExclusiveContentUsd } = video
-	if (_.isNull(personalInfoClass) || _.isNull(instantAccessPriceToExclusiveContentUsd)) return null
+	const { priceToInstantlyAccessExclusiveContentUsd } = video
+	if (_.isNull(personalInfoClass) || _.isNull(priceToInstantlyAccessExclusiveContentUsd)) return null
 
 	if (personalInfoClass.defaultCurrency === "usd") {
-		return <>${(instantAccessPriceToExclusiveContentUsd).toFixed(2)}</>
+		return <>${(priceToInstantlyAccessExclusiveContentUsd).toFixed(2)}</>
 	}
 
 	if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null
 	const { solPriceInUSD } = solanaClass.solPriceDetails
 	if (_.isUndefined(solPriceInUSD)) return null
-	const videoListingSharePriceSol = instantAccessPriceToExclusiveContentUsd / solPriceInUSD
+	const videoListingSharePriceSol = priceToInstantlyAccessExclusiveContentUsd / solPriceInUSD
 
 	return <>{(videoListingSharePriceSol).toFixed(4)} SOL</>
 }

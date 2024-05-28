@@ -64,12 +64,12 @@ export default function useUploadMintInfoOnclick(): (
 			const { selectedImage, selectedVideo, ...restOfSplDetails } = solanaClass.newSplDetails
 			if (restOfSplDetails.isContentExclusive === false) {
 				delete restOfSplDetails.valueNeededToAccessExclusiveContentUsd
-				delete restOfSplDetails.instantAccessPriceToExclusiveContentUsd
+				delete restOfSplDetails.priceToInstantlyAccessExclusiveContentUsd
 				delete restOfSplDetails.allowValueFromSameCreatorTokensForExclusiveContent
 				delete restOfSplDetails.isContentInstantlyAccessible
 			}
 			if (restOfSplDetails.isContentInstantlyAccessible === false) {
-				delete restOfSplDetails.instantAccessPriceToExclusiveContentUsd
+				delete restOfSplDetails.priceToInstantlyAccessExclusiveContentUsd
 			}
 
 			const createAndMintSPL: CreateAndMintSPL = {
