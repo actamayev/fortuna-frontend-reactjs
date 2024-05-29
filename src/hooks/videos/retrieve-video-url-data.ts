@@ -31,6 +31,7 @@ export default function useRetrieveVideoUrlData(videoUUID: string | undefined): 
 			if (!_.isEqual(videoUrlData.status, 200) || isNonSuccessResponse(videoUrlData.data)) {
 				throw Error("Unable to get video URL")
 			}
+			if (_.isUndefined(videoUrlData.data.videoUrl)) return
 			videoClass.addVideoUrlToVideo(videoUUID, videoUrlData.data.videoUrl)
 		} catch (error) {
 			console.error(error)

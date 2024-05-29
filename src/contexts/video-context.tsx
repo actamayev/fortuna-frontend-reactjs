@@ -94,7 +94,7 @@ class VideoClass {
 		this.videos.splice(index, 0, video)
 	})
 
-	public addVideoUrlToVideo = action((videoUUID: string, videoUrl: string | undefined): void => {
+	public addVideoUrlToVideo = action((videoUUID: string, videoUrl: string): void => {
 		const index = this.videos.findIndex(video => video.uuid === videoUUID)
 		if (_.isEqual(index, -1) && !_.isUndefined(videoUrl)) {
 			// This logic is run when there is a video that is in the search map or the creator data, but isn't in the videos list.
@@ -102,16 +102,10 @@ class VideoClass {
 			// need to first copy the data over, and then add the video url
 			const existingVideo = this.findVideoNotInVideosArray(videoUUID)
 			if (_.isUndefined(existingVideo)) return
-			existingVideo.isUserAbleToAccessVideo = true
 			existingVideo.videoUrl = videoUrl
 			this.addVideoToVideosList(existingVideo)
 			return
 		}
-		if (_.isUndefined(videoUrl)) {
-			this.videos[index].isUserAbleToAccessVideo = false
-			return
-		}
-		this.videos[index].isUserAbleToAccessVideo = true
 		this.videos[index].videoUrl = videoUrl
 	})
 

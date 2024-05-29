@@ -69,6 +69,7 @@ declare global {
 		creatorData: CreatorData
 	}
 	type RetrievedVideoUrl = { videoUrl: string | undefined }
+	type DefiniteRetrievedVideoUrl = { videoUrl: string }
 
 	// YouTube Responses:
 	type UserYouTubeData = {

@@ -13,8 +13,8 @@ export default class ExchangeDataService {
 		)
 	}
 
-	async purchaseExclusiveContentAccess(videoUUID: string): Promise<AxiosResponse<RetrievedVideoUrl | NonSuccessResponse>> {
-		return await this.httpClient.http.post<RetrievedVideoUrl | NonSuccessResponse>(
+	async purchaseExclusiveContentAccess(videoUUID: string): Promise<AxiosResponse<DefiniteRetrievedVideoUrl | NonSuccessResponse>> {
+		return await this.httpClient.http.post<DefiniteRetrievedVideoUrl | NonSuccessResponse>(
 			`${this.pathHeader}/purchase-instant-exclusive-content-access/${videoUUID}`
 		)
 	}
