@@ -96,17 +96,17 @@ class VideoClass {
 
 	public addVideoUrlToVideo = action((videoUUID: string, videoUrl: string): void => {
 		const index = this.videos.findIndex(video => video.uuid === videoUUID)
-		if (_.isEqual(index, -1) && !_.isUndefined(videoUrl)) {
-			// This logic is run when there is a video that is in the search map or the creator data, but isn't in the videos list.
-			// Since the search map and creator data hold data without the videoUrl,
-			// need to first copy the data over, and then add the video url
-			const existingVideo = this.findVideoNotInVideosArray(videoUUID)
-			if (_.isUndefined(existingVideo)) return
-			existingVideo.videoUrl = videoUrl
-			this.addVideoToVideosList(existingVideo)
+		if (!_.isEqual(index, -1)) {
+			this.videos[index].videoUrl = videoUrl
 			return
 		}
-		this.videos[index].videoUrl = videoUrl
+		// This logic is run when there is a video that is in the search map or the creator data, but isn't in the videos list.
+		// Since the search map and creator data hold data without the videoUrl,
+		// need to first copy the data over, and then add the video url
+		const existingVideo = this.findVideoNotInVideosArray(videoUUID)
+		if (_.isUndefined(existingVideo)) return
+		existingVideo.videoUrl = videoUrl
+		this.addVideoToVideosList(existingVideo)
 	})
 
 	public setVideoSearchMapData = action((searchTerm: string, videoSearchData: SearchData[]): void => {
