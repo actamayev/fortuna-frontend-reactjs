@@ -14,6 +14,7 @@ export default function SharesAvailableProgressBar(props: Props) {
 
 	let tooltipWidth = "130px"
 	if (sharesRemainingForSale === 0) tooltipWidth = "65px"
+
 	return (
 		<div
 			className="bg-gray-400 rounded-full h-1.5 dark:bg-white relative"
@@ -33,13 +34,13 @@ export default function SharesAvailableProgressBar(props: Props) {
 				}
 				style={{ transition: "opacity 0.1s ease-in-out", minWidth: tooltipWidth }}
 			>
-				{sharesRemainingForSale !== 0 ? (
+				{sharesRemainingForSale === 0 ? (
+					<div>Sold out</div>
+				) : (
 					<>
 						<div>{`${_.round(percent)}% sold`}</div>
 						<div>{`${sharesRemainingForSale} share${sharesRemainingForSale === 1 ? "" : "s"} available`}</div>
 					</>
-				) : (
-					<div>Sold out</div>
 				)}
 			</div>
 		</div>

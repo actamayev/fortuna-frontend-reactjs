@@ -10,7 +10,6 @@ interface Props {
 
 export default function ShowHomeVideoLockStatus(props: Props) {
 	const { video, index } = props
-	console.log(video.splName, index)
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
 	const { isUserAbleToAccessVideo, valueNeededToAccessExclusiveContentUsd, listingSharePriceUsd, uuid } = video
