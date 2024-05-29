@@ -25,13 +25,12 @@ export default function Login(props: Props) {
 	const [error, setError] = useState("")
 	const [loading, setLoading] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
+	const loginSubmit = useLoginSubmit(whereToNavigate, loginInformation, setError, setLoading)
 
 	const isShowPassword = useMemo(() => {
 		if (showPassword) return "text"
 		return "password"
 	}, [showPassword])
-
-	const loginSubmit = useLoginSubmit(whereToNavigate, loginInformation, setError, setLoading)
 
 	const createSetCredentialsFunction = (setter: React.Dispatch<React.SetStateAction<LoginCredentials>>) => {
 		return (newCredentials: Partial<LoginCredentials | RegisterCredentials>) => {

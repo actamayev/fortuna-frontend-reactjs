@@ -18,8 +18,11 @@ export default function useRetrieveVideoUrlData(videoUUID: string | undefined): 
 			) return
 
 			const video = videoClass.findVideoFromUUID(videoUUID)
-			// If there is already a videoUrl, there's no point to re-fetch it
-			if (!_.isUndefined(video) && !_.isUndefined(video.videoUrl)) return
+			// If there is already a videoUrl, or if we know that the user can't access the video, there's no point to re-fetch it
+			if (
+				!_.isUndefined(video) &&
+				(!_.isUndefined(video.videoUrl) || video.isUserAbleToAccessVideo === false)
+			) return
 
 			videoClass.setIsRetrievingVideoUrl(true)
 

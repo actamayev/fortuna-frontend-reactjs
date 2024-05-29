@@ -96,7 +96,7 @@ class VideoClass {
 
 	public addVideoUrlToVideo = action((videoUUID: string, videoUrl: string | undefined): void => {
 		const index = this.videos.findIndex(video => video.uuid === videoUUID)
-		if (_.isEqual(index, -1)) {
+		if (_.isEqual(index, -1) && !_.isUndefined(videoUrl)) {
 			// This logic is run when there is a video that is in the search map or the creator data, but isn't in the videos list.
 			// Since the search map and creator data hold data without the videoUrl,
 			// need to first copy the data over, and then add the video url
@@ -182,9 +182,15 @@ class VideoClass {
 
 	private clearVideoDataOnLogout = action((): void => {
 		this.videos.map(video => {
+			if (video.isSplExclusive === false) return
 			delete video.videoUrl
-			if (video.isSplExclusive === true) video.isUserAbleToAccessVideo = false
+			video.isUserAbleToAccessVideo = false
 		})
+	})
+
+	public clearVideosOnLogin = action((): void => {
+		this.videos = []
+		this.areHomePageVideosRetrieved = false
 	})
 
 	public logout() {
