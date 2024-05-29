@@ -3,9 +3,14 @@ import { GoogleLogin } from "@react-oauth/google"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 import useGoogleAuthCallback from "../../../hooks/auth/google/google-auth-callback"
 
-function GoogleSignIn() {
+interface Props {
+	whereToNavigate: PageNames
+}
+
+function GoogleSignIn(props: Props) {
+	const { whereToNavigate } = props
 	const personalInfoClass = usePersonalInfoContext()
-	const googleAuthCallback = useGoogleAuthCallback()
+	const googleAuthCallback = useGoogleAuthCallback(whereToNavigate)
 
 	return (
 		<div className="flex justify-center">

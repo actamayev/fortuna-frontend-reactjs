@@ -5,7 +5,7 @@ import UnlockedContentIcon from "./unlocked-content-icon"
 import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
 
 interface Props {
-	video: VideoDataWithVideoUrl
+	video: SingleVideoDataFromBackend
 }
 
 function ShowNumberSharesOwned(props: Props) {

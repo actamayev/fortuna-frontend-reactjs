@@ -5,39 +5,47 @@ import Tooltip from "../../../tooltip"
 import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
 
 interface Props {
-	video: VideoDataWithVideoUrl
+	video: SingleVideoDataFromBackend
 }
 
 function UnlockedContentIcon(props: Props) {
 	const { video } = props
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
-	const { videoUrl, uuid, listingSharePriceUsd, valueNeededToAccessExclusiveContentUsd,
+	const { isUserAbleToAccessVideo, uuid, listingSharePriceUsd, valueNeededToAccessExclusiveContentUsd,
 		allowValueFromSameCreatorTokensForExclusiveContent, creatorUsername, isSplExclusive } = video
 
 	if (isSplExclusive === false) {
 		return (
-			<Tooltip
-				message="This video is not exclusive"
-				width="200px"
-			>
-				<FaUnlock />
-			</Tooltip>
+			<div className="flex ml-2">
+				<Tooltip
+					message="This video is not exclusive"
+					width="200px"
+					messageStart="center"
+				>
+					<FaUnlock />
+				</Tooltip>
+			</div>
 		)
 	}
 
-	if (_.isNull(positionsAndTransactionsClass) || _.isUndefined(videoUrl)) return null
+	if (_.isNull(positionsAndTransactionsClass) || isUserAbleToAccessVideo === false) return null
 
 	const doesUserHaveInstantExclusiveAccess = positionsAndTransactionsClass.checkIfUuidExistsInExclusiveContentList(uuid)
 
 	if (doesUserHaveInstantExclusiveAccess === true) {
 		return (
-			<Tooltip
-				message="You purchased instant access to this exclusive video"
-				width="225px"
-			>
-				<FaUnlock />
-			</Tooltip>
+			<div className="flex ml-2">
+
+				<Tooltip
+					message="You purchased instant access to this exclusive video"
+					width="225px"
+					messageStart="center"
+				>
+					<FaUnlock />
+				</Tooltip>
+			</div>
+
 		)
 	}
 
@@ -52,12 +60,16 @@ function UnlockedContentIcon(props: Props) {
 		message = `You own $${valueOfSharesOwnedUsd} of this token, which is greater than or equal to 
 			the value necessary to access this exclusive video ($${valueNeededToAccessExclusiveContentUsd})`
 		return (
-			<Tooltip
-				message={message}
-				width={width}
-			>
-				<FaUnlock />
-			</Tooltip>
+			<div className="flex ml-2">
+				<Tooltip
+					message={message}
+					width={width}
+					messageStart="center"
+				>
+					<FaUnlock />
+				</Tooltip>
+			</div>
+
 		)
 	}
 
@@ -72,12 +84,16 @@ function UnlockedContentIcon(props: Props) {
 	}
 
 	return (
-		<Tooltip
-			message={message}
-			width={width}
-		>
-			<FaUnlock />
-		</Tooltip>
+		<div className="flex ml-2">
+			<Tooltip
+				message={message}
+				width={width}
+				messageStart="center"
+			>
+				<FaUnlock />
+			</Tooltip>
+		</div>
+
 	)
 }
 

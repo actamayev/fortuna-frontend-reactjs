@@ -35,12 +35,15 @@ function InitialPrimaryPurchaseInfo() {
 				<span className="font-semibold text-xl">
 					Purchase Primary Shares
 				</span>
-				<Tooltip
-					message="All proceeds go to the creator"
-					width="225px"
-				>
+				<div className="ml-2">
+					<Tooltip
+						message="All proceeds go to the creator"
+						width="225px"
+						messageStart="center"
+					>
 					ℹ️
-				</Tooltip>
+					</Tooltip>
+				</div>
 			</div>
 			<div className="mt-3">
 				<ShowTradingBalance />

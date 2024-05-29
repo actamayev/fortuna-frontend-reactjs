@@ -87,7 +87,7 @@ export default function Register(props: Props) {
 				<SubRegisterInfo setLoginOrRegister = {setLoginOrRegister}/>
 			</AuthTemplate>
 			<div className="mt-4">
-				<GoogleSignIn />
+				<GoogleSignIn whereToNavigate={whereToNavigate}/>
 			</div>
 		</div>
 	)

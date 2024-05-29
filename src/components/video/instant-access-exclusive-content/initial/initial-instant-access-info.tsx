@@ -7,7 +7,7 @@ import useNavigateToCreator from "../../../../hooks/navigate/navigate-to-creator
 import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
 
 interface Props {
-	video: VideoDataWithVideoUrl
+	video: SingleVideoDataFromBackend
 	orNeeded: boolean
 }
 

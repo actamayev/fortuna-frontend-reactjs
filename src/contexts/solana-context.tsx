@@ -166,7 +166,7 @@ class SolanaClass {
 		this.isPublicKeySearchLoading = false
 		this.resetNewSplDetails()
 		this.isNewSplLoading = false
-		this.solPriceDetails = null
+		// Don't reset sol price details (no reason, not secret/unique to each user)
 		this.isRetrievingSolPriceDetails = false
 		this.isRetrievingWalletDetails = false
 	}

@@ -3,12 +3,14 @@ import { useCallback } from "react"
 import { CredentialResponse } from "@react-oauth/google"
 import useTypedNavigate from "../../navigate/typed-navigate"
 import { isErrorResponses } from "../../../utils/type-checks"
+import { useVideoContext } from "../../../contexts/video-context"
 import useSetDataAfterLoginOrRegister from "../set-data-after-login-or-register"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 
-export default function useGoogleAuthCallback(): (successResponse: CredentialResponse) => Promise<void> {
+export default function useGoogleAuthCallback(whereToNavigate: PageNames): (successResponse: CredentialResponse) => Promise<void> {
 	const fortunaApiClient = useApiClientContext()
 	const navigate = useTypedNavigate()
+	const videoClass = useVideoContext()
 	const setDataAfterLogin = useSetDataAfterLoginOrRegister()
 
 	const googleAuthCallback = useCallback(async (successResponse: CredentialResponse) => {
@@ -21,15 +23,16 @@ export default function useGoogleAuthCallback(): (successResponse: CredentialRes
 				throw Error("Unable to login")
 			}
 			setDataAfterLogin(googleCallbackResponse.data)
+			videoClass.clearVideosOnLogin()
 			if (googleCallbackResponse.data.isNewUser === true) {
 				navigate("/register-username")
 				return
 			}
-			navigate("/my-ownership")
+			navigate(whereToNavigate)
 		} catch (error) {
 			console.error(error)
 		}
-	}, [fortunaApiClient.authDataService, navigate, setDataAfterLogin])
+	}, [fortunaApiClient.authDataService, navigate, setDataAfterLogin, videoClass, whereToNavigate])
 
 	return googleAuthCallback
 }
