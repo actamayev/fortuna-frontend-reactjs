@@ -37,12 +37,15 @@ function NewTokenSummary() {
 			Implied Video Value: <ImpliedVideoValue />
 			<div className="flex">
 				Pegging to USD
-				<Tooltip
-					message="The value of your token (in USD) will not change with Solana's price fluctuations"
-					width="275px"
-				>
+				<div className="ml-2">
+					<Tooltip
+						message="The value of your token (in USD) will not change with Solana's price fluctuations"
+						width="275px"
+						messageStart="center"
+					>
 					ℹ️
-				</Tooltip>
+					</Tooltip>
+				</div>
 			</div>
 		</div>
 	)

@@ -2,7 +2,7 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 
 interface Props {
-	video: VideoDataWithVideoUrl
+	video: SingleVideoDataFromBackend
 }
 
 function ShowNumberSharesNeededToAccessExclusiveContent(props: Props) {
@@ -10,7 +10,7 @@ function ShowNumberSharesNeededToAccessExclusiveContent(props: Props) {
 
 	if (
 		video.isSplExclusive === false ||
-		!_.isUndefined(video.videoUrl) ||
+		video.isUserAbleToAccessVideo === true ||
 		_.isNull(video.valueNeededToAccessExclusiveContentUsd)
 	) return null
 

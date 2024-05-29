@@ -23,7 +23,7 @@ function UploadContent() {
 	const personalInfoClass = usePersonalInfoContext()
 
 	if (_.isNull(authClass.accessToken)) {
-		return <ShowAuthToNullUser whereToNavigate="/creator/my-content" />
+		return <ShowAuthToNullUser whereToNavigate="/creator/upload-content" />
 	}
 
 	if (personalInfoClass?.isApprovedToBeCreator !== true) {

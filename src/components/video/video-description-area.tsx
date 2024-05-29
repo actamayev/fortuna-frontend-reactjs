@@ -2,7 +2,7 @@ import PricePerShareArea from "../home-page/price-per-share-area"
 import useNavigateToCreator from "../../hooks/navigate/navigate-to-creator"
 
 interface Props {
-	video: VideoDataWithVideoUrl
+	video: SingleVideoDataFromBackend
 }
 
 export default function VideoDescriptionArea(props: Props) {

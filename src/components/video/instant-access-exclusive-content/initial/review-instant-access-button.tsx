@@ -6,7 +6,7 @@ import { useSolanaContext } from "../../../../contexts/solana-context"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
 
 interface Props {
-	video: VideoDataWithVideoUrl
+	video: SingleVideoDataFromBackend
 }
 
 function ReviewInstantAccessButton(props: Props) {

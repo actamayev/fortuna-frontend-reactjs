@@ -5,7 +5,7 @@ import { useExchangeContext } from "../../../../contexts/exchange-context"
 import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
 
 interface Props {
-	video: VideoDataWithVideoUrl
+	video: SingleVideoDataFromBackend
 }
 
 function ShowRemainingWalletBalanceAfterInstantAccessPurchase(props: Props) {

@@ -13,7 +13,6 @@ declare global {
 		"/my-wallet" |
 
 		"/creator/my-content" |
-		"/creator/my-wallet" |
 		"/creator/upload-content"
 
 	type DynamicPageNames =
