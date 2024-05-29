@@ -12,7 +12,7 @@ function Home() {
 	if (areVideosLoading === true) return <div className="dark:text-white">Loading...</div>
 
 	return (
-		<div className="grid grid-cols-4 gap-4 p-4">
+		<div className="grid grid-cols-4 gap-4">
 			{videoClass.videos.map((video, index) => (
 				<SingleHomePageVideoCard key={video.uuid} video={video} index={index}/>
 			))}

@@ -35,8 +35,7 @@ export default function ShowHomeVideoLockStatus(props: Props) {
 	const numberSharesUserOwns = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(uuid)
 	const sharesNeededToPurchase = sharesNeededToAccessExclusiveContent - numberSharesUserOwns
 
-	const message = `You do not have access to this video Purchase ${sharesNeededToPurchase}
-		more share${sharesNeededToPurchase === 1 ? "" : "s"} to unlock`
+	const message = `Purchase ${sharesNeededToPurchase} more share${sharesNeededToPurchase === 1 ? "" : "s"} to unlock`
 
 	return (
 		<Tooltip

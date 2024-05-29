@@ -2,6 +2,7 @@ import _ from "lodash"
 import { useCallback } from "react"
 import useTypedNavigate from "../navigate/typed-navigate"
 import { isNonSuccessResponse } from "../../utils/type-checks"
+import { useVideoContext } from "../../contexts/video-context"
 import confirmLoginFields from "../../utils/auth/confirm-login-fields"
 import useSetDataAfterLoginOrRegister from "./set-data-after-login-or-register"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
@@ -16,6 +17,7 @@ export default function useLoginSubmit (
 	e: React.FormEvent<HTMLFormElement>,
 ) => Promise<void> {
 	const fortunaApiClient = useApiClientContext()
+	const videoClass = useVideoContext()
 	const setDataAfterLogin = useSetDataAfterLoginOrRegister()
 	const navigate = useTypedNavigate()
 
@@ -33,13 +35,15 @@ export default function useLoginSubmit (
 				return
 			}
 			setDataAfterLogin(response.data)
+			videoClass.videos = []
+			videoClass.areHomePageVideosRetrieved = false
 			navigate(whereToNavigate)
 		} catch (error: unknown) {
 			setErrorAxiosResponse(error, setError, "Unable to login")
 		} finally {
 			setLoading(false)
 		}
-	}, [fortunaApiClient.authDataService, loginInformation, navigate, setDataAfterLogin, setError, setLoading, whereToNavigate])
+	}, [fortunaApiClient.authDataService, loginInformation, navigate, setDataAfterLogin, setError, setLoading, videoClass, whereToNavigate])
 
 	return loginSubmit
 }
