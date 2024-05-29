@@ -10,7 +10,7 @@ function ShowNumberSharesNeededToAccessExclusiveContent(props: Props) {
 
 	if (
 		video.isSplExclusive === false ||
-		!_.isUndefined(video.videoUrl) ||
+		video.isUserAbleToAccessVideo === true ||
 		_.isNull(video.valueNeededToAccessExclusiveContentUsd)
 	) return null
 

@@ -12,7 +12,7 @@ function UnlockedContentIcon(props: Props) {
 	const { video } = props
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
-	const { videoUrl, uuid, listingSharePriceUsd, valueNeededToAccessExclusiveContentUsd,
+	const { isUserAbleToAccessVideo, uuid, listingSharePriceUsd, valueNeededToAccessExclusiveContentUsd,
 		allowValueFromSameCreatorTokensForExclusiveContent, creatorUsername, isSplExclusive } = video
 
 	if (isSplExclusive === false) {
@@ -29,7 +29,7 @@ function UnlockedContentIcon(props: Props) {
 		)
 	}
 
-	if (_.isNull(positionsAndTransactionsClass) || _.isUndefined(videoUrl)) return null
+	if (_.isNull(positionsAndTransactionsClass) || isUserAbleToAccessVideo === false) return null
 
 	const doesUserHaveInstantExclusiveAccess = positionsAndTransactionsClass.checkIfUuidExistsInExclusiveContentList(uuid)
 

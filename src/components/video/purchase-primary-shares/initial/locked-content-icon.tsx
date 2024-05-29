@@ -13,13 +13,13 @@ function LockedContentIcon(props: Props) {
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
 	const {
-		videoUrl, uuid, valueNeededToAccessExclusiveContentUsd, listingSharePriceUsd,
+		isUserAbleToAccessVideo, uuid, valueNeededToAccessExclusiveContentUsd, listingSharePriceUsd,
 		allowValueFromSameCreatorTokensForExclusiveContent, creatorUsername
 	} = video
 
 	if (
 		_.isNull(positionsAndTransactionsClass) ||
-		!_.isUndefined(videoUrl) ||
+		isUserAbleToAccessVideo === true ||
 		_.isNull(valueNeededToAccessExclusiveContentUsd) ||
 		_.isNull(allowValueFromSameCreatorTokensForExclusiveContent)
 	) return null
