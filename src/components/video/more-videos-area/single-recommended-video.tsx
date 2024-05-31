@@ -19,7 +19,8 @@ export default function SingleRecommendedVideo(props: Props) {
 
 	return (
 		<div
-			className="flex-none flex items-start space-x-4 hover:bg-gray-100 dark:hover:bg-gray-900 rounded-lg cursor-pointer w-64"
+			className="flex-none flex flex-col items-start \
+				hover:bg-gray-100 dark:hover:bg-gray-900 rounded-lg cursor-pointer w-64"
 			onClick={() => navigateToVideo(uuid)}
 		>
 			<img
@@ -27,7 +28,7 @@ export default function SingleRecommendedVideo(props: Props) {
 				alt={splName}
 				className="w-64 h-36 rounded-lg object-cover border dark:border-yellow-400"
 			/>
-			<div className="flex flex-col justify-start overflow-hidden">
+			<div className="flex flex-col justify-start overflow-hidden w-full">
 				<div className="text-lg font-semibold truncate dark:text-white">
 					{splName}
 				</div>
