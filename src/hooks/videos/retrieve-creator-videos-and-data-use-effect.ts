@@ -1,18 +1,19 @@
 import _ from "lodash"
-import { useParams } from "react-router-dom"
 import { useCallback, useEffect } from "react"
+import { useAuthContext } from "../../contexts/auth-context"
 import { isNonSuccessResponse } from "../../utils/type-checks"
 import { useVideoContext } from "../../contexts/video-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useRetrieveCreatorVideosAndDataUseEffect(): void {
-	const { creatorUsername } = useParams<{ creatorUsername: string }>()
+export default function useRetrieveCreatorVideosAndDataUseEffect(creatorUsername: string | undefined): void {
+	const authClass = useAuthContext()
 	const videoClass = useVideoContext()
 	const fortunaApiClient = useApiClientContext()
 
 	const retrieveCreatorVideosAndData = useCallback(async () => {
 		try {
 			if (
+				authClass.isLoggingOut === true ||
 				_.isUndefined(creatorUsername) ||
 				videoClass.isCreatorDataBeingRetrieved === true ||
 				!_.isUndefined(videoClass.contextForCreatorData(creatorUsername))
@@ -30,13 +31,13 @@ export default function useRetrieveCreatorVideosAndDataUseEffect(): void {
 				creatorProfilePictureUrl: creatorDataResponse.data.creatorData.creatorProfilePictureUrl,
 				videoData: creatorDataResponse.data.videoData
 			}
-			videoClass.addCreatorData(creatorDataHeldInClass)
+			videoClass.addRetrievedCreatorData(creatorDataHeldInClass)
 		} catch (error) {
 			console.error(error)
 		} finally {
 			videoClass.setIsCreatorDataBeingRetrieved(false)
 		}
-	}, [videoClass, creatorUsername, fortunaApiClient.videoDataService])
+	}, [authClass.isLoggingOut, creatorUsername, videoClass, fortunaApiClient.videoDataService])
 
 	useEffect(() => {
 		void retrieveCreatorVideosAndData()
