@@ -13,7 +13,15 @@ declare global {
 		"/my-wallet" |
 
 		"/creator/my-content" |
-		"/creator/upload-content"
+		"/creator/upload-content" |
+
+		"/privacy-policy" |
+		"/help-center" |
+		"/faq" |
+
+		"/about" |
+		"/careers" |
+		"/contact"
 
 	type DynamicPageNames =
 		`/v/${string}` |

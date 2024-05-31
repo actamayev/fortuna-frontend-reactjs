@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom"
 
-// TODO: Make linkTo into PageNames
 interface Props {
-	linkTo: string
+	linkTo: StaticPageNames
 	linkTitle: string
 }
 
