@@ -30,7 +30,7 @@ export default function SharesAvailableProgressBar(props: Props) {
 				className={
 					`absolute left-1/2 transform -translate-x-1/2 -translate-y-[calc(100%+40px)] mt-2 px-2 py-1 bg-black \
                 	text-white text-xs rounded shadow-lg transition-opacity duration-100 \
-					${showTooltip ? "opacity-100 visible border dark:border-yellow-400" : "opacity-0 invisible"}`
+					${showTooltip ? "opacity-100 visible" : "opacity-0 invisible"}`
 				}
 				style={{ transition: "opacity 0.1s ease-in-out", minWidth: tooltipWidth }}
 			>

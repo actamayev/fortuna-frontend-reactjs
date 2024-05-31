@@ -10,10 +10,10 @@ export default function FooterLink(props: Props) {
 
 	return (
 		<div
-			className="mb-2 text-zinc-900 cursor:pointer text-sm"
+			className="mb-2 text-zinc-900 dark:text-zinc-200 cursor:pointer text-sm"
 			style={{ fontSize: "12px", lineHeight: "18px", fontWeight: "300"}}
 		>
-			<Link to={linkTo} className="hover:underline">
+			<Link to={linkTo} className="dark:hover:text-zinc-50">
 				{linkTitle}
 			</Link>
 		</div>

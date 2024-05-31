@@ -9,7 +9,8 @@ export default function Layout (props: Props) {
 	const { children } = props
 
 	return (
-		<div className="min-h-screen dark:bg-gray-950 flex flex-col">
+		<div
+			className="min-h-screen dark:bg-neutral-900 flex flex-col">
 			<HeaderNav />
 			<div className="flex-1 w-full overflow-y-auto px-10 py-8 mt-14">
 				{children}

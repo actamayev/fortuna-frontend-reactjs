@@ -26,7 +26,7 @@ export default function SingleCreatorPageVideo(props: Props) {
 			<img
 				src={imageUrl}
 				alt={splName}
-				className="w-64 h-36 rounded-lg object-cover border dark:border-yellow-400"
+				className="w-64 h-36 rounded-lg object-cover"
 			/>
 			<div className="flex flex-col justify-start overflow-hidden">
 				<div className="text-3xl font-semibold truncate dark:text-white">

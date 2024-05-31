@@ -1,10 +1,11 @@
 import { FaLinkedin } from "react-icons/fa"
 import { FaXTwitter } from "react-icons/fa6"
+import FooterHeaderText from "./footer-header-text"
 
 export default function FooterSocialSection() {
 	return (
 		<div>
-			<h4 className="text-zinc-900 text-lg font-semibold mb-4">Follow Us</h4>
+			<FooterHeaderText headerTitle="Social" />
 			<div className="flex space-x-4">
 				{/* <a href="https://facebook.com" aria-label="Facebook" className="text-gray-300 hover:text-white">
 					<FaFacebook size={24} />
@@ -12,7 +13,7 @@ export default function FooterSocialSection() {
 				<a
 					href="https://x.com/mintfortuna"
 					aria-label="X"
-					className="text-zinc-900"
+					className="text-zinc-900 dark:text-zinc-200 dark:hover:text-zinc-50"
 					target="_blank"
 					rel="noopener noreferrer"
 				>
@@ -21,7 +22,7 @@ export default function FooterSocialSection() {
 				<a
 					href="https://www.linkedin.com/company/mint-fortuna"
 					aria-label="LinkedIn"
-					className="text-zinc-900"
+					className="text-zinc-900 dark:text-zinc-200 dark:hover:text-zinc-50"
 					target="_blank"
 					rel="noopener noreferrer"
 				>

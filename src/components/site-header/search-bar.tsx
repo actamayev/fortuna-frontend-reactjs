@@ -34,7 +34,7 @@ function SearchBar() {
 					type="text"
 					className="w-full pl-4 p-1.5 border border-gray-300 rounded-lg
                         focus:outline-none focus:border-blue-500 dark:border-yellow-400 placeholder-gray-600"
-					placeholder="Search..."
+					placeholder="Search"
 					value={videoClass.searchTerm || ""}
 					onChange={e => videoClass.setSearchTerm(handleTypeUsername(e))}
 					onKeyDown={handleSearch}
