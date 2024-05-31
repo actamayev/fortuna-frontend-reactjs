@@ -53,6 +53,18 @@ class VideoClass {
 		return this.creatorData.find(data => data.creatorUsername === creatorUsername)
 	}
 
+	public contextForCreatorDataNotIncluding(
+		creatorUsername: string | undefined,
+		uuidToNotInclude: string
+	): CreatorDataHeldInClass | undefined {
+		const creatorData = this.contextForCreatorData(creatorUsername)
+		if (_.isUndefined(creatorData)) return undefined
+
+		const filteredVideoData = creatorData.videoData.filter(video => video.uuid !== uuidToNotInclude)
+
+		return { ...creatorData, videoData: filteredVideoData }
+	}
+
 	private findVideoInSearchMapByUUID(videoUUID: string): SingleVideoDataFromBackend | undefined {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		for (const [key, searchDataArray] of this.videoSearchMap.entries()) {
