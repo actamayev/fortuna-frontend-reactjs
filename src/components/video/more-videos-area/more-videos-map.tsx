@@ -12,12 +12,12 @@ function MoreVideosMap(props: Props) {
 	const videoClass = useVideoContext()
 
 	const creatorData = videoClass.contextForCreatorDataNotIncluding(video.creatorUsername, video.uuid)
-	if (_.isUndefined(creatorData)) return null
+	if (_.isUndefined(creatorData) || _.isEmpty(creatorData.videoData)) return null
 
 	return (
 		<>
 			<div className="flex text-xl font-medium my-2">
-				Recommended Content
+				More from {video.creatorUsername}
 			</div>
 			<div className="flex overflow-x-auto space-x-4">
 				{creatorData.videoData.map(videoData => (
