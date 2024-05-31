@@ -21,6 +21,7 @@ export default function useLogout(): () => void {
 	const navigate = useTypedNavigate()
 
 	const logout = useCallback((): void => {
+		authClass.setIsLoggingOut(true)
 		personalInfoClass?.logout()
 		solanaClass?.logout()
 		positionsAndTransactionsClass?.logout()

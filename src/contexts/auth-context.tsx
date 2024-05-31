@@ -4,6 +4,7 @@ import { createContext, useContext, useMemo } from "react"
 
 class AuthClass {
 	private _accessToken: string | null = null
+	public isLoggingOut: boolean = false
 
 	constructor() {
 		makeAutoObservable(this)
@@ -27,8 +28,13 @@ class AuthClass {
 		}
 	})
 
+	public setIsLoggingOut = action((newState: boolean): void => {
+		this.isLoggingOut = newState
+	})
+
 	public logout() {
 		this.setAccessToken(null, true)
+		this.setIsLoggingOut(false)
 	}
 }
 
