@@ -16,10 +16,10 @@ function NewTokenSummary() {
 
 	return (
 		<div className = "bg-white border shadow rounded-lg w-full dark:border-b-2 p-2">
-			<h1 className = "flex text-xl text-center font-bold leading-none tracking-tight text-black mb-3">
+			<h1 className = "flex text-xl text-center font-bold leading-none tracking-tight text-zinc-900 mb-3">
 				Token Summary
 			</h1>
-			<h2 className = "flex text-md text-center font-semibold leading-none tracking-tight text-black">
+			<h2 className = "flex text-md text-center font-semibold leading-none tracking-tight text-zinc-900">
 				Share Distribution
 			</h2>
 			<div>
@@ -31,7 +31,7 @@ function NewTokenSummary() {
 			<div>
 				Available to fans: {fanShares} Shares
 			</div>
-			<h2 className = "flex text-md text-center font-semibold leading-none tracking-tight text-black mt-3">
+			<h2 className = "flex text-md text-center font-semibold leading-none tracking-tight text-zinc-900 mt-3">
 				Token Value Information
 			</h2>
 			Implied Video Value: <ImpliedVideoValue />

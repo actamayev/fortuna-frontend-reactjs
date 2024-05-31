@@ -16,9 +16,9 @@ function HeaderDropdown () {
 	const hasProfilePicture = !_.isNil(personalInfoClass.profilePictureUrl)
 	let buttonClasses
 	if (hasProfilePicture === true) {
-		buttonClasses = "text-black flex items-center text-md font-semibold hover:shadow-lg"
+		buttonClasses = "text-zinc-900 flex items-center text-md font-semibold hover:shadow-lg"
 	} else {
-		buttonClasses = "bg-gray-100 hover:bg-gray-200 text-black border border-yellow-400 rounded p-2 flex \
+		buttonClasses = "bg-gray-100 hover:bg-gray-200 text-zinc-900 border border-yellow-400 rounded p-2 flex \
 			items-center text-md font-semibold hover:shadow-lg"
 	}
 	return (

@@ -43,7 +43,7 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 					{_.truncate(splName, { length: 24, omission: "..." })}
 				</div>
 				<div
-					className="text-xs text-gray-600 hover:text-black dark:text-gray-300 hover:dark:text-gray-100 cursor-pointer"
+					className="text-xs text-gray-600 hover:text-zinc-900 dark:text-gray-300 hover:dark:text-gray-100 cursor-pointer"
 					style={{ maxWidth: "fit-content" }}
 					onClick={() => navigateToCreatorPage(creatorUsername)}
 				>

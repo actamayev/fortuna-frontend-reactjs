@@ -30,7 +30,7 @@ export default function Slider(props: Props) {
 				</span>
 			</label>
 			{whatToShow && (
-				<span className="text-sm font-medium text-black">
+				<span className="text-sm font-medium text-zinc-900">
 					{whatToShow}
 				</span>
 			)}

@@ -37,7 +37,7 @@ export default function SingleVideoSearchItem(props: Props) {
 						/>
 					)}
 					<div
-						className="text-sm text-gray-600 hover:text-black dark:text-gray-300 hover:dark:text-gray-100 cursor-pointer"
+						className="text-sm text-gray-600 hover:text-zinc-900 dark:text-gray-300 hover:dark:text-gray-100 cursor-pointer"
 						onClick={(e) => {
 							e.stopPropagation() // Prevents the video click event when clicking the username
 							navigateToCreatorPage(videoData.creatorUsername)

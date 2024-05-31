@@ -22,7 +22,7 @@ function CreateContentHeaderButton() {
 				className="font-bold text-center w-full"
 			>
 				<div
-					className={`rounded text-black border px-4 transition-all duration-50 flex items-center justify-center ${classes}` }
+					className={`rounded text-zinc-900 border px-4 transition-all duration-50 flex items-center justify-center ${classes}` }
 					style={{ paddingTop: "2px", paddingBottom: "5px" }}
 				>
 					+
