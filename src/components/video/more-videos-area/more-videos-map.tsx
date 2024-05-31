@@ -12,9 +12,7 @@ function MoreVideosMap(props: Props) {
 	const videoClass = useVideoContext()
 
 	const creatorData = videoClass.contextForCreatorDataNotIncluding(video.creatorUsername, video.uuid)
-	if (_.isUndefined(creatorData)) return null
-
-	if (_.isEmpty(creatorData.videoData)) return null
+	if (_.isUndefined(creatorData) || _.isEmpty(creatorData.videoData)) return null
 
 	return (
 		<>
