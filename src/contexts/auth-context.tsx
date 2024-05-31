@@ -34,7 +34,6 @@ class AuthClass {
 
 	public logout() {
 		this.setAccessToken(null, true)
-		this.setIsLoggingOut(false)
 	}
 }
 
