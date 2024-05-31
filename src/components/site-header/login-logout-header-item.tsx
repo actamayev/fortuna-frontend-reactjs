@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useLocation } from "react-router-dom"
-import NullUserNavLink from "../custom-link"
+import NullUserNavLink from "../null-user-nav-link"
 import { useAuthContext } from "../../contexts/auth-context"
 import HeaderDropdown from "./profile-dropdown/header-dropdown"
 
