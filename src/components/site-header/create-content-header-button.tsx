@@ -6,26 +6,31 @@ import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
 function CreateContentHeaderButton() {
 	const location = useLocation()
-	const isActive = location.pathname.startsWith("/creator/upload-content")
 	const authClass = useAuthContext()
 	const personalInfoClass = usePersonalInfoContext()
 
-	if (_.isNull(authClass.accessToken) || personalInfoClass?.isApprovedToBeCreator !== true) return null
-	let classes
-	if (isActive === true) classes = "bg-blue-200 border-blue-300"
-	else classes = "bg-white border-blue-200 hover:bg-blue-300"
+	if (
+		_.isNull(authClass.accessToken) ||
+		personalInfoClass?.isApprovedToBeCreator !== true ||
+		location.pathname.startsWith("/creator/upload-content")
+	) return null
 
 	return (
 		<div className="inline-flex items-center justify-center flex-grow flex-shrink mr-2">
 			<Link
 				to="/creator/upload-content"
-				className="font-bold text-center w-full"
+				className="text-center w-full"
 			>
 				<div
-					className={`rounded text-zinc-900 border px-4 transition-all duration-50 flex items-center justify-center ${classes}` }
-					style={{ paddingTop: "2px", paddingBottom: "5px" }}
+					className={"rounded text-white dark:text-zinc-900 pl-3 pr-3 h-9 \
+						space-x-2 flex text-sm items-center justify-center bg-blue-600 hover:bg-blue-700" }
 				>
-					+
+					<div>
+						+
+					</div>
+					<div>
+						Create
+					</div>
 				</div>
 			</Link>
 		</div>

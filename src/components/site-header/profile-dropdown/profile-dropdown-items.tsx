@@ -5,7 +5,7 @@ import useHandleLogout from "../../../hooks/auth/handle-logout"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 
 const useDropdownItemClasses = () => {
-	const baseClass = "text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200 transition-all duration-50"
+	const baseClass = "text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200"
 	return {
 		top: `${baseClass} rounded-t-md`,
 		bottom: `${baseClass} rounded-b-md`,

@@ -14,7 +14,7 @@ export default function SiteSettingsDropdown() {
 					<button
 						type="button"
 						className="bg-white hover:bg-gray-200 text-zinc-900 border border-yellow-400 rounded px-4 flex
-							items-center text-md font-semibold hover:shadow-lg transition-all duration-50"
+							items-center text-md font-semibold hover:shadow-lg"
 						id="menu-button"
 						aria-expanded="false"
 						aria-haspopup="true"

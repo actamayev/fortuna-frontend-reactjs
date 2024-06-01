@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import React, { useCallback } from "react"
+import { HiMagnifyingGlass } from "react-icons/hi2"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import { useLocation } from "react-router-dom"
 import useVideoSearch from "../../hooks/search/video-search"
 import { useVideoContext } from "../../contexts/video-context"
@@ -13,32 +14,59 @@ function SearchBar() {
 	const location = useLocation()
 	const videoSearch = useVideoSearch()
 	const handleTypeUsername = useHandleTypeUsername()
+	const inputRef = useRef<HTMLInputElement>(null)
+	const [isFocused, setIsFocused] = useState(false)
 
 	const handleSearch = useCallback(async (event: React.KeyboardEvent<HTMLInputElement>) => {
 		if (
 			event.key !== "Enter" ||
-			_.isNull(videoClass.searchTerm) ||
-			_.isEmpty(videoClass.searchTerm.trim())
+      _.isNull(videoClass.searchTerm) ||
+      _.isEmpty(videoClass.searchTerm.trim())
 		) return
 		await videoSearch()
 		if (location.pathname !== (`/s/${videoClass.searchTerm}`)) {
 			navigate(`/s/${videoClass.searchTerm}`)
-
 		}
 	}, [location.pathname, navigate, videoClass.searchTerm, videoSearch])
 
+	useEffect(() => {
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key === "/") {
+				event.preventDefault()
+				inputRef.current?.focus()
+			}
+		}
+
+		document.addEventListener("keydown", handleKeyDown)
+		return () => {
+			document.removeEventListener("keydown", handleKeyDown)
+		}
+	}, [])
+
 	return (
 		<div className="flex justify-center items-center w-full">
-			<div style={{ width: "30%" }}>
+			<div className="relative w-1/4">
+				<HiMagnifyingGlass className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-900 dark:text-neutral-200" />
 				<input
 					type="text"
-					className="w-full pl-4 p-1.5 border border-gray-300 rounded-lg
-                        focus:outline-none focus:border-blue-500 dark:border-yellow-400 placeholder-gray-600"
+					ref={inputRef}
+					className="w-full pl-10 pr-10 p-1.5 border text-xs h-10 bg-inherit
+						placeholder-neutral-500 rounded-[3px] focus:outline-none \
+						border-zinc-200 hover:border-zinc-300  focus:border-zinc-800 \
+						dark:border-zinc-800 dark:hover:border-zinc-700 dark:focus:border-zinc-200 dark:text-zinc-200"
 					placeholder="Search"
 					value={videoClass.searchTerm || ""}
 					onChange={e => videoClass.setSearchTerm(handleTypeUsername(e))}
 					onKeyDown={handleSearch}
+					onFocus={() => setIsFocused(true)}
+					onBlur={() => setIsFocused(false)}
+					style={{ fontWeight: "300" }}
 				/>
+				{!isFocused && (
+					<span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-zinc-300">
+						/
+					</span>
+				)}
 			</div>
 		</div>
 	)
