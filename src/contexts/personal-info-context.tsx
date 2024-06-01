@@ -103,6 +103,7 @@ class PersonalInfoClass {
 		this.profilePictureUrl = null
 		this.isApprovedToBeCreator = false
 		this.setIsRetrievingPersonalDetails(false)
+		this.setDefaultSiteTheme("light")
 	}
 }
 

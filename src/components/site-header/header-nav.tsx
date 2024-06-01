@@ -14,7 +14,7 @@ export default function HeaderNav() {
 				</div>
 				<div className="flex items-center z-10">
 					<CreateContentHeaderButton />
-					{/* <SiteSettingsDropdown /> */}
+					<SiteSettingsDropdown />
 					<LoginLogoutHeaderItem />
 				</div>
 			</div>

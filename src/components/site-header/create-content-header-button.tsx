@@ -23,7 +23,8 @@ function CreateContentHeaderButton() {
 			>
 				<div
 					className={"rounded text-white dark:text-zinc-900 pl-3 pr-3 h-9 \
-						space-x-2 flex text-sm items-center justify-center bg-blue-600 hover:bg-blue-700" }
+						space-x-2 flex text-sm items-center justify-center bg-blue-600 hover:bg-blue-700 \
+						dark:bg-blue-400 dark:hover:bg-blue-500" }
 				>
 					<div>
 						+
