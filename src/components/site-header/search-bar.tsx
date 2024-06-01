@@ -45,14 +45,17 @@ function SearchBar() {
 
 	return (
 		<div className="flex justify-center items-center w-full">
-			<div className="relative w-1/4">
+			<div
+				className="relative"
+				style={{ width: "30%" }}
+			>
 				<HiMagnifyingGlass className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-900 dark:text-neutral-200" />
 				<input
 					type="text"
 					ref={inputRef}
-					className="w-full pl-10 pr-10 p-1.5 border text-xs h-10 bg-inherit
+					className="w-full pl-10 pr-10 p-1.5 border text-sm h-11 bg-inherit
 						placeholder-neutral-500 rounded-[3px] focus:outline-none \
-						border-zinc-200 hover:border-zinc-300  focus:border-zinc-800 \
+						border-zinc-200 hover:border-zinc-400  focus:border-zinc-800 \
 						dark:border-zinc-800 dark:hover:border-zinc-700 dark:focus:border-zinc-200 dark:text-zinc-200"
 					placeholder="Search"
 					value={videoClass.searchTerm || ""}
@@ -60,10 +63,10 @@ function SearchBar() {
 					onKeyDown={handleSearch}
 					onFocus={() => setIsFocused(true)}
 					onBlur={() => setIsFocused(false)}
-					style={{ fontWeight: "300" }}
+					style={{ fontWeight: "350" }}
 				/>
 				{!isFocused && (
-					<span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-zinc-300">
+					<span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-500 dark:text-neutral-500">
 						/
 					</span>
 				)}
