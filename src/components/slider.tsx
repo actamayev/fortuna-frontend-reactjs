@@ -1,7 +1,4 @@
-import _ from "lodash"
-import { observer } from "mobx-react"
-import { useMemo, useState } from "react"
-import { usePersonalInfoContext } from "../contexts/personal-info-context"
+import { useState } from "react"
 
 interface Props {
 	checkedCondition: boolean | undefined
@@ -12,16 +9,9 @@ interface Props {
 	rightIcon?: React.ReactNode
 }
 
-function Slider(props: Props) {
+export default function Slider(props: Props) {
 	const { checkedCondition, onChangeCheckedCondition, disabledCondition, colorChangeOnToggle, leftIcon, rightIcon } = props
-	const personalInfoClass = usePersonalInfoContext()
 	const [isHovered, setIsHovered] = useState(false)
-
-	const knobColor = useMemo(() => {
-		if (_.isNull(personalInfoClass) || personalInfoClass.defaultSiteTheme === "light") return "bg-white"
-		return "bg-zinc-900"
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [personalInfoClass, personalInfoClass?.defaultSiteTheme])
 
 	return (
 		<>
@@ -37,7 +27,7 @@ function Slider(props: Props) {
 					display: "inline-block",
 					backgroundColor: isHovered ? "rgba(128, 128, 128, 0.2)" : "transparent",
 					borderRadius: "50%",
-					cursor: "pointer",
+					cursor: "pointer"
 				}}
 			>
 				<label
@@ -75,7 +65,7 @@ function Slider(props: Props) {
 					<span
 						className={
 							`absolute rounded-full transition-transform flex items-center justify-center cursor-pointer \
-              					${colorChangeOnToggle && checkedCondition ? "bg-blue-600" : knobColor}`
+              					${colorChangeOnToggle && checkedCondition ? "bg-blue-600" : "bg-white dark:bg-zinc-900"}`
 						}
 						style={{
 							height: "13px",
@@ -96,5 +86,3 @@ function Slider(props: Props) {
 		</>
 	)
 }
-
-export default observer(Slider)

@@ -26,12 +26,8 @@ function CreateContentHeaderButton() {
 						space-x-2 flex text-sm items-center justify-center bg-blue-500 hover:bg-blue-600 \
 						dark:bg-blue-400 dark:hover:bg-blue-500"
 				>
-					<div>
-						+
-					</div>
-					<div>
-						Create
-					</div>
+					<div>+</div>
+					<div>Create</div>
 				</div>
 			</Link>
 		</div>

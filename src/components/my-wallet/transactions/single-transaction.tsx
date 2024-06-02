@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
+import { BsArrowUpRightSquareFill, BsArrowDownLeftSquareFill } from "react-icons/bs"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 
 interface Props {
@@ -31,20 +32,32 @@ function SingleTransaction(props: Props) {
 	}, [transaction.transferDateTime])
 
 	return (
-		<div className="bg-white border shadow-sm mt-2 p-2 rounded-sm">
-			<div>
-				{_.upperFirst(transaction.outgoingOrIncoming)} Transfer on {formattedDateTime}
+		<div
+			className="bg-zinc-100 dark:bg-zinc-800 shadow-sm mt-2 p-2 rounded-sm \
+				text-zinc-900 dark:text-white flex items-center"
+		>
+			<div className="mr-2">
+				{transaction.outgoingOrIncoming === "outgoing" ? (
+					<BsArrowUpRightSquareFill size={50}/>
+				) : (
+					<BsArrowDownLeftSquareFill size={50}/>
+				)}
 			</div>
 			<div>
-				{(_.isNull(personalInfoClass) || personalInfoClass.defaultCurrency === "usd") ? (
-					<> ${(transaction.usdAmountTransferred).toFixed(2)}</>
-				) : (
-					<> {(transaction.solAmountTransferred).toFixed(4)} SOL</>
-				)}
-				{transaction.outgoingOrIncoming === "incoming" && (<> from {transaction.transferFromUsername}</>)}
-				{transaction.outgoingOrIncoming === "outgoing" &&
-					(<> to {transaction.transferToUsername || transaction.transferToPublicKey}</>)
-				}
+				<div>
+					{(_.isNull(personalInfoClass) || personalInfoClass.defaultCurrency === "usd") ? (
+						<> ${(transaction.usdAmountTransferred).toFixed(2)}</>
+					) : (
+						<> {(transaction.solAmountTransferred).toFixed(4)} SOL</>
+					)}
+					{transaction.outgoingOrIncoming === "incoming" && (<> from {transaction.transferFromUsername}</>)}
+					{transaction.outgoingOrIncoming === "outgoing" && (
+						<> to {transaction.transferToUsername || transaction.transferToPublicKey}</>
+					)}
+				</div>
+				<div>
+					{formattedDateTime}
+				</div>
 			</div>
 		</div>
 	)

@@ -20,10 +20,10 @@ function TransferSolButton() {
 		<>
 			<Button
 				title="Transfer Funds"
-				colorClass="bg-blue-200"
-				hoverClass="hover:bg-blue-300"
+				colorClass="bg-blue-500 dark:bg-blue-400"
+				hoverClass="hover:bg-blue-600 dark:hover:bg-blue-500"
 				onClick={setIsTransferSolButtonPressed}
-				className="font-semibold"
+				className="text-white dark:text-zinc-900 font-medium"
 			/>
 			<div ref = {dropdownRef}>
 				<TransferSolCard />

@@ -3,7 +3,7 @@ import { observer } from "mobx-react"
 import { useEffect, useState } from "react"
 import { AgGridReact } from "ag-grid-react"
 import "ag-grid-community/styles/ag-grid.css"
-import "ag-grid-community/styles/ag-theme-alpine.css"
+import "ag-grid-community/styles/ag-theme-quartz.css"
 import useSetGridHeight from "../../../hooks/set-grid-height-use-effect"
 import useNavigateToVideo from "../../../hooks/navigate/navigate-to-video"
 import myOwnershipColumns from "../../../utils/grids/my-ownership/my-ownership-columns"
@@ -36,7 +36,7 @@ function MySharesOwnershipGrid() {
 			<div className="dark:text-white">
 				Shares
 			</div>
-			<div className="ag-theme-alpine" style={{ height: gridHeight, width: "100%" }}>
+			<div className="ag-theme-quartz" style={{ height: gridHeight, width: "100%" }}>
 				<AgGridReact
 					columnDefs={myOwnershipColumns}
 					rowData={rowData}

@@ -1,7 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useAuthContext } from "../contexts/auth-context"
-import ChooseSiteTheme from "../components/choose-site-theme"
 import SectionHeader from "../components/headers/section-header"
 import ShowAuthToNullUser from "../components/show-auth-to-null-user"
 import UploadProfilePicture from "../components/profile/upload-profile-picture"
@@ -23,7 +22,6 @@ function MyProfile() {
 				<YouTubeSignInButton />
 			</div>
 			<ShowIfUserIsFortunaCreator />
-			<ChooseSiteTheme />
 		</>
 	)
 }
