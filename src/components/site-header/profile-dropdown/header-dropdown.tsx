@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useState, useRef } from "react"
+import { FiAlignJustify } from "react-icons/fi"
 import DropdownItemsContainer from "./dropdown-items-container"
 import useClickOutSideUseEffect from "../../../hooks/click-outside-use-effect"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
@@ -13,14 +14,8 @@ function HeaderDropdown () {
 
 	if (_.isNull(personalInfoClass)) return null
 
-	const hasProfilePicture = !_.isNil(personalInfoClass.profilePictureUrl)
-	let buttonClasses
-	if (hasProfilePicture === true) {
-		buttonClasses = "text-zinc-900 flex items-center text-md font-semibold hover:shadow-lg"
-	} else {
-		buttonClasses = "bg-gray-100 hover:bg-gray-200 text-zinc-900 border border-yellow-400 rounded p-2 flex \
-			items-center text-md font-semibold hover:shadow-lg"
-	}
+	const buttonClasses = "hover:bg-zinc-100 text-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800 flex items-center p-2 rounded"
+
 	return (
 		<div className="z-10 ml-2">
 			<div className="flex items-center">
@@ -35,7 +30,7 @@ function HeaderDropdown () {
 					>
 						<div className="flex items-center">
 							{_.isNil(personalInfoClass.profilePictureUrl) ? (
-								<span className="max-w-xs truncate">{personalInfoClass.username || "Profile"}</span>
+								<FiAlignJustify size={20}/>
 							) :
 								<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center">
 									<img
