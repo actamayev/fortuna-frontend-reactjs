@@ -6,7 +6,7 @@ export default function DescriptionPagesHeaderText(props: Props) {
 	const { headerText } = props
 
 	return (
-		<div className="text-6xl font-black mb-2">
+		<div className="text-6xl text-zinc-900 dark:text-white mb-2">
 			{headerText}
 		</div>
 	)

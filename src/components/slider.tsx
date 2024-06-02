@@ -19,7 +19,7 @@ function Slider(props: Props) {
 
 	const knobColor = useMemo(() => {
 		if (_.isNull(personalInfoClass) || personalInfoClass.defaultSiteTheme === "light") return "bg-white"
-		return "bg-black"
+		return "bg-zinc-900"
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [personalInfoClass, personalInfoClass?.defaultSiteTheme])
 

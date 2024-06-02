@@ -15,7 +15,7 @@ export default function Button (props: Props) {
 		backgroundColor = "bg-gray-400"
 		hoverColor = ""
 	} else {
-		backgroundColor = props.colorClass || "bg-black"
+		backgroundColor = props.colorClass || "bg-zinc-900"
 		hoverColor = props.hoverClass || ""
 	}
 

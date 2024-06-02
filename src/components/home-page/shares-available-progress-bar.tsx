@@ -28,7 +28,7 @@ export default function SharesAvailableProgressBar(props: Props) {
 			/>
 			<div
 				className={
-					`absolute left-1/2 transform -translate-x-1/2 -translate-y-[calc(100%+40px)] mt-2 px-2 py-1 bg-black \
+					`absolute left-1/2 transform -translate-x-1/2 -translate-y-[calc(100%+40px)] mt-2 px-2 py-1 bg-zinc-900 \
                 	text-white text-xs rounded shadow-lg transition-opacity \
 					${showTooltip ? "opacity-100 visible" : "opacity-0 invisible"}`
 				}

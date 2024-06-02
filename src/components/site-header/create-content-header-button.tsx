@@ -16,7 +16,7 @@ function CreateContentHeaderButton() {
 	) return null
 
 	return (
-		<div className="inline-flex items-center justify-center flex-grow flex-shrink">
+		<div className="inline-flex items-center justify-center flex-grow flex-shrink mx-2">
 			<Link
 				to="/creator/upload-content"
 				className="text-center w-full"

@@ -5,11 +5,12 @@ import { FaUser } from "react-icons/fa"
 import { IoWallet } from "react-icons/io5"
 import { GiTwoCoins } from "react-icons/gi"
 import { RiLogoutBoxRLine } from "react-icons/ri"
+import { BsFillCollectionPlayFill } from "react-icons/bs"
 import useHandleLogout from "../../../hooks/auth/handle-logout"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 
 const useDropdownItemClasses = () => {
-	const baseClass = "text-gray-700 block px-4 py-2 text-sm hover:bg-gray-170 flex flex-row"
+	const baseClass = "block px-4 py-2 flex items-center hover:bg-gray-200 dark:hover:bg-zinc-800"
 	return {
 		bottom: `${baseClass} rounded-b-md`,
 		middle: baseClass
@@ -23,39 +24,40 @@ function ProfileDropdownItems() {
 	const classes = useDropdownItemClasses()
 
 	return (
-		<>
-			<div className="px-4 py-2 border-b border-zinc-100 dark:border-zinc-700 font-semibold">
+		<div className="text-base text-zinc-900 dark:text-white">
+			<div className="px-4 py-2 border-b border-zinc-100 dark:border-zinc-700 font-medium">
 				@{personalInfoClass?.username || ""}
 			</div>
 
 			<Link to="/my-ownership" className={classes.middle}>
-				<GiTwoCoins size={17}/>
+				<GiTwoCoins className="mr-2" size={17} />
 				My Ownership
 			</Link>
-			<Link to="/my-wallet" className={classes.middle}
-			>
-				<IoWallet size={17}/>
-
+			<Link to="/my-wallet" className={classes.middle}>
+				<IoWallet className="mr-2" size={17} />
 				My Wallet
 			</Link>
 			{personalInfoClass?.isApprovedToBeCreator && (
-				<Link to="/creator/my-content" className={classes.middle}>My Content</Link>
+				<Link to="/creator/my-content" className={classes.middle}>
+					<BsFillCollectionPlayFill className="mr-2" size={17} />
+					My Content
+				</Link>
 			)}
 			<Link to="/my-profile" className={classes.middle}>
-				<FaUser size={17}/>
+				<FaUser className="mr-2" size={17} />
 				My Profile
 			</Link>
-			<div className = "block">
+			<div className="block">
 				<button
-					onClick = {handleLogout}
-					className={`${classes.bottom} w-full text-left flex flex-row`}
+					onClick={handleLogout}
+					className={`${classes.bottom} w-full text-left`}
 					disabled={logoutDisabled}
 				>
-					<RiLogoutBoxRLine size={17}/>
+					<RiLogoutBoxRLine className="mr-2" size={17} />
 					Sign out
 				</button>
 			</div>
-		</>
+		</div>
 	)
 }
 
