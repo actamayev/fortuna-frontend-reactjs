@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react"
+import { useState } from "react"
 
 interface Props {
 	checkedCondition: boolean | undefined
@@ -12,13 +12,6 @@ interface Props {
 export default function Slider(props: Props) {
 	const { checkedCondition, onChangeCheckedCondition, disabledCondition, colorChangeOnToggle, leftIcon, rightIcon } = props
 	const [isHovered, setIsHovered] = useState(false)
-	const inputRef = useRef<HTMLInputElement>(null)
-
-	const handleClick = useCallback(() => {
-		if (!inputRef.current || disabledCondition) return
-		inputRef.current.click()
-		onChangeCheckedCondition()
-	}, [disabledCondition, onChangeCheckedCondition])
 
 	return (
 		<>
@@ -26,7 +19,7 @@ export default function Slider(props: Props) {
 				className="relative cursor-pointer"
 				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
-				onClick={handleClick}
+				onClick={onChangeCheckedCondition}
 				style={{
 					width: "40px",
 					height: "40px",
@@ -50,7 +43,6 @@ export default function Slider(props: Props) {
 					}}
 				>
 					<input
-						ref={inputRef}
 						type="checkbox"
 						checked={checkedCondition}
 						onChange={onChangeCheckedCondition}

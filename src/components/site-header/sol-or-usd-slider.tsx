@@ -18,7 +18,7 @@ function SolOrUsdSlider() {
 	}, [personalInfoClass, personalInfoClass?.defaultCurrency])
 
 	return (
-		<div className="flex flex-col mr-2">
+		<div className="flex flex-col mr-1.5">
 			<Slider
 				checkedCondition={defaultCurrency === "sol"}
 				onChangeCheckedCondition={setDefaultCurrency}

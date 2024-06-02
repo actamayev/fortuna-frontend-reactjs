@@ -16,13 +16,13 @@ function CreateContentHeaderButton() {
 	) return null
 
 	return (
-		<div className="inline-flex items-center justify-center flex-grow flex-shrink mr-2">
+		<div className="inline-flex items-center justify-center flex-grow flex-shrink">
 			<Link
 				to="/creator/upload-content"
 				className="text-center w-full"
 			>
 				<div
-					className="rounded text-white dark:text-zinc-900 pl-3 pr-3 h-9 \
+					className="rounded text-white dark:text-zinc-900 px-3 h-9 \
 						space-x-2 flex text-sm items-center justify-center bg-blue-500 hover:bg-blue-600 \
 						dark:bg-blue-400 dark:hover:bg-blue-500"
 				>
