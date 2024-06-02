@@ -31,8 +31,8 @@ export default function RegisterUsername() {
 
 				<Button
 					className = "mt-3 w-full font-bold text-lg text-white border-b-2"
-					colorClass = "bg-blue-600"
-					hoverClass = "hover:bg-blue-700 hover:border-yellow-400"
+					colorClass = "bg-blue-500"
+					hoverClass = "hover:bg-blue-600 hover:border-yellow-400"
 					disabled = {loading}
 					title = {_.isEmpty(username) ? "Register username" : `Register ${username}`}
 				/>

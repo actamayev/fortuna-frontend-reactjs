@@ -1,15 +1,20 @@
 import { Link } from "react-router-dom"
+import { FaHome } from "react-icons/fa"
 
 export default function ShowMessageToNonCreators() {
 	return (
-		<article className="text-center">
-			<p className="text-lg text-gray-600 mb-8 dark:text-white">You do not have creator access</p>
-			<Link
-				to="/"
-				className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-			>
-				Back to home
+		<div className="text-center">
+			<div className="text-lg text-zinc-600 mb-8 dark:text-white">
+				You do not have creator access
+			</div>
+			<Link to="/" className="inline-block">
+				<div
+					className="bg-blue-500 hover:bg-blue-600 text-white rounded focus:outline-none focus:shadow-outline \
+            		dark:text-zinc-900 dark:bg-blue-400 dark:hover:bg-blue-500 inline-flex items-center px-4 py-2"
+				>
+					Return home <FaHome className="ml-2" size={20}/>
+				</div>
 			</Link>
-		</article>
+		</div>
 	)
 }

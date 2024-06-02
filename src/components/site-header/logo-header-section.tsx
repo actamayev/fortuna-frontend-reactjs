@@ -9,8 +9,7 @@ function LogoHeaderSection() {
 		<div className="inline-flex items-center flex-grow-0 flex-shrink-0 z-10">
 			<Link
 				to="/"
-				className="flex items-center font-semibold text-3xl flex-shrink-0 \
-					text-zinc-900 dark:text-zinc-200 hover:text-blue-500 dark:hover:text-blue-500"
+				className="flex items-center font-semibold text-3xl flex-shrink-0"
 			>
 				{personalInfoClass && (
 					<img
@@ -20,7 +19,9 @@ function LogoHeaderSection() {
 						style={{ height: "40px", verticalAlign: "middle" }}
 					/>
 				)}
-				<span className="ml-2">Fortuna</span>
+				<span className="ml-2 text-zinc-900 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400">
+					Fortuna
+				</span>
 			</Link>
 		</div>
 	)
