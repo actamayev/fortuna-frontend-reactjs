@@ -22,8 +22,18 @@ function SolOrUsdSlider() {
 			<Slider
 				checkedCondition={defaultCurrency === "sol"}
 				onChangeCheckedCondition={setDefaultCurrency}
-				leftIcon={<IoLogoUsd size={10} />}
-				rightIcon={<SiSolana size={10} />}
+				leftIcon={
+					<IoLogoUsd
+						size={10}
+						color={personalInfoClass?.defaultSiteTheme === "dark" ? "white" : ""}
+					/>
+				}
+				rightIcon={
+					<SiSolana
+						size={10}
+						color={personalInfoClass?.defaultSiteTheme === "dark" ? "white" : ""}
+					/>
+				}
 			/>
 		</div>
 	)
