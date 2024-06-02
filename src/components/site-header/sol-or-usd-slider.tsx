@@ -1,6 +1,8 @@
 import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
+import { SiSolana } from "react-icons/si"
+import { IoLogoUsd } from "react-icons/io"
 import Slider from "../slider"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import useSetDefaultCurrency from "../../hooks/personal-info/set-default-currency"
@@ -20,7 +22,8 @@ function SolOrUsdSlider() {
 			<Slider
 				checkedCondition={defaultCurrency === "sol"}
 				onChangeCheckedCondition={setDefaultCurrency}
-				whatToShow={defaultCurrency.toUpperCase()}
+				leftIcon={<IoLogoUsd size={10} />}
+				rightIcon={<SiSolana size={10} />}
 			/>
 		</div>
 	)

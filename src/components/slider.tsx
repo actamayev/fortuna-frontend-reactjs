@@ -2,26 +2,28 @@ import { useState, useRef, useCallback } from "react"
 
 interface Props {
 	checkedCondition: boolean | undefined
-	onChangeCheckedCondition: React.ChangeEventHandler<HTMLInputElement> | undefined
-	whatToShow?: string
+	onChangeCheckedCondition: () => void
 	disabledCondition?: boolean
 	colorChangeOnToggle?: boolean
+	leftIcon?: React.ReactNode
+	rightIcon?: React.ReactNode
 }
 
 export default function Slider(props: Props) {
-	const { checkedCondition, onChangeCheckedCondition, whatToShow, disabledCondition, colorChangeOnToggle } = props
+	const { checkedCondition, onChangeCheckedCondition, disabledCondition, colorChangeOnToggle, leftIcon, rightIcon } = props
 	const [isHovered, setIsHovered] = useState(false)
 	const inputRef = useRef<HTMLInputElement>(null)
 
 	const handleClick = useCallback(() => {
 		if (!inputRef.current || disabledCondition) return
 		inputRef.current.click()
-	}, [disabledCondition])
+		onChangeCheckedCondition()
+	}, [disabledCondition, onChangeCheckedCondition])
 
 	return (
 		<>
 			<div
-				className="relative"
+				className="relative cursor-pointer"
 				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
 				onClick={handleClick}
@@ -31,8 +33,7 @@ export default function Slider(props: Props) {
 					position: "relative",
 					display: "inline-block",
 					backgroundColor: isHovered ? "rgba(128, 128, 128, 0.2)" : "transparent",
-					borderRadius: "50%",
-					cursor: "pointer"
+					borderRadius: "50%"
 				}}
 			>
 				<label
@@ -55,7 +56,7 @@ export default function Slider(props: Props) {
 						style={{ opacity: 0, width: 0, height: 0 }}
 					/>
 					<span
-						className="absolute cursor-pointer inset-0 transition"
+						className="absolute inset-0 transition"
 						style={{
 							backgroundColor: "#ccc",
 							borderRadius: "17px",
@@ -68,7 +69,7 @@ export default function Slider(props: Props) {
 					/>
 					<span
 						className={
-							`absolute rounded-full transition-transform \
+							`absolute rounded-full transition-transform flex items-center justify-center \
               					${colorChangeOnToggle && checkedCondition ? "bg-blue-600" : "bg-white"}`
 						}
 						style={{
@@ -78,16 +79,14 @@ export default function Slider(props: Props) {
 							bottom: "2px",
 							transform: checkedCondition ? "translateX(13px)" : "translateX(0)",
 							transition: ".05s",
-							borderRadius: "50%"
+							borderRadius: "50%",
 						}}
-					/>
+					>
+						{checkedCondition && rightIcon}
+						{!checkedCondition && leftIcon}
+					</span>
 				</label>
 			</div>
-			{whatToShow && (
-				<span className="text-sm font-medium text-zinc-900">
-					{whatToShow}
-				</span>
-			)}
 		</>
 	)
 }
