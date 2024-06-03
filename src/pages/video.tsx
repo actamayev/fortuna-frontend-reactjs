@@ -37,7 +37,7 @@ function Video() {
 				<div className="col-span-3 flex flex-col ml-10 relative">
 					<div
 						className="fixed py-8 border-l pl-4 dark:border-zinc-800 border-zinc-100"
-						style={{ width: "300px", top: "56px" }}
+						style={{ width: "300px", top: "56px", bottom: "160px" }}
 					>
 						<TradeSharesSidebar videoUUID={video.uuid} />
 					</div>
