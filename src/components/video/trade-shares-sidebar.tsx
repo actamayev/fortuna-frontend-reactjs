@@ -44,7 +44,7 @@ function TradeSharesSidebar(props: Props) {
 	}
 
 	return (
-		<div className="bg-white dark:bg-zinc-800 shadow-lg rounded-lg p-3 h-full">
+		<div className="bg-white dark:bg-zinc-800 shadow-lg rounded-lg p-3 h-3/4">
 			<PurchasePrimarySharesOptions />
 		</div>
 	)
