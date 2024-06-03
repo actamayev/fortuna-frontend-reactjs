@@ -13,7 +13,6 @@ import Contact from "./pages/company/contact"
 import Careers from "./pages/company/careers"
 import LoginPage from "./pages/auth/login-page"
 import SearchResults from "./pages/search-results"
-import HelpCenter from "./pages/support/help-center"
 import RegisterPage from "./pages/auth/register-page"
 import MyOwnership from "./pages/supporter/my-ownership"
 import PrivacyPolicy from "./pages/support/privacy-policy"
@@ -62,7 +61,6 @@ function App() {
 
 			<Route path = "/creator/*" element = {<CreatorRoutes />} />
 
-			<Route path = "/help-center" element = {<HelpCenter />} />
 			<Route path = "/faq" element = {<FAQ />} />
 			<Route path = "/privacy-policy" element = {<PrivacyPolicy />} />
 

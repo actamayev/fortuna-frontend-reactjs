@@ -5,7 +5,20 @@ export default function FooterSupportSection() {
 	return (
 		<div>
 			<FooterHeaderText headerTitle="Support" />
-			<FooterLink linkTo="/help-center" linkTitle="Help Center" />
+			<div
+				className="mb-2 text-zinc-900 dark:text-zinc-200 cursor:pointer text-sm"
+				style={{ fontSize: "12px", lineHeight: "18px", fontWeight: "300"}}
+			>
+				<a
+					href="https://help.mintfortuna.com"
+					aria-label="X"
+					className="text-zinc-900 dark:text-zinc-200 dark:hover:text-zinc-50"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Help Center
+				</a>
+			</div>
 			<FooterLink linkTo="/faq" linkTitle="FAQ" />
 			<FooterLink linkTo="/privacy-policy" linkTitle="Privacy Policy" />
 		</div>
