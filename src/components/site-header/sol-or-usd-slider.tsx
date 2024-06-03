@@ -1,23 +1,17 @@
-import _ from "lodash"
-import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { SiSolana } from "react-icons/si"
 import { IoLogoUsd } from "react-icons/io"
 import { useLocation } from "react-router-dom"
 import Slider from "../slider"
+import useDefaultCurrency from "../../hooks/memos/default-currency"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import useSetDefaultCurrency from "../../hooks/personal-info/set-default-currency"
 
 function SolOrUsdSlider() {
 	const personalInfoClass = usePersonalInfoContext()
+	const defaultCurrency = useDefaultCurrency()
 	const setDefaultCurrency = useSetDefaultCurrency()
 	const location = useLocation()
-
-	const defaultCurrency = useMemo(() => {
-		if (_.isNull(personalInfoClass)) return "usd"
-		return personalInfoClass.defaultCurrency
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [personalInfoClass, personalInfoClass?.defaultCurrency])
 
 	if (location.pathname === "/register" || location.pathname === "/login") return null
 

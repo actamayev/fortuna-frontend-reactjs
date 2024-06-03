@@ -1,16 +1,18 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { AgGridReact } from "ag-grid-react"
 import "ag-grid-community/styles/ag-grid.css"
 import "ag-grid-community/styles/ag-theme-quartz.css"
 import useSetGridHeight from "../../../hooks/set-grid-height-use-effect"
 import useNavigateToVideo from "../../../hooks/navigate/navigate-to-video"
+import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 import myOwnershipColumns from "../../../utils/grids/my-ownership/my-ownership-columns"
 import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 import createOwnershipArrayForGrid from "../../../utils/grids/my-ownership/create-ownership-array-for-grid"
 
 function MySharesOwnershipGrid() {
+	const personalInfoClass = usePersonalInfoContext()
 	const positionsAndTransactionClass = usePositionsAndTransactionsContext()
 	const [rowData, setRowData] = useState<OwnershipGridRowData[]>([])
 	const [gridHeight, setGridHeight] = useState<string | number>("100%")
@@ -22,6 +24,12 @@ function MySharesOwnershipGrid() {
 		const eventTypesArray = createOwnershipArrayForGrid(positionsAndTransactionClass.myOwnership)
 		setRowData(eventTypesArray)
 	}, [positionsAndTransactionClass, positionsAndTransactionClass?.myOwnership])
+
+	const gridStyles = useMemo(() => {
+		if (_.isNull(personalInfoClass) || personalInfoClass.defaultSiteTheme === "light") return "ag-theme-quartz"
+		return "ag-theme-quartz-dark"
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [personalInfoClass, personalInfoClass?.defaultSiteTheme])
 
 	if (_.isNull(positionsAndTransactionClass)) return null
 
@@ -36,7 +44,7 @@ function MySharesOwnershipGrid() {
 			<div className="dark:text-white">
 				Shares
 			</div>
-			<div className="ag-theme-quartz" style={{ height: gridHeight, width: "100%" }}>
+			<div className={gridStyles} style={{ height: gridHeight, width: "100%" }}>
 				<AgGridReact
 					columnDefs={myOwnershipColumns}
 					rowData={rowData}

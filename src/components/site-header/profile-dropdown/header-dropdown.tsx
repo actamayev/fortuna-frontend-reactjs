@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useState, useRef } from "react"
+import { useState, useRef, useMemo } from "react"
 import { FiAlignJustify } from "react-icons/fi"
 import DropdownItemsContainer from "./dropdown-items-container"
 import useClickOutSideUseEffect from "../../../hooks/click-outside-use-effect"
@@ -12,7 +12,11 @@ function HeaderDropdown () {
 	const personalInfoClass = usePersonalInfoContext()
 	useClickOutSideUseEffect(dropdownRef, setIsOpen)
 
-	if (_.isNull(personalInfoClass)) return null
+	const profilePictureUrl = useMemo(() => {
+		if (_.isNull(personalInfoClass) ||  _.isNil(personalInfoClass.profilePictureUrl)) return ""
+		return personalInfoClass.profilePictureUrl
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [personalInfoClass, personalInfoClass?.profilePictureUrl])
 
 	return (
 		<div className="flex items-center">
@@ -20,26 +24,22 @@ function HeaderDropdown () {
 				<div
 					className="flex items-center cursor-pointer hover:bg-zinc-100 text-zinc-900 \
 					dark:text-zinc-100 dark:hover:bg-zinc-800 p-2 rounded"
+					onClick={() => setIsOpen(!isOpen)}
 				>
-					{_.isNil(personalInfoClass.profilePictureUrl) ? (
-						<FiAlignJustify
-							size={20}
-							className=""
-							onClick={() => setIsOpen(!isOpen)}
-						/>
-					) :
+					{_.isEmpty(profilePictureUrl) ? (
+						<FiAlignJustify size={20} />
+					) : (
 						<div
 							className="w-8 h-8 rounded-full overflow-hidden flex justify-center \
 								items-center text-zinc-900 dark:text-zinc-100"
 						>
 							<img
-								src={personalInfoClass.profilePictureUrl}
+								src={profilePictureUrl}
 								alt="Profile"
 								className="min-w-full min-h-full object-cover"
-								onClick={() => setIsOpen(!isOpen)}
 							/>
 						</div>
-					}
+					)}
 				</div>
 				<DropdownItemsContainer isOpen = {isOpen} />
 			</div>

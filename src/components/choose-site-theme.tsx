@@ -1,18 +1,14 @@
-import _ from "lodash"
 import { useState } from "react"
 import { observer } from "mobx-react"
 import { FaMoon } from "react-icons/fa"
 import { IoMdSunny } from "react-icons/io"
-import { usePersonalInfoContext } from "../contexts/personal-info-context"
+import useDefaultSiteTheme from "../hooks/memos/default-site-theme"
 import useSetDefaultSiteTheme from "../hooks/personal-info/set-default-site-theme"
 
-// TODO: Make this a slider
 function ChooseSiteTheme() {
-	const personalInfoClass = usePersonalInfoContext()
+	const defaultSiteTheme = useDefaultSiteTheme()
 	const setDefaultSiteTheme = useSetDefaultSiteTheme()
 	const [isHovered, setIsHovered] = useState(false)
-
-	if (_.isNull(personalInfoClass)) return null
 
 	return (
 		<div
@@ -28,13 +24,13 @@ function ChooseSiteTheme() {
 			}}
 			onClick={setDefaultSiteTheme}
 		>
-			{personalInfoClass.defaultSiteTheme === "dark" ? (
-				<FaMoon color="white" />
-			) : (
+			{defaultSiteTheme === "light" ? (
 				<IoMdSunny />
+			) : (
+				<FaMoon color="white" />
 			)}
 		</div>
 	)
 }
 
-export default observer(ChooseSiteTheme)
+export default observer(ChooseSiteTheme) // Keep this an observer (the defaultSiteTheme is a memo)
