@@ -8,9 +8,13 @@ declare global {
 		contact: string
 		username: string
 		password: string
+		siteTheme: SiteThemes
 	}
 
-	interface RegisterCredentials extends RegisterCredentialsToSend {
+	interface RegisterCredentials {
+		contact: string
+		username: string
+		password: string
 		passwordConfirmation: string
 	}
 

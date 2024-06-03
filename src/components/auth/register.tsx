@@ -29,13 +29,12 @@ export default function Register(props: Props) {
 	const [error, setError] = useState("")
 	const [loading, setLoading] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
+	const registerSubmit = useRegisterSubmit(whereToNavigate, registerInformation, setError, setLoading)
 
 	const isShowPassword = useMemo(() => {
 		if (showPassword) return "text"
 		return "password"
 	}, [showPassword])
-
-	const registerSubmit = useRegisterSubmit(whereToNavigate, registerInformation, setError, setLoading)
 
 	const createSetCredentialsFunction = (setter: React.Dispatch<React.SetStateAction<RegisterCredentials>>) => {
 		return (newCredentials: Partial<LoginCredentials | RegisterCredentials>) => {
