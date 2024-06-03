@@ -11,7 +11,8 @@ function TransferSolCard() {
 
 	return (
 		<div
-			className="bg-white shadow-lg rounded-lg p-4 m-2 grid grid-cols-1 gap-4 border absolute z-10"
+			className=" shadow-lg rounded-lg p-4 m-2 grid grid-cols-1 gap-4 absolute z-10 \
+				text-zinc-900 dark:text-white bg-white dark:bg-zinc-800"
 			style={{ top: "20%", left: "50%", transform: "translate(-50%, -20%)" }}
 		>
 			{solanaClass.transferSolDetails.transferStage === "initial" && <InitialTransferInfo />}

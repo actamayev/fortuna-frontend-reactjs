@@ -26,7 +26,7 @@ export default function SingleRecommendedVideo(props: Props) {
 			<img
 				src={imageUrl}
 				alt={splName}
-				className="w-64 h-36 rounded-lg object-cover border"
+				className="w-64 h-36 rounded-lg object-cover"
 			/>
 			<div className="flex flex-col justify-start overflow-hidden w-full">
 				<div className="text-lg font-semibold truncate dark:text-white">

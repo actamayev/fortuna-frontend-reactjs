@@ -42,7 +42,7 @@ function PublicKeySearch() {
 					type="text"
 					value={publicKey}
 					onChange={updateTransferSolDetails}
-					className="p-2 rounded-lg w-full"
+					className="p-2 rounded-lg w-full text-zinc-900"
 					placeholder="123XYZ"
 				/>
 				{doesPublicKeyExist && (

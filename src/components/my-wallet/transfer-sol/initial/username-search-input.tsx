@@ -31,7 +31,7 @@ function UsernameSearchInput() {
 				type="text"
 				value={transferSolUsername}
 				onChange={updateTransferSolDetails}
-				className="p-2 rounded-lg w-full"
+				className="p-2 rounded-lg w-full text-zinc-900"
 				placeholder="Username"
 			/>
 			{isUsernameSelected && (

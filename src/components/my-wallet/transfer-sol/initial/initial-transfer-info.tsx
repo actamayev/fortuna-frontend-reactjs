@@ -6,7 +6,7 @@ import TransferSolByOptions from "./transfer-sol-by-options"
 export default function InitialTransferInfo() {
 	return (
 		<>
-			<div className="text-center font-semibold">Transfer Funds</div>
+			<div className="text-center font-semibold text-lg">Transfer Funds</div>
 			<SelectTransferOption />
 
 			<TransferSolByOptions />
