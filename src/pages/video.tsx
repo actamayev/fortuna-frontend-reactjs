@@ -6,7 +6,7 @@ import VideoPlayer from "../components/video/video-player"
 import { useVideoContext } from "../contexts/video-context"
 import { addLeadingAt } from "../utils/leading-at-operations"
 import useSetSingleVideo from "../hooks/videos/set-single-video"
-import TradeSharesCard from "../components/video/trade-shares-card"
+import TradeSharesSidebar from "../components/video/trade-shares-sidebar"
 import VideoDescriptionArea from "../components/video/video-description-area"
 import useRetrieveVideoUrlData from "../hooks/videos/retrieve-video-url-data"
 import MoreVideosMap from "../components/video/more-videos-area/more-videos-map"
@@ -34,8 +34,10 @@ function Video() {
 				<div className="col-span-9">
 					<VideoPlayer videoUrl={video.videoUrl} />
 				</div>
-				<div className="col-span-3 flex flex-col ml-10">
-					<TradeSharesCard videoUUID={video.uuid} />
+				<div className="col-span-3 flex flex-col ml-10 relative">
+					<div id="sticky-component" className="fixed-component py-8">
+						<TradeSharesSidebar videoUUID={video.uuid} />
+					</div>
 				</div>
 			</div>
 			<div className="grid grid-cols-12">

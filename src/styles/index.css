@@ -1,3 +1,11 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+.fixed-component {
+	position: fixed;
+	top: 4rem; /* Initial top offset, adjust based on your header height */
+	border-left: 2px solid #ccc; /* Adjust color as needed */
+	padding-left: 1rem;
+	width: 300px; /* Adjust width as needed */
+}

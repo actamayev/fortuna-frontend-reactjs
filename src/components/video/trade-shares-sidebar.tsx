@@ -11,7 +11,7 @@ interface Props {
 	videoUUID: string
 }
 
-function TradeSharesCard(props: Props) {
+function TradeSharesSidebar(props: Props) {
 	const { videoUUID } = props
 	const authClass = useAuthContext()
 	const navigate = useTypedNavigate()
@@ -50,4 +50,4 @@ function TradeSharesCard(props: Props) {
 	)
 }
 
-export default observer(TradeSharesCard)
+export default observer(TradeSharesSidebar)
