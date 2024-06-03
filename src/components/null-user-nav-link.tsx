@@ -10,7 +10,7 @@ export default function NullUserNavLink() {
 			/>
 			<AuthHeaderLinks
 				title="Sign up"
-				className="bg-blue-600 hover:bg-blue-700 text-white"
+				className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-400 dark:hover:bg-blue-500 text-white dark:text-zinc-900"
 				linkTo="/register"
 			/>
 		</>
