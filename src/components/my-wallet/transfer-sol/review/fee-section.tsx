@@ -1,12 +1,13 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
-import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
+import useDefaultCurrency from "../../../../hooks/memos/default-currency"
 
 function FeeSection() {
 	const solanaClass = useSolanaContext()
-	const personalInfoClass = usePersonalInfoContext()
-	if (_.isNull(personalInfoClass) || _.isNull(solanaClass)) return null
+	const defaultCurrency = useDefaultCurrency()
+
+	if (_.isNull(solanaClass)) return null
 
 	if (
 		solanaClass.transferSolDetails.transferOption === "publicKey" &&
@@ -14,7 +15,7 @@ function FeeSection() {
 	) {
 		return <>Variable Fee (depends on network traffic)</>
 	}
-	if (personalInfoClass.defaultCurrency === "sol") {
+	if (defaultCurrency === "sol") {
 		return <>0 SOL (internal transfer)</>
 	}
 	return <>$0.00 (internal transfer)</>

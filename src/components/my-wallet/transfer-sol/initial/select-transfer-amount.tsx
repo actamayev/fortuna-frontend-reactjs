@@ -2,12 +2,12 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import RangeSelectorSlider from "../../../range-selector-slider"
 import { useSolanaContext } from "../../../../contexts/solana-context"
-import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
+import useDefaultCurrency from "../../../../hooks/memos/default-currency"
 
 // eslint-disable-next-line complexity
 function SelectTransferAmount() {
 	const solanaClass = useSolanaContext()
-	const personalInfoClass = usePersonalInfoContext()
+	const defaultCurrency = useDefaultCurrency()
 
 	if (_.isNull(solanaClass)) return null
 
@@ -28,9 +28,9 @@ function SelectTransferAmount() {
 	if (_.isNull(solanaClass.walletBalanceSol) || _.isEqual(solanaClass.walletBalanceSol, 0)) {
 		return <>You have no Sol to transfer</>
 	}
-	if (_.isNull(personalInfoClass) || solanaClass.isPublicKeySearchLoading === true) return null
+	if (solanaClass.isPublicKeySearchLoading === true) return null
 
-	if (personalInfoClass.defaultCurrency === "sol") {
+	if (defaultCurrency === "sol") {
 		return (
 			<div className="flex flex-col space-y-4">
 				<RangeSelectorSlider

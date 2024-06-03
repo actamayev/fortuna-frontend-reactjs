@@ -1,20 +1,20 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../contexts/solana-context"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import useDefaultCurrency from "../../hooks/memos/default-currency"
 
 function WalletBalance() {
 	const solanaClass = useSolanaContext()
-	const personalInfoClass = usePersonalInfoContext()
+	const defaultCurrency = useDefaultCurrency()
 
-	if (_.isNull(solanaClass) || _.isNull(personalInfoClass)) return null
+	if (_.isNull(solanaClass)) return null
 
 	return (
 		<>
 			{_.isNull(solanaClass.walletBalanceSol) ? (<> Loading...</>) : (
 				<> {" "}
-					{personalInfoClass.defaultCurrency === "usd" && (<>${solanaClass.walletBalanceUSD.get().toFixed(2)}</>)}
-					{personalInfoClass.defaultCurrency === "sol" && (<>{solanaClass.walletBalanceSol.toFixed(4)} SOL</>)}
+					{defaultCurrency === "usd" && (<>${solanaClass.walletBalanceUSD.get().toFixed(2)}</>)}
+					{defaultCurrency === "sol" && (<>{solanaClass.walletBalanceSol.toFixed(4)} SOL</>)}
 				</>
 			)}
 		</>

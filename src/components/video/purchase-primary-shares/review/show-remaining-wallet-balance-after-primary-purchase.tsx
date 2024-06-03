@@ -3,21 +3,17 @@ import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import { useVideoContext } from "../../../../contexts/video-context"
 import { useSolanaContext } from "../../../../contexts/solana-context"
+import useDefaultCurrency from "../../../../hooks/memos/default-currency"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
-import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
 
 function ShowRemainingWalletBalanceAfterPrimaryPurchase() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const videoClass = useVideoContext()
 	const solanaClass = useSolanaContext()
 	const exchangeClass = useExchangeContext()
-	const personalInfoClass = usePersonalInfoContext()
+	const defaultCurrency = useDefaultCurrency()
 
-	if (
-		_.isNull(solanaClass) ||
-		_.isNull(exchangeClass) ||
-		_.isNull(personalInfoClass)
-	) return null
+	if (_.isNull(solanaClass) || _.isNull(exchangeClass)) return null
 
 	const video = videoClass.findVideoFromUUID(videoUUID)
 	if (_.isUndefined(video)) return null
@@ -27,7 +23,7 @@ function ShowRemainingWalletBalanceAfterPrimaryPurchase() {
 
 	const remainingWalletBalanceUsd = solanaClass.walletBalanceUSD.get() - amountSpendingOnPrimaryPurchaseUsd
 
-	if (personalInfoClass.defaultCurrency === "usd") {
+	if (defaultCurrency === "usd") {
 		return (
 			<div className="flex justify-between mb-1">
 				<div>New Balance:</div>

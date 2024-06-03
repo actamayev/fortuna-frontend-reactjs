@@ -39,7 +39,7 @@ function NewTokenSummary() {
 				Pegging to USD
 				<div className="ml-2">
 					<Tooltip
-						message="The value of your token (in USD) will not change with Solana's price fluctuations"
+						message="The USD value of this token will not change with Solana's price fluctuations"
 						width="275px"
 						messageStart="center"
 					>

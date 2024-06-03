@@ -1,21 +1,21 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
-import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
+import useDefaultCurrency from "../../../../hooks/memos/default-currency"
 
 function TransferAmountSection() {
 	const solanaClass = useSolanaContext()
-	const personalInfoClass = usePersonalInfoContext()
+	const defaultCurrency = useDefaultCurrency()
 
-	if (_.isNull(solanaClass) || _.isNull(personalInfoClass)) return null
+	if (_.isNull(solanaClass)) return null
 
 	return (
 		<div>
 			Sending {" "}
-			{personalInfoClass.defaultCurrency === "usd" && (
+			{defaultCurrency === "usd" && (
 				<> ${_.round(solanaClass.transferSolDetails.transferAmount, 2)} to </>
 			)}
-			{personalInfoClass.defaultCurrency === "sol" && (
+			{defaultCurrency === "sol" && (
 				<> {_.round(solanaClass.transferSolDetails.transferAmount, 4)} SOL to </>
 			)}
 			<span className="font-semibold">
