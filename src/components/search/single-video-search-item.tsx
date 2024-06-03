@@ -14,7 +14,7 @@ export default function SingleVideoSearchItem(props: Props) {
 
 	return (
 		<div
-			className="flex items-start space-x-4 p-4 hover:bg-gray-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-7/12"
+			className="flex items-start space-x-4 p-4 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-7/12"
 			onClick={() => navigateToVideo(videoData.uuid)}
 		>
 			<img
@@ -39,7 +39,7 @@ export default function SingleVideoSearchItem(props: Props) {
 						/>
 					)}
 					<div
-						className="text-sm text-gray-600 hover:text-zinc-900 dark:text-gray-300 hover:dark:text-gray-100 cursor-pointer"
+						className="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 hover:dark:text-zinc-100 cursor-pointer"
 						onClick={(e) => {
 							e.stopPropagation() // Prevents the video click event when clicking the username
 							navigateToCreatorPage(addDefiniteLeadingAt(videoData.creatorUsername))
@@ -48,7 +48,7 @@ export default function SingleVideoSearchItem(props: Props) {
 						{videoData.creatorUsername}
 					</div>
 				</div>
-				<div className="text-xl text-gray-600 dark:text-gray-300 cursor-pointer">
+				<div className="text-xl text-zinc-600 dark:text-zinc-300 cursor-pointer">
 					{videoData.description}
 				</div>
 			</div>

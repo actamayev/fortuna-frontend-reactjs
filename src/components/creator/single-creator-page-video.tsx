@@ -20,7 +20,7 @@ export default function SingleCreatorPageVideo(props: Props) {
 
 	return (
 		<div
-			className="flex items-start space-x-4 p-4 hover:bg-gray-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-7/12"
+			className="flex items-start space-x-4 p-4 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-7/12"
 			onClick={() => navigateToVideo(uuid)}
 		>
 			<img
@@ -32,10 +32,10 @@ export default function SingleCreatorPageVideo(props: Props) {
 				<div className="text-3xl font-semibold truncate dark:text-white">
 					{splName}
 				</div>
-				<div className="text-xl text-gray-600 dark:text-gray-300">
+				<div className="text-xl text-zinc-600 dark:text-zinc-300">
 					{description}
 				</div>
-				<div className="text-md text-gray-600 dark:text-gray-300">
+				<div className="text-md text-zinc-600 dark:text-zinc-300">
 					{dateFormatter(contentMintDate)}
 				</div>
 			</div>

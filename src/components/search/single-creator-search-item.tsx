@@ -11,7 +11,7 @@ export default function SingleCreatorSearchItem(props: Props) {
 
 	return (
 		<div
-			className="flex items-center space-x-4 p-4 hover:bg-gray-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-7/12"
+			className="flex items-center space-x-4 p-4 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-7/12"
 			onClick={() => navigateToCreatorPage(addDefiniteLeadingAt(creatorData.creatorUsername))}
 		>
 			<img

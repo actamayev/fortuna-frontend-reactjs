@@ -17,7 +17,7 @@ export default function SharesAvailableProgressBar(props: Props) {
 
 	return (
 		<div
-			className="bg-gray-300 rounded-full h-1.5 dark:bg-gray-200 relative"
+			className="bg-zinc-300 rounded-full h-1.5 dark:bg-zinc-200 relative"
 			style={{ width: "110px" }} // Set a fixed width for the progress bar container
 			onMouseEnter={() => setShowTooltip(true)}
 			onMouseLeave={() => setShowTooltip(false)}

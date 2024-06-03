@@ -56,8 +56,8 @@ function ChooseThumbnailToUploadButton(props: Props) {
 			/>
 			<Button
 				title="Select a Thumbnail"
-				colorClass="bg-sky-200"
-				hoverClass="hover:bg-sky-300"
+				colorClass="bg-sky-200 dark:bg-sky-400"
+				hoverClass="hover:bg-sky-300 dark:hover:bg-sky-500"
 				onClick={() => fileInputRef.current?.click()}
 				className="font-semibold"
 			/>

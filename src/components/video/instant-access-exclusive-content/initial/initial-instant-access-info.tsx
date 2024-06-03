@@ -30,7 +30,7 @@ function InitialInstantAccessInfo(props: Props) {
 		return (
 			<div className="w-full">
 				<div className="flex items-center w-full">
-					<hr className="flex-grow border-t border-gray-300" />
+					<hr className="flex-grow border-t border-zinc-300" />
 				</div>
 				<div className="flex items-center w-full">
 					<div>
@@ -51,7 +51,7 @@ function InitialInstantAccessInfo(props: Props) {
 		return (
 			<div className="w-full">
 				<div className="flex items-center w-full">
-					<hr className="flex-grow border-t border-gray-300" />
+					<hr className="flex-grow border-t border-zinc-300" />
 				</div>
 				<div className="flex items-center w-full">
 					<span>You have already purchased exclusive access to this video</span>
@@ -65,7 +65,7 @@ function InitialInstantAccessInfo(props: Props) {
 		return (
 			<div className="w-full">
 				<div className="flex items-center w-full">
-					<hr className="flex-grow border-t border-gray-300" />
+					<hr className="flex-grow border-t border-zinc-300" />
 				</div>
 				<div className="flex items-center w-full">
 					<span>You have access to this exclusive video through share ownership</span>
@@ -78,9 +78,9 @@ function InitialInstantAccessInfo(props: Props) {
 	return (
 		<>
 			<div className="flex items-center w-full">
-				<hr className="flex-grow border-t border-gray-300" />
-				{orNeeded && <span className="px-4 text-gray-500">or</span> }
-				<hr className="flex-grow border-t border-gray-300" />
+				<hr className="flex-grow border-t border-zinc-300" />
+				{orNeeded && <span className="px-4 text-zinc-500">or</span> }
+				<hr className="flex-grow border-t border-zinc-300" />
 			</div>
 			<div className="text-center font-semibold flex justify-center items-center text-xl">
 				Instant Access

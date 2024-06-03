@@ -39,10 +39,10 @@ export default function Tooltip(props: Props) {
 	let styles
 	if (messageStart === "center") {
 		styles = "absolute bottom-full left-1/2 transform -translate-x-1/2 mb-1 flex items-center justify-center \
-			p-1.5 bg-white text-zinc-900 text-sm rounded-md shadow-lg whitespace-normal max-w-sm min-w-max border border-gray-300"
+			p-1.5 bg-white text-zinc-900 text-sm rounded-md shadow-lg whitespace-normal max-w-sm min-w-max border border-zinc-300"
 	} else {
 		styles = "absolute bottom-full right-0 mb-1 flex items-center justify-center \
-			p-1.5 bg-white text-zinc-900 text-sm rounded-md shadow-lg whitespace-normal max-w-sm min-w-max border border-gray-300"
+			p-1.5 bg-white text-zinc-900 text-sm rounded-md shadow-lg whitespace-normal max-w-sm min-w-max border border-zinc-300"
 	}
 
 	return (
