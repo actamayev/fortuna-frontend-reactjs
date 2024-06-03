@@ -4,7 +4,7 @@ import CreatorPageHeaderArea from "../components/creator/creator-page-header-are
 import useRetrieveCreatorVideosAndDataUseEffect from "../hooks/videos/retrieve-creator-videos-and-data-use-effect"
 
 export default function Creator() {
-	const { creatorUsername } = useParams<{ creatorUsername: string }>()
+	const { creatorUsername } = useParams<{ creatorUsername: AtPrefixedString }>()
 	useRetrieveCreatorVideosAndDataUseEffect(creatorUsername)
 
 	return (

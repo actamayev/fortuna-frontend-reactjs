@@ -2,6 +2,7 @@ import _ from "lodash"
 import PricePerShareArea from "./price-per-share-area"
 import ShowHomeVideoLockStatus from "./show-home-video-lock-status"
 import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
+import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import SharesAvailableProgressBar from "./shares-available-progress-bar"
 import useNavigateToCreator from "../../hooks/navigate/navigate-to-creator"
 
@@ -31,7 +32,7 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 					src={creatorProfilePictureUrl}
 					alt="Creator's Profile"
 					className="w-8 h-8 rounded-full mr-2 object-cover cursor-pointer"
-					onClick={() => navigateToCreatorPage(creatorUsername)}
+					onClick={() => navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))}
 				/>
 			)}
 			<div className="flex flex-col">
@@ -45,7 +46,7 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 				<div
 					className="text-xs text-gray-600 hover:text-zinc-900 dark:text-gray-300 hover:dark:text-gray-100 cursor-pointer"
 					style={{ maxWidth: "fit-content" }}
-					onClick={() => navigateToCreatorPage(creatorUsername)}
+					onClick={() => navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))}
 				>
 					{creatorUsername}
 				</div>

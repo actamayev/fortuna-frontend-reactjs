@@ -1,4 +1,6 @@
+import _ from "lodash"
 import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
+import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import useNavigateToCreator from "../../hooks/navigate/navigate-to-creator"
 
 interface Props {
@@ -18,11 +20,11 @@ export default function SingleVideoSearchItem(props: Props) {
 			<img
 				src={videoData.imageUrl}
 				alt={videoData.splName}
-				className="w-64 h-36 rounded-lg object-cover border dark:border-yellow-400"
+				className="w-64 h-36 rounded-lg object-cover"
 			/>
 			<div className="flex flex-col justify-start overflow-hidden">
 				<div className="text-3xl font-semibold truncate dark:text-white">
-					{videoData.splName}
+					{_.truncate(videoData.splName, { length: 24, omission: "..." })}
 				</div>
 				<div className="flex items-center space-x-2">
 					{videoData.creatorProfilePictureUrl && (
@@ -32,7 +34,7 @@ export default function SingleVideoSearchItem(props: Props) {
 							className="w-8 h-8 rounded-full object-cover cursor-pointer"
 							onClick={(e) => {
 								e.stopPropagation() // Prevents the video click event when clicking the image
-								navigateToCreatorPage(videoData.creatorUsername)
+								navigateToCreatorPage(addDefiniteLeadingAt(videoData.creatorUsername))
 							}}
 						/>
 					)}
@@ -40,7 +42,7 @@ export default function SingleVideoSearchItem(props: Props) {
 						className="text-sm text-gray-600 hover:text-zinc-900 dark:text-gray-300 hover:dark:text-gray-100 cursor-pointer"
 						onClick={(e) => {
 							e.stopPropagation() // Prevents the video click event when clicking the username
-							navigateToCreatorPage(videoData.creatorUsername)
+							navigateToCreatorPage(addDefiniteLeadingAt(videoData.creatorUsername))
 						}}
 					>
 						{videoData.creatorUsername}

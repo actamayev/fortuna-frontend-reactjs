@@ -3,6 +3,7 @@ import { observer } from "mobx-react"
 import InstantAccessCost from "./instant-access-cost"
 import ReviewInstantAccessButton from "./review-instant-access-button"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
+import { addDefiniteLeadingAt } from "../../../../utils/leading-at-operations"
 import useNavigateToCreator from "../../../../hooks/navigate/navigate-to-creator"
 import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
 
@@ -35,7 +36,7 @@ function InitialInstantAccessInfo(props: Props) {
 					<div>
 						<span
 							className="font-medium hover:underline cursor-pointer"
-							onClick={() => navigateToCreatorPage(video.creatorUsername)}
+							onClick={() => navigateToCreatorPage(addDefiniteLeadingAt(video.creatorUsername))}
 						>
 							{video.creatorUsername}
 						</span> {" "}

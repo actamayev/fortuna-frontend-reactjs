@@ -4,6 +4,7 @@ import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import VideoPlayer from "../components/video/video-player"
 import { useVideoContext } from "../contexts/video-context"
+import { addLeadingAt } from "../utils/leading-at-operations"
 import useSetSingleVideo from "../hooks/videos/set-single-video"
 import TradeSharesCard from "../components/video/trade-shares-card"
 import VideoDescriptionArea from "../components/video/video-description-area"
@@ -19,7 +20,7 @@ function Video() {
 	useSetSingleVideo(videoUUID, setIsVideoLoading, setIsVideoNotFound)
 	useRetrieveVideoUrlData(videoUUID)
 	const video = videoClass.findVideoFromUUID(videoUUID)
-	useRetrieveCreatorVideosAndDataUseEffect(video?.creatorUsername)
+	useRetrieveCreatorVideosAndDataUseEffect(addLeadingAt(video?.creatorUsername))
 
 	if (isVideoLoading === true) return <>Loading...</>
 
