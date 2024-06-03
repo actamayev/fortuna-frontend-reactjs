@@ -14,35 +14,33 @@ function HeaderDropdown () {
 
 	if (_.isNull(personalInfoClass)) return null
 
-	let buttonClasses = "hover:bg-zinc-100 text-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800 flex items-center p-2 rounded"
-	if (!_.isNil(personalInfoClass.profilePictureUrl)) {
-		buttonClasses = "text-zinc-900 dark:text-zinc-100 flex items-center p-2 rounded"
-	}
 	return (
 		<div className="flex items-center">
 			<div className="relative inline-block" ref = {dropdownRef}>
-				<button
-					type="button"
-					className={buttonClasses}
-					id="menu-button"
-					aria-expanded="false"
-					aria-haspopup="true"
-					onClick={() => setIsOpen(!isOpen)}
+				<div
+					className="flex items-center cursor-pointer hover:bg-zinc-100 text-zinc-900 \
+					dark:text-zinc-100 dark:hover:bg-zinc-800 p-2 rounded"
 				>
-					<div className="flex items-center">
-						{_.isNil(personalInfoClass.profilePictureUrl) ? (
-							<FiAlignJustify size={20}/>
-						) :
-							<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center">
-								<img
-									src={personalInfoClass.profilePictureUrl}
-									alt="Profile"
-									className="min-w-full min-h-full object-cover"
-								/>
-							</div>
-						}
-					</div>
-				</button>
+					{_.isNil(personalInfoClass.profilePictureUrl) ? (
+						<FiAlignJustify
+							size={20}
+							className=""
+							onClick={() => setIsOpen(!isOpen)}
+						/>
+					) :
+						<div
+							className="w-8 h-8 rounded-full overflow-hidden flex justify-center \
+								items-center text-zinc-900 dark:text-zinc-100"
+						>
+							<img
+								src={personalInfoClass.profilePictureUrl}
+								alt="Profile"
+								className="min-w-full min-h-full object-cover"
+								onClick={() => setIsOpen(!isOpen)}
+							/>
+						</div>
+					}
+				</div>
 				<DropdownItemsContainer isOpen = {isOpen} />
 			</div>
 		</div>
