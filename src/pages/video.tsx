@@ -35,7 +35,10 @@ function Video() {
 					<VideoPlayer videoUrl={video.videoUrl} />
 				</div>
 				<div className="col-span-3 flex flex-col ml-10 relative">
-					<div className="fixed py-8 top-16 border-l-2 pl-4" style={{ width: "300px"}} >
+					<div
+						className="fixed py-8 border-l pl-4 dark:border-zinc-800 border-zinc-100"
+						style={{ width: "300px", top: "56px" }}
+					>
 						<TradeSharesSidebar videoUUID={video.uuid} />
 					</div>
 				</div>
