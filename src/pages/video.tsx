@@ -35,7 +35,7 @@ function Video() {
 					<VideoPlayer videoUrl={video.videoUrl} />
 				</div>
 				<div className="col-span-3 flex flex-col ml-10 relative">
-					<div id="sticky-component" className="fixed-component py-8">
+					<div className="fixed py-8 top-16 border-l-2 pl-4" style={{ width: "300px"}} >
 						<TradeSharesSidebar videoUUID={video.uuid} />
 					</div>
 				</div>

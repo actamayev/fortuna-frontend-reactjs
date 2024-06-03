@@ -37,14 +37,14 @@ function TradeSharesSidebar(props: Props) {
 
 	if (wasVideoCreatedByUser === true) {
 		return (
-			<div className="bg-white dark:bg-slate-400 shadow-lg rounded-lg p-3 h-full">
+			<div className="h-full">
 				Unable to purchase own shares
 			</div>
 		)
 	}
 
 	return (
-		<div className="bg-white dark:bg-slate-400 shadow-lg rounded-lg p-3 h-full">
+		<div className="bg-white dark:bg-zinc-800 shadow-lg rounded-lg p-3 h-full">
 			<PurchasePrimarySharesOptions />
 		</div>
 	)
