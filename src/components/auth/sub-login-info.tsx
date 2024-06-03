@@ -10,28 +10,32 @@ export default function SubLoginInfo(props: Props) {
 
 	if (!_.isUndefined(setLoginOrRegister)) {
 		return (
-			<>
-				Need an account?{" "}
+			<div className="text-zinc-900 dark:text-white flex items-center">
+				<span>
+					Need an account?&nbsp;
+				</span>
 				<div
-					className="hover:underline cursor-pointer font-bold"
+					className="hover:underline cursor-pointer font-semibold"
 					onClick={() => setLoginOrRegister("Register")}
 				>
 					Register
 				</div>
-			</>
+			</div>
 		)
 	}
 
 	return (
-		<>
-			Need an account?{" "}
+		<div className="text-zinc-900 dark:text-white flex items-center">
+			<span>
+				Need an account?&nbsp;
+			</span>
 			<Link
 				to="/register"
-				className="hover:underline font-bold"
+				className="hover:underline font-semibold"
 			>
 				Register
 			</Link>
-		</>
+		</div>
 	)
 }
 

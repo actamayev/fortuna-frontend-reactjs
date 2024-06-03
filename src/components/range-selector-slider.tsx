@@ -21,7 +21,7 @@ export default function RangeSelectorSlider(props: Props) {
 				step={step}
 				value={value}
 				onChange={onChange}
-				className="w-5/6 h-2 bg-gray-400 rounded-lg appearance-none cursor-pointer dark:bg-gray-800"
+				className="w-5/6 h-2 bg-zinc-400 rounded-lg appearance-none cursor-pointer dark:bg-zinc-800"
 				disabled={disabled}
 			/>
 		</>

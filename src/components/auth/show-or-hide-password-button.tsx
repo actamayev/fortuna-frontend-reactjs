@@ -16,7 +16,7 @@ export default function ShowOrHidePasswordButton (props: Props) {
 
 	return (
 		<Button
-			className = "font-bold text-md text-white"
+			className = "font-semibold text-md text-white dark:text-zinc-900"
 			colorClass = "bg-orange-600"
 			hoverClass = "hover:bg-orange-700"
 			onClick = {() => (setShowPassword(!showPassword))}

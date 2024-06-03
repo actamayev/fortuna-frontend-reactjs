@@ -29,9 +29,9 @@ function ChooseSiteTheme() {
 			onClick={setDefaultSiteTheme}
 		>
 			{personalInfoClass.defaultSiteTheme === "dark" ? (
-				<IoMdSunny color="white" />
+				<FaMoon color="white" />
 			) : (
-				<FaMoon />
+				<IoMdSunny />
 			)}
 		</div>
 	)

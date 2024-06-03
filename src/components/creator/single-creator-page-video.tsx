@@ -20,7 +20,7 @@ export default function SingleCreatorPageVideo(props: Props) {
 
 	return (
 		<div
-			className="flex items-start space-x-4 p-4 hover:bg-gray-100 dark:hover:bg-gray-900 rounded-lg cursor-pointer w-7/12"
+			className="flex items-start space-x-4 p-4 hover:bg-gray-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-7/12"
 			onClick={() => navigateToVideo(uuid)}
 		>
 			<img

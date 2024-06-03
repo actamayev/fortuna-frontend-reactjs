@@ -20,7 +20,7 @@ export default function SingleRecommendedVideo(props: Props) {
 	return (
 		<div
 			className="flex-none flex flex-col items-start \
-				hover:bg-gray-100 dark:hover:bg-gray-900 rounded-lg cursor-pointer w-64"
+				hover:bg-gray-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-64"
 			onClick={() => navigateToVideo(uuid)}
 		>
 			<img
