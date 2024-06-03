@@ -16,7 +16,7 @@ function NewTokenSummary() {
 
 	return (
 		<div className = "bg-white dark:bg-zinc-800 border shadow rounded-lg w-full dark:border-b-2 p-2">
-			<h1 className = "flex text-xl text-center font-bold leading-none tracking-tight mb-3">
+			<h1 className = "flex text-xl text-center font-semibold leading-none tracking-tight mb-3">
 				Token Summary
 			</h1>
 			<h2 className = "flex text-md text-center font-semibold leading-none tracking-tight">
