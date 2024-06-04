@@ -17,6 +17,11 @@ function SelectTransferAmount() {
 	) {
 		return null
 	}
+
+	if (_.isNull(solanaClass.walletBalanceSol) || _.isEqual(solanaClass.walletBalanceSol, 0)) {
+		return <>You have no Sol to transfer</>
+	}
+
 	if (solanaClass.transferSolDetails.transferOption === "publicKey") {
 		if (!_.isEqual(solanaClass.transferSolDetails.publicKey.length, 44)) {
 			return <>Public Key Must be exactly 44 Characters</>
@@ -25,9 +30,6 @@ function SelectTransferAmount() {
 		}
 	}
 
-	if (_.isNull(solanaClass.walletBalanceSol) || _.isEqual(solanaClass.walletBalanceSol, 0)) {
-		return <>You have no Sol to transfer</>
-	}
 	if (solanaClass.isPublicKeySearchLoading === true) return null
 
 	if (defaultCurrency === "sol") {
