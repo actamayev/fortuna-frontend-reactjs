@@ -22,7 +22,7 @@ function CreateContentHeaderButton() {
 				className="text-center w-full"
 			>
 				<div
-					className="rounded text-white dark:tex-zinc-950 px-3 h-9 \
+					className="rounded text-white dark:text-zinc-950 px-3 h-9 \
 						space-x-2 flex text-sm items-center justify-center bg-blue-500 hover:bg-blue-600 \
 						dark:bg-blue-400 dark:hover:bg-blue-500"
 				>

@@ -30,7 +30,7 @@ function ReviewTransferButton() {
 			colorClass="bg-blue-200 dark:bg-blue-400"
 			hoverClass="hover:bg-blue-300 hover:dark:bg-blue-500"
 			title="Review Transfer"
-			className="font-semibold dark:tex-zinc-950"
+			className="font-semibold dark:text-zinc-950"
 			disabled={isButtonDisabled}
 		/>
 	)
