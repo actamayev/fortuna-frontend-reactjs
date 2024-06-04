@@ -29,7 +29,7 @@ function TradeSharesCard(props: Props) {
 				onClick={() => navigate("/register")}
 				colorClass="bg-blue-200"
 				hoverClass="hover:bg-blue-300"
-				title="Please create an account to purchase shares"
+				title="Please create an account to unlock access"
 				className="font-semibold"
 			/>
 		)
@@ -38,13 +38,13 @@ function TradeSharesCard(props: Props) {
 	if (wasVideoCreatedByUser === true) {
 		return (
 			<div className="h-full">
-				Unable to purchase own shares
+				You already have access to your own video
 			</div>
 		)
 	}
 
 	return (
-		<div className="bg-white dark:bg-zinc-800 shadow-lg rounded-lg p-3 h-3/4">
+		<div className="bg-white dark:bg-zinc-800 shadow-lg rounded-lg p-3 h-full">
 			<PurchasePrimarySharesOptions />
 		</div>
 	)
