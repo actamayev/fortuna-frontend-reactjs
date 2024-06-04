@@ -11,7 +11,7 @@ export default function StatusMessage (props: Props) {
 
 	return (
 		<div
-			className = "mt-2 bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative"
+			className = "mt-2 bg-blue-100 text-blue-700 px-4 py-3 rounded relative"
 		>
 			{status}
 		</div>

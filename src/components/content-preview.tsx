@@ -27,7 +27,7 @@ export default function ContentPreview(props: Props) {
 				colorClass="bg-red-600"
 				hoverClass="hover:bg-red-700"
 				onClick={removeContent}
-				className="text-zinc-200 font-semibold"
+				className="text-zinc-50 font-semibold"
 			/>
 		</div>
 	)
