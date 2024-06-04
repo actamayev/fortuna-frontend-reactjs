@@ -17,7 +17,7 @@ function LogoHeaderSection() {
 					className="ml-1"
 					style={{ height: "40px", verticalAlign: "middle" }}
 				/>
-				<span className="ml-2 text-zinc-900 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400">
+				<span className="ml-2 tex-zinc-950 dark:text-zinc-200 hover:text-blue-600 dark:hover:text-blue-400">
 					Fortuna
 				</span>
 			</Link>

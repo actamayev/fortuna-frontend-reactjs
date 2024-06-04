@@ -31,7 +31,7 @@ function ConfirmTransferButton() {
 				hoverClass="hover:bg-blue-300 hover:dark:bg-blue-500"
 				title="Confirm Transfer"
 				disabled={isLoading || !doesUserHaveEnoughSol || isTransferAmountZero}
-				className="font-semibold dark:text-zinc-900"
+				className="font-semibold dark:tex-zinc-950"
 			/>
 			{!doesUserHaveEnoughSol && <>Not enough Sol to complete transfer</>}
 		</>

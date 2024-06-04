@@ -21,7 +21,7 @@ function SelectOfferingSharePriceUsd() {
 	}, [solanaClass])
 
 	return (
-		<div className="flex flex-col space-y-4 text-zinc-900 dark:text-white">
+		<div className="flex flex-col space-y-4 tex-zinc-950 dark:text-white">
 			<RangeSelectorSlider
 				title="Offering price per share ($)"
 				value={listingSharePriceUsd}

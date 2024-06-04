@@ -45,7 +45,7 @@ function UploadContent() {
 				<SPLDescriptionInput />
 
 				<SplOriginalContentUrlInput />
-				<div className="flex w-full text-zinc-900 dark:text-white">
+				<div className="flex w-full tex-zinc-950 dark:text-white">
 
 					<div className="flex flex-col w-1/3">
 						<div className="mb-4">

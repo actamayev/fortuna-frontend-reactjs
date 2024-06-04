@@ -4,7 +4,7 @@ import FooterCompanySection from "./footer-company-section"
 
 export default function Footer() {
 	return (
-		<footer className="bg-zinc-100 dark:bg-zinc-800 w-full py-8">
+		<footer className="bg-zinc-100 dark:bg-zinc-900 w-full py-8">
 			<div className="max-w-screen-xl mx-auto px-4">
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 					<FooterCompanySection />

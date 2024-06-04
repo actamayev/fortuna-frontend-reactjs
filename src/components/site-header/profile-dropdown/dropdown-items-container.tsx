@@ -11,8 +11,8 @@ export default function DropdownItemsContainer (props: Props) {
 
 	return (
 		<div
-			className="origin-top-right absolute right-0 mt-1 rounded-md bg-white ring-1 ring-zinc-900 ring-opacity-20 \
-				dark:bg-zinc-900 dark:ring-white dark:ring-opacity-20"
+			className="origin-top-right absolute right-0 mt-1 rounded-md bg-white ring-1 ring-zinc-950 ring-opacity-20 \
+				dark:bg-zinc-950 dark:ring-white dark:ring-opacity-20"
 			style={{ width: "170px"}}
 			aria-orientation="vertical"
 			aria-labelledby="menu-button"

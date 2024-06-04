@@ -22,7 +22,7 @@ function HeaderDropdown () {
 		<div className="flex items-center">
 			<div className="relative inline-block" ref = {dropdownRef}>
 				<div
-					className="flex items-center cursor-pointer hover:bg-zinc-100 text-zinc-900 \
+					className="flex items-center cursor-pointer hover:bg-zinc-100 tex-zinc-950 \
 					dark:text-zinc-100 dark:hover:bg-zinc-800 p-2 rounded"
 					onClick={() => setIsOpen(!isOpen)}
 				>
@@ -31,7 +31,7 @@ function HeaderDropdown () {
 					) : (
 						<div
 							className="w-8 h-8 rounded-full overflow-hidden flex justify-center \
-								items-center text-zinc-900 dark:text-zinc-100"
+								items-center tex-zinc-950 dark:text-zinc-100"
 						>
 							<img
 								src={profilePictureUrl}

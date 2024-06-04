@@ -34,7 +34,7 @@ function SingleTransaction(props: Props) {
 	return (
 		<div
 			className="bg-zinc-100 dark:bg-zinc-800 shadow-sm mt-2 p-2 rounded-sm \
-				text-zinc-900 dark:text-white flex items-center"
+				tex-zinc-950 dark:text-white flex items-center"
 		>
 			<div className="mr-2">
 				{transaction.outgoingOrIncoming === "outgoing" ? (

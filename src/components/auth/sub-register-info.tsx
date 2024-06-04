@@ -10,7 +10,7 @@ export default function SubRegisterInfo(props: Props) {
 
 	if (_.isUndefined(setLoginOrRegister)) {
 		return (
-			<div className="text-zinc-900 dark:text-white flex items-center">
+			<div className="tex-zinc-950 dark:text-white flex items-center">
 				<span>
 					Already have an account?&nbsp;
 				</span>
@@ -22,7 +22,7 @@ export default function SubRegisterInfo(props: Props) {
 	}
 
 	return (
-		<div className="text-zinc-900 dark:text-white flex items-center">
+		<div className="tex-zinc-950 dark:text-white flex items-center">
 			<span>
 				Already have an account?&nbsp;
 			</span>

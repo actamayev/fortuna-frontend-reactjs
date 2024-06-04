@@ -65,7 +65,7 @@ export default function Slider(props: Props) {
 					<span
 						className={
 							`absolute rounded-full transition-transform flex items-center justify-center cursor-pointer \
-              					${colorChangeOnToggle && checkedCondition ? "bg-blue-600 dark:bg-blue-500" : "bg-white dark:bg-zinc-900"}`
+              					${colorChangeOnToggle && checkedCondition ? "bg-blue-600 dark:bg-blue-500" : "bg-white dark:bg-zinc-950"}`
 						}
 						style={{
 							height: "13px",

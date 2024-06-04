@@ -8,7 +8,7 @@ export default function UploadContentTemplate(props: Props) {
 	return (
 		<div className = "flex justify-center">
 			<div className = "bg-white dark:bg-zinc-800 border shadow rounded-lg p-6 w-8/12 mx-auto dark:border-b-2">
-				<h1 className = "flex mx-auto mb-4 text-5xl font-extrabold leading-none tracking-tight text-zinc-900 dark:text-white">
+				<h1 className = "flex mx-auto mb-4 text-5xl font-extrabold leading-none tracking-tight tex-zinc-950 dark:text-white">
 					Create Content
 				</h1>
 				{children}

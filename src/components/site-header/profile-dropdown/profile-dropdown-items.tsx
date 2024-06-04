@@ -24,7 +24,7 @@ function ProfileDropdownItems() {
 	const classes = useDropdownItemClasses()
 
 	return (
-		<div className="text-base text-zinc-900 dark:text-white">
+		<div className="text-base tex-zinc-950 dark:text-white">
 			<div className="px-4 py-2 border-b border-zinc-100 dark:border-zinc-700 font-medium">
 				@{personalInfoClass?.username || ""}
 			</div>
