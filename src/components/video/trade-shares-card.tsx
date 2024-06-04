@@ -27,10 +27,10 @@ function TradeSharesCard(props: Props) {
 		return (
 			<Button
 				onClick={() => navigate("/register")}
-				colorClass="bg-blue-200"
-				hoverClass="hover:bg-blue-300"
+				colorClass="bg-blue-200 dark:bg-blue-400"
+				hoverClass="hover:bg-blue-300 hover:dark:bg-blue-500"
 				title="Please create an account to unlock access"
-				className="font-semibold"
+				className="font-semibold dark:text-zinc-950"
 			/>
 		)
 	}
