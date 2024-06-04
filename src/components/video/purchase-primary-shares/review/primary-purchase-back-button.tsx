@@ -15,8 +15,8 @@ function PrimaryPurchaseBackButton() {
 	return (
 		<Button
 			title="<"
-			colorClass="bg-blue-200"
-			hoverClass="hover:bg-blue-300"
+			colorClass="bg-blue-200 dark:bg-blue-600"
+			hoverClass="hover:bg-blue-300 dark:hover:bg-blue-700"
 			onClick={updatePurchasePrimarySplSharesDetails}
 			className="font-semibold"
 		/>

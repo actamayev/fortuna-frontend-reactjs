@@ -32,7 +32,12 @@ export default function useRegisterSubmit (
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			const { passwordConfirmation, ...restOfCredentials } = registerCredentials
 
-			const response = await fortunaApiClient.authDataService.register(restOfCredentials)
+			const siteThemeFromStorage = localStorage.getItem("defaultSiteTheme")
+			let siteTheme: SiteThemes = "light"
+			if (siteThemeFromStorage === "dark") siteTheme = "dark"
+
+			const response = await fortunaApiClient.authDataService.register({ ...restOfCredentials, siteTheme })
+
 			if (!_.isEqual(response.status, 200) || isNonSuccessResponse(response.data)) {
 				setError("Unable to register. Please reload and try again.")
 				return

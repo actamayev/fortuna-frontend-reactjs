@@ -19,7 +19,7 @@ function ShowNumberSharesNeededToAccessExclusiveContent(props: Props) {
 	return (
 		<>
 			Purchase {" "}
-			<span className="font-bold">
+			<span className="font-semibold">
 				{sharesNeededToAccessExclusiveContent}
 			</span> {" "}
 			more share{sharesNeededToAccessExclusiveContent === 1 ? "" : "s"} to unlock

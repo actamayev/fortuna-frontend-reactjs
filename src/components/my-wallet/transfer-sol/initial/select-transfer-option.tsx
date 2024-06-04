@@ -21,7 +21,7 @@ function SelectTransferOption() {
 		<select
 			value={transferOption}
 			onChange={updateTransferSolDetails}
-			className="border rounded-lg p-2"
+			className="border rounded-lg p-2 text-zinc-950 dark:bg-zinc-800 dark:text-zinc-200"
 		>
 			<option value="username">Username</option>
 			<option value="publicKey">Public Key</option>

@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
-import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
+import useDefaultCurrency from "../../../../hooks/memos/default-currency"
 
 interface Props {
 	video: SingleVideoDataFromBackend
@@ -10,11 +10,9 @@ interface Props {
 function CostPerShareArea(props: Props) {
 	const { video } = props
 	const solanaClass = useSolanaContext()
-	const personalInfoClass = usePersonalInfoContext()
+	const defaultCurrency = useDefaultCurrency()
 
-	if (_.isNull(personalInfoClass)) return null
-
-	if (personalInfoClass.defaultCurrency === "usd") {
+	if (defaultCurrency === "usd") {
 		return (
 			<>
 				Cost per share: {" "}
@@ -26,6 +24,7 @@ function CostPerShareArea(props: Props) {
 	if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null
 
 	const { solPriceInUSD } = solanaClass.solPriceDetails
+
 	return (
 		<>
 			Cost per share: {" "}

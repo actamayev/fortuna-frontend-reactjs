@@ -1,5 +1,7 @@
-import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
-import useNavigateToCreator from "../../hooks/navigate/navigate-to-creator"
+import _ from "lodash"
+import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
+import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
+import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
 
 interface Props {
 	videoData: VideoDataLessVideoUrl
@@ -7,22 +9,22 @@ interface Props {
 
 export default function SingleVideoSearchItem(props: Props) {
 	const { videoData } = props
-	const navigateToVideo = useNavigateToVideo()
-	const navigateToCreatorPage = useNavigateToCreator()
+	const navigateToVideoPage = useNavigateToVideoPage()
+	const navigateToCreatorPage = useNavigateToCreatorPage()
 
 	return (
 		<div
-			className="flex items-start space-x-4 p-4 hover:bg-gray-100 dark:hover:bg-gray-900 rounded-lg cursor-pointer w-7/12"
-			onClick={() => navigateToVideo(videoData.uuid)}
+			className="flex items-start space-x-4 p-4 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-7/12"
+			onClick={() => navigateToVideoPage(videoData.uuid)}
 		>
 			<img
 				src={videoData.imageUrl}
 				alt={videoData.splName}
-				className="w-64 h-36 rounded-lg object-cover border dark:border-yellow-400"
+				className="w-64 h-36 rounded-lg object-cover"
 			/>
 			<div className="flex flex-col justify-start overflow-hidden">
-				<div className="text-3xl font-semibold truncate dark:text-white">
-					{videoData.splName}
+				<div className="text-3xl font-semibold truncate dark:text-zinc-200">
+					{_.truncate(videoData.splName, { length: 24, omission: "..." })}
 				</div>
 				<div className="flex items-center space-x-2">
 					{videoData.creatorProfilePictureUrl && (
@@ -32,21 +34,21 @@ export default function SingleVideoSearchItem(props: Props) {
 							className="w-8 h-8 rounded-full object-cover cursor-pointer"
 							onClick={(e) => {
 								e.stopPropagation() // Prevents the video click event when clicking the image
-								navigateToCreatorPage(videoData.creatorUsername)
+								navigateToCreatorPage(addDefiniteLeadingAt(videoData.creatorUsername))
 							}}
 						/>
 					)}
 					<div
-						className="text-sm text-gray-600 hover:text-black dark:text-gray-300 hover:dark:text-gray-100 cursor-pointer"
+						className="text-sm text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-100 cursor-pointer"
 						onClick={(e) => {
 							e.stopPropagation() // Prevents the video click event when clicking the username
-							navigateToCreatorPage(videoData.creatorUsername)
+							navigateToCreatorPage(addDefiniteLeadingAt(videoData.creatorUsername))
 						}}
 					>
 						{videoData.creatorUsername}
 					</div>
 				</div>
-				<div className="text-xl text-gray-600 dark:text-gray-300 cursor-pointer">
+				<div className="text-xl text-zinc-600 dark:text-zinc-300 cursor-pointer">
 					{videoData.description}
 				</div>
 			</div>

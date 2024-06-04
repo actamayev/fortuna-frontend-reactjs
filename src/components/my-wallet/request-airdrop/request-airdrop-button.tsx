@@ -9,10 +9,10 @@ export default function RequestAirdropButton() {
 	return (
 		<Button
 			title="Request Airdrop"
-			colorClass="bg-emerald-200"
-			hoverClass="hover:bg-emerald-300"
+			colorClass="bg-green-600 dark:bg-green-400"
+			hoverClass="hover:bg-green-700 dark:hover:bg-green-600"
 			onClick={() => requestAirdrop(setIsButtonDisabled)}
-			className="font-semibold"
+			className="text-white dark:text-zinc-950 font-medium"
 			disabled={isButtonDisabled}
 		/>
 	)

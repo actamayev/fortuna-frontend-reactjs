@@ -1,14 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable max-len */
 import { ComplianceHeaderOne, ComplianceHeaderTwo, ComplianceTextList, ComplianceText, ComplianceHeaderTwoList, ComplianceHeaderOneList } from "../../components/compliance-sections"
-import FooterHeaderText from "../../components/site-footer/footer-header-text"
+import DescriptionPagesHeaderText from "../../components/description-pages-header-text"
 
 // eslint-disable-next-line max-lines-per-function
 export default function PrivacyPolicy() {
 	return (
-		<div className="dark:text-white">
+		<div className="dark:text-zinc-200">
 			<>
-				<FooterHeaderText headerText="Privacy Policy" />
+				<DescriptionPagesHeaderText headerText="Privacy Policy" />
 				<ComplianceHeaderOneList>
 
 					<ComplianceHeaderOne headerTitle="Types of information we collect">

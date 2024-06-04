@@ -8,29 +8,31 @@ interface Props {
 export default function SubRegisterInfo(props: Props) {
 	const { setLoginOrRegister } = props
 
-	if (!_.isUndefined(setLoginOrRegister)) {
+	if (_.isUndefined(setLoginOrRegister)) {
 		return (
-			<>
-				Already have an account?{" "}
-				<div
-					className="hover:underline cursor-pointer font-bold"
-					onClick={() => setLoginOrRegister("Login")}
-				>
+			<div className="text-zinc-950 dark:text-zinc-200 flex items-center">
+				<span>
+					Already have an account?&nbsp;
+				</span>
+				<Link to="/login" className="hover:underline font-semibold">
 					Login
-				</div>
-			</>
+				</Link>
+			</div>
 		)
 	}
+
 	return (
-		<>
-			Already have an account?{" "}
-			<Link
-				to="/login"
-				className="hover:underline font-bold"
+		<div className="text-zinc-950 dark:text-zinc-200 flex items-center">
+			<span>
+				Already have an account?&nbsp;
+			</span>
+			<span
+				className="hover:underline cursor-pointer font-semibold"
+				onClick={() => setLoginOrRegister("Login")}
 			>
 				Login
-			</Link>
-		</>
+			</span>
+		</div>
 	)
 }
 

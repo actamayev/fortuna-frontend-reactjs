@@ -1,13 +1,11 @@
 interface Props {
-	headerText: string
+	headerTitle: string
 }
 
 export default function FooterHeaderText(props: Props) {
-	const { headerText } = props
+	const { headerTitle } = props
 
 	return (
-		<div className="text-6xl font-black mb-2">
-			{headerText}
-		</div>
+		<h4 className="text-zinc-950 dark:text-zinc-200 text-md font-semibold mb-4">{headerTitle}</h4>
 	)
 }

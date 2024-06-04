@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
-import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
+import useDefaultCurrency from "../../../../hooks/memos/default-currency"
 
 interface Props {
 	video: SingleVideoDataFromBackend
@@ -10,12 +10,12 @@ interface Props {
 function ShowInstantAccessPurchasePrice(props: Props) {
 	const { video } = props
 	const solanaClass = useSolanaContext()
-	const personalInfoClass = usePersonalInfoContext()
+	const defaultCurrency = useDefaultCurrency()
 
 	const { priceToInstantlyAccessExclusiveContentUsd } = video
-	if (_.isNull(personalInfoClass) || _.isNull(priceToInstantlyAccessExclusiveContentUsd)) return null
+	if (_.isNull(priceToInstantlyAccessExclusiveContentUsd)) return null
 
-	if (personalInfoClass.defaultCurrency === "usd") {
+	if (defaultCurrency === "usd") {
 		return <>${(priceToInstantlyAccessExclusiveContentUsd).toFixed(2)}</>
 	}
 

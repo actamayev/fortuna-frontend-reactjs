@@ -17,20 +17,20 @@ export default function SharesAvailableProgressBar(props: Props) {
 
 	return (
 		<div
-			className="bg-gray-400 rounded-full h-1.5 dark:bg-white relative"
+			className="bg-zinc-300 rounded-full h-1.5 dark:bg-zinc-200 relative"
 			style={{ width: "110px" }} // Set a fixed width for the progress bar container
 			onMouseEnter={() => setShowTooltip(true)}
 			onMouseLeave={() => setShowTooltip(false)}
 		>
 			<div
-				className="bg-blue-600 dark:bg-blue-400 h-1.5 rounded-full transition-all duration-100"
+				className="bg-blue-500 dark:bg-blue-500 h-1.5 rounded-full"
 				style={{ width: `${percent}%` }}
 			/>
 			<div
 				className={
-					`absolute left-1/2 transform -translate-x-1/2 -translate-y-[calc(100%+40px)] mt-2 px-2 py-1 bg-black \
-                	text-white text-xs rounded shadow-lg transition-opacity duration-100 \
-					${showTooltip ? "opacity-100 visible border dark:border-yellow-400" : "opacity-0 invisible"}`
+					`absolute left-1/2 transform -translate-x-1/2 -translate-y-[calc(100%+40px)] mt-2 px-2 py-1 bg-zinc-950 \
+                	text-zinc-200 text-xs rounded shadow-lg transition-opacity \
+					${showTooltip ? "opacity-100 visible" : "opacity-0 invisible"}`
 				}
 				style={{ transition: "opacity 0.1s ease-in-out", minWidth: tooltipWidth }}
 			>

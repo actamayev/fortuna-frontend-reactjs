@@ -42,16 +42,16 @@ function PublicKeySearch() {
 					type="text"
 					value={publicKey}
 					onChange={updateTransferSolDetails}
-					className="p-2 rounded-lg w-full"
+					className="p-2 rounded-lg w-full text-zinc-950 dark:bg-zinc-800 dark:text-zinc-200"
 					placeholder="123XYZ"
 				/>
 				{doesPublicKeyExist && (
-					<span className="absolute inset-y-0 right-0 flex items-center pr-3">
+					<span className="absolute inset-y-0 right-0 flex items-center pr-3 text-zinc-800 dark:text-zinc-200">
 						✓
 					</span>
 				)}
 			</div>
-			{isPublicKeySearchLoading && (<>Loading...</>)}
+			{isPublicKeySearchLoading && (<span>Loading...</span>)}
 		</>
 	)
 }

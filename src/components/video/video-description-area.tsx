@@ -1,5 +1,6 @@
 import PricePerShareArea from "../home-page/price-per-share-area"
-import useNavigateToCreator from "../../hooks/navigate/navigate-to-creator"
+import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
+import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
 
 interface Props {
 	video: SingleVideoDataFromBackend
@@ -7,7 +8,7 @@ interface Props {
 
 export default function VideoDescriptionArea(props: Props) {
 	const { video } = props
-	const navigateToCreatorPage = useNavigateToCreator()
+	const navigateToCreatorPage = useNavigateToCreatorPage()
 
 	const {
 		splName,
@@ -31,13 +32,13 @@ export default function VideoDescriptionArea(props: Props) {
 								src={creatorProfilePictureUrl}
 								alt="Creator's Profile"
 								className="min-w-full min-h-full object-cover cursor-pointer"
-								onClick={() => navigateToCreatorPage(creatorUsername)}
+								onClick={() => navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))}
 							/>
 						</div>
 					)}
 					<span
 						className="text-sm font-medium cursor-pointer hover:font-semibold"
-						onClick={() => navigateToCreatorPage(creatorUsername)}
+						onClick={() => navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))}
 					>
 						{creatorUsername}
 					</span>

@@ -2,18 +2,18 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import numberWithCommas from "../../utils/number-with-commas"
 import { useSolanaContext } from "../../contexts/solana-context"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import useDefaultCurrency from "../../hooks/memos/default-currency"
 
 function ImpliedVideoValue() {
-	const personalInfoClass = usePersonalInfoContext()
 	const solanaClass = useSolanaContext()
+	const defaultCurrency = useDefaultCurrency()
 
-	if (_.isNull(personalInfoClass) || _.isNull(solanaClass)) return null
+	if (_.isNull(solanaClass)) return null
 
 	const { listingSharePriceUsd, numberOfShares } = solanaClass.newSplDetails
 	let videoValue = listingSharePriceUsd * numberOfShares
 
-	if (personalInfoClass.defaultCurrency === "usd") {
+	if (defaultCurrency === "usd") {
 		return <>${numberWithCommas(videoValue)}</>
 	}
 	const solPriceUSD = solanaClass.solPriceDetails?.solPriceInUSD

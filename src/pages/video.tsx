@@ -4,6 +4,7 @@ import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import VideoPlayer from "../components/video/video-player"
 import { useVideoContext } from "../contexts/video-context"
+import { addLeadingAt } from "../utils/leading-at-operations"
 import useSetSingleVideo from "../hooks/videos/set-single-video"
 import TradeSharesCard from "../components/video/trade-shares-card"
 import VideoDescriptionArea from "../components/video/video-description-area"
@@ -19,7 +20,7 @@ function Video() {
 	useSetSingleVideo(videoUUID, setIsVideoLoading, setIsVideoNotFound)
 	useRetrieveVideoUrlData(videoUUID)
 	const video = videoClass.findVideoFromUUID(videoUUID)
-	useRetrieveCreatorVideosAndDataUseEffect(video?.creatorUsername)
+	useRetrieveCreatorVideosAndDataUseEffect(addLeadingAt(video?.creatorUsername))
 
 	if (isVideoLoading === true) return <>Loading...</>
 
@@ -28,13 +29,18 @@ function Video() {
 	if (_.isUndefined(video)) return null
 
 	return (
-		<div className="dark:text-white">
+		<div className="dark:text-zinc-200 relative">
 			<div className="grid grid-cols-12">
 				<div className="col-span-9">
 					<VideoPlayer videoUrl={video.videoUrl} />
 				</div>
-				<div className="col-span-3 flex flex-col ml-10">
-					<TradeSharesCard videoUUID={video.uuid} />
+				<div className="col-span-3 flex flex-col ml-10 relative">
+					<div
+						className="fixed py-8 border-l pl-4 dark:border-zinc-800 border-zinc-100"
+						style={{ width: "300px", top: "56px", bottom: "160px" }}
+					>
+						<TradeSharesCard videoUUID={video.uuid} />
+					</div>
 				</div>
 			</div>
 			<div className="grid grid-cols-12">

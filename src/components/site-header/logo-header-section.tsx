@@ -1,19 +1,28 @@
+import { observer } from "mobx-react"
 import { Link } from "react-router-dom"
+import useDefaultSiteTheme from "../../hooks/memos/default-site-theme"
 
-export default function LogoHeaderSection() {
+function LogoHeaderSection() {
+	const defaultSiteTheme = useDefaultSiteTheme()
+
 	return (
 		<div className="inline-flex items-center flex-grow-0 flex-shrink-0 z-10">
 			<Link
 				to="/"
-				className="flex items-center text-white font-bold text-4xl flex-shrink-0"
+				className="flex items-center font-semibold text-3xl flex-shrink-0"
 			>
 				<img
-					src="/fortuna-logo-white.svg"
+					src={defaultSiteTheme === "dark" ? "/fortuna-logo-white.svg" : "/fortuna-logo-black.svg"}
 					alt="Logo"
-					className="mt-2 h-24"
+					className="ml-1"
+					style={{ height: "40px", verticalAlign: "middle" }}
 				/>
-				Fortuna
+				<span className="ml-2 text-zinc-950 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
+					Fortuna
+				</span>
 			</Link>
 		</div>
 	)
 }
+
+export default observer(LogoHeaderSection) // Keep this an observer (defaultSiteTheme needs to be observed)

@@ -1,5 +1,5 @@
 import useDateFormatter from "../../../hooks/date-formatter"
-import useNavigateToVideo from "../../../hooks/navigate/navigate-to-video"
+import useNavigateToVideoPage from "../../../hooks/navigate/navigate-to-video-page"
 
 interface Props {
 	videoData: VideoDataLessVideoUrl
@@ -8,7 +8,7 @@ interface Props {
 export default function SingleRecommendedVideo(props: Props) {
 	const { videoData } = props
 	const dateFormatter = useDateFormatter()
-	const navigateToVideo = useNavigateToVideo()
+	const navigateToVideoPage = useNavigateToVideoPage()
 
 	const {
 		uuid,
@@ -20,19 +20,19 @@ export default function SingleRecommendedVideo(props: Props) {
 	return (
 		<div
 			className="flex-none flex flex-col items-start \
-				hover:bg-gray-100 dark:hover:bg-gray-900 rounded-lg cursor-pointer w-64"
-			onClick={() => navigateToVideo(uuid)}
+				hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-64"
+			onClick={() => navigateToVideoPage(uuid)}
 		>
 			<img
 				src={imageUrl}
 				alt={splName}
-				className="w-64 h-36 rounded-lg object-cover border dark:border-yellow-400"
+				className="w-64 h-36 rounded-lg object-cover"
 			/>
 			<div className="flex flex-col justify-start overflow-hidden w-full">
-				<div className="text-lg font-semibold truncate dark:text-white">
+				<div className="text-lg font-semibold truncate dark:text-zinc-200">
 					{splName}
 				</div>
-				<div className="text-xs text-gray-600 dark:text-gray-300">
+				<div className="text-xs text-zinc-600 dark:text-zinc-300">
 					{dateFormatter(contentMintDate)}
 				</div>
 			</div>

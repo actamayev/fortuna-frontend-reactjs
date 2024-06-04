@@ -9,7 +9,7 @@ function Home() {
 	const [areVideosLoading, setAreVideosLoading] = useState(false)
 	useRetrieveHomePageVideos(setAreVideosLoading)
 
-	if (areVideosLoading === true) return <div className="dark:text-white">Loading...</div>
+	if (areVideosLoading === true) return <div className="dark:text-zinc-200">Loading...</div>
 
 	return (
 		<div className="grid grid-cols-4 gap-4">

@@ -16,8 +16,13 @@ export default function useGoogleAuthCallback(whereToNavigate: PageNames): (succ
 	const googleAuthCallback = useCallback(async (successResponse: CredentialResponse) => {
 		try {
 			if (_.isUndefined(successResponse.credential) || _.isUndefined(successResponse.clientId)) return
+
+			const siteThemeFromStorage = localStorage.getItem("defaultSiteTheme")
+			let siteTheme: SiteThemes = "light"
+			if (siteThemeFromStorage === "dark") siteTheme = "dark"
+
 			const googleCallbackResponse = await fortunaApiClient.authDataService.googleLoginCallback(
-				successResponse.credential
+				successResponse.credential, siteTheme
 			)
 			if (!_.isEqual(googleCallbackResponse.status, 200) || isErrorResponses(googleCallbackResponse.data)) {
 				throw Error("Unable to login")

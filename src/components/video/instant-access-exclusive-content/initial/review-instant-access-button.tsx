@@ -30,8 +30,8 @@ function ReviewInstantAccessButton(props: Props) {
 	return (
 		<Button
 			onClick={onClickButton}
-			colorClass="bg-blue-200"
-			hoverClass="hover:bg-blue-300"
+			colorClass="bg-blue-200 dark:bg-blue-600"
+			hoverClass="hover:bg-blue-300 dark:hover:bg-blue-700"
 			title="Review Instant Access Purchase"
 			disabled={!isAbleToPurchaseShares}
 			className="font-semibold"

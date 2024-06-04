@@ -23,9 +23,9 @@ export default class AuthDataService {
 		)
 	}
 
-	async googleLoginCallback(idToken: string): Promise<AxiosResponse<GoogleAuthSuccess | ErrorResponses>> {
+	async googleLoginCallback(idToken: string, siteTheme: SiteThemes): Promise<AxiosResponse<GoogleAuthSuccess | ErrorResponses>> {
 		return await this.httpClient.http.post<GoogleAuthSuccess | ErrorResponses>(
-			`${this.pathHeader}/google-auth/login-callback`, { idToken }, { headers: { "No-Auth-Required": "true" }}
+			`${this.pathHeader}/google-auth/login-callback`, { idToken, siteTheme }, { headers: { "No-Auth-Required": "true" }}
 		)
 	}
 
