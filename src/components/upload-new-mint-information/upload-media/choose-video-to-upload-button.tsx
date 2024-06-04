@@ -60,7 +60,7 @@ function ChooseVideoToUploadButton(props: Props) {
 				colorClass="bg-blue-500 dark:bg-blue-600"
 				hoverClass="hover:bg-blue-600 dark:hover:bg-blue-700"
 				onClick={() => fileInputRef.current?.click()}
-				className="text-white font-semibold"
+				className="text-zinc-200 font-semibold"
 			/>
 		</>
 	)

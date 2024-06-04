@@ -27,7 +27,7 @@ function ShowMyPublicKey() {
 				<div className="mr-2 cursor-pointer" onClick={() => setShowPublicKey(true)}>
 					<FaEyeSlash style={{ color: defaultSiteTheme === "dark" ? "white" : "" }}/>
 				</div>
-				<div className="flex-grow dark:text-white">My Public Key: **********</div>
+				<div className="flex-grow dark:text-zinc-200">My Public Key: **********</div>
 			</div>
 		)
 	}
@@ -40,7 +40,7 @@ function ShowMyPublicKey() {
 			>
 				<FaEye style={{ color: defaultSiteTheme === "dark" ? "white" : "" }}/>
 			</div>
-			<div className="flex items-center dark:text-white">
+			<div className="flex items-center dark:text-zinc-200">
 				<span className="mr-2">My Public Key:</span>
 				<div className="cursor-pointer flex-shrink-0" onClick={copyToClipboard}>
 					{solanaClass.walletPublicKey.toString()}

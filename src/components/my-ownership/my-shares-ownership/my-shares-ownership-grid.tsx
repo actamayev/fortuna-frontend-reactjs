@@ -28,14 +28,14 @@ function MySharesOwnershipGrid() {
 	if (_.isNull(positionsAndTransactionClass)) return null
 
 	if (positionsAndTransactionClass.isRetrievingOwnership === true || positionsAndTransactionClass.hasOwnershipToRetrieve === true) {
-		return <div className="dark:text-white">Retrieving Ownership...</div>
+		return <div className="dark:text-zinc-200">Retrieving Ownership...</div>
 	} else if (_.isEmpty(positionsAndTransactionClass.myOwnership)) {
-		return <div className="dark:text-white">No Ownership</div>
+		return <div className="dark:text-zinc-200">No Ownership</div>
 	}
 
 	return (
 		<div className="flex-1">
-			<div className="dark:text-white">
+			<div className="dark:text-zinc-200">
 				Shares
 			</div>
 			<div

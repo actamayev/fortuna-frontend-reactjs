@@ -29,7 +29,7 @@ export default function SingleCreatorPageVideo(props: Props) {
 				className="w-64 h-36 rounded-lg object-cover"
 			/>
 			<div className="flex flex-col justify-start overflow-hidden">
-				<div className="text-3xl font-semibold truncate dark:text-white">
+				<div className="text-3xl font-semibold truncate dark:text-zinc-200">
 					{splName}
 				</div>
 				<div className="text-xl text-zinc-600 dark:text-zinc-300">

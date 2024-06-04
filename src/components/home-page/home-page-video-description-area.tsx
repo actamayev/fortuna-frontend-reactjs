@@ -26,7 +26,7 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 	} = video
 
 	return (
-		<div className="flex items-center pt-1 dark:text-white rounded-lg mx-1">
+		<div className="flex items-center pt-1 dark:text-zinc-200 rounded-lg mx-1">
 			{creatorProfilePictureUrl && (
 				<img
 					src={creatorProfilePictureUrl}

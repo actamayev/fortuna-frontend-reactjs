@@ -30,7 +30,7 @@ export default function RegisterUsername() {
 				/>
 
 				<Button
-					className = "mt-3 w-full font-semibold text-lg text-white"
+					className = "mt-3 w-full font-semibold text-lg text-zinc-200"
 					colorClass = "bg-blue-600"
 					hoverClass = "hover:bg-blue-700"
 					disabled = {loading}

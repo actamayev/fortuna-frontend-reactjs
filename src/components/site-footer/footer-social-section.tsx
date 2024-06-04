@@ -7,7 +7,7 @@ export default function FooterSocialSection() {
 		<div>
 			<FooterHeaderText headerTitle="Social" />
 			<div className="flex space-x-4">
-				{/* <a href="https://facebook.com" aria-label="Facebook" className="text-zinc-300 hover:text-white">
+				{/* <a href="https://facebook.com" aria-label="Facebook" className="text-zinc-300 hover:text-zinc-200">
 					<FaFacebook size={24} />
 				</a> */}
 				<a
@@ -28,7 +28,7 @@ export default function FooterSocialSection() {
 				>
 					<FaLinkedin size={24} />
 				</a>
-				{/* <a href="https://instagram.com" aria-label="Instagram" className="text-zinc-300 hover:text-white">
+				{/* <a href="https://instagram.com" aria-label="Instagram" className="text-zinc-300 hover:text-zinc-200">
 					<FaInstagram size={24} />
 				</a> */}
 			</div>

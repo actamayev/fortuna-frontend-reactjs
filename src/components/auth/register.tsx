@@ -76,7 +76,7 @@ export default function Register(props: Props) {
 					<ErrorMessage error={error} />
 
 					<Button
-						className = "mt-3 w-full font-semibold text-lg text-white"
+						className = "mt-3 w-full font-semibold text-lg text-zinc-200"
 						colorClass = "bg-blue-600"
 						hoverClass = "hover:bg-blue-700"
 						disabled = {loading}

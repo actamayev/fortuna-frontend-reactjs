@@ -21,7 +21,7 @@ function SingleUsernameSearch(props: Props) {
 		<div>
 			<span
 				onClick={selectUsername}
-				className="hover:underline cursor-pointer text-zinc-950 dark:text-white"
+				className="hover:underline cursor-pointer text-zinc-950 dark:text-zinc-200"
 			>
 				{searchResultsUsername}
 			</span>

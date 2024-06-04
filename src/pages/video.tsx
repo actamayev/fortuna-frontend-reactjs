@@ -29,7 +29,7 @@ function Video() {
 	if (_.isUndefined(video)) return null
 
 	return (
-		<div className="dark:text-white relative">
+		<div className="dark:text-zinc-200 relative">
 			<div className="grid grid-cols-12">
 				<div className="col-span-9">
 					<VideoPlayer videoUrl={video.videoUrl} />

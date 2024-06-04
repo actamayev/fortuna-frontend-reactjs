@@ -23,7 +23,7 @@ function TransferSolButton() {
 				colorClass="bg-blue-500 dark:bg-blue-400"
 				hoverClass="hover:bg-blue-600 dark:hover:bg-blue-500"
 				onClick={setIsTransferSolButtonPressed}
-				className="text-white dark:text-zinc-950 font-medium"
+				className="text-zinc-200 dark:text-zinc-950 font-medium"
 			/>
 			<div ref = {dropdownRef}>
 				<TransferSolCard />

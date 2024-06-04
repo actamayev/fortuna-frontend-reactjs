@@ -6,7 +6,7 @@ import DescriptionPagesHeaderText from "../../components/description-pages-heade
 // eslint-disable-next-line max-lines-per-function
 export default function PrivacyPolicy() {
 	return (
-		<div className="dark:text-white">
+		<div className="dark:text-zinc-200">
 			<>
 				<DescriptionPagesHeaderText headerText="Privacy Policy" />
 				<ComplianceHeaderOneList>

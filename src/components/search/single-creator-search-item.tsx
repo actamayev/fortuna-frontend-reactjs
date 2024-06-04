@@ -19,7 +19,7 @@ export default function SingleCreatorSearchItem(props: Props) {
 				alt={`Profile of ${creatorData.creatorUsername}`}
 				className="w-36 h-36 rounded-full object-cover"
 			/>
-			<div className="flex-grow text-lg text-center dark:text-white">
+			<div className="flex-grow text-lg text-center dark:text-zinc-200">
 				{creatorData.creatorUsername}
 			</div>
 		</div>
