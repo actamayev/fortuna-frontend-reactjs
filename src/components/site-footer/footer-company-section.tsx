@@ -1,5 +1,5 @@
-import FooterHeaderText from "./footer-header-text"
 import FooterLink from "./footer-link"
+import FooterHeaderText from "./footer-header-text"
 
 export default function FooterCompanySection() {
 	return (

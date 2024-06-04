@@ -11,7 +11,7 @@ export default function FooterSupportSection() {
 			>
 				<a
 					href="https://help.mintfortuna.com"
-					aria-label="X"
+					aria-label="Help Center"
 					className="text-zinc-950 dark:text-zinc-200 dark:hover:text-zinc-50"
 					target="_blank"
 					rel="noopener noreferrer"
