@@ -3,7 +3,8 @@ import { observer } from "mobx-react"
 import InstantAccessCost from "./instant-access-cost"
 import ReviewInstantAccessButton from "./review-instant-access-button"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
-import useNavigateToCreator from "../../../../hooks/navigate/navigate-to-creator"
+import { addDefiniteLeadingAt } from "../../../../utils/leading-at-operations"
+import useNavigateToCreatorPage from "../../../../hooks/navigate/navigate-to-creator-page"
 import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
 
 interface Props {
@@ -15,7 +16,7 @@ function InitialInstantAccessInfo(props: Props) {
 	const { video, orNeeded } = props
 	const exchangeClass = useExchangeContext()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
-	const navigateToCreatorPage = useNavigateToCreator()
+	const navigateToCreatorPage = useNavigateToCreatorPage()
 
 	if (
 		_.isUndefined(video) ||
@@ -29,13 +30,13 @@ function InitialInstantAccessInfo(props: Props) {
 		return (
 			<div className="w-full">
 				<div className="flex items-center w-full">
-					<hr className="flex-grow border-t border-gray-300" />
+					<hr className="flex-grow border-t border-zinc-300" />
 				</div>
 				<div className="flex items-center w-full">
 					<div>
 						<span
 							className="font-medium hover:underline cursor-pointer"
-							onClick={() => navigateToCreatorPage(video.creatorUsername)}
+							onClick={() => navigateToCreatorPage(addDefiniteLeadingAt(video.creatorUsername))}
 						>
 							{video.creatorUsername}
 						</span> {" "}
@@ -50,7 +51,7 @@ function InitialInstantAccessInfo(props: Props) {
 		return (
 			<div className="w-full">
 				<div className="flex items-center w-full">
-					<hr className="flex-grow border-t border-gray-300" />
+					<hr className="flex-grow border-t border-zinc-300" />
 				</div>
 				<div className="flex items-center w-full">
 					<span>You have already purchased exclusive access to this video</span>
@@ -64,7 +65,7 @@ function InitialInstantAccessInfo(props: Props) {
 		return (
 			<div className="w-full">
 				<div className="flex items-center w-full">
-					<hr className="flex-grow border-t border-gray-300" />
+					<hr className="flex-grow border-t border-zinc-300" />
 				</div>
 				<div className="flex items-center w-full">
 					<span>You have access to this exclusive video through share ownership</span>
@@ -77,9 +78,9 @@ function InitialInstantAccessInfo(props: Props) {
 	return (
 		<>
 			<div className="flex items-center w-full">
-				<hr className="flex-grow border-t border-gray-300" />
-				{orNeeded && <span className="px-4 text-gray-500">or</span> }
-				<hr className="flex-grow border-t border-gray-300" />
+				<hr className="flex-grow border-t border-zinc-300" />
+				{orNeeded && <span className="px-4 text-zinc-500">or</span> }
+				<hr className="flex-grow border-t border-zinc-300" />
 			</div>
 			<div className="text-center font-semibold flex justify-center items-center text-xl">
 				Instant Access

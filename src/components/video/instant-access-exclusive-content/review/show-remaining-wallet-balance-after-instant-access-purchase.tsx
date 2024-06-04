@@ -1,8 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
-import { useExchangeContext } from "../../../../contexts/exchange-context"
-import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
+import useDefaultCurrency from "../../../../hooks/memos/default-currency"
 
 interface Props {
 	video: SingleVideoDataFromBackend
@@ -11,19 +10,16 @@ interface Props {
 function ShowRemainingWalletBalanceAfterInstantAccessPurchase(props: Props) {
 	const { video } = props
 	const solanaClass = useSolanaContext()
-	const exchangeClass = useExchangeContext()
-	const personalInfoClass = usePersonalInfoContext()
+	const defaultCurrency = useDefaultCurrency()
 
 	if (
 		_.isNull(solanaClass) ||
-		_.isNull(exchangeClass) ||
-		_.isNull(personalInfoClass) ||
 		_.isNull(video.priceToInstantlyAccessExclusiveContentUsd)
 	) return null
 
 	const remainingWalletBalanceUsd = solanaClass.walletBalanceUSD.get() - video.priceToInstantlyAccessExclusiveContentUsd
 
-	if (personalInfoClass.defaultCurrency === "usd") {
+	if (defaultCurrency === "usd") {
 		return <>${remainingWalletBalanceUsd.toFixed(2)}</>
 	}
 

@@ -1,7 +1,7 @@
-import FooterHeaderText from "../../components/site-footer/footer-header-text"
+import DescriptionPagesHeaderText from "../../components/description-pages-header-text"
 
 export default function FAQ() {
 	return (
-		<FooterHeaderText headerText="FAQ" />
+		<DescriptionPagesHeaderText headerText="FAQ" />
 	)
 }

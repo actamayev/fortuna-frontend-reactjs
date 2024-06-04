@@ -15,10 +15,10 @@ function ReviewTransferBackButton() {
 	return (
 		<Button
 			title="<"
-			colorClass="bg-blue-200"
-			hoverClass="hover:bg-blue-300"
+			colorClass="bg-blue-200 dark:bg-blue-400"
+			hoverClass="hover:bg-blue-300 hover:dark:bg-blue-500"
 			onClick={updateTransferSolDetails}
-			className="font-semibold"
+			className="font-semibold dark:text-zinc-950"
 		/>
 	)
 }

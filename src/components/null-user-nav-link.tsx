@@ -1,24 +1,18 @@
-import { Link } from "react-router-dom"
+import AuthHeaderLinks from "./auth/auth-header-links"
 
 export default function NullUserNavLink() {
 	return (
-		<div className="flex flex-col items-stretch w-full ml-2">
-			<div className="flex justify-start mr-1">
-				<Link
-					to="/register"
-					className="text-white hover:text-gray-200 rounded-md font-bold text-xl"
-				>
-                    Register
-				</Link>
-			</div>
-			<div className="flex justify-end mr-1">
-				<Link
-					to="/login"
-					className="text-white hover:text-gray-200 rounded-md font-bold text-lg"
-				>
-                    Login
-				</Link>
-			</div>
-		</div>
+		<>
+			<AuthHeaderLinks
+				title="Log in"
+				className="hover:bg-zinc-100 mx-2 text-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-800"
+				linkTo="/login"
+			/>
+			<AuthHeaderLinks
+				title="Sign up"
+				className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-400 dark:hover:bg-blue-500 text-zinc-50 dark:text-zinc-950"
+				linkTo="/register"
+			/>
+		</>
 	)
 }

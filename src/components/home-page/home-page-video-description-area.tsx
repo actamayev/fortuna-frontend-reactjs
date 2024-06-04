@@ -1,9 +1,10 @@
 import _ from "lodash"
 import PricePerShareArea from "./price-per-share-area"
 import ShowHomeVideoLockStatus from "./show-home-video-lock-status"
-import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
+import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import SharesAvailableProgressBar from "./shares-available-progress-bar"
-import useNavigateToCreator from "../../hooks/navigate/navigate-to-creator"
+import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
+import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
 
 interface Props {
 	video: VideoDataLessVideoUrl
@@ -12,8 +13,8 @@ interface Props {
 
 export default function HomePageVideoDescriptionArea(props: Props) {
 	const { video, index } = props
-	const navigateToVideoPage = useNavigateToVideo()
-	const navigateToCreatorPage = useNavigateToCreator()
+	const navigateToVideoPage = useNavigateToVideoPage()
+	const navigateToCreatorPage = useNavigateToCreatorPage()
 
 	const {
 		splName,
@@ -25,13 +26,13 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 	} = video
 
 	return (
-		<div className="flex items-center pt-1 dark:text-white rounded-lg mx-1">
+		<div className="flex items-center pt-1 dark:text-zinc-200 rounded-lg mx-1">
 			{creatorProfilePictureUrl && (
 				<img
 					src={creatorProfilePictureUrl}
 					alt="Creator's Profile"
 					className="w-8 h-8 rounded-full mr-2 object-cover cursor-pointer"
-					onClick={() => navigateToCreatorPage(creatorUsername)}
+					onClick={() => navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))}
 				/>
 			)}
 			<div className="flex flex-col">
@@ -40,12 +41,12 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 					style={{ maxWidth: "fit-content" }}
 					onClick={() => navigateToVideoPage(uuid)}
 				>
-					{_.truncate(splName, { length: 24, omission: "..." })}
+					{_.truncate(splName, { length: 20, omission: "..." })}
 				</div>
 				<div
-					className="text-xs text-gray-600 hover:text-black dark:text-gray-300 hover:dark:text-gray-100 cursor-pointer"
+					className="text-xs text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-100 cursor-pointer"
 					style={{ maxWidth: "fit-content" }}
-					onClick={() => navigateToCreatorPage(creatorUsername)}
+					onClick={() => navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))}
 				>
 					{creatorUsername}
 				</div>

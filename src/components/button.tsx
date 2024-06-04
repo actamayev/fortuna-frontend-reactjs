@@ -12,14 +12,14 @@ export default function Button (props: Props) {
 	let backgroundColor
 	let hoverColor
 	if (props.disabled) {
-		backgroundColor = "bg-gray-400"
+		backgroundColor = "bg-zinc-400"
 		hoverColor = ""
 	} else {
-		backgroundColor = props.colorClass || "bg-black"
+		backgroundColor = props.colorClass || "bg-zinc-950"
 		hoverColor = props.hoverClass || ""
 	}
 
-	const css = `transition-all hover:duration-[50ms] rounded p-2 ${backgroundColor} ${hoverColor} ${props.className}`
+	const css = `rounded p-2 ${backgroundColor} ${hoverColor} ${props.className}`
 
 	return (
 		<button

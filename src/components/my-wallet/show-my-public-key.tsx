@@ -3,11 +3,11 @@ import { observer } from "mobx-react"
 import { useCallback, useState } from "react"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { useSolanaContext } from "../../contexts/solana-context"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import useDefaultSiteTheme from "../../hooks/memos/default-site-theme"
 
 function ShowMyPublicKey() {
 	const solanaClass = useSolanaContext()
-	const personalInfoClass = usePersonalInfoContext()
+	const defaultSiteTheme = useDefaultSiteTheme()
 	const [showPublicKey, setShowPublicKey] = useState(false)
 
 	const copyToClipboard = useCallback(async () => {
@@ -20,15 +20,14 @@ function ShowMyPublicKey() {
 		}
 	}, [solanaClass])
 
-	if (_.isNull(personalInfoClass) || _.isNull(solanaClass)) return null
 
-	if (_.isNull(solanaClass.walletPublicKey) || showPublicKey === false) {
+	if (_.isNull(solanaClass?.walletPublicKey) || showPublicKey === false) {
 		return (
 			<div className="font-semibold flex items-center">
 				<div className="mr-2 cursor-pointer" onClick={() => setShowPublicKey(true)}>
-					<FaEyeSlash style={{ color: personalInfoClass.defaultSiteTheme === "dark" ? "white" : "" }}/>
+					<FaEyeSlash style={{ color: defaultSiteTheme === "dark" ? "white" : "" }}/>
 				</div>
-				<div className="flex-grow dark:text-white">My Public Key: **********</div>
+				<div className="flex-grow dark:text-zinc-200">My Public Key: **********</div>
 			</div>
 		)
 	}
@@ -39,9 +38,9 @@ function ShowMyPublicKey() {
 				className="cursor-pointer mr-2"
 				onClick={() => setShowPublicKey(false)}
 			>
-				<FaEye style={{ color: personalInfoClass.defaultSiteTheme === "dark" ? "white" : "" }}/>
+				<FaEye style={{ color: defaultSiteTheme === "dark" ? "white" : "" }}/>
 			</div>
-			<div className="flex items-center dark:text-white">
+			<div className="flex items-center dark:text-zinc-200">
 				<span className="mr-2">My Public Key:</span>
 				<div className="cursor-pointer flex-shrink-0" onClick={copyToClipboard}>
 					{solanaClass.walletPublicKey.toString()}

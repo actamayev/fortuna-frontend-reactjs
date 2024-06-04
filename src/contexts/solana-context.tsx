@@ -87,7 +87,9 @@ class SolanaClass {
 		this.solPriceDetails = newSolPriceDetails
 	})
 
-	public updateTransferSolDetails = action(<K extends keyof TransferSolDetails>(key: K, value: TransferSolDetails[K]) => {
+	public updateTransferSolDetails = action(<K extends keyof TransferSolDetails>(
+		key: K, value: TransferSolDetails[K]
+	) => {
 		if (typeof this.transferSolDetails[key] !== typeof value) {
 			console.warn(`Type mismatch when trying to set ${key}`)
 			return

@@ -16,7 +16,7 @@ export function ComplianceHeaderOne(props: HeaderProps) {
 
 	return (
 		<li>
-			<div className="text-xl font-bold mb-2">
+			<div className="text-xl font-semibold mb-2">
 				{headerTitle}
 			</div>
 			{children}
@@ -37,7 +37,7 @@ export function ComplianceHeaderTwo(props: HeaderProps) {
 
 	return (
 		<li>
-			<div className="text-lg font-bold mb-1">
+			<div className="text-lg font-semibold mb-1">
 				{headerTitle}
 			</div>
 			{children}

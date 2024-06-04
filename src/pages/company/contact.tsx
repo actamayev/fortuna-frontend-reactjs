@@ -1,7 +1,7 @@
-import FooterHeaderText from "../../components/site-footer/footer-header-text"
+import DescriptionPagesHeaderText from "../../components/description-pages-header-text"
 
 export default function Contact() {
 	return (
-		<FooterHeaderText headerText="Contact" />
+		<DescriptionPagesHeaderText headerText="Contact" />
 	)
 }

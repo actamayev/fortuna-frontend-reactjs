@@ -11,7 +11,7 @@ function ShowIfUserIsFortunaCreator() {
 
 	if (personalInfoClass.isApprovedToBeCreator === true) {
 		return (
-			<div className="dark:text-white">
+			<div className="dark:text-zinc-200">
 				<div>
 					You are approved to be a creator on Fortuna.
 				</div>
@@ -23,7 +23,7 @@ function ShowIfUserIsFortunaCreator() {
 	}
 	if (youtubeClass.hasYouTubeAccessTokens !== true) {
 		return (
-			<div className="dark:text-white">
+			<div className="dark:text-zinc-200">
 				<div>
 					You are not approved to be a creator on Fortuna.
 				</div>
@@ -34,7 +34,7 @@ function ShowIfUserIsFortunaCreator() {
 		)
 	}
 	return (
-		<div className="dark:text-white">
+		<div className="dark:text-zinc-200">
 			<div>
 				You are not approved to be a creator on Fortuna.
 			</div>

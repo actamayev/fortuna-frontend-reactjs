@@ -29,13 +29,12 @@ export default function Register(props: Props) {
 	const [error, setError] = useState("")
 	const [loading, setLoading] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
+	const registerSubmit = useRegisterSubmit(whereToNavigate, registerInformation, setError, setLoading)
 
 	const isShowPassword = useMemo(() => {
 		if (showPassword) return "text"
 		return "password"
 	}, [showPassword])
-
-	const registerSubmit = useRegisterSubmit(whereToNavigate, registerInformation, setError, setLoading)
 
 	const createSetCredentialsFunction = (setter: React.Dispatch<React.SetStateAction<RegisterCredentials>>) => {
 		return (newCredentials: Partial<LoginCredentials | RegisterCredentials>) => {
@@ -77,9 +76,9 @@ export default function Register(props: Props) {
 					<ErrorMessage error={error} />
 
 					<Button
-						className = "mt-3 w-full font-bold text-lg text-white border-b-2"
+						className = "mt-3 w-full font-semibold text-lg text-zinc-50"
 						colorClass = "bg-blue-600"
-						hoverClass = "hover:bg-blue-700 hover:border-yellow-400"
+						hoverClass = "hover:bg-blue-700"
 						disabled = {loading}
 						title = "Register"
 					/>

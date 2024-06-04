@@ -4,13 +4,13 @@ declare global {
 		password: string
 	}
 
-	interface RegisterCredentialsToSend {
-		contact: string
+	interface RegisterCredentialsToSend extends LoginCredentials {
 		username: string
-		password: string
+		siteTheme: SiteThemes
 	}
 
-	interface RegisterCredentials extends RegisterCredentialsToSend {
+	interface RegisterCredentials extends LoginCredentials {
+		username: string
 		passwordConfirmation: string
 	}
 

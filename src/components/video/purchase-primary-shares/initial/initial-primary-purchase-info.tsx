@@ -39,7 +39,7 @@ function InitialPrimaryPurchaseInfo() {
 					<Tooltip
 						message="All proceeds go to the creator"
 						width="225px"
-						messageStart="center"
+						messageStart="left"
 					>
 					ℹ️
 					</Tooltip>

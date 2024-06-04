@@ -3,9 +3,10 @@ import { useCallback, useEffect } from "react"
 import { useAuthContext } from "../../contexts/auth-context"
 import { isNonSuccessResponse } from "../../utils/type-checks"
 import { useVideoContext } from "../../contexts/video-context"
+import { removeLeadingAt } from "../../utils/leading-at-operations"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useRetrieveCreatorVideosAndDataUseEffect(creatorUsername: string | undefined): void {
+export default function useRetrieveCreatorVideosAndDataUseEffect(creatorUsername: AtPrefixedString | undefined): void {
 	const authClass = useAuthContext()
 	const videoClass = useVideoContext()
 	const fortunaApiClient = useApiClientContext()
@@ -16,11 +17,11 @@ export default function useRetrieveCreatorVideosAndDataUseEffect(creatorUsername
 				authClass.isLoggingOut === true ||
 				_.isUndefined(creatorUsername) ||
 				videoClass.isCreatorDataBeingRetrieved === true ||
-				!_.isUndefined(videoClass.contextForCreatorData(creatorUsername))
+				!_.isUndefined(videoClass.contextForCreatorData(removeLeadingAt(creatorUsername)))
 			) return
 			videoClass.setIsCreatorDataBeingRetrieved(true)
 
-			const creatorDataResponse = await fortunaApiClient.videoDataService.getVideosByCreatorUsername(creatorUsername)
+			const creatorDataResponse = await fortunaApiClient.videoDataService.getVideosByCreatorUsername(removeLeadingAt(creatorUsername))
 
 			if (!_.isEqual(creatorDataResponse.status, 200) || isNonSuccessResponse(creatorDataResponse.data)) {
 				throw Error("Unable to retrieve creator data")

@@ -16,7 +16,6 @@ declare global {
 		"/creator/upload-content" |
 
 		"/privacy-policy" |
-		"/help-center" |
 		"/faq" |
 
 		"/about" |
@@ -25,7 +24,7 @@ declare global {
 
 	type DynamicPageNames =
 		`/v/${string}` |
-		`/c/${string}` |
+		`/c/${AtPrefixedString}` |
 		`/s/${string}`
 
 	type PageNames = StaticPageNames | DynamicPageNames
@@ -44,6 +43,8 @@ declare global {
 		"/upload" |
 		"/videos" |
 		"/youtube"
+
+	type AtPrefixedString = string & { __brand: "AtPrefixedString" }
 }
 
 export {}

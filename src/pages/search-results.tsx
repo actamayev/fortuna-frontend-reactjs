@@ -13,7 +13,7 @@ function SearchResults() {
 	if (_.isUndefined(searchTerm)) return null
 
 	if (videoClass.isCurrentlySearching === true) {
-		return <div className="dark:text-white">Searching...</div>
+		return <div className="dark:text-zinc-200">Searching...</div>
 	}
 	if (_.isUndefined(videoClass.contextForSearchMap(searchTerm))) {
 		videoClass.setSearchTerm(searchTerm)
@@ -24,7 +24,7 @@ function SearchResults() {
 	if (_.isUndefined(searchResults)) return null
 
 	if (_.isEmpty(searchResults)) {
-		return <div className="dark:text-white">No results</div>
+		return <div className="dark:text-zinc-200">No results</div>
 	}
 
 	return (

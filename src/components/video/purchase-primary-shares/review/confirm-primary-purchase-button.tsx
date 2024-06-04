@@ -18,8 +18,8 @@ function ConfirmPrimaryPurchaseButton() {
 	return (
 		<Button
 			onClick={purchaseSplTokensHook}
-			colorClass="bg-emerald-200"
-			hoverClass="hover:bg-emerald-300"
+			colorClass="bg-emerald-200 dark:bg-emerald-600"
+			hoverClass="hover:bg-emerald-300 dark:hover:bg-emerald-700"
 			title="Confirm Purchase"
 			disabled={isLoading}
 			className="font-semibold"

@@ -15,11 +15,11 @@ function NewTokenSummary() {
 	const fanShares = solanaClass.newSplDetails.numberOfShares - creatorNumberShares - fortunaShares
 
 	return (
-		<div className = "bg-white border shadow rounded-lg w-full dark:border-b-2 p-2">
-			<h1 className = "flex text-xl text-center font-bold leading-none tracking-tight text-black mb-3">
+		<div className = "bg-white dark:bg-zinc-800 border shadow rounded-lg w-full dark:border-b-2 p-2">
+			<h1 className = "flex text-xl text-center font-semibold leading-none tracking-tight mb-3">
 				Token Summary
 			</h1>
-			<h2 className = "flex text-md text-center font-semibold leading-none tracking-tight text-black">
+			<h2 className = "flex text-md text-center font-semibold leading-none tracking-tight">
 				Share Distribution
 			</h2>
 			<div>
@@ -31,7 +31,7 @@ function NewTokenSummary() {
 			<div>
 				Available to fans: {fanShares} Shares
 			</div>
-			<h2 className = "flex text-md text-center font-semibold leading-none tracking-tight text-black mt-3">
+			<h2 className = "flex text-md text-center font-semibold leading-none tracking-tight mt-3">
 				Token Value Information
 			</h2>
 			Implied Video Value: <ImpliedVideoValue />
@@ -39,7 +39,7 @@ function NewTokenSummary() {
 				Pegging to USD
 				<div className="ml-2">
 					<Tooltip
-						message="The value of your token (in USD) will not change with Solana's price fluctuations"
+						message="The USD value of this token will not change with Solana's price fluctuations"
 						width="275px"
 						messageStart="center"
 					>

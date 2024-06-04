@@ -3,7 +3,10 @@ import LastSolanaPrice from "./last-solana-price"
 
 export default function WalletBalanceAndLastUpdate() {
 	return (
-		<div className="bg-white shadow-lg rounded-md p-4 mt-3 grid grid-cols-1 grid-rows-1 border">
+		<div
+			className="bg-zinc-100 dark:bg-zinc-800 rounded-md p-4 mt-3 \
+				grid grid-cols-1 grid-rows-1 text-zinc-950 dark:text-zinc-200"
+		>
 			<div>
 				Wallet Balance: <WalletBalance />
 			</div>
