@@ -1,4 +1,4 @@
-import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
+import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 
 interface Props {
 	video: VideoDataLessVideoUrl
@@ -6,7 +6,7 @@ interface Props {
 
 export default function Thumbnail(props: Props) {
 	const { video } = props
-	const navigateToVideoPage = useNavigateToVideo()
+	const navigateToVideoPage = useNavigateToVideoPage()
 
 	const {
 		uuid,

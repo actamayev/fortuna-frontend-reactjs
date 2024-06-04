@@ -4,7 +4,7 @@ import InstantAccessCost from "./instant-access-cost"
 import ReviewInstantAccessButton from "./review-instant-access-button"
 import { useExchangeContext } from "../../../../contexts/exchange-context"
 import { addDefiniteLeadingAt } from "../../../../utils/leading-at-operations"
-import useNavigateToCreator from "../../../../hooks/navigate/navigate-to-creator"
+import useNavigateToCreatorPage from "../../../../hooks/navigate/navigate-to-creator-page"
 import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
 
 interface Props {
@@ -16,7 +16,7 @@ function InitialInstantAccessInfo(props: Props) {
 	const { video, orNeeded } = props
 	const exchangeClass = useExchangeContext()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
-	const navigateToCreatorPage = useNavigateToCreator()
+	const navigateToCreatorPage = useNavigateToCreatorPage()
 
 	if (
 		_.isUndefined(video) ||

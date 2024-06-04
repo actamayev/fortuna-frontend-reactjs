@@ -1,4 +1,4 @@
-import useNavigateToVideo from "../../../hooks/navigate/navigate-to-video"
+import useNavigateToVideoPage from "../../../hooks/navigate/navigate-to-video-page"
 
 interface Props {
 	myExclusiveContent: MyExclusiveContentData
@@ -6,7 +6,7 @@ interface Props {
 
 export default function SingleMyExclusiveContent(props: Props) {
 	const { myExclusiveContent } = props
-	const navigateToVideoPage = useNavigateToVideo()
+	const navigateToVideoPage = useNavigateToVideoPage()
 
 	return (
 		<div className="bg-white shadow-lg rounded-lg p-4 m-2 grid grid-cols-1 grid-rows-1 border">

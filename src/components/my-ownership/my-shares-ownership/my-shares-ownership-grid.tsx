@@ -6,18 +6,18 @@ import "ag-grid-community/styles/ag-grid.css"
 import "ag-grid-community/styles/ag-theme-quartz.css"
 import useSetGridHeight from "../../../hooks/set-grid-height-use-effect"
 import useDefaultSiteTheme from "../../../hooks/memos/default-site-theme"
-import useNavigateToVideo from "../../../hooks/navigate/navigate-to-video"
+import useNavigateToVideoPage from "../../../hooks/navigate/navigate-to-video-page"
 import myOwnershipColumns from "../../../utils/grids/my-ownership/my-ownership-columns"
 import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 import createOwnershipArrayForGrid from "../../../utils/grids/my-ownership/create-ownership-array-for-grid"
 
 function MySharesOwnershipGrid() {
-	const defaultSiteTheme = useDefaultSiteTheme()
-	const positionsAndTransactionClass = usePositionsAndTransactionsContext()
 	const [rowData, setRowData] = useState<OwnershipGridRowData[]>([])
 	const [gridHeight, setGridHeight] = useState<string | number>("100%")
+	const defaultSiteTheme = useDefaultSiteTheme()
+	const positionsAndTransactionClass = usePositionsAndTransactionsContext()
 	useSetGridHeight(rowData.length, setGridHeight)
-	const navigateToVideo = useNavigateToVideo()
+	const navigateToVideoPage = useNavigateToVideoPage()
 
 	useEffect(() => {
 		if (_.isNull(positionsAndTransactionClass)) return
@@ -49,7 +49,7 @@ function MySharesOwnershipGrid() {
 					headerHeight={40}
 					paginationPageSize={50}
 					rowHeight={40}
-					onRowDoubleClicked={(ownership) => navigateToVideo(ownership.data.videoUUID)}
+					onRowDoubleClicked={(ownership) => navigateToVideoPage(ownership.data.videoUUID)}
 				/>
 			</div>
 		</div>

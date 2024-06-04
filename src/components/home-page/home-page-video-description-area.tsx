@@ -1,10 +1,10 @@
 import _ from "lodash"
 import PricePerShareArea from "./price-per-share-area"
 import ShowHomeVideoLockStatus from "./show-home-video-lock-status"
-import useNavigateToVideo from "../../hooks/navigate/navigate-to-video"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import SharesAvailableProgressBar from "./shares-available-progress-bar"
-import useNavigateToCreator from "../../hooks/navigate/navigate-to-creator"
+import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
+import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
 
 interface Props {
 	video: VideoDataLessVideoUrl
@@ -13,8 +13,8 @@ interface Props {
 
 export default function HomePageVideoDescriptionArea(props: Props) {
 	const { video, index } = props
-	const navigateToVideoPage = useNavigateToVideo()
-	const navigateToCreatorPage = useNavigateToCreator()
+	const navigateToVideoPage = useNavigateToVideoPage()
+	const navigateToCreatorPage = useNavigateToCreatorPage()
 
 	const {
 		splName,

@@ -1,5 +1,5 @@
 import useDateFormatter from "../../../hooks/date-formatter"
-import useNavigateToVideo from "../../../hooks/navigate/navigate-to-video"
+import useNavigateToVideoPage from "../../../hooks/navigate/navigate-to-video-page"
 
 interface Props {
 	videoData: VideoDataLessVideoUrl
@@ -8,7 +8,7 @@ interface Props {
 export default function SingleRecommendedVideo(props: Props) {
 	const { videoData } = props
 	const dateFormatter = useDateFormatter()
-	const navigateToVideo = useNavigateToVideo()
+	const navigateToVideoPage = useNavigateToVideoPage()
 
 	const {
 		uuid,
@@ -21,7 +21,7 @@ export default function SingleRecommendedVideo(props: Props) {
 		<div
 			className="flex-none flex flex-col items-start \
 				hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-64"
-			onClick={() => navigateToVideo(uuid)}
+			onClick={() => navigateToVideoPage(uuid)}
 		>
 			<img
 				src={imageUrl}

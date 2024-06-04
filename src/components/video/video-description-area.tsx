@@ -1,6 +1,6 @@
 import PricePerShareArea from "../home-page/price-per-share-area"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
-import useNavigateToCreator from "../../hooks/navigate/navigate-to-creator"
+import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
 
 interface Props {
 	video: SingleVideoDataFromBackend
@@ -8,7 +8,7 @@ interface Props {
 
 export default function VideoDescriptionArea(props: Props) {
 	const { video } = props
-	const navigateToCreatorPage = useNavigateToCreator()
+	const navigateToCreatorPage = useNavigateToCreatorPage()
 
 	const {
 		splName,

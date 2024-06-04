@@ -11,7 +11,7 @@ export default function Layout (props: Props) {
 	return (
 		<div className="min-h-screen dark:bg-neutral-900 flex flex-col">
 			<HeaderNav />
-			<div className="flex-1 w-full overflow-y-auto px-14 py-8 mt-14">
+			<div className="flex-1 w-full overflow-y-auto px-14 py-6 mt-14">
 				{children}
 			</div>
 			<Footer />

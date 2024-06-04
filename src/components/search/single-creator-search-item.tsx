@@ -1,5 +1,5 @@
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
-import useNavigateToCreator from "../../hooks/navigate/navigate-to-creator"
+import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
 
 interface Props {
 	creatorData: CreatorData
@@ -7,7 +7,7 @@ interface Props {
 
 export default function SingleCreatorSearchItem(props: Props) {
 	const { creatorData } = props
-	const navigateToCreatorPage = useNavigateToCreator()
+	const navigateToCreatorPage = useNavigateToCreatorPage()
 
 	return (
 		<div
