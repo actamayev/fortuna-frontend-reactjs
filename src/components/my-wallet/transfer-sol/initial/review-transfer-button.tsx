@@ -28,7 +28,6 @@ function ReviewTransferButton() {
 	}, [solanaClass, solanaClass?.transferSolDetails.transferAmount, solanaClass?.transferSolDetails.transferOption,
 		solanaClass?.transferSolDetails.doesPublicKeyExist, solanaClass?.transferSolDetails.isUsernameSelected])
 
-	console.log(isButtonDisabled)
 	return (
 		<Button
 			onClick={updateTransferSolDetails}
