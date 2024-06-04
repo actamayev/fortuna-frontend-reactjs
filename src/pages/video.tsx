@@ -6,7 +6,7 @@ import VideoPlayer from "../components/video/video-player"
 import { useVideoContext } from "../contexts/video-context"
 import { addLeadingAt } from "../utils/leading-at-operations"
 import useSetSingleVideo from "../hooks/videos/set-single-video"
-import TradeSharesSidebar from "../components/video/trade-shares-sidebar"
+import TradeSharesCard from "../components/video/trade-shares-card"
 import VideoDescriptionArea from "../components/video/video-description-area"
 import useRetrieveVideoUrlData from "../hooks/videos/retrieve-video-url-data"
 import MoreVideosMap from "../components/video/more-videos-area/more-videos-map"
@@ -39,7 +39,7 @@ function Video() {
 						className="fixed py-8 border-l pl-4 dark:border-zinc-800 border-zinc-100"
 						style={{ width: "300px", top: "56px", bottom: "160px" }}
 					>
-						<TradeSharesSidebar videoUUID={video.uuid} />
+						<TradeSharesCard videoUUID={video.uuid} />
 					</div>
 				</div>
 			</div>
