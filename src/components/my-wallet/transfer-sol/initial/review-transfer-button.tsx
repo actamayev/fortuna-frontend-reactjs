@@ -16,14 +16,19 @@ function ReviewTransferButton() {
 		if (_.isNull(solanaClass)) return true
 		if (_.isEqual(solanaClass.transferSolDetails.transferAmount, 0)) return true
 		if (
-			solanaClass.transferSolDetails.doesPublicKeyExist === false &&
+			solanaClass.transferSolDetails.transferOption === "username" &&
 			solanaClass.transferSolDetails.isUsernameSelected === false
+		) return true
+		if (
+			solanaClass.transferSolDetails.transferOption === "publicKey" &&
+			solanaClass.transferSolDetails.doesPublicKeyExist === false
 		) return true
 		return false
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [solanaClass, solanaClass?.transferSolDetails.transferAmount,
+	}, [solanaClass, solanaClass?.transferSolDetails.transferAmount, solanaClass?.transferSolDetails.transferOption,
 		solanaClass?.transferSolDetails.doesPublicKeyExist, solanaClass?.transferSolDetails.isUsernameSelected])
 
+	console.log(isButtonDisabled)
 	return (
 		<Button
 			onClick={updateTransferSolDetails}

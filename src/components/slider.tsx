@@ -17,6 +17,7 @@ export default function Slider(props: Props) {
 		<>
 			<div
 				className="relative cursor-pointer"
+				id="toggle-pill"
 				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
 				onClick={onChangeCheckedCondition}

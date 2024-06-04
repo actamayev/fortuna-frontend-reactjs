@@ -2,6 +2,7 @@ import _ from "lodash"
 import { useCallback, useEffect } from "react"
 import { useLocation } from "react-router-dom"
 
+// TODO: The transfer sol button shouldn't close when the pill or dark mode is accessed.
 export default function useClickOutSideUseEffect(
 	dropdownRef: React.RefObject<HTMLDivElement>,
 	setIsOpen?: (newState: boolean) => void

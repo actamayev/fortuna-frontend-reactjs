@@ -45,7 +45,7 @@ function SelectTransferAmount() {
 					max={solanaClass.walletBalanceSol || 0}
 					step={0.0001}
 				/>
-				{_.round(solanaClass.transferSolDetails.transferAmount, 4)} Sol
+				{_.round(solanaClass.transferSolDetails.transferAmount, 4)} SOL
 			</div>
 		)
 	}
