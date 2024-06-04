@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useState, useRef, useMemo } from "react"
 import { FiAlignJustify } from "react-icons/fi"
+import { useState, useRef, useMemo } from "react"
 import DropdownItemsContainer from "./dropdown-items-container"
 import useClickOutSideUseEffect from "../../../hooks/click-outside-use-effect"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"

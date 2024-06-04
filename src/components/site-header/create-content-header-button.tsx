@@ -19,7 +19,7 @@ function CreateContentHeaderButton() {
 		<div className="inline-flex items-center justify-center flex-grow flex-shrink mx-2">
 			<Link
 				to="/creator/upload-content"
-				className="text-center w-full"
+				className="text-center font-semibold w-full"
 			>
 				<div
 					className="rounded text-white dark:text-zinc-950 px-3 h-9 \
