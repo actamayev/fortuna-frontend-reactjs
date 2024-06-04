@@ -2,7 +2,7 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import InstantAccessCost from "./instant-access-cost"
 import ReviewInstantAccessButton from "./review-instant-access-button"
-import { useExchangeContext } from "../../../../contexts/exchange-context"
+import { useMarketContext } from "../../../../contexts/market-context"
 import { addDefiniteLeadingAt } from "../../../../utils/leading-at-operations"
 import useNavigateToCreatorPage from "../../../../hooks/navigate/navigate-to-creator-page"
 import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
@@ -14,7 +14,7 @@ interface Props {
 
 function InitialInstantAccessInfo(props: Props) {
 	const { video, orNeeded } = props
-	const exchangeClass = useExchangeContext()
+	const marketClass = useMarketContext()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const navigateToCreatorPage = useNavigateToCreatorPage()
 
@@ -22,8 +22,8 @@ function InitialInstantAccessInfo(props: Props) {
 		_.isUndefined(video) ||
 		video.isSplExclusive === false ||
 		_.isNull(positionsAndTransactionsClass) ||
-		_.isNull(exchangeClass) ||
-		exchangeClass.instantAccessToExclusiveContentStage !== "initial"
+		_.isNull(marketClass) ||
+		marketClass.instantAccessToExclusiveContentStage !== "initial"
 	) return null
 
 	if (video.isContentInstantlyAccessible !== true) {

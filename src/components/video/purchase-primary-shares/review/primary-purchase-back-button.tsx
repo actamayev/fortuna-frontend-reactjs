@@ -2,15 +2,15 @@ import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import Button from "../../../button"
-import { useExchangeContext } from "../../../../contexts/exchange-context"
+import { useMarketContext } from "../../../../contexts/market-context"
 
 function PrimaryPurchaseBackButton() {
-	const exchangeClass = useExchangeContext()
+	const marketClass = useMarketContext()
 
 	const updatePurchasePrimarySplSharesDetails = useCallback(() => {
-		if (_.isNull(exchangeClass)) return
-		exchangeClass.updatePurchasePrimarySplSharesDetails("purchaseStage", "initial")
-	} ,[exchangeClass])
+		if (_.isNull(marketClass)) return
+		marketClass.updatePurchasePrimarySplSharesDetails("purchaseStage", "initial")
+	} ,[marketClass])
 
 	return (
 		<Button

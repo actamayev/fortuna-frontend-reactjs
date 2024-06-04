@@ -3,7 +3,7 @@ import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import Button from "../../../button"
 import { useSolanaContext } from "../../../../contexts/solana-context"
-import { useExchangeContext } from "../../../../contexts/exchange-context"
+import { useMarketContext } from "../../../../contexts/market-context"
 
 interface Props {
 	video: SingleVideoDataFromBackend
@@ -11,7 +11,7 @@ interface Props {
 
 function ReviewInstantAccessButton(props: Props) {
 	const { video } = props
-	const exchangeClass = useExchangeContext()
+	const marketClass = useMarketContext()
 	const solanaClass = useSolanaContext()
 
 	const isAbleToPurchaseShares = useMemo(() => {
@@ -21,9 +21,9 @@ function ReviewInstantAccessButton(props: Props) {
 	}, [solanaClass, solanaClass?.walletBalanceUSD.get(), video.priceToInstantlyAccessExclusiveContentUsd])
 
 	const onClickButton = useCallback(() => {
-		if (_.isNull(exchangeClass)) return
-		exchangeClass.setInstantAccessToExclusiveContentStage("review")
-	}, [exchangeClass])
+		if (_.isNull(marketClass)) return
+		marketClass.setInstantAccessToExclusiveContentStage("review")
+	}, [marketClass])
 
 	if (_.isNull(video.priceToInstantlyAccessExclusiveContentUsd)) return null
 

@@ -4,22 +4,22 @@ import { useParams } from "react-router-dom"
 import { useVideoContext } from "../../../../contexts/video-context"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import useDefaultCurrency from "../../../../hooks/memos/default-currency"
-import { useExchangeContext } from "../../../../contexts/exchange-context"
+import { useMarketContext } from "../../../../contexts/market-context"
 
 function ShowRemainingWalletBalanceAfterPrimaryPurchase() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const videoClass = useVideoContext()
 	const solanaClass = useSolanaContext()
-	const exchangeClass = useExchangeContext()
+	const marketClass = useMarketContext()
 	const defaultCurrency = useDefaultCurrency()
 
-	if (_.isNull(solanaClass) || _.isNull(exchangeClass)) return null
+	if (_.isNull(solanaClass) || _.isNull(marketClass)) return null
 
 	const video = videoClass.findVideoFromUUID(videoUUID)
 	if (_.isUndefined(video)) return null
 
 	const amountSpendingOnPrimaryPurchaseUsd =
-		video.listingSharePriceUsd * exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing
+		video.listingSharePriceUsd * marketClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing
 
 	const remainingWalletBalanceUsd = solanaClass.walletBalanceUSD.get() - amountSpendingOnPrimaryPurchaseUsd
 

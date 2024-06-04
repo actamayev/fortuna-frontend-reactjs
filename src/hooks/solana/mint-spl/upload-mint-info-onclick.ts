@@ -5,7 +5,7 @@ import useTypedNavigate from "../../navigate/typed-navigate"
 import useConfirmNewSplDetails from "./confirm-new-spl-details"
 import { isNonSuccessResponse } from "../../../utils/type-checks"
 import { useSolanaContext } from "../../../contexts/solana-context"
-import { useExchangeContext } from "../../../contexts/exchange-context"
+import { useMarketContext } from "../../../contexts/market-context"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
@@ -17,7 +17,7 @@ export default function useUploadMintInfoOnclick(): (
 	const navigate = useTypedNavigate()
 	const fortunaApiClient = useApiClientContext()
 	const solanaClass = useSolanaContext()
-	const exchangeClass = useExchangeContext()
+	const marketClass = useMarketContext()
 	const personalInfoClass = usePersonalInfoContext()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const retrieveSolPrice = useRetrieveSolPrice()
@@ -32,7 +32,7 @@ export default function useUploadMintInfoOnclick(): (
 			if (
 				_.isNull(solanaClass) ||
 				_.isNull(personalInfoClass) ||
-				_.isNull(exchangeClass) ||
+				_.isNull(marketClass) ||
 				_.isNull(positionsAndTransactionsClass) ||
 				_.isNull(solanaClass.newSplDetails.selectedVideo) ||
 				_.isNull(solanaClass.newSplDetails.selectedImage) ||
@@ -107,7 +107,7 @@ export default function useUploadMintInfoOnclick(): (
 			setStatus("")
 			if (!_.isNull(solanaClass)) solanaClass.setIsNewSplLoading(false)
 		}
-	}, [solanaClass, personalInfoClass, exchangeClass, positionsAndTransactionsClass, confirmNewSplDetails,
+	}, [solanaClass, personalInfoClass, marketClass, positionsAndTransactionsClass, confirmNewSplDetails,
 		retrieveSolPrice, fortunaApiClient.uploadDataService, fortunaApiClient.solanaDataService, navigate])
 
 	return uploadMintInfoOnclick

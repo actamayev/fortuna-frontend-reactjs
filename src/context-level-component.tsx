@@ -2,7 +2,7 @@ import AuthProvider from "./contexts/auth-context"
 import VideoProvider from "./contexts/video-context"
 import SolanaProvider from "./contexts/solana-context"
 import YouTubeProvider from "./contexts/youtube-context"
-import ExchangeProvider from "./contexts/exchange-context"
+import MarketProvider from "./contexts/market-context"
 import PersonalInfoProvider from "./contexts/personal-info-context"
 import FortunaApiClientProvider from "./contexts/fortuna-api-client-context"
 import PositionsAndTransactionsProvider from "./contexts/positions-and-transactions-context"
@@ -13,7 +13,7 @@ export default function ContextLevelComponent ({ children } : { children: React.
 			<VideoProvider>
 				<SolanaProvider>
 					<PositionsAndTransactionsProvider>
-						<ExchangeProvider>
+						<MarketProvider>
 							<PersonalInfoProvider>
 								<YouTubeProvider>
 									<FortunaApiClientProvider>
@@ -21,7 +21,7 @@ export default function ContextLevelComponent ({ children } : { children: React.
 									</FortunaApiClientProvider>
 								</YouTubeProvider>
 							</PersonalInfoProvider>
-						</ExchangeProvider>
+						</MarketProvider>
 					</PositionsAndTransactionsProvider>
 				</SolanaProvider>
 			</VideoProvider>

@@ -3,7 +3,7 @@ import { useCallback } from "react"
 import { isNonSuccessResponse } from "../../../utils/type-checks"
 import { useVideoContext } from "../../../contexts/video-context"
 import { useSolanaContext } from "../../../contexts/solana-context"
-import { useExchangeContext } from "../../../contexts/exchange-context"
+import { useMarketContext } from "../../../contexts/market-context"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 
@@ -12,7 +12,7 @@ export default function usePurchasePrimarySplTokens(): (
 	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => Promise<void> {
 	const videoClass = useVideoContext()
-	const exchangeClass = useExchangeContext()
+	const marketClass = useMarketContext()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const solanaClass = useSolanaContext()
 	const fortunaApiClient = useApiClientContext()
@@ -23,7 +23,7 @@ export default function usePurchasePrimarySplTokens(): (
 	): Promise<void> => {
 		try {
 			if (
-				_.isNull(exchangeClass) ||
+				_.isNull(marketClass) ||
 				_.isNull(positionsAndTransactionsClass) ||
 				_.isNull(solanaClass) ||
 				_.isNull(fortunaApiClient.httpClient.accessToken)
@@ -32,10 +32,10 @@ export default function usePurchasePrimarySplTokens(): (
 			if (_.isUndefined(video)) return
 			setIsLoading(true)
 			const purchaseSplTokensData: PurchaseSplTokensData = {
-				numberOfTokensPurchasing: exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing,
-				splPublicKey: exchangeClass.purchasePrimarySplSharesDetails.splPublicKey
+				numberOfTokensPurchasing: marketClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing,
+				splPublicKey: marketClass.purchasePrimarySplSharesDetails.splPublicKey
 			}
-			const purchaseResponse = await fortunaApiClient.exchangeDataService.primarySplTokenPurchase(purchaseSplTokensData)
+			const purchaseResponse = await fortunaApiClient.MarketDataService.primarySplTokenPurchase(purchaseSplTokensData)
 			if (!_.isEqual(purchaseResponse.status, 200) || isNonSuccessResponse(purchaseResponse.data)) {
 				throw Error ("Error completing primary SPL purchase")
 			}
@@ -44,7 +44,7 @@ export default function usePurchasePrimarySplTokens(): (
 			videoClass.tokenPurchaseUpdateAvailableShares(videoUUID, purchaseSplTokensData.numberOfTokensPurchasing)
 			if (!_.isUndefined(purchaseResponse.data.videoUrl)) videoClass.addVideoUrlToVideo(videoUUID, purchaseResponse.data.videoUrl)
 
-			exchangeClass.resetPurchaseSplSharesDetails()
+			marketClass.resetPurchaseSplSharesDetails()
 			const purchaseValue = purchaseSplTokensData.numberOfTokensPurchasing * video.listingSharePriceUsd
 			solanaClass.alterWalletBalanceUsd(-purchaseValue)
 			// FUTURE TODO: Add this transaction to my transactions (don't just call retrieveTransactions - redundant)
@@ -55,8 +55,8 @@ export default function usePurchasePrimarySplTokens(): (
 		} finally {
 			setIsLoading(false)
 		}
-	}, [exchangeClass, positionsAndTransactionsClass, solanaClass,
-		fortunaApiClient.httpClient.accessToken, fortunaApiClient.exchangeDataService, videoClass])
+	}, [marketClass, positionsAndTransactionsClass, solanaClass,
+		fortunaApiClient.httpClient.accessToken, fortunaApiClient.MarketDataService, videoClass])
 
 	return purchasePrimarySplTokens
 }

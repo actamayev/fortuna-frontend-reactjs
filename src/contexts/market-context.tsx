@@ -1,7 +1,7 @@
 import { action, makeAutoObservable } from "mobx"
 import { createContext, useContext, useMemo } from "react"
 
-class ExchangeClass {
+class MarketClass {
 	public purchasePrimarySplSharesDetails: PurchasePrimarySplSharesDetails = {
 		numberOfTokensPurchasing: 0,
 		splPublicKey: "",
@@ -42,16 +42,16 @@ class ExchangeClass {
 	}
 }
 
-const ExchangeContext = createContext<ExchangeClass | null>(null)
+const MarketContext = createContext<MarketClass | null>(null)
 
-export default function ExchangeProvider ({ children }: { children: React.ReactNode }) {
-	const exchangeClass = useMemo(() => new ExchangeClass(), [])
+export default function MarketProvider ({ children }: { children: React.ReactNode }) {
+	const marketClass = useMemo(() => new MarketClass(), [])
 
 	return (
-		<ExchangeContext.Provider value={exchangeClass}>
+		<MarketContext.Provider value={marketClass}>
 			{children}
-		</ExchangeContext.Provider>
+		</MarketContext.Provider>
 	)
 }
 
-export const useExchangeContext = () => useContext(ExchangeContext)
+export const useMarketContext = () => useContext(MarketContext)

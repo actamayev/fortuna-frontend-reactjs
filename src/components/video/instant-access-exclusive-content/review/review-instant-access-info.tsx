@@ -4,22 +4,22 @@ import { useParams } from "react-router-dom"
 import InstantAccessBackButton from "./instant-access-back-button"
 import { useVideoContext } from "../../../../contexts/video-context"
 import ConfirmInstantAccessButton from "./confirm-instant-access-button"
-import { useExchangeContext } from "../../../../contexts/exchange-context"
+import { useMarketContext } from "../../../../contexts/market-context"
 import ShowInstantAccessPurchasePrice from "./show-instant-access-purchase-price"
 import ShowRemainingWalletBalanceAfterInstantAccessPurchase from "./show-remaining-wallet-balance-after-instant-access-purchase"
 
 function ReviewInstantAccessInfo() {
 	const { videoUUID } = useParams<{ videoUUID: string}>()
 	const videoClass = useVideoContext()
-	const exchangeClass = useExchangeContext()
+	const marketClass = useMarketContext()
 
 	const video = videoClass.findVideoFromUUID(videoUUID)
 
 	if (
 		_.isUndefined(video) ||
 		video.isSplExclusive === false ||
-		_.isNull(exchangeClass) ||
-		exchangeClass.instantAccessToExclusiveContentStage !== "review"
+		_.isNull(marketClass) ||
+		marketClass.instantAccessToExclusiveContentStage !== "review"
 	) return null
 
 	return (

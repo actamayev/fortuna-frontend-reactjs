@@ -3,24 +3,24 @@ import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import { useCallback, useMemo } from "react"
 import RangeSelectorSlider from "../../../range-selector-slider"
-import { useExchangeContext } from "../../../../contexts/exchange-context"
-import useCalculateMaxSharesToPurchase from "../../../../hooks/exchange/purchase-spl-tokens/calculate-max-shares-to-purchase"
+import { useMarketContext } from "../../../../contexts/market-context"
+import useCalculateMaxSharesToPurchase from "../../../../hooks/market/purchase-spl-tokens/calculate-max-shares-to-purchase"
 
 function SelectNumberSharesToPurchase() {
-	const exchangeClass = useExchangeContext()
+	const marketClass = useMarketContext()
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const calculateMaxSharesToPurchase = useCalculateMaxSharesToPurchase()
 
 	const numberOfTokensPurchasing = useMemo(() => {
-		if (_.isNull(exchangeClass)) return 0
-		return exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing
+		if (_.isNull(marketClass)) return 0
+		return marketClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [exchangeClass, exchangeClass?.purchasePrimarySplSharesDetails.numberOfTokensPurchasing])
+	}, [marketClass, marketClass?.purchasePrimarySplSharesDetails.numberOfTokensPurchasing])
 
 	const updatePurchasePrimarySplSharesDetails = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-		if (_.isNull(exchangeClass)) return
-		return exchangeClass.updatePurchasePrimarySplSharesDetails("numberOfTokensPurchasing", parseInt(e.target.value, 10))
-	}, [exchangeClass])
+		if (_.isNull(marketClass)) return
+		return marketClass.updatePurchasePrimarySplSharesDetails("numberOfTokensPurchasing", parseInt(e.target.value, 10))
+	}, [marketClass])
 
 	return (
 		<div>

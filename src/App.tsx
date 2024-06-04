@@ -23,13 +23,13 @@ import CreatorRoutes from "./routes/creator-routes"
 import useGetAuthDataFromStorage from "./hooks/auth/get-auth-data-from-storage"
 import useInitializeTagManager from "./hooks/analytics/initiallize-tag-manager"
 import useRetrieveSolPriceUseEffect from "./hooks/solana/retrieve-sol-price-use-effect"
-import useRetrieveMyContentUseEffect from "./hooks/exchange/retrieve-my-content-use-effect"
+import useRetrieveMyContentUseEffect from "./hooks/market/retrieve-my-content-use-effect"
 import useRetrieveYouTubeInfoUseEffect from "./hooks/youtube/retrieve-youtube-info-use-effect"
-import useRetrieveMyOwnershipUseEffect from "./hooks/exchange/retrieve-my-ownership-use-effect"
+import useRetrieveMyOwnershipUseEffect from "./hooks/market/retrieve-my-ownership-use-effect"
 import useRetrieveWalletBalanceUseEffect from "./hooks/solana/retrieve-wallet-balance-use-effect"
 import useRedirectBackToRegisterUsername from "./hooks/redirects/redirect-back-to-register-username"
 import useRetrievePersonalInfoUseEffect from "./hooks/personal-info/retrieve-personal-info-use-effect"
-import useResetPurchaseSplAfterNavigation from "./hooks/exchange/purchase-spl-tokens/reset-purchase-spl-after-navigation"
+import useResetPurchaseSplAfterNavigation from "./hooks/market/purchase-spl-tokens/reset-purchase-spl-after-navigation"
 
 function App() {
 	// Don't change the getAuthData to a useEffect, or else it doesn't work immediately after login

@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios"
 import FortunaHttpClient from "../classes/fortuna-http-client"
 
-export default class ExchangeDataService {
+export default class MarketDataService {
 	constructor(private readonly pathHeader: PathHeaders, private readonly httpClient: FortunaHttpClient) {
 	}
 

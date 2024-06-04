@@ -1,21 +1,21 @@
 import _ from "lodash"
 import { useCallback, useEffect } from "react"
 import { useLocation } from "react-router-dom"
-import { useExchangeContext } from "../../../contexts/exchange-context"
+import { useMarketContext } from "../../../contexts/market-context"
 
 export default function useResetPurchaseSplAfterNavigation(): void {
 	const location = useLocation()
-	const exchangeClass = useExchangeContext()
+	const marketClass = useMarketContext()
 
 	const resetPurchaseSplAfterNavigation = useCallback(() => {
 		try {
-			if (_.isNull(exchangeClass)) return
-			exchangeClass.resetPurchaseSplSharesDetails()
-			exchangeClass.setInstantAccessToExclusiveContentStage("initial")
+			if (_.isNull(marketClass)) return
+			marketClass.resetPurchaseSplSharesDetails()
+			marketClass.setInstantAccessToExclusiveContentStage("initial")
 		} catch (error) {
 			console.error(error)
 		}
-	}, [exchangeClass])
+	}, [marketClass])
 
 	useEffect(() => {
 		resetPurchaseSplAfterNavigation()

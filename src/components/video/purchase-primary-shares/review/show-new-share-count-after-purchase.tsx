@@ -1,18 +1,18 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
-import { useExchangeContext } from "../../../../contexts/exchange-context"
+import { useMarketContext } from "../../../../contexts/market-context"
 import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
 
 function ShowNewShareCountAfterPurchase() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
-	const exchangeClass = useExchangeContext()
+	const marketClass = useMarketContext()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
-	if (_.isNull(exchangeClass) || _.isNull(positionsAndTransactionsClass) || _.isUndefined(videoUUID)) return null
+	if (_.isNull(marketClass) || _.isNull(positionsAndTransactionsClass) || _.isUndefined(videoUUID)) return null
 
 	const numberSharesOwned = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(videoUUID)
-	const { numberOfTokensPurchasing } = exchangeClass.purchasePrimarySplSharesDetails
+	const { numberOfTokensPurchasing } = marketClass.purchasePrimarySplSharesDetails
 	const newShareCount = numberSharesOwned + numberOfTokensPurchasing
 
 	return (

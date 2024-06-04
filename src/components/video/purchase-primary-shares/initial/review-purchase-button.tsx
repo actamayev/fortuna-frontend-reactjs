@@ -2,8 +2,8 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import Button from "../../../button"
-import { useExchangeContext } from "../../../../contexts/exchange-context"
-import useCalculateMaxSharesToPurchase from "../../../../hooks/exchange/purchase-spl-tokens/calculate-max-shares-to-purchase"
+import { useMarketContext } from "../../../../contexts/market-context"
+import useCalculateMaxSharesToPurchase from "../../../../hooks/market/purchase-spl-tokens/calculate-max-shares-to-purchase"
 
 interface Props {
 	video: SingleVideoDataFromBackend
@@ -11,21 +11,21 @@ interface Props {
 
 function ReviewPurchaseButton(props: Props) {
 	const { video } = props
-	const exchangeClass = useExchangeContext()
+	const marketClass = useMarketContext()
 	const calculateMaxSharesToPurchase = useCalculateMaxSharesToPurchase()
 
 	const isAbleToPurchaseShares = useMemo(() => {
-		if (_.isNull(exchangeClass)) return false
-		if (_.isEqual(exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, 0)) return false
-		return exchangeClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing <= calculateMaxSharesToPurchase(video.uuid)
+		if (_.isNull(marketClass)) return false
+		if (_.isEqual(marketClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, 0)) return false
+		return marketClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing <= calculateMaxSharesToPurchase(video.uuid)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [exchangeClass, exchangeClass?.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, video.uuid])
+	}, [marketClass, marketClass?.purchasePrimarySplSharesDetails.numberOfTokensPurchasing, video.uuid])
 
 	const onClickButton = useCallback(() => {
-		if (_.isNull(exchangeClass)) return
-		exchangeClass.updatePurchasePrimarySplSharesDetails("purchaseStage", "review")
-		exchangeClass.updatePurchasePrimarySplSharesDetails("splPublicKey", video.splPublicKey)
-	}, [exchangeClass, video.splPublicKey])
+		if (_.isNull(marketClass)) return
+		marketClass.updatePurchasePrimarySplSharesDetails("purchaseStage", "review")
+		marketClass.updatePurchasePrimarySplSharesDetails("splPublicKey", video.splPublicKey)
+	}, [marketClass, video.splPublicKey])
 
 	return (
 		<Button

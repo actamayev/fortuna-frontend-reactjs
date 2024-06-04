@@ -3,7 +3,7 @@ import { observer } from "mobx-react"
 import { useCallback, useState } from "react"
 import { useParams } from "react-router-dom"
 import Button from "../../../button"
-import usePurchaseInstantAccess from "../../../../hooks/exchange/purchase-instant-access"
+import usePurchaseInstantAccess from "../../../../hooks/market/purchase-instant-access"
 
 function ConfirmInstantAccessButton() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()

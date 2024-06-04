@@ -13,7 +13,7 @@ declare global {
 	type LoginOrRegisterSuccess = { accessToken: string, publicKey: string }
 	type GoogleAuthSuccess = { accessToken: string, isNewUser: boolean, publicKey: string }
 
-	// Exchange Resposnes:
+	// Market Resposnes:
 	interface PrimarySplTokenPurchaseResponse extends MyOwnership {
 		videoUrl: string | undefined
 	}

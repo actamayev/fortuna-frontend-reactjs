@@ -3,7 +3,7 @@ import { useCallback } from "react"
 import { isNonSuccessResponse } from "../../utils/type-checks"
 import { useVideoContext } from "../../contexts/video-context"
 import { useSolanaContext } from "../../contexts/solana-context"
-import { useExchangeContext } from "../../contexts/exchange-context"
+import { useMarketContext } from "../../contexts/market-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
 
@@ -13,7 +13,7 @@ export default function usePurchaseInstantAccess(): (
 ) => Promise<void> {
 	const videoClass = useVideoContext()
 	const solanaClass = useSolanaContext()
-	const exchangeClass = useExchangeContext()
+	const marketClass = useMarketContext()
 	const fortunaApiClient = useApiClientContext()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
@@ -23,7 +23,7 @@ export default function usePurchaseInstantAccess(): (
 	): Promise<void> => {
 		try {
 			if (
-				_.isNull(exchangeClass) ||
+				_.isNull(marketClass) ||
 				_.isNull(solanaClass) ||
 				_.isNull(fortunaApiClient.httpClient.accessToken) ||
 				_.isNull(positionsAndTransactionsClass)
@@ -31,7 +31,7 @@ export default function usePurchaseInstantAccess(): (
 			const video = videoClass.findVideoFromUUID(videoUUID)
 			if (_.isUndefined(video)) return
 			setIsLoading(true)
-			const purchaseResponse = await fortunaApiClient.exchangeDataService.purchaseExclusiveContentAccess(videoUUID)
+			const purchaseResponse = await fortunaApiClient.MarketDataService.purchaseExclusiveContentAccess(videoUUID)
 			if (!_.isEqual(purchaseResponse.status, 200) || isNonSuccessResponse(purchaseResponse.data)) {
 				throw Error ("Error completing primary SPL purchase")
 			}
@@ -42,7 +42,7 @@ export default function usePurchaseInstantAccess(): (
 				uuid: video.uuid
 			}
 			positionsAndTransactionsClass.addExclusiveContent(exclusiveContentToAddToList)
-			exchangeClass.setInstantAccessToExclusiveContentStage("initial")
+			marketClass.setInstantAccessToExclusiveContentStage("initial")
 			if (_.isNull(video.priceToInstantlyAccessExclusiveContentUsd)) return
 			solanaClass.alterWalletBalanceUsd(-video.priceToInstantlyAccessExclusiveContentUsd)
 			// FUTURE TODO: Add this transaction to my transactions (don't just call retrieveTransactions - redundant)
@@ -53,8 +53,8 @@ export default function usePurchaseInstantAccess(): (
 		} finally {
 			setIsLoading(false)
 		}
-	}, [exchangeClass, solanaClass, positionsAndTransactionsClass, videoClass,
-		fortunaApiClient.httpClient.accessToken, fortunaApiClient.exchangeDataService])
+	}, [marketClass, solanaClass, positionsAndTransactionsClass, videoClass,
+		fortunaApiClient.httpClient.accessToken, fortunaApiClient.MarketDataService])
 
 	return purchaseInstantAccess
 }
