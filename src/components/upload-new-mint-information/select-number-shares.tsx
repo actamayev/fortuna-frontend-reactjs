@@ -21,7 +21,7 @@ function SelectNumberShares() {
 	}, [solanaClass])
 
 	return (
-		<div className="flex flex-col space-y-4 text-zinc-950 dark:text-zinc-200">
+		<div className="flex flex-col space-y-4">
 			<RangeSelectorSlider
 				title="Number of Shares"
 				value={numberOfShares}

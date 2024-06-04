@@ -21,7 +21,7 @@ function SelectCreatorOwnershipPercentage() {
 	}, [solanaClass])
 
 	return (
-		<div className="flex flex-col space-y-4 text-zinc-950 dark:text-zinc-200">
+		<div className="flex flex-col space-y-4">
 			<RangeSelectorSlider
 				title="Retained Ownership Percentage"
 				value={creatorOwnershipPercentage}
