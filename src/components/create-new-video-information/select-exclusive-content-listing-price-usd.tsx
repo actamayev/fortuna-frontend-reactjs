@@ -15,9 +15,9 @@ function SelectExclusiveContentListingPriceUsd() {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [creatorClass, creatorClass?.newVideoDetails.listingPriceToAccessUsd])
 
-	const updateNewSplDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(creatorClass)) return
-		creatorClass.updateNewSplDetails("listingPriceToAccessUsd", Number(event.target.value))
+		creatorClass.updateNewVideoDetails("listingPriceToAccessUsd", Number(event.target.value))
 	}, [creatorClass])
 
 	return (
@@ -25,7 +25,7 @@ function SelectExclusiveContentListingPriceUsd() {
 			<RangeSelectorSlider
 				title="Offering price per share ($)"
 				value={listingPriceToAccessUsd}
-				onChange={updateNewSplDetails}
+				onChange={updateNewVideoDetails}
 				min={0.5}
 				max={50}
 				step={0.05}

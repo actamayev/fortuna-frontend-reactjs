@@ -7,7 +7,7 @@ import { useMarketContext } from "../../../../contexts/market-context"
 function InstantAccessBackButton() {
 	const marketClass = useMarketContext()
 
-	const updatePurchasePrimarySplSharesDetails = useCallback(() => {
+	const setInstantAccessToExclusiveContentStage = useCallback(() => {
 		if (_.isNull(marketClass)) return
 		marketClass.setInstantAccessToExclusiveContentStage("initial")
 	} ,[marketClass])
@@ -17,7 +17,7 @@ function InstantAccessBackButton() {
 			title="<"
 			colorClass="bg-blue-200 dark:bg-blue-600"
 			hoverClass="hover:bg-blue-300 dark:hover:bg-blue-700"
-			onClick={updatePurchasePrimarySplSharesDetails}
+			onClick={setInstantAccessToExclusiveContentStage}
 			className="font-semibold"
 		/>
 	)

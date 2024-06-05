@@ -14,8 +14,12 @@ class CreatorClass {
 		description: "",
 		selectedImage: null,
 		selectedVideo: null,
-		isContentExclusive: false,
-		tierData: []
+		isContentExclusive: true,
+		tierData: [{
+			tierNumber: 1,
+			tierDiscount: 10,
+			purchasesInThisTier: 100
+		}]
 	}
 	public isNewVideoLoading = false
 
@@ -35,7 +39,7 @@ class CreatorClass {
 		return this.myContent.find(content => content.uuid === uuid)
 	}
 
-	public setIsNewSplLoading = action((newState: boolean): void => {
+	public setIsNewVideoLoading = action((newState: boolean): void => {
 		this.isNewVideoLoading = newState
 	})
 
@@ -58,7 +62,7 @@ class CreatorClass {
 		return false
 	}
 
-	public updateNewSplDetails = action(<K extends keyof NewVideoDetails>(
+	public updateNewVideoDetails = action(<K extends keyof NewVideoDetails>(
 		key: K, value: NewVideoDetails[K]
 	) => {
 
@@ -67,14 +71,16 @@ class CreatorClass {
 			return
 		}
 		this.newVideoDetails[key] = value
-		if (key === "isContentExclusive" && value === true) {
-			if (_.isEmpty(this.newVideoDetails.tierData)) {
-				this.newVideoDetails.tierData = [{
-					tierNumber: 1,
-					purchasesInThisTier: 100,
-					tierDiscount: 20
-				}]
+		if (key === "isContentExclusive") {
+			if (value === false) {
+				this.newVideoDetails.tierData = []
+				return
 			}
+			this.newVideoDetails.tierData = [{
+				tierNumber: 1,
+				tierDiscount: 10,
+				purchasesInThisTier: 100
+			}]
 		}
 	})
 
@@ -86,15 +92,19 @@ class CreatorClass {
 		this.isRetrievingContent = newState
 	})
 
-	public resetNewSplDetails = action(() => {
+	public resetNewVideoDetails = action(() => {
 		this.newVideoDetails = {
 			videoName: "",
 			listingPriceToAccessUsd: 0.5,
 			description: "",
 			selectedImage: null,
 			selectedVideo: null,
-			isContentExclusive: false,
-			tierData: []
+			isContentExclusive: true,
+			tierData: [{
+				tierNumber: 1,
+				tierDiscount: 10,
+				purchasesInThisTier: 100
+			}]
 		}
 	})
 
@@ -103,7 +113,7 @@ class CreatorClass {
 		this.hasContentToRetrieve = true
 		this.isRetrievingContent = false
 
-		this.resetNewSplDetails()
+		this.resetNewVideoDetails()
 		this.isNewVideoLoading = false
 	}
 }

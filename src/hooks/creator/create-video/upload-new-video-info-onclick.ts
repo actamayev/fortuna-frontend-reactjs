@@ -21,7 +21,7 @@ export default function useUploadMintInfoOnclick(): (
 	const marketClass = useMarketContext()
 	const personalInfoClass = usePersonalInfoContext()
 	const retrieveSolPrice = useRetrieveSolPrice()
-	const confirmNewSplDetails = useConfirmNewVideoDetails()
+	const confirmNewVideoDetails = useConfirmNewVideoDetails()
 
 	// eslint-disable-next-line complexity
 	const uploadMintInfoOnclick = useCallback(async (
@@ -36,10 +36,10 @@ export default function useUploadMintInfoOnclick(): (
 				_.isNull(marketClass) ||
 				_.isNull(creatorClass.newVideoDetails.selectedVideo) ||
 				_.isNull(creatorClass.newVideoDetails.selectedImage) ||
-				confirmNewSplDetails === false
+				confirmNewVideoDetails === false
 			) return
 
-			creatorClass.setIsNewSplLoading(true)
+			creatorClass.setIsNewVideoLoading(true)
 
 			await retrieveSolPrice()
 			if (_.isNull(solanaClass.solPriceDetails)) return
@@ -61,10 +61,10 @@ export default function useUploadMintInfoOnclick(): (
 			}
 
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
-			const { selectedImage, selectedVideo, ...restOfSplDetails } = creatorClass.newVideoDetails
+			const { selectedImage, selectedVideo, ...restOfVideoDetails } = creatorClass.newVideoDetails
 
-			const createAndMintSPL: CreateVideo = {
-				...restOfSplDetails,
+			const createVideoObject: CreateVideo = {
+				...restOfVideoDetails,
 				imageUrl: uploadImageResponse.data.imageUploadUrl,
 				uuid: uploadVideoResponse.data.uuid,
 				uploadedImageId: uploadImageResponse.data.uploadedImageId,
@@ -72,7 +72,7 @@ export default function useUploadMintInfoOnclick(): (
 			}
 
 			setStatus("Creating and Minting Token")
-			const createAndMintResponse = await fortunaApiClient.creatorDataService.createVideo(createAndMintSPL)
+			const createAndMintResponse = await fortunaApiClient.creatorDataService.createVideo(createVideoObject)
 
 			if (!_.isEqual(createAndMintResponse.status, 200) || isNonSuccessResponse(createAndMintResponse.data)) {
 				setError("Error minting")
@@ -80,7 +80,7 @@ export default function useUploadMintInfoOnclick(): (
 			}
 
 			const myContent: MyContent = {
-				...restOfSplDetails,
+				...restOfVideoDetails,
 				videoId: createAndMintResponse.data.newVideoId,
 				videoListingStatus: "LISTED",
 				imageUrl: uploadImageResponse.data.imageUploadUrl,
@@ -88,16 +88,16 @@ export default function useUploadMintInfoOnclick(): (
 			}
 
 			creatorClass.addContent(myContent)
-			creatorClass.resetNewSplDetails()
+			creatorClass.resetNewVideoDetails()
 
 			navigate("/creator/my-content")
 		} catch (error) {
 			console.error(error)
 		} finally {
 			setStatus("")
-			if (!_.isNull(creatorClass)) creatorClass.setIsNewSplLoading(false)
+			if (!_.isNull(creatorClass)) creatorClass.setIsNewVideoLoading(false)
 		}
-	}, [solanaClass, creatorClass, personalInfoClass, marketClass, confirmNewSplDetails,
+	}, [solanaClass, creatorClass, personalInfoClass, marketClass, confirmNewVideoDetails,
 		retrieveSolPrice, fortunaApiClient.uploadDataService, fortunaApiClient.creatorDataService, navigate])
 
 	return uploadMintInfoOnclick

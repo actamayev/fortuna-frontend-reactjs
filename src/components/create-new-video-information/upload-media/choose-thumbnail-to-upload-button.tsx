@@ -29,12 +29,12 @@ function ChooseThumbnailToUploadButton(props: Props) {
 				}
 				return // Exit the function if the file is too large
 			}
-			creatorClass.updateNewSplDetails("selectedImage", file)
+			creatorClass.updateNewVideoDetails("selectedImage", file)
 
 			const newPreviewUrl = URL.createObjectURL(file)
 			setPreviewUrl(newPreviewUrl)
 		} else {
-			creatorClass.updateNewSplDetails("selectedImage", null)
+			creatorClass.updateNewVideoDetails("selectedImage", null)
 			setPreviewUrl(null)
 		}
 

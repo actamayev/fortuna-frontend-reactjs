@@ -7,15 +7,15 @@ import { useCreatorContext } from "../../contexts/creator-context"
 function VideoDescriptionInput() {
 	const creatorClass = useCreatorContext()
 
-	const splDetailsDescription = useMemo(() => {
+	const description = useMemo(() => {
 		if (_.isNull(creatorClass)) return ""
 		return creatorClass.newVideoDetails.description
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [creatorClass, creatorClass?.newVideoDetails.description])
 
-	const updateNewSplDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(creatorClass)) return
-		creatorClass.updateNewSplDetails("description", event.target.value)
+		creatorClass.updateNewVideoDetails("description", event.target.value)
 	}, [creatorClass])
 
 	return (
@@ -23,9 +23,9 @@ function VideoDescriptionInput() {
 			label = "Video Description"
 			type = "text"
 			placeholder = "Charlie bit my finger really hard"
-			onChange = {updateNewSplDetails}
+			onChange = {updateNewVideoDetails}
 			required
-			value = {splDetailsDescription}
+			value = {description}
 			multiline={true}
 		/>
 	)

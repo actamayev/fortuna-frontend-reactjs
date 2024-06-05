@@ -15,9 +15,9 @@ function IsContentExclusiveSlider() {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [creatorClass, creatorClass?.newVideoDetails.isContentExclusive])
 
-	const updateNewSplDetails = useCallback(() => {
+	const updateNewVideoDetails = useCallback(() => {
 		if (_.isNull(creatorClass)) return
-		creatorClass.updateNewSplDetails("isContentExclusive", !creatorClass.newVideoDetails.isContentExclusive)
+		creatorClass.updateNewVideoDetails("isContentExclusive", !creatorClass.newVideoDetails.isContentExclusive)
 	}, [creatorClass])
 
 	return (
@@ -25,7 +25,7 @@ function IsContentExclusiveSlider() {
 			<span>Exclusive Content</span>
 			<Slider
 				checkedCondition={isContentExclusive === true}
-				onChangeCheckedCondition={updateNewSplDetails}
+				onChangeCheckedCondition={updateNewVideoDetails}
 				disabledCondition={isNewVideoLoading}
 				colorChangeOnToggle={true}
 			/>

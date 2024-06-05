@@ -36,15 +36,15 @@ function CreateContent() {
 
 				<div className="flex w-full text-zinc-950 dark:text-zinc-200">
 
+					<div className="w-1/3">
+						<ExclusiveContentOptionsSection />
+					</div>
 					<div className="flex flex-col w-1/3">
 						<div className="mb-4">
 							<SelectExclusiveContentListingPriceUsd />
 						</div>
 					</div>
 
-					<div className="w-1/3">
-						<ExclusiveContentOptionsSection />
-					</div>
 
 					<div className="w-1/3">
 						<NewVideoSummary />

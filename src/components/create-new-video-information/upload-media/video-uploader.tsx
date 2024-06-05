@@ -11,7 +11,7 @@ function VideoUploader() {
 
 	const setSelectedContentNull = useCallback(() => {
 		if (_.isNull(creatorClass)) return
-		creatorClass.updateNewSplDetails("selectedVideo", null)
+		creatorClass.updateNewVideoDetails("selectedVideo", null)
 	}, [creatorClass])
 
 	return (

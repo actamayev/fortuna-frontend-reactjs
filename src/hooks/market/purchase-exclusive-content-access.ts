@@ -33,7 +33,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 			setIsLoading(true)
 			const purchaseResponse = await fortunaApiClient.marketDataService.purchaseExclusiveContentAccess(videoUUID)
 			if (!_.isEqual(purchaseResponse.status, 200) || isNonSuccessResponse(purchaseResponse.data)) {
-				throw Error ("Error completing primary SPL purchase")
+				throw Error ("Error completing exclusive content purchase")
 			}
 			videoClass.addVideoUrlToVideo(videoUUID, purchaseResponse.data.videoUrl)
 			const exclusiveContentToAddToList: MyPurchasedExclusiveContent = {
@@ -45,7 +45,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 			marketClass.setInstantAccessToExclusiveContentStage("initial")
 			solanaClass.alterWalletBalanceUsd(-video.listingPriceToAccessUsd)
 			// FUTURE TODO: Add this transaction to my transactions (don't just call retrieveTransactions - redundant)
-			// Consider returning the sol transfer details with the purchaseSplTokens response.
+			// Consider returning the sol transfer details with the purchaseExclusiveContentAccess response.
 			// Add that single new transaction to the transaction array
 		} catch (error) {
 			console.error(error)

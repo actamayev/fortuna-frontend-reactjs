@@ -30,12 +30,12 @@ function ChooseVideoToUploadButton(props: Props) {
 				return // Exit the function if the file is too large
 			}
 
-			creatorClass.updateNewSplDetails("selectedVideo", file)
+			creatorClass.updateNewVideoDetails("selectedVideo", file)
 
 			const newPreviewUrl = URL.createObjectURL(file)
 			setPreviewUrl(newPreviewUrl)
 		} else {
-			creatorClass.updateNewSplDetails("selectedVideo", null)
+			creatorClass.updateNewVideoDetails("selectedVideo", null)
 			setPreviewUrl(null)
 		}
 
