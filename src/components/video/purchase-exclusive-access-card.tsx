@@ -5,14 +5,14 @@ import Button from "../button"
 import { useAuthContext } from "../../contexts/auth-context"
 import { useCreatorContext } from "../../contexts/creator-context"
 import useTypedNavigate from "../../hooks/navigate/typed-navigate"
-import PurchasePrimarySharesOptions from "./instant-access-exclusive-content/purchase-instant-access-options"
+import PurchaseInstantAccessOptions from "./instant-access-exclusive-content/purchase-instant-access-options"
 
 interface Props {
 	videoUUID: string
 }
 
 // TODO: This card should go behind the footer when scrolling down
-function TradeSharesCard(props: Props) {
+function PurchaseExclusiveAccessCard(props: Props) {
 	const { videoUUID } = props
 	const authClass = useAuthContext()
 	const navigate = useTypedNavigate()
@@ -46,9 +46,9 @@ function TradeSharesCard(props: Props) {
 
 	return (
 		<div className="bg-white dark:bg-zinc-800 shadow-lg rounded-lg p-3 h-full">
-			<PurchasePrimarySharesOptions />
+			<PurchaseInstantAccessOptions />
 		</div>
 	)
 }
 
-export default observer(TradeSharesCard)
+export default observer(PurchaseExclusiveAccessCard)

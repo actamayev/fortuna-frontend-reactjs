@@ -4,7 +4,7 @@ import { useMarketContext } from "../../../contexts/market-context"
 import ReviewInstantAccessInfo from "./review/review-instant-access-info"
 import InitialInstantAccessInfo from "./initial/initial-instant-access-info"
 
-function PurchasePrimarySharesOptions() {
+function PurchaseInstantAccessOptions() {
 	const marketClass = useMarketContext()
 
 	if (_.isNull(marketClass)) return null
@@ -15,4 +15,4 @@ function PurchasePrimarySharesOptions() {
 	return <ReviewInstantAccessInfo />
 }
 
-export default observer(PurchasePrimarySharesOptions)
+export default observer(PurchaseInstantAccessOptions)

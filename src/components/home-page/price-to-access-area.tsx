@@ -15,7 +15,7 @@ function PriceToAccessArea(props: Props) {
 	if (defaultCurrency === "usd") {
 		return (
 			<>
-				${_.round(video.listingPriceToAccessUsd, 2)}/Share
+				${_.round(video.listingPriceToAccessUsd, 2)}
 			</>
 		)
 	}
@@ -25,7 +25,7 @@ function PriceToAccessArea(props: Props) {
 
 	return (
 		<>
-			{_.round(video.listingPriceToAccessUsd / solPriceInUSD, 4)} SOL/Share
+			{_.round(video.listingPriceToAccessUsd / solPriceInUSD, 4)} SOL
 		</>
 	)
 }

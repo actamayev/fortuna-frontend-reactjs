@@ -14,7 +14,7 @@ function ReviewInstantAccessButton(props: Props) {
 	const marketClass = useMarketContext()
 	const solanaClass = useSolanaContext()
 
-	const isAbleToPurchaseShares = useMemo(() => {
+	const isAbleToPurchaseAccessToContent = useMemo(() => {
 		if (_.isNull(solanaClass) || _.isNull(video.listingPriceToAccessUsd)) return false
 		return solanaClass.walletBalanceUSD.get() >= video.listingPriceToAccessUsd
 	// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,7 +31,7 @@ function ReviewInstantAccessButton(props: Props) {
 			colorClass="bg-blue-200 dark:bg-blue-600"
 			hoverClass="hover:bg-blue-300 dark:hover:bg-blue-700"
 			title="Review Instant Access Purchase"
-			disabled={!isAbleToPurchaseShares}
+			disabled={!isAbleToPurchaseAccessToContent}
 			className="font-semibold"
 		/>
 	)
