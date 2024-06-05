@@ -2,16 +2,13 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { Link, useLocation } from "react-router-dom"
 import { useAuthContext } from "../../contexts/auth-context"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
 function CreateContentHeaderButton() {
 	const location = useLocation()
 	const authClass = useAuthContext()
-	const personalInfoClass = usePersonalInfoContext()
 
 	if (
 		_.isNull(authClass.accessToken) ||
-		personalInfoClass?.isApprovedToBeCreator !== true ||
 		location.pathname.startsWith("/creator/upload-content")
 	) return null
 

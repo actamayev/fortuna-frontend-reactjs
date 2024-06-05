@@ -24,7 +24,6 @@ declare global {
 		email: string | null
 		defaultCurrency: Currencies
 		defaultSiteTheme: SiteThemes
-		isApprovedToBeCreator: boolean
 		profilePictureUrl: string | null
 		publicKey: string
 	}
@@ -73,7 +72,6 @@ declare global {
 
 	// YouTube Responses:
 	type UserYouTubeData = {
-		isApprovedToBeCreator: boolean
 		subscriberCount: number
 	}
 }

@@ -11,6 +11,7 @@ interface Props {
 	videoUUID: string
 }
 
+// TODO: This card should go behind the footer when scrolling down
 function TradeSharesCard(props: Props) {
 	const { videoUUID } = props
 	const authClass = useAuthContext()
