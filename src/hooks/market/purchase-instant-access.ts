@@ -31,7 +31,7 @@ export default function usePurchaseInstantAccess(): (
 			const video = videoClass.findVideoFromUUID(videoUUID)
 			if (_.isUndefined(video)) return
 			setIsLoading(true)
-			const purchaseResponse = await fortunaApiClient.MarketDataService.purchaseExclusiveContentAccess(videoUUID)
+			const purchaseResponse = await fortunaApiClient.marketDataService.purchaseExclusiveContentAccess(videoUUID)
 			if (!_.isEqual(purchaseResponse.status, 200) || isNonSuccessResponse(purchaseResponse.data)) {
 				throw Error ("Error completing primary SPL purchase")
 			}
@@ -54,7 +54,7 @@ export default function usePurchaseInstantAccess(): (
 			setIsLoading(false)
 		}
 	}, [marketClass, solanaClass, positionsAndTransactionsClass, videoClass,
-		fortunaApiClient.httpClient.accessToken, fortunaApiClient.MarketDataService])
+		fortunaApiClient.httpClient.accessToken, fortunaApiClient.marketDataService])
 
 	return purchaseInstantAccess
 }

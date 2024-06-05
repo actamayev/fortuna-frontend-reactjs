@@ -35,7 +35,7 @@ export default function usePurchasePrimarySplTokens(): (
 				numberOfTokensPurchasing: marketClass.purchasePrimarySplSharesDetails.numberOfTokensPurchasing,
 				splPublicKey: marketClass.purchasePrimarySplSharesDetails.splPublicKey
 			}
-			const purchaseResponse = await fortunaApiClient.MarketDataService.primarySplTokenPurchase(purchaseSplTokensData)
+			const purchaseResponse = await fortunaApiClient.marketDataService.primarySplTokenPurchase(purchaseSplTokensData)
 			if (!_.isEqual(purchaseResponse.status, 200) || isNonSuccessResponse(purchaseResponse.data)) {
 				throw Error ("Error completing primary SPL purchase")
 			}
@@ -56,7 +56,7 @@ export default function usePurchasePrimarySplTokens(): (
 			setIsLoading(false)
 		}
 	}, [marketClass, positionsAndTransactionsClass, solanaClass,
-		fortunaApiClient.httpClient.accessToken, fortunaApiClient.MarketDataService, videoClass])
+		fortunaApiClient.httpClient.accessToken, fortunaApiClient.marketDataService, videoClass])
 
 	return purchasePrimarySplTokens
 }
