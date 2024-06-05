@@ -1,0 +1,39 @@
+import _ from "lodash"
+import { observer } from "mobx-react"
+import { useCallback, useMemo } from "react"
+import RangeSelectorSlider from "../range-selector-slider"
+import { useCreatorContext } from "../../contexts/creator-context"
+import useIsNewVideoLoading from "../../hooks/creator/create-video/is-new-video-loading"
+
+function SelectExclusiveContentListingPriceUsd() {
+	const creatorClass = useCreatorContext()
+	const isNewVideoLoading = useIsNewVideoLoading()
+
+	const listingPriceToAccessUsd = useMemo(() => {
+		if (_.isNull(creatorClass)) return 0
+		return creatorClass.newVideoDetails.listingPriceToAccessUsd
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [creatorClass, creatorClass?.newVideoDetails.listingPriceToAccessUsd])
+
+	const updateNewSplDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+		if (_.isNull(creatorClass)) return
+		creatorClass.updateNewSplDetails("listingPriceToAccessUsd", Number(event.target.value))
+	}, [creatorClass])
+
+	return (
+		<div className="flex flex-col space-y-4">
+			<RangeSelectorSlider
+				title="Offering price per share ($)"
+				value={listingPriceToAccessUsd}
+				onChange={updateNewSplDetails}
+				min={0.5}
+				max={50}
+				step={0.05}
+				disabled={isNewVideoLoading}
+			/>
+			${_.round(listingPriceToAccessUsd, 2)}/Share
+		</div>
+	)
+}
+
+export default observer(SelectExclusiveContentListingPriceUsd)

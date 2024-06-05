@@ -5,7 +5,6 @@ import Home from "./pages/home"
 import Video from "./pages/video"
 import Creator from "./pages/creator"
 import Missing from "./pages/missing"
-import FAQ from "./pages/support/faq"
 import MyWallet from "./pages/my-wallet"
 import About from "./pages/company/about"
 import MyProfile from "./pages/my-profile"
@@ -23,13 +22,13 @@ import CreatorRoutes from "./routes/creator-routes"
 import useGetAuthDataFromStorage from "./hooks/auth/get-auth-data-from-storage"
 import useInitializeTagManager from "./hooks/analytics/initiallize-tag-manager"
 import useRetrieveSolPriceUseEffect from "./hooks/solana/retrieve-sol-price-use-effect"
-import useRetrieveMyContentUseEffect from "./hooks/market/retrieve-my-content-use-effect"
+import useRetrieveMyContentUseEffect from "./hooks/creator/retrieve-my-content-use-effect"
 import useRetrieveYouTubeInfoUseEffect from "./hooks/youtube/retrieve-youtube-info-use-effect"
-import useRetrieveMyOwnershipUseEffect from "./hooks/market/retrieve-my-ownership-use-effect"
+import useRetrieveMyPurchasedExclusiveContentUseEffect
+	from "./hooks/positions-and-transactions/retrieve-my-purchased-exclusive-content-use-effect"
 import useRetrieveWalletBalanceUseEffect from "./hooks/solana/retrieve-wallet-balance-use-effect"
 import useRedirectBackToRegisterUsername from "./hooks/redirects/redirect-back-to-register-username"
 import useRetrievePersonalInfoUseEffect from "./hooks/personal-info/retrieve-personal-info-use-effect"
-import useResetPurchaseSplAfterNavigation from "./hooks/market/purchase-spl-tokens/reset-purchase-spl-after-navigation"
 
 function App() {
 	// Don't change the getAuthData to a useEffect, or else it doesn't work immediately after login
@@ -39,9 +38,8 @@ function App() {
 	useRetrievePersonalInfoUseEffect()
 	useRetrieveSolPriceUseEffect()
 	useRetrieveMyContentUseEffect()
-	useRetrieveMyOwnershipUseEffect()
+	useRetrieveMyPurchasedExclusiveContentUseEffect()
 	useInitializeTagManager()
-	useResetPurchaseSplAfterNavigation()
 	useRedirectBackToRegisterUsername()
 	useRetrieveYouTubeInfoUseEffect()
 
@@ -61,7 +59,6 @@ function App() {
 
 			<Route path = "/creator/*" element = {<CreatorRoutes />} />
 
-			<Route path = "/faq" element = {<FAQ />} />
 			<Route path = "/privacy-policy" element = {<PrivacyPolicy />} />
 
 			<Route path = "/contact" element = {<Contact />} />

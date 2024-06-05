@@ -2,19 +2,16 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useAuthContext } from "../../contexts/auth-context"
 import ShowAuthToNullUser from "../../components/show-auth-to-null-user"
-import UploadContentTemplate from "../../components/templates/upload-content-template"
-import SPLNameInput from "../../components/upload-new-mint-information/spl-name-input"
-import NewTokenSummary from "../../components/upload-new-mint-information/new-token-summary"
-import SelectNumberShares from "../../components/upload-new-mint-information/select-number-shares"
-import SPLDescriptionInput from "../../components/upload-new-mint-information/spl-description-input"
-import ImageUploader from "../../components/upload-new-mint-information/upload-media/image-uploader"
-import VideoUploader from "../../components/upload-new-mint-information/upload-media/video-uploader"
-import UploadMintInfoButton from "../../components/upload-new-mint-information/upload-mint-info-button"
+import CreateNewVideoTemplate from "../../components/templates/create-new-video-template"
+import VideoNameInput from "../../components/create-new-video-information/video-name-input"
+import NewVideoSummary from "../../components/create-new-video-information/new-video-summary"
+import VideoUploader from "../../components/create-new-video-information/upload-media/video-uploader"
+import ImageUploader from "../../components/create-new-video-information/upload-media/image-uploader"
+import UploadNewVideoButton from "../../components/create-new-video-information/upload-new-video-button"
+import VideoDescriptionInput from "../../components/create-new-video-information/video-description-input"
 import ExclusiveContentOptionsSection
-	from "../../components/upload-new-mint-information/exclusive-content/exclusive-content-options-section"
-import SplOriginalContentUrlInput from "../../components/upload-new-mint-information/spl-original-content-url-input"
-import SelectOfferingSharePriceUsd from "../../components/upload-new-mint-information/select-offering-share-price-usd"
-import SelectCreatorOwnershipPercentage from "../../components/upload-new-mint-information/select-creator-ownership-percentage"
+	from "../../components/create-new-video-information/exclusive-content/exclusive-content-options-section"
+import SelectExclusiveContentListingPriceUsd from "../../components/create-new-video-information/select-exclusive-content-listing-price-usd"
 
 function UploadContent() {
 	const authClass = useAuthContext()
@@ -25,7 +22,7 @@ function UploadContent() {
 
 	return (
 		<>
-			<UploadContentTemplate>
+			<CreateNewVideoTemplate>
 
 				<div className="mb-2">
 					<VideoUploader />
@@ -33,22 +30,15 @@ function UploadContent() {
 				<div className="mb-2">
 					<ImageUploader />
 				</div>
-				<SPLNameInput />
+				<VideoNameInput />
 
-				<SPLDescriptionInput />
+				<VideoDescriptionInput />
 
-				<SplOriginalContentUrlInput />
 				<div className="flex w-full text-zinc-950 dark:text-zinc-200">
 
 					<div className="flex flex-col w-1/3">
 						<div className="mb-4">
-							<SelectOfferingSharePriceUsd />
-						</div>
-						<div className="mb-4">
-							<SelectNumberShares />
-						</div>
-						<div className="mb-2">
-							<SelectCreatorOwnershipPercentage />
+							<SelectExclusiveContentListingPriceUsd />
 						</div>
 					</div>
 
@@ -57,12 +47,12 @@ function UploadContent() {
 					</div>
 
 					<div className="w-1/3">
-						<NewTokenSummary />
+						<NewVideoSummary />
 					</div>
 
 				</div>
-				<UploadMintInfoButton />
-			</UploadContentTemplate>
+				<UploadNewVideoButton />
+			</CreateNewVideoTemplate>
 		</>
 	)
 }

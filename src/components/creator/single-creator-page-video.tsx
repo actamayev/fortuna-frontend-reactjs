@@ -13,9 +13,9 @@ export default function SingleCreatorPageVideo(props: Props) {
 	const {
 		uuid,
 		imageUrl,
-		splName,
+		videoName,
 		description,
-		contentMintDate
+		createdAt
 	} = videoData
 
 	return (
@@ -25,18 +25,18 @@ export default function SingleCreatorPageVideo(props: Props) {
 		>
 			<img
 				src={imageUrl}
-				alt={splName}
+				alt={videoName}
 				className="w-64 h-36 rounded-lg object-cover"
 			/>
 			<div className="flex flex-col justify-start overflow-hidden">
 				<div className="text-3xl font-semibold truncate dark:text-zinc-200">
-					{splName}
+					{videoName}
 				</div>
 				<div className="text-xl text-zinc-600 dark:text-zinc-300">
 					{description}
 				</div>
 				<div className="text-md text-zinc-600 dark:text-zinc-300">
-					{dateFormatter(contentMintDate)}
+					{dateFormatter(createdAt)}
 				</div>
 			</div>
 		</div>

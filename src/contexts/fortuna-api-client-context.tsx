@@ -6,14 +6,16 @@ import FortunaHttpClient from "../classes/fortuna-http-client"
 import UploadDataService from "../services/upload-data-service"
 import SolanaDataService from "../services/solana-data-service"
 import SearchDataService from "../services/search-data-service"
-import YouTubeDataService from "../services/youtube-data-service"
 import MarketDataService from "../services/market-data-service"
+import YouTubeDataService from "../services/youtube-data-service"
+import CreatorDataService from "../services/creator-data-service"
 import PersonalInfoDataService from "../services/personal-info-data-service"
 import PositionsAndTransactionsDataService from "../services/positions-and-transactions-data-service"
 
 class FortunaApiClient {
 	public httpClient: FortunaHttpClient = new FortunaHttpClient()
 	public authDataService: AuthDataService = new AuthDataService("/auth", this.httpClient)
+	public creatorDataService: CreatorDataService = new CreatorDataService("/creator", this.httpClient)
 	public marketDataService: MarketDataService = new MarketDataService("/market", this.httpClient)
 	public personalInfoDataService: PersonalInfoDataService = new PersonalInfoDataService("/personal-info", this.httpClient)
 	public positionsAndTransactionsDataService: PositionsAndTransactionsDataService = new PositionsAndTransactionsDataService("/positions-and-transactions", this.httpClient)
@@ -29,6 +31,7 @@ class FortunaApiClient {
 	private initializeServices() {
 		this.httpClient = new FortunaHttpClient()
 		this.authDataService = new AuthDataService("/auth", this.httpClient)
+		this.creatorDataService = new CreatorDataService("/creator", this.httpClient)
 		this.marketDataService = new MarketDataService("/market", this.httpClient)
 		this.personalInfoDataService = new PersonalInfoDataService("/personal-info", this.httpClient)
 		this.positionsAndTransactionsDataService = new PositionsAndTransactionsDataService("/positions-and-transactions", this.httpClient)

@@ -15,17 +15,15 @@ function ReviewInstantAccessButton(props: Props) {
 	const solanaClass = useSolanaContext()
 
 	const isAbleToPurchaseShares = useMemo(() => {
-		if (_.isNull(solanaClass) || _.isNull(video.priceToInstantlyAccessExclusiveContentUsd)) return false
-		return solanaClass.walletBalanceUSD.get() >= video.priceToInstantlyAccessExclusiveContentUsd
+		if (_.isNull(solanaClass) || _.isNull(video.listingPriceToAccessUsd)) return false
+		return solanaClass.walletBalanceUSD.get() >= video.listingPriceToAccessUsd
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [solanaClass, solanaClass?.walletBalanceUSD.get(), video.priceToInstantlyAccessExclusiveContentUsd])
+	}, [solanaClass, solanaClass?.walletBalanceUSD.get(), video.listingPriceToAccessUsd])
 
 	const onClickButton = useCallback(() => {
 		if (_.isNull(marketClass)) return
 		marketClass.setInstantAccessToExclusiveContentStage("review")
 	}, [marketClass])
-
-	if (_.isNull(video.priceToInstantlyAccessExclusiveContentUsd)) return null
 
 	return (
 		<Button

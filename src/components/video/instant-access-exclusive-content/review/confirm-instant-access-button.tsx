@@ -3,12 +3,11 @@ import { observer } from "mobx-react"
 import { useCallback, useState } from "react"
 import { useParams } from "react-router-dom"
 import Button from "../../../button"
-import usePurchaseInstantAccess from "../../../../hooks/market/purchase-instant-access"
 
 function ConfirmInstantAccessButton() {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const [isLoading, setIsLoading] = useState(false)
-	const purchaseInstantAccess = usePurchaseInstantAccess()
+	const purchaseInstantAccess = usePurchaseExclusiveContentAccess()
 
 	const onClickButton = useCallback(() => {
 		if (_.isUndefined(videoUUID)) return
@@ -26,5 +25,6 @@ function ConfirmInstantAccessButton() {
 		/>
 	)
 }
+import usePurchaseExclusiveContentAccess from "../../../../hooks/market/purchase-exclusive-content-access"
 
 export default observer(ConfirmInstantAccessButton)

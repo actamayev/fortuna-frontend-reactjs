@@ -3,38 +3,17 @@ import { action, makeAutoObservable } from "mobx"
 import { createContext, useContext, useMemo } from "react"
 
 class PositionsAndTransactionsClass {
-	private _myContent: MyContent[] = []
-	private _myOwnership: MyOwnership[] = []
 	private _myTransactions: SolanaTransaction[] = []
-	private _myExclusiveContent: MyExclusiveContentData[] = []
+	private _myPurchasedExclusiveContent: MyPurchasedExclusiveContent[] = []
 
-	public hasContentToRetrieve = true
-	public isRetrievingContent = false
-
-	public hasOwnershipToRetrieve = true
-	public isRetrievingOwnership = false
+	public hasPurchasedExclusiveContentToRetrieve = true
+	public isRetrievingPurchasedExclusiveContent = false
 
 	public hasTransactionsToRetrieve = true
 	public isRetrievingTransactions = false
 
 	constructor() {
 		makeAutoObservable(this)
-	}
-
-	get myContent(): MyContent[] {
-		return this._myContent
-	}
-
-	set myContent(myContent: MyContent[]) {
-		this._myContent = myContent
-	}
-
-	get myOwnership(): MyOwnership[] {
-		return this._myOwnership
-	}
-
-	set myOwnership(myOwnership: MyOwnership[]) {
-		this._myOwnership = myOwnership
 	}
 
 	get myTransactions(): SolanaTransaction[] {
@@ -45,28 +24,20 @@ class PositionsAndTransactionsClass {
 		this._myTransactions = myTransactions
 	}
 
-	get myExclusiveContent(): MyExclusiveContentData[] {
-		return this._myExclusiveContent
+	get myPurchasedExclusiveContent(): MyPurchasedExclusiveContent[] {
+		return this._myPurchasedExclusiveContent
 	}
 
-	set myExclusiveContent(myExclusiveContent: MyExclusiveContentData[]) {
-		this._myExclusiveContent = myExclusiveContent
-	}
-
-	public contextForMyContent(mintAddress: string): MyContent | undefined {
-		return this.myContent.find(content => content.mintAddress === mintAddress)
-	}
-
-	public contextForMyOwnership(uuid: string): MyOwnership | undefined {
-		return this.myOwnership.find(ownership => ownership.uuid === uuid)
+	set myPurchasedExclusiveContent(myPurchasedExclusiveContent: MyPurchasedExclusiveContent[]) {
+		this._myPurchasedExclusiveContent = myPurchasedExclusiveContent
 	}
 
 	public contextForMyTransaction(transactionId: number): SolanaTransaction | undefined {
 		return this.myTransactions.find(transaction => transaction.solTransferId === transactionId)
 	}
 
-	public contextForMyExclusiveContent(uuid: string): MyExclusiveContentData | undefined {
-		return this.myExclusiveContent.find(exclusiveContent => exclusiveContent.uuid === uuid)
+	public contextForMyPurchasesExclusiveContent(uuid: string): MyPurchasedExclusiveContent | undefined {
+		return this.myPurchasedExclusiveContent.find(exclusiveContent => exclusiveContent.uuid === uuid)
 	}
 
 	public setTransactions = action((solanaTransactions: SolanaTransaction[]): void => {
@@ -80,99 +51,32 @@ class PositionsAndTransactionsClass {
 		this.myTransactions.unshift(solanaTransaction)
 	})
 
-	public setContent = action((newContentList: MyContent[]): void => {
-		this.myContent = []
-		if (_.isEmpty(newContentList)) return
-		newContentList.map(singleNewContent => this.addContent(singleNewContent))
-	})
-
-	public addContent = action((newContent: MyContent): void => {
-		const retrievedContent = this.contextForMyContent(newContent.mintAddress)
-		if (!_.isUndefined(retrievedContent)) return
-		this.myContent.unshift(newContent)
-	})
-
-	public checkIfUuidExistsInContentList(uuid: string): boolean {
-		for (const content of this.myContent) {
-			if (_.isEqual(content.uuid, uuid)) return true
-		}
-		return false
-	}
-
-	public setExclusiveContent = action((newExclusiveContent: MyExclusiveContentData[]): void => {
-		this.myExclusiveContent = []
+	public setExclusiveContent = action((newExclusiveContent: MyPurchasedExclusiveContent[]): void => {
+		this.myPurchasedExclusiveContent = []
 		if (_.isEmpty(newExclusiveContent)) return
 		newExclusiveContent.map(singleExclusiveContent => this.addExclusiveContent(singleExclusiveContent))
 	})
 
-	public addExclusiveContent = action((newExclusiveContent: MyExclusiveContentData): void => {
-		const retrievedExclusiveContent = this.contextForMyExclusiveContent(newExclusiveContent.uuid)
+	public addExclusiveContent = action((newExclusiveContent: MyPurchasedExclusiveContent): void => {
+		const retrievedExclusiveContent = this.contextForMyPurchasesExclusiveContent(newExclusiveContent.uuid)
 		if (!_.isUndefined(retrievedExclusiveContent)) return
-		this.myExclusiveContent.unshift(newExclusiveContent)
+		this.myPurchasedExclusiveContent.unshift(newExclusiveContent)
 	})
 
 	public checkIfUuidExistsInExclusiveContentList(uuid: string | undefined): boolean {
 		if (_.isUndefined(uuid)) return true
-		for (const content of this.myExclusiveContent) {
+		for (const content of this.myPurchasedExclusiveContent) {
 			if (_.isEqual(content.uuid, uuid)) return true
 		}
 		return false
 	}
 
-	public setMyOwnership = action((newOwnershipList: MyOwnership[]): void => {
-		this.myOwnership = []
-		if (_.isEmpty(newOwnershipList)) return
-		newOwnershipList.map(singleNewOwnership => this.addOwnership(singleNewOwnership))
-	})
-
-	public addOwnership = action((newOwnership: MyOwnership): void => {
-		const index = this.myOwnership.findIndex(ownership => ownership.splPublicKey === newOwnership.splPublicKey)
-		if (_.isEqual(index, -1)) {
-			this.myOwnership.unshift(newOwnership)
-			return
-		}
-		this.incremenetOwnership(newOwnership.splPublicKey, newOwnership.purchaseData)
-	})
-
-	public incremenetOwnership = action((splPublicKey: string, purchaseData: PurchaseData[]): void => {
-		const index = this.myOwnership.findIndex(ownership => ownership.splPublicKey === splPublicKey)
-		if (_.isEqual(index, -1)) return
-		this.myOwnership[index].purchaseData.push(...purchaseData)
-	})
-
-	public getSumOfValueOfTokensByThisCreator(creatorUsername: string): number {
-		let valueofTokensByThisCreator = 0
-		this.myOwnership.map(ownership => {
-			if (ownership.creatorUsername !== creatorUsername) return
-			const numberSharesOwned = this.getNumberSharesOwnedByUUID(ownership.uuid)
-			valueofTokensByThisCreator += ownership.originalListingPricePerShareUsd * numberSharesOwned
-		})
-
-		return valueofTokensByThisCreator
-	}
-
-	public getNumberSharesOwnedByUUID(uuid: string): number {
-		const ownershipData = this.contextForMyOwnership(uuid)
-		if (_.isUndefined(ownershipData)) return 0
-		let numberShares = 0
-		ownershipData.purchaseData.map(ownership => numberShares += ownership.numberOfShares)
-		return numberShares
-	}
-
-	public setHasContentToRetrieve = action((newState: boolean): void => {
-		this.hasContentToRetrieve = newState
-	})
-
-	public setIsRetrievingContent = action((newState: boolean): void => {
-		this.isRetrievingContent = newState
-	})
-
 	public setHasOwnershipToRetrieve = action((newState: boolean): void => {
-		this.hasOwnershipToRetrieve = newState
+		this.hasPurchasedExclusiveContentToRetrieve = newState
 	})
 
 	public setIsRetrievingOwnership = action((newState: boolean): void => {
-		this.isRetrievingOwnership = newState
+		this.isRetrievingPurchasedExclusiveContent = newState
 	})
 
 	public setHasTransactionsToRetrieve = action((newState: boolean): void => {
@@ -184,16 +88,11 @@ class PositionsAndTransactionsClass {
 	})
 
 	public logout() {
-		this.myContent = []
-		this.myOwnership = []
 		this.myTransactions = []
-		this.myExclusiveContent = []
+		this.myPurchasedExclusiveContent = []
 
-		this.hasContentToRetrieve = true
-		this.isRetrievingContent = false
-
-		this.hasOwnershipToRetrieve = true
-		this.isRetrievingOwnership = false
+		this.hasPurchasedExclusiveContentToRetrieve = true
+		this.isRetrievingPurchasedExclusiveContent = false
 
 		this.hasTransactionsToRetrieve = true
 		this.isRetrievingTransactions = false

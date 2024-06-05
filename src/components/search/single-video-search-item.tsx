@@ -19,12 +19,12 @@ export default function SingleVideoSearchItem(props: Props) {
 		>
 			<img
 				src={videoData.imageUrl}
-				alt={videoData.splName}
+				alt={videoData.videoName}
 				className="w-64 h-36 rounded-lg object-cover"
 			/>
 			<div className="flex flex-col justify-start overflow-hidden">
 				<div className="text-3xl font-semibold truncate dark:text-zinc-200">
-					{_.truncate(videoData.splName, { length: 24, omission: "..." })}
+					{_.truncate(videoData.videoName, { length: 24, omission: "..." })}
 				</div>
 				<div className="flex items-center space-x-2">
 					{videoData.creatorProfilePictureUrl && (

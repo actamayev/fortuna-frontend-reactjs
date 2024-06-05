@@ -3,9 +3,9 @@ import { useMemo } from "react"
 import { observer } from "mobx-react"
 import Button from "../button"
 import { useAuthContext } from "../../contexts/auth-context"
+import { useCreatorContext } from "../../contexts/creator-context"
 import useTypedNavigate from "../../hooks/navigate/typed-navigate"
-import PurchasePrimarySharesOptions from "./purchase-primary-shares/purchase-primary-shares-options"
-import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
+import PurchasePrimarySharesOptions from "./instant-access-exclusive-content/purchase-instant-access-options"
 
 interface Props {
 	videoUUID: string
@@ -16,13 +16,13 @@ function TradeSharesCard(props: Props) {
 	const { videoUUID } = props
 	const authClass = useAuthContext()
 	const navigate = useTypedNavigate()
-	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
+	const creatorClass = useCreatorContext()
 
 	const wasVideoCreatedByUser = useMemo(() => {
-		if (_.isNull(positionsAndTransactionsClass) || _.isUndefined(videoUUID)) return true
-		return positionsAndTransactionsClass.checkIfUuidExistsInContentList(videoUUID)
+		if (_.isNull(creatorClass) || _.isUndefined(videoUUID)) return true
+		return creatorClass.checkIfUuidExistsInContentList(videoUUID)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [positionsAndTransactionsClass, positionsAndTransactionsClass?.myContent, videoUUID])
+	}, [creatorClass, creatorClass?.myContent, videoUUID])
 
 	if (_.isNull(authClass.accessToken)) {
 		return (

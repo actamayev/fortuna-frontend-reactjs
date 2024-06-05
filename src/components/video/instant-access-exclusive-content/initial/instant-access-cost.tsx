@@ -12,13 +12,13 @@ function InstantAccessCost(props: Props) {
 	const solanaClass = useSolanaContext()
 	const defaultCurrency = useDefaultCurrency()
 
-	if (_.isNull(video.priceToInstantlyAccessExclusiveContentUsd)) return null
+	if (_.isNull(video.listingPriceToAccessUsd)) return null
 
 	if (defaultCurrency === "usd") {
 		return (
 			<>
 				Instant access price:
-				${_.round(video.priceToInstantlyAccessExclusiveContentUsd, 2)}
+				${_.round(video.listingPriceToAccessUsd, 2)}
 			</>
 		)
 	}
@@ -30,7 +30,7 @@ function InstantAccessCost(props: Props) {
 	return (
 		<>
 			Instant access price: {" "}
-			{_.round(video.priceToInstantlyAccessExclusiveContentUsd / solPriceInUSD, 4)} SOL
+			{_.round(video.listingPriceToAccessUsd / solPriceInUSD, 4)} SOL
 		</>
 	)
 }

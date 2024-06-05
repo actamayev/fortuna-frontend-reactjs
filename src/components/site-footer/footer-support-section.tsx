@@ -19,7 +19,6 @@ export default function FooterSupportSection() {
 					Help Center
 				</a>
 			</div>
-			<FooterLink linkTo="/faq" linkTitle="FAQ" />
 			<FooterLink linkTo="/privacy-policy" linkTitle="Privacy Policy" />
 		</div>
 	)

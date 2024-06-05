@@ -13,8 +13,8 @@ export default function SingleRecommendedVideo(props: Props) {
 	const {
 		uuid,
 		imageUrl,
-		splName,
-		contentMintDate
+		videoName,
+		createdAt
 	} = videoData
 
 	return (
@@ -25,15 +25,15 @@ export default function SingleRecommendedVideo(props: Props) {
 		>
 			<img
 				src={imageUrl}
-				alt={splName}
+				alt={videoName}
 				className="w-64 h-36 rounded-lg object-cover"
 			/>
 			<div className="flex flex-col justify-start overflow-hidden w-full">
 				<div className="text-lg font-semibold truncate dark:text-zinc-200">
-					{splName}
+					{videoName}
 				</div>
 				<div className="text-xs text-zinc-600 dark:text-zinc-300">
-					{dateFormatter(contentMintDate)}
+					{dateFormatter(createdAt)}
 				</div>
 			</div>
 		</div>

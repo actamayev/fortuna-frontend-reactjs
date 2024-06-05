@@ -1,24 +1,22 @@
 declare global {
-	interface CommonSplDetails {
-		splName: string
-		numberOfShares: number
-		listingSharePriceUsd: number
+	interface CommonNewVideoDetails {
+		videoName: string
+		listingPriceToAccessUsd: number
 		description: string
-		creatorOwnershipPercentage: number
-		originalContentUrl: string
 		isContentExclusive: boolean
-		valueNeededToAccessExclusiveContentUsd?: number
-		isContentInstantlyAccessible?: boolean
-		priceToInstantlyAccessExclusiveContentUsd?: number
-		allowValueFromSameCreatorTokensForExclusiveContent?: boolean
+		tierData: {
+			tierNumber: number
+			purchasesInThisTier: number
+			tierDiscount: number
+		}[]
 	}
 
-	interface NewSPLDetails extends CommonSplDetails {
+	interface NewVideoDetails extends CommonNewVideoDetails {
 		selectedImage: File | null
 		selectedVideo: File | null
 	}
 
-	interface CreateAndMintSPL extends CommonSplDetails {
+	interface CreateVideo extends CommonNewVideoDetails {
 		imageUrl: string
 		uuid: string
 		uploadedImageId: number
@@ -53,9 +51,7 @@ declare global {
 		transferCurrency: Currencies
 	}
 
-	type SPLListingStatus =
-		"LISTED" |
-		"SOLDOUT"
+	type VideoListingStatus = "LISTED" | "SOLDOUT"
 }
 
 export {}

@@ -100,7 +100,7 @@ class VideoClass {
 		}
 
 		const index = _.sortedIndexBy(this.videos, video, (vd) =>
-			-dayjs(vd.contentMintDate).unix()
+			-dayjs(vd.createdAt).unix()
 		)
 
 		this.videos.splice(index, 0, video)
@@ -144,23 +144,15 @@ class VideoClass {
 			return
 		}
 		// Sort videoData by date within the newCreatorData
-		newCreatorData.videoData.sort((a, b) => dayjs(b.contentMintDate).unix() - dayjs(a.contentMintDate).unix())
+		newCreatorData.videoData.sort((a, b) => dayjs(b.createdAt).unix() - dayjs(a.createdAt).unix())
 
 		// Find the correct index to insert the new data based on the most recent video date
 		const index = _.sortedIndexBy(this.creatorData, newCreatorData, (data) =>
-			-dayjs(_.maxBy(data.videoData, (vd) => dayjs(vd.contentMintDate).unix())?.contentMintDate).unix()
+			-dayjs(_.maxBy(data.videoData, (vd) => dayjs(vd.createdAt).unix())?.createdAt).unix()
 		)
 		// Insert the new creator data into the sorted position
 		this.creatorData.splice(index, 0, newCreatorData)
 	}
-
-	public tokenPurchaseUpdateAvailableShares = action((videoUUID: string, numberOfShares: number): void => {
-		const index = this.videos.findIndex(video => video.uuid === videoUUID)
-		if (_.isEqual(index, -1)) return
-		this.videos[index].sharesRemainingForSale -= numberOfShares
-		if (this.videos[index].sharesRemainingForSale !== 0) return
-		this.videos[index].splListingStatus = "SOLDOUT"
-	})
 
 	public addVideoUUIDToRetrievingList(videoUUID: string): void {
 		this.videosBeingRetrieved.unshift(videoUUID)
@@ -188,7 +180,7 @@ class VideoClass {
 
 	private clearVideoDataOnLogout = action((): void => {
 		this.videos.map(video => {
-			if (video.isSplExclusive === false) return
+			if (video.isVideoExclusive === false) return
 			delete video.videoUrl
 			video.isUserAbleToAccessVideo = false
 		})

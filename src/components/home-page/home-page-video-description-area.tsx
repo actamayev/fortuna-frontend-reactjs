@@ -1,8 +1,7 @@
 import _ from "lodash"
-import PricePerShareArea from "./price-per-share-area"
+import PriceToAccessArea from "./price-to-access-area"
 import ShowHomeVideoLockStatus from "./show-home-video-lock-status"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
-import SharesAvailableProgressBar from "./shares-available-progress-bar"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
 
@@ -17,12 +16,10 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 	const navigateToCreatorPage = useNavigateToCreatorPage()
 
 	const {
-		splName,
+		videoName,
 		creatorProfilePictureUrl,
 		creatorUsername,
-		uuid,
-		sharesRemainingForSale,
-		totalNumberShares
+		uuid
 	} = video
 
 	return (
@@ -41,7 +38,7 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 					style={{ maxWidth: "fit-content" }}
 					onClick={() => navigateToVideoPage(uuid)}
 				>
-					{_.truncate(splName, { length: 20, omission: "..." })}
+					{_.truncate(videoName, { length: 20, omission: "..." })}
 				</div>
 				<div
 					className="text-xs text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-100 cursor-pointer"
@@ -53,14 +50,10 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 			</div>
 			<div className="ml-auto flex flex-col items-end space-y-2.5">
 				<div className="text-xs mt-1">
-					<PricePerShareArea video={video} />
+					<PriceToAccessArea video={video} />
 				</div>
 				<div className="flex items-center space-x-1">
-					<SharesAvailableProgressBar
-						sharesRemainingForSale={sharesRemainingForSale}
-						totalShares={totalNumberShares}
-					/>
-					<ShowHomeVideoLockStatus video={video} index={index}/>
+					<ShowHomeVideoLockStatus isUserAbleToAccessVideo={video.isUserAbleToAccessVideo} index={index}/>
 				</div>
 			</div>
 		</div>

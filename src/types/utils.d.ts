@@ -16,7 +16,6 @@ declare global {
 		"/creator/upload-content" |
 
 		"/privacy-policy" |
-		"/faq" |
 
 		"/about" |
 		"/careers" |
@@ -35,6 +34,7 @@ declare global {
 
 	type PathHeaders =
 		"/auth" |
+		"/creator" |
 		"/market" |
 		"/personal-info" |
 		"/positions-and-transactions" |

@@ -13,10 +13,12 @@ declare global {
 	type LoginOrRegisterSuccess = { accessToken: string, publicKey: string }
 	type GoogleAuthSuccess = { accessToken: string, isNewUser: boolean, publicKey: string }
 
+	// Creator Responses:
+	type CreateVideoResponse = { newVideoId: number }
+	type RetrieveMyContentResponse = { creatorContentList: MyContent[] }
+
 	// Market Resposnes:
-	interface PrimarySplTokenPurchaseResponse extends MyOwnership {
-		videoUrl: string | undefined
-	}
+	type DefiniteRetrievedVideoUrl = { videoUrl: string }
 
 	// Personal Info Responses:
 	type PersonalInfoResponse = {
@@ -28,22 +30,16 @@ declare global {
 		publicKey: string
 	}
 
+	// Positions and Transactions Responses:
+	type TransactionsResponse = { transactions: SolanaTransaction[] }
+	type MyOwnershipResponse = { myPurchasedExclusiveContent: MyPurchasedExclusiveContent[] }
+
 	// Search Responses:
 	type SearchForUsersResponse = { usernames: { username: string }[] }
 	type GeneralSearchResponse = { searchResults: SearchData[] }
 
 	// Solana Responses:
-	type MintSPLResponse = {
-		newSPLId: number,
-		mintAddress: string
-	}
-	type RetrieveMyContentResponse = { creatorContentList: MyContent[] }
 	type TransferSolResponse = { solTransferData: SolanaTransaction }
-	type TransactionsResponse = { transactions: SolanaTransaction[] }
-	type MyOwnershipResponse = {
-		myOwnershipList: MyOwnership[]
-		myExclusiveContentList: MyExclusiveContentData[]
-	}
 	type SolPriceResponse = {
 		solPriceInUSD: number
 		lastRetrievedTime: Date
@@ -68,12 +64,9 @@ declare global {
 		creatorData: CreatorData
 	}
 	type RetrievedVideoUrl = { videoUrl: string | undefined }
-	type DefiniteRetrievedVideoUrl = { videoUrl: string }
 
 	// YouTube Responses:
-	type UserYouTubeData = {
-		subscriberCount: number
-	}
+	type UserYouTubeData = { subscriberCount: number }
 }
 
 export {}

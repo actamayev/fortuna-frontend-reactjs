@@ -5,12 +5,6 @@ export default class SolanaDataService {
 	constructor(private readonly pathHeader: PathHeaders, private readonly httpClient: FortunaHttpClient) {
 	}
 
-	async createAndMintSPL(newSPLData: CreateAndMintSPL): Promise<AxiosResponse<MintSPLResponse | NonSuccessResponse>> {
-		return await this.httpClient.http.post<MintSPLResponse | NonSuccessResponse>(
-			`${this.pathHeader}/create-and-mint-spl`, { newSPLData }
-		)
-	}
-
 	async transferSolToUsername(transferSolData: SendingSolTransfer): Promise<AxiosResponse<TransferSolResponse | NonSuccessResponse>> {
 		return await this.httpClient.http.post<TransferSolResponse | NonSuccessResponse>(
 			`${this.pathHeader}/transfer-sol-to-username`, { transferSolData }
