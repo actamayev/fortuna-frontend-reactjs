@@ -19,9 +19,9 @@ function ShowInstantAccessPurchasePrice(props: Props) {
 	if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null
 	const { solPriceInUSD } = solanaClass.solPriceDetails
 	if (_.isUndefined(solPriceInUSD)) return null
-	const videoListingSharePriceSol = listingPriceToAccessUsd / solPriceInUSD
+	const listingPriceToAccessSol = listingPriceToAccessUsd / solPriceInUSD
 
-	return <>{(videoListingSharePriceSol).toFixed(4)} SOL</>
+	return <>{(listingPriceToAccessSol).toFixed(4)} SOL</>
 }
 
 export default observer(ShowInstantAccessPurchasePrice)

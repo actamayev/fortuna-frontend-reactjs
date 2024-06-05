@@ -23,7 +23,7 @@ function SelectExclusiveContentListingPriceUsd() {
 	return (
 		<div className="flex flex-col space-y-4">
 			<RangeSelectorSlider
-				title="Offering price per share ($)"
+				title="Price to access content ($)"
 				value={listingPriceToAccessUsd}
 				onChange={updateNewVideoDetails}
 				min={0.5}
@@ -31,7 +31,7 @@ function SelectExclusiveContentListingPriceUsd() {
 				step={0.05}
 				disabled={isNewVideoLoading}
 			/>
-			${_.round(listingPriceToAccessUsd, 2)}/Share
+			${_.round(listingPriceToAccessUsd, 2)}
 		</div>
 	)
 }

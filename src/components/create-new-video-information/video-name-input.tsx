@@ -20,7 +20,7 @@ function VideoNameInput() {
 
 	return (
 		<FormGroup
-			label = "Token Name"
+			label = "Video Name"
 			type = "text"
 			placeholder = "Charlie bit my finger"
 			onChange = {updateNewVideoDetails}

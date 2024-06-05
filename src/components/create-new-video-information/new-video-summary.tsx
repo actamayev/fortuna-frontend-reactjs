@@ -11,7 +11,7 @@ export default function NewVideoSummary() {
 				Pegging to USD
 				<div className="ml-2">
 					<Tooltip
-						message="The USD value of this token will not change with Solana's price fluctuations"
+						message="The USD value of accessing this video will not change with Solana's price fluctuations"
 						width="275px"
 						messageStart="center"
 					>
