@@ -9,13 +9,13 @@ function CreateContentHeaderButton() {
 
 	if (
 		_.isNull(authClass.accessToken) ||
-		location.pathname.startsWith("/creator/upload-content")
+		location.pathname.startsWith("/creator/create-content")
 	) return null
 
 	return (
 		<div className="inline-flex items-center justify-center flex-grow flex-shrink mx-2">
 			<Link
-				to="/creator/upload-content"
+				to="/creator/create-content"
 				className="text-center font-semibold w-full"
 			>
 				<div

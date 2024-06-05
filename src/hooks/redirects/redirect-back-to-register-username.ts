@@ -10,7 +10,7 @@ const PrivatePageNames = [
 	"/my-profile",
 	"/my-wallet",
 	"/creator/my-content",
-	"/creator/upload-content"
+	"/creator/create-content"
 ]
 
 // This hook exists to make sure that Google users who have not registered their username are unable to go to private pages

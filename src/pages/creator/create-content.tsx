@@ -13,11 +13,11 @@ import ExclusiveContentOptionsSection
 	from "../../components/create-new-video-information/exclusive-content/exclusive-content-options-section"
 import SelectExclusiveContentListingPriceUsd from "../../components/create-new-video-information/select-exclusive-content-listing-price-usd"
 
-function UploadContent() {
+function CreateContent() {
 	const authClass = useAuthContext()
 
 	if (_.isNull(authClass.accessToken)) {
-		return <ShowAuthToNullUser whereToNavigate="/creator/upload-content" />
+		return <ShowAuthToNullUser whereToNavigate="/creator/create-content" />
 	}
 
 	return (
@@ -57,4 +57,4 @@ function UploadContent() {
 	)
 }
 
-export default observer(UploadContent)
+export default observer(CreateContent)

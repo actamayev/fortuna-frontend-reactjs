@@ -13,7 +13,7 @@ declare global {
 		"/my-wallet" |
 
 		"/creator/my-content" |
-		"/creator/upload-content" |
+		"/creator/create-content" |
 
 		"/privacy-policy" |
 
