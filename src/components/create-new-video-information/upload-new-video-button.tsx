@@ -7,14 +7,14 @@ import ErrorMessage from "../error-message"
 import StatusMessage from "../status-message"
 import { useCreatorContext } from "../../contexts/creator-context"
 import useIsNewVideoLoading from "../../hooks/creator/create-video/is-new-video-loading"
+import useCreateVideoOnclick from "../../hooks/creator/create-video/create-video-onclick"
 import useConfirmNewVideoDetails from "../../hooks/creator/create-video/confirm-new-video-details"
-import useUploadMintInfoOnclick from "../../hooks/creator/create-video/upload-new-video-info-onclick"
 
 function UploadNewVideoButton() {
 	const creatorClass = useCreatorContext()
 	const [error, setError] = useState("")
 	const [status, setStatus] = useState("")
-	const uploadMintInfoOnclick = useUploadMintInfoOnclick()
+	const createVideoOnclick = useCreateVideoOnclick()
 	const confirmNewVideoDetails = useConfirmNewVideoDetails()
 	const isNewVideoLoading = useIsNewVideoLoading()
 
@@ -40,7 +40,7 @@ function UploadNewVideoButton() {
 				}
 				colorClass="bg-yellow-400"
 				hoverClass="hover:bg-yellow-500"
-				onClick={() => uploadMintInfoOnclick(setError, setStatus)}
+				onClick={() => createVideoOnclick(setError, setStatus)}
 			/>
 
 			<StatusMessage status={status} />

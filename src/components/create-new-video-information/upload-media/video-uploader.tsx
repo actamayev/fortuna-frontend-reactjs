@@ -2,8 +2,8 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useState, useCallback } from "react"
 import ContentPreview from "../../content-preview"
-import ChooseVideoToUploadButton from "./choose-video-to-upload-button"
 import { useCreatorContext } from "../../../contexts/creator-context"
+import ChooseVideoToUploadButton from "./choose-video-to-upload-button"
 
 function VideoUploader() {
 	const creatorClass = useCreatorContext()

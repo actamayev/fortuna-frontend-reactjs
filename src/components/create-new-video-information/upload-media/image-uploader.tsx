@@ -2,8 +2,8 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useState, useCallback } from "react"
 import ContentPreview from "../../content-preview"
-import ChooseThumbnailToUploadButton from "./choose-thumbnail-to-upload-button"
 import { useCreatorContext } from "../../../contexts/creator-context"
+import ChooseThumbnailToUploadButton from "./choose-thumbnail-to-upload-button"
 
 function ImageUploader() {
 	const creatorClass = useCreatorContext()

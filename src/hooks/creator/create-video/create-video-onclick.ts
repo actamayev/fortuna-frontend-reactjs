@@ -10,7 +10,7 @@ import { useCreatorContext } from "../../../contexts/creator-context"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 
-export default function useUploadMintInfoOnclick(): (
+export default function useCreateVideoOnclick(): (
 	setError: React.Dispatch<React.SetStateAction<string>>,
 	setStatus: React.Dispatch<React.SetStateAction<string>>
 ) => Promise<void> {
@@ -24,7 +24,7 @@ export default function useUploadMintInfoOnclick(): (
 	const confirmNewVideoDetails = useConfirmNewVideoDetails()
 
 	// eslint-disable-next-line complexity
-	const uploadMintInfoOnclick = useCallback(async (
+	const createVideoOnclick = useCallback(async (
 		setError: React.Dispatch<React.SetStateAction<string>>,
 		setStatus: React.Dispatch<React.SetStateAction<string>>
 	): Promise<void> => {
@@ -100,5 +100,5 @@ export default function useUploadMintInfoOnclick(): (
 	}, [solanaClass, creatorClass, personalInfoClass, marketClass, confirmNewVideoDetails,
 		retrieveSolPrice, fortunaApiClient.uploadDataService, fortunaApiClient.creatorDataService, navigate])
 
-	return uploadMintInfoOnclick
+	return createVideoOnclick
 }
