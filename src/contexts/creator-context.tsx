@@ -89,10 +89,13 @@ class CreatorClass {
 			this.newVideoDetails.tierData[tierNumber - 1][key] = value
 			return
 		}
-		if (typeof this.newVideoDetails.tierData[tierNumber - 1][key] !== typeof value) {
-			console.warn(`Type mismatch when trying to set ${key}`)
+		if (key === "tierDiscount") {
+			this.newVideoDetails.tierData[tierNumber - 1].tierDiscount = value as number
+			this.newVideoDetails.tierData[tierNumber - 1].listingPriceToAccessUsd =
+				(1 - ((value as number) / 100)) * this.lowestTierPrice
 			return
 		}
+
 		this.newVideoDetails.tierData[tierNumber - 1][key] = value
 	})
 
@@ -148,7 +151,7 @@ class CreatorClass {
 		// Calculate profit for each tier
 		sortedTiers.forEach(tier => {
 			maxProfit += (tier.purchasesInThisTier as number) *
-				this.newVideoDetails.tierData[this.newVideoDetails.tierData.length - 1].listingPriceToAccessUsd *
+				this.lowestTierPrice *
 				(1 - (tier.tierDiscount / 100))
 		})
 

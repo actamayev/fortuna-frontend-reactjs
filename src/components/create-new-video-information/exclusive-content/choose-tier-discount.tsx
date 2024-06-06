@@ -16,11 +16,6 @@ function ChooseTierDiscount(props: Props) {
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(creatorClass)) return
 		creatorClass.updateNewVideoTierDetails("tierDiscount", tierNumber, handleBoundedNumberInput(event, 0, 100))
-		creatorClass.updateNewVideoTierDetails(
-			"listingPriceToAccessUsd",
-			tierNumber,
-			(100 - Number(event.target.value)) * creatorClass.lowestTierPrice
-		)
 	}, [creatorClass, tierNumber])
 
 	const discountAtThisTier = useMemo(() => {

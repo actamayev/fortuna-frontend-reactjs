@@ -35,9 +35,7 @@ function UploadNewVideoButton() {
 		<>
 			<Button
 				title={buttonTitle}
-				disabled={
-					isImageAndVideoReadyToSubmit === false || confirmNewVideoDetails === false || isNewVideoLoading
-				}
+				disabled={isImageAndVideoReadyToSubmit === false || confirmNewVideoDetails === false || isNewVideoLoading}
 				colorClass="bg-yellow-400"
 				hoverClass="hover:bg-yellow-500"
 				onClick={() => createVideoOnclick(setError, setStatus)}
