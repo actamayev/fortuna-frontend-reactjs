@@ -22,9 +22,8 @@ export default function NewVideoSummary() {
 					</Tooltip>
 				</div>
 			</div>
-			<div className="">
+			<div>
 				<MaxProfitFromVideo />
-
 			</div>
 		</div>
 	)
