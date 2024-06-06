@@ -1,10 +1,7 @@
 declare global {
-	interface MyContent {
+	interface MyContent extends CommonNewVideoDetails {
 		videoId: number
-		videoName: string
-		listingPriceToAccessUsd: number
 		videoListingStatus: VideoListingStatus
-		description: string
 		imageUrl: string
 		uuid: string
 	}

@@ -9,7 +9,7 @@ import VideoUploader from "../../components/create-new-video-information/upload-
 import ImageUploader from "../../components/create-new-video-information/upload-media/image-uploader"
 import UploadNewVideoButton from "../../components/create-new-video-information/upload-new-video-button"
 import VideoDescriptionInput from "../../components/create-new-video-information/video-description-input"
-import SelectExclusiveContentListingPriceUsd from "../../components/create-new-video-information/select-exclusive-content-listing-price-usd"
+import ExclusiveContentTierMap from "../../components/create-new-video-information/exclusive-content/exclusive-content-tier-map"
 import IsContentExclusiveSlider from "../../components/create-new-video-information/exclusive-content/is-content-exclusive-slider"
 
 function CreateContent() {
@@ -40,12 +40,9 @@ function CreateContent() {
 							<IsContentExclusiveSlider />
 						</div>
 					</div>
-					<div className="flex flex-col w-1/3">
-						<div className="mb-4">
-							<SelectExclusiveContentListingPriceUsd />
-						</div>
+					<div className="flex flex-col w-1/3 mb-4">
+						<ExclusiveContentTierMap />
 					</div>
-
 
 					<div className="w-1/3">
 						<NewVideoSummary />

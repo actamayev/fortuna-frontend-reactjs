@@ -10,15 +10,15 @@ class CreatorClass {
 
 	public newVideoDetails: NewVideoDetails = {
 		videoName: "",
-		listingPriceToAccessUsd: 0.5,
 		description: "",
 		selectedImage: null,
 		selectedVideo: null,
 		isContentExclusive: true,
 		tierData: [{
 			tierNumber: 1,
-			tierDiscount: 10,
-			purchasesInThisTier: 100
+			tierDiscount: 0,
+			purchasesInThisTier: null,
+			listingPriceToAccessUsd: 0.5
 		}]
 	}
 	public isNewVideoLoading = false
@@ -79,10 +79,60 @@ class CreatorClass {
 			this.newVideoDetails.tierData = [{
 				tierNumber: 1,
 				tierDiscount: 10,
-				purchasesInThisTier: 100
+				purchasesInThisTier: 100,
+				listingPriceToAccessUsd: 0.5
 			}]
 		}
 	})
+
+	public updateNewVideoTierDetails = action(<K extends keyof TierData>(
+		key: K, tierNumber: number, value: TierData[K]
+	) => {
+		if (key === "purchasesInThisTier") {
+			this.newVideoDetails.tierData[tierNumber - 1][key] = value
+			return
+		}
+		if (typeof this.newVideoDetails.tierData[tierNumber - 1][key] !== typeof value) {
+			console.warn(`Type mismatch when trying to set ${key}`)
+			return
+		}
+		this.newVideoDetails.tierData[tierNumber - 1][key] = value
+	})
+
+	public areThereMoreTiers(tierNumber: number): boolean {
+		return this.newVideoDetails.tierData.length > tierNumber
+	}
+
+	get canAnotherTierBeAdded(): boolean {
+		return this.newVideoDetails.tierData.length < 3
+	}
+
+	get lowestTierPrice(): number {
+		return this.newVideoDetails.tierData[this.newVideoDetails.tierData.length - 1].listingPriceToAccessUsd
+	}
+
+	public addVideoTier() {
+		if (this.newVideoDetails.tierData.length >= 3) return
+		this.newVideoDetails.tierData.push({
+			tierNumber: this.newVideoDetails.tierData.length + 1,
+			tierDiscount: 0,
+			purchasesInThisTier: null,
+			listingPriceToAccessUsd: 0.5
+		})
+		this.resetVideoTierDetailsAboveLowestTier()
+	}
+
+	public deleteTier(tierNumber: number) {
+		this.newVideoDetails.tierData = this.newVideoDetails.tierData.filter(tier => tier.tierNumber !== tierNumber)
+	}
+
+	private resetVideoTierDetailsAboveLowestTier () {
+		for (const tier of this.newVideoDetails.tierData) {
+			if (tier.tierNumber === this.newVideoDetails.tierData.length) return
+			if (!_.isNull(this.newVideoDetails.tierData[tier.tierNumber - 1].purchasesInThisTier)) continue
+			this.newVideoDetails.tierData[tier.tierNumber - 1].purchasesInThisTier = 100
+		}
+	}
 
 	public setHasContentToRetrieve = action((newState: boolean): void => {
 		this.hasContentToRetrieve = newState
@@ -95,15 +145,15 @@ class CreatorClass {
 	public resetNewVideoDetails = action(() => {
 		this.newVideoDetails = {
 			videoName: "",
-			listingPriceToAccessUsd: 0.5,
 			description: "",
 			selectedImage: null,
 			selectedVideo: null,
 			isContentExclusive: true,
 			tierData: [{
 				tierNumber: 1,
-				tierDiscount: 10,
-				purchasesInThisTier: 100
+				tierDiscount: 0,
+				purchasesInThisTier: null,
+				listingPriceToAccessUsd: 0.5
 			}]
 		}
 	})

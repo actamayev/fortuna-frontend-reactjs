@@ -1,14 +1,16 @@
 declare global {
 	interface CommonNewVideoDetails {
 		videoName: string
-		listingPriceToAccessUsd: number
 		description: string
 		isContentExclusive: boolean
-		tierData: {
-			tierNumber: number
-			purchasesInThisTier: number
-			tierDiscount: number
-		}[]
+		tierData: TierData[]
+	}
+
+	interface TierData {
+		tierNumber: number
+		purchasesInThisTier: number | null // null means there is no limit
+		tierDiscount: number
+		listingPriceToAccessUsd: number
 	}
 
 	interface NewVideoDetails extends CommonNewVideoDetails {

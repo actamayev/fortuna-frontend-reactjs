@@ -1,24 +1,29 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
-import RangeSelectorSlider from "../range-selector-slider"
-import { useCreatorContext } from "../../contexts/creator-context"
-import useIsNewVideoLoading from "../../hooks/creator/create-video/is-new-video-loading"
+import RangeSelectorSlider from "../../range-selector-slider"
+import { useCreatorContext } from "../../../contexts/creator-context"
+import useIsNewVideoLoading from "../../../hooks/creator/create-video/is-new-video-loading"
 
-function SelectExclusiveContentListingPriceUsd() {
+interface Props {
+	tierNumber: number
+}
+
+function SelectExclusiveContentListingPriceUsd(props: Props) {
+	const { tierNumber } = props
 	const creatorClass = useCreatorContext()
 	const isNewVideoLoading = useIsNewVideoLoading()
 
 	const listingPriceToAccessUsd = useMemo(() => {
 		if (_.isNull(creatorClass)) return 0
-		return creatorClass.newVideoDetails.listingPriceToAccessUsd
+		return creatorClass.newVideoDetails.tierData[tierNumber].listingPriceToAccessUsd
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.newVideoDetails.listingPriceToAccessUsd])
+	}, [creatorClass, creatorClass?.newVideoDetails.tierData[tierNumber].listingPriceToAccessUsd, tierNumber])
 
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(creatorClass)) return
-		creatorClass.updateNewVideoDetails("listingPriceToAccessUsd", Number(event.target.value))
-	}, [creatorClass])
+		creatorClass.updateNewVideoTierDetails("listingPriceToAccessUsd", tierNumber, Number(event.target.value))
+	}, [creatorClass, tierNumber])
 
 	return (
 		<div className="flex flex-col space-y-4">
