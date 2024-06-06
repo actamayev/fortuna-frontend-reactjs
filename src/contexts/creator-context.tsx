@@ -134,6 +134,33 @@ class CreatorClass {
 		}
 	}
 
+	get doesNewVideoLimitNumberBuyers(): boolean {
+		return this.newVideoDetails.tierData[this.newVideoDetails.tierData.length - 1].purchasesInThisTier !== null
+	}
+
+	get maxProfitFromNewVideo(): number | null {
+		const { tierData } = this.newVideoDetails
+
+		// If any of the tier data's purchasesInThisTier is null, return null
+		if (tierData.some(tier => tier.purchasesInThisTier === null)) return null
+
+		// Sort tier data by tier number to ensure correct order
+		const sortedTiers = _.sortBy(tierData, "tierNumber")
+		let maxProfit = 0
+
+		// Calculate profit for each tier
+		sortedTiers.forEach(tier => {
+			console.log(`${tier.tierNumber}`,
+				(tier.purchasesInThisTier as number) * tier.listingPriceToAccessUsd * (1 - (tier.tierDiscount / 100))
+			)
+			maxProfit += (tier.purchasesInThisTier as number) *
+				this.newVideoDetails.tierData[this.newVideoDetails.tierData.length - 1].listingPriceToAccessUsd *
+				(1 - (tier.tierDiscount / 100))
+		})
+
+		return maxProfit * 0.975 // 2.5% Fortuna fee
+	}
+
 	public setHasContentToRetrieve = action((newState: boolean): void => {
 		this.hasContentToRetrieve = newState
 	})
