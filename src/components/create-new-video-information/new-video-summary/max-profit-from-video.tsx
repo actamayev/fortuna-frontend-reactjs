@@ -8,9 +8,16 @@ function MaxProfitFromVideo() {
 
 	if (
 		_.isNull(creatorClass) ||
-		creatorClass.newVideoDetails.isContentExclusive === false ||
-		_.isNull(creatorClass.maxProfitFromNewVideo)
+		creatorClass.newVideoDetails.isContentExclusive === false
 	) return null
+
+	if (_.isNull(creatorClass.maxProfitFromNewVideo)) {
+		return (
+			<>
+				Max Profit: $∞ (no limit of buyers)
+			</>
+		)
+	}
 
 	return (
 		<>

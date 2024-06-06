@@ -5,6 +5,7 @@ import Slider from "../../slider"
 import FormGroup from "../../form-group"
 import { useCreatorContext } from "../../../contexts/creator-context"
 import useIsNewVideoLoading from "../../../hooks/creator/create-video/is-new-video-loading"
+import handleInputChange from "../../../utils/handle-max-number-input"
 
 interface Props {
 	tierNumber: number
@@ -27,7 +28,7 @@ function ChooseTierLimit(props: Props) {
 
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(creatorClass)) return
-		creatorClass.updateNewVideoTierDetails("purchasesInThisTier", tierNumber, Number(event.target.value))
+		creatorClass.updateNewVideoTierDetails("purchasesInThisTier", tierNumber, handleInputChange(event, 100))
 	}, [creatorClass, tierNumber])
 
 	const purchasesInThisTier = useMemo(() => {
@@ -44,6 +45,8 @@ function ChooseTierLimit(props: Props) {
 				placeholder="69"
 				onChange={updateNewVideoDetails}
 				value={purchasesInThisTier?.toString() || ""}
+				minValue={0}
+				maxValue={100}
 			/>
 		)
 	}
@@ -64,6 +67,8 @@ function ChooseTierLimit(props: Props) {
 					placeholder="69"
 					onChange={updateNewVideoDetails}
 					value={purchasesInThisTier?.toString() || ""}
+					minValue={0}
+					maxValue={100}
 				/>
 			)}
 		</div>
