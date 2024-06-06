@@ -13,9 +13,7 @@ function MaxProfitFromVideo() {
 
 	if (_.isNull(creatorClass.maxProfitFromNewVideo)) {
 		return (
-			<>
-				Max Profit: $∞ (no limit of buyers)
-			</>
+			<>Max Profit: $∞ (no limit of buyers)</>
 		)
 	}
 

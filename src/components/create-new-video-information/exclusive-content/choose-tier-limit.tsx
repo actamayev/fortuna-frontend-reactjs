@@ -4,8 +4,8 @@ import { useCallback, useMemo, useState } from "react"
 import Slider from "../../slider"
 import FormGroup from "../../form-group"
 import { useCreatorContext } from "../../../contexts/creator-context"
+import { handleMinNumberInput } from "../../../utils/handle-number-input"
 import useIsNewVideoLoading from "../../../hooks/creator/create-video/is-new-video-loading"
-import handleInputChange from "../../../utils/handle-max-number-input"
 
 interface Props {
 	tierNumber: number
@@ -28,7 +28,11 @@ function ChooseTierLimit(props: Props) {
 
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(creatorClass)) return
-		creatorClass.updateNewVideoTierDetails("purchasesInThisTier", tierNumber, handleInputChange(event, 100))
+		if (event.target.value === "") {
+			creatorClass.updateNewVideoTierDetails("purchasesInThisTier", tierNumber, null)
+			return
+		}
+		creatorClass.updateNewVideoTierDetails("purchasesInThisTier", tierNumber, handleMinNumberInput(event, 1))
 	}, [creatorClass, tierNumber])
 
 	const purchasesInThisTier = useMemo(() => {
@@ -42,18 +46,17 @@ function ChooseTierLimit(props: Props) {
 			<FormGroup
 				label="Participant limit at this tier"
 				type="number"
-				placeholder="69"
+				placeholder="##"
 				onChange={updateNewVideoDetails}
 				value={purchasesInThisTier?.toString() || ""}
-				minValue={0}
-				maxValue={100}
+				minValue={1}
 			/>
 		)
 	}
 
 	return (
 		<div>
-			Should this tier have a limited number of buyers?
+			Limit number of buyers at this tier
 			<Slider
 				checkedCondition={isChecked === true}
 				onChangeCheckedCondition={checkBuyerLimit}
@@ -64,11 +67,10 @@ function ChooseTierLimit(props: Props) {
 				<FormGroup
 					label="Participant limit at this tier"
 					type="number"
-					placeholder="69"
+					placeholder="##"
 					onChange={updateNewVideoDetails}
 					value={purchasesInThisTier?.toString() || ""}
-					minValue={0}
-					maxValue={100}
+					minValue={1}
 				/>
 			)}
 		</div>

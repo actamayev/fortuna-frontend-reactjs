@@ -3,6 +3,7 @@ import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import FormGroup from "../../form-group"
 import { useCreatorContext } from "../../../contexts/creator-context"
+import { handleBoundedNumberInput } from "../../../utils/handle-number-input"
 
 interface Props {
 	tierNumber: number
@@ -14,7 +15,7 @@ function ChooseTierDiscount(props: Props) {
 
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(creatorClass)) return
-		creatorClass.updateNewVideoTierDetails("tierDiscount", tierNumber, Number(event.target.value))
+		creatorClass.updateNewVideoTierDetails("tierDiscount", tierNumber, handleBoundedNumberInput(event, 0, 100))
 		creatorClass.updateNewVideoTierDetails(
 			"listingPriceToAccessUsd",
 			tierNumber,
@@ -41,6 +42,7 @@ function ChooseTierDiscount(props: Props) {
 			placeholder="10%"
 			onChange={updateNewVideoDetails}
 			value={discountAtThisTier.toString() || ""}
+			minValue={0}
 			maxValue={100}
 		/>
 	)

@@ -72,10 +72,7 @@ class CreatorClass {
 		}
 		this.newVideoDetails[key] = value
 		if (key === "isContentExclusive") {
-			if (value === false) {
-				this.newVideoDetails.tierData = []
-				return
-			}
+			if (value === false || !_.isEmpty(this.newVideoDetails.tierData)) return
 			this.newVideoDetails.tierData = [{
 				tierNumber: 1,
 				tierDiscount: 0,

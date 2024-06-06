@@ -33,17 +33,13 @@ function CreateContent() {
 
 				<VideoDescriptionInput />
 
+				<div className="text-zinc-950 dark:text-zinc-200">
+					<IsContentExclusiveSlider />
+				</div>
 				<div className="flex w-full text-zinc-950 dark:text-zinc-200">
-
-					<div className="w-1/3">
-						<div className="mb-4">
-							<IsContentExclusiveSlider />
-						</div>
-					</div>
-					<div className="flex flex-col w-1/3 mb-4">
+					<div className="w-2/3 mb-4">
 						<ExclusiveContentTierMap />
 					</div>
-
 					<div className="w-1/3">
 						<NewVideoSummary />
 					</div>
