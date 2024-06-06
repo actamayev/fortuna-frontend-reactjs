@@ -17,6 +17,14 @@ function ChooseTierLimit(props: Props) {
 	const [isChecked, setIsChecked] = useState(false)
 	const isNewVideoLoading = useIsNewVideoLoading()
 
+	const checkBuyerLimit = useCallback(() => {
+		if (_.isNull(creatorClass)) return
+		if (isChecked === true) {
+			creatorClass.updateNewVideoTierDetails("purchasesInThisTier", tierNumber, null)
+		}
+		setIsChecked(!isChecked)
+	}, [creatorClass, isChecked, tierNumber])
+
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(creatorClass)) return
 		creatorClass.updateNewVideoTierDetails("purchasesInThisTier", tierNumber, Number(event.target.value))
@@ -45,7 +53,7 @@ function ChooseTierLimit(props: Props) {
 			Should this tier have a limited number of buyers?
 			<Slider
 				checkedCondition={isChecked === true}
-				onChangeCheckedCondition={() => setIsChecked(!isChecked)}
+				onChangeCheckedCondition={checkBuyerLimit}
 				disabledCondition={isNewVideoLoading}
 				colorChangeOnToggle={true}
 			/>

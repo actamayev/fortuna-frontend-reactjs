@@ -1,5 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
+import { FaImage } from "react-icons/fa"
 import { useCallback, useRef, ChangeEvent } from "react"
 import Button from "../../button"
 import { useCreatorContext } from "../../../contexts/creator-context"
@@ -55,11 +56,12 @@ function ChooseThumbnailToUploadButton(props: Props) {
 				max={1}
 			/>
 			<Button
-				title="Select a Thumbnail"
-				colorClass="bg-sky-200 dark:bg-sky-400"
-				hoverClass="hover:bg-sky-300 dark:hover:bg-sky-500"
+				title="Upload Thumbnail"
+				titleIcon={<FaImage size={20}/>}
+				colorClass="bg-sky-500 dark:bg-sky-400"
+				hoverClass="hover:bg-sky-600 dark:hover:bg-sky-500"
 				onClick={() => fileInputRef.current?.click()}
-				className="font-semibold"
+				className="text-zinc-50 dark:text-zinc-950 font-semibold"
 			/>
 		</>
 	)

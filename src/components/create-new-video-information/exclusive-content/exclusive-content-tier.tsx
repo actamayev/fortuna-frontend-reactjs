@@ -37,8 +37,12 @@ function ExclusiveContentTier(props: Props) {
 	if (areThereMoreTiers === false) {
 		return (
 			<div>
-				Tier {tierNumber}
-				<DeleteTierButton tierNumber={tierNumber}/>
+				<div className="flex justify-between items-center">
+					<span>Tier {tierNumber}</span>
+					<div className="flex justify-end">
+						<DeleteTierButton tierNumber={tierNumber} />
+					</div>
+				</div>
 				<RangeSelectorSlider
 					title="Price to access content ($)"
 					value={listingPriceToAccessUsd}
@@ -58,8 +62,12 @@ function ExclusiveContentTier(props: Props) {
 
 	return (
 		<div>
-			Tier {tierNumber}
-			<DeleteTierButton tierNumber={tierNumber}/>
+			<div className="flex justify-between items-center">
+				<span>Tier {tierNumber}</span>
+				<div className="flex justify-end">
+					<DeleteTierButton tierNumber={tierNumber} />
+				</div>
+			</div>
 			<ChooseTierLimit tierNumber={tierNumber} infiniteAllowed={false} />
 			<ChooseDiscount tierNumber={tierNumber}/>
 		</div>

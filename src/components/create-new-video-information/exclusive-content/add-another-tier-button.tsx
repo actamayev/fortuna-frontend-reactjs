@@ -1,6 +1,7 @@
 import _ from "lodash"
-import { useCallback, useMemo } from "react"
 import { observer } from "mobx-react"
+import { useCallback, useMemo } from "react"
+import { FaPlusCircle } from "react-icons/fa"
 import Button from "../../button"
 import { useCreatorContext } from "../../../contexts/creator-context"
 
@@ -29,10 +30,11 @@ function AddAnotherTierButton() {
 	return (
 		<Button
 			title="Add Another Tier"
+			titleIcon={<FaPlusCircle size={20}/>}
 			colorClass="bg-blue-500 dark:bg-blue-400"
 			hoverClass="hover:bg-blue-600 dark:hover:bg-blue-500"
 			onClick={addAnotherTierButton}
-			className="text-white dark:text-zinc-950 font-medium"
+			className="text-zinc-50 dark:text-zinc-950 font-semibold"
 		/>
 	)
 }

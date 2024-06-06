@@ -41,6 +41,7 @@ function ChooseTierDiscount(props: Props) {
 			placeholder="10%"
 			onChange={updateNewVideoDetails}
 			value={discountAtThisTier.toString() || ""}
+			maxValue={100}
 		/>
 	)
 }

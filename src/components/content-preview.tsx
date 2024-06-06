@@ -1,5 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
+import { FaTrash } from "react-icons/fa"
 import Button from "./button"
 
 interface Props {
@@ -20,14 +21,14 @@ export default function ContentPreview(props: Props) {
 	if (_.isNull(previewUrl)) return null
 
 	return (
-		<div className="preview-container">
-			{ children }
+		<div className="preview-container flex items-center">
+			{children}
 			<Button
-				title="Remove"
+				titleIcon={<FaTrash />}
 				colorClass="bg-red-600"
 				hoverClass="hover:bg-red-700"
 				onClick={removeContent}
-				className="text-zinc-50 font-semibold"
+				className="text-zinc-50 font-semibold w-8 h-8 flex items-center justify-center"
 			/>
 		</div>
 	)

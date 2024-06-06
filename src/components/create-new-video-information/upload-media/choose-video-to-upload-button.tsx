@@ -1,5 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
+import { PiVideoFill } from "react-icons/pi"
 import { useCallback, useRef, ChangeEvent } from "react"
 import Button from "../../button"
 import { useCreatorContext } from "../../../contexts/creator-context"
@@ -56,11 +57,12 @@ function ChooseVideoToUploadButton(props: Props) {
 				max={1}
 			/>
 			<Button
-				title="Select a Video"
-				colorClass="bg-blue-500 dark:bg-blue-600"
-				hoverClass="hover:bg-blue-600 dark:hover:bg-blue-700"
+				title="Upload Video"
+				titleIcon={<PiVideoFill size={20}/>}
+				colorClass="bg-blue-500 dark:bg-blue-400"
+				hoverClass="hover:bg-blue-600 dark:hover:bg-blue-500"
 				onClick={() => fileInputRef.current?.click()}
-				className="text-zinc-50 font-semibold"
+				className="text-zinc-50 dark:text-zinc-950 font-semibold"
 			/>
 		</>
 	)

@@ -20,7 +20,7 @@ function ChooseSiteTheme() {
 				height: "40px",
 				backgroundColor: isHovered ? "rgba(128, 128, 128, 0.2)" : "transparent",
 				borderRadius: "50%",
-				cursor: "pointer",
+				cursor: "pointer"
 			}}
 			onClick={setDefaultSiteTheme}
 		>

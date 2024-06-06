@@ -1,5 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
+import { FaSave } from "react-icons/fa"
 import Button from "../button"
 import useUploadProfilePicture from "../../hooks/personal-info/upload-profile-picture"
 
@@ -18,7 +19,7 @@ function SaveProfilePictureButton(props: Props) {
 
 	return (
 		<Button
-			title="Save"
+			titleIcon={<FaSave/> }
 			colorClass="bg-emerald-200"
 			hoverClass="hover:bg-emerald-300"
 			onClick={() => uploadProfilePicture(selectedImage, setSelectedImage, setPreviewUrl)}

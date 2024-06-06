@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
+import { IoCaretBackOutline } from "react-icons/io5"
 import Button from "../../../button"
 import { useMarketContext } from "../../../../contexts/market-context"
 
@@ -14,7 +15,7 @@ function InstantAccessBackButton() {
 
 	return (
 		<Button
-			title="<"
+			titleIcon={<IoCaretBackOutline />}
 			colorClass="bg-blue-200 dark:bg-blue-600"
 			hoverClass="hover:bg-blue-300 dark:hover:bg-blue-700"
 			onClick={setInstantAccessToExclusiveContentStage}

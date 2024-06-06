@@ -78,8 +78,8 @@ class CreatorClass {
 			}
 			this.newVideoDetails.tierData = [{
 				tierNumber: 1,
-				tierDiscount: 10,
-				purchasesInThisTier: 100,
+				tierDiscount: 0,
+				purchasesInThisTier: null,
 				listingPriceToAccessUsd: 0.5
 			}]
 		}
@@ -150,9 +150,6 @@ class CreatorClass {
 
 		// Calculate profit for each tier
 		sortedTiers.forEach(tier => {
-			console.log(`${tier.tierNumber}`,
-				(tier.purchasesInThisTier as number) * tier.listingPriceToAccessUsd * (1 - (tier.tierDiscount / 100))
-			)
 			maxProfit += (tier.purchasesInThisTier as number) *
 				this.newVideoDetails.tierData[this.newVideoDetails.tierData.length - 1].listingPriceToAccessUsd *
 				(1 - (tier.tierDiscount / 100))

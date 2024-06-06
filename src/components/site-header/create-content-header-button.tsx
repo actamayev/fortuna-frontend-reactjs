@@ -1,30 +1,43 @@
 import _ from "lodash"
+import { useState } from "react"
 import { observer } from "mobx-react"
 import { Link, useLocation } from "react-router-dom"
+import { FaVideo } from "react-icons/fa"
 import { useAuthContext } from "../../contexts/auth-context"
+import useDefaultSiteTheme from "../../hooks/memos/default-site-theme"
 
 function CreateContentHeaderButton() {
 	const location = useLocation()
+	const defaultSiteTheme = useDefaultSiteTheme()
 	const authClass = useAuthContext()
+	const [isHovered, setIsHovered] = useState(false)
 
 	if (
 		_.isNull(authClass.accessToken) ||
-		location.pathname.startsWith("/creator/create-content")
+		location.pathname === "/creator/create-content"
 	) return null
 
 	return (
-		<div className="inline-flex items-center justify-center flex-grow flex-shrink mx-2">
+		<div
+			onMouseEnter={() => setIsHovered(true)}
+			onMouseLeave={() => setIsHovered(false)}
+			style={{
+				width: "40px",
+				height: "40px",
+				backgroundColor: isHovered ? "rgba(128, 128, 128, 0.2)" : "transparent",
+				borderRadius: "50%",
+				cursor: "pointer"
+			}}
+			className="inline-flex items-center justify-center flex-grow flex-shrink relative cursor-pointer"
+		>
 			<Link
 				to="/creator/create-content"
-				className="text-center font-semibold w-full"
+				className="w-full"
 			>
 				<div
-					className="rounded text-white dark:text-zinc-950 px-3 h-9 \
-						space-x-2 flex text-sm items-center justify-center bg-blue-500 hover:bg-blue-600 \
-						dark:bg-blue-400 dark:hover:bg-blue-500"
+					className="rounded h-9 flex items-center justify-center"
 				>
-					<div>+</div>
-					<div>Create</div>
+					<FaVideo color = {defaultSiteTheme === "dark" ? "white" : ""}/>
 				</div>
 			</Link>
 		</div>

@@ -13,7 +13,11 @@ function SolOrUsdSlider() {
 	const setDefaultCurrency = useSetDefaultCurrency()
 	const location = useLocation()
 
-	if (location.pathname === "/register" || location.pathname === "/login") return null
+	if (
+		location.pathname === "/register" ||
+		location.pathname === "/login" ||
+		location.pathname === "/creator/create-content"
+	) return null
 
 	return (
 		<div className="flex flex-col">
