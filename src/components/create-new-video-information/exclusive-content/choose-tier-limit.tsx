@@ -56,13 +56,17 @@ function ChooseTierLimit(props: Props) {
 
 	return (
 		<div>
-			Limit number of buyers at this tier
-			<Slider
-				checkedCondition={isChecked === true}
-				onChangeCheckedCondition={checkBuyerLimit}
-				disabledCondition={isNewVideoLoading}
-				colorChangeOnToggle={true}
-			/>
+			<div className="flex items-center">
+				<span className="text-sm text-zinc-600 dark:text-zinc-200">
+					Limit number of buyers at this tier
+				</span>
+				<Slider
+					checkedCondition={isChecked === true}
+					onChangeCheckedCondition={checkBuyerLimit}
+					disabledCondition={isNewVideoLoading}
+					colorChangeOnToggle={true}
+				/>
+			</div>
 			{isChecked && (
 				<FormGroup
 					label="Participant limit at this tier"

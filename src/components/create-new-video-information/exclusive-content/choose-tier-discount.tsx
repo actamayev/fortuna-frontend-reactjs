@@ -1,9 +1,10 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
-import FormGroup from "../../form-group"
+import RangeSelectorSlider from "../../range-selector-slider"
 import { useCreatorContext } from "../../../contexts/creator-context"
 import { handleBoundedNumberInput } from "../../../utils/handle-number-input"
+import useIsNewVideoLoading from "../../../hooks/creator/create-video/is-new-video-loading"
 
 interface Props {
 	tierNumber: number
@@ -12,6 +13,7 @@ interface Props {
 function ChooseTierDiscount(props: Props) {
 	const { tierNumber } = props
 	const creatorClass = useCreatorContext()
+	const isNewVideoLoading = useIsNewVideoLoading()
 
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(creatorClass)) return
@@ -31,14 +33,14 @@ function ChooseTierDiscount(props: Props) {
 	}, [creatorClass, creatorClass?.newVideoDetails.tierData.length])
 
 	return (
-		<FormGroup
-			label={`Discount %, relative to Tier ${lowestTier.toString()}`}
-			type="number"
-			placeholder="10%"
+		<RangeSelectorSlider
+			title={`Discount %, relative to Tier ${lowestTier.toString()}`}
+			value={discountAtThisTier}
 			onChange={updateNewVideoDetails}
-			value={discountAtThisTier.toString() || ""}
-			minValue={0}
-			maxValue={100}
+			min={0}
+			max={100}
+			step={1}
+			disabled={isNewVideoLoading}
 		/>
 	)
 }
