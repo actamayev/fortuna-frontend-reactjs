@@ -6,12 +6,15 @@ declare global {
 		tierData: TierData[]
 	}
 
-	interface TierData {
-		tierNumber: number
+	interface TierData extends TierDataToSend {
 		isPurchaseTierChecked: boolean
+	}
+
+	interface TierDataToSend {
+		tierNumber: number
 		purchasesInThisTier: number | null // null means there is no limit
 		tierDiscount: number
-		listingPriceToAccessUsd: number
+		tierAccessPrice: number
 	}
 
 	interface NewVideoDetails extends CommonNewVideoDetails {
@@ -24,6 +27,7 @@ declare global {
 		uuid: string
 		uploadedImageId: number
 		uploadedVideoId: number
+		tierData: TierDataToSend[]
 	}
 
 	interface MyContent extends CommonNewVideoDetails {

@@ -16,13 +16,13 @@ function SelectExclusiveContentListingPriceUsd(props: Props) {
 
 	const listingPriceToAccessUsd = useMemo(() => {
 		if (_.isNull(creatorClass)) return 0
-		return creatorClass.newVideoDetails.tierData[tierNumber].listingPriceToAccessUsd
+		return creatorClass.newVideoDetails.tierData[tierNumber].tierAccessPrice
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.newVideoDetails.tierData[tierNumber].listingPriceToAccessUsd, tierNumber])
+	}, [creatorClass, creatorClass?.newVideoDetails.tierData[tierNumber].tierAccessPrice, tierNumber])
 
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(creatorClass)) return
-		creatorClass.updateNewVideoTierDetails("listingPriceToAccessUsd", tierNumber, Number(event.target.value))
+		creatorClass.updateNewVideoTierDetails("tierAccessPrice", tierNumber, Number(event.target.value))
 	}, [creatorClass, tierNumber])
 
 	return (

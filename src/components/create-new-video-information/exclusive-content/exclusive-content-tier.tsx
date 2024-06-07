@@ -1,13 +1,13 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
+import ShowTierPrice from "./show-tier-price"
 import ChooseTierLimit from "./choose-tier-limit"
 import ChooseDiscount from "./choose-tier-discount"
 import DeleteTierButton from "./delete-tier-button"
 import RangeSelectorSlider from "../../range-selector-slider"
 import { useCreatorContext } from "../../../contexts/creator-context"
 import useIsNewVideoLoading from "../../../hooks/creator/create-video/is-new-video-loading"
-import ShowTierPrice from "./show-tier-price"
 
 interface Props {
 	tierNumber: number
@@ -20,9 +20,9 @@ function ExclusiveContentTier(props: Props) {
 
 	const listingPriceToAccessUsd = useMemo(() => {
 		if (_.isNull(creatorClass)) return 0
-		return creatorClass.newVideoDetails.tierData[tierNumber - 1].listingPriceToAccessUsd || 0
+		return creatorClass.newVideoDetails.tierData[tierNumber - 1].tierAccessPrice || 0
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.newVideoDetails.tierData[tierNumber - 1]?.listingPriceToAccessUsd, tierNumber])
+	}, [creatorClass, creatorClass?.newVideoDetails.tierData[tierNumber - 1]?.tierAccessPrice, tierNumber])
 
 	const areThereMoreTiers = useMemo(() => {
 		if (_.isNull(creatorClass)) return false
@@ -32,7 +32,7 @@ function ExclusiveContentTier(props: Props) {
 
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(creatorClass)) return
-		creatorClass.updateNewVideoTierDetails("listingPriceToAccessUsd", tierNumber, Number(event.target.value))
+		creatorClass.updateNewVideoTierDetails("tierAccessPrice", tierNumber, Number(event.target.value))
 	}, [creatorClass, tierNumber])
 
 	if (areThereMoreTiers === false) {

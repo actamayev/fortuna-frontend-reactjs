@@ -13,7 +13,7 @@ import { useApiClientContext } from "../../../contexts/fortuna-api-client-contex
 export default function useCreateVideoOnclick(): (
 	setError: React.Dispatch<React.SetStateAction<string>>,
 	setStatus: React.Dispatch<React.SetStateAction<string>>
-) => void {
+) => Promise<void> {
 	const navigate = useTypedNavigate()
 	const fortunaApiClient = useApiClientContext()
 	const solanaClass = useSolanaContext()
@@ -24,10 +24,10 @@ export default function useCreateVideoOnclick(): (
 	const confirmNewVideoDetails = useConfirmNewVideoDetails()
 
 	// eslint-disable-next-line complexity
-	const createVideoOnclick = useCallback((
+	const createVideoOnclick = useCallback(async (
 		setError: React.Dispatch<React.SetStateAction<string>>,
 		setStatus: React.Dispatch<React.SetStateAction<string>>
-	): void => {
+	): Promise<void> => {
 		try {
 			if (
 				_.isNull(solanaClass) ||
@@ -41,59 +41,61 @@ export default function useCreateVideoOnclick(): (
 
 			creatorClass.setIsNewVideoLoading(true)
 
-			// await retrieveSolPrice()
-			// if (_.isNull(solanaClass.solPriceDetails)) return
+			await retrieveSolPrice()
+			if (_.isNull(solanaClass.solPriceDetails)) return
 
-			// setStatus("Uploading Video")
+			setStatus("Uploading Video")
 			// eslint-disable-next-line max-len
-			// const uploadVideoResponse = await fortunaApiClient.uploadDataService.uploadVideoToS3(creatorClass.newVideoDetails.selectedVideo)
-			// if (!_.isEqual(uploadVideoResponse.status, 200) || isNonSuccessResponse(uploadVideoResponse.data)) {
-			// 	setError("Error uploading image")
-			// 	return
-			// }
+			const uploadVideoResponse = await fortunaApiClient.uploadDataService.uploadVideoToS3(creatorClass.newVideoDetails.selectedVideo)
+			if (!_.isEqual(uploadVideoResponse.status, 200) || isNonSuccessResponse(uploadVideoResponse.data)) {
+				setError("Error uploading image")
+				return
+			}
 
-			// setStatus("Uploading Thumbnail")
-			// const uploadImageResponse = await fortunaApiClient.uploadDataService.uploadImageToS3(
-			// 	creatorClass.newVideoDetails.selectedImage, uploadVideoResponse.data.uuid
-			// )
-			// if (!_.isEqual(uploadImageResponse.status, 200) || isNonSuccessResponse(uploadImageResponse.data)) {
-			// 	setError("Error uploading image")
-			// 	return
-			// }
+			setStatus("Uploading Thumbnail")
+			const uploadImageResponse = await fortunaApiClient.uploadDataService.uploadImageToS3(
+				creatorClass.newVideoDetails.selectedImage, uploadVideoResponse.data.uuid
+			)
+			if (!_.isEqual(uploadImageResponse.status, 200) || isNonSuccessResponse(uploadImageResponse.data)) {
+				setError("Error uploading image")
+				return
+			}
 
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			const { selectedImage, selectedVideo, ...restOfVideoDetails } = creatorClass.newVideoDetails
 
-			// const createVideoObject: CreateVideo = {
-			// 	...restOfVideoDetails,
-			// 	imageUrl: uploadImageResponse.data.imageUploadUrl,
-			// 	uuid: uploadVideoResponse.data.uuid,
-			// 	uploadedImageId: uploadImageResponse.data.uploadedImageId,
-			// 	uploadedVideoId: uploadVideoResponse.data.uploadedVideoId,
-			// }
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
+			const cleanedTierData = restOfVideoDetails.tierData.map(({ isPurchaseTierChecked, ...tierDataToSend }) => tierDataToSend)
 
-			console.log("restOfVideoDetails", restOfVideoDetails.tierData)
+			const createVideoObject: CreateVideo = {
+				...restOfVideoDetails,
+				tierData: cleanedTierData, // use the cleaned tier data without isPurchaseTierChecked
+				imageUrl: uploadImageResponse.data.imageUploadUrl,
+				uuid: uploadVideoResponse.data.uuid,
+				uploadedImageId: uploadImageResponse.data.uploadedImageId,
+				uploadedVideoId: uploadVideoResponse.data.uploadedVideoId
+			}
 
-			// setStatus("Creating and Minting Token")
-			// const createAndMintResponse = await fortunaApiClient.creatorDataService.createVideo(createVideoObject)
+			setStatus("Creating and Minting Token")
+			const createAndMintResponse = await fortunaApiClient.creatorDataService.createVideo(createVideoObject)
 
-			// if (!_.isEqual(createAndMintResponse.status, 200) || isNonSuccessResponse(createAndMintResponse.data)) {
-			// 	setError("Error minting")
-			// 	return
-			// }
+			if (!_.isEqual(createAndMintResponse.status, 200) || isNonSuccessResponse(createAndMintResponse.data)) {
+				setError("Error minting")
+				return
+			}
 
-			// const myContent: MyContent = {
-			// 	...restOfVideoDetails,
-			// 	videoId: createAndMintResponse.data.newVideoId,
-			// 	videoListingStatus: "LISTED",
-			// 	imageUrl: uploadImageResponse.data.imageUploadUrl,
-			// 	uuid: uploadVideoResponse.data.uuid,
-			// }
+			const myContent: MyContent = {
+				...restOfVideoDetails,
+				videoId: createAndMintResponse.data.newVideoId,
+				videoListingStatus: "LISTED",
+				imageUrl: uploadImageResponse.data.imageUploadUrl,
+				uuid: uploadVideoResponse.data.uuid,
+			}
 
-			// creatorClass.addContent(myContent)
-			// creatorClass.resetNewVideoDetails()
+			creatorClass.addContent(myContent)
+			creatorClass.resetNewVideoDetails()
 
-			// navigate("/creator/my-content")
+			navigate("/creator/my-content")
 		} catch (error) {
 			console.error(error)
 		} finally {

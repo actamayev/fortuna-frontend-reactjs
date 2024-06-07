@@ -19,7 +19,7 @@ class CreatorClass {
 			tierDiscount: 0,
 			isPurchaseTierChecked: false,
 			purchasesInThisTier: null,
-			listingPriceToAccessUsd: 0.5
+			tierAccessPrice: 0.5
 		}]
 	}
 	public isNewVideoLoading = false
@@ -78,7 +78,7 @@ class CreatorClass {
 				tierDiscount: 0,
 				isPurchaseTierChecked: false,
 				purchasesInThisTier: null,
-				listingPriceToAccessUsd: 0.5
+				tierAccessPrice: 0.5
 			}]
 		}
 	})
@@ -91,10 +91,21 @@ class CreatorClass {
 			if (_.isNull(value)) this.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked = false
 		} else if (key === "tierDiscount") {
 			this.newVideoDetails.tierData[tierNumber - 1].tierDiscount = value as number
-			this.newVideoDetails.tierData[tierNumber - 1].listingPriceToAccessUsd =
+			this.newVideoDetails.tierData[tierNumber - 1].tierAccessPrice =
 				(1 - ((value as number) / 100)) * this.lowestTierPrice
-		} else {
+		} else if (key === "isPurchaseTierChecked") {
 			this.newVideoDetails.tierData[tierNumber - 1][key] = value
+		} else if (key === "tierAccessPrice") {
+			this.newVideoDetails.tierData[tierNumber - 1][key] = value
+			if (tierNumber === 2) {
+				this.newVideoDetails.tierData[0].tierAccessPrice =
+					(1 - ((this.newVideoDetails.tierData[0].tierDiscount as number) / 100)) * this.lowestTierPrice
+			} else if (tierNumber === 3) {
+				this.newVideoDetails.tierData[0].tierAccessPrice =
+					(1 - ((this.newVideoDetails.tierData[0].tierDiscount as number) / 100)) * this.lowestTierPrice
+				this.newVideoDetails.tierData[1].tierAccessPrice =
+					(1 - ((this.newVideoDetails.tierData[1].tierDiscount as number) / 100)) * this.lowestTierPrice
+			}
 		}
 	})
 
@@ -107,7 +118,7 @@ class CreatorClass {
 	}
 
 	get lowestTierPrice(): number {
-		return this.newVideoDetails.tierData[this.newVideoDetails.tierData.length - 1].listingPriceToAccessUsd
+		return this.newVideoDetails.tierData[this.newVideoDetails.tierData.length - 1].tierAccessPrice
 	}
 
 	public addVideoTier() {
@@ -117,7 +128,7 @@ class CreatorClass {
 			tierDiscount: 0,
 			isPurchaseTierChecked: false,
 			purchasesInThisTier: null,
-			listingPriceToAccessUsd: this.newVideoDetails.tierData[this.newVideoDetails.tierData.length - 1].listingPriceToAccessUsd
+			tierAccessPrice: this.newVideoDetails.tierData[this.newVideoDetails.tierData.length - 1].tierAccessPrice
 		})
 		this.resetVideoTierDetailsAboveLowestTier()
 	}
@@ -206,7 +217,7 @@ class CreatorClass {
 				tierDiscount: 0,
 				isPurchaseTierChecked: false,
 				purchasesInThisTier: null,
-				listingPriceToAccessUsd: 0.5
+				tierAccessPrice: 0.5
 			}]
 		}
 	})
