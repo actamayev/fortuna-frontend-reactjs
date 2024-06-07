@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useCallback, useMemo, useState } from "react"
+import { useCallback, useMemo } from "react"
 import Slider from "../../slider"
 import FormGroup from "../../form-group"
 import { useCreatorContext } from "../../../contexts/creator-context"
@@ -15,16 +15,17 @@ interface Props {
 function ChooseTierLimit(props: Props) {
 	const { tierNumber, infiniteAllowed } = props
 	const creatorClass = useCreatorContext()
-	const [isChecked, setIsChecked] = useState(false)
 	const isNewVideoLoading = useIsNewVideoLoading()
 
 	const checkBuyerLimit = useCallback(() => {
 		if (_.isNull(creatorClass)) return
-		if (isChecked === true) {
+		if (creatorClass.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked === true) {
 			creatorClass.updateNewVideoTierDetails("purchasesInThisTier", tierNumber, null)
+		} else {
+			creatorClass.updateNewVideoTierDetails("isPurchaseTierChecked", tierNumber, true)
 		}
-		setIsChecked(!isChecked)
-	}, [creatorClass, isChecked, tierNumber])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [creatorClass, creatorClass?.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked, tierNumber])
 
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(creatorClass)) return
@@ -61,13 +62,13 @@ function ChooseTierLimit(props: Props) {
 					Limit number of buyers at this tier
 				</span>
 				<Slider
-					checkedCondition={isChecked === true}
+					checkedCondition={creatorClass?.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked === true}
 					onChangeCheckedCondition={checkBuyerLimit}
 					disabledCondition={isNewVideoLoading}
 					colorChangeOnToggle={true}
 				/>
 			</div>
-			{isChecked && (
+			{creatorClass?.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked && (
 				<FormGroup
 					label="Participant limit at this tier"
 					type="number"

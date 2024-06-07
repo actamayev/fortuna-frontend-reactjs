@@ -31,8 +31,8 @@ function IsContentExclusiveSlider() {
 					disabledCondition={isNewVideoLoading}
 					colorChangeOnToggle={true}
 				/>
+				<AddAnotherTierButton />
 			</div>
-			<AddAnotherTierButton />
 		</div>
 	)
 }

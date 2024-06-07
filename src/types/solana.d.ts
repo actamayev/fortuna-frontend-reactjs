@@ -8,6 +8,7 @@ declare global {
 
 	interface TierData {
 		tierNumber: number
+		isPurchaseTierChecked: boolean
 		purchasesInThisTier: number | null // null means there is no limit
 		tierDiscount: number
 		listingPriceToAccessUsd: number

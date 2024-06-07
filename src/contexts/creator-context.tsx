@@ -17,6 +17,7 @@ class CreatorClass {
 		tierData: [{
 			tierNumber: 1,
 			tierDiscount: 0,
+			isPurchaseTierChecked: false,
 			purchasesInThisTier: null,
 			listingPriceToAccessUsd: 0.5
 		}]
@@ -76,6 +77,7 @@ class CreatorClass {
 			this.newVideoDetails.tierData = [{
 				tierNumber: 1,
 				tierDiscount: 0,
+				isPurchaseTierChecked: false,
 				purchasesInThisTier: null,
 				listingPriceToAccessUsd: 0.5
 			}]
@@ -87,6 +89,8 @@ class CreatorClass {
 	) => {
 		if (key === "purchasesInThisTier") {
 			this.newVideoDetails.tierData[tierNumber - 1][key] = value
+			if (_.isNull(value)) this.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked = false
+			// else this.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked = true
 			return
 		}
 		if (key === "tierDiscount") {
@@ -116,6 +120,7 @@ class CreatorClass {
 		this.newVideoDetails.tierData.push({
 			tierNumber: this.newVideoDetails.tierData.length + 1,
 			tierDiscount: 0,
+			isPurchaseTierChecked: false,
 			purchasesInThisTier: null,
 			listingPriceToAccessUsd: 0.5
 		})
@@ -123,8 +128,26 @@ class CreatorClass {
 	}
 
 	public deleteTier(tierNumber: number) {
-		this.newVideoDetails.tierData = this.newVideoDetails.tierData.filter(tier => tier.tierNumber !== tierNumber)
+	// Find the index of the tier to be deleted
+		const tierIndex = this.newVideoDetails.tierData.findIndex(tier => tier.tierNumber === tierNumber)
+
+		// If the tier to be deleted is not the last item, copy the details from the item right above it
+		if (tierIndex >= 0 && tierIndex < this.newVideoDetails.tierData.length - 1) {
+			for (let i = tierIndex; i < this.newVideoDetails.tierData.length - 1; i++) {
+				this.newVideoDetails.tierData[i] = {
+					...this.newVideoDetails.tierData[i + 1],
+					tierNumber: this.newVideoDetails.tierData[i].tierNumber // Preserve the current tierNumber
+				}
+			}
+		}
+
+		// Remove the last item
+		this.newVideoDetails.tierData.pop()
+
+		// Re-label the remaining tiers to maintain sequential numbering
+		this.newVideoDetails.tierData.forEach((tier, index) => tier.tierNumber = index + 1)
 	}
+
 
 	private resetVideoTierDetailsAboveLowestTier () {
 		for (const tier of this.newVideoDetails.tierData) {
@@ -176,6 +199,7 @@ class CreatorClass {
 			tierData: [{
 				tierNumber: 1,
 				tierDiscount: 0,
+				isPurchaseTierChecked: false,
 				purchasesInThisTier: null,
 				listingPriceToAccessUsd: 0.5
 			}]

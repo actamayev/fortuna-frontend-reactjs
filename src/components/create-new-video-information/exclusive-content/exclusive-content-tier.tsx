@@ -21,7 +21,7 @@ function ExclusiveContentTier(props: Props) {
 		if (_.isNull(creatorClass)) return 0
 		return creatorClass.newVideoDetails.tierData[tierNumber - 1].listingPriceToAccessUsd || 0
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.newVideoDetails.tierData[tierNumber - 1].listingPriceToAccessUsd, tierNumber])
+	}, [creatorClass, creatorClass?.newVideoDetails.tierData[tierNumber - 1]?.listingPriceToAccessUsd, tierNumber])
 
 	const areThereMoreTiers = useMemo(() => {
 		if (_.isNull(creatorClass)) return false

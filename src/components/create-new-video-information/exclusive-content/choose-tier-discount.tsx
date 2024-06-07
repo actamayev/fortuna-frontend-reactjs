@@ -33,15 +33,18 @@ function ChooseTierDiscount(props: Props) {
 	}, [creatorClass, creatorClass?.newVideoDetails.tierData.length])
 
 	return (
-		<RangeSelectorSlider
-			title={`Discount %, relative to Tier ${lowestTier.toString()}`}
-			value={discountAtThisTier}
-			onChange={updateNewVideoDetails}
-			min={0}
-			max={100}
-			step={1}
-			disabled={isNewVideoLoading}
-		/>
+		<div className="mb-10">
+			<RangeSelectorSlider
+				title={`Discount %, relative to Tier ${lowestTier.toString()}`}
+				value={discountAtThisTier}
+				onChange={updateNewVideoDetails}
+				min={0}
+				max={100}
+				step={1}
+				disabled={isNewVideoLoading}
+			/>
+			<div>{discountAtThisTier}%</div>
+		</div>
 	)
 }
 
