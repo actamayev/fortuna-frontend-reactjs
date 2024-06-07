@@ -66,7 +66,6 @@ class CreatorClass {
 	public updateNewVideoDetails = action(<K extends keyof NewVideoDetails>(
 		key: K, value: NewVideoDetails[K]
 	) => {
-
 		if (typeof this.newVideoDetails[key] !== typeof value) {
 			console.warn(`Type mismatch when trying to set ${key}`)
 			return
@@ -90,17 +89,13 @@ class CreatorClass {
 		if (key === "purchasesInThisTier") {
 			this.newVideoDetails.tierData[tierNumber - 1][key] = value
 			if (_.isNull(value)) this.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked = false
-			// else this.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked = true
-			return
-		}
-		if (key === "tierDiscount") {
+		} else if (key === "tierDiscount") {
 			this.newVideoDetails.tierData[tierNumber - 1].tierDiscount = value as number
 			this.newVideoDetails.tierData[tierNumber - 1].listingPriceToAccessUsd =
 				(1 - ((value as number) / 100)) * this.lowestTierPrice
-			return
+		} else {
+			this.newVideoDetails.tierData[tierNumber - 1][key] = value
 		}
-
-		this.newVideoDetails.tierData[tierNumber - 1][key] = value
 	})
 
 	public areThereMoreTiers(tierNumber: number): boolean {
@@ -122,9 +117,17 @@ class CreatorClass {
 			tierDiscount: 0,
 			isPurchaseTierChecked: false,
 			purchasesInThisTier: null,
-			listingPriceToAccessUsd: 0.5
+			listingPriceToAccessUsd: this.newVideoDetails.tierData[this.newVideoDetails.tierData.length - 1].listingPriceToAccessUsd
 		})
 		this.resetVideoTierDetailsAboveLowestTier()
+	}
+
+	private resetVideoTierDetailsAboveLowestTier () {
+		for (const tier of this.newVideoDetails.tierData) {
+			if (tier.tierNumber === this.newVideoDetails.tierData.length) return
+			if (!_.isNull(this.newVideoDetails.tierData[tier.tierNumber - 1].purchasesInThisTier)) continue
+			this.newVideoDetails.tierData[tier.tierNumber - 1].purchasesInThisTier = 100
+		}
 	}
 
 	public deleteTier(tierNumber: number) {
@@ -148,37 +151,39 @@ class CreatorClass {
 		this.newVideoDetails.tierData.forEach((tier, index) => tier.tierNumber = index + 1)
 	}
 
-
-	private resetVideoTierDetailsAboveLowestTier () {
-		for (const tier of this.newVideoDetails.tierData) {
-			if (tier.tierNumber === this.newVideoDetails.tierData.length) return
-			if (!_.isNull(this.newVideoDetails.tierData[tier.tierNumber - 1].purchasesInThisTier)) continue
-			this.newVideoDetails.tierData[tier.tierNumber - 1].purchasesInThisTier = 100
-		}
-	}
-
 	get doesNewVideoLimitNumberBuyers(): boolean {
 		return this.newVideoDetails.tierData[this.newVideoDetails.tierData.length - 1].purchasesInThisTier !== null
 	}
 
-	get maxProfitFromNewVideo(): number | null {
-		const { tierData } = this.newVideoDetails
+	public getProfitByVideoTier(tierNumber: number): number | null {
+		const tierData = this.newVideoDetails.tierData.find(tier => tier.tierNumber === tierNumber)
+		if (_.isUndefined(tierData) || _.isNull(tierData.purchasesInThisTier)) return null
 
-		// If any of the tier data's purchasesInThisTier is null, return null
-		if (tierData.some(tier => tier.purchasesInThisTier === null)) return null
+		return (tierData.purchasesInThisTier) * this.lowestTierPrice * (1 - (tierData.tierDiscount / 100))
+	}
 
-		// Sort tier data by tier number to ensure correct order
-		const sortedTiers = _.sortBy(tierData, "tierNumber")
-		let maxProfit = 0
+	get totalMaxProfit(): number | null {
+		const tierOneProfitPreFee = this.getProfitByVideoTier(1)
+		const tierTwoProfitPreFee = this.getProfitByVideoTier(2)
+		const tierThreeProfitPreFee = this.getProfitByVideoTier(3)
 
-		// Calculate profit for each tier
-		sortedTiers.forEach(tier => {
-			maxProfit += (tier.purchasesInThisTier as number) *
-				this.lowestTierPrice *
-				(1 - (tier.tierDiscount / 100))
-		})
+		if (_.isNull(tierOneProfitPreFee) && _.isNull(tierTwoProfitPreFee) && _.isNull(tierThreeProfitPreFee)) return null
 
-		return maxProfit * 0.975 // 2.5% Fortuna fee
+		return (
+			(tierOneProfitPreFee as number) +
+			(tierTwoProfitPreFee as number) +
+			(tierThreeProfitPreFee as number)
+		)
+	}
+
+	get newVideoFortunaFee(): number | null {
+		if (_.isNull(this.totalMaxProfit)) return null
+		return this.totalMaxProfit * 0.025
+	}
+
+	get profitAfterFee(): number | null {
+		if (_.isNull(this.totalMaxProfit) || _.isNull(this.newVideoFortunaFee)) return null
+		return (this.totalMaxProfit - this.newVideoFortunaFee)
 	}
 
 	public setHasContentToRetrieve = action((newState: boolean): void => {

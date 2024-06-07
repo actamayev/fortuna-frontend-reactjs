@@ -1,11 +1,4 @@
 declare global {
-	interface MyContent extends CommonNewVideoDetails {
-		videoId: number
-		videoListingStatus: VideoListingStatus
-		imageUrl: string
-		uuid: string
-	}
-
 	interface SolanaTransaction {
 		solTransferId: number
 		solAmountTransferred: number

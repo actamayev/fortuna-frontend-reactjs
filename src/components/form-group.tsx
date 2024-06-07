@@ -48,7 +48,8 @@ export default function FormGroup(props: Props) {
 		<div className= {`mb-4 ${className}`}>
 			{label && <label className = "block text-sm font-medium text-zinc-600 dark:text-zinc-200">{label}</label>}
 			<Component
-				className="mt-1 p-2 w-full border rounded-md text-zinc-950 dark:text-zinc-200 bg-white dark:bg-zinc-800"
+				className="mt-1 p-2 w-full border rounded-md text-zinc-950 border-zinc-100 dark:border-zinc-700 \
+					dark:text-zinc-200 bg-white dark:bg-zinc-800"
 				max={maxValue}
 				min={minAttribute}
 				maxLength={maxLength}

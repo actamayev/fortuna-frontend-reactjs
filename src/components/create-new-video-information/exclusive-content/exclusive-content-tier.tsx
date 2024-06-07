@@ -7,6 +7,7 @@ import DeleteTierButton from "./delete-tier-button"
 import RangeSelectorSlider from "../../range-selector-slider"
 import { useCreatorContext } from "../../../contexts/creator-context"
 import useIsNewVideoLoading from "../../../hooks/creator/create-video/is-new-video-loading"
+import ShowTierPrice from "./show-tier-price"
 
 interface Props {
 	tierNumber: number
@@ -69,6 +70,7 @@ function ExclusiveContentTier(props: Props) {
 				</div>
 			</div>
 			<ChooseDiscount tierNumber={tierNumber}/>
+			<ShowTierPrice tierNumber={tierNumber} />
 			<ChooseTierLimit tierNumber={tierNumber} infiniteAllowed={false} />
 		</div>
 	)

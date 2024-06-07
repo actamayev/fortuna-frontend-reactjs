@@ -6,7 +6,7 @@ import MaxProfitFromVideo from "./max-profit-from-video"
 // consider having an input, where, if the creator enters a number, it displays the profit (based off the tier system)
 export default function NewVideoSummary() {
 	return (
-		<div className = "bg-white dark:bg-zinc-800 border shadow rounded-lg w-full dark:border-b-2 p-2">
+		<div className = "bg-white dark:bg-zinc-800 border rounded-lg w-full dark:border-b-2 p-2">
 			<h1 className = "flex text-xl text-center font-semibold leading-none tracking-tight mb-3">
 				Video Summary
 			</h1>
