@@ -12,6 +12,7 @@ function ChooseSiteTheme() {
 
 	return (
 		<div
+			id="theme-toggler"
 			className="relative cursor-pointer flex items-center justify-center"
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}

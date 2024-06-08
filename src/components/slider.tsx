@@ -7,16 +7,17 @@ interface Props {
 	colorChangeOnToggle?: boolean
 	leftIcon?: React.ReactNode
 	rightIcon?: React.ReactNode
+	id?: string
 }
 
 export default function Slider(props: Props) {
-	const { checkedCondition, onChangeCheckedCondition, disabledCondition, colorChangeOnToggle, leftIcon, rightIcon } = props
+	const { checkedCondition, onChangeCheckedCondition, disabledCondition, colorChangeOnToggle, leftIcon, rightIcon, id } = props
 	const [isHovered, setIsHovered] = useState(false)
 
 	return (
 		<div
+			id={id}
 			className="relative cursor-pointer"
-			id="toggle-pill"
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 			onClick={onChangeCheckedCondition}

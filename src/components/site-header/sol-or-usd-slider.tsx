@@ -22,6 +22,7 @@ function SolOrUsdSlider() {
 	return (
 		<div className="flex flex-col">
 			<Slider
+				id="sol-usd-slider"
 				checkedCondition={defaultCurrency === "sol"}
 				onChangeCheckedCondition={setDefaultCurrency}
 				leftIcon={
