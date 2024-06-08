@@ -37,10 +37,6 @@ function InitialInstantAccessInfo() {
 
 	return (
 		<>
-			<div className="flex items-center w-full">
-				<hr className="flex-grow border-t border-zinc-300" />
-				<hr className="flex-grow border-t border-zinc-300" />
-			</div>
 			<div className="text-center font-semibold flex justify-center items-center text-xl">
 				Instant Access
 			</div>
