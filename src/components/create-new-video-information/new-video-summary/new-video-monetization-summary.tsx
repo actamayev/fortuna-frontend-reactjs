@@ -5,9 +5,6 @@ import Tooltip from "../../tooltip"
 import MaxProfitFromVideo from "./max-profit-from-video"
 import { useCreatorContext } from "../../../contexts/creator-context"
 
-// TODO: Later on, add tier information here (in a clear and simple way)
-// Add a section which shows the creator's max profit for each tier, and if the lowest tier has a defined limit, show the profit
-// consider having an input, where, if the creator enters a number, it displays the profit (based off the tier system)
 function NewVideoMonetizationSummary() {
 	const creatorClass = useCreatorContext()
 
