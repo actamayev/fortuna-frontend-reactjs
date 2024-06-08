@@ -25,7 +25,7 @@ function MaxProfitFromVideo() {
 					Max Profit From Tier 1: ${numberWithCommas(_.round(creatorClass.getProfitByVideoTier(1) || 0, 3))} {" "}
 					({creatorClass.newVideoDetails.tierData[0].purchasesInThisTier} purchases X {" "}
 					{(100 - creatorClass.newVideoDetails.tierData[0].tierDiscount) / 100} X {" "}
-					{creatorClass.lowestTierPrice})
+					${creatorClass.lowestTierPrice})
 				</div>
 			)}
 			{!_.isNull(creatorClass.getProfitByVideoTier(2)) && (
@@ -33,7 +33,7 @@ function MaxProfitFromVideo() {
 					Max Profit From Tier 2: ${numberWithCommas(_.round(creatorClass.getProfitByVideoTier(2) || 0, 3))} {" "}
 					({creatorClass.newVideoDetails.tierData[1].purchasesInThisTier} purchases X {" "}
 					{(100 - creatorClass.newVideoDetails.tierData[1].tierDiscount) / 100} X {" "}
-					{creatorClass.lowestTierPrice})
+					${creatorClass.lowestTierPrice})
 				</div>
 			)}
 			{!_.isNull(creatorClass.getProfitByVideoTier(3)) && (
@@ -41,7 +41,7 @@ function MaxProfitFromVideo() {
 					Max Profit From Tier 3: ${numberWithCommas(_.round(creatorClass.getProfitByVideoTier(3) || 0, 3))} {" "}
 					({creatorClass.newVideoDetails.tierData[2].purchasesInThisTier} purchases X {" "}
 					{(100 - creatorClass.newVideoDetails.tierData[2].tierDiscount) / 100} X {" "}
-					{creatorClass.lowestTierPrice})
+					${creatorClass.lowestTierPrice})
 				</div>
 			)}
 			{creatorClass.newVideoFortunaFee && (

@@ -1,14 +1,28 @@
+import _ from "lodash"
+import { useMemo } from "react"
+import { observer } from "mobx-react"
 import Tooltip from "../../tooltip"
 import MaxProfitFromVideo from "./max-profit-from-video"
+import { useCreatorContext } from "../../../contexts/creator-context"
 
 // TODO: Later on, add tier information here (in a clear and simple way)
 // Add a section which shows the creator's max profit for each tier, and if the lowest tier has a defined limit, show the profit
 // consider having an input, where, if the creator enters a number, it displays the profit (based off the tier system)
-export default function NewVideoSummary() {
+function NewVideoMonetizationSummary() {
+	const creatorClass = useCreatorContext()
+
+	const isNewVideoExclusive = useMemo(() => {
+		if (_.isNull(creatorClass)) return false
+		return creatorClass.newVideoDetails.isContentExclusive
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [creatorClass, creatorClass?.newVideoDetails.isContentExclusive])
+
+	if (isNewVideoExclusive === false) return null
+
 	return (
 		<div className = "bg-white dark:bg-zinc-800 border rounded-lg w-full dark:border-b-2 p-2">
 			<h1 className = "flex text-xl text-center font-semibold leading-none tracking-tight mb-3">
-				Video Summary
+				Video Monetization Summary
 			</h1>
 			<div className="flex">
 				Pegging to USD
@@ -22,9 +36,9 @@ export default function NewVideoSummary() {
 					</Tooltip>
 				</div>
 			</div>
-			<div>
-				<MaxProfitFromVideo />
-			</div>
+			<MaxProfitFromVideo />
 		</div>
 	)
 }
+
+export default observer(NewVideoMonetizationSummary)

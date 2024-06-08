@@ -15,6 +15,7 @@ function PriceToAccessArea(props: Props) {
 
 	const tierAccessPriceUsd = getTieredAccessPriceUsd(video)
 	if (_.isNull(tierAccessPriceUsd)) return null
+
 	if (defaultCurrency === "usd") {
 		return (
 			<>
