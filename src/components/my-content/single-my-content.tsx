@@ -9,15 +9,15 @@ export default function SingleMyContent(props: Props) {
 	const navigateToVideoPage = useNavigateToVideoPage()
 
 	return (
-		<div className="bg-white dark:bg-zinc-800 rounded-lg p-4 m-2 grid grid-cols-1 grid-rows-1 border">
+		<div
+			className="bg-white dark:bg-zinc-800 rounded-lg p-4 m-2 grid grid-cols-1 \
+				grid-rows-1 border hover:cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-700"
+			onClick={() => navigateToVideoPage(content.uuid)}
+		>
 			<div className="flex flex-col">
 				<h2 className="text-lg font-semibold mb-2 dark:text-zinc-200">
 					{content.videoName}
-					<img
-						src={content.imageUrl}
-						onClick={() => navigateToVideoPage(content.uuid)}
-						className="hover:cursor-pointer"
-					/>
+					<img src={content.imageUrl}/>
 				</h2>
 			</div>
 		</div>

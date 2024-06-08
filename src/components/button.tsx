@@ -29,7 +29,7 @@ export default function Button (props: Props) {
 			onClick = {props.onClick}
 			disabled = {props.disabled ?? false}
 		>
-			<span className="flex items-center space-x-1">
+			<span className="flex items-center justify-center space-x-1">
 				{props.title && <span>{props.title}</span>}
 				{props.titleIcon && <span>{props.titleIcon}</span>}
 			</span>

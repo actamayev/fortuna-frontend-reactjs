@@ -26,9 +26,6 @@ function InitialInstantAccessInfo() {
 		return (
 			<div className="w-full">
 				<div className="flex items-center w-full">
-					<hr className="flex-grow border-t border-zinc-300" />
-				</div>
-				<div className="flex items-center w-full">
 					<span>You have already purchased access to this exclusive video</span>
 				</div>
 			</div>
