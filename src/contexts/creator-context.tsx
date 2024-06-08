@@ -145,21 +145,18 @@ class CreatorClass {
 	// Find the index of the tier to be deleted
 		const tierIndex = this.newVideoDetails.tierData.findIndex(tier => tier.tierNumber === tierNumber)
 
-		// If the tier to be deleted is not the last item, copy the details from the item right above it
-		if (tierIndex >= 0 && tierIndex < this.newVideoDetails.tierData.length - 1) {
-			for (let i = tierIndex; i < this.newVideoDetails.tierData.length - 1; i++) {
-				this.newVideoDetails.tierData[i] = {
-					...this.newVideoDetails.tierData[i + 1],
-					tierNumber: this.newVideoDetails.tierData[i].tierNumber // Preserve the current tierNumber
-				}
-			}
-		}
-
-		// Remove the last item
-		this.newVideoDetails.tierData.pop()
+		// Filter out the tier to be deleted
+		this.newVideoDetails.tierData = this.newVideoDetails.tierData.filter(tier => tier.tierNumber !== tierNumber)
 
 		// Re-label the remaining tiers to maintain sequential numbering
-		this.newVideoDetails.tierData.forEach((tier, index) => tier.tierNumber = index + 1)
+		this.newVideoDetails.tierData.forEach((tier, index) => {
+			tier.tierNumber = index + 1
+		})
+
+		// Set isPurchaseTierChecked to true for the previous tier if it exists
+		if (tierIndex > 0 && tierIndex <= this.newVideoDetails.tierData.length) {
+			this.newVideoDetails.tierData[tierIndex - 1].isPurchaseTierChecked = true
+		}
 	}
 
 	get doesNewVideoLimitNumberBuyers(): boolean {
