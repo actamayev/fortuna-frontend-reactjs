@@ -3,7 +3,7 @@ import { observer } from "mobx-react"
 import { useYouTubeContext } from "../../contexts/youtube-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
-function ShowIfUserIsFortunaCreator() {
+function ShowYoutubeSubscribers() {
 	const personalInfoClass = usePersonalInfoContext()
 	const youtubeClass = useYouTubeContext()
 
@@ -12,13 +12,10 @@ function ShowIfUserIsFortunaCreator() {
 	return (
 		<div className="dark:text-zinc-200">
 			<div>
-				You are approved to be a creator on Fortuna.
-			</div>
-			<div>
 				You have {youtubeClass.subscriberCount} YouTube subscribers
 			</div>
 		</div>
 	)
 }
 
-export default observer(ShowIfUserIsFortunaCreator)
+export default observer(ShowYoutubeSubscribers)
