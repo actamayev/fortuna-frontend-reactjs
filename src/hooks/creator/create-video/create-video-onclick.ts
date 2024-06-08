@@ -76,17 +76,17 @@ export default function useCreateVideoOnclick(): (
 				uploadedVideoId: uploadVideoResponse.data.uploadedVideoId
 			}
 
-			setStatus("Creating and Minting Token")
-			const createAndMintResponse = await fortunaApiClient.creatorDataService.createVideo(createVideoObject)
+			setStatus("Uploading video metadata")
+			const createVideoResponse = await fortunaApiClient.creatorDataService.createVideo(createVideoObject)
 
-			if (!_.isEqual(createAndMintResponse.status, 200) || isNonSuccessResponse(createAndMintResponse.data)) {
-				setError("Error minting")
+			if (!_.isEqual(createVideoResponse.status, 200) || isNonSuccessResponse(createVideoResponse.data)) {
+				setError("Error uploading video metadata")
 				return
 			}
 
 			const myContent: MyContent = {
 				...restOfVideoDetails,
-				videoId: createAndMintResponse.data.newVideoId,
+				videoId: createVideoResponse.data.newVideoId,
 				videoListingStatus: "LISTED",
 				imageUrl: uploadImageResponse.data.imageUploadUrl,
 				uuid: uploadVideoResponse.data.uuid,
