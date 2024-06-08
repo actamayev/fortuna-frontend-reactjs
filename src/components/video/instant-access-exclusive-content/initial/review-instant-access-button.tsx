@@ -4,6 +4,7 @@ import { useCallback, useMemo } from "react"
 import Button from "../../../button"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import { useMarketContext } from "../../../../contexts/market-context"
+import getTieredAccessPriceUsd from "../../../../utils/video-access-tiers/get-tiered-access-price-usd"
 
 interface Props {
 	video: SingleVideoDataFromBackend
@@ -15,10 +16,11 @@ function ReviewInstantAccessButton(props: Props) {
 	const solanaClass = useSolanaContext()
 
 	const isAbleToPurchaseAccessToContent = useMemo(() => {
-		if (_.isNull(solanaClass) || _.isNull(video.listingPriceToAccessUsd)) return false
-		return solanaClass.walletBalanceUSD.get() >= video.listingPriceToAccessUsd
+		const tierAccessPriceUsd = getTieredAccessPriceUsd(video)
+		if (_.isNull(solanaClass) || _.isNull(tierAccessPriceUsd)) return false
+		return solanaClass.walletBalanceUSD.get() >= tierAccessPriceUsd
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [solanaClass, solanaClass?.walletBalanceUSD.get(), video.listingPriceToAccessUsd])
+	}, [solanaClass, solanaClass?.walletBalanceUSD.get(), video])
 
 	const onClickButton = useCallback(() => {
 		if (_.isNull(marketClass)) return

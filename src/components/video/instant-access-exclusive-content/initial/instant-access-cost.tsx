@@ -2,6 +2,7 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import useDefaultCurrency from "../../../../hooks/memos/default-currency"
+import getTieredAccessPriceUsd from "../../../../utils/video-access-tiers/get-tiered-access-price-usd"
 
 interface Props {
 	video: SingleVideoDataFromBackend
@@ -11,14 +12,15 @@ function InstantAccessCost(props: Props) {
 	const { video } = props
 	const solanaClass = useSolanaContext()
 	const defaultCurrency = useDefaultCurrency()
+	const tierAccessPriceUsd = getTieredAccessPriceUsd(video)
 
-	if (_.isNull(video.listingPriceToAccessUsd)) return null
+	if (_.isNull(tierAccessPriceUsd)) return null
 
 	if (defaultCurrency === "usd") {
 		return (
 			<>
 				Instant access price:
-				${_.round(video.listingPriceToAccessUsd, 2)}
+				${_.round(tierAccessPriceUsd, 2)}
 			</>
 		)
 	}
@@ -30,7 +32,7 @@ function InstantAccessCost(props: Props) {
 	return (
 		<>
 			Instant access price: {" "}
-			{_.round(video.listingPriceToAccessUsd / solPriceInUSD, 4)} SOL
+			{_.round(tierAccessPriceUsd / solPriceInUSD, 4)} SOL
 		</>
 	)
 }

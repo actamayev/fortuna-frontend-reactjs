@@ -90,6 +90,7 @@ export default function useCreateVideoOnclick(): (
 				videoListingStatus: "LISTED",
 				imageUrl: uploadImageResponse.data.imageUploadUrl,
 				uuid: uploadVideoResponse.data.uuid,
+				numberOfExclusivePurchasesSoFar: creatorClass.newVideoDetails.isContentExclusive === true ? 0 : null
 			}
 
 			creatorClass.addContent(myContent)

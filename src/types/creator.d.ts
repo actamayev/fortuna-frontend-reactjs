@@ -35,6 +35,7 @@ declare global {
 		videoListingStatus: VideoListingStatus
 		imageUrl: string
 		uuid: string
+		numberOfExclusivePurchasesSoFar: number | null
 	}
 }
 

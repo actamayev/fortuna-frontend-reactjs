@@ -1,7 +1,6 @@
 declare global {
 	interface VideoDataLessVideoUrl {
 		videoName: string
-		listingPriceToAccessUsd: number
 		videoListingStatus: VideoListingStatus
 		description: string
 		imageUrl: string
@@ -11,6 +10,8 @@ declare global {
 		isVideoExclusive: boolean
 		isUserAbleToAccessVideo: boolean
 		createdAt: Date
+		tierData: TierDataToSend[]
+		numberOfExclusivePurchasesSoFar: number | null
 	}
 
 	interface SingleVideoDataFromBackend extends VideoDataLessVideoUrl {

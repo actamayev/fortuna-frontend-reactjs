@@ -3,16 +3,22 @@ import { observer } from "mobx-react"
 import { useCallback, useState } from "react"
 import { useParams } from "react-router-dom"
 import Button from "../../../button"
+import usePurchaseExclusiveContentAccess from "../../../../hooks/market/purchase-exclusive-content-access"
 
-function ConfirmInstantAccessButton() {
+interface Props {
+	tierNumber: number | null
+}
+
+function ConfirmInstantAccessButton(props: Props) {
+	const { tierNumber } = props
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const [isLoading, setIsLoading] = useState(false)
 	const purchaseInstantAccess = usePurchaseExclusiveContentAccess()
 
 	const onClickButton = useCallback(() => {
-		if (_.isUndefined(videoUUID)) return
-		purchaseInstantAccess(videoUUID, setIsLoading)
-	}, [purchaseInstantAccess, videoUUID])
+		if (_.isUndefined(videoUUID) || _.isNull(tierNumber)) return
+		purchaseInstantAccess(videoUUID, tierNumber, setIsLoading)
+	}, [purchaseInstantAccess, tierNumber, videoUUID])
 
 	return (
 		<Button
@@ -25,6 +31,5 @@ function ConfirmInstantAccessButton() {
 		/>
 	)
 }
-import usePurchaseExclusiveContentAccess from "../../../../hooks/market/purchase-exclusive-content-access"
 
 export default observer(ConfirmInstantAccessButton)

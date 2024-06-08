@@ -4,13 +4,15 @@ import { useSolanaContext } from "../../../../contexts/solana-context"
 import useDefaultCurrency from "../../../../hooks/memos/default-currency"
 
 interface Props {
-	listingPriceToAccessUsd: number
+	listingPriceToAccessUsd: number | null
 }
 
 function ShowInstantAccessPurchasePrice(props: Props) {
 	const { listingPriceToAccessUsd } = props
 	const solanaClass = useSolanaContext()
 	const defaultCurrency = useDefaultCurrency()
+
+	if (_.isNull(listingPriceToAccessUsd)) return null
 
 	if (defaultCurrency === "usd") {
 		return <>${(listingPriceToAccessUsd).toFixed(2)}</>

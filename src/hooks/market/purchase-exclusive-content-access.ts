@@ -4,21 +4,26 @@ import { isNonSuccessResponse } from "../../utils/type-checks"
 import { useVideoContext } from "../../contexts/video-context"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { useMarketContext } from "../../contexts/market-context"
+import useRetrieveWalletBalance from "../solana/retrieve-wallet-balance"
+import getTieredAccessPriceUsd from "../../utils/video-access-tiers/get-tiered-access-price-usd"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
 
 export default function usePurchaseExclusiveContentAccess(): (
 	videoUUID: string,
+	tierNumber: number,
 	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => Promise<void> {
 	const videoClass = useVideoContext()
 	const solanaClass = useSolanaContext()
 	const marketClass = useMarketContext()
 	const fortunaApiClient = useApiClientContext()
+	const retrieveWalletBalance = useRetrieveWalletBalance()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
 	const purchaseInstantAccess = useCallback(async (
 		videoUUID: string,
+		tierNumber: number,
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 	): Promise<void> => {
 		try {
@@ -31,7 +36,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 			const video = videoClass.findVideoFromUUID(videoUUID)
 			if (_.isUndefined(video)) return
 			setIsLoading(true)
-			const purchaseResponse = await fortunaApiClient.marketDataService.purchaseExclusiveContentAccess(videoUUID)
+			const purchaseResponse = await fortunaApiClient.marketDataService.purchaseExclusiveContentAccess(videoUUID, tierNumber)
 			if (!_.isEqual(purchaseResponse.status, 200) || isNonSuccessResponse(purchaseResponse.data)) {
 				throw Error ("Error completing exclusive content purchase")
 			}
@@ -43,7 +48,12 @@ export default function usePurchaseExclusiveContentAccess(): (
 			}
 			positionsAndTransactionsClass.addExclusiveContent(exclusiveContentToAddToList)
 			marketClass.setInstantAccessToExclusiveContentStage("initial")
-			solanaClass.alterWalletBalanceUsd(-video.listingPriceToAccessUsd)
+			const tierAccessPrice = getTieredAccessPriceUsd(video)
+			if (_.isNull(tierAccessPrice)) {
+				await retrieveWalletBalance()
+			} else {
+				solanaClass.alterWalletBalanceUsd(-tierAccessPrice)
+			}
 			// FUTURE TODO: Add this transaction to my transactions (don't just call retrieveTransactions - redundant)
 			// Consider returning the sol transfer details with the purchaseExclusiveContentAccess response.
 			// Add that single new transaction to the transaction array
@@ -52,8 +62,8 @@ export default function usePurchaseExclusiveContentAccess(): (
 		} finally {
 			setIsLoading(false)
 		}
-	}, [marketClass, solanaClass, positionsAndTransactionsClass, videoClass,
-		fortunaApiClient.httpClient.accessToken, fortunaApiClient.marketDataService])
+	}, [marketClass, solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.marketDataService,
+		positionsAndTransactionsClass, videoClass, retrieveWalletBalance])
 
 	return purchaseInstantAccess
 }
