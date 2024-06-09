@@ -15,12 +15,12 @@ function ShowOrHidePasswordButton (props: Props) {
 	return (
 		<HoverOutlineComponent
 			onClickAction={() => setShowPassword(!showPassword)}
-			extraClasses="absolute right-3 cursor-pointer top-2/4"
+			extraClasses="absolute cursor-pointer top-1/2 transform -translate-y-1/2"
 		>
 			{showPassword ? (
-				<FaEye style={{ color: defaultSiteTheme === "dark" ? "white" : "" }}/>
+				<FaEye style={{ color: defaultSiteTheme === "dark" ? "white" : "" }} />
 			) : (
-				<FaEyeSlash style={{ color: defaultSiteTheme === "dark" ? "white" : "" }}/>
+				<FaEyeSlash style={{ color: defaultSiteTheme === "dark" ? "white" : "" }} />
 			)}
 		</HoverOutlineComponent>
 	)

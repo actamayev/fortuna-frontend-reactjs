@@ -14,7 +14,7 @@ export default function HoverOutlineComponent(props: Props) {
 	return (
 		<div
 			id={id}
-			className={`relative cursor-pointer flex items-center justify-center ${extraClasses}`}
+			className={`relative flex items-center justify-center ${extraClasses}`}
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 			style={{
