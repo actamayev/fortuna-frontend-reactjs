@@ -3,18 +3,19 @@ import { useState } from "react"
 interface Props {
 	onClickAction?: () => void
 	id?: string
-	extraClasses?: string
+	classes: string
 	children: React.ReactNode
+	top?: string
 }
 
 export default function HoverOutlineComponent(props: Props) {
-	const { onClickAction, id, extraClasses, children } = props
+	const { onClickAction, id, classes, children, top } = props
 	const [isHovered, setIsHovered] = useState(false)
 
 	return (
 		<div
 			id={id}
-			className={`relative flex items-center justify-center ${extraClasses}`}
+			className={classes}
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 			style={{
@@ -22,7 +23,8 @@ export default function HoverOutlineComponent(props: Props) {
 				height: "40px",
 				backgroundColor: isHovered ? "rgba(128, 128, 128, 0.2)" : "transparent",
 				borderRadius: "50%",
-				cursor: "pointer"
+				cursor: "pointer",
+				top: top
 			}}
 			onClick={onClickAction}
 		>

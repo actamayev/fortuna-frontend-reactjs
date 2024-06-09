@@ -10,7 +10,11 @@ function ChooseSiteTheme() {
 	const setDefaultSiteTheme = useSetDefaultSiteTheme()
 
 	return (
-		<HoverOutlineComponent id="theme-toggler" onClickAction={setDefaultSiteTheme}>
+		<HoverOutlineComponent
+			id="theme-toggler"
+			onClickAction={setDefaultSiteTheme}
+			classes="relative flex items-center justify-center"
+		>
 			{defaultSiteTheme === "light"
 				? (<IoMdSunny />)
 				: (<FaMoon color="white" />)
