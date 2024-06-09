@@ -17,6 +17,10 @@ declare global {
 		tierAccessPrice: number
 	}
 
+	interface TierDataFromDB extends TierDataToSend {
+		isTierSoldOut: boolean
+	}
+
 	interface NewVideoDetails extends CommonNewVideoDetails {
 		selectedImage: File | null
 		selectedVideo: File | null

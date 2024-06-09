@@ -10,7 +10,7 @@ declare global {
 		isVideoExclusive: boolean
 		isUserAbleToAccessVideo: boolean
 		createdAt: Date
-		tierData: TierDataToSend[]
+		tierData: TierDataFromDB[]
 		numberOfExclusivePurchasesSoFar: number | null
 	}
 

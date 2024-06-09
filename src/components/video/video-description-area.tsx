@@ -1,4 +1,3 @@
-import PriceToAccessArea from "../home-page/price-to-access-area"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
 
@@ -43,9 +42,6 @@ export default function VideoDescriptionArea(props: Props) {
 				</div>
 				<div>
 					{description}
-				</div>
-				<div>
-					<PriceToAccessArea video={video}/>
 				</div>
 			</div>
 		</div>
