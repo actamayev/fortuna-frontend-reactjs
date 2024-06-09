@@ -20,7 +20,6 @@ function ShowMyPublicKey() {
 		}
 	}, [solanaClass])
 
-
 	if (_.isNull(solanaClass?.walletPublicKey) || showPublicKey === false) {
 		return (
 			<div className="font-semibold flex items-center">

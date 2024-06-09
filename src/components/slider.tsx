@@ -1,4 +1,4 @@
-import { useState } from "react"
+import HoverOutlineComponent from "./hover-outline-component"
 
 interface Props {
 	checkedCondition: boolean | undefined
@@ -12,24 +12,12 @@ interface Props {
 
 export default function Slider(props: Props) {
 	const { checkedCondition, onChangeCheckedCondition, disabledCondition, colorChangeOnToggle, leftIcon, rightIcon, id } = props
-	const [isHovered, setIsHovered] = useState(false)
 
 	return (
-		<div
+		<HoverOutlineComponent
 			id={id}
-			className="relative cursor-pointer"
-			onMouseEnter={() => setIsHovered(true)}
-			onMouseLeave={() => setIsHovered(false)}
-			onClick={onChangeCheckedCondition}
-			style={{
-				width: "40px",
-				height: "40px",
-				position: "relative",
-				display: "inline-block",
-				backgroundColor: isHovered ? "rgba(128, 128, 128, 0.2)" : "transparent",
-				borderRadius: "50%",
-				cursor: "pointer"
-			}}
+			extraClasses="inline-block"
+			onClickAction={onChangeCheckedCondition}
 		>
 			<label
 				className="relative inline-block cursor-pointer"
@@ -83,6 +71,6 @@ export default function Slider(props: Props) {
 					{!checkedCondition && leftIcon}
 				</span>
 			</label>
-		</div>
+		</HoverOutlineComponent>
 	)
 }

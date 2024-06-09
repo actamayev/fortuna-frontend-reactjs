@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { useState } from "react"
 import Button from "../button"
 import ErrorMessage from "../error-message"
 import PasswordInput from "./password-input"
@@ -9,7 +9,6 @@ import GoogleSignIn from "./google/google-sign-in"
 import AuthTemplate from "../templates/auth-template"
 import RegisterContactInput from "./register-contact-input"
 import useRegisterSubmit from "../../hooks/auth/register-submit"
-import ShowOrHidePasswordButton from "./show-or-hide-password-button"
 import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
 
 interface Props {
@@ -28,13 +27,7 @@ export default function Register(props: Props) {
 	})
 	const [error, setError] = useState("")
 	const [loading, setLoading] = useState(false)
-	const [showPassword, setShowPassword] = useState(false)
 	const registerSubmit = useRegisterSubmit(whereToNavigate, registerInformation, setError, setLoading)
-
-	const isShowPassword = useMemo(() => {
-		if (showPassword) return "text"
-		return "password"
-	}, [showPassword])
 
 	const createSetCredentialsFunction = (setter: React.Dispatch<React.SetStateAction<RegisterCredentials>>) => {
 		return (newCredentials: Partial<LoginCredentials | RegisterCredentials>) => {
@@ -59,18 +52,11 @@ export default function Register(props: Props) {
 					<PasswordInput
 						credentials = {registerInformation}
 						setCredentials = {createSetCredentialsFunction(setRegisterInformation)}
-						showPassword = {isShowPassword}
 					/>
 
 					<ConfirmPassword
 						credentials = {registerInformation}
 						setCredentials = {createSetCredentialsFunction(setRegisterInformation)}
-						showPassword = {isShowPassword}
-					/>
-
-					<ShowOrHidePasswordButton
-						showPassword = {showPassword}
-						setShowPassword = {setShowPassword}
 					/>
 
 					<ErrorMessage error={error} />
