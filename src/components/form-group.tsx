@@ -16,7 +16,6 @@ interface Props {
 	type?: string
 	step?: number
 	value?: string
-	children?: React.ReactNode
 }
 
 export default function FormGroup(props: Props) {
@@ -37,8 +36,7 @@ export default function FormGroup(props: Props) {
 		rows,
 		type,
 		step,
-		value,
-		children,
+		value
 	} = props
 	const Component = as || (multiline ? "textarea" : "input")
 
@@ -62,9 +60,7 @@ export default function FormGroup(props: Props) {
 				type={!multiline ? type || "text" : undefined} // Don't apply type to textarea
 				step={!multiline ? step : undefined} // Don't apply step to textarea
 				value={value}
-			>
-				{children}
-			</Component>
+			/>
 		</div>
 	)
 }
