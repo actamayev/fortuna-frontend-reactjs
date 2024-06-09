@@ -97,8 +97,7 @@ function ThreeTiersInfo(props: Props) {
 							numberOfExclusivePurchasesSoFar
 						}
 						/
-						{tiers[2].purchasesInThisTier}
-						Available in this tier
+						{tiers[2].purchasesInThisTier} Available in this tier
 					</div>
 				</>
 			)
@@ -143,7 +142,7 @@ function ThreeTiersInfo(props: Props) {
 				<div>Tier 1</div>
 				<div>Access Price: ${tiers[0].tierAccessPrice}</div>
 				<div>
-					{(tiers[0].purchasesInThisTier as number) - numberOfExclusivePurchasesSoFar}/{tiers[0].purchasesInThisTier}
+					{(tiers[0].purchasesInThisTier as number) - numberOfExclusivePurchasesSoFar}/{tiers[0].purchasesInThisTier} {" "}
 					Available in this tier
 				</div>
 			</div>

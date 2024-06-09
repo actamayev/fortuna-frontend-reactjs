@@ -1,3 +1,4 @@
+import _ from "lodash"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 
 interface Props {
@@ -15,15 +16,18 @@ export default function SingleMyContent(props: Props) {
 			style={{ width: "288px", height: "225px" }}
 			onClick={() => navigateToVideoPage(content.uuid)}
 		>
-			<div className="flex flex-col">
+			<div className="flex flex-col h-full">
 				<h2 className="text-lg font-semibold mb-2 dark:text-zinc-200">
-					{content.videoName}
+					{_.truncate(content.videoName, { length: 28, omission: "..." })}
 				</h2>
-				<img
-					src={content.imageUrl}
-					className="w-full h-auto"
-					alt={content.videoName}
-				/>
+				<div className="relative h-full">
+					<img
+						src={content.imageUrl}
+						className="w-full h-full object-cover"
+						alt={content.videoName}
+						style={{ aspectRatio: "16/9" }}
+					/>
+				</div>
 			</div>
 		</div>
 	)
