@@ -33,13 +33,13 @@ function ThreeTiersInfo(props: Props) {
 							<div>0/{tiers[0].purchasesInThisTier} Available in this tier</div>
 						</div>
 						<div className="border">
-							<div>Tier 2 </div>
+							<div>Tier 2</div>
 							<div>Soldout</div>
 							<div>Access Price: ${tiers[1].tierAccessPrice}</div>
 							<div>0/{tiers[1].purchasesInThisTier} Available in this tier</div>
 						</div>
 						<div onClick={onClickButton} className="border">
-							<div>Tier 3 </div>
+							<div>Tier 3</div>
 							Access Price: ${tiers[2].tierAccessPrice}
 						</div>
 					</>
@@ -57,13 +57,13 @@ function ThreeTiersInfo(props: Props) {
 							<div>0/{tiers[0].purchasesInThisTier} Available in this tier</div>
 						</div>
 						<div className="border">
-							<div>Tier 2 </div>
+							<div>Tier 2</div>
 							<div>Soldout</div>
 							<div>Access Price: ${tiers[1].tierAccessPrice}</div>
 							<div>0/{tiers[1].purchasesInThisTier} Available in this tier</div>
 						</div>
 						<div className="border">
-							<div>Tier 3 </div>
+							<div>Tier 3</div>
 							<div>Soldout</div>
 							<div>Access Price: ${tiers[2].tierAccessPrice}</div>
 							<div>0/{tiers[2].purchasesInThisTier} Available in this tier</div>
@@ -76,20 +76,20 @@ function ThreeTiersInfo(props: Props) {
 			return (
 				<>
 					<div className="border">
-						<div>Tier 1 </div>
+						<div>Tier 1</div>
 						<div>Soldout</div>
 						<div>Access Price: ${tiers[0].tierAccessPrice}</div>
 						<div>0/{tiers[0].purchasesInThisTier} Available in this tier</div>
 					</div>
 					<div className="border">
-						<div>Tier 2 </div>
+						<div>Tier 2</div>
 						<div>Soldout</div>
 						<div>Access Price: ${tiers[1].tierAccessPrice}</div>
 						<div>0/{tiers[1].purchasesInThisTier} Available in this tier</div>
 					</div>
 					<div onClick={onClickButton} className="border">
-						<div>Tier 2 </div>
-						<div>Access Price: ${tiers[1].tierAccessPrice}</div>
+						<div>Tier 3</div>
+						<div>Access Price: ${tiers[2].tierAccessPrice}</div>
 						{
 							(tiers[2].purchasesInThisTier +
 							(tiers[1].purchasesInThisTier as number) +
@@ -97,32 +97,38 @@ function ThreeTiersInfo(props: Props) {
 							numberOfExclusivePurchasesSoFar
 						}
 						/
-						{tiers[1].purchasesInThisTier}
+						{tiers[2].purchasesInThisTier}
 						Available in this tier
 					</div>
 				</>
 			)
 		}
 
-		// First tier is soldout, 2 and 3 are avaialebl
+		// First tier is soldout, 2 and 3 are available
 		return (
 			<>
 				<div className="border">
-					<div>Tier 1 </div>
+					<div>Tier 1</div>
 					<div>Soldout</div>
 					<div>Access Price: ${tiers[0].tierAccessPrice}</div>
 					<div>0/{tiers[0].purchasesInThisTier} Available in this tier</div>
 				</div>
 				<div onClick={onClickButton} className="border">
-					<div>Tier 2 </div>
+					<div>Tier 2</div>
 					<div>Access Price: ${tiers[1].tierAccessPrice}</div>
 					<div>
-						{(tiers[1].purchasesInThisTier as number) - numberOfExclusivePurchasesSoFar}/{tiers[1].purchasesInThisTier}
+						{
+							(tiers[1].purchasesInThisTier as number) +
+							(tiers[0].purchasesInThisTier as number) -
+							numberOfExclusivePurchasesSoFar
+						}
+						/
+						{tiers[1].purchasesInThisTier} {" "}
 						Available in this tier
 					</div>
 				</div>
 				<div className="border">
-					<div>Tier 3 </div>
+					<div>Tier 3</div>
 					<div>Tier 2 must sell out before tier 3 is accessed</div>
 					<div>Access Price: ${tiers[2].tierAccessPrice}</div>
 				</div>
@@ -134,7 +140,7 @@ function ThreeTiersInfo(props: Props) {
 	return (
 		<>
 			<div onClick={onClickButton} className="border">
-				<div>Tier 1 </div>
+				<div>Tier 1</div>
 				<div>Access Price: ${tiers[0].tierAccessPrice}</div>
 				<div>
 					{(tiers[0].purchasesInThisTier as number) - numberOfExclusivePurchasesSoFar}/{tiers[0].purchasesInThisTier}
@@ -142,12 +148,12 @@ function ThreeTiersInfo(props: Props) {
 				</div>
 			</div>
 			<div className="border">
-				<div>Tier 2 </div>
+				<div>Tier 2</div>
 				<div>Tier 1 must sell out before tier 2 is accessed</div>
 				<div>Access Price: ${tiers[1].tierAccessPrice}</div>
 			</div>
 			<div className="border">
-				<div>Tier 3 </div>
+				<div>Tier 3</div>
 				<div>Tier 2 must sell out before tier 3 is accessed</div>
 				<div>Access Price: ${tiers[2].tierAccessPrice}</div>
 			</div>

@@ -15,7 +15,7 @@ export default function getCurrentExclusiveAccessTier(video: SingleVideoDataFrom
 
 			cumulativePurchases += tier.purchasesInThisTier
 
-			if (numberOfExclusivePurchasesSoFar <= cumulativePurchases) {
+			if (numberOfExclusivePurchasesSoFar < cumulativePurchases) {
 				// If the number of purchases so far is within this tier's range, return its tier number
 				return tier.tierNumber
 			}

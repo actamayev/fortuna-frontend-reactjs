@@ -19,7 +19,11 @@ export default function SingleMyContent(props: Props) {
 				<h2 className="text-lg font-semibold mb-2 dark:text-zinc-200">
 					{content.videoName}
 				</h2>
-				<img src={content.imageUrl} className="w-full h-auto" alt={content.videoName}/>
+				<img
+					src={content.imageUrl}
+					className="w-full h-auto"
+					alt={content.videoName}
+				/>
 			</div>
 		</div>
 	)

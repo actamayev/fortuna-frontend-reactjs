@@ -15,7 +15,7 @@ function ShowInstantAccessPurchasePrice(props: Props) {
 	if (_.isNull(listingPriceToAccessUsd)) return null
 
 	if (defaultCurrency === "usd") {
-		return <>${(listingPriceToAccessUsd).toFixed(2)}</>
+		return <div>${(listingPriceToAccessUsd).toFixed(2)}</div>
 	}
 
 	if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null
@@ -23,7 +23,7 @@ function ShowInstantAccessPurchasePrice(props: Props) {
 	if (_.isUndefined(solPriceInUSD)) return null
 	const listingPriceToAccessSol = listingPriceToAccessUsd / solPriceInUSD
 
-	return <>{(listingPriceToAccessSol).toFixed(4)} SOL</>
+	return <div>{(listingPriceToAccessSol).toFixed(4)} SOL</div>
 }
 
 export default observer(ShowInstantAccessPurchasePrice)

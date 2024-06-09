@@ -9,16 +9,21 @@ export default function SingleMyPurchasedExclusiveContent(props: Props) {
 	const navigateToVideoPage = useNavigateToVideoPage()
 
 	return (
-		<div className="bg-white rounded-lg p-4 m-2 grid grid-cols-1 grid-rows-1 border">
+		<div
+			className="bg-white dark:bg-zinc-800 rounded-lg p-4 m-2 grid grid-cols-1 \
+				grid-rows-1 border hover:cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-700"
+			style={{ width: "288px", height: "225px" }}
+			onClick={() => navigateToVideoPage(myPurchasedExclusiveContent.uuid)}
+		>
 			<div className="flex flex-col">
-				<h2 className="text-lg font-semibold mb-2">
+				<h2 className="text-lg font-semibold mb-2 dark:text-zinc-200">
 					{myPurchasedExclusiveContent.videoName}
-					<img
-						src={myPurchasedExclusiveContent.imageUrl}
-						onClick={() => navigateToVideoPage(myPurchasedExclusiveContent.uuid)}
-						className="hover:cursor-pointer"
-					/>
 				</h2>
+				<img
+					src={myPurchasedExclusiveContent.imageUrl}
+					className="w-full h-auto"
+					alt={myPurchasedExclusiveContent.videoName}
+				/>
 			</div>
 		</div>
 	)

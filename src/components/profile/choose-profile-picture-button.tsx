@@ -45,9 +45,9 @@ function ChooseProfilePictureButton(props: Props) {
 	const chooseProfilePictureButtonTitle = useMemo(() => {
 		if (_.isNull(personalInfoClass)) return ""
 		if (_.isNil(personalInfoClass.profilePictureUrl)) {
-			return "Choose a Profile Picture"
+			return "Upload a Profile Picture"
 		}
-		return "Choose a new Profile Picture"
+		return "Upload a new Profile Picture"
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [personalInfoClass, personalInfoClass?.profilePictureUrl])
 

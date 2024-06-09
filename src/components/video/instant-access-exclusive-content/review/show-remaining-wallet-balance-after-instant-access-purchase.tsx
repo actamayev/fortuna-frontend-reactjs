@@ -20,12 +20,12 @@ function ShowRemainingWalletBalanceAfterInstantAccessPurchase(props: Props) {
 	const remainingWalletBalanceUsd = solanaClass.walletBalanceUSD.get() - tierAccessPriceUsd
 
 	if (defaultCurrency === "usd") {
-		return <>${remainingWalletBalanceUsd.toFixed(2)}</>
+		return <div>${remainingWalletBalanceUsd.toFixed(2)}</div>
 	}
 
 	const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
 	if (_.isUndefined(solPriceInUSD)) return null
-	return <>{(remainingWalletBalanceUsd / solPriceInUSD).toFixed(4)} SOL</>
+	return <div>{(remainingWalletBalanceUsd / solPriceInUSD).toFixed(4)} SOL</div>
 }
 
 export default observer(ShowRemainingWalletBalanceAfterInstantAccessPurchase)
