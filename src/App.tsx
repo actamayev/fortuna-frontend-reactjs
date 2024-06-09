@@ -21,6 +21,7 @@ import CreatorRoutes from "./routes/creator-routes"
 
 import useGetAuthDataFromStorage from "./hooks/auth/get-auth-data-from-storage"
 import useInitializeTagManager from "./hooks/analytics/initiallize-tag-manager"
+import useLogoutListenerUseEffect from "./hooks/auth/logout-listener-use-effect"
 import useRetrieveSolPriceUseEffect from "./hooks/solana/retrieve-sol-price-use-effect"
 import useRetrieveMyContentUseEffect from "./hooks/creator/retrieve-my-content-use-effect"
 import useRetrieveYouTubeInfoUseEffect from "./hooks/youtube/retrieve-youtube-info-use-effect"
@@ -34,6 +35,7 @@ function App() {
 	// Don't change the getAuthData to a useEffect, or else it doesn't work immediately after login
 	const getAuthDataFromStorage = useGetAuthDataFromStorage()
 	getAuthDataFromStorage()
+	useLogoutListenerUseEffect()
 	useRetrieveWalletBalanceUseEffect()
 	useRetrievePersonalInfoUseEffect()
 	useRetrieveSolPriceUseEffect()
