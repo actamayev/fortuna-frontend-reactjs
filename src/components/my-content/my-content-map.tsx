@@ -11,8 +11,6 @@ function MyContentMap() {
 
 	if (creatorClass.isRetrievingContent === true || creatorClass.hasContentToRetrieve === true) {
 		return <div className="dark:text-zinc-200">Retrieving Content...</div>
-	} else if (_.isEmpty(creatorClass.myContent)) {
-		return <div className="dark:text-zinc-200">No content</div>
 	}
 
 	return (
