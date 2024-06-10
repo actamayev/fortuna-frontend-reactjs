@@ -18,10 +18,7 @@ function MaxProfitByTier(props: Props) {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [creatorClass, tierNumber, creatorClass?.newVideoDetails.tierData[tierNumber - 1].purchasesInThisTier])
 
-	if (
-		_.isNull(creatorClass) ||
-		_.isNull(purchasesInThisTier)
-	) return null
+	if (_.isNull(creatorClass) || _.isNull(purchasesInThisTier)) return null
 
 	return (
 		<div>

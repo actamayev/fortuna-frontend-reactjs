@@ -19,7 +19,7 @@ function ShowTierPrice(props: Props) {
 
 	return (
 		<div className="my-2">
-			<div>Tier Price: ${tierPrice.toFixed(2)}</div>
+			Tier Price: ${tierPrice.toFixed(2)}
 		</div>
 	)
 }
