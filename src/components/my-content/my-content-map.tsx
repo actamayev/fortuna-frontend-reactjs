@@ -14,7 +14,7 @@ function MyContentMap() {
 	}
 
 	return (
-		<div className="grid grid-cols-4 gap-4">
+		<div className="grid grid-cols-4">
 			<AddNewContent />
 			{creatorClass.myContent.map(singleMyContent => (
 				<SingleMyContent key={singleMyContent.uuid} content={singleMyContent} />

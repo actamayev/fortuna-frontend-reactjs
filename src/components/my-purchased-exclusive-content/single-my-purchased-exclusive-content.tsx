@@ -21,8 +21,9 @@ export default function SingleMyPurchasedExclusiveContent(props: Props) {
 				</h2>
 				<img
 					src={myPurchasedExclusiveContent.imageUrl}
-					className="w-full h-auto"
+					className="w-full h-full object-cover"
 					alt={myPurchasedExclusiveContent.videoName}
+					style={{ aspectRatio: "16/9" }}
 				/>
 			</div>
 		</div>

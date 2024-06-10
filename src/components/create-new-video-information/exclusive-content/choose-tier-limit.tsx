@@ -37,12 +37,12 @@ function ChooseTierLimit(props: Props) {
 	}, [creatorClass, tierNumber])
 
 	const purchasesInThisTier = useMemo(() => {
-		if (_.isNull(creatorClass)) return null
+		if (_.isNull(creatorClass)) return undefined
 		return creatorClass.newVideoDetails.tierData[tierNumber - 1].purchasesInThisTier
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [creatorClass, creatorClass?.newVideoDetails.tierData[tierNumber - 1].purchasesInThisTier, tierNumber])
 
-	if (_.isNull(purchasesInThisTier)) return null
+	if (_.isUndefined(purchasesInThisTier)) return null
 
 	if (infiniteAllowed === false) {
 		return (
@@ -51,7 +51,7 @@ function ChooseTierLimit(props: Props) {
 				type="number"
 				placeholder="##"
 				onChange={updateNewVideoDetails}
-				value={purchasesInThisTier.toString() || ""}
+				value={purchasesInThisTier?.toString() || ""}
 				minValue={1}
 			/>
 		)
@@ -76,7 +76,7 @@ function ChooseTierLimit(props: Props) {
 					type="number"
 					placeholder="##"
 					onChange={updateNewVideoDetails}
-					value={purchasesInThisTier.toString() || ""}
+					value={purchasesInThisTier?.toString() || ""}
 					minValue={1}
 				/>
 			)}
