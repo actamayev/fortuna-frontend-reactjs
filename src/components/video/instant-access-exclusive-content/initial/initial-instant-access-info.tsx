@@ -33,9 +33,7 @@ function InitialInstantAccessInfo() {
 	}
 
 	if (_.isNull(video.numberOfExclusivePurchasesSoFar)) {
-		return (
-			<>Not exclusive</>
-		)
+		return <>Not exclusive</>
 	}
 
 	return (

@@ -1,3 +1,4 @@
+import { useCallback } from "react"
 import useDateFormatter from "../../../hooks/date-formatter"
 import useNavigateToVideoPage from "../../../hooks/navigate/navigate-to-video-page"
 
@@ -17,11 +18,15 @@ export default function SingleRecommendedVideo(props: Props) {
 		createdAt
 	} = videoData
 
+	const navigateToVideoPageCallback = useCallback(() => {
+		navigateToVideoPage(uuid)
+	}, [navigateToVideoPage, uuid])
+
 	return (
 		<div
 			className="flex-none flex flex-col items-start \
 				hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-64"
-			onClick={() => navigateToVideoPage(uuid)}
+			onClick={navigateToVideoPageCallback}
 		>
 			<img
 				src={imageUrl}

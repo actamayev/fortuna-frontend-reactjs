@@ -16,17 +16,6 @@ export default function ThreeTiersInfo(props: Props) {
 	if (tiers[0].isTierSoldOut === true) {
 		// This is if both the first and second tier are sold out
 		if (tiers[1].isTierSoldOut === true) {
-			// This is if the third tier has not purchase limit
-			if (_.isNull(tiers[2].purchasesInThisTier)) {
-				return (
-					<>
-						<TierSoldOut tierNumber={1} tierData={tiers[0]}/>
-						<TierSoldOut tierNumber={2} tierData={tiers[1]}/>
-						<IndefiniteAmountAvailableInTier tierNumber={3} tierData={tiers[2]} />
-					</>
-				)
-			}
-
 			// All three are soldout
 			if (tiers[2].isTierSoldOut === true) {
 				return (
@@ -34,6 +23,17 @@ export default function ThreeTiersInfo(props: Props) {
 						<TierSoldOut tierNumber={1} tierData={tiers[0]}/>
 						<TierSoldOut tierNumber={2} tierData={tiers[1]}/>
 						<TierSoldOut tierNumber={3} tierData={tiers[2]}/>
+					</>
+				)
+			}
+
+			// This is if the third tier has not purchase limit
+			if (_.isNull(tiers[2].purchasesInThisTier)) {
+				return (
+					<>
+						<TierSoldOut tierNumber={1} tierData={tiers[0]}/>
+						<TierSoldOut tierNumber={2} tierData={tiers[1]}/>
+						<IndefiniteAmountAvailableInTier tierNumber={3} tierData={tiers[2]} />
 					</>
 				)
 			}

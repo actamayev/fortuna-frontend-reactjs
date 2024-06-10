@@ -14,6 +14,10 @@ function VideoUploader() {
 		creatorClass.updateNewVideoDetails("selectedVideo", null)
 	}, [creatorClass])
 
+	const setSelectedPreviewUrlNull = useCallback(() => {
+		setPreviewUrl(null)
+	}, [])
+
 	return (
 		<>
 			<ChooseVideoToUploadButton
@@ -23,7 +27,7 @@ function VideoUploader() {
 
 			<ContentPreview
 				previewUrl={previewUrl}
-				setPreviewUrlNull={() => setPreviewUrl(null)}
+				setPreviewUrlNull={setSelectedPreviewUrlNull}
 				setSelectedContentNull={setSelectedContentNull}
 			>
 				<video

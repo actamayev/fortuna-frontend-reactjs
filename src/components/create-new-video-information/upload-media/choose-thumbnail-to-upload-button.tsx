@@ -43,6 +43,10 @@ function ChooseThumbnailToUploadButton(props: Props) {
 		fileInputRef.current.value = ""
 	}, [setPreviewUrl, creatorClass])
 
+	const onClickButtonCallback = useCallback(() => {
+		fileInputRef.current?.click()
+	}, [fileInputRef])
+
 	if (!_.isNull(previewUrl)) return null
 
 	return (
@@ -60,7 +64,7 @@ function ChooseThumbnailToUploadButton(props: Props) {
 				titleIcon={<FaImage size={20}/>}
 				colorClass="bg-sky-500 dark:bg-sky-400"
 				hoverClass="hover:bg-sky-600 dark:hover:bg-sky-500"
-				onClick={() => fileInputRef.current?.click()}
+				onClick={onClickButtonCallback}
 				className="text-zinc-50 dark:text-zinc-950 font-semibold"
 			/>
 		</>

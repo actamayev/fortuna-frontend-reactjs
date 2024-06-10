@@ -1,5 +1,5 @@
 import _ from "lodash"
-import { useMemo } from "react"
+import { useCallback, useMemo } from "react"
 import { observer } from "mobx-react"
 import Button from "../button"
 import { useAuthContext } from "../../contexts/auth-context"
@@ -26,6 +26,10 @@ function PurchaseExclusiveAccessCard(props: Props) {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [creatorClass, creatorClass?.myContent, videoUUID])
 
+	const navigateToRegisterCallback = useCallback(() => {
+		navigate("/register")
+	}, [navigate])
+
 	if (_.isNil(video?.numberOfExclusivePurchasesSoFar)) {
 		return (
 			<>Not exclusive</>
@@ -35,7 +39,7 @@ function PurchaseExclusiveAccessCard(props: Props) {
 	if (authClass.isLoggedIn === false) {
 		return (
 			<Button
-				onClick={() => navigate("/register")}
+				onClick={navigateToRegisterCallback}
 				colorClass="bg-blue-200 dark:bg-blue-400"
 				hoverClass="hover:bg-blue-300 hover:dark:bg-blue-500"
 				title="Please create an account to unlock access"

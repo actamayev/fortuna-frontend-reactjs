@@ -51,6 +51,10 @@ function ChooseProfilePictureButton(props: Props) {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [personalInfoClass, personalInfoClass?.profilePictureUrl])
 
+	const onClickButtonCallback = useCallback(() => {
+		fileInputRef.current?.click()
+	}, [fileInputRef])
+
 	// Do not remove this just because it doesn't appear in the JSX.
 	// This button just shouldn't show if there is a previewUrl
 	if (!_.isNull(previewUrl)) return null
@@ -69,7 +73,7 @@ function ChooseProfilePictureButton(props: Props) {
 				title={chooseProfilePictureButtonTitle}
 				colorClass="bg-sky-300"
 				hoverClass="hover:bg-sky-400"
-				onClick={() => fileInputRef.current?.click()}
+				onClick={onClickButtonCallback}
 				className="font-semibold"
 			/>
 		</>

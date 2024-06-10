@@ -1,3 +1,4 @@
+import { useCallback } from "react"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 
 interface Props {
@@ -10,8 +11,12 @@ export default function Thumbnail(props: Props) {
 
 	const { uuid, imageUrl, videoName, videoListingStatus } = video
 
+	const navigateToVideoPageCallback = useCallback(() => {
+		navigateToVideoPage(uuid)
+	}, [navigateToVideoPage, uuid])
+
 	return (
-		<div className="cursor-pointer" onClick={() => navigateToVideoPage(uuid)}>
+		<div className="cursor-pointer" onClick={navigateToVideoPageCallback}>
 			<div className="relative w-full" style={{ paddingTop: "56.25%" }}>
 				<img
 					src={imageUrl}

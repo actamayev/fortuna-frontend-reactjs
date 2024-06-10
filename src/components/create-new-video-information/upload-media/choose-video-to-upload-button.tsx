@@ -44,6 +44,10 @@ function ChooseVideoToUploadButton(props: Props) {
 		fileInputRef.current.value = "" // Reset the input after handling
 	}, [setPreviewUrl, creatorClass])
 
+	const onClickButtonCallback = useCallback(() => {
+		fileInputRef.current?.click()
+	}, [fileInputRef])
+
 	if (!_.isNull(previewUrl)) return null
 
 	return (
@@ -61,7 +65,7 @@ function ChooseVideoToUploadButton(props: Props) {
 				titleIcon={<PiVideoFill size={20}/>}
 				colorClass="bg-blue-500 dark:bg-blue-400"
 				hoverClass="hover:bg-blue-600 dark:hover:bg-blue-500"
-				onClick={() => fileInputRef.current?.click()}
+				onClick={onClickButtonCallback}
 				className="text-zinc-50 dark:text-zinc-950 font-semibold"
 			/>
 		</>

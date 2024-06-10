@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useMemo, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import Button from "../button"
 import ErrorMessage from "../error-message"
 import StatusMessage from "../status-message"
@@ -31,6 +31,10 @@ function UploadNewVideoButton() {
 		return "Submit"
 	}, [isImageAndVideoReadyToSubmit, creatorClass, creatorClass?.isNewVideoLoading, confirmNewVideoDetails])
 
+	const onClickButtonCallback = useCallback(async () => {
+		await createVideoOnclick(setError, setStatus)
+	}, [createVideoOnclick])
+
 	return (
 		<>
 			<Button
@@ -38,7 +42,7 @@ function UploadNewVideoButton() {
 				disabled={isImageAndVideoReadyToSubmit === false || confirmNewVideoDetails === false || isNewVideoLoading}
 				colorClass="bg-yellow-400"
 				hoverClass="hover:bg-yellow-500"
-				onClick={() => createVideoOnclick(setError, setStatus)}
+				onClick={onClickButtonCallback}
 			/>
 
 			<StatusMessage status={status} />

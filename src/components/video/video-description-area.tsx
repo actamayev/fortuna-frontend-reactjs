@@ -1,3 +1,4 @@
+import { useCallback } from "react"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
 
@@ -16,6 +17,10 @@ export default function VideoDescriptionArea(props: Props) {
 		description
 	} = video
 
+	const navigateToCreatorPageCallback = useCallback(() => {
+		navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))
+	}, [creatorUsername, navigateToCreatorPage])
+
 	return (
 		<div className="flex"> {/* This div will align its children side by side */}
 			<div className="flex-1"> {/* Existing content takes up the space it needs */}
@@ -29,13 +34,13 @@ export default function VideoDescriptionArea(props: Props) {
 								src={creatorProfilePictureUrl}
 								alt="Creator's Profile"
 								className="min-w-full min-h-full object-cover cursor-pointer"
-								onClick={() => navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))}
+								onClick={navigateToCreatorPageCallback}
 							/>
 						</div>
 					)}
 					<span
 						className="text-sm font-medium cursor-pointer hover:font-semibold"
-						onClick={() => navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))}
+						onClick={navigateToCreatorPageCallback}
 					>
 						{creatorUsername}
 					</span>

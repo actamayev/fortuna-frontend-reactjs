@@ -1,4 +1,5 @@
 import _ from "lodash"
+import { useCallback } from "react"
 import ShowUsdOrSolPrice from "../show-usd-or-sol-price"
 import ShowHomeVideoLockStatus from "./show-home-video-lock-status"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
@@ -18,6 +19,14 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 
 	const { videoName, creatorProfilePictureUrl, creatorUsername, uuid } = video
 
+	const navigateToCreatorPageCallback = useCallback(() => {
+		navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))
+	}, [creatorUsername, navigateToCreatorPage])
+
+	const navigateToVideoPageCallback = useCallback(() => {
+		navigateToVideoPage(uuid)
+	}, [navigateToVideoPage, uuid])
+
 	return (
 		<div className="flex items-center pt-1 dark:text-zinc-200 rounded-lg mx-1">
 			{creatorProfilePictureUrl && (
@@ -25,21 +34,21 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 					src={creatorProfilePictureUrl}
 					alt="Creator's Profile"
 					className="w-8 h-8 rounded-full mr-2 object-cover cursor-pointer"
-					onClick={() => navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))}
+					onClick={navigateToCreatorPageCallback}
 				/>
 			)}
 			<div className="flex flex-col">
 				<div
 					className="text-md font-semibold cursor-pointer"
 					style={{ maxWidth: "fit-content" }}
-					onClick={() => navigateToVideoPage(uuid)}
+					onClick={navigateToVideoPageCallback}
 				>
 					{_.truncate(videoName, { length: 29, omission: "..." })}
 				</div>
 				<div
 					className="text-xs text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-100 cursor-pointer"
 					style={{ maxWidth: "fit-content" }}
-					onClick={() => navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))}
+					onClick={navigateToCreatorPageCallback}
 				>
 					{creatorUsername}
 				</div>

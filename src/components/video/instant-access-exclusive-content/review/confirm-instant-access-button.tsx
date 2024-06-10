@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useCallback, useState } from "react"
 import { useParams } from "react-router-dom"
+import { useCallback, useState } from "react"
 import Button from "../../../button"
 import usePurchaseExclusiveContentAccess from "../../../../hooks/market/purchase-exclusive-content-access"
 
@@ -15,9 +15,9 @@ function ConfirmInstantAccessButton(props: Props) {
 	const [isLoading, setIsLoading] = useState(false)
 	const purchaseInstantAccess = usePurchaseExclusiveContentAccess()
 
-	const onClickButton = useCallback(() => {
+	const onClickButton = useCallback(async() => {
 		if (_.isUndefined(videoUUID) || _.isNull(tierNumber)) return
-		purchaseInstantAccess(videoUUID, tierNumber, setIsLoading)
+		await purchaseInstantAccess(videoUUID, tierNumber, setIsLoading)
 	}, [purchaseInstantAccess, tierNumber, videoUUID])
 
 	return (

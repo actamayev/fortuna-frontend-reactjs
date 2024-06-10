@@ -24,10 +24,10 @@ export default function Button (props: Props) {
 
 	return (
 		<button
-			type = {props.onClick ? "button" : "submit"}
-			className = {css}
-			onClick = {props.onClick}
-			disabled = {props.disabled ?? false}
+			type={props.onClick ? "button" : "submit"}
+			className={css}
+			onClick={props.onClick}
+			disabled={props.disabled ?? false}
 		>
 			<span className="flex items-center justify-center space-x-1">
 				{props.title && <span>{props.title}</span>}
