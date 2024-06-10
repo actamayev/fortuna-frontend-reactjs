@@ -1,3 +1,4 @@
+import _ from "lodash"
 import { useCallback } from "react"
 import useDateFormatter from "../../hooks/date-formatter"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
@@ -35,7 +36,7 @@ export default function SingleCreatorPageVideo(props: Props) {
 			/>
 			<div className="flex flex-col justify-start overflow-hidden">
 				<div className="text-3xl font-semibold truncate dark:text-zinc-200">
-					{videoName}
+					{_.truncate(videoName, { length: 35, omission: "..." })}
 				</div>
 				<div className="text-xl text-zinc-600 dark:text-zinc-300">
 					{description}
