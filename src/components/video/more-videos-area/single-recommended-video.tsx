@@ -11,12 +11,7 @@ export default function SingleRecommendedVideo(props: Props) {
 	const dateFormatter = useDateFormatter()
 	const navigateToVideoPage = useNavigateToVideoPage()
 
-	const {
-		uuid,
-		imageUrl,
-		videoName,
-		createdAt
-	} = videoData
+	const { uuid, imageUrl, videoName, createdAt } = videoData
 
 	const navigateToVideoPageCallback = useCallback(() => {
 		navigateToVideoPage(uuid)
