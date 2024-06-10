@@ -1,9 +1,10 @@
 import _ from "lodash"
-import PriceToAccessArea from "./price-to-access-area"
+import ShowUsdOrSolPrice from "../show-usd-or-sol-price"
 import ShowHomeVideoLockStatus from "./show-home-video-lock-status"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
+import getTieredAccessPriceUsd from "../../utils/video-access-tiers/get-tiered-access-price-usd"
 
 interface Props {
 	video: VideoDataLessVideoUrl
@@ -45,7 +46,7 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 			</div>
 			<div className="ml-auto flex flex-col items-end space-y-1">
 				<div className="text-xs mt-1">
-					<PriceToAccessArea video={video} />
+					<ShowUsdOrSolPrice usdAmount={getTieredAccessPriceUsd(video)} />
 				</div>
 				<div className="flex items-center space-x-1">
 					<ShowHomeVideoLockStatus

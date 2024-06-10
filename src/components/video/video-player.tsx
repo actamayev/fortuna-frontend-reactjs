@@ -8,15 +8,21 @@ export default function VideoPlayer(props: Props) {
 
 	return (
 		<div className="w-full">
-			<video
-				controls
-				autoPlay
-				className="w-full h-full rounded-lg"
-				controlsList="nodownload"
-			>
-				{videoUrl && <source src={videoUrl} type="video/mp4" />}
-                Your browser does not support the video tag.
-			</video>
+			{videoUrl ? (
+				<video
+					controls
+					autoPlay
+					className="w-full h-full rounded-lg"
+					controlsList="nodownload"
+				>
+					<source src={videoUrl} type="video/mp4" />
+					Your browser does not support the video tag.
+				</video>
+			) : (
+				<div className="w-full h-full rounded-lg bg-gray-200" style={{ aspectRatio: "16/9" }}>
+					{/* Placeholder content if needed */}
+				</div>
+			)}
 		</div>
 	)
 }

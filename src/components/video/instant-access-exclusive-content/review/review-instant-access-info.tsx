@@ -1,14 +1,14 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
+import ShowUsdOrSolPrice from "../../../show-usd-or-sol-price"
 import InstantAccessBackButton from "./instant-access-back-button"
 import { useVideoContext } from "../../../../contexts/video-context"
 import { useMarketContext } from "../../../../contexts/market-context"
 import ConfirmInstantAccessButton from "./confirm-instant-access-button"
-import ShowInstantAccessPurchasePrice from "./show-instant-access-purchase-price"
-import ShowRemainingWalletBalanceAfterInstantAccessPurchase from "./show-remaining-wallet-balance-after-instant-access-purchase"
-import getCurrentExclusiveAccessTier from "../../../../utils/video-access-tiers/get-current-exclusive-access-tier"
 import getTieredAccessPriceUsd from "../../../../utils/video-access-tiers/get-tiered-access-price-usd"
+import getCurrentExclusiveAccessTier from "../../../../utils/video-access-tiers/get-current-exclusive-access-tier"
+import ShowRemainingWalletBalanceAfterInstantAccessPurchase from "./show-remaining-wallet-balance-after-instant-access-purchase"
 
 function ReviewInstantAccessInfo() {
 	const { videoUUID } = useParams<{ videoUUID: string}>()
@@ -35,7 +35,7 @@ function ReviewInstantAccessInfo() {
 
 			<div className="flex justify-between mb-1">
 				<div>Instant Access Price:</div>
-				<ShowInstantAccessPurchasePrice listingPriceToAccessUsd={getTieredAccessPriceUsd(video)}/>
+				<ShowUsdOrSolPrice usdAmount={getTieredAccessPriceUsd(video)} />
 			</div>
 
 			<div className="flex justify-between mb-2">

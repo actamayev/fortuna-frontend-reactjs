@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
+import ShowUsdOrSolPrice from "../../../show-usd-or-sol-price"
 import { useMarketContext } from "../../../../contexts/market-context"
 
 interface Props {
@@ -21,7 +22,7 @@ function DefiniteAmountAvailableInTier(props: Props) {
 	return (
 		<div onClick={onClickButton} className="border cursor-pointer">
 			<div>Tier {tierNumber}</div>
-			<div>Access Price: ${tierAccessPrice}</div>
+			<div>Access Price: <ShowUsdOrSolPrice usdAmount={tierAccessPrice} /> </div>
 			<div>{numberPurchasesAvailable} Available in this tier</div>
 		</div>
 	)
