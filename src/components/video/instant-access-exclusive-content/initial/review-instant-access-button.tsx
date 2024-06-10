@@ -16,9 +16,9 @@ function ReviewInstantAccessButton(props: Props) {
 	const solanaClass = useSolanaContext()
 
 	const isAbleToPurchaseAccessToContent = useMemo(() => {
-		const tierAccessPriceUsdUsd = getTieredAccessPriceUsd(video)
-		if (_.isNull(solanaClass) || _.isNull(tierAccessPriceUsdUsd)) return false
-		return solanaClass.walletBalanceUSD.get() >= tierAccessPriceUsdUsd
+		const tierAccessPriceUsd = getTieredAccessPriceUsd(video)
+		if (_.isNull(solanaClass) || _.isNull(tierAccessPriceUsd)) return false
+		return solanaClass.walletBalanceUSD.get() >= tierAccessPriceUsd
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [solanaClass, solanaClass?.walletBalanceUSD.get(), video])
 

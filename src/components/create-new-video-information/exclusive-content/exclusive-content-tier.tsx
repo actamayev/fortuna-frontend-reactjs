@@ -18,7 +18,7 @@ function ExclusiveContentTier(props: Props) {
 	const creatorClass = useCreatorContext()
 	const isNewVideoLoading = useIsNewVideoLoading()
 
-	const listingPriceToAccessUsd = useMemo(() => {
+	const tierAccessPriceUsd = useMemo(() => {
 		if (_.isNull(creatorClass)) return 0
 		return creatorClass.newVideoDetails.tierData[tierNumber - 1].tierAccessPriceUsd || 0
 	// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -46,7 +46,7 @@ function ExclusiveContentTier(props: Props) {
 				</div>
 				<RangeSelectorSlider
 					title="Price to access content ($)"
-					value={listingPriceToAccessUsd}
+					value={tierAccessPriceUsd}
 					onChange={updateNewVideoDetails}
 					min={0.5}
 					max={50}
@@ -54,7 +54,7 @@ function ExclusiveContentTier(props: Props) {
 					disabled={isNewVideoLoading}
 				/>
 				<div>
-					${_.round(listingPriceToAccessUsd, 2)}
+					${_.round(tierAccessPriceUsd, 2)}
 				</div>
 				<ChooseTierLimit tierNumber={tierNumber} infiniteAllowed={true} />
 			</div>

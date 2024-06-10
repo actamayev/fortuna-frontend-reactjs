@@ -11,7 +11,7 @@ function ShowTierPrice(props: Props) {
 	const { tierNumber } = props
 	const creatorClass = useCreatorContext()
 
-	const tierPrice = useMemo(() => {
+	const tierAccessPriceUsd = useMemo(() => {
 		if (_.isNull(creatorClass)) return 0
 		return creatorClass.newVideoDetails.tierData[tierNumber - 1].tierAccessPriceUsd
 	// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -21,9 +21,9 @@ function ShowTierPrice(props: Props) {
 
 	return (
 		<>
-			{tierPrice && (
+			{tierAccessPriceUsd && (
 				<div className="my-2">
-					Tier Price: ${tierPrice.toFixed(2)}
+					Tier Price: ${tierAccessPriceUsd.toFixed(2)}
 				</div>
 			)}
 		</>
