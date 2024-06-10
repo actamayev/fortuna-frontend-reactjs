@@ -15,12 +15,7 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 	const navigateToVideoPage = useNavigateToVideoPage()
 	const navigateToCreatorPage = useNavigateToCreatorPage()
 
-	const {
-		videoName,
-		creatorProfilePictureUrl,
-		creatorUsername,
-		uuid
-	} = video
+	const { videoName, creatorProfilePictureUrl, creatorUsername, uuid } = video
 
 	return (
 		<div className="flex items-center pt-1 dark:text-zinc-200 rounded-lg mx-1">
@@ -38,7 +33,7 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 					style={{ maxWidth: "fit-content" }}
 					onClick={() => navigateToVideoPage(uuid)}
 				>
-					{_.truncate(videoName, { length: 20, omission: "..." })}
+					{_.truncate(videoName, { length: 29, omission: "..." })}
 				</div>
 				<div
 					className="text-xs text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-100 cursor-pointer"
@@ -48,12 +43,15 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 					{creatorUsername}
 				</div>
 			</div>
-			<div className="ml-auto flex flex-col items-end space-y-2.5">
+			<div className="ml-auto flex flex-col items-end space-y-1">
 				<div className="text-xs mt-1">
 					<PriceToAccessArea video={video} />
 				</div>
 				<div className="flex items-center space-x-1">
-					<ShowHomeVideoLockStatus isUserAbleToAccessVideo={video.isUserAbleToAccessVideo} index={index}/>
+					<ShowHomeVideoLockStatus
+						isUserAbleToAccessVideo={video.isUserAbleToAccessVideo}
+						index={index}
+					/>
 				</div>
 			</div>
 		</div>

@@ -18,9 +18,7 @@ function PriceToAccessArea(props: Props) {
 
 	if (defaultCurrency === "usd") {
 		return (
-			<>
-				${_.round(tierAccessPriceUsd, 2)}
-			</>
+			<>${_.round(tierAccessPriceUsd, 2)}</>
 		)
 	}
 
