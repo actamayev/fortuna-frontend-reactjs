@@ -1,22 +1,16 @@
 import _ from "lodash"
-import { useCallback } from "react"
-import { observer } from "mobx-react"
-import { useMarketContext } from "../../../../contexts/market-context"
+import TierSoldOut from "./tier-sold-out"
+import PreviousTierMustSellOut from "./previous-tier-must-sell-out"
+import DefiniteAmountAvailableInTier from "./definite-amount-available-in-tier"
+import IndefiniteAmountAvailableInTier from "./indefinite-amount-available-in-tier"
 
 interface Props {
 	tiers: TierDataFromDB[]
 	numberOfExclusivePurchasesSoFar: number
 }
 
-// eslint-disable-next-line max-lines-per-function
-function ThreeTiersInfo(props: Props) {
+export default function ThreeTiersInfo(props: Props) {
 	const { tiers, numberOfExclusivePurchasesSoFar } = props
-	const marketClass = useMarketContext()
-
-	const onClickButton = useCallback(() => {
-		if (_.isNull(marketClass)) return
-		marketClass.setInstantAccessToExclusiveContentStage("review")
-	}, [marketClass])
 
 	// This is if the first tier is soldout:
 	if (tiers[0].isTierSoldOut === true) {
@@ -26,22 +20,9 @@ function ThreeTiersInfo(props: Props) {
 			if (_.isNull(tiers[2].purchasesInThisTier)) {
 				return (
 					<>
-						<div className="border">
-							<div>Tier 1</div>
-							<div>Soldout</div>
-							<div>Access Price: ${tiers[0].tierAccessPrice}</div>
-							<div>0/{tiers[0].purchasesInThisTier} Available in this tier</div>
-						</div>
-						<div className="border">
-							<div>Tier 2</div>
-							<div>Soldout</div>
-							<div>Access Price: ${tiers[1].tierAccessPrice}</div>
-							<div>0/{tiers[1].purchasesInThisTier} Available in this tier</div>
-						</div>
-						<div onClick={onClickButton} className="border">
-							<div>Tier 3</div>
-							Access Price: ${tiers[2].tierAccessPrice}
-						</div>
+						<TierSoldOut tierNumber={1} tierData={tiers[0]}/>
+						<TierSoldOut tierNumber={2} tierData={tiers[1]}/>
+						<IndefiniteAmountAvailableInTier tierNumber={3} tierData={tiers[2]} />
 					</>
 				)
 			}
@@ -50,24 +31,9 @@ function ThreeTiersInfo(props: Props) {
 			if (tiers[2].isTierSoldOut === true) {
 				return (
 					<>
-						<div className="border">
-							<div>Tier 1</div>
-							<div>Soldout</div>
-							<div>Access Price: ${tiers[0].tierAccessPrice}</div>
-							<div>0/{tiers[0].purchasesInThisTier} Available in this tier</div>
-						</div>
-						<div className="border">
-							<div>Tier 2</div>
-							<div>Soldout</div>
-							<div>Access Price: ${tiers[1].tierAccessPrice}</div>
-							<div>0/{tiers[1].purchasesInThisTier} Available in this tier</div>
-						</div>
-						<div className="border">
-							<div>Tier 3</div>
-							<div>Soldout</div>
-							<div>Access Price: ${tiers[2].tierAccessPrice}</div>
-							<div>0/{tiers[2].purchasesInThisTier} Available in this tier</div>
-						</div>
+						<TierSoldOut tierNumber={1} tierData={tiers[0]}/>
+						<TierSoldOut tierNumber={2} tierData={tiers[1]}/>
+						<TierSoldOut tierNumber={3} tierData={tiers[2]}/>
 					</>
 				)
 			}
@@ -75,30 +41,19 @@ function ThreeTiersInfo(props: Props) {
 			// First two tiers are soldout, third is avaialable
 			return (
 				<>
-					<div className="border">
-						<div>Tier 1</div>
-						<div>Soldout</div>
-						<div>Access Price: ${tiers[0].tierAccessPrice}</div>
-						<div>0/{tiers[0].purchasesInThisTier} Available in this tier</div>
-					</div>
-					<div className="border">
-						<div>Tier 2</div>
-						<div>Soldout</div>
-						<div>Access Price: ${tiers[1].tierAccessPrice}</div>
-						<div>0/{tiers[1].purchasesInThisTier} Available in this tier</div>
-					</div>
-					<div onClick={onClickButton} className="border">
-						<div>Tier 3</div>
-						<div>Access Price: ${tiers[2].tierAccessPrice}</div>
-						{
-							(tiers[2].purchasesInThisTier +
+					<TierSoldOut tierNumber={1} tierData={tiers[0]}/>
+					<TierSoldOut tierNumber={2} tierData={tiers[1]}/>
+					<DefiniteAmountAvailableInTier
+						tierNumber={3}
+						tierAccessPrice={tiers[2].tierAccessPrice}
+						numberPurchasesAvailable={`
+							${(tiers[2].purchasesInThisTier +
 							(tiers[1].purchasesInThisTier as number) +
 							(tiers[0].purchasesInThisTier as number)) -
-							numberOfExclusivePurchasesSoFar
-						}
-						/
-						{tiers[2].purchasesInThisTier} Available in this tier
-					</div>
+							numberOfExclusivePurchasesSoFar}
+							/${tiers[2].purchasesInThisTier}
+						`}
+					/>
 				</>
 			)
 		}
@@ -106,31 +61,18 @@ function ThreeTiersInfo(props: Props) {
 		// First tier is soldout, 2 and 3 are available
 		return (
 			<>
-				<div className="border">
-					<div>Tier 1</div>
-					<div>Soldout</div>
-					<div>Access Price: ${tiers[0].tierAccessPrice}</div>
-					<div>0/{tiers[0].purchasesInThisTier} Available in this tier</div>
-				</div>
-				<div onClick={onClickButton} className="border">
-					<div>Tier 2</div>
-					<div>Access Price: ${tiers[1].tierAccessPrice}</div>
-					<div>
-						{
-							(tiers[1].purchasesInThisTier as number) +
-							(tiers[0].purchasesInThisTier as number) -
-							numberOfExclusivePurchasesSoFar
-						}
-						/
-						{tiers[1].purchasesInThisTier} {" "}
-						Available in this tier
-					</div>
-				</div>
-				<div className="border">
-					<div>Tier 3</div>
-					<div>Tier 2 must sell out before tier 3 is accessed</div>
-					<div>Access Price: ${tiers[2].tierAccessPrice}</div>
-				</div>
+				<TierSoldOut tierNumber={1} tierData={tiers[0]}/>
+				<DefiniteAmountAvailableInTier
+					tierNumber={2}
+					tierAccessPrice={tiers[1].tierAccessPrice}
+					numberPurchasesAvailable={`
+						${(tiers[1].purchasesInThisTier as number) +
+						(tiers[0].purchasesInThisTier as number) -
+						numberOfExclusivePurchasesSoFar}
+						/${tiers[1].purchasesInThisTier}
+					`}
+				/>
+				<PreviousTierMustSellOut tierNumber={3} tierAccessPrice={tiers[2].tierAccessPrice} />
 			</>
 		)
 	}
@@ -138,26 +80,15 @@ function ThreeTiersInfo(props: Props) {
 	// All three tiers are available
 	return (
 		<>
-			<div onClick={onClickButton} className="border">
-				<div>Tier 1</div>
-				<div>Access Price: ${tiers[0].tierAccessPrice}</div>
-				<div>
-					{(tiers[0].purchasesInThisTier as number) - numberOfExclusivePurchasesSoFar}/{tiers[0].purchasesInThisTier} {" "}
-					Available in this tier
-				</div>
-			</div>
-			<div className="border">
-				<div>Tier 2</div>
-				<div>Tier 1 must sell out before tier 2 is accessed</div>
-				<div>Access Price: ${tiers[1].tierAccessPrice}</div>
-			</div>
-			<div className="border">
-				<div>Tier 3</div>
-				<div>Tier 2 must sell out before tier 3 is accessed</div>
-				<div>Access Price: ${tiers[2].tierAccessPrice}</div>
-			</div>
+			<DefiniteAmountAvailableInTier
+				tierNumber={1}
+				tierAccessPrice={tiers[0].tierAccessPrice}
+				numberPurchasesAvailable={`
+				${(tiers[0].purchasesInThisTier as number) - numberOfExclusivePurchasesSoFar}/${tiers[0].purchasesInThisTier}
+			`}
+			/>
+			<PreviousTierMustSellOut tierNumber={2} tierAccessPrice={tiers[1].tierAccessPrice} />
+			<PreviousTierMustSellOut tierNumber={3} tierAccessPrice={tiers[2].tierAccessPrice} />
 		</>
 	)
 }
-
-export default observer(ThreeTiersInfo)

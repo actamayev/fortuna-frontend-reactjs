@@ -8,7 +8,6 @@ import { useVideoContext } from "../../../../contexts/video-context"
 import { useMarketContext } from "../../../../contexts/market-context"
 import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
 
-// eslint-disable-next-line complexity
 function InitialInstantAccessInfo() {
 	const { videoUUID } = useParams<{ videoUUID: string}>()
 	const videoClass = useVideoContext()
@@ -20,8 +19,7 @@ function InitialInstantAccessInfo() {
 		_.isUndefined(video) ||
 		video.isVideoExclusive === false ||
 		_.isNull(positionsAndTransactionsClass) ||
-		_.isNull(marketClass) ||
-		marketClass.instantAccessToExclusiveContentStage !== "initial"
+		marketClass?.instantAccessToExclusiveContentStage !== "initial"
 	) return null
 
 	if (positionsAndTransactionsClass.checkIfUuidExistsInExclusiveContentList(video.uuid) === true) {

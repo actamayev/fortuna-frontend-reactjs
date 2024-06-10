@@ -1,49 +1,33 @@
 import _ from "lodash"
-import { useCallback } from "react"
-import { observer } from "mobx-react"
-import { useMarketContext } from "../../../../contexts/market-context"
+import TierSoldOut from "./tier-sold-out"
+import DefiniteAmountAvailableInTier from "./definite-amount-available-in-tier"
+import IndefiniteAmountAvailableInTier from "./indefinite-amount-available-in-tier"
 
 interface Props {
 	tier: TierDataFromDB
 	numberOfExclusivePurchasesSoFar: number
 }
 
-function OneTierInfo(props: Props) {
+export default function OneTierInfo(props: Props) {
 	const { tier, numberOfExclusivePurchasesSoFar } = props
-	const marketClass = useMarketContext()
-
-	const onClickButton = useCallback(() => {
-		if (_.isNull(marketClass)) return
-		marketClass.setInstantAccessToExclusiveContentStage("review")
-	}, [marketClass])
 
 	if (_.isNull(tier.purchasesInThisTier) || _.isNull(numberOfExclusivePurchasesSoFar)) {
 		return (
-			<div onClick={onClickButton} className="border">
-				<div>Tier 1</div>
-				<div>Access Price: ${tier.tierAccessPrice}</div>
-			</div>
+			<IndefiniteAmountAvailableInTier tierNumber={1} tierData={tier} />
 		)
 	}
 
 	if (tier.isTierSoldOut === true) {
 		return (
-			<div className="border">
-				<div>Tier 1</div>
-				<div>Soldout</div>
-				<div>Access Price: ${tier.tierAccessPrice}</div>
-				<div>0/{tier.purchasesInThisTier} Available in this tier</div>
-			</div>
+			<TierSoldOut tierNumber={1} tierData={tier} />
 		)
 	}
 
 	return (
-		<div onClick={onClickButton} className="border">
-			<div>Tier 1</div>
-			<div>Access Price: ${tier.tierAccessPrice}</div>
-			{tier.purchasesInThisTier - numberOfExclusivePurchasesSoFar}/{tier.purchasesInThisTier} Available in this tier
-		</div>
+		<DefiniteAmountAvailableInTier
+			tierNumber={1}
+			tierAccessPrice={tier.tierAccessPrice}
+			numberPurchasesAvailable={`${tier.purchasesInThisTier - numberOfExclusivePurchasesSoFar}/${tier.purchasesInThisTier}`}
+		/>
 	)
 }
-
-export default observer(OneTierInfo)
