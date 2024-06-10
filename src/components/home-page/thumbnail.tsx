@@ -8,12 +8,7 @@ export default function Thumbnail(props: Props) {
 	const { video } = props
 	const navigateToVideoPage = useNavigateToVideoPage()
 
-	const {
-		uuid,
-		imageUrl,
-		videoName,
-		videoListingStatus
-	} = video
+	const { uuid, imageUrl, videoName, videoListingStatus } = video
 
 	return (
 		<div className="cursor-pointer" onClick={() => navigateToVideoPage(uuid)}>

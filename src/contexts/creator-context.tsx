@@ -1,4 +1,5 @@
 import _ from "lodash"
+import dayjs from "dayjs"
 import { action, makeAutoObservable } from "mobx"
 import { createContext, useContext, useMemo } from "react"
 
@@ -51,9 +52,18 @@ class CreatorClass {
 	})
 
 	public addContent = action((newContent: MyContent): void => {
-		const retrievedContent = this.contextForMyContent(newContent.uuid)
-		if (!_.isUndefined(retrievedContent)) return
-		this.myContent.unshift(newContent)
+		if (!_.isUndefined(this.contextForMyContent(newContent.uuid))) return
+
+		if (_.isEmpty(this.myContent)) {
+			this.myContent.push(newContent)
+			return
+		}
+
+		const index = _.sortedIndexBy(this.myContent, newContent, (mc) =>
+			-dayjs(mc.createdAt).unix()
+		)
+
+		this.myContent.splice(index, 0, newContent)
 	})
 
 	public checkIfUuidExistsInContentList(uuid: string): boolean {
