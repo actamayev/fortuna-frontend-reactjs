@@ -6,10 +6,10 @@ import VideoPlayer from "../components/video/video-player"
 import { useVideoContext } from "../contexts/video-context"
 import { addLeadingAt } from "../utils/leading-at-operations"
 import useSetSingleVideo from "../hooks/videos/set-single-video"
-import PurchaseExclusiveAccessCard from "../components/video/purchase-exclusive-access-card"
 import VideoDescriptionArea from "../components/video/video-description-area"
 import useRetrieveVideoUrlData from "../hooks/videos/retrieve-video-url-data"
 import MoreVideosMap from "../components/video/more-videos-area/more-videos-map"
+import PurchaseExclusiveAccessCard from "../components/video/purchase-exclusive-access-card"
 import useRetrieveCreatorVideosAndDataUseEffect from "../hooks/videos/retrieve-creator-videos-and-data-use-effect"
 
 function Video() {

@@ -70,7 +70,6 @@ export default function useCreateVideoOnclick(): (
 			const createVideoObject: CreateVideo = {
 				...restOfVideoDetails,
 				tierData: cleanedTierData, // use the cleaned tier data without isPurchaseTierChecked
-				imageUrl: uploadImageResponse.data.imageUploadUrl,
 				uuid: uploadVideoResponse.data.uuid,
 				uploadedImageId: uploadImageResponse.data.uploadedImageId,
 				uploadedVideoId: uploadVideoResponse.data.uploadedVideoId

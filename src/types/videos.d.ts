@@ -1,7 +1,7 @@
 declare global {
 	interface VideoDataLessVideoUrl {
 		videoName: string
-		videoListingStatus: VideoListingStatus
+		videoListingStatus: PostedVideoListingStatuses
 		description: string
 		imageUrl: string
 		uuid: string
@@ -28,6 +28,8 @@ declare global {
 	interface CreatorDataHeldInClass extends CreatorData {
 		videoData: VideoDataLessVideoUrl[]
 	}
+
+	type PostedVideoListingStatuses = "LISTED" | "SOLDOUT"
 }
 
 export {}

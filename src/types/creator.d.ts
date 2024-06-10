@@ -27,7 +27,6 @@ declare global {
 	}
 
 	interface CreateVideo extends CommonNewVideoDetails {
-		imageUrl: string
 		uuid: string
 		uploadedImageId: number
 		uploadedVideoId: number
@@ -36,7 +35,7 @@ declare global {
 
 	interface MyContent extends CommonNewVideoDetails {
 		videoId: number
-		videoListingStatus: VideoListingStatus
+		videoListingStatus: PostedVideoListingStatuses
 		imageUrl: string
 		uuid: string
 		numberOfExclusivePurchasesSoFar: number | null

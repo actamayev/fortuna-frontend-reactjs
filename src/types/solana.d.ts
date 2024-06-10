@@ -26,8 +26,6 @@ declare global {
 		transferAmount: number
 		transferCurrency: Currencies
 	}
-
-	type VideoListingStatus = "LISTED" | "SOLDOUT"
 }
 
 export {}
