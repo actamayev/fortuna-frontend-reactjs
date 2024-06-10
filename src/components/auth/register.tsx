@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Button from "../button"
+import ContactInput from "./contact-input"
 import ErrorMessage from "../error-message"
 import PasswordInput from "./password-input"
 import UsernameInput from "./username-input"
@@ -7,7 +8,6 @@ import ConfirmPassword from "./confirm-password"
 import SubRegisterInfo from "./sub-register-info"
 import GoogleSignIn from "./google/google-sign-in"
 import AuthTemplate from "../templates/auth-template"
-import RegisterContactInput from "./register-contact-input"
 import useRegisterSubmit from "../../hooks/auth/register-submit"
 import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
 
@@ -39,9 +39,10 @@ export default function Register(props: Props) {
 		<div>
 			<AuthTemplate title="Register">
 				<form onSubmit={registerSubmit}>
-					<RegisterContactInput
+					<ContactInput
 						credentials={registerInformation}
-						setCredentials={setRegisterInformation}
+						setCredentials={createSetCredentialsFunction(setRegisterInformation)}
+						label="Email/Phone Number"
 					/>
 
 					<UsernameInput

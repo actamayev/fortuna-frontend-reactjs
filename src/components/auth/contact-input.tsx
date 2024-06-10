@@ -1,16 +1,17 @@
 import FormGroup from "../form-group"
 
 interface Props {
-	credentials: RegisterCredentials
-	setCredentials: (newCredentials: RegisterCredentials) => void
+	credentials: LoginCredentials | RegisterCredentials
+	setCredentials: (newCredentials: Partial<LoginCredentials | RegisterCredentials>) => void
+	label: string
 }
 
-export default function RegisterContactInput (props: Props) {
-	const { credentials, setCredentials } = props
+export default function ContactInput (props: Props) {
+	const { credentials, setCredentials, label } = props
 
 	return (
 		<FormGroup
-			label = "Email/Phone Number"
+			label = {label}
 			type = "contact"
 			placeholder = "abc@123.com"
 			onChange = {(event) => setCredentials({ ...credentials, contact: event.target.value })}

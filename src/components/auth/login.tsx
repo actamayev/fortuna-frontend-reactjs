@@ -1,10 +1,10 @@
 import { useState } from "react"
 import Button from "../button"
+import ContactInput from "./contact-input"
 import ErrorMessage from "../error-message"
 import SubLoginInfo from "./sub-login-info"
 import PasswordInput from "./password-input"
 import GoogleSignIn from "./google/google-sign-in"
-import LoginContactInput from "./login-contact-input"
 import AuthTemplate from "../templates/auth-template"
 import useLoginSubmit from "../../hooks/auth/login-submit"
 import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
@@ -35,9 +35,10 @@ export default function Login(props: Props) {
 		<div>
 			<AuthTemplate title="Login">
 				<form onSubmit={loginSubmit}>
-					<LoginContactInput
+					<ContactInput
 						credentials={loginInformation}
-						setCredentials={setLoginInformation}
+						setCredentials={createSetCredentialsFunction(setLoginInformation)}
+						label="Username or Email/Phone Number"
 					/>
 
 					<PasswordInput
