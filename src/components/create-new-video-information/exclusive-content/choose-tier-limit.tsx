@@ -58,7 +58,7 @@ function ChooseTierLimit(props: Props) {
 	return (
 		<div>
 			<div className="flex items-center">
-				<span className="text-sm text-zinc-600 dark:text-zinc-200">
+				<span className="text-sm text-zinc-600 dark:text-zinc-200 font-medium">
 					Limit number of buyers at this tier
 				</span>
 				<Slider

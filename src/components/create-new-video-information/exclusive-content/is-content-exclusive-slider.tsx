@@ -22,17 +22,15 @@ function IsContentExclusiveSlider() {
 	}, [creatorClass])
 
 	return (
-		<div>
-			<div className="flex flex-row items-center space-x-2">
-				<span>Exclusive Content</span>
-				<Slider
-					checkedCondition={isContentExclusive === true}
-					onChangeCheckedCondition={updateNewVideoDetails}
-					disabledCondition={isNewVideoLoading}
-					colorChangeOnToggle={true}
-				/>
-				<AddAnotherTierButton />
-			</div>
+		<div className="flex flex-row items-center space-x-2">
+			<span>Exclusive Content</span>
+			<Slider
+				checkedCondition={isContentExclusive === true}
+				onChangeCheckedCondition={updateNewVideoDetails}
+				disabledCondition={isNewVideoLoading}
+				colorChangeOnToggle={true}
+			/>
+			<AddAnotherTierButton />
 		</div>
 	)
 }

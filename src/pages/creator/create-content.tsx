@@ -8,9 +8,9 @@ import VideoUploader from "../../components/create-new-video-information/upload-
 import ImageUploader from "../../components/create-new-video-information/upload-media/image-uploader"
 import UploadNewVideoButton from "../../components/create-new-video-information/upload-new-video-button"
 import VideoDescriptionInput from "../../components/create-new-video-information/video-description-input"
-import NewVideoMonetizationSummary from "../../components/create-new-video-information/new-video-summary/new-video-monetization-summary"
 import ExclusiveContentTierMap from "../../components/create-new-video-information/exclusive-content/exclusive-content-tier-map"
 import IsContentExclusiveSlider from "../../components/create-new-video-information/exclusive-content/is-content-exclusive-slider"
+import NewVideoMonetizationSummary from "../../components/create-new-video-information/new-video-summary/new-video-monetization-summary"
 
 function CreateContent() {
 	const authClass = useAuthContext()

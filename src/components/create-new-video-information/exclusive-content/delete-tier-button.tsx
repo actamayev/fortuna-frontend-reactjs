@@ -28,7 +28,6 @@ function DeleteTierButton(props: Props) {
 			colorClass="bg-red-500 dark:bg-red-600"
 			hoverClass="hover:bg-red-600 dark:hover:bg-red-700"
 			onClick={deleteTier}
-			className="font-medium"
 		/>
 	)
 }

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
@@ -11,11 +10,13 @@ function ExclusiveContentTierMap() {
 	const isContentExclusive = useMemo(() => {
 		if (_.isNull(creatorClass)) return false
 		return creatorClass.newVideoDetails.isContentExclusive
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [creatorClass, creatorClass?.newVideoDetails.isContentExclusive])
 
 	const tierData = useMemo(() => {
 		if (_.isNull(creatorClass)) return []
 		return creatorClass.newVideoDetails.tierData
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [creatorClass, creatorClass?.newVideoDetails.tierData])
 
 	if (isContentExclusive === false) return null
