@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
+import ShowUsdOrSolPrice from "../../../show-usd-or-sol-price"
 import { useSolanaContext } from "../../../../contexts/solana-context"
-import useDefaultCurrency from "../../../../hooks/memos/default-currency"
 import getTieredAccessPriceUsd from "../../../../utils/video-access-tiers/get-tiered-access-price-usd"
 
 interface Props {
@@ -11,7 +11,6 @@ interface Props {
 function ShowRemainingWalletBalanceAfterInstantAccessPurchase(props: Props) {
 	const { video } = props
 	const solanaClass = useSolanaContext()
-	const defaultCurrency = useDefaultCurrency()
 
 	if (_.isNull(solanaClass)) return null
 	const tierAccessPriceUsd = getTieredAccessPriceUsd(video)
@@ -19,13 +18,11 @@ function ShowRemainingWalletBalanceAfterInstantAccessPurchase(props: Props) {
 
 	const remainingWalletBalanceUsd = solanaClass.walletBalanceUSD.get() - tierAccessPriceUsd
 
-	if (defaultCurrency === "usd") {
-		return <div>${remainingWalletBalanceUsd.toFixed(2)}</div>
-	}
-
-	const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
-	if (_.isUndefined(solPriceInUSD)) return null
-	return <div>{(remainingWalletBalanceUsd / solPriceInUSD).toFixed(4)} SOL</div>
+	return (
+		<div>
+			<ShowUsdOrSolPrice usdAmount={remainingWalletBalanceUsd} roundOrFixed="fixed"/>
+		</div>
+	)
 }
 
 export default observer(ShowRemainingWalletBalanceAfterInstantAccessPurchase)
