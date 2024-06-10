@@ -45,7 +45,7 @@ export default function ThreeTiersInfo(props: Props) {
 					<TierSoldOut tierNumber={2} tierData={tiers[1]}/>
 					<DefiniteAmountAvailableInTier
 						tierNumber={3}
-						tierAccessPrice={tiers[2].tierAccessPrice}
+						tierAccessPriceUsd={tiers[2].tierAccessPriceUsd}
 						numberPurchasesAvailable={`
 							${(tiers[2].purchasesInThisTier +
 							(tiers[1].purchasesInThisTier as number) +
@@ -64,7 +64,7 @@ export default function ThreeTiersInfo(props: Props) {
 				<TierSoldOut tierNumber={1} tierData={tiers[0]}/>
 				<DefiniteAmountAvailableInTier
 					tierNumber={2}
-					tierAccessPrice={tiers[1].tierAccessPrice}
+					tierAccessPriceUsd={tiers[1].tierAccessPriceUsd}
 					numberPurchasesAvailable={`
 						${(tiers[1].purchasesInThisTier as number) +
 						(tiers[0].purchasesInThisTier as number) -
@@ -72,7 +72,7 @@ export default function ThreeTiersInfo(props: Props) {
 						/${tiers[1].purchasesInThisTier}
 					`}
 				/>
-				<PreviousTierMustSellOut tierNumber={3} tierAccessPrice={tiers[2].tierAccessPrice} />
+				<PreviousTierMustSellOut tierNumber={3} tierAccessPriceUsd={tiers[2].tierAccessPriceUsd} />
 			</>
 		)
 	}
@@ -82,13 +82,13 @@ export default function ThreeTiersInfo(props: Props) {
 		<>
 			<DefiniteAmountAvailableInTier
 				tierNumber={1}
-				tierAccessPrice={tiers[0].tierAccessPrice}
+				tierAccessPriceUsd={tiers[0].tierAccessPriceUsd}
 				numberPurchasesAvailable={`
 				${(tiers[0].purchasesInThisTier as number) - numberOfExclusivePurchasesSoFar}/${tiers[0].purchasesInThisTier}
 			`}
 			/>
-			<PreviousTierMustSellOut tierNumber={2} tierAccessPrice={tiers[1].tierAccessPrice} />
-			<PreviousTierMustSellOut tierNumber={3} tierAccessPrice={tiers[2].tierAccessPrice} />
+			<PreviousTierMustSellOut tierNumber={2} tierAccessPriceUsd={tiers[1].tierAccessPriceUsd} />
+			<PreviousTierMustSellOut tierNumber={3} tierAccessPriceUsd={tiers[2].tierAccessPriceUsd} />
 		</>
 	)
 }

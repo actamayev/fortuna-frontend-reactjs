@@ -6,12 +6,12 @@ import { useMarketContext } from "../../../../contexts/market-context"
 
 interface Props {
 	tierNumber: number
-	tierAccessPrice: number
+	tierAccessPriceUsd: number
 	numberPurchasesAvailable: string
 }
 
 function DefiniteAmountAvailableInTier(props: Props) {
-	const { tierNumber, tierAccessPrice, numberPurchasesAvailable } = props
+	const { tierNumber, tierAccessPriceUsd, numberPurchasesAvailable } = props
 	const marketClass = useMarketContext()
 
 	const onClickButton = useCallback(() => {
@@ -23,7 +23,7 @@ function DefiniteAmountAvailableInTier(props: Props) {
 		<div onClick={onClickButton} className="border cursor-pointer">
 			<div>Tier {tierNumber}</div>
 			<div>
-				Access Price: <ShowUsdOrSolPrice usdAmount={tierAccessPrice} />
+				Access Price: <ShowUsdOrSolPrice usdAmount={tierAccessPriceUsd} />
 			</div>
 			<div>{numberPurchasesAvailable} Available in this tier</div>
 		</div>

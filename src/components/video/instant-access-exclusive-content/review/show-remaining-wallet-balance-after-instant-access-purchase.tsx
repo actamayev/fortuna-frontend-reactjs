@@ -13,10 +13,10 @@ function ShowRemainingWalletBalanceAfterInstantAccessPurchase(props: Props) {
 	const solanaClass = useSolanaContext()
 
 	if (_.isNull(solanaClass)) return null
-	const tierAccessPriceUsd = getTieredAccessPriceUsd(video)
-	if (_.isNull(tierAccessPriceUsd)) return null
+	const tierAccessPriceUsdUsd = getTieredAccessPriceUsd(video)
+	if (_.isNull(tierAccessPriceUsdUsd)) return null
 
-	const remainingWalletBalanceUsd = solanaClass.walletBalanceUSD.get() - tierAccessPriceUsd
+	const remainingWalletBalanceUsd = solanaClass.walletBalanceUSD.get() - tierAccessPriceUsdUsd
 
 	return (
 		<div>

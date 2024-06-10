@@ -14,7 +14,7 @@ declare global {
 		tierNumber: number
 		purchasesInThisTier: number | null // null means there is no limit
 		tierDiscount: number
-		tierAccessPrice: number
+		tierAccessPriceUsd: number
 	}
 
 	interface TierDataFromDB extends TierDataToSend {

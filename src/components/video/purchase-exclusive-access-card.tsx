@@ -1,12 +1,12 @@
 import _ from "lodash"
-import { useCallback, useMemo } from "react"
 import { observer } from "mobx-react"
+import { useCallback, useMemo } from "react"
 import Button from "../button"
 import { useAuthContext } from "../../contexts/auth-context"
+import { useVideoContext } from "../../contexts/video-context"
 import { useCreatorContext } from "../../contexts/creator-context"
 import useTypedNavigate from "../../hooks/navigate/typed-navigate"
 import PurchaseInstantAccessOptions from "./instant-access-exclusive-content/purchase-instant-access-options"
-import { useVideoContext } from "../../contexts/video-context"
 
 interface Props {
 	videoUUID: string
@@ -51,7 +51,7 @@ function PurchaseExclusiveAccessCard(props: Props) {
 	if (wasVideoCreatedByUser === true) {
 		return (
 			<div className="h-full">
-				You already have access to your own video
+				You have access to your own video
 			</div>
 		)
 	}

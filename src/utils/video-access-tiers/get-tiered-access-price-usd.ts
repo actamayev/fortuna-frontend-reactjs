@@ -7,13 +7,13 @@ export default function getTieredAccessPriceUsd(video: SingleVideoDataFromBacken
 		let tierNumberPurchases = 0
 
 		for (const tier of tierData) {
-			if (_.isNull(tier.purchasesInThisTier)) return tier.tierAccessPrice
+			if (_.isNull(tier.purchasesInThisTier)) return tier.tierAccessPriceUsd
 
 			tierNumberPurchases += tier.purchasesInThisTier
 
 			if (_.isNull(numberOfExclusivePurchasesSoFar) || numberOfExclusivePurchasesSoFar < tierNumberPurchases) {
 			// If the number of purchases so far is within this tier's range, return its access price
-				return tier.tierAccessPrice
+				return tier.tierAccessPriceUsd
 			}
 		}
 

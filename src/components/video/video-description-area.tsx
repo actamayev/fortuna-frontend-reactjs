@@ -10,12 +10,7 @@ export default function VideoDescriptionArea(props: Props) {
 	const { video } = props
 	const navigateToCreatorPage = useNavigateToCreatorPage()
 
-	const {
-		videoName,
-		creatorProfilePictureUrl,
-		creatorUsername,
-		description
-	} = video
+	const { videoName, creatorProfilePictureUrl, creatorUsername, description } = video
 
 	const navigateToCreatorPageCallback = useCallback(() => {
 		navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))
@@ -45,9 +40,7 @@ export default function VideoDescriptionArea(props: Props) {
 						{creatorUsername}
 					</span>
 				</div>
-				<div>
-					{description}
-				</div>
+				<div>{description}</div>
 			</div>
 		</div>
 	)

@@ -26,7 +26,7 @@ export default function OneTierInfo(props: Props) {
 	return (
 		<DefiniteAmountAvailableInTier
 			tierNumber={1}
-			tierAccessPrice={tier.tierAccessPrice}
+			tierAccessPriceUsd={tier.tierAccessPriceUsd}
 			numberPurchasesAvailable={`${tier.purchasesInThisTier - numberOfExclusivePurchasesSoFar}/${tier.purchasesInThisTier}`}
 		/>
 	)

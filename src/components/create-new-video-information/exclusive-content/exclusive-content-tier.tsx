@@ -20,9 +20,9 @@ function ExclusiveContentTier(props: Props) {
 
 	const listingPriceToAccessUsd = useMemo(() => {
 		if (_.isNull(creatorClass)) return 0
-		return creatorClass.newVideoDetails.tierData[tierNumber - 1].tierAccessPrice || 0
+		return creatorClass.newVideoDetails.tierData[tierNumber - 1].tierAccessPriceUsd || 0
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.newVideoDetails.tierData[tierNumber - 1]?.tierAccessPrice, tierNumber])
+	}, [creatorClass, creatorClass?.newVideoDetails.tierData[tierNumber - 1]?.tierAccessPriceUsd, tierNumber])
 
 	const areThereMoreTiers = useMemo(() => {
 		if (_.isNull(creatorClass)) return false
@@ -32,7 +32,7 @@ function ExclusiveContentTier(props: Props) {
 
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(creatorClass)) return
-		creatorClass.updateNewVideoTierDetails("tierAccessPrice", tierNumber, Number(event.target.value))
+		creatorClass.updateNewVideoTierDetails("tierAccessPriceUsd", tierNumber, Number(event.target.value))
 	}, [creatorClass, tierNumber])
 
 	if (areThereMoreTiers === false) {

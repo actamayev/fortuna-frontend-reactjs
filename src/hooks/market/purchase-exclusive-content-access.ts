@@ -48,11 +48,11 @@ export default function usePurchaseExclusiveContentAccess(): (
 			}
 			positionsAndTransactionsClass.addExclusiveContent(exclusiveContentToAddToList)
 			marketClass.setInstantAccessToExclusiveContentStage("initial")
-			const tierAccessPrice = getTieredAccessPriceUsd(video)
-			if (_.isNull(tierAccessPrice)) {
+			const tierAccessPriceUsd = getTieredAccessPriceUsd(video)
+			if (_.isNull(tierAccessPriceUsd)) {
 				await retrieveWalletBalance()
 			} else {
-				solanaClass.alterWalletBalanceUsd(-tierAccessPrice)
+				solanaClass.alterWalletBalanceUsd(-tierAccessPriceUsd)
 			}
 			// FUTURE TODO: Add this transaction to my transactions (don't just call retrieveTransactions - redundant)
 			// Consider returning the sol transfer details with the purchaseExclusiveContentAccess response.
