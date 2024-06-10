@@ -12,7 +12,9 @@ export default function PreviousTierMustSellOut(props: Props) {
 		<div className="border">
 			<div>Tier {tierNumber}</div>
 			<div>Tier {tierNumber - 1} must sell out before tier {tierNumber} is accessed</div>
-			<div>Access Price: <ShowUsdOrSolPrice usdAmount={tierAccessPrice} /></div>
+			<div>
+				Access Price: <ShowUsdOrSolPrice usdAmount={tierAccessPrice} />
+			</div>
 		</div>
 	)
 }

@@ -21,8 +21,8 @@ function IndefiniteAmountAvailableInTier(props: Props) {
 	return (
 		<div onClick={onClickButton} className="border cursor-pointer">
 			<div>Tier {tierNumber}</div>
-			<div>Access Price: {" "}
-				<ShowUsdOrSolPrice usdAmount={tierData.tierAccessPrice }/>
+			<div>
+				Access Price: <ShowUsdOrSolPrice usdAmount={tierData.tierAccessPrice }/>
 			</div>
 		</div>
 	)

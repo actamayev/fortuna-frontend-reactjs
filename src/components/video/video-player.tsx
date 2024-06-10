@@ -19,7 +19,7 @@ export default function VideoPlayer(props: Props) {
 					Your browser does not support the video tag.
 				</video>
 			) : (
-				<div className="w-full h-full rounded-lg bg-gray-200" style={{ aspectRatio: "16/9" }}>
+				<div className="w-full h-full rounded-lg bg-zinc-100 dark:bg-zinc-800" style={{ aspectRatio: "16/9" }}>
 					{/* Placeholder content if needed */}
 				</div>
 			)}

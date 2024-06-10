@@ -12,7 +12,9 @@ export default function TierSoldOut(props: Props) {
 		<div className="border">
 			<div>Tier {tierNumber}</div>
 			<div>Soldout</div>
-			<div>Access Price: <ShowUsdOrSolPrice usdAmount={tierData.tierAccessPrice} /></div>
+			<div>
+				Access Price: <ShowUsdOrSolPrice usdAmount={tierData.tierAccessPrice} />
+			</div>
 			<div>0/{tierData.purchasesInThisTier} Available in this tier</div>
 		</div>
 	)
