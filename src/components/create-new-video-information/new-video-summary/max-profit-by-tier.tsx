@@ -13,7 +13,7 @@ function MaxProfitByTier(props: Props) {
 	const creatorClass = useCreatorContext()
 
 	const purchasesInThisTier = useMemo(() => {
-		if (_.isNull(creatorClass)) return 0
+		if (_.isNull(creatorClass)) return null
 		return creatorClass.newVideoDetails.tierData[tierNumber - 1].purchasesInThisTier
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [creatorClass, tierNumber, creatorClass?.newVideoDetails.tierData[tierNumber - 1].purchasesInThisTier])

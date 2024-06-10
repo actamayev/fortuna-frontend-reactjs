@@ -14,7 +14,7 @@ function AddAnotherTierButton() {
 	}, [creatorClass])
 
 	const numberOfTiers = useMemo(() => {
-		if (_.isNull(creatorClass)) return 0
+		if (_.isNull(creatorClass)) return null
 		return creatorClass.newVideoDetails.tierData.length
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [creatorClass, creatorClass?.newVideoDetails.tierData.length])
@@ -25,7 +25,7 @@ function AddAnotherTierButton() {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [creatorClass, creatorClass?.newVideoDetails.isContentExclusive])
 
-	if (numberOfTiers === 3 || isContentExclusive === false) return null
+	if (_.isNull(numberOfTiers) || numberOfTiers === 3 || isContentExclusive === false) return null
 
 	return (
 		<Button

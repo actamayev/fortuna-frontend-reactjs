@@ -21,16 +21,18 @@ function ChooseTierDiscount(props: Props) {
 	}, [creatorClass, tierNumber])
 
 	const discountAtThisTier = useMemo(() => {
-		if (_.isNull(creatorClass)) return 0
+		if (_.isNull(creatorClass)) return null
 		return creatorClass.newVideoDetails.tierData[tierNumber - 1].tierDiscount
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [creatorClass, creatorClass?.newVideoDetails.tierData[tierNumber - 1].tierDiscount, tierNumber])
 
 	const lowestTier = useMemo(() => {
-		if (_.isNull(creatorClass)) return 0
+		if (_.isNull(creatorClass)) return null
 		return creatorClass.newVideoDetails.tierData.length
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [creatorClass, creatorClass?.newVideoDetails.tierData.length])
+
+	if (_.isNull(discountAtThisTier) || _.isNull(lowestTier)) return null
 
 	return (
 		<div>

@@ -1,5 +1,4 @@
 import _ from "lodash"
-import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { useCreatorContext } from "../../../contexts/creator-context"
 
@@ -11,16 +10,17 @@ function ShowTierPrice(props: Props) {
 	const { tierNumber } = props
 	const creatorClass = useCreatorContext()
 
-	const tierPrice = useMemo(() => {
-		if (_.isNull(creatorClass)) return 0
-		return creatorClass.newVideoDetails.tierData[tierNumber - 1].tierAccessPrice
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.newVideoDetails.tierData[tierNumber - 1].tierAccessPrice, tierNumber])
+	if (_.isNull(creatorClass)) return null
+	const tierPrice = creatorClass.newVideoDetails.tierData[tierNumber - 1].tierAccessPrice
 
 	return (
-		<div className="my-2">
-			Tier Price: ${tierPrice.toFixed(2)}
-		</div>
+		<>
+			{tierPrice && (
+				<div className="my-2">
+					Tier Price: ${tierPrice.toFixed(2)}
+				</div>
+			)}
+		</>
 	)
 }
 
