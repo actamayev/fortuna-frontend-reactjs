@@ -24,8 +24,8 @@ function MaxProfitByTier(props: Props) {
 		<div>
 			Max Profit From Tier {tierNumber}: ${numberWithCommas(_.round(creatorClass.getProfitByVideoTier(tierNumber) || 0, 3))} {" "}
 			({purchasesInThisTier} {" "}
-			purchase{purchasesInThisTier > 1 ? "s" : ""}
-			{" "} X {" "}
+			purchase{purchasesInThisTier > 1 ? "s" : ""} {" "}
+			X {" "}
 			{(100 - creatorClass.newVideoDetails.tierData[tierNumber - 1].tierDiscount) / 100} X {" "}
 			${creatorClass.lowestTierPrice})
 		</div>
