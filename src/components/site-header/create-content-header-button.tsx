@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { FaVideo } from "react-icons/fa"
 import { Link, useLocation } from "react-router-dom"
@@ -12,7 +11,7 @@ function CreateContentHeaderButton() {
 	const authClass = useAuthContext()
 
 	if (
-		_.isNull(authClass.accessToken) ||
+		authClass.isLoggedIn === false ||
 		location.pathname === "/creator/create-content"
 	) return null
 

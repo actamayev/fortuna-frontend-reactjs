@@ -7,8 +7,8 @@ export default function useGetAuthDataFromStorage(): () => void {
 	const fortunaApiClient = useApiClientContext()
 
 	const getAuthDataFromStorage = useCallback((): void => {
-		authClass.getAuthDataFromStorage()
-		fortunaApiClient.httpClient.accessToken = authClass.accessToken
+		const accessToken = authClass.getAuthDataFromStorage()
+		fortunaApiClient.httpClient.accessToken = accessToken
 	}, [authClass, fortunaApiClient.httpClient])
 
 	return getAuthDataFromStorage

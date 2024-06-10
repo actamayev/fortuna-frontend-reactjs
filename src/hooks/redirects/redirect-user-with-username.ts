@@ -10,11 +10,11 @@ export default function useRedirectUserWithUsername (): void  {
 	const navigate = useTypedNavigate()
 
 	useEffect(() => {
-		if (_.isNull(authClass.accessToken) || _.isNull(personalInfoClass)) {
+		if (authClass.isLoggedIn === false || _.isNull(personalInfoClass)) {
 			navigate("/")
 			return
 		}
 		if (_.isNull(personalInfoClass.username)) return
 		navigate("/my-ownership")
-	}, [authClass.accessToken, navigate, personalInfoClass, personalInfoClass?.username])
+	}, [authClass.isLoggedIn, navigate, personalInfoClass, personalInfoClass?.username])
 }

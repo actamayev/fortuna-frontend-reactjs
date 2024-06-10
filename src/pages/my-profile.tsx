@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useAuthContext } from "../contexts/auth-context"
 import SectionHeader from "../components/headers/section-header"
@@ -10,7 +9,7 @@ import ShowYoutubeSubscribers from "../components/profile/show-youtube-subscribe
 function MyProfile() {
 	const authClass = useAuthContext()
 
-	if (_.isNull(authClass.accessToken)) {
+	if (authClass.isLoggedIn === false) {
 		return <ShowAuthToNullUser whereToNavigate="/my-profile" />
 	}
 

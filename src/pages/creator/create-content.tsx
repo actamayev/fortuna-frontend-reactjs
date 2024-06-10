@@ -15,7 +15,7 @@ import NewVideoMonetizationSummary from "../../components/create-new-video-infor
 function CreateContent() {
 	const authClass = useAuthContext()
 
-	if (_.isNull(authClass.accessToken)) {
+	if (authClass.isLoggedIn === false) {
 		return <ShowAuthToNullUser whereToNavigate="/creator/create-content" />
 	}
 

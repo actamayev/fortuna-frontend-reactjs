@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useLocation } from "react-router-dom"
 import NullUserNavLink from "../null-user-nav-link"
@@ -9,7 +8,7 @@ function LoginLogoutHeaderItem() {
 	const authClass = useAuthContext()
 	const location = useLocation()
 
-	if (_.isNull(authClass.accessToken)) {
+	if (authClass.isLoggedIn === false) {
 		if (location.pathname === "/register" || location.pathname === "/login") {
 			return null
 		}

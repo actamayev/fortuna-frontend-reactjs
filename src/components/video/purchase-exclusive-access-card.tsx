@@ -24,7 +24,7 @@ function PurchaseExclusiveAccessCard(props: Props) {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [creatorClass, creatorClass?.myContent, videoUUID])
 
-	if (_.isNull(authClass.accessToken)) {
+	if (authClass.isLoggedIn === false) {
 		return (
 			<Button
 				onClick={() => navigate("/register")}
