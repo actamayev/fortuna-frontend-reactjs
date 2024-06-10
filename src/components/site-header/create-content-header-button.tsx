@@ -12,13 +12,12 @@ function CreateContentHeaderButton() {
 
 	if (
 		authClass.isLoggedIn === false ||
+		location.pathname === "/register-username" ||
 		location.pathname === "/creator/create-content"
 	) return null
 
 	return (
-		<HoverOutlineComponent
-			classes="relative flex items-center justify-center inline-flex flex-grow flex-shrink"
-		>
+		<HoverOutlineComponent classes="relative flex items-center justify-center inline-flex flex-grow flex-shrink">
 			<Link to="/creator/create-content" className="w-full">
 				<div className="rounded h-9 flex items-center justify-center">
 					<FaVideo color = {defaultSiteTheme === "dark" ? "white" : ""}/>

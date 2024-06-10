@@ -16,6 +16,7 @@ function SolOrUsdSlider() {
 	if (
 		location.pathname === "/register" ||
 		location.pathname === "/login" ||
+		location.pathname === "/register-username" ||
 		location.pathname === "/creator/create-content"
 	) return null
 
