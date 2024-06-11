@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react"
+import { useState } from "react"
 import Button from "../button"
+import ContactInput from "./contact-input"
 import ErrorMessage from "../error-message"
 import PasswordInput from "./password-input"
 import UsernameInput from "./username-input"
@@ -7,9 +8,7 @@ import ConfirmPassword from "./confirm-password"
 import SubRegisterInfo from "./sub-register-info"
 import GoogleSignIn from "./google/google-sign-in"
 import AuthTemplate from "../templates/auth-template"
-import RegisterContactInput from "./register-contact-input"
 import useRegisterSubmit from "../../hooks/auth/register-submit"
-import ShowOrHidePasswordButton from "./show-or-hide-password-button"
 import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
 
 interface Props {
@@ -28,13 +27,7 @@ export default function Register(props: Props) {
 	})
 	const [error, setError] = useState("")
 	const [loading, setLoading] = useState(false)
-	const [showPassword, setShowPassword] = useState(false)
 	const registerSubmit = useRegisterSubmit(whereToNavigate, registerInformation, setError, setLoading)
-
-	const isShowPassword = useMemo(() => {
-		if (showPassword) return "text"
-		return "password"
-	}, [showPassword])
 
 	const createSetCredentialsFunction = (setter: React.Dispatch<React.SetStateAction<RegisterCredentials>>) => {
 		return (newCredentials: Partial<LoginCredentials | RegisterCredentials>) => {
@@ -46,9 +39,10 @@ export default function Register(props: Props) {
 		<div>
 			<AuthTemplate title="Register">
 				<form onSubmit={registerSubmit}>
-					<RegisterContactInput
+					<ContactInput
 						credentials={registerInformation}
-						setCredentials={setRegisterInformation}
+						setCredentials={createSetCredentialsFunction(setRegisterInformation)}
+						label="Email/Phone Number"
 					/>
 
 					<UsernameInput
@@ -59,18 +53,11 @@ export default function Register(props: Props) {
 					<PasswordInput
 						credentials = {registerInformation}
 						setCredentials = {createSetCredentialsFunction(setRegisterInformation)}
-						showPassword = {isShowPassword}
 					/>
 
 					<ConfirmPassword
 						credentials = {registerInformation}
 						setCredentials = {createSetCredentialsFunction(setRegisterInformation)}
-						showPassword = {isShowPassword}
-					/>
-
-					<ShowOrHidePasswordButton
-						showPassword = {showPassword}
-						setShowPassword = {setShowPassword}
 					/>
 
 					<ErrorMessage error={error} />

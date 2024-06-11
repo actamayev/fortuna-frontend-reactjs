@@ -16,7 +16,6 @@ interface Props {
 	type?: string
 	step?: number
 	value?: string
-	children?: React.ReactNode
 }
 
 export default function FormGroup(props: Props) {
@@ -37,8 +36,7 @@ export default function FormGroup(props: Props) {
 		rows,
 		type,
 		step,
-		value,
-		children,
+		value
 	} = props
 	const Component = as || (multiline ? "textarea" : "input")
 
@@ -48,22 +46,21 @@ export default function FormGroup(props: Props) {
 		<div className= {`mb-4 ${className}`}>
 			{label && <label className = "block text-sm font-medium text-zinc-600 dark:text-zinc-200">{label}</label>}
 			<Component
-				className ="mt-1 p-2 w-full border rounded-md text-zinc-950 dark:text-zinc-200 bg-white dark:bg-zinc-800"
+				className="mt-1 p-2 w-full border rounded-md text-zinc-950 border-zinc-100 dark:border-zinc-700 \
+					dark:text-zinc-200 bg-white dark:bg-zinc-800"
 				max={maxValue}
-				min = {minAttribute}
-				maxLength = {maxLength}
-				name = {name}
-				onChange = {onChange}
-				pattern = {pattern}
-				placeholder = {placeholder}
-				required = {required}
+				min={minAttribute}
+				maxLength={maxLength}
+				name={name}
+				onChange={onChange}
+				pattern={pattern}
+				placeholder={placeholder}
+				required={required}
 				rows={multiline ? rows : undefined} // Apply rows only for textarea
 				type={!multiline ? type || "text" : undefined} // Don't apply type to textarea
 				step={!multiline ? step : undefined} // Don't apply step to textarea
-				value = {value}
-			>
-				{children}
-			</Component>
+				value={value}
+			/>
 		</div>
 	)
 }

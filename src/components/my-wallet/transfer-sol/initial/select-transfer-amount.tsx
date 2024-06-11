@@ -45,7 +45,7 @@ function SelectTransferAmount() {
 					max={solanaClass.walletBalanceSol || 0}
 					step={0.0001}
 				/>
-				{_.round(solanaClass.transferSolDetails.transferAmount, 4)} SOL
+				{solanaClass.transferSolDetails.transferAmount.toFixed(4)} SOL
 			</div>
 		)
 	}
@@ -62,7 +62,7 @@ function SelectTransferAmount() {
 				max={solanaClass.walletBalanceUSD.get()}
 				step={0.01}
 			/>
-			${_.round(solanaClass.transferSolDetails.transferAmount, 2)}
+			${solanaClass.transferSolDetails.transferAmount.toFixed(2)}
 		</div>
 	)
 }

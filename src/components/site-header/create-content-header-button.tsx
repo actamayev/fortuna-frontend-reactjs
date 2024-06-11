@@ -1,36 +1,29 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
+import { FaVideo } from "react-icons/fa"
 import { Link, useLocation } from "react-router-dom"
 import { useAuthContext } from "../../contexts/auth-context"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import HoverOutlineComponent from "../hover-outline-component"
+import useDefaultSiteTheme from "../../hooks/memos/default-site-theme"
 
 function CreateContentHeaderButton() {
 	const location = useLocation()
+	const defaultSiteTheme = useDefaultSiteTheme()
 	const authClass = useAuthContext()
-	const personalInfoClass = usePersonalInfoContext()
 
 	if (
-		_.isNull(authClass.accessToken) ||
-		personalInfoClass?.isApprovedToBeCreator !== true ||
-		location.pathname.startsWith("/creator/upload-content")
+		authClass.isLoggedIn === false ||
+		location.pathname === "/register-username" ||
+		location.pathname === "/creator/create-content"
 	) return null
 
 	return (
-		<div className="inline-flex items-center justify-center flex-grow flex-shrink mx-2">
-			<Link
-				to="/creator/upload-content"
-				className="text-center font-semibold w-full"
-			>
-				<div
-					className="rounded text-white dark:text-zinc-950 px-3 h-9 \
-						space-x-2 flex text-sm items-center justify-center bg-blue-500 hover:bg-blue-600 \
-						dark:bg-blue-400 dark:hover:bg-blue-500"
-				>
-					<div>+</div>
-					<div>Create</div>
+		<HoverOutlineComponent classes="relative flex items-center justify-center inline-flex flex-grow flex-shrink">
+			<Link to="/creator/create-content" className="w-full">
+				<div className="rounded h-9 flex items-center justify-center">
+					<FaVideo color = {defaultSiteTheme === "dark" ? "white" : ""}/>
 				</div>
 			</Link>
-		</div>
+		</HoverOutlineComponent>
 	)
 }
 

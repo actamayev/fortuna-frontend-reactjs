@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 interface Props {
-	title: string
+	title?: string
+	titleIcon?: React.ReactNode
 	colorClass: string
 	hoverClass: string
 	disabled?: boolean
@@ -23,12 +24,15 @@ export default function Button (props: Props) {
 
 	return (
 		<button
-			type = {props.onClick ? "button" : "submit"}
-			className = {css}
-			onClick = {props.onClick}
-			disabled = {props.disabled ?? false}
+			type={props.onClick ? "button" : "submit"}
+			className={css}
+			onClick={props.onClick}
+			disabled={props.disabled ?? false}
 		>
-			{props.title}
+			<span className="flex items-center justify-center space-x-1">
+				{props.title && <span>{props.title}</span>}
+				{props.titleIcon && <span>{props.titleIcon}</span>}
+			</span>
 		</button>
 	)
 }

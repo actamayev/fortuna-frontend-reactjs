@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useEffect } from "react"
 import useTypedNavigate from "../navigate/typed-navigate"
 import { useAuthContext } from "../../contexts/auth-context"
@@ -8,7 +7,7 @@ export default function useRedirectKnownUser (): void  {
 	const navigate = useTypedNavigate()
 
 	useEffect(() => {
-		if (_.isNil(authClass.accessToken)) return
+		if (authClass.isLoggedIn === false) return
 		navigate("/my-ownership")
-	}, [authClass.accessToken, navigate])
+	}, [authClass.isLoggedIn, navigate])
 }

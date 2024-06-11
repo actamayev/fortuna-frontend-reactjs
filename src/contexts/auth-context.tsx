@@ -10,13 +10,14 @@ class AuthClass {
 		makeAutoObservable(this)
 	}
 
-	get accessToken(): string | null {
-		return this._accessToken
+	get isLoggedIn(): boolean {
+		return !_.isNull(this._accessToken)
 	}
 
-	public getAuthDataFromStorage(): void {
+	public getAuthDataFromStorage(): string | null {
 		const storedAccessToken = localStorage.getItem("Access Token")
-		if (!_.isUndefined(storedAccessToken)) this.setAccessToken(storedAccessToken)
+		if (!_.isNull(storedAccessToken)) this.setAccessToken(storedAccessToken)
+		return this._accessToken
 	}
 
 	public setAccessToken = action((accessToken: string | null, saveToStorage = false): void => {

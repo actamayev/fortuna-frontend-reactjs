@@ -3,15 +3,17 @@ import useTypedNavigate from "../navigate/typed-navigate"
 import { useAuthContext } from "../../contexts/auth-context"
 import { useVideoContext } from "../../contexts/video-context"
 import { useSolanaContext } from "../../contexts/solana-context"
+import { useMarketContext } from "../../contexts/market-context"
 import { useYouTubeContext } from "../../contexts/youtube-context"
-import { useExchangeContext } from "../../contexts/exchange-context"
+import { useCreatorContext } from "../../contexts/creator-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
 
 export default function useLogout(): () => void {
 	const authClass = useAuthContext()
-	const exchangeClass = useExchangeContext()
+	const creatorClass = useCreatorContext()
+	const marketClass = useMarketContext()
 	const fortunaApiClient = useApiClientContext()
 	const personalInfoClass = usePersonalInfoContext()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
@@ -23,15 +25,16 @@ export default function useLogout(): () => void {
 	const logout = useCallback((): void => {
 		personalInfoClass?.logout()
 		solanaClass?.logout()
+		creatorClass?.logout()
 		positionsAndTransactionsClass?.logout()
 		videoClass.logout()
-		exchangeClass?.logout()
+		marketClass?.logout()
 		youtubeClass?.logout()
 		authClass.logout()
 		fortunaApiClient.logout()
 		navigate("/")
-	}, [personalInfoClass, solanaClass, positionsAndTransactionsClass, videoClass,
-		exchangeClass, youtubeClass, authClass, fortunaApiClient, navigate])
+	}, [personalInfoClass, solanaClass, creatorClass, positionsAndTransactionsClass,
+		videoClass, marketClass, youtubeClass, authClass, fortunaApiClient, navigate])
 
 	return logout
 }

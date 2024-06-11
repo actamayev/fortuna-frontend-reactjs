@@ -20,19 +20,6 @@ class SolanaClass {
 	}
 	public isPublicKeySearchLoading = false
 
-	public newSplDetails: NewSPLDetails = {
-		splName: "",
-		numberOfShares: 100,
-		listingSharePriceUsd: 0.5,
-		description: "",
-		creatorOwnershipPercentage: 50,
-		originalContentUrl: "",
-		selectedImage: null,
-		selectedVideo: null,
-		isContentExclusive: false
-	}
-	public isNewSplLoading = false
-
 	public solPriceDetails: SolPriceDetails | null = null
 	public isRetrievingSolPriceDetails = false
 
@@ -57,10 +44,6 @@ class SolanaClass {
 	set walletBalanceSol(walletBalanceSol: number | null) {
 		this._walletBalanceSol = walletBalanceSol
 	}
-
-	public setIsNewSplLoading = action((newState: boolean): void => {
-		this.isNewSplLoading = newState
-	})
 
 	public setIsPublicKeySearchLoading = action((newState: boolean): void => {
 		this.isPublicKeySearchLoading = newState
@@ -121,53 +104,12 @@ class SolanaClass {
 		}
 	})
 
-	public updateNewSplDetails = action(<K extends keyof NewSPLDetails>(
-		key: K, value: NewSPLDetails[K]
-	) => {
-
-		if (typeof this.newSplDetails[key] !== typeof value) {
-			console.warn(`Type mismatch when trying to set ${key}`)
-			return
-		}
-		this.newSplDetails[key] = value
-		if (key === "isContentExclusive" && value === true) {
-			if (_.isUndefined(this.newSplDetails.allowValueFromSameCreatorTokensForExclusiveContent)) {
-				this.newSplDetails.allowValueFromSameCreatorTokensForExclusiveContent = false
-			}
-			if (_.isUndefined(this.newSplDetails.isContentInstantlyAccessible)) {
-				this.newSplDetails.isContentInstantlyAccessible = true
-			}
-			if (_.isUndefined(this.newSplDetails.priceToInstantlyAccessExclusiveContentUsd)) {
-				this.newSplDetails.priceToInstantlyAccessExclusiveContentUsd = 5
-			}
-			if (_.isUndefined(this.newSplDetails.valueNeededToAccessExclusiveContentUsd)) {
-				this.newSplDetails.valueNeededToAccessExclusiveContentUsd =  1
-			}
-		}
-	})
-
-	public resetNewSplDetails = action(() => {
-		this.newSplDetails = {
-			splName: "",
-			numberOfShares: 100,
-			listingSharePriceUsd: 0.5,
-			description: "",
-			creatorOwnershipPercentage: 50,
-			originalContentUrl: "",
-			selectedImage: null,
-			selectedVideo: null,
-			isContentExclusive: false
-		}
-	})
-
 	public logout() {
 		this.walletPublicKey = null
 		this.walletBalanceSol = null
 		this.isTransferSolButtonPressed = false
 		this.resetTransferSolDetails()
 		this.isPublicKeySearchLoading = false
-		this.resetNewSplDetails()
-		this.isNewSplLoading = false
 		// Don't reset sol price details (no reason, not secret/unique to each user)
 		this.isRetrievingSolPriceDetails = false
 		this.isRetrievingWalletDetails = false

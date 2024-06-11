@@ -37,12 +37,10 @@ function ProfileDropdownItems() {
 				<IoWallet className="mr-2" size={17} />
 				My Wallet
 			</Link>
-			{personalInfoClass?.isApprovedToBeCreator && (
-				<Link to="/creator/my-content" className={classes.middle}>
-					<BsFillCollectionPlayFill className="mr-2" size={17} />
-					My Content
-				</Link>
-			)}
+			<Link to="/creator/my-content" className={classes.middle}>
+				<BsFillCollectionPlayFill className="mr-2" size={17} />
+				My Content
+			</Link>
 			<Link to="/my-profile" className={classes.middle}>
 				<FaUser className="mr-2" size={17} />
 				My Profile

@@ -2,7 +2,9 @@ import { AxiosResponse } from "axios"
 import FortunaHttpClient from "../classes/fortuna-http-client"
 
 export default class PersonalInfoDataService {
-	constructor(private readonly pathHeader: PathHeaders, private readonly httpClient: FortunaHttpClient) {
+	private readonly pathHeader: PathHeaders = "/personal-info"
+
+	constructor(private readonly httpClient: FortunaHttpClient) {
 	}
 
 	async retrievePersonalInfo(): Promise<AxiosResponse<PersonalInfoResponse | ErrorResponse>> {

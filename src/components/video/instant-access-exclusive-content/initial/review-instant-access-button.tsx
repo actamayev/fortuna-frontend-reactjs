@@ -3,7 +3,8 @@ import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import Button from "../../../button"
 import { useSolanaContext } from "../../../../contexts/solana-context"
-import { useExchangeContext } from "../../../../contexts/exchange-context"
+import { useMarketContext } from "../../../../contexts/market-context"
+import getTieredAccessPriceUsd from "../../../../utils/video-access-tiers/get-tiered-access-price-usd"
 
 interface Props {
 	video: SingleVideoDataFromBackend
@@ -11,21 +12,20 @@ interface Props {
 
 function ReviewInstantAccessButton(props: Props) {
 	const { video } = props
-	const exchangeClass = useExchangeContext()
+	const marketClass = useMarketContext()
 	const solanaClass = useSolanaContext()
 
-	const isAbleToPurchaseShares = useMemo(() => {
-		if (_.isNull(solanaClass) || _.isNull(video.priceToInstantlyAccessExclusiveContentUsd)) return false
-		return solanaClass.walletBalanceUSD.get() >= video.priceToInstantlyAccessExclusiveContentUsd
+	const isAbleToPurchaseAccessToContent = useMemo(() => {
+		const tierAccessPriceUsd = getTieredAccessPriceUsd(video)
+		if (_.isNull(solanaClass) || _.isNull(tierAccessPriceUsd)) return false
+		return solanaClass.walletBalanceUSD.get() >= tierAccessPriceUsd
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [solanaClass, solanaClass?.walletBalanceUSD.get(), video.priceToInstantlyAccessExclusiveContentUsd])
+	}, [solanaClass, solanaClass?.walletBalanceUSD.get(), video])
 
 	const onClickButton = useCallback(() => {
-		if (_.isNull(exchangeClass)) return
-		exchangeClass.setInstantAccessToExclusiveContentStage("review")
-	}, [exchangeClass])
-
-	if (_.isNull(video.priceToInstantlyAccessExclusiveContentUsd)) return null
+		if (_.isNull(marketClass)) return
+		marketClass.setInstantAccessToExclusiveContentStage("review")
+	}, [marketClass])
 
 	return (
 		<Button
@@ -33,7 +33,7 @@ function ReviewInstantAccessButton(props: Props) {
 			colorClass="bg-blue-200 dark:bg-blue-600"
 			hoverClass="hover:bg-blue-300 dark:hover:bg-blue-700"
 			title="Review Instant Access Purchase"
-			disabled={!isAbleToPurchaseShares}
+			disabled={!isAbleToPurchaseAccessToContent}
 			className="font-semibold"
 		/>
 	)

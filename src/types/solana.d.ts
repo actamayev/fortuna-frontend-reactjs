@@ -1,30 +1,4 @@
 declare global {
-	interface CommonSplDetails {
-		splName: string
-		numberOfShares: number
-		listingSharePriceUsd: number
-		description: string
-		creatorOwnershipPercentage: number
-		originalContentUrl: string
-		isContentExclusive: boolean
-		valueNeededToAccessExclusiveContentUsd?: number
-		isContentInstantlyAccessible?: boolean
-		priceToInstantlyAccessExclusiveContentUsd?: number
-		allowValueFromSameCreatorTokensForExclusiveContent?: boolean
-	}
-
-	interface NewSPLDetails extends CommonSplDetails {
-		selectedImage: File | null
-		selectedVideo: File | null
-	}
-
-	interface CreateAndMintSPL extends CommonSplDetails {
-		imageUrl: string
-		uuid: string
-		uploadedImageId: number
-		uploadedVideoId: number
-	}
-
 	interface SolPriceDetails {
 		solPriceInUSD: number
 		lastRetrievedTime: Date
@@ -52,10 +26,6 @@ declare global {
 		transferAmount: number
 		transferCurrency: Currencies
 	}
-
-	type SPLListingStatus =
-		"LISTED" |
-		"SOLDOUT"
 }
 
 export {}

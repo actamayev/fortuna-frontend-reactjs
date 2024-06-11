@@ -13,10 +13,9 @@ declare global {
 		"/my-wallet" |
 
 		"/creator/my-content" |
-		"/creator/upload-content" |
+		"/creator/create-content" |
 
 		"/privacy-policy" |
-		"/faq" |
 
 		"/about" |
 		"/careers" |
@@ -35,7 +34,8 @@ declare global {
 
 	type PathHeaders =
 		"/auth" |
-		"/exchange" |
+		"/creator" |
+		"/market" |
 		"/personal-info" |
 		"/positions-and-transactions" |
 		"/search" |

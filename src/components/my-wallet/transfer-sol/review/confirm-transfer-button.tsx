@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import Button from "../../../button"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import useTransferSol from "../../../../hooks/solana/transfer-sol/transfer-sol"
@@ -23,10 +23,14 @@ function ConfirmTransferButton() {
 		return _.isEqual(solanaClass.transferSolDetails.transferAmount, 0)
 	}, [solanaClass, solanaClass?.transferSolDetails.transferAmount])
 
+	const transferSolCallback = useCallback(async () => {
+		await transferSol(setIsLoading)
+	}, [])
+
 	return (
 		<>
 			<Button
-				onClick={() => transferSol(setIsLoading)}
+				onClick={transferSolCallback}
 				colorClass="bg-blue-200 dark:bg-blue-400"
 				hoverClass="hover:bg-blue-300 hover:dark:bg-blue-500"
 				title="Confirm Transfer"

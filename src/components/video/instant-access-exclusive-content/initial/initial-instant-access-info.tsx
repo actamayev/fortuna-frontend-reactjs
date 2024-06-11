@@ -1,94 +1,64 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import InstantAccessCost from "./instant-access-cost"
-import ReviewInstantAccessButton from "./review-instant-access-button"
-import { useExchangeContext } from "../../../../contexts/exchange-context"
-import { addDefiniteLeadingAt } from "../../../../utils/leading-at-operations"
-import useNavigateToCreatorPage from "../../../../hooks/navigate/navigate-to-creator-page"
+import { useParams } from "react-router-dom"
+import OneTierInfo from "./one-tier-info"
+import TwoTiersInfo from "./two-tiers-info"
+import ThreeTiersInfo from "./three-tiers-info"
+import { useVideoContext } from "../../../../contexts/video-context"
+import { useMarketContext } from "../../../../contexts/market-context"
 import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
 
-interface Props {
-	video: SingleVideoDataFromBackend
-	orNeeded: boolean
-}
-
-function InitialInstantAccessInfo(props: Props) {
-	const { video, orNeeded } = props
-	const exchangeClass = useExchangeContext()
+function InitialInstantAccessInfo() {
+	const { videoUUID } = useParams<{ videoUUID: string}>()
+	const videoClass = useVideoContext()
+	const video = videoClass.findVideoFromUUID(videoUUID)
+	const marketClass = useMarketContext()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
-	const navigateToCreatorPage = useNavigateToCreatorPage()
 
 	if (
 		_.isUndefined(video) ||
-		video.isSplExclusive === false ||
+		video.isVideoExclusive === false ||
 		_.isNull(positionsAndTransactionsClass) ||
-		_.isNull(exchangeClass) ||
-		exchangeClass.instantAccessToExclusiveContentStage !== "initial"
+		marketClass?.instantAccessToExclusiveContentStage !== "initial"
 	) return null
-
-	if (video.isContentInstantlyAccessible !== true) {
-		return (
-			<div className="w-full">
-				<div className="flex items-center w-full">
-					<hr className="flex-grow border-t border-zinc-300" />
-				</div>
-				<div className="flex items-center w-full">
-					<div>
-						<span
-							className="font-medium hover:underline cursor-pointer"
-							onClick={() => navigateToCreatorPage(addDefiniteLeadingAt(video.creatorUsername))}
-						>
-							{video.creatorUsername}
-						</span> {" "}
-						has disabled instant access for this video
-					</div>
-				</div>
-			</div>
-		)
-	}
 
 	if (positionsAndTransactionsClass.checkIfUuidExistsInExclusiveContentList(video.uuid) === true) {
 		return (
 			<div className="w-full">
 				<div className="flex items-center w-full">
-					<hr className="flex-grow border-t border-zinc-300" />
-				</div>
-				<div className="flex items-center w-full">
-					<span>You have already purchased exclusive access to this video</span>
+					<span>You have already purchased access to this exclusive video</span>
 				</div>
 			</div>
 		)
 	}
 
-	if (!_.isUndefined(video.videoUrl)) {
-		const sharesOwned = positionsAndTransactionsClass.getNumberSharesOwnedByUUID(video.uuid)
-		return (
-			<div className="w-full">
-				<div className="flex items-center w-full">
-					<hr className="flex-grow border-t border-zinc-300" />
-				</div>
-				<div className="flex items-center w-full">
-					<span>You have access to this exclusive video through share ownership</span>
-				</div>
-				Shares owned: {sharesOwned}
-			</div>
-		)
+	if (_.isNull(video.numberOfExclusivePurchasesSoFar)) {
+		return <>Not exclusive</>
 	}
 
 	return (
 		<>
-			<div className="flex items-center w-full">
-				<hr className="flex-grow border-t border-zinc-300" />
-				{orNeeded && <span className="px-4 text-zinc-500">or</span> }
-				<hr className="flex-grow border-t border-zinc-300" />
-			</div>
 			<div className="text-center font-semibold flex justify-center items-center text-xl">
 				Instant Access
 			</div>
-			<InstantAccessCost video={video}/>
-			<div className="mt-3 mb-3 flex justify-center">
-				<ReviewInstantAccessButton video={video}/>
-			</div>
+			{video.tierData.length === 1 && (
+				<OneTierInfo
+					tier={video.tierData[0]}
+					numberOfExclusivePurchasesSoFar={video.numberOfExclusivePurchasesSoFar}
+				/>
+			)}
+			{video.tierData.length === 2 && (
+				<TwoTiersInfo
+					tiers={video.tierData}
+					numberOfExclusivePurchasesSoFar={video.numberOfExclusivePurchasesSoFar}
+				/>
+			)}
+			{video.tierData.length === 3 && (
+				<ThreeTiersInfo
+					tiers={video.tierData}
+					numberOfExclusivePurchasesSoFar={video.numberOfExclusivePurchasesSoFar}
+				/>
+			)}
 		</>
 	)
 }

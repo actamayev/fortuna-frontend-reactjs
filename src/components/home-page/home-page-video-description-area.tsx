@@ -1,10 +1,11 @@
 import _ from "lodash"
-import PricePerShareArea from "./price-per-share-area"
+import { useCallback } from "react"
+import ShowUsdOrSolPrice from "../show-usd-or-sol-price"
 import ShowHomeVideoLockStatus from "./show-home-video-lock-status"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
-import SharesAvailableProgressBar from "./shares-available-progress-bar"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
+import getTieredAccessPriceUsd from "../../utils/video-access-tiers/get-tiered-access-price-usd"
 
 interface Props {
 	video: VideoDataLessVideoUrl
@@ -16,14 +17,15 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 	const navigateToVideoPage = useNavigateToVideoPage()
 	const navigateToCreatorPage = useNavigateToCreatorPage()
 
-	const {
-		splName,
-		creatorProfilePictureUrl,
-		creatorUsername,
-		uuid,
-		sharesRemainingForSale,
-		totalNumberShares
-	} = video
+	const { videoName, creatorProfilePictureUrl, creatorUsername, uuid } = video
+
+	const navigateToCreatorPageCallback = useCallback(() => {
+		navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))
+	}, [creatorUsername, navigateToCreatorPage])
+
+	const navigateToVideoPageCallback = useCallback(() => {
+		navigateToVideoPage(uuid)
+	}, [navigateToVideoPage, uuid])
 
 	return (
 		<div className="flex items-center pt-1 dark:text-zinc-200 rounded-lg mx-1">
@@ -32,35 +34,34 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 					src={creatorProfilePictureUrl}
 					alt="Creator's Profile"
 					className="w-8 h-8 rounded-full mr-2 object-cover cursor-pointer"
-					onClick={() => navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))}
+					onClick={navigateToCreatorPageCallback}
 				/>
 			)}
 			<div className="flex flex-col">
 				<div
 					className="text-md font-semibold cursor-pointer"
 					style={{ maxWidth: "fit-content" }}
-					onClick={() => navigateToVideoPage(uuid)}
+					onClick={navigateToVideoPageCallback}
 				>
-					{_.truncate(splName, { length: 20, omission: "..." })}
+					{_.truncate(videoName, { length: 29, omission: "..." })}
 				</div>
 				<div
 					className="text-xs text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-100 cursor-pointer"
 					style={{ maxWidth: "fit-content" }}
-					onClick={() => navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))}
+					onClick={navigateToCreatorPageCallback}
 				>
 					{creatorUsername}
 				</div>
 			</div>
-			<div className="ml-auto flex flex-col items-end space-y-2.5">
+			<div className="ml-auto flex flex-col items-end space-y-1">
 				<div className="text-xs mt-1">
-					<PricePerShareArea video={video} />
+					<ShowUsdOrSolPrice usdAmount={getTieredAccessPriceUsd(video)} />
 				</div>
 				<div className="flex items-center space-x-1">
-					<SharesAvailableProgressBar
-						sharesRemainingForSale={sharesRemainingForSale}
-						totalShares={totalNumberShares}
+					<ShowHomeVideoLockStatus
+						isUserAbleToAccessVideo={video.isUserAbleToAccessVideo}
+						index={index}
 					/>
-					<ShowHomeVideoLockStatus video={video} index={index}/>
 				</div>
 			</div>
 		</div>

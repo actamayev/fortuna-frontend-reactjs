@@ -13,11 +13,17 @@ function SolOrUsdSlider() {
 	const setDefaultCurrency = useSetDefaultCurrency()
 	const location = useLocation()
 
-	if (location.pathname === "/register" || location.pathname === "/login") return null
+	if (
+		location.pathname === "/register" ||
+		location.pathname === "/login" ||
+		location.pathname === "/register-username" ||
+		location.pathname === "/creator/create-content"
+	) return null
 
 	return (
 		<div className="flex flex-col">
 			<Slider
+				id="sol-usd-slider"
 				checkedCondition={defaultCurrency === "sol"}
 				onChangeCheckedCondition={setDefaultCurrency}
 				leftIcon={

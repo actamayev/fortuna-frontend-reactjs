@@ -13,10 +13,12 @@ declare global {
 	type LoginOrRegisterSuccess = { accessToken: string, publicKey: string }
 	type GoogleAuthSuccess = { accessToken: string, isNewUser: boolean, publicKey: string }
 
-	// Exchange Resposnes:
-	interface PrimarySplTokenPurchaseResponse extends MyOwnership {
-		videoUrl: string | undefined
-	}
+	// Creator Responses:
+	type CreateVideoResponse = { newVideoId: number }
+	type RetrieveMyContentResponse = { creatorContentList: MyContent[] }
+
+	// Market Resposnes:
+	type DefiniteRetrievedVideoUrl = { videoUrl: string, isVideoSoldOut: boolean }
 
 	// Personal Info Responses:
 	type PersonalInfoResponse = {
@@ -24,27 +26,20 @@ declare global {
 		email: string | null
 		defaultCurrency: Currencies
 		defaultSiteTheme: SiteThemes
-		isApprovedToBeCreator: boolean
 		profilePictureUrl: string | null
 		publicKey: string
 	}
+
+	// Positions and Transactions Responses:
+	type TransactionsResponse = { transactions: SolanaTransaction[] }
+	type MyOwnershipResponse = { myPurchasedExclusiveContent: MyPurchasedExclusiveContent[] }
 
 	// Search Responses:
 	type SearchForUsersResponse = { usernames: { username: string }[] }
 	type GeneralSearchResponse = { searchResults: SearchData[] }
 
 	// Solana Responses:
-	type MintSPLResponse = {
-		newSPLId: number,
-		mintAddress: string
-	}
-	type RetrieveMyContentResponse = { creatorContentList: MyContent[] }
 	type TransferSolResponse = { solTransferData: SolanaTransaction }
-	type TransactionsResponse = { transactions: SolanaTransaction[] }
-	type MyOwnershipResponse = {
-		myOwnershipList: MyOwnership[]
-		myExclusiveContentList: MyExclusiveContentData[]
-	}
 	type SolPriceResponse = {
 		solPriceInUSD: number
 		lastRetrievedTime: Date
@@ -69,13 +64,9 @@ declare global {
 		creatorData: CreatorData
 	}
 	type RetrievedVideoUrl = { videoUrl: string | undefined }
-	type DefiniteRetrievedVideoUrl = { videoUrl: string }
 
 	// YouTube Responses:
-	type UserYouTubeData = {
-		isApprovedToBeCreator: boolean
-		subscriberCount: number
-	}
+	type UserYouTubeData = { subscriberCount: number }
 }
 
 export {}

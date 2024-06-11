@@ -1,28 +1,4 @@
 declare global {
-	interface MyContent {
-		splId: number
-		splName: string
-		numberOfShares: number
-		listingSharePriceUsd: number
-		splListingStatus: SPLListingStatus
-		description: string
-		creatorOwnershipPercentage: number
-		imageUrl: string
-		uuid: string
-		mintAddress: string
-	}
-
-	interface MyOwnership {
-		splName: string
-		splPublicKey: string
-		purchaseData: PurchaseData[]
-		imageUrl: string
-		uuid: string
-		isMyContent: boolean
-		creatorUsername: string
-		originalListingPricePerShareUsd: number
-	}
-
 	interface SolanaTransaction {
 		solTransferId: number
 		solAmountTransferred: number
@@ -38,8 +14,8 @@ declare global {
 		createdAt: Date
 	}
 
-	interface MyExclusiveContentData {
-		splName: string
+	interface MyPurchasedExclusiveContent {
+		videoName: string
 		imageUrl: string
 		uuid: string
 	}
