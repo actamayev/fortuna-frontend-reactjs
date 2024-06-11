@@ -25,21 +25,15 @@ export default class AuthDataService {
 		)
 	}
 
-	async googleLoginCallback(idToken: string, siteTheme: SiteThemes): Promise<AxiosResponse<GoogleAuthSuccess | ErrorResponses>> {
-		return await this.httpClient.http.post<GoogleAuthSuccess | ErrorResponses>(
-			`${this.pathHeader}/google-auth/login-callback`, { idToken, siteTheme }, { headers: { "No-Auth-Required": "true" }}
-		)
-	}
-
 	async registerUsername(username: string): Promise<AxiosResponse<AllCommonResponses>> {
 		return await this.httpClient.http.post<AllCommonResponses>(
 			`${this.pathHeader}/set-username`, { username }
 		)
 	}
 
-	async youtubeCallback(code: string): Promise<AxiosResponse<UserYouTubeData | NonSuccessResponse>> {
-		return await this.httpClient.http.post<UserYouTubeData | NonSuccessResponse>(
-			`${this.pathHeader}/google-auth/youtube-callback`, { code }
+	async googleLoginCallback(idToken: string, siteTheme: SiteThemes): Promise<AxiosResponse<GoogleAuthSuccess | ErrorResponses>> {
+		return await this.httpClient.http.post<GoogleAuthSuccess | ErrorResponses>(
+			`${this.pathHeader}/google-auth/login-callback`, { idToken, siteTheme }, { headers: { "No-Auth-Required": "true" }}
 		)
 	}
 }

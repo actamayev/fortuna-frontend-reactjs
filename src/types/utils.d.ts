@@ -41,8 +41,7 @@ declare global {
 		"/search" |
 		"/solana" |
 		"/upload" |
-		"/videos" |
-		"/youtube"
+		"/videos"
 
 	type AtPrefixedString = string & { __brand: "AtPrefixedString" }
 }

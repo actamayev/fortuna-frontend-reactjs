@@ -24,7 +24,6 @@ import useInitializeTagManager from "./hooks/analytics/initiallize-tag-manager"
 import useLogoutListenerUseEffect from "./hooks/auth/logout-listener-use-effect"
 import useRetrieveSolPriceUseEffect from "./hooks/solana/retrieve-sol-price-use-effect"
 import useRetrieveMyContentUseEffect from "./hooks/creator/retrieve-my-content-use-effect"
-import useRetrieveYouTubeInfoUseEffect from "./hooks/youtube/retrieve-youtube-info-use-effect"
 import useRetrieveMyPurchasedExclusiveContentUseEffect
 	from "./hooks/positions-and-transactions/retrieve-my-purchased-exclusive-content-use-effect"
 import useRetrieveWalletBalanceUseEffect from "./hooks/solana/retrieve-wallet-balance-use-effect"
@@ -43,7 +42,6 @@ function App() {
 	useRetrieveMyPurchasedExclusiveContentUseEffect()
 	useInitializeTagManager()
 	useRedirectBackToRegisterUsername()
-	useRetrieveYouTubeInfoUseEffect()
 
 	return (
 		<Routes>
