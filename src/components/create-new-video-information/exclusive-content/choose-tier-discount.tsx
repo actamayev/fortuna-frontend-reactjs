@@ -41,7 +41,7 @@ function ChooseTierDiscount(props: Props) {
 				value={discountAtThisTier}
 				onChange={updateNewVideoDetails}
 				min={0}
-				max={100}
+				max={90}
 				step={1}
 				disabled={isNewVideoLoading}
 			/>
