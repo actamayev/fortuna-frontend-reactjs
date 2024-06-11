@@ -64,9 +64,6 @@ declare global {
 		creatorData: CreatorData
 	}
 	type RetrievedVideoUrl = { videoUrl: string | undefined }
-
-	// YouTube Responses:
-	type UserYouTubeData = { subscriberCount: number }
 }
 
 export {}

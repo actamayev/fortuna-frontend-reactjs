@@ -36,10 +36,4 @@ export default class AuthDataService {
 			`${this.pathHeader}/set-username`, { username }
 		)
 	}
-
-	async youtubeCallback(code: string): Promise<AxiosResponse<UserYouTubeData | NonSuccessResponse>> {
-		return await this.httpClient.http.post<UserYouTubeData | NonSuccessResponse>(
-			`${this.pathHeader}/google-auth/youtube-callback`, { code }
-		)
-	}
 }
