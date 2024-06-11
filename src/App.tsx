@@ -6,10 +6,8 @@ import Video from "./pages/video"
 import Creator from "./pages/creator"
 import Missing from "./pages/missing"
 import MyWallet from "./pages/my-wallet"
-import About from "./pages/company/about"
 import MyProfile from "./pages/my-profile"
 import Contact from "./pages/company/contact"
-import Careers from "./pages/company/careers"
 import LoginPage from "./pages/auth/login-page"
 import SearchResults from "./pages/search-results"
 import RegisterPage from "./pages/auth/register-page"
@@ -62,8 +60,6 @@ function App() {
 			<Route path = "/privacy-policy" element = {<PrivacyPolicy />} />
 
 			<Route path = "/contact" element = {<Contact />} />
-			<Route path = "/careers" element = {<Careers />} />
-			<Route path = "/about" element = {<About />} />
 
 			<Route path = "*" element = {<Missing />} />
 		</Routes>

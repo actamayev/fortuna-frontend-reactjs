@@ -10,7 +10,7 @@ export default function FooterSupportSection() {
 				style={{ fontSize: "12px", lineHeight: "18px", fontWeight: "300"}}
 			>
 				<a
-					href="https://help.mintfortuna.com"
+					href="https://help.mintfortuna.com/frequently-asked-questions"
 					aria-label="Help Center"
 					className="text-zinc-950 dark:text-zinc-200 dark:hover:text-zinc-50"
 					target="_blank"

@@ -17,8 +17,6 @@ declare global {
 
 		"/privacy-policy" |
 
-		"/about" |
-		"/careers" |
 		"/contact"
 
 	type DynamicPageNames =
