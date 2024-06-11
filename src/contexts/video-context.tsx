@@ -154,6 +154,29 @@ class VideoClass {
 		this.creatorData.splice(index, 0, newCreatorData)
 	}
 
+	public markVideoSoldOut(videoUUID: string): void {
+		const updateStatus = (video: SingleVideoDataFromBackend | undefined): void => {
+			if (!_.isUndefined(video)) {
+				video.videoListingStatus = "SOLDOUT"
+				if (!_.isNull(video.numberOfExclusivePurchasesSoFar)) {
+					video.numberOfExclusivePurchasesSoFar += 1
+				}
+			}
+		}
+
+		// Update in videos array
+		const videoInVideos = this.contextForVideo(videoUUID)
+		updateStatus(videoInVideos)
+
+		// Update in videoSearchMap
+		const videoInSearchMap = this.findVideoInSearchMapByUUID(videoUUID)
+		updateStatus(videoInSearchMap)
+
+		// Update in creatorData
+		const videoInCreatorData = this.findVideoInCreatorDataMapByUUID(videoUUID)
+		updateStatus(videoInCreatorData)
+	}
+
 	public addVideoUUIDToRetrievingList(videoUUID: string): void {
 		this.videosBeingRetrieved.unshift(videoUUID)
 	}

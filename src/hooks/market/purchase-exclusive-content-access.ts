@@ -21,6 +21,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 	const retrieveWalletBalance = useRetrieveWalletBalance()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
+	// eslint-disable-next-line complexity
 	const purchaseInstantAccess = useCallback(async (
 		videoUUID: string,
 		tierNumber: number,
@@ -54,6 +55,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 			} else {
 				solanaClass.alterWalletBalanceUsd(-tierAccessPriceUsd)
 			}
+			if (purchaseResponse.data.isVideoSoldOut === true) videoClass.markVideoSoldOut(videoUUID)
 			// ASAP TODO: Add this transaction to my transactions (don't just call retrieveTransactions - redundant)
 			// Consider returning the sol transfer details with the purchaseExclusiveContentAccess response.
 			// Add that single new transaction to the transaction array
