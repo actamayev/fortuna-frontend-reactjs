@@ -5,8 +5,8 @@ import { isErrorResponse, isMessageResponse } from "../../utils/type-checks"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useRetrieveMyContentUseEffect(): void {
-	const fortunaApiClient = useApiClientContext()
 	const creatorClass = useCreatorContext()
+	const fortunaApiClient = useApiClientContext()
 
 	// eslint-disable-next-line complexity
 	const retrieveMyContent = useCallback(async () => {
