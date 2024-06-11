@@ -1,13 +1,12 @@
-import { useMemo, useState } from "react"
+import { useState } from "react"
 import Button from "../button"
+import ContactInput from "./contact-input"
 import ErrorMessage from "../error-message"
 import SubLoginInfo from "./sub-login-info"
 import PasswordInput from "./password-input"
 import GoogleSignIn from "./google/google-sign-in"
-import LoginContactInput from "./login-contact-input"
 import AuthTemplate from "../templates/auth-template"
 import useLoginSubmit from "../../hooks/auth/login-submit"
-import ShowOrHidePasswordButton from "./show-or-hide-password-button"
 import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
 
 interface Props {
@@ -24,13 +23,7 @@ export default function Login(props: Props) {
 	})
 	const [error, setError] = useState("")
 	const [loading, setLoading] = useState(false)
-	const [showPassword, setShowPassword] = useState(false)
 	const loginSubmit = useLoginSubmit(whereToNavigate, loginInformation, setError, setLoading)
-
-	const isShowPassword = useMemo(() => {
-		if (showPassword) return "text"
-		return "password"
-	}, [showPassword])
 
 	const createSetCredentialsFunction = (setter: React.Dispatch<React.SetStateAction<LoginCredentials>>) => {
 		return (newCredentials: Partial<LoginCredentials | RegisterCredentials>) => {
@@ -42,20 +35,15 @@ export default function Login(props: Props) {
 		<div>
 			<AuthTemplate title="Login">
 				<form onSubmit={loginSubmit}>
-					<LoginContactInput
+					<ContactInput
 						credentials={loginInformation}
-						setCredentials={setLoginInformation}
+						setCredentials={createSetCredentialsFunction(setLoginInformation)}
+						label="Username or Email/Phone Number"
 					/>
 
 					<PasswordInput
 						credentials = {loginInformation}
 						setCredentials = {createSetCredentialsFunction(setLoginInformation)}
-						showPassword = {isShowPassword}
-					/>
-
-					<ShowOrHidePasswordButton
-						showPassword = {showPassword}
-						setShowPassword = {setShowPassword}
 					/>
 
 					<ErrorMessage error={error} />

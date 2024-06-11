@@ -33,7 +33,7 @@ function SingleTransaction(props: Props) {
 
 	return (
 		<div
-			className="bg-zinc-100 dark:bg-zinc-800 shadow-sm mt-2 p-2 rounded-sm \
+			className="bg-zinc-100 dark:bg-zinc-800 mt-2 p-2 rounded-sm \
 				text-zinc-950 dark:text-zinc-200 flex items-center"
 		>
 			<div className="mr-2">

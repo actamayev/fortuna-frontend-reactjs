@@ -28,7 +28,6 @@ export default function useRetrieveYouTubeInfoUseEffect(): void {
 				return
 			}
 			youtubeClass.setYouTubeClassData(youtubeData.data)
-			personalInfoClass.isApprovedToBeCreator = youtubeData.data.isApprovedToBeCreator
 		} catch (error) {
 			console.error(error)
 		} finally {

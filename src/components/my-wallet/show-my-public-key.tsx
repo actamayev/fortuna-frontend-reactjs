@@ -20,11 +20,14 @@ function ShowMyPublicKey() {
 		}
 	}, [solanaClass])
 
+	const setShowPublicKeyCallback = useCallback((whatToSet: boolean): void => {
+		setShowPublicKey(whatToSet)
+	}, [])
 
 	if (_.isNull(solanaClass?.walletPublicKey) || showPublicKey === false) {
 		return (
 			<div className="font-semibold flex items-center">
-				<div className="mr-2 cursor-pointer" onClick={() => setShowPublicKey(true)}>
+				<div className="mr-2 cursor-pointer" onClick={() => setShowPublicKeyCallback(true)}>
 					<FaEyeSlash style={{ color: defaultSiteTheme === "dark" ? "white" : "" }}/>
 				</div>
 				<div className="flex-grow dark:text-zinc-200">My Public Key: **********</div>
@@ -36,7 +39,7 @@ function ShowMyPublicKey() {
 		<div className="font-semibold flex items-center">
 			<div
 				className="cursor-pointer mr-2"
-				onClick={() => setShowPublicKey(false)}
+				onClick={() => setShowPublicKeyCallback(false)}
 			>
 				<FaEye style={{ color: defaultSiteTheme === "dark" ? "white" : "" }}/>
 			</div>

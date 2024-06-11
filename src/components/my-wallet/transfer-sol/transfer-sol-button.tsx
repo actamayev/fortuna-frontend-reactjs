@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useRef } from "react"
+import { FaArrowAltCircleUp } from "react-icons/fa"
 import Button from "../../button"
 import TransferSolCard from "./transfer-sol-card"
 import { useSolanaContext } from "../../../contexts/solana-context"
@@ -20,6 +21,7 @@ function TransferSolButton() {
 		<>
 			<Button
 				title="Transfer Funds"
+				titleIcon={<FaArrowAltCircleUp />}
 				colorClass="bg-blue-500 dark:bg-blue-400"
 				hoverClass="hover:bg-blue-600 dark:hover:bg-blue-500"
 				onClick={setIsTransferSolButtonPressed}

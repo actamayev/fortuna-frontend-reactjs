@@ -2,13 +2,9 @@ import { AxiosResponse } from "axios"
 import FortunaHttpClient from "../classes/fortuna-http-client"
 
 export default class SolanaDataService {
-	constructor(private readonly pathHeader: PathHeaders, private readonly httpClient: FortunaHttpClient) {
-	}
+	private readonly pathHeader: PathHeaders = "/solana"
 
-	async createAndMintSPL(newSPLData: CreateAndMintSPL): Promise<AxiosResponse<MintSPLResponse | NonSuccessResponse>> {
-		return await this.httpClient.http.post<MintSPLResponse | NonSuccessResponse>(
-			`${this.pathHeader}/create-and-mint-spl`, { newSPLData }
-		)
+	constructor(private readonly httpClient: FortunaHttpClient) {
 	}
 
 	async transferSolToUsername(transferSolData: SendingSolTransfer): Promise<AxiosResponse<TransferSolResponse | NonSuccessResponse>> {

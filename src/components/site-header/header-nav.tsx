@@ -14,9 +14,9 @@ export default function HeaderNav() {
 					<SearchBar />
 				</div>
 				<div className="flex items-center z-10">
-					<ChooseSiteTheme />
-					<SolOrUsdSlider />
 					<CreateContentHeaderButton />
+					<SolOrUsdSlider />
+					<ChooseSiteTheme />
 					<LoginLogoutHeaderItem />
 				</div>
 			</div>

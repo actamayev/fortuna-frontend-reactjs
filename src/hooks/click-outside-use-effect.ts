@@ -2,7 +2,6 @@ import _ from "lodash"
 import { useCallback, useEffect } from "react"
 import { useLocation } from "react-router-dom"
 
-// ASAP TODO: The transfer sol button shouldn't close when the pill or dark mode is accessed.
 export default function useClickOutSideUseEffect(
 	dropdownRef: React.RefObject<HTMLDivElement>,
 	setIsOpen?: (newState: boolean) => void
@@ -10,14 +9,14 @@ export default function useClickOutSideUseEffect(
 	const location = useLocation()
 
 	const handleClickOutside = useCallback((event: MouseEvent) => {
-		// Check if the clicked element is part of the dark mode slider
-		const sliderHTML = (event.target as HTMLElement).closest(".toggle-pill")
-
+		const themeToggler = document.getElementById("theme-toggler")
+		const solUsdSlider = document.getElementById("sol-usd-slider")
 		if (
 			dropdownRef.current &&
             !dropdownRef.current.contains(event.target as Node) &&
-            !_.isUndefined(setIsOpen) &&
-            !sliderHTML
+			(!themeToggler || !themeToggler.contains(event.target as Node)) &&
+			(!solUsdSlider || !solUsdSlider.contains(event.target as Node)) &&
+            !_.isUndefined(setIsOpen)
 		) {
 			setIsOpen(false)
 		}

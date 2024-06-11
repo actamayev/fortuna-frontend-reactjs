@@ -1,23 +1,31 @@
+import { useState } from "react"
 import FormGroup from "../form-group"
+import ShowOrHidePasswordButton from "./show-or-hide-password-button"
 
 interface Props {
 	credentials: LoginCredentials | RegisterCredentials
 	setCredentials: (newCredentials: Partial<LoginCredentials | RegisterCredentials>) => void
-	showPassword: "text" | "password"
 }
 
 export default function PasswordInput (props: Props) {
-	const { credentials, setCredentials, showPassword } = props
+	const { credentials, setCredentials } = props
+	const [showPassword, setShowPassword] = useState(false)
 
 	return (
-		<FormGroup
-			label = "Password"
-			type = {showPassword}
-			placeholder = "Password"
-			onChange={(event) => setCredentials({ ...credentials, password: event.target.value })}
-			required
-			value = {credentials.password || ""}
-			maxLength={100}
-		/>
+		<div className="relative">
+			<FormGroup
+				label="Password"
+				type={showPassword ? "text" : "password"}
+				placeholder="Password"
+				onChange={(event) => setCredentials({ ...credentials, password: event.target.value })}
+				required
+				value={credentials.password || ""}
+				maxLength={100}
+			/>
+			<ShowOrHidePasswordButton
+				showPassword={showPassword}
+				setShowPassword={setShowPassword}
+			/>
+		</div>
 	)
 }

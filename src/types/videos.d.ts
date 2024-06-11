@@ -1,24 +1,21 @@
 declare global {
 	interface VideoDataLessVideoUrl {
-		splName: string
-		splPublicKey: string
-		listingSharePriceUsd: number
-		splListingStatus: SPLListingStatus
+		videoName: string
+		videoListingStatus: PostedVideoListingStatuses
 		description: string
 		imageUrl: string
 		uuid: string
-		totalNumberShares: number
-		sharesRemainingForSale: number
-		originalContentUrl: string
-		contentMintDate: Date
 		creatorUsername: string
 		creatorProfilePictureUrl: string | null
-		isSplExclusive: boolean
-		valueNeededToAccessExclusiveContentUsd: number | null
-		isContentInstantlyAccessible: boolean | null
-		priceToInstantlyAccessExclusiveContentUsd: number | null
-		allowValueFromSameCreatorTokensForExclusiveContent: boolean | null
+		isVideoExclusive: boolean
 		isUserAbleToAccessVideo: boolean
+		createdAt: Date
+		tierData: TierDataFromDB[]
+		numberOfExclusivePurchasesSoFar: number | null
+	}
+
+	interface TierDataFromDB extends TierDataToSend {
+		isTierSoldOut: boolean
 	}
 
 	interface SingleVideoDataFromBackend extends VideoDataLessVideoUrl {
@@ -35,6 +32,8 @@ declare global {
 	interface CreatorDataHeldInClass extends CreatorData {
 		videoData: VideoDataLessVideoUrl[]
 	}
+
+	type PostedVideoListingStatuses = "LISTED" | "SOLDOUT"
 }
 
 export {}

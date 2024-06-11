@@ -1,25 +1,26 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
+import ShowUsdOrSolPrice from "../../../show-usd-or-sol-price"
 import InstantAccessBackButton from "./instant-access-back-button"
 import { useVideoContext } from "../../../../contexts/video-context"
+import { useMarketContext } from "../../../../contexts/market-context"
 import ConfirmInstantAccessButton from "./confirm-instant-access-button"
-import { useExchangeContext } from "../../../../contexts/exchange-context"
-import ShowInstantAccessPurchasePrice from "./show-instant-access-purchase-price"
+import getTieredAccessPriceUsd from "../../../../utils/video-access-tiers/get-tiered-access-price-usd"
+import getCurrentExclusiveAccessTier from "../../../../utils/video-access-tiers/get-current-exclusive-access-tier"
 import ShowRemainingWalletBalanceAfterInstantAccessPurchase from "./show-remaining-wallet-balance-after-instant-access-purchase"
 
 function ReviewInstantAccessInfo() {
 	const { videoUUID } = useParams<{ videoUUID: string}>()
 	const videoClass = useVideoContext()
-	const exchangeClass = useExchangeContext()
+	const marketClass = useMarketContext()
 
 	const video = videoClass.findVideoFromUUID(videoUUID)
 
 	if (
 		_.isUndefined(video) ||
-		video.isSplExclusive === false ||
-		_.isNull(exchangeClass) ||
-		exchangeClass.instantAccessToExclusiveContentStage !== "review"
+		video.isVideoExclusive === false ||
+		marketClass?.instantAccessToExclusiveContentStage !== "review"
 	) return null
 
 	return (
@@ -33,20 +34,16 @@ function ReviewInstantAccessInfo() {
 
 			<div className="flex justify-between mb-1">
 				<div>Instant Access Price:</div>
-				<div>
-					<ShowInstantAccessPurchasePrice video={video}/>
-				</div>
+				<ShowUsdOrSolPrice usdAmount={getTieredAccessPriceUsd(video)} />
 			</div>
 
 			<div className="flex justify-between mb-2">
 				<div>New Balance:</div>
-				<div>
-					<ShowRemainingWalletBalanceAfterInstantAccessPurchase video={video}/>
-				</div>
+				<ShowRemainingWalletBalanceAfterInstantAccessPurchase video={video}/>
 			</div>
 
 			<div className="flex justify-center mt-2">
-				<ConfirmInstantAccessButton />
+				<ConfirmInstantAccessButton tierNumber={getCurrentExclusiveAccessTier(video)}/>
 			</div>
 		</>
 	)

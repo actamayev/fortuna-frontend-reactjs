@@ -13,7 +13,7 @@ export default function Footer() {
 				</div>
 				<hr className="flex-grow mt-4 border-zinc-300" />
 				<div className="text-center text-zinc-600 mt-8 font-medium dark:text-zinc-200">
-					<p>&copy; 2024 Fortuna</p>
+					<p>Fortuna</p>
 				</div>
 			</div>
 		</footer>

@@ -1,26 +1,30 @@
-import { useMemo } from "react"
-import Button from "../button"
+import { observer } from "mobx-react"
+import { FaEye, FaEyeSlash } from "react-icons/fa"
+import HoverOutlineComponent from "../hover-outline-component"
+import useDefaultSiteTheme from "../../hooks/memos/default-site-theme"
 
 interface Props {
-	showPassword: boolean,
-	setShowPassword: (showPassword: boolean) => void,
+	showPassword: boolean
+	setShowPassword: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function ShowOrHidePasswordButton (props: Props) {
+function ShowOrHidePasswordButton (props: Props) {
 	const { showPassword, setShowPassword } = props
-
-	const hideOrShowPassword = useMemo(() => {
-		if (showPassword) return "Hide Password"
-		return "Show Password"
-	}, [showPassword])
+	const defaultSiteTheme = useDefaultSiteTheme()
 
 	return (
-		<Button
-			className = "font-semibold text-md text-zinc-50"
-			colorClass = "bg-orange-600"
-			hoverClass = "hover:bg-orange-700"
-			onClick = {() => (setShowPassword(!showPassword))}
-			title = {hideOrShowPassword}
-		/>
+		<HoverOutlineComponent
+			onClickAction={() => setShowPassword(!showPassword)}
+			classes="absolute flex items-center justify-center right-0.5 cursor-pointer"
+			top="39%"
+		>
+			{showPassword ? (
+				<FaEye style={{ color: defaultSiteTheme === "dark" ? "white" : "" }} />
+			) : (
+				<FaEyeSlash style={{ color: defaultSiteTheme === "dark" ? "white" : "" }} />
+			)}
+		</HoverOutlineComponent>
 	)
 }
+
+export default observer(ShowOrHidePasswordButton)

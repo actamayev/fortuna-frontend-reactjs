@@ -9,7 +9,7 @@ export default function useHandleLogout(
 	setLogoutDisabled: React.Dispatch<React.SetStateAction<boolean>>
 ): (
 	e: React.MouseEvent<HTMLButtonElement>
-) => void {
+) => Promise<void> {
 	const authClass = useAuthContext()
 	const fortunaApiClient = useApiClientContext()
 	const logout = useLogout()

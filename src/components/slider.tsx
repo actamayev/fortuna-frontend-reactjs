@@ -1,4 +1,4 @@
-import { useState } from "react"
+import HoverOutlineComponent from "./hover-outline-component"
 
 interface Props {
 	checkedCondition: boolean | undefined
@@ -7,28 +7,17 @@ interface Props {
 	colorChangeOnToggle?: boolean
 	leftIcon?: React.ReactNode
 	rightIcon?: React.ReactNode
+	id?: string
 }
 
 export default function Slider(props: Props) {
-	const { checkedCondition, onChangeCheckedCondition, disabledCondition, colorChangeOnToggle, leftIcon, rightIcon } = props
-	const [isHovered, setIsHovered] = useState(false)
+	const { checkedCondition, onChangeCheckedCondition, disabledCondition, colorChangeOnToggle, leftIcon, rightIcon, id } = props
 
 	return (
-		<div
-			className="relative cursor-pointer"
-			id="toggle-pill"
-			onMouseEnter={() => setIsHovered(true)}
-			onMouseLeave={() => setIsHovered(false)}
-			onClick={onChangeCheckedCondition}
-			style={{
-				width: "40px",
-				height: "40px",
-				position: "relative",
-				display: "inline-block",
-				backgroundColor: isHovered ? "rgba(128, 128, 128, 0.2)" : "transparent",
-				borderRadius: "50%",
-				cursor: "pointer"
-			}}
+		<HoverOutlineComponent
+			id={id}
+			classes="relative flex items-center justify-center inline-block"
+			onClickAction={onChangeCheckedCondition}
 		>
 			<label
 				className="relative inline-block cursor-pointer"
@@ -82,6 +71,6 @@ export default function Slider(props: Props) {
 					{!checkedCondition && leftIcon}
 				</span>
 			</label>
-		</div>
+		</HoverOutlineComponent>
 	)
 }

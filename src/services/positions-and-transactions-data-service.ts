@@ -2,13 +2,9 @@ import { AxiosResponse } from "axios"
 import FortunaHttpClient from "../classes/fortuna-http-client"
 
 export default class PositionsAndTransactionsDataService {
-	constructor(private readonly pathHeader: PathHeaders, private readonly httpClient: FortunaHttpClient) {
-	}
+	private readonly pathHeader: PathHeaders = "/positions-and-transactions"
 
-	async retrieveMyContent(): Promise<AxiosResponse<RetrieveMyContentResponse | MessageResponse | ErrorResponse>> {
-		return await this.httpClient.http.get<RetrieveMyContentResponse | MessageResponse | ErrorResponse>(
-			`${this.pathHeader}/get-creator-content-list`
-		)
+	constructor(private readonly httpClient: FortunaHttpClient) {
 	}
 
 	async retrieveTransactions(): Promise<AxiosResponse<TransactionsResponse | MessageResponse | ErrorResponse>> {
@@ -17,9 +13,9 @@ export default class PositionsAndTransactionsDataService {
 		)
 	}
 
-	async retrieveMyOwnership(): Promise<AxiosResponse<MyOwnershipResponse | MessageResponse | ErrorResponse>> {
+	async retrieveMyPurchasedExclusiveContent(): Promise<AxiosResponse<MyOwnershipResponse | MessageResponse | ErrorResponse>> {
 		return await this.httpClient.http.get<MyOwnershipResponse | MessageResponse | ErrorResponse>(
-			`${this.pathHeader}/get-my-ownership`
+			`${this.pathHeader}/get-my-purchased-exclusive-content`
 		)
 	}
 }
