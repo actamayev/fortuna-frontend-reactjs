@@ -6,7 +6,9 @@ export default function getTieredAccessPriceUsd(video: SingleVideoDataFromBacken
 
 		let tierNumberPurchases = 0
 
-		for (const tier of tierData) {
+		const sortedTierData = _.sortBy(tierData, ["tierNumber"])
+
+		for (const tier of sortedTierData) {
 			if (_.isNull(tier.purchasesInThisTier)) return tier.tierAccessPriceUsd
 
 			tierNumberPurchases += tier.purchasesInThisTier

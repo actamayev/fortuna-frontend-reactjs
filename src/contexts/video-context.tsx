@@ -154,13 +154,14 @@ class VideoClass {
 		this.creatorData.splice(index, 0, newCreatorData)
 	}
 
-	public markVideoSoldOut(videoUUID: string): void {
+	public updateVideoDetailsAfterUserPurchase(videoUUID: string, isVideoSoldOut: boolean): void {
 		const updateStatus = (video: SingleVideoDataFromBackend | undefined): void => {
 			if (!_.isUndefined(video)) {
-				video.videoListingStatus = "SOLDOUT"
+				if (isVideoSoldOut === true) video.videoListingStatus = "SOLDOUT"
 				if (!_.isNull(video.numberOfExclusivePurchasesSoFar)) {
 					video.numberOfExclusivePurchasesSoFar += 1
 				}
+				video.isUserAbleToAccessVideo = true
 			}
 		}
 

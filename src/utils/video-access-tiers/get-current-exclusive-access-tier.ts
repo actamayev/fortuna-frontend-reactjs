@@ -2,10 +2,12 @@ import _ from "lodash"
 
 export default function getCurrentExclusiveAccessTier(video: SingleVideoDataFromBackend): number | null {
 	try {
-		const { tierData, numberOfExclusivePurchasesSoFar } = video
-		if (_.isNull(numberOfExclusivePurchasesSoFar)) return null
+		let { tierData } = video
+		if (_.isNull(video.numberOfExclusivePurchasesSoFar)) return null
 
 		let cumulativePurchases = 0
+
+		tierData = _.sortBy(tierData, ["tierNumber"])
 
 		for (const tier of tierData) {
 			if (_.isNull(tier.purchasesInThisTier)) {
@@ -15,7 +17,7 @@ export default function getCurrentExclusiveAccessTier(video: SingleVideoDataFrom
 
 			cumulativePurchases += tier.purchasesInThisTier
 
-			if (numberOfExclusivePurchasesSoFar < cumulativePurchases) {
+			if (video.numberOfExclusivePurchasesSoFar < cumulativePurchases) {
 				// If the number of purchases so far is within this tier's range, return its tier number
 				return tier.tierNumber
 			}
