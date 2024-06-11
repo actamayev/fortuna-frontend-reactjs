@@ -123,10 +123,6 @@ class CreatorClass {
 		return this.newVideoDetails.tierData.length > tierNumber
 	}
 
-	get canAnotherTierBeAdded(): boolean {
-		return this.newVideoDetails.tierData.length < 3
-	}
-
 	get lowestTierPrice(): number {
 		return this.newVideoDetails.tierData[this.newVideoDetails.tierData.length - 1].tierAccessPriceUsd
 	}

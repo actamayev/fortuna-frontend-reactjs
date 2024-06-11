@@ -2,7 +2,9 @@ import { AxiosResponse } from "axios"
 import FortunaHttpClient from "../classes/fortuna-http-client"
 
 export default class AuthDataService {
-	constructor(private readonly pathHeader: PathHeaders, private readonly httpClient: FortunaHttpClient) {
+	private readonly pathHeader: PathHeaders = "/auth"
+
+	constructor(private readonly httpClient: FortunaHttpClient) {
 	}
 
 	async login(loginInformation: LoginCredentials): Promise<AxiosResponse<LoginOrRegisterSuccess | NonSuccessResponse>> {

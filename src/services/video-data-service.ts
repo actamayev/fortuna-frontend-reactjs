@@ -2,7 +2,9 @@ import { AxiosResponse } from "axios"
 import FortunaHttpClient from "../classes/fortuna-http-client"
 
 export default class VideoDataService {
-	constructor(private readonly pathHeader: PathHeaders, private readonly httpClient: FortunaHttpClient) {
+	private readonly pathHeader: PathHeaders = "/videos"
+
+	constructor(private readonly httpClient: FortunaHttpClient) {
 	}
 
 	async getHomePageVideos(): Promise<AxiosResponse<HomePageVideos | ErrorResponse>> {

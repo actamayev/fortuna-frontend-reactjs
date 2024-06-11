@@ -2,7 +2,9 @@ import { AxiosResponse } from "axios"
 import FortunaHttpClient from "../classes/fortuna-http-client"
 
 export default class SearchDataService {
-	constructor(private readonly pathHeader: PathHeaders, private readonly httpClient: FortunaHttpClient) {
+	private readonly pathHeader: PathHeaders = "/search"
+
+	constructor(private readonly httpClient: FortunaHttpClient) {
 	}
 
 	async searchForUsername(username: string): Promise<AxiosResponse<SearchForUsersResponse | ErrorResponses>> {

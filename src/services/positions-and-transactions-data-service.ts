@@ -2,7 +2,9 @@ import { AxiosResponse } from "axios"
 import FortunaHttpClient from "../classes/fortuna-http-client"
 
 export default class PositionsAndTransactionsDataService {
-	constructor(private readonly pathHeader: PathHeaders, private readonly httpClient: FortunaHttpClient) {
+	private readonly pathHeader: PathHeaders = "/positions-and-transactions"
+
+	constructor(private readonly httpClient: FortunaHttpClient) {
 	}
 
 	async retrieveTransactions(): Promise<AxiosResponse<TransactionsResponse | MessageResponse | ErrorResponse>> {

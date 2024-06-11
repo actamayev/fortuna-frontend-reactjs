@@ -3,7 +3,9 @@ import { AxiosResponse } from "axios"
 import FortunaHttpClient from "../classes/fortuna-http-client"
 
 export default class UploadDataService {
-	constructor(private readonly pathHeader: PathHeaders, private readonly httpClient: FortunaHttpClient) {
+	private readonly pathHeader: PathHeaders = "/upload"
+
+	constructor(private readonly httpClient: FortunaHttpClient) {
 	}
 
 	async uploadVideoToS3(file: File): Promise<AxiosResponse<UploadVideoToS3 | NonSuccessResponse>> {
