@@ -1,13 +1,9 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import useTypedNavigate from "../../navigate/typed-navigate"
-import useRetrieveSolPrice from "../../solana/retrieve-sol-price"
 import { isNonSuccessResponse } from "../../../utils/type-checks"
 import useConfirmNewVideoDetails from "./confirm-new-video-details"
-import { useSolanaContext } from "../../../contexts/solana-context"
-import { useMarketContext } from "../../../contexts/market-context"
 import { useCreatorContext } from "../../../contexts/creator-context"
-import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 
 export default function useCreateVideoOnclick(): (
@@ -16,11 +12,7 @@ export default function useCreateVideoOnclick(): (
 ) => Promise<void> {
 	const navigate = useTypedNavigate()
 	const fortunaApiClient = useApiClientContext()
-	const solanaClass = useSolanaContext()
 	const creatorClass = useCreatorContext()
-	const marketClass = useMarketContext()
-	const personalInfoClass = usePersonalInfoContext()
-	const retrieveSolPrice = useRetrieveSolPrice()
 	const confirmNewVideoDetails = useConfirmNewVideoDetails()
 
 	// eslint-disable-next-line complexity
@@ -30,19 +22,13 @@ export default function useCreateVideoOnclick(): (
 	): Promise<void> => {
 		try {
 			if (
-				_.isNull(solanaClass) ||
 				_.isNull(creatorClass) ||
-				_.isNull(personalInfoClass) ||
-				_.isNull(marketClass) ||
 				_.isNull(creatorClass.newVideoDetails.selectedVideo) ||
 				_.isNull(creatorClass.newVideoDetails.selectedImage) ||
 				confirmNewVideoDetails === false
 			) return
 
 			creatorClass.setIsNewVideoLoading(true)
-
-			await retrieveSolPrice()
-			if (_.isNull(solanaClass.solPriceDetails)) return
 
 			setStatus("Uploading Video")
 			// eslint-disable-next-line max-len
@@ -103,8 +89,7 @@ export default function useCreateVideoOnclick(): (
 			setStatus("")
 			if (!_.isNull(creatorClass)) creatorClass.setIsNewVideoLoading(false)
 		}
-	}, [solanaClass, creatorClass, personalInfoClass, marketClass, confirmNewVideoDetails,
-		retrieveSolPrice, fortunaApiClient.uploadDataService, fortunaApiClient.creatorDataService, navigate])
+	}, [creatorClass, confirmNewVideoDetails, fortunaApiClient.uploadDataService, fortunaApiClient.creatorDataService, navigate])
 
 	return createVideoOnclick
 }
