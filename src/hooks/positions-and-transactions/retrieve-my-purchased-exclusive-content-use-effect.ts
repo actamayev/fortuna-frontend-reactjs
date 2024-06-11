@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { useEffect } from "react"
-import useRetrieveMyPurchasedExclusiveContent from "./retrieve-my-purchased-exclusive-content"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
+import useRetrieveMyPurchasedExclusiveContent from "./retrieve-my-purchased-exclusive-content"
 
 export default function useRetrieveMyPurchasedExclusiveContentUseEffect(): void {
 	const fortunaApiClient = useApiClientContext()

@@ -18,7 +18,7 @@ declare global {
 	type RetrieveMyContentResponse = { creatorContentList: MyContent[] }
 
 	// Market Resposnes:
-	type DefiniteRetrievedVideoUrl = { videoUrl: string, isTierSoldOut: boolean }
+	type DefiniteRetrievedVideoUrl = { videoUrl: string }
 
 	// Personal Info Responses:
 	type PersonalInfoResponse = {

@@ -14,6 +14,10 @@ declare global {
 		numberOfExclusivePurchasesSoFar: number | null
 	}
 
+	interface TierDataFromDB extends TierDataToSend {
+		isTierSoldOut: boolean
+	}
+
 	interface SingleVideoDataFromBackend extends VideoDataLessVideoUrl {
 		videoUrl?: string
 	}

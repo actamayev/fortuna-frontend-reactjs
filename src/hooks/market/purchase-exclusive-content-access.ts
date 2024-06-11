@@ -5,8 +5,8 @@ import { useVideoContext } from "../../contexts/video-context"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { useMarketContext } from "../../contexts/market-context"
 import useRetrieveWalletBalance from "../solana/retrieve-wallet-balance"
-import getTieredAccessPriceUsd from "../../utils/video-access-tiers/get-tiered-access-price-usd"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
+import getTieredAccessPriceUsd from "../../utils/video-access-tiers/get-tiered-access-price-usd"
 import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
 
 export default function usePurchaseExclusiveContentAccess(): (
