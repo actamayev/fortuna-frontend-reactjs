@@ -20,8 +20,7 @@ function ReviewInstantAccessInfo() {
 	if (
 		_.isUndefined(video) ||
 		video.isVideoExclusive === false ||
-		_.isNull(marketClass) ||
-		marketClass.instantAccessToExclusiveContentStage !== "review"
+		marketClass?.instantAccessToExclusiveContentStage !== "review"
 	) return null
 
 	return (

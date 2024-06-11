@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { createContext, useContext, useMemo } from "react"
 import AuthDataService from "../services/auth-data-service"
 import VideoDataService from "../services/video-data-service"
@@ -18,6 +17,7 @@ class FortunaApiClient {
 	public creatorDataService: CreatorDataService = new CreatorDataService(this.httpClient)
 	public marketDataService: MarketDataService = new MarketDataService(this.httpClient)
 	public personalInfoDataService: PersonalInfoDataService = new PersonalInfoDataService(this.httpClient)
+	// eslint-disable-next-line max-len
 	public positionsAndTransactionsDataService: PositionsAndTransactionsDataService = new PositionsAndTransactionsDataService(this.httpClient)
 	public searchDataService: SearchDataService = new SearchDataService(this.httpClient)
 	public solanaDataService: SolanaDataService = new SolanaDataService(this.httpClient)
