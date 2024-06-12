@@ -44,6 +44,7 @@ function ChooseTierDiscount(props: Props) {
 				max={90}
 				step={1}
 				disabled={isNewVideoLoading}
+				customWidth="w-5/6"
 			/>
 			<div>{discountAtThisTier}%</div>
 		</div>
