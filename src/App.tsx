@@ -27,6 +27,7 @@ import useRetrieveMyPurchasedExclusiveContentUseEffect
 import useRetrieveWalletBalanceUseEffect from "./hooks/solana/retrieve-wallet-balance-use-effect"
 import useRedirectBackToRegisterUsername from "./hooks/redirects/redirect-back-to-register-username"
 import useRetrievePersonalInfoUseEffect from "./hooks/personal-info/retrieve-personal-info-use-effect"
+import useResetInstantAccessStageOnLocationChangeUseEffect from "./hooks/market/reset-instant-access-stage-on-location-change-use-effect"
 
 function App() {
 	// Don't change the getAuthData to a useEffect, or else it doesn't work immediately after login
@@ -40,6 +41,7 @@ function App() {
 	useRetrieveMyPurchasedExclusiveContentUseEffect()
 	useInitializeTagManager()
 	useRedirectBackToRegisterUsername()
+	useResetInstantAccessStageOnLocationChangeUseEffect()
 
 	return (
 		<Routes>

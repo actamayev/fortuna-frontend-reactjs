@@ -12,8 +12,12 @@ class MarketClass {
 		this.instantAccessToExclusiveContentStage = newValue
 	})
 
+	public resetInstantAccessToExclusiveContentStage = action((): void =>{
+		this.instantAccessToExclusiveContentStage = "initial"
+	})
+
 	public logout() {
-		this.setInstantAccessToExclusiveContentStage("initial")
+		this.resetInstantAccessToExclusiveContentStage()
 	}
 }
 
