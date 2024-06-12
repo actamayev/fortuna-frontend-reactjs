@@ -34,11 +34,9 @@ function Video() {
 				<div className="col-span-9">
 					<VideoPlayer videoUrl={video.videoUrl} imageUrl={video.imageUrl} />
 				</div>
-				<div className="col-span-3 flex flex-col relative">
-					<div className="mx-10 w-full h-full">
-						<div className="border-l dark:border-zinc-800 border-zinc-100 h-full">
-							<PurchaseExclusiveAccessCard videoUUID={video.uuid} />
-						</div>
+				<div className="col-span-3 flex flex-col pl-14">
+					<div className="w-full h-full">
+						<PurchaseExclusiveAccessCard videoUUID={video.uuid} />
 					</div>
 				</div>
 			</div>
@@ -48,7 +46,7 @@ function Video() {
 				</div>
 			</div>
 			<div className="grid grid-cols-12">
-				<div className="col-span-9 overflow-x-auto">
+				<div className="col-span-12 overflow-x-auto">
 					<MoreVideosMap video={video} />
 				</div>
 			</div>
