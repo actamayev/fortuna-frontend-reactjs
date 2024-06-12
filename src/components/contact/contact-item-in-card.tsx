@@ -4,21 +4,19 @@ interface Props {
 	name: string
 	email: string
 	setNotification: React.Dispatch<React.SetStateAction<string | null>>
-	setShowNotification: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export default function ContactItemInCard(props: Props) {
-	const { name, email, setNotification, setShowNotification } = props
+	const { name, email, setNotification } = props
 
 	const copyToClipboard = useCallback(async () => {
 		try {
 			await navigator.clipboard.writeText(email)
 			setNotification(`${email} copied to clipboard`)
-			setShowNotification(true)
 		} catch (error) {
 			console.error(error)
 		}
-	}, [email, setNotification, setShowNotification])
+	}, [email, setNotification])
 
 	return (
 		<div

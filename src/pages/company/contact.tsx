@@ -4,12 +4,10 @@ import ContactItemInCard from "../../components/contact/contact-item-in-card"
 import DescriptionPagesHeaderText from "../../components/description-pages-header-text"
 
 export default function Contact() {
-	// TODO: Make a ariel@minfortuna.com'copied to clipboard' notification
 	const [notification, setNotification] = useState<string | null>(null)
-	const [showNotification, setShowNotification] = useState(false)
 
 	const closeNotification = useCallback(() => {
-		setShowNotification(false)
+		setNotification(null)
 	}, [])
 
 	return (
@@ -28,13 +26,11 @@ export default function Contact() {
 								name="Levi"
 								email="levi@mintfortuna.com"
 								setNotification={setNotification}
-								setShowNotification={setShowNotification}
 							/>
 							<ContactItemInCard
 								name="Ariel"
 								email="ariel@mintfortuna.com"
 								setNotification={setNotification}
-								setShowNotification={setShowNotification}
 							/>
 						</div>
 					</div>
@@ -43,7 +39,6 @@ export default function Contact() {
 			{notification && (
 				<NotificationBox
 					message={notification}
-					showNotification={showNotification}
 					onClose={closeNotification}
 				/>
 			)}
