@@ -32,7 +32,7 @@ function Video() {
 		<div className="dark:text-zinc-200 relative">
 			<div className="grid grid-cols-12">
 				<div className="col-span-9">
-					<VideoPlayer videoUrl={video.videoUrl} imageUrl={video.imageUrl} />
+					<VideoPlayer video={video} />
 				</div>
 				<div className="col-span-3 flex flex-col pl-14">
 					<div className="w-full h-full">
