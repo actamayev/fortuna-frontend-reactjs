@@ -1,27 +1,21 @@
+import _ from "lodash"
+import { observer } from "mobx-react"
+
 interface Props {
-	video: SingleVideoDataFromBackend
+	videoUrl: string | undefined
+	imageUrl: string
 }
 
-export default function VideoPlayer(props: Props) {
-	const { video } = props
+function VideoPlayer(props: Props) {
+	const { videoUrl, imageUrl } = props
 
-	return (
-		<div className="w-full">
-			{video.videoUrl ? (
-				<video
-					controls
-					autoPlay
-					className="w-full h-full rounded-lg"
-					controlsList="nodownload"
-				>
-					<source src={video.videoUrl} type="video/mp4" />
-					Your browser does not support the video tag.
-				</video>
-			) : (
+	if (_.isNull(videoUrl)) {
+		return (
+			<div className="w-full">
 				<div className="w-full h-full rounded-lg bg-zinc-100 dark:bg-zinc-800" style={{ aspectRatio: "16/9" }}>
 					<div className="relative w-full h-full rounded-lg overflow-hidden">
 						<img
-							src={video.imageUrl}
+							src={imageUrl}
 							className="w-full h-full object-cover"
 							alt="Video Thumbnail"
 						/>
@@ -31,7 +25,23 @@ export default function VideoPlayer(props: Props) {
 						/>
 					</div>
 				</div>
-			)}
+			</div>
+		)
+	}
+
+	return (
+		<div className="w-full">
+			<video
+				controls
+				autoPlay
+				className="w-full h-full rounded-lg"
+				controlsList="nodownload"
+			>
+				<source src={videoUrl} type="video/mp4" />
+					Your browser does not support the video tag.
+			</video>
 		</div>
 	)
 }
+
+export default observer(VideoPlayer)

@@ -28,7 +28,7 @@ function ReviewInstantAccessInfo() {
 			<div className="flex flex-row justify-between items-center font-semibold w-full">
 				<InstantAccessBackButton />
 				<div className="text-center flex-1">
-					Review Instant Access Purchase
+					Purchase Review
 				</div>
 			</div>
 

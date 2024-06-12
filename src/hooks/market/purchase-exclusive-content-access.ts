@@ -8,6 +8,7 @@ import useRetrieveWalletBalance from "../solana/retrieve-wallet-balance"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import getTieredAccessPriceUsd from "../../utils/video-access-tiers/get-tiered-access-price-usd"
 import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
+import useConfirmUserHasEnoughSolForInstantAccess from "../solana/confirm-user-has-enough-sol-for-instant-access"
 
 export default function usePurchaseExclusiveContentAccess(): (
 	videoUUID: string,
@@ -20,6 +21,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 	const fortunaApiClient = useApiClientContext()
 	const retrieveWalletBalance = useRetrieveWalletBalance()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
+	const confirmUserHasEnoughSolForInstantAccess = useConfirmUserHasEnoughSolForInstantAccess()
 
 	// eslint-disable-next-line complexity
 	const purchaseInstantAccess = useCallback(async (
@@ -34,6 +36,9 @@ export default function usePurchaseExclusiveContentAccess(): (
 				_.isNull(fortunaApiClient.httpClient.accessToken) ||
 				_.isNull(positionsAndTransactionsClass)
 			) return
+
+			const doesUserHaveEnoughSol = confirmUserHasEnoughSolForInstantAccess(videoUUID)
+			if (doesUserHaveEnoughSol === false) return
 			const video = videoClass.findVideoFromUUID(videoUUID)
 			if (_.isUndefined(video)) return
 			setIsLoading(true)
@@ -65,7 +70,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 			setIsLoading(false)
 		}
 	}, [marketClass, solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.marketDataService,
-		positionsAndTransactionsClass, videoClass, retrieveWalletBalance])
+		positionsAndTransactionsClass, confirmUserHasEnoughSolForInstantAccess, videoClass, retrieveWalletBalance])
 
 	return purchaseInstantAccess
 }
