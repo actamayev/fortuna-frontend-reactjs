@@ -38,7 +38,7 @@ function InitialInstantAccessInfo() {
 
 	return (
 		<>
-			<div className="text-center font-semibold flex justify-center items-center text-xl">
+			<div className="text-center font-semibold flex justify-center items-center text-xl mb-2">
 				Instant Access
 			</div>
 			{video.tierData.length === 1 && (

@@ -7,8 +7,10 @@ export default function ReviewTransferInfo() {
 	return (
 		<>
 			<div className="flex flex-row justify-between items-center font-semibold w-full">
-				<ReviewTransferBackButton />
-				<div className="text-center flex-1">
+				<div className="absolute left-1">
+					<ReviewTransferBackButton />
+				</div>
+				<div className="text-center w-full inset-x-0 mx-auto text-xl">
 					Review Transfer
 				</div>
 			</div>
