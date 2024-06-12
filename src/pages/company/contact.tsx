@@ -14,7 +14,6 @@ export default function Contact() {
 
 	return (
 		<div>
-
 			<div className="text-zinc-950 dark:text-zinc-200 py-5 px-48">
 				<DescriptionPagesHeaderText headerText="Contact Us" />
 				<div className="grid grid-cols-2 gap-4">

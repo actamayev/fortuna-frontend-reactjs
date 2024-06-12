@@ -26,8 +26,8 @@ export default function NotificationBox(props: Props) {
 			unmountOnExit
 		>
 			<div
-				className="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-zinc-800 \
-					text-white px-4 py-2 rounded-lg shadow-lg transition-opacity duration-300 ease-in-out"
+				className="fixed bottom-5 right-1 transform -translate-x-1/2 bg-white dark:bg-black font-medium \
+					text-zinc-950 dark:text-white px-4 py-2 rounded-lg shadow-lg transition-opacity duration-300 ease-in-out"
 				style={{
 					opacity: showNotification ? 1 : 0,
 					transform: showNotification ? "translateY(0)" : "translateY(100%)",
