@@ -23,7 +23,7 @@ export default function Contact() {
 					</div>
 					<div>
 						<div className="border border-zinc-200 dark:border-zinc-700 \
-							ounded-lg py-1 px-0.5 mx-auto bg-white dark:bg-zinc-800 w-80"
+							rounded-lg py-1 px-0.5 mx-auto bg-white dark:bg-zinc-800 w-80"
 						>
 							<ContactItemInCard
 								name="Levi"
