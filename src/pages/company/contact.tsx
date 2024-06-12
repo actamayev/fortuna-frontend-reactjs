@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react"
-import NotificationBox from "../../components/contact/notification-box"
+import NotificationBox from "../../components/notification-box"
 import ContactItemInCard from "../../components/contact/contact-item-in-card"
 import DescriptionPagesHeaderText from "../../components/description-pages-header-text"
 
