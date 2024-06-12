@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
-import Button from "../button"
+import Button from "../buttons/button"
 import { useAuthContext } from "../../contexts/auth-context"
 import { useVideoContext } from "../../contexts/video-context"
 import { useCreatorContext } from "../../contexts/creator-context"

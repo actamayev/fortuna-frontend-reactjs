@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
-import Button from "../../../button"
+import Button from "../../../buttons/button"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import { useMarketContext } from "../../../../contexts/market-context"
 import getTieredAccessPriceUsd from "../../../../utils/video-access-tiers/get-tiered-access-price-usd"

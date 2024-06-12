@@ -2,7 +2,7 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import { useCallback, useMemo, useState } from "react"
-import Button from "../../../button"
+import Button from "../../../buttons/button"
 import usePurchaseExclusiveContentAccess from "../../../../hooks/market/purchase-exclusive-content-access"
 import useConfirmUserHasEnoughSolForInstantAccess from "../../../../hooks/solana/confirm-user-has-enough-sol-for-instant-access"
 
@@ -29,11 +29,11 @@ function ConfirmInstantAccessButton(props: Props) {
 	return (
 		<Button
 			onClick={onClickButton}
-			colorClass="bg-emerald-200 dark:bg-emerald-600"
-			hoverClass="hover:bg-emerald-300 dark:hover:bg-emerald-700"
+			colorClass="bg-emerald-300 dark:bg-emerald-400"
+			hoverClass="hover:bg-emerald-400 dark:hover:bg-emerald-500"
 			title="Purchase Instant Access"
 			disabled={isLoading || !doesUserHaveEnoughSol}
-			className="font-semibold"
+			className="font-semibold text-zinc-950"
 		/>
 	)
 }

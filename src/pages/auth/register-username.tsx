@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { useState } from "react"
-import Button from "../../components/button"
+import Button from "../../components/buttons/button"
 import FormGroup from "../../components/form-group"
 import ErrorMessage from "../../components/error-message"
 import AuthTemplate from "../../components/templates/auth-template"

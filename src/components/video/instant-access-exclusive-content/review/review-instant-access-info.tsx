@@ -1,8 +1,9 @@
 import _ from "lodash"
+import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
+import BackButton from "../../../buttons/back-button"
 import ShowUsdOrSolPrice from "../../../show-usd-or-sol-price"
-import InstantAccessBackButton from "./instant-access-back-button"
 import { useVideoContext } from "../../../../contexts/video-context"
 import { useMarketContext } from "../../../../contexts/market-context"
 import ConfirmInstantAccessButton from "./confirm-instant-access-button"
@@ -17,6 +18,11 @@ function ReviewInstantAccessInfo() {
 
 	const video = videoClass.findVideoFromUUID(videoUUID)
 
+	const setInstantAccessToExclusiveContentStage = useCallback(() => {
+		if (_.isNull(marketClass)) return
+		marketClass.setInstantAccessToExclusiveContentStage("initial")
+	} ,[marketClass])
+
 	if (
 		_.isUndefined(video) ||
 		video.isVideoExclusive === false ||
@@ -27,10 +33,10 @@ function ReviewInstantAccessInfo() {
 		<>
 			<div className="relative flex flex-row justify-between items-center font-semibold w-full mb-2">
 				<div className="absolute left-0">
-					<InstantAccessBackButton />
+					<BackButton onClick={setInstantAccessToExclusiveContentStage} />
 				</div>
 				<div className="text-center w-full inset-x-0 mx-auto text-xl">
-					Purchase Review
+					Review Purchase
 				</div>
 			</div>
 

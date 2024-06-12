@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react"
 import { FaArrowAltCircleDown } from "react-icons/fa"
-import Button from "../../button"
+import Button from "../../buttons/button"
 import useRequestAirdrop from "../../../hooks/solana/request-airdrop"
 
 export default function RequestAirdropButton() {

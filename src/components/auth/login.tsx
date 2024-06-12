@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Button from "../button"
+import Button from "../buttons/button"
 import ContactInput from "./contact-input"
 import ErrorMessage from "../error-message"
 import SubLoginInfo from "./sub-login-info"

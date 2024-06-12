@@ -2,7 +2,7 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useRef } from "react"
 import { FaArrowAltCircleUp } from "react-icons/fa"
-import Button from "../../button"
+import Button from "../../buttons/button"
 import TransferSolCard from "./transfer-sol-card"
 import { useSolanaContext } from "../../../contexts/solana-context"
 import useClickOutSideUseEffect from "../../../hooks/click-outside-use-effect"
@@ -27,7 +27,7 @@ function TransferSolButton() {
 				onClick={setIsTransferSolButtonPressed}
 				className="text-white dark:text-zinc-950 font-medium"
 			/>
-			<div ref = {dropdownRef}>
+			<div ref={dropdownRef}>
 				<TransferSolCard />
 			</div>
 		</>

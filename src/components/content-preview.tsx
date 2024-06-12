@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import { FaTrash } from "react-icons/fa"
-import Button from "./button"
+import Button from "./buttons/button"
 
 interface Props {
 	previewUrl: string | null

@@ -1,14 +1,25 @@
+import _ from "lodash"
+import { useCallback } from "react"
+import { observer } from "mobx-react"
 import FeeSection from "./fee-section"
+import BackButton from "../../../buttons/back-button"
 import TransferAmountSection from "./transfer-amount-section"
 import ConfirmTransferButton from "./confirm-transfer-button"
-import ReviewTransferBackButton from "./review-transfer-back-button"
+import { useSolanaContext } from "../../../../contexts/solana-context"
 
-export default function ReviewTransferInfo() {
+function ReviewTransferInfo() {
+	const solanaClass = useSolanaContext()
+
+	const updateTransferSolDetails = useCallback(() => {
+		if (_.isNull(solanaClass)) return
+		solanaClass.updateTransferSolDetails("transferStage", "initial")
+	}, [solanaClass])
+
 	return (
 		<>
-			<div className="flex flex-row justify-between items-center font-semibold w-full">
-				<div className="absolute left-1">
-					<ReviewTransferBackButton />
+			<div className="relative flex flex-row justify-between items-center font-semibold w-full mb-2">
+				<div className="absolute left-0">
+					<BackButton onClick={updateTransferSolDetails} />
 				</div>
 				<div className="text-center w-full inset-x-0 mx-auto text-xl">
 					Review Transfer
@@ -20,3 +31,5 @@ export default function ReviewTransferInfo() {
 		</>
 	)
 }
+
+export default observer(ReviewTransferInfo)

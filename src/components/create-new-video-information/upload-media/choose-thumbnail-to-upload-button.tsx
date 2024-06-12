@@ -2,7 +2,7 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { FaImage } from "react-icons/fa"
 import { useCallback, useRef, ChangeEvent } from "react"
-import Button from "../../button"
+import Button from "../../buttons/button"
 import { useCreatorContext } from "../../../contexts/creator-context"
 
 interface Props {

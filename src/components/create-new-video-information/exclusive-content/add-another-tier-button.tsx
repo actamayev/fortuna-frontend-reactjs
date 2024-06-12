@@ -2,7 +2,7 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import { FaPlusCircle } from "react-icons/fa"
-import Button from "../../button"
+import Button from "../../buttons/button"
 import { useCreatorContext } from "../../../contexts/creator-context"
 
 function AddAnotherTierButton() {
