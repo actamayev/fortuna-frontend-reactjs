@@ -39,11 +39,11 @@ function PurchaseExclusiveAccessCard(props: Props) {
 	if (authClass.isLoggedIn === false) {
 		return (
 			<Button
+				title="Please create an account to unlock access"
 				onClick={navigateToRegisterCallback}
 				colorClass="bg-blue-200 dark:bg-blue-400"
 				hoverClass="hover:bg-blue-300 hover:dark:bg-blue-500"
-				title="Please create an account to unlock access"
-				className="font-semibold dark:text-zinc-950"
+				className="font-semibold text-zinc-950"
 			/>
 		)
 	}

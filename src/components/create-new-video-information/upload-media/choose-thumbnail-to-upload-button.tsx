@@ -65,7 +65,7 @@ function ChooseThumbnailToUploadButton(props: Props) {
 				colorClass="bg-sky-500 dark:bg-sky-400"
 				hoverClass="hover:bg-sky-600 dark:hover:bg-sky-500"
 				onClick={onClickButtonCallback}
-				className="text-zinc-50 dark:text-zinc-950 font-semibold"
+				className="text-white dark:text-zinc-950 font-semibold"
 			/>
 		</>
 	)

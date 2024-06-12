@@ -30,11 +30,11 @@ export default function RegisterUsername() {
 				/>
 
 				<Button
-					className = "mt-3 w-full font-semibold text-lg text-zinc-50"
+					title = {_.isEmpty(username) ? "Register username" : `Register ${username}`}
+					className = "mt-3 w-full font-semibold text-lg text-white"
 					colorClass = "bg-blue-600"
 					hoverClass = "hover:bg-blue-700"
 					disabled = {loading}
-					title = {_.isEmpty(username) ? "Register username" : `Register ${username}`}
 				/>
 
 				<ErrorMessage error={error} />
