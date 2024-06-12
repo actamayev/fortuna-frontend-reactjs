@@ -1,8 +1,8 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useState } from "react"
-import { FaEye, FaEyeSlash } from "react-icons/fa"
 import NotificationBox from "../notification-box"
+import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { useSolanaContext } from "../../contexts/solana-context"
 import useDefaultSiteTheme from "../../hooks/memos/default-site-theme"
 

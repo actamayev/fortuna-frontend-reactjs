@@ -30,7 +30,7 @@ export default function NotificationBox(props: Props) {
 					text-zinc-950 dark:text-white px-4 py-2 rounded-lg shadow-lg transition-opacity duration-300 ease-in-out"
 				style={{
 					transform: message ? "translateY(0)" : "translateY(100%)",
-					transition: "opacity 300ms, transform 300ms"
+					transition: "opacity 300ms, transform 300ms" // The transition doesn't currently work
 				}}
 			>
 				{message}
