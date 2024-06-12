@@ -34,12 +34,11 @@ function Video() {
 				<div className="col-span-9">
 					<VideoPlayer videoUrl={video.videoUrl} imageUrl={video.imageUrl} />
 				</div>
-				<div className="col-span-3 flex flex-col ml-10 relative">
-					<div
-						className="fixed py-8 border-l pl-4 dark:border-zinc-800 border-zinc-100"
-						style={{ width: "300px", top: "56px", bottom: "160px" }}
-					>
-						<PurchaseExclusiveAccessCard videoUUID={video.uuid} />
+				<div className="col-span-3 flex flex-col relative">
+					<div className="mx-10 w-full h-full">
+						<div className="border-l dark:border-zinc-800 border-zinc-100 h-full">
+							<PurchaseExclusiveAccessCard videoUUID={video.uuid} />
+						</div>
 					</div>
 				</div>
 			</div>
