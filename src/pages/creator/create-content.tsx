@@ -36,7 +36,7 @@ function CreateContent() {
 					<IsContentExclusiveSlider />
 				</div>
 				<div className="flex w-full text-zinc-950 dark:text-zinc-200">
-					<div className="w-2/3 mb-4">
+					<div className="w-2/3 mb-4 mr-4">
 						<ExclusiveContentTierMap />
 					</div>
 					<div className="w-1/3">
