@@ -24,9 +24,7 @@ export default function ContactItemInCard(props: Props) {
 			onClick={copyToClipboard}
 		>
 			<span className="text-left ml-2">{name}</span>
-			<span className="text-right font-semibold mr-2">
-				{email}
-			</span>
+			<span className="text-right font-semibold mr-2">{email}</span>
 		</div>
 	)
 }

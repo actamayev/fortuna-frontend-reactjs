@@ -1,24 +1,15 @@
 import FooterLink from "./footer-link"
 import FooterHeaderText from "./footer-header-text"
+import LinkToExternalSite from "./link-to-external-site"
 
 export default function FooterSupportSection() {
 	return (
 		<div>
 			<FooterHeaderText headerTitle="Support" />
-			<div
-				className="mb-2 text-zinc-950 dark:text-zinc-200 cursor:pointer text-sm"
-				style={{ fontSize: "12px", lineHeight: "18px", fontWeight: "300"}}
-			>
-				<a
-					href="https://help.mintfortuna.com/frequently-asked-questions"
-					aria-label="Help Center"
-					className="text-zinc-950 dark:text-zinc-200 dark:hover:text-zinc-50"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Help Center
-				</a>
-			</div>
+			<LinkToExternalSite
+				title="Help Center"
+				link="https://help.mintfortuna.com/frequently-asked-questions"
+			/>
 			<FooterLink linkTo="/privacy-policy" linkTitle="Privacy Policy" />
 		</div>
 	)

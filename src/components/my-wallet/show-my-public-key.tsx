@@ -44,7 +44,6 @@ function ShowMyPublicKey() {
 
 	return (
 		<div>
-
 			<div className="font-semibold flex items-center">
 				<div
 					className="cursor-pointer mr-2"
