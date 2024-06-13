@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { useState } from "react"
-import Button from "../../components/buttons/button"
 import FormGroup from "../../components/form-group"
+import Button from "../../components/buttons/button"
 import ErrorMessage from "../../components/error-message"
 import AuthTemplate from "../../components/templates/auth-template"
 import useUsernameSubmit from "../../hooks/auth/google/username-submit"
