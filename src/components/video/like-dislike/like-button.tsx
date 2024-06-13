@@ -22,8 +22,12 @@ function LikeButton(props: Props) {
 				classes="flex items-center justify-center"
 				onClickAction={likeDislikeVideoCallback}
 			>
-				<BiSolidLike />
-				{video.numberOfLikes > 0 && video.numberOfLikes}
+				<BiSolidLike size={20}/>
+				{video.numberOfLikes > 0 && (
+					<span className="ml-1">
+						{video.numberOfLikes}
+					</span>
+				)}
 			</HoverOutlineComponent>
 		)
 	}
@@ -33,8 +37,10 @@ function LikeButton(props: Props) {
 			classes="flex items-center justify-center"
 			onClickAction={likeDislikeVideoCallback}
 		>
-			<BiLike />
-			{video.numberOfLikes > 0 && video.numberOfLikes}
+			<BiLike size={20}/>
+			<span className="ml-1">
+				{video.numberOfLikes > 0 && video.numberOfLikes}
+			</span>
 		</HoverOutlineComponent>
 	)
 }
