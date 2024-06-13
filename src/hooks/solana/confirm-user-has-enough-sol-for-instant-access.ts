@@ -14,9 +14,8 @@ export default function useConfirmUserHasEnoughSolForInstantAccess(): (
 		videoUUID: string | undefined
 	): boolean => {
 		try {
-			if (_.isNull(solanaClass) || _.isUndefined(videoUUID)) return false
 			const video = videoClass.findVideoFromUUID(videoUUID)
-			if (_.isUndefined(video)) return false
+			if (_.isNull(solanaClass) || _.isUndefined(video)) return false
 
 			const videoAccessPriceUsd = getTieredAccessPriceUsd(video)
 			if (_.isNull(videoAccessPriceUsd)) return false
