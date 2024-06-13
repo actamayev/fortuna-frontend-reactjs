@@ -273,12 +273,16 @@ class VideoClass {
 				video.isUserAbleToAccessVideo = false
 			})
 		})
-		// Do this:
-		// this.videoSearchMap.forEach(videos => {
-		// 	videos.map(video => {
-		// 		video.
-		// 	})
-		// })
+		this.videoSearchMap.forEach((searchDataArray) => {
+			searchDataArray.forEach(searchData => {
+				if ("userLikeStatus" in searchData) {
+					searchData.userLikeStatus = false
+					if (searchData.isVideoExclusive === true) {
+						searchData.isUserAbleToAccessVideo = false
+					}
+				}
+			})
+		})
 	})
 
 	public clearVideosOnLogin = action((): void => {

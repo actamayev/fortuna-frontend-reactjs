@@ -18,9 +18,9 @@ export default function SubVideoSection(props: Props) {
 	}, [creatorUsername, navigateToCreatorPage])
 
 	return (
-		<div className="flex"> {/* This div will align its children side by side */}
+		<div className="flex mx-0.5"> {/* This div will align its children side by side */}
 			<div className="flex-1"> {/* Existing content takes up the space it needs */}
-				<div className="text-2xl font-semibold mt-1.5">
+				<div className="text-2xl font-semibold mt-1">
 					{videoName}
 				</div>
 				<div className="mt-0.5">
