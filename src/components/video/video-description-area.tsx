@@ -23,26 +23,28 @@ export default function VideoDescriptionArea(props: Props) {
 				<div className="text-2xl font-semibold">
 					{videoName}
 				</div>
-				<div className="flex items-center">
-					{creatorProfilePictureUrl && (
-						<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center mr-2">
-							<img
-								src={creatorProfilePictureUrl}
-								alt="Creator's Profile"
-								className="min-w-full min-h-full object-cover cursor-pointer"
-								onClick={navigateToCreatorPageCallback}
-							/>
-						</div>
-					)}
-					<span
-						className="text-sm font-medium cursor-pointer hover:font-semibold"
-						onClick={navigateToCreatorPageCallback}
-					>
-						{creatorUsername}
-					</span>
+				<div>
+					<div className="flex items-center">
+						{creatorProfilePictureUrl && (
+							<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center mr-2">
+								<img
+									src={creatorProfilePictureUrl}
+									alt="Creator's Profile"
+									className="min-w-full min-h-full object-cover cursor-pointer"
+									onClick={navigateToCreatorPageCallback}
+								/>
+							</div>
+						)}
+						<span
+							className="text-sm font-medium cursor-pointer hover:font-semibold"
+							onClick={navigateToCreatorPageCallback}
+						>
+							{creatorUsername}
+						</span>
+					</div>
+					<div>{description}</div>
+					<VideoLikeDislikeSection video={video} />
 				</div>
-				<div>{description}</div>
-				<VideoLikeDislikeSection video={video} />
 			</div>
 		</div>
 	)
