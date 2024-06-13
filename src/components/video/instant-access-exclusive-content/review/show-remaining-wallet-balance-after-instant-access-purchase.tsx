@@ -20,10 +20,10 @@ function ShowRemainingWalletBalanceAfterInstantAccessPurchase(props: Props) {
 
 	return (
 		<div>
-			{remainingWalletBalanceUsd > 0 ? (
-				<ShowUsdOrSolPrice usdAmount={remainingWalletBalanceUsd} roundOrFixed="fixed"/>
-			) : (
+			{remainingWalletBalanceUsd < 0 ? (
 				<>Insufficient funds</>
+			) : (
+				<ShowUsdOrSolPrice usdAmount={remainingWalletBalanceUsd} roundOrFixed="fixed"/>
 			)}
 		</div>
 	)
