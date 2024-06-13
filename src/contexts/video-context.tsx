@@ -261,18 +261,24 @@ class VideoClass {
 
 	private clearVideoDataOnLogout = action((): void => {
 		this.videos.map(video => {
+			video.userLikeStatus = null
 			if (video.isVideoExclusive === false) return
 			delete video.videoUrl
 			video.isUserAbleToAccessVideo = false
-			video.userLikeStatus = null
 		})
 		this.creatorData.map(creator => {
 			creator.videoData.map(video => {
+				video.userLikeStatus = null
 				if (video.isVideoExclusive === false) return
 				video.isUserAbleToAccessVideo = false
-				video.userLikeStatus = null
 			})
 		})
+		// Do this:
+		// this.videoSearchMap.forEach(videos => {
+		// 	videos.map(video => {
+		// 		video.
+		// 	})
+		// })
 	})
 
 	public clearVideosOnLogin = action((): void => {
