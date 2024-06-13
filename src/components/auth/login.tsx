@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Button from "../button"
+import Button from "../buttons/button"
 import ContactInput from "./contact-input"
 import ErrorMessage from "../error-message"
 import SubLoginInfo from "./sub-login-info"
@@ -34,7 +34,7 @@ export default function Login(props: Props) {
 	return (
 		<div>
 			<AuthTemplate title="Login">
-				<form onSubmit={loginSubmit}>
+				<form onSubmit={loginSubmit} className="mb-3">
 					<ContactInput
 						credentials={loginInformation}
 						setCredentials={createSetCredentialsFunction(setLoginInformation)}
@@ -49,11 +49,11 @@ export default function Login(props: Props) {
 					<ErrorMessage error={error} />
 
 					<Button
-						className = "mt-3 w-full font-semibold text-lg text-zinc-50"
+						title = "Login"
+						className = "mt-3 w-full font-semibold text-lg text-white"
 						colorClass = "bg-blue-600"
 						hoverClass = "hover:bg-blue-700"
 						disabled = {loading}
-						title = "Login"
 					/>
 				</form>
 				<SubLoginInfo setLoginOrRegister={setLoginOrRegister}/>

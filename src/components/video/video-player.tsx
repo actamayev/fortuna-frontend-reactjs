@@ -1,24 +1,17 @@
+import _ from "lodash"
+import { observer } from "mobx-react"
+
 interface Props {
 	video: SingleVideoDataFromBackend
 }
 
-export default function VideoPlayer(props: Props) {
+function VideoPlayer(props: Props) {
 	const { video } = props
 
-	return (
-		<div className="w-full">
-			{video.videoUrl ? (
-				<video
-					controls
-					autoPlay
-					className="w-full h-full rounded-lg"
-					controlsList="nodownload"
-				>
-					<source src={video.videoUrl} type="video/mp4" />
-					Your browser does not support the video tag.
-				</video>
-			) : (
-				<div className="w-full h-full rounded-lg bg-zinc-100 dark:bg-zinc-800" style={{ aspectRatio: "16/9" }}>
+	if (_.isUndefined(video.videoUrl)) {
+		return (
+			<div className="w-full">
+				<div className="w-full h-full rounded-lg" style={{ aspectRatio: "16/9" }}>
 					<div className="relative w-full h-full rounded-lg overflow-hidden">
 						<img
 							src={video.imageUrl}
@@ -31,7 +24,26 @@ export default function VideoPlayer(props: Props) {
 						/>
 					</div>
 				</div>
-			)}
+			</div>
+		)
+	}
+
+	return (
+		<div className="w-full">
+			<video
+				controls
+				autoPlay
+				className="w-full h-full rounded-lg"
+				controlsList="nodownload"
+				style={{ aspectRatio: "16/9" }}
+			>
+				<source src={video.videoUrl} type="video/mp4" />
+					Your browser does not support the video tag.
+			</video>
 		</div>
 	)
 }
+
+// Keep this an observer, even though there aren't any contexts in this file.
+// If the user has access to a video, and navigates to the video from the home page, the video url doesn't load unless this is an observer
+export default observer(VideoPlayer)

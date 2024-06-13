@@ -52,6 +52,7 @@ function ExclusiveContentTier(props: Props) {
 					max={50}
 					step={0.05}
 					disabled={isNewVideoLoading}
+					customWidth="w-5/6"
 				/>
 				<div>
 					${_.round(tierAccessPriceUsd, 2)}

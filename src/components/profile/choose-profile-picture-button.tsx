@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo, useRef } from "react"
-import Button from "../button"
+import Button from "../buttons/button"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
 interface Props {

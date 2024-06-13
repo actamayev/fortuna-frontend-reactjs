@@ -2,7 +2,7 @@ import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { FaSave } from "react-icons/fa"
-import Button from "../button"
+import Button from "../buttons/button"
 import useUploadProfilePicture from "../../hooks/personal-info/upload-profile-picture"
 
 interface Props {

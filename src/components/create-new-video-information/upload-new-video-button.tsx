@@ -2,7 +2,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo, useState } from "react"
-import Button from "../button"
+import Button from "../buttons/button"
 import ErrorMessage from "../error-message"
 import StatusMessage from "../status-message"
 import { useCreatorContext } from "../../contexts/creator-context"

@@ -2,7 +2,7 @@ import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { FaTrash } from "react-icons/fa"
-import Button from "../../button"
+import Button from "../../buttons/button"
 import { useCreatorContext } from "../../../contexts/creator-context"
 import useDefaultSiteTheme from "../../../hooks/memos/default-site-theme"
 

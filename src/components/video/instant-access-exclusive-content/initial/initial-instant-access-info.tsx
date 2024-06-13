@@ -26,7 +26,7 @@ function InitialInstantAccessInfo() {
 		return (
 			<div className="w-full">
 				<div className="flex items-center w-full">
-					<span>You have already purchased access to this exclusive video</span>
+					<span>You already purchased access to this exclusive video</span>
 				</div>
 			</div>
 		)
@@ -38,7 +38,7 @@ function InitialInstantAccessInfo() {
 
 	return (
 		<>
-			<div className="text-center font-semibold flex justify-center items-center text-xl">
+			<div className="text-center font-semibold flex justify-center items-center text-xl mb-2">
 				Instant Access
 			</div>
 			{video.tierData.length === 1 && (
