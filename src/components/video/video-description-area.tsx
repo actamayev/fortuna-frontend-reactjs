@@ -1,5 +1,6 @@
 import { useCallback } from "react"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
+import VideoLikeDislikeSection from "./like-dislike/video-like-dislike-section"
 import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
 
 interface Props {
@@ -41,6 +42,7 @@ export default function VideoDescriptionArea(props: Props) {
 					</span>
 				</div>
 				<div>{description}</div>
+				<VideoLikeDislikeSection video={video} />
 			</div>
 		</div>
 	)

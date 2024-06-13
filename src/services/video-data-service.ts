@@ -38,6 +38,6 @@ export default class VideoDataService {
 
 	async removeLikeOrDislikeFromVideo(videoId: number): Promise<AxiosResponse<SuccessResponse | ErrorResponses>> {
 		return await this.httpClient.http.post<SuccessResponse | ErrorResponses>(
-			`${this.pathHeader}/remove-like-or-dislike/${videoId}`)
+			`${this.pathHeader}/remove-like-or-dislike-from-video/${videoId}`)
 	}
 }

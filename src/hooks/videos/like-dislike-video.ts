@@ -5,39 +5,38 @@ import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import { isErrorResponses, isNonSuccessResponse } from "../../utils/type-checks"
 
 export default function useLikeDislikeVideo(): (
-	videoId: number,
-	newLikeStatus: boolean,
-	previousUserLikeStatus: boolean | null
+	video: SingleVideoDataFromBackend,
+	newLikeStatus: boolean
 ) => Promise<void> {
 	const fortunaApiClient = useApiClientContext()
 	const videoClass = useVideoContext()
 
+	// eslint-disable-next-line complexity
 	const likeDislikeVideo = useCallback(async (
-		videoId: number,
-		newLikeStatus: boolean,
-		previousUserLikeStatus: boolean | null
+		video: SingleVideoDataFromBackend,
+		newLikeStatus: boolean
 	) => {
 		try {
 			if (
 				_.isNull(fortunaApiClient.httpClient.accessToken) ||
-				newLikeStatus === previousUserLikeStatus
+				video.isUserAbleToAccessVideo === false
 			) return
-			videoClass.updateVideoDetailsAfterLikeDislike(videoId, newLikeStatus)
 			if (
-				_.isNull(previousUserLikeStatus) || newLikeStatus === previousUserLikeStatus
+				_.isNull(video.userLikeStatus) || newLikeStatus !== video.userLikeStatus
 			)  {
-				const likeDislikeResponse = await fortunaApiClient.videoDataService.likeOrDislikeVideo(videoId, newLikeStatus)
+				const likeDislikeResponse = await fortunaApiClient.videoDataService.likeOrDislikeVideo(video.videoId, newLikeStatus)
 
 				if (!_.isEqual(likeDislikeResponse.status, 200) || isNonSuccessResponse(likeDislikeResponse.data)) {
 					throw new Error("Like/Dislike failed")
 				}
 			} else {
-				const removeLikeOrDislikeResponse = await fortunaApiClient.videoDataService.removeLikeOrDislikeFromVideo(videoId)
+				const removeLikeOrDislikeResponse = await fortunaApiClient.videoDataService.removeLikeOrDislikeFromVideo(video.videoId)
 				if (!_.isEqual(removeLikeOrDislikeResponse.status, 200) || isErrorResponses(removeLikeOrDislikeResponse.data)) {
 					throw new Error("Removal of like/dislike failed")
 				}
 
 			}
+			videoClass.updateVideoDetailsAfterLikeDislike(video.videoId, newLikeStatus)
 		} catch (error) {
 			console.error(error)
 		}

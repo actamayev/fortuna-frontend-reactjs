@@ -216,7 +216,9 @@ class VideoClass {
 					video.numberOfDislikes -= 1
 					if (newLikeStatus === true) video.numberOfLikes += 1
 				}
-				video.userLikeStatus = newLikeStatus
+
+				if (video.userLikeStatus === newLikeStatus) video.userLikeStatus = null
+				else video.userLikeStatus = newLikeStatus
 			}
 		}
 
@@ -262,6 +264,7 @@ class VideoClass {
 			if (video.isVideoExclusive === false) return
 			delete video.videoUrl
 			video.isUserAbleToAccessVideo = false
+			video.userLikeStatus = null
 		})
 	})
 
