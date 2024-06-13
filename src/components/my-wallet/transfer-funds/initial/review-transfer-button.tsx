@@ -7,31 +7,31 @@ import { useSolanaContext } from "../../../../contexts/solana-context"
 function ReviewTransferButton() {
 	const solanaClass = useSolanaContext()
 
-	const updateTransferSolDetails = useCallback(() => {
+	const updateTransferFundsDetails = useCallback(() => {
 		if (_.isNull(solanaClass)) return
-		solanaClass.updateTransferSolDetails("transferStage", "review")
+		solanaClass.updateTransferFundsDetails("transferStage", "review")
 	}, [solanaClass])
 
 	const isButtonDisabled = useMemo(() => {
 		if (_.isNull(solanaClass)) return true
-		if (_.isEqual(solanaClass.transferSolDetails.transferAmount, 0)) return true
+		if (_.isEqual(solanaClass.transferFundsDetails.transferAmount, 0)) return true
 		if (
-			solanaClass.transferSolDetails.transferOption === "username" &&
-			solanaClass.transferSolDetails.isUsernameSelected === false
+			solanaClass.transferFundsDetails.transferOption === "username" &&
+			solanaClass.transferFundsDetails.isUsernameSelected === false
 		) return true
 		if (
-			solanaClass.transferSolDetails.transferOption === "publicKey" &&
-			solanaClass.transferSolDetails.doesPublicKeyExist === false
+			solanaClass.transferFundsDetails.transferOption === "publicKey" &&
+			solanaClass.transferFundsDetails.doesPublicKeyExist === false
 		) return true
 		return false
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [solanaClass, solanaClass?.transferSolDetails.transferAmount, solanaClass?.transferSolDetails.transferOption,
-		solanaClass?.transferSolDetails.doesPublicKeyExist, solanaClass?.transferSolDetails.isUsernameSelected])
+	}, [solanaClass, solanaClass?.transferFundsDetails.transferAmount, solanaClass?.transferFundsDetails.transferOption,
+		solanaClass?.transferFundsDetails.doesPublicKeyExist, solanaClass?.transferFundsDetails.isUsernameSelected])
 
 	return (
 		<Button
 			title="Review Transfer"
-			onClick={updateTransferSolDetails}
+			onClick={updateTransferFundsDetails}
 			colorClass="bg-blue-200 dark:bg-blue-400"
 			hoverClass="hover:bg-blue-300 hover:dark:bg-blue-500"
 			className="font-semibold text-zinc-950"

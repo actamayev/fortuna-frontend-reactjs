@@ -8,19 +8,19 @@ function SelectTransferOption() {
 
 	const transferOption = useMemo(() => {
 		if (_.isNull(solanaClass)) return ""
-		return solanaClass.transferSolDetails.transferOption
+		return solanaClass.transferFundsDetails.transferOption
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [solanaClass, solanaClass?.transferSolDetails.transferOption])
+	}, [solanaClass, solanaClass?.transferFundsDetails.transferOption])
 
-	const updateTransferSolDetails = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+	const updateTransferFundsDetails = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
 		if (_.isNull(solanaClass)) return
-		solanaClass.updateTransferSolDetails("transferOption", e.target.value as TransferOption)
+		solanaClass.updateTransferFundsDetails("transferOption", e.target.value as TransferOption)
 	}, [solanaClass])
 
 	return (
 		<select
 			value={transferOption}
-			onChange={updateTransferSolDetails}
+			onChange={updateTransferFundsDetails}
 			className="border rounded-lg p-2 text-zinc-950 dark:bg-zinc-800 dark:text-zinc-200"
 		>
 			<option value="username">Username</option>

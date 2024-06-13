@@ -8,7 +8,7 @@ import useRetrieveWalletBalance from "../solana/retrieve-wallet-balance"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import getTieredAccessPriceUsd from "../../utils/video-access-tiers/get-tiered-access-price-usd"
 import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
-import useConfirmUserHasEnoughSolForInstantAccess from "../solana/confirm-user-has-enough-sol-for-instant-access"
+import useConfirmUserHasSufficientFundsForInstantAccess from "../solana/confirm-user-has-sufficient-funds-for-instant-access"
 
 export default function usePurchaseExclusiveContentAccess(): (
 	videoUUID: string,
@@ -21,7 +21,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 	const fortunaApiClient = useApiClientContext()
 	const retrieveWalletBalance = useRetrieveWalletBalance()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
-	const confirmUserHasEnoughSolForInstantAccess = useConfirmUserHasEnoughSolForInstantAccess()
+	const confirmUserHasSufficientFundsForInstantAccess = useConfirmUserHasSufficientFundsForInstantAccess()
 
 	// eslint-disable-next-line complexity
 	const purchaseInstantAccess = useCallback(async (
@@ -37,8 +37,8 @@ export default function usePurchaseExclusiveContentAccess(): (
 				_.isNull(positionsAndTransactionsClass)
 			) return
 
-			const doesUserHaveEnoughSol = confirmUserHasEnoughSolForInstantAccess(videoUUID)
-			if (doesUserHaveEnoughSol === false) return
+			const doesUserHaveSufficientFunds = confirmUserHasSufficientFundsForInstantAccess(videoUUID)
+			if (doesUserHaveSufficientFunds === false) return
 			const video = videoClass.findVideoFromUUID(videoUUID)
 			if (_.isUndefined(video)) return
 			setIsLoading(true)
@@ -70,7 +70,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 			setIsLoading(false)
 		}
 	}, [marketClass, solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.marketDataService,
-		positionsAndTransactionsClass, confirmUserHasEnoughSolForInstantAccess, videoClass, retrieveWalletBalance])
+		positionsAndTransactionsClass, confirmUserHasSufficientFundsForInstantAccess, videoClass, retrieveWalletBalance])
 
 	return purchaseInstantAccess
 }

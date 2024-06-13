@@ -12,8 +12,8 @@ function SelectTransferAmount() {
 	if (_.isNull(solanaClass)) return null
 
 	if (
-		solanaClass.transferSolDetails.transferOption === "username" &&
-		solanaClass.transferSolDetails.isUsernameSelected === false
+		solanaClass.transferFundsDetails.transferOption === "username" &&
+		solanaClass.transferFundsDetails.isUsernameSelected === false
 	) {
 		return null
 	}
@@ -22,10 +22,10 @@ function SelectTransferAmount() {
 		return <>You have no Sol to transfer</>
 	}
 
-	if (solanaClass.transferSolDetails.transferOption === "publicKey") {
-		if (!_.isEqual(solanaClass.transferSolDetails.publicKey.length, 44)) {
+	if (solanaClass.transferFundsDetails.transferOption === "publicKey") {
+		if (!_.isEqual(solanaClass.transferFundsDetails.publicKey.length, 44)) {
 			return <>Public Key Must be 44 characters</>
-		} else if (solanaClass.transferSolDetails.doesPublicKeyExist === false && solanaClass.isPublicKeySearchLoading === false) {
+		} else if (solanaClass.transferFundsDetails.doesPublicKeyExist === false && solanaClass.isPublicKeySearchLoading === false) {
 			return <>This Public Key does not exist</>
 		}
 	}
@@ -37,15 +37,15 @@ function SelectTransferAmount() {
 			<div className="flex flex-col space-y-4">
 				<RangeSelectorSlider
 					title=""
-					value={solanaClass.transferSolDetails.transferAmount}
+					value={solanaClass.transferFundsDetails.transferAmount}
 					onChange={(e) => {
-						solanaClass.updateTransferSolDetails("transferAmount", Number(e.target.value))
+						solanaClass.updateTransferFundsDetails("transferAmount", Number(e.target.value))
 					}}
 					min={0}
 					max={solanaClass.walletBalanceSol || 0}
 					step={0.0001}
 				/>
-				{solanaClass.transferSolDetails.transferAmount.toFixed(4)} SOL
+				{solanaClass.transferFundsDetails.transferAmount.toFixed(4)} SOL
 			</div>
 		)
 	}
@@ -54,15 +54,15 @@ function SelectTransferAmount() {
 		<div className="flex flex-col space-y-4">
 			<RangeSelectorSlider
 				title=""
-				value={solanaClass.transferSolDetails.transferAmount}
+				value={solanaClass.transferFundsDetails.transferAmount}
 				onChange={(e) => {
-					solanaClass.updateTransferSolDetails("transferAmount", Number(e.target.value))
+					solanaClass.updateTransferFundsDetails("transferAmount", Number(e.target.value))
 				}}
 				min={0}
 				max={solanaClass.walletBalanceUSD.get()}
 				step={0.01}
 			/>
-			${solanaClass.transferSolDetails.transferAmount.toFixed(2)}
+			${solanaClass.transferFundsDetails.transferAmount.toFixed(2)}
 		</div>
 	)
 }

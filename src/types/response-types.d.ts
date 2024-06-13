@@ -39,7 +39,7 @@ declare global {
 	type GeneralSearchResponse = { searchResults: SearchData[] }
 
 	// Solana Responses:
-	type TransferSolResponse = { solTransferData: SolanaTransaction }
+	type TransferFundsResponse = { solTransferData: SolanaTransaction }
 	type SolPriceResponse = {
 		solPriceInUSD: number
 		lastRetrievedTime: Date

@@ -4,13 +4,13 @@ import { useVideoContext } from "../../contexts/video-context"
 import { useSolanaContext } from "../../contexts/solana-context"
 import getTieredAccessPriceUsd from "../../utils/video-access-tiers/get-tiered-access-price-usd"
 
-export default function useConfirmUserHasEnoughSolForInstantAccess(): (
+export default function useConfirmUserHasSufficientFundsForInstantAccess(): (
 	videoUUID: string | undefined
 ) => boolean {
 	const solanaClass = useSolanaContext()
 	const videoClass = useVideoContext()
 
-	const confirmUserHasEnoughSolForInstantAccess = useCallback((
+	const confirmUserHasSufficientFundsForInstantAccess = useCallback((
 		videoUUID: string | undefined
 	): boolean => {
 		try {
@@ -28,5 +28,5 @@ export default function useConfirmUserHasEnoughSolForInstantAccess(): (
 		}
 	}, [solanaClass, videoClass])
 
-	return confirmUserHasEnoughSolForInstantAccess
+	return confirmUserHasSufficientFundsForInstantAccess
 }

@@ -4,15 +4,15 @@ import { useCallback } from "react"
 import { useSolanaContext } from "../../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 
-export default function useConfirmUserHasEnoughSolToTransfer(): (
-	setDoesUserHaveEnoughSol: React.Dispatch<React.SetStateAction<boolean>>
+export default function useConfirmUserHasSufficientFundsToTransfer(): (
+	setDoesUserHaveSufficientFunds: React.Dispatch<React.SetStateAction<boolean>>
 ) => void {
 	const solanaClass = useSolanaContext()
 	const personalInfoClass = usePersonalInfoContext()
 
 	// eslint-disable-next-line complexity
-	const confirmUserHasEnoughSolToTransfer = useCallback((
-		setDoesUserHaveEnoughSol: React.Dispatch<React.SetStateAction<boolean>>
+	const confirmUserHasSufficientFundsToTransfer = useCallback((
+		setDoesUserHaveSufficientFunds: React.Dispatch<React.SetStateAction<boolean>>
 	): void => {
 		try {
 			if (
@@ -20,48 +20,48 @@ export default function useConfirmUserHasEnoughSolToTransfer(): (
 				_.isNull(solanaClass.walletBalanceSol) ||
 				_.isNull(personalInfoClass)
 			) return
-			setDoesUserHaveEnoughSol(false)
+			setDoesUserHaveSufficientFunds(false)
 			const myWalletBalanceSol = solanaClass.walletBalanceSol
 
 			if (
-				solanaClass.transferSolDetails.transferOption === "publicKey" &&
-				solanaClass.transferSolDetails.isPublicKeyRegisteredWithFortuna === false
+				solanaClass.transferFundsDetails.transferOption === "publicKey" &&
+				solanaClass.transferFundsDetails.isPublicKeyRegisteredWithFortuna === false
 			) {
 				if (personalInfoClass.defaultCurrency === "sol") {
-					if (myWalletBalanceSol < solanaClass.transferSolDetails.transferAmount + 0.000005) {
-						setDoesUserHaveEnoughSol(false)
+					if (myWalletBalanceSol < solanaClass.transferFundsDetails.transferAmount + 0.000005) {
+						setDoesUserHaveSufficientFunds(false)
 						return
 					}
 				} else {
 					const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
 					if (_.isUndefined(solPriceInUSD)) return
-					if (solanaClass.walletBalanceUSD.get() < solanaClass.transferSolDetails.transferAmount + (0.000005 * solPriceInUSD)) {
-						setDoesUserHaveEnoughSol(false)
+					if (solanaClass.walletBalanceUSD.get() < solanaClass.transferFundsDetails.transferAmount + (0.000005 * solPriceInUSD)) {
+						setDoesUserHaveSufficientFunds(false)
 						return
 					}
 				}
 			} else {
 				if (personalInfoClass.defaultCurrency === "sol") {
-					if (myWalletBalanceSol < solanaClass.transferSolDetails.transferAmount) {
-						setDoesUserHaveEnoughSol(false)
+					if (myWalletBalanceSol < solanaClass.transferFundsDetails.transferAmount) {
+						setDoesUserHaveSufficientFunds(false)
 						return
 					}
 				} else {
 					const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
 					if (_.isUndefined(solPriceInUSD)) return
 					const myWalletBalanceUsd = myWalletBalanceSol * solPriceInUSD
-					if (myWalletBalanceUsd < solanaClass.transferSolDetails.transferAmount) {
-						setDoesUserHaveEnoughSol(false)
+					if (myWalletBalanceUsd < solanaClass.transferFundsDetails.transferAmount) {
+						setDoesUserHaveSufficientFunds(false)
 						return
 					}
 				}
 			}
-			setDoesUserHaveEnoughSol(true)
+			setDoesUserHaveSufficientFunds(true)
 		} catch (error) {
 			console.error(error)
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [personalInfoClass, solanaClass, solanaClass?.walletBalanceSol])
 
-	return confirmUserHasEnoughSolToTransfer
+	return confirmUserHasSufficientFundsToTransfer
 }

@@ -10,8 +10,8 @@ function FeeSection() {
 	if (_.isNull(solanaClass)) return null
 
 	if (
-		solanaClass.transferSolDetails.transferOption === "publicKey" &&
-		solanaClass.transferSolDetails.isPublicKeyRegisteredWithFortuna === false
+		solanaClass.transferFundsDetails.transferOption === "publicKey" &&
+		solanaClass.transferFundsDetails.isPublicKeyRegisteredWithFortuna === false
 	) {
 		return <>Variable (depends on network traffic)</>
 	}
