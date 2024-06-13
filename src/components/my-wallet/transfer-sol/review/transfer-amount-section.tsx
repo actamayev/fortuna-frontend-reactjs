@@ -18,7 +18,7 @@ function TransferAmountSection() {
 			{defaultCurrency === "sol" && (
 				<>{_.round(solanaClass.transferSolDetails.transferAmount, 4)} SOL to </>
 			)}
-			<span className="font-semibold">
+			<span className="font-semibold break-all">
 				{solanaClass.transferSolDetails.transferOption === "username" && solanaClass.transferSolDetails.username}
 				{solanaClass.transferSolDetails.transferOption === "publicKey" && solanaClass.transferSolDetails.publicKey}
 			</span>
