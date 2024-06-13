@@ -7,7 +7,7 @@ import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 
-export default function useTransferSol(): (
+export default function useTransferFunds(): (
 	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => Promise<void> {
 	const solanaClass = useSolanaContext()
@@ -29,36 +29,36 @@ export default function useTransferSol(): (
 			) return
 			setIsLoading(true)
 			let sendingTo
-			if (solanaClass.transferSolDetails.transferOption === "publicKey") {
-				sendingTo = solanaClass.transferSolDetails.publicKey
+			if (solanaClass.transferFundsDetails.transferOption === "publicKey") {
+				sendingTo = solanaClass.transferFundsDetails.publicKey
 			} else {
-				sendingTo = solanaClass.transferSolDetails.username
+				sendingTo = solanaClass.transferFundsDetails.username
 			}
 
 			await retrieveSolPrice()
 			if (_.isNull(solanaClass.solPriceDetails)) return
-			const sendingSolTransfer: SendingSolTransfer = {
+			const transferFundsData: TransferFundsData = {
 				sendingTo,
-				transferAmount: solanaClass.transferSolDetails.transferAmount,
+				transferAmount: solanaClass.transferFundsDetails.transferAmount,
 				transferCurrency: personalInfoClass.defaultCurrency
 			}
 
 			let transferSolResponse
-			if (solanaClass.transferSolDetails.transferOption === "publicKey") {
-				transferSolResponse = await fortunaApiClient.solanaDataService.transferSolToPublicKey(sendingSolTransfer)
+			if (solanaClass.transferFundsDetails.transferOption === "publicKey") {
+				transferSolResponse = await fortunaApiClient.solanaDataService.transferFundsToPublicKey(transferFundsData)
 			} else {
-				transferSolResponse = await fortunaApiClient.solanaDataService.transferSolToUsername(sendingSolTransfer)
+				transferSolResponse = await fortunaApiClient.solanaDataService.transferFundsToUsername(transferFundsData)
 			}
 			if (!_.isEqual(transferSolResponse.status, 200) || isNonSuccessResponse(transferSolResponse.data)) {
 				throw Error("Error transferring sol")
 			}
-			solanaClass.setIsTransferSolButtonPressed(false)
-			solanaClass.resetTransferSolDetails()
+			solanaClass.setIsTransferFundsButtonPressed(false)
+			solanaClass.resetTransferFundsDetails()
 			positionsAndTransactionsClass.addSolanaTransaction(transferSolResponse.data.solTransferData)
-			if (sendingSolTransfer.transferCurrency === "sol") {
-				solanaClass.alterWalletBalanceSol(-sendingSolTransfer.transferAmount)
+			if (transferFundsData.transferCurrency === "sol") {
+				solanaClass.alterWalletBalanceSol(-transferFundsData.transferAmount)
 			} else {
-				solanaClass.alterWalletBalanceUsd(-sendingSolTransfer.transferAmount)
+				solanaClass.alterWalletBalanceUsd(-transferFundsData.transferAmount)
 			}
 		} catch (error) {
 			console.error(error)

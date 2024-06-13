@@ -18,15 +18,15 @@ export default function useUsernameSearch(): (
 		try {
 			if (
 				_.isNull(solanaClass) ||
-				_.isEmpty(solanaClass.transferSolDetails.username.trim()) ||
-				solanaClass.transferSolDetails.isUsernameSelected === true
+				_.isEmpty(solanaClass.transferFundsDetails.username.trim()) ||
+				solanaClass.transferFundsDetails.isUsernameSelected === true
 			) {
 				setUsernameSearchResults([])
 				return
 			}
 			setIsLoading(true)
 
-			const response = await fortunaApiClient.searchDataService.searchForUsername(solanaClass.transferSolDetails.username)
+			const response = await fortunaApiClient.searchDataService.searchForUsername(solanaClass.transferFundsDetails.username)
 			if (!_.isEqual(response.status, 200) || isErrorResponses(response.data)) {
 				throw new Error("User Search Failed")
 			}
@@ -37,7 +37,8 @@ export default function useUsernameSearch(): (
 			setIsLoading(false)
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [fortunaApiClient.searchDataService, solanaClass?.transferSolDetails.isUsernameSelected, solanaClass?.transferSolDetails.username])
+	}, [fortunaApiClient.searchDataService, solanaClass?.transferFundsDetails.isUsernameSelected,
+		solanaClass?.transferFundsDetails.username])
 
 	return usernameSearch
 }

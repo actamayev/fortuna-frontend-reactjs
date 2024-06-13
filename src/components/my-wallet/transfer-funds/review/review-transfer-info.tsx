@@ -10,16 +10,16 @@ import { useSolanaContext } from "../../../../contexts/solana-context"
 function ReviewTransferInfo() {
 	const solanaClass = useSolanaContext()
 
-	const updateTransferSolDetails = useCallback(() => {
+	const updateTransferFundsDetails = useCallback(() => {
 		if (_.isNull(solanaClass)) return
-		solanaClass.updateTransferSolDetails("transferStage", "initial")
+		solanaClass.updateTransferFundsDetails("transferStage", "initial")
 	}, [solanaClass])
 
 	return (
 		<>
 			<div className="relative flex flex-row justify-between items-center font-semibold w-full mb-2">
 				<div className="absolute left-0">
-					<BackButton onClick={updateTransferSolDetails} />
+					<BackButton onClick={updateTransferFundsDetails} />
 				</div>
 				<div className="text-center w-full inset-x-0 mx-auto text-xl">
 					Review Transfer

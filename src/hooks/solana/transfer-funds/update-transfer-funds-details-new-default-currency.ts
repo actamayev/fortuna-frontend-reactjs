@@ -2,23 +2,23 @@ import _ from "lodash"
 import { useCallback } from "react"
 import { useSolanaContext } from "../../../contexts/solana-context"
 
-export default function useUpdateTransferSolDetiailsNewDefaultCurrency() : (
+export default function useUpdateTransferFundsDetiailsNewDefaultCurrency() : (
 	newDefaultCurrency: Currencies
 ) => void {
 	const solanaClass = useSolanaContext()
 
-	const updateTransferSolDetailsNewDefaultCurrency = useCallback((newDefaultCurrency: Currencies) => {
+	const updateTransferFundsDetailsNewDefaultCurrency = useCallback((newDefaultCurrency: Currencies) => {
 		try {
 			if (_.isNull(solanaClass) || _.isUndefined(solanaClass.solPriceDetails?.solPriceInUSD)) return
 			if (newDefaultCurrency === "sol") {
-				solanaClass.updateTransferSolDetails(
+				solanaClass.updateTransferFundsDetails(
 					"transferAmount",
-					solanaClass.transferSolDetails.transferAmount / solanaClass.solPriceDetails.solPriceInUSD
+					solanaClass.transferFundsDetails.transferAmount / solanaClass.solPriceDetails.solPriceInUSD
 				)
 			} else {
-				solanaClass.updateTransferSolDetails(
+				solanaClass.updateTransferFundsDetails(
 					"transferAmount",
-					solanaClass.transferSolDetails.transferAmount * solanaClass.solPriceDetails.solPriceInUSD
+					solanaClass.transferFundsDetails.transferAmount * solanaClass.solPriceDetails.solPriceInUSD
 				)
 			}
 		} catch (error) {
@@ -27,5 +27,5 @@ export default function useUpdateTransferSolDetiailsNewDefaultCurrency() : (
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [solanaClass, solanaClass?.solPriceDetails?.solPriceInUSD])
 
-	return updateTransferSolDetailsNewDefaultCurrency
+	return updateTransferFundsDetailsNewDefaultCurrency
 }

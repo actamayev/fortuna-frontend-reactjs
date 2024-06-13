@@ -7,8 +7,8 @@ class SolanaClass {
 	private _walletPublicKey: PublicKey | null = null
 	private _walletBalanceSol: number | null = null
 
-	public isTransferSolButtonPressed = false
-	public transferSolDetails: TransferSolDetails = {
+	public isTransferFundsButtonPressed = false
+	public transferFundsDetails: TransferFundsDetails = {
 		transferOption: "username",
 		username: "",
 		isUsernameSelected: false,
@@ -57,8 +57,8 @@ class SolanaClass {
 		this.isRetrievingSolPriceDetails = newState
 	})
 
-	public setIsTransferSolButtonPressed = action((newState: boolean): void => {
-		this.isTransferSolButtonPressed = newState
+	public setIsTransferFundsButtonPressed = action((newState: boolean): void => {
+		this.isTransferFundsButtonPressed = newState
 	})
 
 	public walletBalanceUSD = computed((): number => {
@@ -70,14 +70,14 @@ class SolanaClass {
 		this.solPriceDetails = newSolPriceDetails
 	})
 
-	public updateTransferSolDetails = action(<K extends keyof TransferSolDetails>(
-		key: K, value: TransferSolDetails[K]
+	public updateTransferFundsDetails = action(<K extends keyof TransferFundsDetails>(
+		key: K, value: TransferFundsDetails[K]
 	) => {
-		if (typeof this.transferSolDetails[key] !== typeof value) {
+		if (typeof this.transferFundsDetails[key] !== typeof value) {
 			console.warn(`Type mismatch when trying to set ${key}`)
 			return
 		}
-		this.transferSolDetails[key] = value
+		this.transferFundsDetails[key] = value
 	})
 
 	public alterWalletBalanceSol = action((solToIncrementBy: number): void => {
@@ -91,8 +91,8 @@ class SolanaClass {
 		this.alterWalletBalanceSol(usdToIncrementBy / solPriceUSD)
 	})
 
-	public resetTransferSolDetails = action(() => {
-		this.transferSolDetails = {
+	public resetTransferFundsDetails = action(() => {
+		this.transferFundsDetails = {
 			transferOption: "username",
 			username: "",
 			isUsernameSelected: false,
@@ -107,8 +107,8 @@ class SolanaClass {
 	public logout() {
 		this.walletPublicKey = null
 		this.walletBalanceSol = null
-		this.isTransferSolButtonPressed = false
-		this.resetTransferSolDetails()
+		this.isTransferFundsButtonPressed = false
+		this.resetTransferFundsDetails()
 		this.isPublicKeySearchLoading = false
 		// Don't reset sol price details (no reason, not secret/unique to each user)
 		this.isRetrievingSolPriceDetails = false
