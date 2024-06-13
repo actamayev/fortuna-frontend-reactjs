@@ -10,7 +10,7 @@ export default function FooterSocialSection() {
 				<a
 					href="https://x.com/mintfortuna"
 					aria-label="X"
-					className="text-zinc-950 dark:text-zinc-200 dark:hover:text-zinc-50"
+					className="text-zinc-800 hover:text-zinc-950 dark:text-zinc-200 dark:hover:text-white"
 					target="_blank"
 					rel="noopener noreferrer"
 				>
@@ -19,7 +19,7 @@ export default function FooterSocialSection() {
 				<a
 					href="https://www.linkedin.com/company/mint-fortuna"
 					aria-label="LinkedIn"
-					className="text-zinc-950 dark:text-zinc-200 dark:hover:text-zinc-50"
+					className="text-zinc-800 hover:text-zinc-950 dark:text-zinc-200 dark:hover:text-white"
 					target="_blank"
 					rel="noopener noreferrer"
 				>

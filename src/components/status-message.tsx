@@ -10,7 +10,7 @@ export default function StatusMessage (props: Props) {
 	if (_.isEmpty(status)) return null
 
 	return (
-		<div className = "mt-2 bg-blue-100 text-blue-700 px-4 py-3 rounded relative dark:bg-blue-900 dark:text-zinc-50">
+		<div className = "mt-2 bg-blue-100 text-blue-700 px-4 py-3 rounded relative dark:bg-blue-900 dark:text-white">
 			{status}
 		</div>
 	)

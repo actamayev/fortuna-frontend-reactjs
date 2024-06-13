@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
-import Button from "../button"
+import Button from "../buttons/button"
 import { useAuthContext } from "../../contexts/auth-context"
 import { useVideoContext } from "../../contexts/video-context"
 import { useCreatorContext } from "../../contexts/creator-context"
@@ -39,11 +39,11 @@ function PurchaseExclusiveAccessCard(props: Props) {
 	if (authClass.isLoggedIn === false) {
 		return (
 			<Button
+				title="Please create an account to unlock access"
 				onClick={navigateToRegisterCallback}
 				colorClass="bg-blue-200 dark:bg-blue-400"
 				hoverClass="hover:bg-blue-300 hover:dark:bg-blue-500"
-				title="Please create an account to unlock access"
-				className="font-semibold dark:text-zinc-950"
+				className="font-semibold text-zinc-950"
 			/>
 		)
 	}
@@ -57,7 +57,7 @@ function PurchaseExclusiveAccessCard(props: Props) {
 	}
 
 	return (
-		<div className="bg-zinc-100 dark:bg-zinc-800 rounded-lg p-3 h-full">
+		<div className="bg-zinc-100 dark:bg-zinc-800 rounded-lg p-3 h-full border border-zinc-200 dark:border-zinc-700">
 			<PurchaseInstantAccessOptions />
 		</div>
 	)

@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
-import Button from "../../../button"
+import Button from "../../../buttons/button"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 
 function ReviewTransferButton() {
@@ -30,11 +30,11 @@ function ReviewTransferButton() {
 
 	return (
 		<Button
+			title="Review Transfer"
 			onClick={updateTransferSolDetails}
 			colorClass="bg-blue-200 dark:bg-blue-400"
 			hoverClass="hover:bg-blue-300 hover:dark:bg-blue-500"
-			title="Review Transfer"
-			className="font-semibold dark:text-zinc-950"
+			className="font-semibold text-zinc-950"
 			disabled={isButtonDisabled}
 		/>
 	)

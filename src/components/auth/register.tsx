@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Button from "../button"
+import Button from "../buttons/button"
 import ContactInput from "./contact-input"
 import ErrorMessage from "../error-message"
 import PasswordInput from "./password-input"
@@ -38,7 +38,7 @@ export default function Register(props: Props) {
 	return (
 		<div>
 			<AuthTemplate title="Register">
-				<form onSubmit={registerSubmit}>
+				<form onSubmit={registerSubmit} className="mb-3">
 					<ContactInput
 						credentials={registerInformation}
 						setCredentials={createSetCredentialsFunction(setRegisterInformation)}
@@ -63,11 +63,11 @@ export default function Register(props: Props) {
 					<ErrorMessage error={error} />
 
 					<Button
-						className = "mt-3 w-full font-semibold text-lg text-zinc-50"
+						title = "Register"
+						className = "mt-3 w-full font-semibold text-lg text-white"
 						colorClass = "bg-blue-600"
 						hoverClass = "hover:bg-blue-700"
 						disabled = {loading}
-						title = "Register"
 					/>
 				</form>
 				<SubRegisterInfo setLoginOrRegister = {setLoginOrRegister}/>

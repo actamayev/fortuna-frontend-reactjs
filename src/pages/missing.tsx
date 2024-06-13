@@ -9,7 +9,7 @@ export default function Missing() {
 			</div>
 			<Link to="/" className="inline-block">
 				<div
-					className="bg-blue-500 hover:bg-blue-600 text-zinc-50 rounded focus:outline-none \
+					className="bg-blue-500 hover:bg-blue-600 text-white rounded focus:outline-none \
             		dark:text-zinc-950 dark:bg-blue-400 dark:hover:bg-blue-500 inline-flex items-center px-4 py-2"
 				>
 					Return home <FaHome className="ml-2" size={20}/>
