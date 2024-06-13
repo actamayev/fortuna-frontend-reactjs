@@ -11,7 +11,7 @@ function VideoPlayer(props: Props) {
 	if (_.isUndefined(video.videoUrl)) {
 		return (
 			<div className="w-full">
-				<div className="w-full h-full rounded-lg bg-zinc-100 dark:bg-zinc-800" style={{ aspectRatio: "16/9" }}>
+				<div className="w-full h-full rounded-lg" style={{ aspectRatio: "16/9" }}>
 					<div className="relative w-full h-full rounded-lg overflow-hidden">
 						<img
 							src={video.imageUrl}
@@ -35,6 +35,7 @@ function VideoPlayer(props: Props) {
 				autoPlay
 				className="w-full h-full rounded-lg"
 				controlsList="nodownload"
+				style={{ aspectRatio: "16/9" }}
 			>
 				<source src={video.videoUrl} type="video/mp4" />
 					Your browser does not support the video tag.
@@ -43,4 +44,6 @@ function VideoPlayer(props: Props) {
 	)
 }
 
+// Keep this an observer, even though there aren't any contexts in this file.
+// If the user has access to a video, and navigates to the video from the home page, the video url doesn't load unless this is an observer
 export default observer(VideoPlayer)
