@@ -38,7 +38,7 @@ export default function Register(props: Props) {
 	return (
 		<div>
 			<AuthTemplate title="Register">
-				<form onSubmit={registerSubmit}>
+				<form onSubmit={registerSubmit} className="mb-3">
 					<ContactInput
 						credentials={registerInformation}
 						setCredentials={createSetCredentialsFunction(setRegisterInformation)}

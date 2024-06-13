@@ -18,8 +18,7 @@ export default function RegisterUsername() {
 
 	return (
 		<AuthTemplate title="Register Username">
-			<form onSubmit={usernameSubmit}>
-
+			<form onSubmit={usernameSubmit} className="mb-3">
 				<FormGroup
 					label = "Username"
 					type = "text"
