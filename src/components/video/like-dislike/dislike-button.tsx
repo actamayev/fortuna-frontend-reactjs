@@ -23,9 +23,11 @@ function DislikeButton(props: Props) {
 				onClickAction={likeDislikeVideoCallback}
 			>
 				<BiSolidDislike size={20}/>
-				<span className="ml-2">
-					{video.numberOfDislikes > 0 && video.numberOfDislikes}
-				</span>
+				{video.numberOfDislikes > 0 && (
+					<span className="ml-1.5 text-md">
+						{video.numberOfDislikes}
+					</span>
+				)}
 			</HoverOutlineComponent>
 		)
 	}
@@ -36,9 +38,11 @@ function DislikeButton(props: Props) {
 			onClickAction={likeDislikeVideoCallback}
 		>
 			<BiDislike size={20}/>
-			<span className="ml-2">
-				{video.numberOfDislikes > 0 && video.numberOfDislikes}
-			</span>
+			{video.numberOfDislikes > 0 && (
+				<span className="ml-1.5 text-md">
+					{video.numberOfDislikes}
+				</span>
+			)}
 		</HoverOutlineComponent>
 	)
 }

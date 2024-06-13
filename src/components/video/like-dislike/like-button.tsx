@@ -23,9 +23,11 @@ function LikeButton(props: Props) {
 				onClickAction={likeDislikeVideoCallback}
 			>
 				<BiSolidLike size={20}/>
-				<span className="ml-2">
-					{video.numberOfLikes > 0 && video.numberOfLikes}
-				</span>
+				{video.numberOfLikes > 0 && (
+					<span className="ml-1.5 text-md">
+						{video.numberOfLikes}
+					</span>
+				)}
 			</HoverOutlineComponent>
 		)
 	}
@@ -36,9 +38,11 @@ function LikeButton(props: Props) {
 			onClickAction={likeDislikeVideoCallback}
 		>
 			<BiLike size={20}/>
-			<span className="ml-2">
-				{video.numberOfLikes > 0 && video.numberOfLikes}
-			</span>
+			{video.numberOfLikes > 0 && (
+				<span className="ml-1.5 text-md">
+					{video.numberOfLikes}
+				</span>
+			)}
 		</HoverOutlineComponent>
 	)
 }
