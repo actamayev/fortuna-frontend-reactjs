@@ -17,12 +17,16 @@ function DisplayUsernames() {
 
 	if (_.isNull(solanaClass)) return null
 	if (isLoading === true) return <>Loading...</>
-	if (solanaClass.transferSolDetails.isUsernameSelected === true) return null
+	if (solanaClass.transferFundsDetails.isUsernameSelected === true) return null
+
+	if (_.isEmpty(usernameSearchResults) && !_.isEmpty(solanaClass.transferFundsDetails.username)) {
+		return <>No users found</>
+	}
 
 	return (
 		<>
-			{usernameSearchResults.map(usernameResult => (
-				<SingleUsernameSearch key = {usernameResult.username} searchResultsUsername={usernameResult.username} />
+			{usernameSearchResults.slice(0, 10).map(usernameResult => (
+				<SingleUsernameSearch key={usernameResult.username} searchResultsUsername={usernameResult.username} />
 			))}
 		</>
 	)

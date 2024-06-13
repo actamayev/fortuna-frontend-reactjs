@@ -10,16 +10,17 @@ function FeeSection() {
 	if (_.isNull(solanaClass)) return null
 
 	if (
-		solanaClass.transferSolDetails.transferOption === "publicKey" &&
-		solanaClass.transferSolDetails.isPublicKeyRegisteredWithFortuna === false
+		solanaClass.transferFundsDetails.transferOption === "publicKey" &&
+		solanaClass.transferFundsDetails.isPublicKeyRegisteredWithFortuna === false
 	) {
-		return <>Variable Fee (depends on network traffic)</>
+		return <>Variable (depends on network traffic)</>
 	}
+
 	if (defaultCurrency === "sol") {
 		return <>0 SOL (internal transfer)</>
 	}
-	return <>$0.00 (internal transfer)</>
 
+	return <>$0.00 (internal transfer)</>
 }
 
 export default observer(FeeSection)
