@@ -27,6 +27,11 @@ function SelectTransferAmount() {
 			return <>Public Key Must be 44 characters</>
 		} else if (solanaClass.transferFundsDetails.doesPublicKeyExist === false && solanaClass.isPublicKeySearchLoading === false) {
 			return <>This Public Key does not exist</>
+		} else if (_.isNull(solanaClass.walletPublicKey)) {
+			return <>Your Public Key Not found</>
+		}
+		else if (solanaClass.transferFundsDetails.publicKey === solanaClass.walletPublicKey.toString()) {
+			return <>Cannot send funds to yourself</>
 		}
 	}
 

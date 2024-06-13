@@ -19,14 +19,20 @@ function ReviewTransferButton() {
 			solanaClass.transferFundsDetails.transferOption === "username" &&
 			solanaClass.transferFundsDetails.isUsernameSelected === false
 		) return true
+		if (_.isNull(solanaClass.walletPublicKey)) return true
 		if (
 			solanaClass.transferFundsDetails.transferOption === "publicKey" &&
-			solanaClass.transferFundsDetails.doesPublicKeyExist === false
-		) return true
+			(
+				solanaClass.transferFundsDetails.doesPublicKeyExist === false ||
+				solanaClass.transferFundsDetails.publicKey === solanaClass.walletPublicKey.toString())
+		) {
+			return true
+		}
 		return false
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [solanaClass, solanaClass?.transferFundsDetails.transferAmount, solanaClass?.transferFundsDetails.transferOption,
-		solanaClass?.transferFundsDetails.doesPublicKeyExist, solanaClass?.transferFundsDetails.isUsernameSelected])
+		solanaClass?.transferFundsDetails.doesPublicKeyExist, solanaClass?.transferFundsDetails.isUsernameSelected,
+		solanaClass?.walletPublicKey, solanaClass?.transferFundsDetails.publicKey])
 
 	return (
 		<Button
