@@ -24,7 +24,7 @@ function SelectTransferAmount() {
 
 	if (solanaClass.transferSolDetails.transferOption === "publicKey") {
 		if (!_.isEqual(solanaClass.transferSolDetails.publicKey.length, 44)) {
-			return <>Public Key Must be exactly 44 Characters</>
+			return <>Public Key Must be 44 characters</>
 		} else if (solanaClass.transferSolDetails.doesPublicKeyExist === false && solanaClass.isPublicKeySearchLoading === false) {
 			return <>This Public Key does not exist</>
 		}

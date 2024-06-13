@@ -19,10 +19,14 @@ function DisplayUsernames() {
 	if (isLoading === true) return <>Loading...</>
 	if (solanaClass.transferSolDetails.isUsernameSelected === true) return null
 
+	if (_.isEmpty(usernameSearchResults) && !_.isEmpty(solanaClass.transferSolDetails.username)) {
+		return <>No users found</>
+	}
+
 	return (
 		<>
-			{usernameSearchResults.map(usernameResult => (
-				<SingleUsernameSearch key = {usernameResult.username} searchResultsUsername={usernameResult.username} />
+			{usernameSearchResults.slice(0, 10).map(usernameResult => (
+				<SingleUsernameSearch key={usernameResult.username} searchResultsUsername={usernameResult.username} />
 			))}
 		</>
 	)

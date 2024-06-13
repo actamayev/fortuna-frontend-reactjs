@@ -19,12 +19,6 @@ export default class SearchDataService {
 		)
 	}
 
-	async checkIfPublicKeyExistsOnSolana(publicKey: string): Promise<AxiosResponse<BooleanResponse | ErrorResponses>> {
-		return await this.httpClient.http.get<BooleanResponse | ErrorResponses>(
-			`${this.pathHeader}/check-if-public-key-exists-on-solana/${publicKey}`
-		)
-	}
-
 	async generalSearch(searchTerm: string): Promise<AxiosResponse<GeneralSearchResponse | ErrorResponses>> {
 		return await this.httpClient.http.get<GeneralSearchResponse | ErrorResponses>(
 			`${this.pathHeader}/general-search/${searchTerm}`, { headers: { "No-Auth-Required": "true" }}

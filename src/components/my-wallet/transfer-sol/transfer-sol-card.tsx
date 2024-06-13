@@ -11,9 +11,9 @@ function TransferSolCard() {
 
 	return (
 		<div
-			className="rounded-lg p-4 m-2 grid grid-cols-1 gap-4 absolute z-10 w-72 \
-				text-zinc-950 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
-			style={{ top: "20%", left: "50%", transform: "translate(-50%, -20%)" }}
+			className="rounded-lg p-4 m-2 grid grid-cols-1 gap-4 fixed top-20 left-1/2 transform -translate-x-1/2 \
+		text-zinc-950 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
+			style={{ maxHeight: "calc(100vh - 40px)", overflowY: "auto", width: "350px" }}
 		>
 			{solanaClass.transferSolDetails.transferStage === "initial" && <InitialTransferInfo />}
 			{solanaClass.transferSolDetails.transferStage === "review" && <ReviewTransferInfo />}
