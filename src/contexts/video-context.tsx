@@ -266,6 +266,13 @@ class VideoClass {
 			video.isUserAbleToAccessVideo = false
 			video.userLikeStatus = null
 		})
+		this.creatorData.map(creator => {
+			creator.videoData.map(video => {
+				if (video.isVideoExclusive === false) return
+				video.isUserAbleToAccessVideo = false
+				video.userLikeStatus = null
+			})
+		})
 	})
 
 	public clearVideosOnLogin = action((): void => {
@@ -280,7 +287,6 @@ class VideoClass {
 
 		this.isCurrentlySearching = false
 		// Don't clear video search map on logout - no need.
-		this.creatorData = []
 		this.isCreatorDataBeingRetrieved = false
 		this.setSearchTerm(null)
 	}
