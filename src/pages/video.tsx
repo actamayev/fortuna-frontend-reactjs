@@ -6,7 +6,7 @@ import VideoPlayer from "../components/video/video-player"
 import { useVideoContext } from "../contexts/video-context"
 import { addLeadingAt } from "../utils/leading-at-operations"
 import useSetSingleVideo from "../hooks/videos/set-single-video"
-import VideoDescriptionArea from "../components/video/video-description-area"
+import SubVideoSection from "../components/video/sub-video-section"
 import useRetrieveVideoUrlData from "../hooks/videos/retrieve-video-url-data"
 import MoreVideosMap from "../components/video/more-videos-area/more-videos-map"
 import PurchaseExclusiveAccessCard from "../components/video/purchase-exclusive-access-card"
@@ -42,7 +42,7 @@ function Video() {
 			</div>
 			<div className="grid grid-cols-12">
 				<div className="col-span-9">
-					<VideoDescriptionArea video={video} />
+					<SubVideoSection video={video} />
 				</div>
 			</div>
 			<div className="grid grid-cols-12">

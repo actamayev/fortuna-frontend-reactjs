@@ -7,7 +7,7 @@ interface Props {
 	video: SingleVideoDataFromBackend
 }
 
-export default function VideoDescriptionArea(props: Props) {
+export default function SubVideoSection(props: Props) {
 	const { video } = props
 	const navigateToCreatorPage = useNavigateToCreatorPage()
 
@@ -20,11 +20,11 @@ export default function VideoDescriptionArea(props: Props) {
 	return (
 		<div className="flex"> {/* This div will align its children side by side */}
 			<div className="flex-1"> {/* Existing content takes up the space it needs */}
-				<div className="text-2xl font-semibold">
+				<div className="text-2xl font-semibold mt-1.5">
 					{videoName}
 				</div>
-				<div>
-					<div className="flex items-center justify-between">
+				<div className="mt-0.5">
+					<div className="flex items-center justify-between mb-2">
 						<div className="flex items-center">
 							{creatorProfilePictureUrl && (
 								<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center mr-2">
@@ -37,7 +37,8 @@ export default function VideoDescriptionArea(props: Props) {
 								</div>
 							)}
 							<span
-								className="text-sm font-medium cursor-pointer hover:font-semibold"
+								className="text-sm font-medium cursor-pointer \
+									text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"
 								onClick={navigateToCreatorPageCallback}
 							>
 								{creatorUsername}
@@ -45,9 +46,7 @@ export default function VideoDescriptionArea(props: Props) {
 						</div>
 						<VideoLikeDislikeSection video={video} />
 					</div>
-					<div
-						className="bg-zinc-200 dark:bg-zinc-700 rounded-md p-2 dark:text-white"
-					>
+					<div className="bg-zinc-100 dark:bg-zinc-700 rounded-md p-2 dark:text-white">
 						{description}
 					</div>
 				</div>

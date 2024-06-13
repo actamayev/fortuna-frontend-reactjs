@@ -15,7 +15,7 @@ function MoreVideosMap(props: Props) {
 	if (_.isUndefined(creatorData) || _.isEmpty(creatorData.videoData)) return null
 
 	return (
-		<>
+		<div className="mt-3">
 			<div className="flex text-xl font-medium my-2">
 				More from {video.creatorUsername}
 			</div>
@@ -24,7 +24,7 @@ function MoreVideosMap(props: Props) {
 					<SingleRecommendedVideo key={videoData.uuid} videoData={videoData} />
 				))}
 			</div>
-		</>
+		</div>
 	)
 }
 
