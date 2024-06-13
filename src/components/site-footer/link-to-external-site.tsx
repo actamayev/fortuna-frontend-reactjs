@@ -8,7 +8,7 @@ export default function LinkToExternalSite(props: Props) {
 
 	return (
 		<div
-			className="mb-2 cursor:pointer text-sm text-zinc-600 hover:text-zinc-950 dark:text-zinc-200 dark:hover:text-zinc-50"
+			className="mb-2 text-sm"
 			style={{ fontSize: "12px", lineHeight: "18px", fontWeight: "300"}}
 		>
 			<a
@@ -16,6 +16,7 @@ export default function LinkToExternalSite(props: Props) {
 				aria-label="Help Center"
 				target="_blank"
 				rel="noopener noreferrer"
+				className="text-zinc-600 hover:text-zinc-950 dark:text-zinc-200 dark:hover:text-zinc-50 cursor:pointer"
 			>
 				{title}
 			</a>
