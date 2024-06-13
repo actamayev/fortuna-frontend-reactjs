@@ -1,5 +1,6 @@
 declare global {
 	interface VideoDataLessVideoUrl {
+		videoId: number
 		videoName: string
 		videoListingStatus: PostedVideoListingStatuses
 		description: string
@@ -12,6 +13,9 @@ declare global {
 		createdAt: Date
 		tierData: TierDataFromDB[]
 		numberOfExclusivePurchasesSoFar: number | null
+		numberOfLikes: number
+		numberOfDislikes: number
+		userLikeStatus: boolean | null
 	}
 
 	interface TierDataFromDB extends TierDataToSend {

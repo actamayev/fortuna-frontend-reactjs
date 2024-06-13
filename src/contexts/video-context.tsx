@@ -28,7 +28,7 @@ class VideoClass {
 
 		return (
 			// Would return the first one:
-			this.contextForVideo(videoUUID) ||
+			this.contextForVideoByUUID(videoUUID) ||
 			this.findVideoNotInVideosArray(videoUUID)
 		)
 	}
@@ -40,8 +40,12 @@ class VideoClass {
 		)
 	}
 
-	private contextForVideo(videoUUID: string): SingleVideoDataFromBackend | undefined {
+	private contextForVideoByUUID(videoUUID: string): SingleVideoDataFromBackend | undefined {
 		return this.videos.find(video => video.uuid === videoUUID)
+	}
+
+	private contextForVideoById(videoId: number): SingleVideoDataFromBackend | undefined {
+		return this.videos.find(video => video.videoId === videoId)
 	}
 
 	public contextForSearchMap(searchTerm: string): SearchData[] | undefined {
@@ -86,13 +90,34 @@ class VideoClass {
 		}
 	}
 
+	private findVideoInSearchMapById(videoId: number): SingleVideoDataFromBackend | undefined {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		for (const [key, searchDataArray] of this.videoSearchMap.entries()) {
+			const videoData = searchDataArray.find(
+				data => _.has(data, "videoId") && data.videoId === videoId
+			) as SingleVideoDataFromBackend | undefined
+
+			if (!_.isUndefined(videoData)) return videoData
+		}
+		return
+	}
+
+	private findVideoInCreatorDataMapById(videoId: number): SingleVideoDataFromBackend | undefined {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		for (const [key, creatorDataHeld] of this.creatorData.entries()) {
+			const videoData = creatorDataHeld.videoData.find(video => video.videoId === videoId)
+
+			if (!_.isUndefined(videoData)) return videoData
+		}
+	}
+
 	public setHomePageVideos = action((videoData: VideoDataLessVideoUrl[]): void => {
 		if (_.isEmpty(videoData)) return
 		videoData.map(singleVideo => this.addVideoToVideosList(singleVideo))
 	})
 
 	public addVideoToVideosList = action((video: VideoDataLessVideoUrl): void => {
-		if (!_.isUndefined(this.contextForVideo(video.uuid))) return
+		if (!_.isUndefined(this.contextForVideoByUUID(video.uuid))) return
 
 		if (_.isEmpty(this.videos)) {
 			this.videos.push(video)
@@ -166,7 +191,7 @@ class VideoClass {
 		}
 
 		// Update in videos array
-		const videoInVideos = this.contextForVideo(videoUUID)
+		const videoInVideos = this.contextForVideoByUUID(videoUUID)
 		updateStatus(videoInVideos)
 
 		// Update in videoSearchMap
@@ -175,6 +200,36 @@ class VideoClass {
 
 		// Update in creatorData
 		const videoInCreatorData = this.findVideoInCreatorDataMapByUUID(videoUUID)
+		updateStatus(videoInCreatorData)
+	}
+
+	public updateVideoDetailsAfterLikeDislike(videoId: number, newLikeStatus: boolean | null) {
+		const updateStatus = (video: SingleVideoDataFromBackend | undefined): void => {
+			if (!_.isUndefined(video)) {
+				if (_.isNull(video.userLikeStatus)) {
+					if (newLikeStatus === true) video.numberOfLikes += 1
+					else if (newLikeStatus === false) video.numberOfDislikes += 1
+				} else if (video.userLikeStatus === true) {
+					video.numberOfLikes -= 1
+					if (newLikeStatus === false) video.numberOfDislikes += 1
+				} else {
+					video.numberOfDislikes -= 1
+					if (newLikeStatus === true) video.numberOfLikes += 1
+				}
+				video.userLikeStatus = newLikeStatus
+			}
+		}
+
+		// Update in videos array
+		const videoInVideos = this.contextForVideoById(videoId)
+		updateStatus(videoInVideos)
+
+		// Update in videoSearchMap
+		const videoInSearchMap = this.findVideoInSearchMapById(videoId)
+		updateStatus(videoInSearchMap)
+
+		// Update in creatorData
+		const videoInCreatorData = this.findVideoInCreatorDataMapById(videoId)
 		updateStatus(videoInCreatorData)
 	}
 
