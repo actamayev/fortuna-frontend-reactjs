@@ -90,27 +90,6 @@ class VideoClass {
 		}
 	}
 
-	private findVideoInSearchMapById(videoId: number): SingleVideoDataFromBackend | undefined {
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		for (const [key, searchDataArray] of this.videoSearchMap.entries()) {
-			const videoData = searchDataArray.find(
-				data => _.has(data, "videoId") && data.videoId === videoId
-			) as SingleVideoDataFromBackend | undefined
-
-			if (!_.isUndefined(videoData)) return videoData
-		}
-		return
-	}
-
-	private findVideoInCreatorDataMapById(videoId: number): SingleVideoDataFromBackend | undefined {
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		for (const [key, creatorDataHeld] of this.creatorData.entries()) {
-			const videoData = creatorDataHeld.videoData.find(video => video.videoId === videoId)
-
-			if (!_.isUndefined(videoData)) return videoData
-		}
-	}
-
 	public setHomePageVideos = action((videoData: VideoDataLessVideoUrl[]): void => {
 		if (_.isEmpty(videoData)) return
 		videoData.map(singleVideo => this.addVideoToVideosList(singleVideo))
