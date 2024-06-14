@@ -4,7 +4,6 @@ import { createContext, useContext, useMemo } from "react"
 
 class AuthClass {
 	private _accessToken: string | null = null
-	public isLoggingOut: boolean = false
 
 	constructor() {
 		makeAutoObservable(this)
@@ -27,10 +26,6 @@ class AuthClass {
 		} else if (_.isNull(accessToken) && saveToStorage === true) {
 			localStorage.removeItem("Access Token")
 		}
-	})
-
-	public setIsLoggingOut = action((newState: boolean): void => {
-		this.isLoggingOut = newState
 	})
 
 	public logout() {
