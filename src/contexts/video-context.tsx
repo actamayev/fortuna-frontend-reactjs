@@ -28,7 +28,7 @@ class VideoClass {
 
 		return (
 			// Would return the first one:
-			this.contextForVideoByUUID(videoUUID) ||
+			this.contextForVideo(videoUUID) ||
 			this.findVideoNotInVideosArray(videoUUID)
 		)
 	}
@@ -40,12 +40,8 @@ class VideoClass {
 		)
 	}
 
-	private contextForVideoByUUID(videoUUID: string): SingleVideoDataFromBackend | undefined {
+	private contextForVideo(videoUUID: string): SingleVideoDataFromBackend | undefined {
 		return this.videos.find(video => video.uuid === videoUUID)
-	}
-
-	private contextForVideoById(videoId: number): SingleVideoDataFromBackend | undefined {
-		return this.videos.find(video => video.videoId === videoId)
 	}
 
 	public contextForSearchMap(searchTerm: string): SearchData[] | undefined {
@@ -96,7 +92,7 @@ class VideoClass {
 	})
 
 	public addVideoToVideosList = action((video: VideoDataLessVideoUrl): void => {
-		if (!_.isUndefined(this.contextForVideoByUUID(video.uuid))) return
+		if (!_.isUndefined(this.contextForVideo(video.uuid))) return
 
 		if (_.isEmpty(this.videos)) {
 			this.videos.push(video)
@@ -159,7 +155,7 @@ class VideoClass {
 	}
 
 	public updateVideoDetailsAfterUserPurchase(videoUUID: string, isVideoSoldOut: boolean): void {
-		const video = this.contextForVideoByUUID(videoUUID)
+		const video = this.contextForVideo(videoUUID)
 		if (_.isUndefined(video)) return
 
 		if (isVideoSoldOut === true) video.videoListingStatus = "SOLDOUT"
@@ -169,8 +165,8 @@ class VideoClass {
 		video.isUserAbleToAccessVideo = true
 	}
 
-	public updateVideoDetailsAfterLikeDislike(videoId: number, newLikeStatus: boolean | null) {
-		const video = this.contextForVideoById(videoId)
+	public updateVideoDetailsAfterLikeDislike(videoUUID: string, newLikeStatus: boolean | null) {
+		const video = this.contextForVideo(videoUUID)
 		if (_.isUndefined(video)) return
 
 		if (_.isNull(video.userLikeStatus)) {

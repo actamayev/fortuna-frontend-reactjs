@@ -31,13 +31,10 @@ export default class VideoDataService {
 		)
 	}
 
-	async likeOrDislikeVideo(videoId: number, likeStatus: boolean): Promise<AxiosResponse<AllCommonResponses>> {
-		return await this.httpClient.http.post<AllCommonResponses>(
-			`${this.pathHeader}/like-or-dislike-video`, { videoId, likeStatus })
+	async likeOrDislikeVideo(videoUUID: string, likeStatus: boolean): Promise<AxiosResponse<AllCommonResponses>> {
+		return await this.httpClient.http.post<AllCommonResponses>(`${this.pathHeader}/like-or-dislike-video`, { videoUUID, likeStatus })
 	}
 
-	async removeLikeOrDislikeFromVideo(videoId: number): Promise<AxiosResponse<SuccessResponse | ErrorResponses>> {
-		return await this.httpClient.http.post<SuccessResponse | ErrorResponses>(
-			`${this.pathHeader}/remove-like-or-dislike-from-video/${videoId}`)
-	}
+	async removeLikeOrDislikeFromVideo(videoUUID: string): Promise<AxiosResponse<AllCommonResponses>> {
+		return await this.httpClient.http.post<AllCommonResponses>(`${this.pathHeader}/remove-like-or-dislike-from-video`, { videoUUID })}
 }
