@@ -35,4 +35,5 @@ function DislikeButton(props: Props) {
 	)
 }
 
+// Keep this observer for monitoring the like/dislike status
 export default observer(DislikeButton)
