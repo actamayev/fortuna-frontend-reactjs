@@ -2,6 +2,7 @@ import _ from "lodash"
 import TierSoldOut from "./tier-sold-out"
 import DefiniteAmountAvailableInTier from "./definite-amount-available-in-tier"
 import IndefiniteAmountAvailableInTier from "./indefinite-amount-available-in-tier"
+import TierProgressBar from "./tier-progress-bar"
 
 interface Props {
 	tier: TierDataFromDB
@@ -13,7 +14,10 @@ export default function OneTierInfo(props: Props) {
 
 	if (_.isNull(tier.purchasesInThisTier) || _.isNull(numberOfExclusivePurchasesSoFar)) {
 		return (
-			<IndefiniteAmountAvailableInTier tierNumber={1} tierData={tier} />
+			<>
+				<TierProgressBar />
+			</>
+			// <IndefiniteAmountAvailableInTier tierNumber={1} tierData={tier} />
 		)
 	}
 
