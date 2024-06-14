@@ -12,6 +12,9 @@ declare global {
 		createdAt: Date
 		tierData: TierDataFromDB[]
 		numberOfExclusivePurchasesSoFar: number | null
+		numberOfLikes: number
+		numberOfDislikes: number
+		userLikeStatus: boolean | null
 	}
 
 	interface TierDataFromDB extends TierDataToSend {

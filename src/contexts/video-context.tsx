@@ -155,27 +155,33 @@ class VideoClass {
 	}
 
 	public updateVideoDetailsAfterUserPurchase(videoUUID: string, isVideoSoldOut: boolean): void {
-		const updateStatus = (video: SingleVideoDataFromBackend | undefined): void => {
-			if (!_.isUndefined(video)) {
-				if (isVideoSoldOut === true) video.videoListingStatus = "SOLDOUT"
-				if (!_.isNull(video.numberOfExclusivePurchasesSoFar)) {
-					video.numberOfExclusivePurchasesSoFar += 1
-				}
-				video.isUserAbleToAccessVideo = true
-			}
+		const video = this.contextForVideo(videoUUID)
+		if (_.isUndefined(video)) return
+
+		if (isVideoSoldOut === true) video.videoListingStatus = "SOLDOUT"
+		if (!_.isNull(video.numberOfExclusivePurchasesSoFar)) {
+			video.numberOfExclusivePurchasesSoFar ++
+		}
+		video.isUserAbleToAccessVideo = true
+	}
+
+	public updateVideoDetailsAfterLikeDislike(videoUUID: string, newLikeStatus: boolean | null) {
+		const video = this.contextForVideo(videoUUID)
+		if (_.isUndefined(video)) return
+
+		if (_.isNull(video.userLikeStatus)) {
+			if (newLikeStatus === true) video.numberOfLikes ++
+			else if (newLikeStatus === false) video.numberOfDislikes ++
+		} else if (video.userLikeStatus === true) {
+			video.numberOfLikes --
+			if (newLikeStatus === false) video.numberOfDislikes ++
+		} else {
+			video.numberOfDislikes --
+			if (newLikeStatus === true) video.numberOfLikes ++
 		}
 
-		// Update in videos array
-		const videoInVideos = this.contextForVideo(videoUUID)
-		updateStatus(videoInVideos)
-
-		// Update in videoSearchMap
-		const videoInSearchMap = this.findVideoInSearchMapByUUID(videoUUID)
-		updateStatus(videoInSearchMap)
-
-		// Update in creatorData
-		const videoInCreatorData = this.findVideoInCreatorDataMapByUUID(videoUUID)
-		updateStatus(videoInCreatorData)
+		if (video.userLikeStatus === newLikeStatus) video.userLikeStatus = null
+		else video.userLikeStatus = newLikeStatus
 	}
 
 	public addVideoUUIDToRetrievingList(videoUUID: string): void {
@@ -204,9 +210,27 @@ class VideoClass {
 
 	private clearVideoDataOnLogout = action((): void => {
 		this.videos.map(video => {
+			video.userLikeStatus = null
 			if (video.isVideoExclusive === false) return
 			delete video.videoUrl
 			video.isUserAbleToAccessVideo = false
+		})
+		this.creatorData.map(creator => {
+			creator.videoData.map(video => {
+				video.userLikeStatus = null
+				if (video.isVideoExclusive === false) return
+				video.isUserAbleToAccessVideo = false
+			})
+		})
+		this.videoSearchMap.forEach((searchDataArray) => {
+			searchDataArray.forEach(searchData => {
+				if ("userLikeStatus" in searchData) {
+					searchData.userLikeStatus = false
+					if (searchData.isVideoExclusive === true) {
+						searchData.isUserAbleToAccessVideo = false
+					}
+				}
+			})
 		})
 	})
 
@@ -222,7 +246,6 @@ class VideoClass {
 
 		this.isCurrentlySearching = false
 		// Don't clear video search map on logout - no need.
-		this.creatorData = []
 		this.isCreatorDataBeingRetrieved = false
 		this.setSearchTerm(null)
 	}

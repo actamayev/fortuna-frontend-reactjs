@@ -11,8 +11,8 @@ function VideoPlayer(props: Props) {
 	if (_.isUndefined(video.videoUrl)) {
 		return (
 			<div className="w-full">
-				<div className="w-full h-full rounded-lg" style={{ aspectRatio: "16/9" }}>
-					<div className="relative w-full h-full rounded-lg overflow-hidden">
+				<div className="w-full h-full" style={{ aspectRatio: "16/9" }}>
+					<div className="relative w-full h-full rounded-xl overflow-hidden">
 						<img
 							src={video.imageUrl}
 							className="w-full h-full object-cover"
@@ -33,7 +33,7 @@ function VideoPlayer(props: Props) {
 			<video
 				controls
 				autoPlay
-				className="w-full h-full rounded-lg"
+				className="w-full h-full rounded-xl"
 				controlsList="nodownload"
 				style={{ aspectRatio: "16/9" }}
 			>

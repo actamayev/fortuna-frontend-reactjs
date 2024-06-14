@@ -71,7 +71,6 @@ export default function useCreateVideoOnclick(): (
 
 			const myContent: MyContent = {
 				...restOfVideoDetails,
-				videoId: createVideoResponse.data.newVideoId,
 				videoListingStatus: "LISTED",
 				imageUrl: uploadImageResponse.data.imageUploadUrl,
 				uuid: uploadVideoResponse.data.uuid,
