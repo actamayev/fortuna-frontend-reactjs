@@ -16,28 +16,16 @@ function LikeButton(props: Props) {
 		likeDislikeVideo(video, true)
 	}, [likeDislikeVideo, video])
 
-	if (video.userLikeStatus === true) {
-		return (
-			<HoverOutlineComponent
-				classes="flex items-center justify-center"
-				onClickAction={likeDislikeVideoCallback}
-			>
-				<BiSolidLike size={20}/>
-				{video.numberOfLikes > 0 && (
-					<span className="ml-1.5 text-md">
-						{video.numberOfLikes}
-					</span>
-				)}
-			</HoverOutlineComponent>
-		)
-	}
-
 	return (
 		<HoverOutlineComponent
 			classes="flex items-center justify-center"
 			onClickAction={likeDislikeVideoCallback}
 		>
-			<BiLike size={20}/>
+			{video.userLikeStatus === true ? (
+				<BiSolidLike size={20}/>
+			) : (
+				<BiLike size={20}/>
+			)}
 			{video.numberOfLikes > 0 && (
 				<span className="ml-1.5 text-md">
 					{video.numberOfLikes}
