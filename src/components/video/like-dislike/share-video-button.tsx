@@ -19,7 +19,7 @@ export default function ShareVideoButton() {
 	return (
 		<div>
 			<HoverOutlineComponent
-				classes="flex items-center justify-center h-10 w-10 border border-zinc-400 dark:border-zinc-600 rounded-full"
+				classes="flex items-center justify-center border border-zinc-400 dark:border-zinc-600 rounded-full"
 				onClickAction={copyToClipboard}
 			>
 				<div className="mx-2">

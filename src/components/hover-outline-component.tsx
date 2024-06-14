@@ -20,6 +20,8 @@ export default function HoverOutlineComponent(props: Props) {
 			onMouseLeave={() => setIsHovered(false)}
 			style={{
 				backgroundColor: isHovered ? "rgba(128, 128, 128, 0.2)" : "transparent",
+				height: "40px",
+				width: "40px",
 				borderRadius: "50%",
 				cursor: "pointer",
 				top: top

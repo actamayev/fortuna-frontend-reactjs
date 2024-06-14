@@ -16,7 +16,7 @@ export default function Slider(props: Props) {
 	return (
 		<HoverOutlineComponent
 			id={id}
-			classes="relative flex items-center justify-center inline-block h-10 w-10"
+			classes="relative flex items-center justify-center inline-block"
 			onClickAction={onChangeCheckedCondition}
 		>
 			<label

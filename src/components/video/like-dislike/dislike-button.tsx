@@ -18,7 +18,7 @@ function DislikeButton(props: Props) {
 
 	return (
 		<HoverOutlineComponent
-			classes="flex items-center justify-center h-10 w-10"
+			classes="flex items-center justify-center"
 			onClickAction={likeDislikeVideoCallback}
 		>
 			{video.userLikeStatus === false ? (
