@@ -17,7 +17,7 @@ function CreateContentHeaderButton() {
 	) return null
 
 	return (
-		<HoverOutlineComponent classes="relative flex items-center justify-center inline-flex flex-grow flex-shrink">
+		<HoverOutlineComponent classes="relative flex items-center justify-center inline-flex flex-grow flex-shrink h-10 w-10">
 			<Link to="/creator/create-content" className="w-full">
 				<div className="rounded h-9 flex items-center justify-center">
 					<FaVideo color = {defaultSiteTheme === "dark" ? "white" : ""}/>

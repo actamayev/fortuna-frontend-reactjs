@@ -13,7 +13,7 @@ function ChooseSiteTheme() {
 		<HoverOutlineComponent
 			id="theme-toggler"
 			onClickAction={setDefaultSiteTheme}
-			classes="relative flex items-center justify-center"
+			classes="relative flex items-center justify-center h-10 w-10"
 		>
 			{defaultSiteTheme === "light"
 				? (<IoMdSunny />)

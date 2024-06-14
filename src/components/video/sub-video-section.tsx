@@ -1,5 +1,5 @@
 import { useCallback } from "react"
-import ShareVideoSection from "./like-dislike/share-video-section"
+import ShareVideoButton from "./like-dislike/share-video-button"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import VideoLikeDislikeSection from "./like-dislike/video-like-dislike-section"
 import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
@@ -38,15 +38,16 @@ export default function SubVideoSection(props: Props) {
 								</div>
 							)}
 							<span
-								className="text-sm font-medium cursor-pointer \
-									text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"
+								className="text-sm font-medium cursor-pointer text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"
 								onClick={navigateToCreatorPageCallback}
 							>
 								{creatorUsername}
 							</span>
 						</div>
-						<ShareVideoSection />
-						<VideoLikeDislikeSection video={video} />
+						<div className="flex items-center">
+							<ShareVideoButton />
+							<VideoLikeDislikeSection video={video} />
+						</div>
 					</div>
 					<div className="bg-zinc-100 dark:bg-zinc-700 rounded-md p-2 dark:text-white">
 						{description}

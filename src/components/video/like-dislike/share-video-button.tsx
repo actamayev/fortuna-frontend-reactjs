@@ -1,9 +1,9 @@
-import { FaShare } from "react-icons/fa"
+import { IoIosShareAlt } from "react-icons/io"
 import { useCallback, useState } from "react"
 import NotificationBox from "../../notification-box"
 import HoverOutlineComponent from "../../hover-outline-component"
 
-export default function ShareVideoSection() {
+export default function ShareVideoButton() {
 	const [notification, setNotification] = useState<string | null>(null)
 
 	const copyToClipboard = useCallback(async () => {
@@ -17,12 +17,15 @@ export default function ShareVideoSection() {
 	}, [])
 
 	return (
-		<div>
+		<div className="flex justify-center items-center border border-zinc-400 dark:border-zinc-600 rounded-full">
 			<HoverOutlineComponent
-				classes="flex items-center justify-center"
+				classes="flex items-center justify-center h-10 w-auto"
 				onClickAction={copyToClipboard}
 			>
-				<FaShare size={20}/>
+				<div className="flex items-center">
+					<IoIosShareAlt size={22} />
+					<span className="text-sm font-medium text-zinc-950 dark:text-zinc-200">Share</span>
+				</div>
 			</HoverOutlineComponent>
 			{notification && (
 				<NotificationBox
