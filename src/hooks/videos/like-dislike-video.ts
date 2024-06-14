@@ -11,7 +11,6 @@ export default function useLikeDislikeVideo(): (
 	const fortunaApiClient = useApiClientContext()
 	const videoClass = useVideoContext()
 
-	// eslint-disable-next-line complexity
 	const likeDislikeVideo = useCallback(async (
 		video: SingleVideoDataFromBackend,
 		newLikeStatus: boolean
@@ -21,9 +20,7 @@ export default function useLikeDislikeVideo(): (
 				_.isNull(fortunaApiClient.httpClient.accessToken) ||
 				video.isUserAbleToAccessVideo === false
 			) return
-			if (
-				_.isNull(video.userLikeStatus) || newLikeStatus !== video.userLikeStatus
-			)  {
+			if (_.isNull(video.userLikeStatus) || newLikeStatus !== video.userLikeStatus)  {
 				const likeDislikeResponse = await fortunaApiClient.videoDataService.likeOrDislikeVideo(video.videoId, newLikeStatus)
 
 				if (!_.isEqual(likeDislikeResponse.status, 200) || isNonSuccessResponse(likeDislikeResponse.data)) {
