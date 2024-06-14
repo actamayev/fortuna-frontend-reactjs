@@ -159,27 +159,14 @@ class VideoClass {
 	}
 
 	public updateVideoDetailsAfterUserPurchase(videoUUID: string, isVideoSoldOut: boolean): void {
-		const updateStatus = (video: SingleVideoDataFromBackend | undefined): void => {
-			if (!_.isUndefined(video)) {
-				if (isVideoSoldOut === true) video.videoListingStatus = "SOLDOUT"
-				if (!_.isNull(video.numberOfExclusivePurchasesSoFar)) {
-					video.numberOfExclusivePurchasesSoFar ++
-				}
-				video.isUserAbleToAccessVideo = true
-			}
+		const video = this.contextForVideoByUUID(videoUUID)
+		if (_.isUndefined(video)) return
+
+		if (isVideoSoldOut === true) video.videoListingStatus = "SOLDOUT"
+		if (!_.isNull(video.numberOfExclusivePurchasesSoFar)) {
+			video.numberOfExclusivePurchasesSoFar ++
 		}
-
-		// Update in videos array
-		const videoInVideos = this.contextForVideoByUUID(videoUUID)
-		updateStatus(videoInVideos)
-
-		// Update in videoSearchMap
-		const videoInSearchMap = this.findVideoInSearchMapByUUID(videoUUID)
-		updateStatus(videoInSearchMap)
-
-		// Update in creatorData
-		const videoInCreatorData = this.findVideoInCreatorDataMapByUUID(videoUUID)
-		updateStatus(videoInCreatorData)
+		video.isUserAbleToAccessVideo = true
 	}
 
 	public updateVideoDetailsAfterLikeDislike(videoId: number, newLikeStatus: boolean | null) {
