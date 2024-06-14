@@ -12,10 +12,6 @@ function ShowMyPublicKey() {
 	const [showPublicKey, setShowPublicKey] = useState(false)
 	const [notification, setNotification] = useState<string | null>(null)
 
-	const closeNotification = useCallback(() => {
-		setNotification(null)
-	}, [])
-
 	const copyToClipboard = useCallback(async () => {
 		if (_.isNull(solanaClass) || _.isNull(solanaClass.walletPublicKey)) return
 
@@ -61,7 +57,7 @@ function ShowMyPublicKey() {
 			{notification && (
 				<NotificationBox
 					message={notification}
-					onClose={closeNotification}
+					onClose={() => setNotification(null)}
 				/>
 			)}
 		</div>

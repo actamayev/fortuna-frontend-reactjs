@@ -9,9 +9,9 @@ export default function VideoLikeDislikeSection(props: Props) {
 	const { video } = props
 
 	return (
-		<div className="flex flex-row items-center">
+		<div className="flex justify-center items-center border border-zinc-400 dark:border-zinc-600 rounded-full ml-3">
 			<LikeButton video={video} />
-			<div className="w-px h-6 dark:bg-zinc-300 bg-zinc-800 mx-1" />
+			<div className="w-px h-6 dark:bg-zinc-300 bg-zinc-800 mx-0.5" />
 			<DislikeButton video={video} />
 		</div>
 	)
