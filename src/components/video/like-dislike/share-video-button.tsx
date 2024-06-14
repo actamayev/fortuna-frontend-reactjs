@@ -23,9 +23,8 @@ export default function ShareVideoButton() {
 					classes="flex items-center justify-center h-10 w-auto"
 					onClickAction={copyToClipboard}
 				>
-					<div className="flex items-center mx-2 space-x-1">
+					<div className="mx-2">
 						<IoIosShareAlt size={22} />
-						<span className="text-xs font-medium text-zinc-950 dark:text-zinc-200">Share</span>
 					</div>
 				</HoverOutlineComponent>
 			</div>
