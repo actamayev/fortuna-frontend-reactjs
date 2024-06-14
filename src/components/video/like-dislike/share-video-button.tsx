@@ -18,16 +18,14 @@ export default function ShareVideoButton() {
 
 	return (
 		<div>
-			<div className="flex justify-center items-center border border-zinc-400 dark:border-zinc-600 rounded-full">
-				<HoverOutlineComponent
-					classes="flex items-center justify-center h-10 w-auto"
-					onClickAction={copyToClipboard}
-				>
-					<div className="mx-2">
-						<IoIosShareAlt size={22} />
-					</div>
-				</HoverOutlineComponent>
-			</div>
+			<HoverOutlineComponent
+				classes="flex items-center justify-center h-10 w-10 border border-zinc-400 dark:border-zinc-600 rounded-full"
+				onClickAction={copyToClipboard}
+			>
+				<div className="mx-2">
+					<IoIosShareAlt size={22} />
+				</div>
+			</HoverOutlineComponent>
 			{notification && (
 				<NotificationBox
 					message={notification}
