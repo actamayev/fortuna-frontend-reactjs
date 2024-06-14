@@ -1,4 +1,5 @@
 import { useCallback } from "react"
+import ShareVideoSection from "./like-dislike/share-video-section"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import VideoLikeDislikeSection from "./like-dislike/video-like-dislike-section"
 import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
@@ -44,6 +45,7 @@ export default function SubVideoSection(props: Props) {
 								{creatorUsername}
 							</span>
 						</div>
+						<ShareVideoSection />
 						<VideoLikeDislikeSection video={video} />
 					</div>
 					<div className="bg-zinc-100 dark:bg-zinc-700 rounded-md p-2 dark:text-white">
