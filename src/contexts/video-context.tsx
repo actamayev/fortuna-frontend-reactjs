@@ -184,7 +184,7 @@ class VideoClass {
 			if (!_.isUndefined(video)) {
 				if (isVideoSoldOut === true) video.videoListingStatus = "SOLDOUT"
 				if (!_.isNull(video.numberOfExclusivePurchasesSoFar)) {
-					video.numberOfExclusivePurchasesSoFar += 1
+					video.numberOfExclusivePurchasesSoFar ++
 				}
 				video.isUserAbleToAccessVideo = true
 			}
@@ -204,35 +204,22 @@ class VideoClass {
 	}
 
 	public updateVideoDetailsAfterLikeDislike(videoId: number, newLikeStatus: boolean | null) {
-		const updateStatus = (video: SingleVideoDataFromBackend | undefined): void => {
-			if (!_.isUndefined(video)) {
-				if (_.isNull(video.userLikeStatus)) {
-					if (newLikeStatus === true) video.numberOfLikes += 1
-					else if (newLikeStatus === false) video.numberOfDislikes += 1
-				} else if (video.userLikeStatus === true) {
-					video.numberOfLikes -= 1
-					if (newLikeStatus === false) video.numberOfDislikes += 1
-				} else {
-					video.numberOfDislikes -= 1
-					if (newLikeStatus === true) video.numberOfLikes += 1
-				}
+		const video = this.contextForVideoById(videoId)
+		if (_.isUndefined(video)) return
 
-				if (video.userLikeStatus === newLikeStatus) video.userLikeStatus = null
-				else video.userLikeStatus = newLikeStatus
-			}
+		if (_.isNull(video.userLikeStatus)) {
+			if (newLikeStatus === true) video.numberOfLikes ++
+			else if (newLikeStatus === false) video.numberOfDislikes ++
+		} else if (video.userLikeStatus === true) {
+			video.numberOfLikes --
+			if (newLikeStatus === false) video.numberOfDislikes ++
+		} else {
+			video.numberOfDislikes --
+			if (newLikeStatus === true) video.numberOfLikes ++
 		}
 
-		// Update in videos array
-		const videoInVideos = this.contextForVideoById(videoId)
-		updateStatus(videoInVideos)
-
-		// Update in videoSearchMap
-		const videoInSearchMap = this.findVideoInSearchMapById(videoId)
-		updateStatus(videoInSearchMap)
-
-		// Update in creatorData
-		const videoInCreatorData = this.findVideoInCreatorDataMapById(videoId)
-		updateStatus(videoInCreatorData)
+		if (video.userLikeStatus === newLikeStatus) video.userLikeStatus = null
+		else video.userLikeStatus = newLikeStatus
 	}
 
 	public addVideoUUIDToRetrievingList(videoUUID: string): void {
