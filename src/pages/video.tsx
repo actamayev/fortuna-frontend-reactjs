@@ -22,9 +22,21 @@ function Video() {
 	const video = videoClass.findVideoFromUUID(videoUUID)
 	useRetrieveCreatorVideosAndDataUseEffect(addLeadingAt(video?.creatorUsername))
 
-	if (isVideoLoading === true) return <>Loading...</>
+	if (isVideoLoading === true) {
+		return (
+			<div className="dark:text-zinc-200 text-zinc-950">
+				Loading...
+			</div>
+		)
+	}
 
-	if (isVideoNotFound === true) return <>Unable to find video.</>
+	if (isVideoNotFound === true) {
+		return (
+			<div className="dark:text-zinc-200 text-zinc-950">
+				Unable to find video
+			</div>
+		)
+	}
 
 	if (_.isUndefined(video)) return null
 
