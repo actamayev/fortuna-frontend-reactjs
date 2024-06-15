@@ -1,8 +1,8 @@
 import SearchBar from "./search-bar"
-import SolOrUsdSlider from "./sol-or-usd-slider"
 import ChooseSiteTheme from "../choose-site-theme"
 import LogoHeaderSection from "./logo-header-section"
 import LoginLogoutHeaderItem from "./login-logout-header-item"
+import SolOrUsdSliderInHeader from "./sol-or-usd-slider-in-header"
 import CreateContentHeaderButton from "./create-content-header-button"
 
 export default function HeaderNav() {
@@ -15,7 +15,7 @@ export default function HeaderNav() {
 				</div>
 				<div className="flex items-center z-10">
 					<CreateContentHeaderButton />
-					<SolOrUsdSlider />
+					<SolOrUsdSliderInHeader />
 					<ChooseSiteTheme />
 					<LoginLogoutHeaderItem />
 				</div>
