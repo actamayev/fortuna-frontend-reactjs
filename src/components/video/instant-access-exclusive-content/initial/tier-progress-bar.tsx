@@ -1,4 +1,6 @@
 import _ from "lodash"
+import { observer } from "mobx-react"
+import useDefaultSiteTheme from "../../../../hooks/memos/default-site-theme"
 
 interface Props {
 	isActive: boolean
@@ -7,17 +9,14 @@ interface Props {
 }
 
 // eslint-disable-next-line complexity
-export default function TierProgressBar(props: Props) {
+function TierProgressBar(props: Props) {
 	const { isActive, tier, numberOfPurchasesInThisTierSoFar } = props
+	const defaultSiteTheme = useDefaultSiteTheme()
 
-	let progressColor: string
-	if (tier.tierNumber === 1) {
-		progressColor =  "rgb(220 38 38)"
-	} else if (tier.tierNumber === 2) {
-		progressColor = "rgb(22 163 74)"
-	} else {
-		progressColor = "rgb(37 99 235)"
-	}
+	let progressColor
+	if (tier.tierNumber === 1) progressColor =  "rgb(220 38 38)"
+	else if (tier.tierNumber === 2) progressColor = "rgb(22 163 74)"
+	else progressColor = "rgb(37 99 235)"
 
 	let textInProgressBar
 	if (_.isNull(tier.purchasesInThisTier) || _.isNull(numberOfPurchasesInThisTierSoFar)) {
@@ -26,14 +25,14 @@ export default function TierProgressBar(props: Props) {
 		textInProgressBar = "Tier sold out"
 	}
 
-	let progress = "100%"
+	let progress = 100
 	if (
 		!_.isNull(tier.purchasesInThisTier) &&
 		!_.isNull(numberOfPurchasesInThisTierSoFar) &&
 		tier.isTierSoldOut !== true &&
 		numberOfPurchasesInThisTierSoFar !== tier.purchasesInThisTier
 	) {
-		progress = `${numberOfPurchasesInThisTierSoFar / tier.purchasesInThisTier}%`
+		progress = numberOfPurchasesInThisTierSoFar / tier.purchasesInThisTier
 	}
 
 	const containerWidth = isActive ||
@@ -45,10 +44,11 @@ export default function TierProgressBar(props: Props) {
 	return (
 		<div className="flex items-center space-x-2 relative mb-4">
 			<div
-				className="absolute -top-2.5 left-0 text-black dark:text-white font-bold rounded-full \
+				className="absolute -top-2.5 left-0 font-bold rounded-full \
 					w-6 h-6 border border-black dark:border-white flex items-center justify-center text-md bg-zinc-200 dark:bg-zinc-700"
 				style={{
 					backgroundColor: isActive ? "rgb(250, 255, 0)" : "",
+					color: (defaultSiteTheme === "dark" && isActive === false) ? "white" : "black"
 				}}
 			>
 				{tier.tierNumber}
@@ -66,7 +66,7 @@ export default function TierProgressBar(props: Props) {
 				<div
 					className="h-full flex items-center pr-2 rounded-full border-r-0 border border-black dark:border-zinc-300"
 					style={{
-						width: progress,
+						width: `${progress}%`,
 						minWidth: "30px",
 						backgroundColor: progressColor
 					}}
@@ -78,10 +78,12 @@ export default function TierProgressBar(props: Props) {
 							</span>
 						</div>
 					) : (
-						<span className="text-white font-medium ml-1 text-xs">{progress}</span>
+						<span className="text-white font-medium ml-1 text-xs">{progress.toFixed(0)}%</span>
 					)}
 				</div>
 			</div>
 		</div>
 	)
 }
+
+export default observer(TierProgressBar)
