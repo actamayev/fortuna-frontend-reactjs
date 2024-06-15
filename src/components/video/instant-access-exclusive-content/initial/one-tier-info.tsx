@@ -15,7 +15,12 @@ export default function OneTierInfo(props: Props) {
 	if (_.isNull(tier.purchasesInThisTier) || _.isNull(numberOfExclusivePurchasesSoFar)) {
 		return (
 			<>
-				<TierProgressBar />
+				<TierProgressBar
+					tier={tier}
+					isActive={true}
+					progress={100}
+					isSoldOut={true}
+				/>
 			</>
 			// <IndefiniteAmountAvailableInTier tierNumber={1} tierData={tier} />
 		)
@@ -23,7 +28,13 @@ export default function OneTierInfo(props: Props) {
 
 	if (tier.isTierSoldOut === true) {
 		return (
-			<TierSoldOut tierNumber={1} tierData={tier} />
+			<TierProgressBar
+				tier={tier}
+				isActive={false}
+				progress={100}
+				isSoldOut={true}
+			/>
+			// <TierSoldOut tierNumber={1} tierData={tier} />
 		)
 	}
 
