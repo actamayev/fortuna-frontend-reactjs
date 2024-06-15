@@ -10,15 +10,12 @@ export default function TierProgressBar() {
 			>
 				1
 			</div>
-			{/* <div className="text-black font-bold ml-10">
-				$5
-			</div> */}
 			<div className="flex items-center w-full h-8 bg-gray-200 rounded-full border border-black overflow-hidden">
 				<div
-					className="bg-red-500 h-full flex items-center justify-end pr-2 rounded-full"
+					className="bg-red-600 h-full flex items-center justify-end pr-2 rounded-full"
 					style={{ width: `${progress}%` }}
 				>
-					<span className="text-white font-bold">{progress}%</span>
+					<span className="text-white font-medium">{progress}%</span>
 				</div>
 			</div>
 		</div>
