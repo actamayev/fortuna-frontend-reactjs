@@ -9,6 +9,7 @@ interface Props {
 	tierData: TierDataFromDB
 }
 
+// TODO: Delete all the files that are no longer used in initial under instant -access-exclusive-contnet
 function IndefiniteAmountAvailableInTier(props: Props) {
 	const { tierNumber, tierData } = props
 	const marketClass = useMarketContext()
