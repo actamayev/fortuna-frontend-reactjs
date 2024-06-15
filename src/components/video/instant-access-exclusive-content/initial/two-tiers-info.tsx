@@ -32,15 +32,13 @@ function TwoTiersInfo(props: Props) {
 					<TierProgressBar
 						isActive={false}
 						tier={firstTier}
-						numberOfExclusivePurchasesSoFar={numberOfExclusivePurchasesSoFar}
+						numberOfPurchasesInThisTierSoFar={firstTier.purchasesInThisTier}
 					/>
 					<TierProgressBar
 						isActive={true}
 						tier={secondTier}
-						numberOfExclusivePurchasesSoFar={numberOfExclusivePurchasesSoFar}
+						numberOfPurchasesInThisTierSoFar={secondTier.purchasesInThisTier}
 					/>
-					{/* <TierSoldOut tierNumber={1} tierData={firstTier}/>
-					<IndefiniteAmountAvailableInTier tierNumber={2} tierData={secondTier} /> */}
 				</div>
 			)
 		}
@@ -51,12 +49,12 @@ function TwoTiersInfo(props: Props) {
 					<TierProgressBar
 						isActive={false}
 						tier={firstTier}
-						numberOfExclusivePurchasesSoFar={numberOfExclusivePurchasesSoFar}
+						numberOfPurchasesInThisTierSoFar={firstTier.purchasesInThisTier}
 					/>
 					<TierProgressBar
 						isActive={false}
 						tier={secondTier}
-						numberOfExclusivePurchasesSoFar={numberOfExclusivePurchasesSoFar}
+						numberOfPurchasesInThisTierSoFar={secondTier.purchasesInThisTier}
 					/>
 				</div>
 			)
@@ -68,25 +66,13 @@ function TwoTiersInfo(props: Props) {
 				<TierProgressBar
 					isActive={false}
 					tier={firstTier}
-					numberOfExclusivePurchasesSoFar={numberOfExclusivePurchasesSoFar}
+					numberOfPurchasesInThisTierSoFar={firstTier.purchasesInThisTier}
 				/>
 				<TierProgressBar
 					isActive={true}
 					tier={secondTier}
-					numberOfExclusivePurchasesSoFar={
-						((secondTier.purchasesInThisTier + (firstTier.purchasesInThisTier as number) - numberOfExclusivePurchasesSoFar)) /
-						secondTier.purchasesInThisTier
-					}
+					numberOfPurchasesInThisTierSoFar={numberOfExclusivePurchasesSoFar - (firstTier.purchasesInThisTier as number)}
 				/>
-				{/* <TierSoldOut tierNumber={1} tierData={firstTier}/>
-				<DefiniteAmountAvailableInTier
-					tierNumber={2}
-					tierAccessPriceUsd={secondTier.tierAccessPriceUsd}
-					numberPurchasesAvailable={
-						`${(secondTier.purchasesInThisTier + (firstTier.purchasesInThisTier as number)) - numberOfExclusivePurchasesSoFar}/
-						${secondTier.purchasesInThisTier}`
-					}
-				/> */}
 			</div>
 		)
 	}
@@ -96,21 +82,13 @@ function TwoTiersInfo(props: Props) {
 			<TierProgressBar
 				isActive={true}
 				tier={firstTier}
-				numberOfExclusivePurchasesSoFar={numberOfExclusivePurchasesSoFar}
+				numberOfPurchasesInThisTierSoFar={numberOfExclusivePurchasesSoFar}
 			/>
 			<TierProgressBar
 				isActive={false}
 				tier={secondTier}
-				numberOfExclusivePurchasesSoFar={0}
+				numberOfPurchasesInThisTierSoFar={0}
 			/>
-			{/* <DefiniteAmountAvailableInTier
-				tierNumber={1}
-				tierAccessPriceUsd={firstTier.tierAccessPriceUsd}
-				numberPurchasesAvailable={
-					`${(firstTier.purchasesInThisTier as number) - numberOfExclusivePurchasesSoFar}/ ${firstTier.purchasesInThisTier}`
-				}
-			/>
-			<PreviousTierMustSellOut tierNumber={2} tierAccessPriceUsd={secondTier.tierAccessPriceUsd} /> */}
 		</div>
 	)
 }

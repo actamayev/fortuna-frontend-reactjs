@@ -19,11 +19,14 @@ function OneTierInfo(props: Props) {
 	}, [marketClass, tier.isTierSoldOut])
 
 	return (
-		<div onClick={onClickButton} className="cursor-pointer">
+		<div
+			onClick={onClickButton}
+			style={{ cursor: tier.isTierSoldOut ? "" : "pointer" }}
+		>
 			<TierProgressBar
 				tier={tier}
 				isActive={true}
-				numberOfExclusivePurchasesSoFar={numberOfExclusivePurchasesSoFar}
+				numberOfPurchasesInThisTierSoFar={numberOfExclusivePurchasesSoFar}
 			/>
 		</div>
 	)

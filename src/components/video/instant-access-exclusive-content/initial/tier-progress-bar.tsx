@@ -3,12 +3,12 @@ import _ from "lodash"
 interface Props {
 	isActive: boolean
 	tier: TierDataFromDB
-	numberOfExclusivePurchasesSoFar: number | null
+	numberOfPurchasesInThisTierSoFar: number | null
 }
 
 // eslint-disable-next-line complexity
 export default function TierProgressBar(props: Props) {
-	const { isActive, tier, numberOfExclusivePurchasesSoFar } = props
+	const { isActive, tier, numberOfPurchasesInThisTierSoFar } = props
 
 	let progressColor: string
 	if (tier.tierNumber === 1) {
@@ -20,7 +20,7 @@ export default function TierProgressBar(props: Props) {
 	}
 
 	let textInProgressBar
-	if (_.isNull(tier.purchasesInThisTier) || _.isNull(numberOfExclusivePurchasesSoFar)) {
+	if (_.isNull(tier.purchasesInThisTier) || _.isNull(numberOfPurchasesInThisTierSoFar)) {
 		textInProgressBar = "Tier has not limit"
 	} else if (tier.isTierSoldOut === true) {
 		textInProgressBar = "Tier sold out"
@@ -29,12 +29,18 @@ export default function TierProgressBar(props: Props) {
 	let progress = "100%"
 	if (
 		!_.isNull(tier.purchasesInThisTier) &&
-		!_.isNull(numberOfExclusivePurchasesSoFar) &&
+		!_.isNull(numberOfPurchasesInThisTierSoFar) &&
 		tier.isTierSoldOut !== true &&
-		numberOfExclusivePurchasesSoFar !== tier.purchasesInThisTier
+		numberOfPurchasesInThisTierSoFar !== tier.purchasesInThisTier
 	) {
-		progress = `${numberOfExclusivePurchasesSoFar / tier.purchasesInThisTier}%`
+		progress = `${numberOfPurchasesInThisTierSoFar / tier.purchasesInThisTier}%`
 	}
+
+	const containerWidth = isActive ||
+		_.isNull(numberOfPurchasesInThisTierSoFar) ||
+		numberOfPurchasesInThisTierSoFar === tier.purchasesInThisTier
+		? "100%"
+		: "32.5%"
 
 	return (
 		<div className="flex items-center space-x-2 relative mb-4">
@@ -43,15 +49,16 @@ export default function TierProgressBar(props: Props) {
 					w-6 h-6 border border-black dark:border-white flex items-center justify-center text-md bg-zinc-200 dark:bg-zinc-700"
 				style={{
 					backgroundColor: isActive ? "rgb(250, 255, 0)" : "",
-					// color: isActive ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)"
 				}}
 			>
 				{tier.tierNumber}
 			</div>
-			<div className="flex items-center w-full h-8 bg-zinc-200 dark:bg-zinc-700 \
+			<div
+				className="flex items-center w-full h-8 bg-zinc-200 dark:bg-zinc-700 \
 				rounded-full border border-black dark:border-zinc-300 overflow-hidden"
+				style={{ width : containerWidth }}
 			>
-				<div className="bg-zinc-200 dark:bg-zinc-700 h-full flex items-center justify-center ml-4 mr-2">
+				<div className="bg-zinc-200 dark:bg-zinc-700 h-full flex items-center justify-center ml-4 mr-2 w-8">
 					<span className="text-black dark:text-white font-black">
 						${tier.tierAccessPriceUsd}
 					</span>
@@ -60,7 +67,7 @@ export default function TierProgressBar(props: Props) {
 					className="h-full flex items-center pr-2 rounded-full border-r-0 border border-black dark:border-zinc-300"
 					style={{
 						width: progress,
-						minWidth: "11%",
+						minWidth: "30px",
 						backgroundColor: progressColor
 					}}
 				>
@@ -71,7 +78,7 @@ export default function TierProgressBar(props: Props) {
 							</span>
 						</div>
 					) : (
-						<span className="text-white font-medium ml-auto">{progress}</span>
+						<span className="text-white font-medium ml-1 text-xs">{progress}</span>
 					)}
 				</div>
 			</div>
