@@ -1,6 +1,5 @@
 import _ from "lodash"
-import { observer } from "mobx-react"
-import useDefaultSiteTheme from "../../../../hooks/memos/default-site-theme"
+import TierNumberSnowball from "./tier-number-snowball"
 
 interface Props {
 	isActive: boolean
@@ -9,9 +8,8 @@ interface Props {
 }
 
 // eslint-disable-next-line complexity
-function TierProgressBar(props: Props) {
+export default function TierProgressBar(props: Props) {
 	const { isActive, tier, numberOfPurchasesInThisTierSoFar } = props
-	const defaultSiteTheme = useDefaultSiteTheme()
 
 	let progressColor
 	if (tier.tierNumber === 1) progressColor =  "rgb(220 38 38)"
@@ -43,16 +41,7 @@ function TierProgressBar(props: Props) {
 
 	return (
 		<div className="flex items-center space-x-2 relative mb-4">
-			<div
-				className="absolute -top-2.5 left-0 font-bold rounded-full \
-					w-6 h-6 border border-black dark:border-white flex items-center justify-center text-md bg-zinc-200 dark:bg-zinc-700"
-				style={{
-					backgroundColor: isActive ? "rgb(250, 255, 0)" : "",
-					color: (defaultSiteTheme === "dark" && isActive === false) ? "white" : "black"
-				}}
-			>
-				{tier.tierNumber}
-			</div>
+			<TierNumberSnowball isActive={isActive} tier={tier} />
 			<div
 				className="flex items-center w-full h-8 bg-zinc-200 dark:bg-zinc-700 \
 				rounded-full border border-black dark:border-zinc-300 overflow-hidden"
@@ -85,5 +74,3 @@ function TierProgressBar(props: Props) {
 		</div>
 	)
 }
-
-export default observer(TierProgressBar)

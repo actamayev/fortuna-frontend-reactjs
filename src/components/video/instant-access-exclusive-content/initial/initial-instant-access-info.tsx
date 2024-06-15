@@ -6,31 +6,18 @@ import TwoTiersInfo from "./two-tiers-info"
 import ThreeTiersInfo from "./three-tiers-info"
 import { useVideoContext } from "../../../../contexts/video-context"
 import { useMarketContext } from "../../../../contexts/market-context"
-import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
 
 function InitialInstantAccessInfo() {
 	const { videoUUID } = useParams<{ videoUUID: string}>()
 	const videoClass = useVideoContext()
 	const video = videoClass.findVideoFromUUID(videoUUID)
 	const marketClass = useMarketContext()
-	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
 	if (
 		_.isUndefined(video) ||
 		video.isVideoExclusive === false ||
-		_.isNull(positionsAndTransactionsClass) ||
 		marketClass?.instantAccessToExclusiveContentStage !== "initial"
 	) return null
-
-	if (positionsAndTransactionsClass.checkIfUuidExistsInExclusiveContentList(video.uuid) === true) {
-		return (
-			<div className="w-full">
-				<div className="flex items-center w-full">
-					<span>You already purchased access to this exclusive video</span>
-				</div>
-			</div>
-		)
-	}
 
 	if (_.isNull(video.numberOfExclusivePurchasesSoFar)) {
 		return <>Not exclusive</>
