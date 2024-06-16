@@ -162,7 +162,7 @@ function ThreeTiersInfo(props: Props) {
 				style={{ cursor: doesUserHaveAccessToExclusiveContent ? "" : "pointer" }}
 			>
 				<TierProgressBar
-					isActive={false}
+					isActive={true}
 					tier={firstTier}
 					numberOfPurchasesInThisTierSoFar={numberOfExclusivePurchasesSoFar}
 				/>

@@ -36,6 +36,7 @@ function TierProgressBar(props: Props) {
 
 	const containerWidth = isActive ||
 		_.isNull(numberOfPurchasesInThisTierSoFar) ||
+		_.isNull(tier.purchasesInThisTier) ||
 		numberOfPurchasesInThisTierSoFar === tier.purchasesInThisTier
 		? "100%"
 		: "32.5%"
@@ -49,14 +50,17 @@ function TierProgressBar(props: Props) {
 				style={{ width : containerWidth }}
 			>
 				<div className="bg-zinc-200 dark:bg-zinc-700 h-full flex items-center justify-center ml-4 mr-2 w-8">
-					<span className="text-black dark:text-white text-s font-extrabold">
+					<span
+						className="text-black dark:text-white text-sm font-extrabold"
+						style={{}}
+					>
 						${tier.tierAccessPriceUsd}
 					</span>
 				</div>
 				<div
 					className="h-full flex items-center pr-2 rounded-full border-r-0 border border-black dark:border-zinc-300"
 					style={{
-						width: _.isNull(tier.purchasesInThisTier) ? "100%" : `${progress}%`,
+						width: `${progress}%`,
 						minWidth: "30px",
 						backgroundColor: progressColor
 					}}
