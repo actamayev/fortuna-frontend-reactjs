@@ -15,8 +15,6 @@ declare global {
 		"/creator/my-content" |
 		"/creator/create-content" |
 
-		"/privacy-policy" |
-
 		"/contact"
 
 	type DynamicPageNames =

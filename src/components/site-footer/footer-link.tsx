@@ -15,7 +15,7 @@ export default function FooterLink(props: Props) {
 		>
 			<Link
 				to={linkTo}
-				className="cursor:pointer text-zinc-600 hover:text-zinc-950 dark:text-zinc-200 dark:hover:text-zinc-50"
+				className="cursor:pointer text-zinc-950 dark:text-zinc-50 hover:underline"
 			>
 				{linkTitle}
 			</Link>
