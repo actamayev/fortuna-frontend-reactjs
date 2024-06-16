@@ -63,7 +63,7 @@ function ThreeTiersInfo(props: Props) {
 				)
 			}
 
-			// This is if the third tier has not purchase limit
+			// This is if the third tier has no purchase limit
 			if (_.isNull(thirdTier.purchasesInThisTier)) {
 				return (
 					<div>
@@ -138,10 +138,7 @@ function ThreeTiersInfo(props: Props) {
 					<TierProgressBar
 						isActive={true}
 						tier={secondTier}
-						numberOfPurchasesInThisTierSoFar={
-							((firstTier.purchasesInThisTier as number) + (secondTier.purchasesInThisTier as number)) -
-						numberOfExclusivePurchasesSoFar
-						}
+						numberOfPurchasesInThisTierSoFar={numberOfExclusivePurchasesSoFar - (firstTier.purchasesInThisTier as number)}
 					/>
 					<TierProgressBar
 						isActive={false}
