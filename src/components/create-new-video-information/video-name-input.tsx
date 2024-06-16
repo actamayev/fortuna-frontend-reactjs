@@ -26,6 +26,7 @@ function VideoNameInput() {
 			onChange = {updateNewVideoDetails}
 			required
 			value = {videoName}
+			maxLength={100}
 		/>
 	)
 }

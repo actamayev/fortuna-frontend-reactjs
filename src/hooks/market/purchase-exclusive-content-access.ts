@@ -53,6 +53,12 @@ export default function usePurchaseExclusiveContentAccess(): (
 				uuid: video.uuid
 			}
 			positionsAndTransactionsClass.addExclusiveContent(exclusiveContentToAddToList)
+			videoClass.updateVideoDetailsAfterUserPurchase(
+				videoUUID,
+				tierNumber,
+				purchaseResponse.data.isTierSoldOut,
+				purchaseResponse.data.isVideoSoldOut
+			)
 			marketClass.setInstantAccessToExclusiveContentStage("initial")
 			const tierAccessPriceUsd = getTieredAccessPriceUsd(video)
 			if (_.isNull(tierAccessPriceUsd)) {
@@ -60,7 +66,6 @@ export default function usePurchaseExclusiveContentAccess(): (
 			} else {
 				solanaClass.alterWalletBalanceUsd(-tierAccessPriceUsd)
 			}
-			videoClass.updateVideoDetailsAfterUserPurchase(videoUUID, purchaseResponse.data.isVideoSoldOut)
 			// ASAP TODO: Add this transaction to my transactions (don't just call retrieveTransactions - redundant)
 			// Consider returning the sol transfer details with the purchaseExclusiveContentAccess response.
 			// Add that single new transaction to the transaction array

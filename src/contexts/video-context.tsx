@@ -154,11 +154,24 @@ class VideoClass {
 		this.creatorData.splice(index, 0, newCreatorData)
 	}
 
-	public updateVideoDetailsAfterUserPurchase(videoUUID: string, isVideoSoldOut: boolean): void {
+	public updateVideoDetailsAfterUserPurchase(
+		videoUUID: string,
+		tierNumber: number,
+		isTierSoldOut: boolean,
+		isVideoSoldOut: boolean
+	): void {
 		const video = this.contextForVideo(videoUUID)
 		if (_.isUndefined(video)) return
 
 		if (isVideoSoldOut === true) video.videoListingStatus = "SOLDOUT"
+		if (isTierSoldOut === true) {
+			const tierIndex = video.tierData.findIndex(tier => tier.tierNumber === tierNumber)
+			if (tierIndex !== -1) {
+				const tierData = video.tierData[tierIndex]
+				tierData.isTierSoldOut = true
+				video.tierData[tierIndex] = tierData
+			}
+		}
 		if (!_.isNull(video.numberOfExclusivePurchasesSoFar)) {
 			video.numberOfExclusivePurchasesSoFar ++
 		}

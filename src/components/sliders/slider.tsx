@@ -1,4 +1,4 @@
-import HoverOutlineComponent from "./hover-outline-component"
+import HoverOutlineComponent from "../hover-outline-component"
 
 interface Props {
 	checkedCondition: boolean | undefined

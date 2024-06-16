@@ -64,7 +64,7 @@ class PositionsAndTransactionsClass {
 	})
 
 	public checkIfUuidExistsInExclusiveContentList(uuid: string | undefined): boolean {
-		if (_.isUndefined(uuid)) return true
+		if (_.isUndefined(uuid)) return false
 		for (const content of this.myPurchasedExclusiveContent) {
 			if (_.isEqual(content.uuid, uuid)) return true
 		}

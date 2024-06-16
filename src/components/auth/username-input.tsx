@@ -18,6 +18,7 @@ export default function UsernameInput (props: Props) {
 			onChange = {(event) => setCredentials({ ...credentials, username: handleTypeUsername(event) })}
 			required
 			value = {credentials.username || ""}
+			maxLength={100}
 		/>
 	)
 }

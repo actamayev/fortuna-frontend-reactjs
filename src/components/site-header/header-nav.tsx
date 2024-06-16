@@ -1,5 +1,4 @@
 import SearchBar from "./search-bar"
-import SolOrUsdSlider from "./sol-or-usd-slider"
 import ChooseSiteTheme from "../choose-site-theme"
 import LogoHeaderSection from "./logo-header-section"
 import LoginLogoutHeaderItem from "./login-logout-header-item"
@@ -15,7 +14,6 @@ export default function HeaderNav() {
 				</div>
 				<div className="flex items-center z-10">
 					<CreateContentHeaderButton />
-					<SolOrUsdSlider />
 					<ChooseSiteTheme />
 					<LoginLogoutHeaderItem />
 				</div>
