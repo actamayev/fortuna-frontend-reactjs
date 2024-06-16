@@ -26,6 +26,7 @@ export default function RegisterUsername() {
 					onChange = {(event) => setUsername(handleTypeUsername(event))}
 					required
 					value = {username}
+					maxLength={100}
 				/>
 
 				<Button

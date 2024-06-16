@@ -27,6 +27,7 @@ function VideoDescriptionInput() {
 			required
 			value = {description}
 			multiline={true}
+			maxLength={5000}
 		/>
 	)
 }
