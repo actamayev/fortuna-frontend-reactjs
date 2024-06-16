@@ -46,14 +46,11 @@ function TierProgressBar(props: Props) {
 			<TierNumberSnowball isActive={isActive} tier={tier} />
 			<div
 				className="flex items-center w-full h-8 bg-zinc-200 dark:bg-zinc-700 \
-				rounded-full border border-black dark:border-zinc-300 overflow-hidden"
+					rounded-full border border-black dark:border-zinc-300 overflow-hidden"
 				style={{ width : containerWidth }}
 			>
 				<div className="bg-zinc-200 dark:bg-zinc-700 h-full flex items-center justify-center ml-4 mr-2 w-8">
-					<span
-						className="text-black dark:text-white text-sm font-extrabold"
-						style={{}}
-					>
+					<span className="text-black dark:text-white text-sm font-extrabold">
 						${tier.tierAccessPriceUsd}
 					</span>
 				</div>
