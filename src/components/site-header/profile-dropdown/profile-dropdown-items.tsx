@@ -1,10 +1,9 @@
 import { useState } from "react"
 import { observer } from "mobx-react"
 import { Link } from "react-router-dom"
-import { FaUser } from "react-icons/fa"
 import { IoWallet } from "react-icons/io5"
-import { GiTwoCoins } from "react-icons/gi"
 import { RiLogoutBoxRLine } from "react-icons/ri"
+import { FaShoppingBag, FaUser } from "react-icons/fa"
 import { BsFillCollectionPlayFill } from "react-icons/bs"
 import useHandleLogout from "../../../hooks/auth/handle-logout"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
@@ -30,7 +29,7 @@ function ProfileDropdownItems() {
 			</div>
 
 			<Link to="/my-ownership" className={classes.middle}>
-				<GiTwoCoins className="mr-2" size={17} />
+				<FaShoppingBag className="mr-2" size={17} />
 				My Ownership
 			</Link>
 			<Link to="/my-wallet" className={classes.middle}>
