@@ -9,7 +9,7 @@ export default function LinkToExternalSite(props: Props) {
 	return (
 		<div
 			className="mb-2 text-sm"
-			style={{ fontSize: "12px", lineHeight: "18px", fontWeight: "300" }}
+			style={{ fontSize: "12px", lineHeight: "18px", fontWeight: "400" }}
 		>
 			<a
 				href={link}
