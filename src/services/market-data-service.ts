@@ -10,8 +10,8 @@ export default class MarketDataService {
 	async purchaseExclusiveContentAccess(
 		videoUUID: string,
 		tierNumber: number
-	): Promise<AxiosResponse<DefiniteRetrievedVideoUrl | NonSuccessResponse>> {
-		return await this.httpClient.http.post<DefiniteRetrievedVideoUrl | NonSuccessResponse>(
+	): Promise<AxiosResponse<PurchaseInstantAccessResponse | NonSuccessResponse>> {
+		return await this.httpClient.http.post<PurchaseInstantAccessResponse | NonSuccessResponse>(
 			`${this.pathHeader}/purchase-instant-exclusive-content-access`, { videoUUID, tierNumber }
 		)
 	}

@@ -17,6 +17,7 @@ export default function ContactInput (props: Props) {
 			onChange = {(event) => setCredentials({ ...credentials, contact: event.target.value })}
 			required
 			value = {credentials.contact || ""}
+			maxLength={100}
 		/>
 	)
 }

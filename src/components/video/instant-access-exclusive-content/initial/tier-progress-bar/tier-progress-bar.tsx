@@ -1,4 +1,5 @@
 import _ from "lodash"
+import { observer } from "mobx-react"
 import TierNumberSnowball from "./tier-number-snowball"
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
 }
 
 // eslint-disable-next-line complexity
-export default function TierProgressBar(props: Props) {
+function TierProgressBar(props: Props) {
 	const { isActive, tier, numberOfPurchasesInThisTierSoFar } = props
 
 	let progressColor
@@ -18,7 +19,7 @@ export default function TierProgressBar(props: Props) {
 
 	let textInProgressBar
 	if (_.isNull(tier.purchasesInThisTier) || _.isNull(numberOfPurchasesInThisTierSoFar)) {
-		textInProgressBar = "Tier has not limit"
+		textInProgressBar = "No purchase limit"
 	} else if (tier.isTierSoldOut === true) {
 		textInProgressBar = "Tier sold out"
 	}
@@ -30,7 +31,7 @@ export default function TierProgressBar(props: Props) {
 		tier.isTierSoldOut !== true &&
 		numberOfPurchasesInThisTierSoFar !== tier.purchasesInThisTier
 	) {
-		progress = numberOfPurchasesInThisTierSoFar / tier.purchasesInThisTier
+		progress = ( 100 * numberOfPurchasesInThisTierSoFar / tier.purchasesInThisTier)
 	}
 
 	const containerWidth = isActive ||
@@ -48,14 +49,14 @@ export default function TierProgressBar(props: Props) {
 				style={{ width : containerWidth }}
 			>
 				<div className="bg-zinc-200 dark:bg-zinc-700 h-full flex items-center justify-center ml-4 mr-2 w-8">
-					<span className="text-black dark:text-white font-black">
+					<span className="text-black dark:text-white text-s font-extrabold">
 						${tier.tierAccessPriceUsd}
 					</span>
 				</div>
 				<div
 					className="h-full flex items-center pr-2 rounded-full border-r-0 border border-black dark:border-zinc-300"
 					style={{
-						width: `${progress}%`,
+						width: _.isNull(tier.purchasesInThisTier) ? "100%" : `${progress}%`,
 						minWidth: "30px",
 						backgroundColor: progressColor
 					}}
@@ -67,10 +68,15 @@ export default function TierProgressBar(props: Props) {
 							</span>
 						</div>
 					) : (
-						<span className="text-white font-medium ml-1 text-xs">{progress.toFixed(0)}%</span>
+						<span className="text-white font-medium ml-auto text-xs">
+							{progress.toFixed(0)}%
+						</span>
 					)}
 				</div>
 			</div>
 		</div>
 	)
 }
+
+// Leave this an observer (it's observing the tier, which is in the context)
+export default observer(TierProgressBar)
