@@ -14,7 +14,7 @@ interface Props {
 	numberOfExclusivePurchasesSoFar: number
 }
 
-// eslint-disable-next-line max-lines-per-function, complexity
+// eslint-disable-next-line max-lines-per-function
 function TwoTiersInfo(props: Props) {
 	const { tiers, numberOfExclusivePurchasesSoFar } = props
 	const { videoUUID } = useParams<{ videoUUID: string}>()
@@ -36,6 +36,25 @@ function TwoTiersInfo(props: Props) {
 
 	// This is if the first tier is soldout:
 	if ((firstTier.isTierSoldOut === true)) {
+		// This is if both tiers are soldout
+		if (secondTier.isTierSoldOut === true) {
+			return (
+				<div>
+					<TierProgressBar
+						isActive={false}
+						tier={firstTier}
+						numberOfPurchasesInThisTierSoFar={firstTier.purchasesInThisTier}
+					/>
+					<TierProgressBar
+						isActive={false}
+						tier={secondTier}
+						numberOfPurchasesInThisTierSoFar={secondTier.purchasesInThisTier}
+					/>
+					<ShowUserPurchasedContentMessage />
+				</div>
+			)
+		}
+
 		// This is if the first tier is soldout, and the second tier has no purchase limit:
 		if (_.isNull(secondTier.purchasesInThisTier)) {
 			return (
@@ -55,24 +74,6 @@ function TwoTiersInfo(props: Props) {
 							numberOfPurchasesInThisTierSoFar={secondTier.purchasesInThisTier}
 						/>
 					</div>
-					<ShowUserPurchasedContentMessage />
-				</div>
-			)
-		}
-		// This is if both tiers are soldout
-		if (numberOfExclusivePurchasesSoFar >= ((firstTier.purchasesInThisTier as number) + secondTier.purchasesInThisTier)) {
-			return (
-				<div>
-					<TierProgressBar
-						isActive={false}
-						tier={firstTier}
-						numberOfPurchasesInThisTierSoFar={firstTier.purchasesInThisTier}
-					/>
-					<TierProgressBar
-						isActive={false}
-						tier={secondTier}
-						numberOfPurchasesInThisTierSoFar={secondTier.purchasesInThisTier}
-					/>
 					<ShowUserPurchasedContentMessage />
 				</div>
 			)
