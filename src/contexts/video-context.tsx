@@ -165,7 +165,12 @@ class VideoClass {
 
 		if (isVideoSoldOut === true) video.videoListingStatus = "SOLDOUT"
 		if (isTierSoldOut === true) {
-			video.tierData[tierNumber - 1].isTierSoldOut = true
+			const tierIndex = video.tierData.findIndex(tier => tier.tierNumber === tierNumber)
+			if (tierIndex !== -1) {
+				const tierData = video.tierData[tierIndex]
+				tierData.isTierSoldOut = true
+				video.tierData[tierIndex] = tierData
+			}
 		}
 		if (!_.isNull(video.numberOfExclusivePurchasesSoFar)) {
 			video.numberOfExclusivePurchasesSoFar ++
