@@ -61,11 +61,11 @@ export default function useCreateVideoOnclick(): (
 				uploadedVideoId: uploadVideoResponse.data.uploadedVideoId
 			}
 
-			setStatus("Uploading video metadata")
+			setStatus("Video uploading... you may close this page")
 			const createVideoResponse = await fortunaApiClient.creatorDataService.createVideo(createVideoObject)
 
 			if (!_.isEqual(createVideoResponse.status, 200) || isNonSuccessResponse(createVideoResponse.data)) {
-				setError("Error uploading video metadata")
+				setError("Error uploading video")
 				return
 			}
 
