@@ -12,7 +12,7 @@ export default function Footer() {
 					<FooterSocialSection />
 				</div>
 				<hr className="flex-grow mt-4 border-zinc-300" />
-				<div className="text-center text-zinc-600 mt-8 font-medium dark:text-zinc-200">
+				<div className="text-center text-zinc-950 mt-8 font-medium dark:text-zinc-50">
 					<p>Fortuna</p>
 				</div>
 			</div>
