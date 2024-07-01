@@ -19,9 +19,9 @@ function MoreVideosMap(props: Props) {
 			<div className="flex text-xl font-medium my-2">
 				More from {video.creatorUsername}
 			</div>
-			<div className="grid grid-cols-2 gap-4">
+			<div className="grid grid-cols-2">
 				{creatorData.videoData.map(videoData => (
-					<div key={videoData.uuid} className="flex flex-col items-start">
+					<div key={videoData.uuid} className="flex flex-col items-start py-1">
 						<SingleRecommendedVideo videoData={videoData} />
 					</div>
 				))}
