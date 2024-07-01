@@ -1,10 +1,9 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
+import MaxProfitByTier from "./max-profit-by-tier"
 import numberWithCommas from "../../../utils/numbers-with-commas"
 import { useCreatorContext } from "../../../contexts/creator-context"
-import MaxProfitByTier from "./max-profit-by-tier"
 
-// eslint-disable-next-line complexity
 function MaxProfitFromVideo() {
 	const creatorClass = useCreatorContext()
 
@@ -21,16 +20,14 @@ function MaxProfitFromVideo() {
 
 	return (
 		<div>
-			{creatorClass.getProfitByVideoTier(1) && (
+			{creatorClass.newVideoDetails.tierData.length >= 1 && (
 				<MaxProfitByTier tierNumber={1} />
 			)}
-			{!_.isNull(creatorClass.getProfitByVideoTier(2)) && (
+			{creatorClass.newVideoDetails.tierData.length >= 2 && (
 				<MaxProfitByTier tierNumber={2} />
-
 			)}
-			{!_.isNull(creatorClass.getProfitByVideoTier(3)) && (
+			{creatorClass.newVideoDetails.tierData.length >= 3 && (
 				<MaxProfitByTier tierNumber={3} />
-
 			)}
 			{creatorClass.newVideoFortunaFee && (
 				<div>Fortuna Fee (2.5%): ${numberWithCommas(_.round(creatorClass.newVideoFortunaFee, 3))}</div>

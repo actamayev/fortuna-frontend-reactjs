@@ -1,10 +1,9 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
-import ShowTierPrice from "./show-tier-price"
 import ChooseTierLimit from "./choose-tier-limit"
-import ChooseDiscount from "./choose-tier-discount"
 import DeleteTierButton from "./delete-tier-button"
+import ShowTierDiscount from "./show-tier-discount"
 import RangeSelectorSlider from "../../range-selector-slider"
 import { useCreatorContext } from "../../../contexts/creator-context"
 import useIsNewVideoLoading from "../../../hooks/creator/create-video/is-new-video-loading"
@@ -35,33 +34,6 @@ function ExclusiveContentTier(props: Props) {
 		creatorClass.updateNewVideoTierDetails("tierAccessPriceUsd", tierNumber, Number(event.target.value))
 	}, [creatorClass, tierNumber])
 
-	if (areThereMoreTiers === false) {
-		return (
-			<div>
-				<div className="flex justify-between items-center">
-					<span className="mb-4 font-semibold">Tier {tierNumber}</span>
-					<div className="flex justify-end">
-						<DeleteTierButton tierNumber={tierNumber} />
-					</div>
-				</div>
-				<RangeSelectorSlider
-					title="Price to access content ($)"
-					value={tierAccessPriceUsd}
-					onChange={updateNewVideoDetails}
-					min={0.5}
-					max={50}
-					step={0.05}
-					disabled={isNewVideoLoading}
-					customWidth="w-5/6"
-				/>
-				<div>
-					${_.round(tierAccessPriceUsd, 2)}
-				</div>
-				<ChooseTierLimit tierNumber={tierNumber} infiniteAllowed={true} />
-			</div>
-		)
-	}
-
 	return (
 		<div>
 			<div className="flex justify-between items-center">
@@ -70,9 +42,28 @@ function ExclusiveContentTier(props: Props) {
 					<DeleteTierButton tierNumber={tierNumber} />
 				</div>
 			</div>
-			<ChooseDiscount tierNumber={tierNumber}/>
-			<ShowTierPrice tierNumber={tierNumber} />
-			<ChooseTierLimit tierNumber={tierNumber} infiniteAllowed={false} />
+			<RangeSelectorSlider
+				title="Price to access content ($)"
+				value={tierAccessPriceUsd}
+				onChange={updateNewVideoDetails}
+				min={0}
+				max={50}
+				step={0.05}
+				disabled={isNewVideoLoading}
+				customWidth="w-5/6"
+			/>
+			<div>
+				{tierAccessPriceUsd === 0 ? (
+					<>FREE</>
+				) : (
+					<>${_.round(tierAccessPriceUsd, 2)}</>
+				)}
+				<ShowTierDiscount tierNumber={tierNumber} />
+			</div>
+			<ChooseTierLimit
+				tierNumber={tierNumber}
+				infiniteAllowed={!areThereMoreTiers}
+			/>
 		</div>
 	)
 }

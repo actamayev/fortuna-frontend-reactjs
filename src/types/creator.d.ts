@@ -6,20 +6,19 @@ declare global {
 		tierData: TierData[]
 	}
 
-	interface TierData extends TierDataToSend {
-		isPurchaseTierChecked: boolean
+	interface NewVideoDetails extends CommonNewVideoDetails {
+		selectedImage: File | null
+		selectedVideo: File | null
 	}
 
 	interface TierDataToSend {
 		tierNumber: number
 		purchasesInThisTier: number | null // null means there is no limit
-		tierDiscount: number
 		tierAccessPriceUsd: number
 	}
 
-	interface NewVideoDetails extends CommonNewVideoDetails {
-		selectedImage: File | null
-		selectedVideo: File | null
+	interface TierData extends TierDataToSend {
+		isPurchaseTierChecked: boolean
 	}
 
 	interface CreateVideo extends CommonNewVideoDetails {
