@@ -17,10 +17,9 @@ class CreatorClass {
 		isContentExclusive: true,
 		tierData: [{
 			tierNumber: 1,
-			tierDiscount: 0,
 			isPurchaseTierChecked: false,
 			purchasesInThisTier: null,
-			tierAccessPriceUsd: 0.5
+			tierAccessPriceUsd: 2
 		}]
 	}
 	public isNewVideoLoading = false
@@ -85,10 +84,9 @@ class CreatorClass {
 			if (value === false || !_.isEmpty(this.newVideoDetails.tierData)) return
 			this.newVideoDetails.tierData = [{
 				tierNumber: 1,
-				tierDiscount: 0,
 				isPurchaseTierChecked: false,
 				purchasesInThisTier: null,
-				tierAccessPriceUsd: 0.5
+				tierAccessPriceUsd: 2
 			}]
 		}
 	})
@@ -96,26 +94,10 @@ class CreatorClass {
 	public updateNewVideoTierDetails = action(<K extends keyof TierData>(
 		key: K, tierNumber: number, value: TierData[K]
 	) => {
+		this.newVideoDetails.tierData[tierNumber - 1][key] = value
 		if (key === "purchasesInThisTier") {
-			this.newVideoDetails.tierData[tierNumber - 1][key] = value
 			if (_.isNull(value)) this.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked = false
-		} else if (key === "tierDiscount") {
-			this.newVideoDetails.tierData[tierNumber - 1].tierDiscount = value as number
-			this.newVideoDetails.tierData[tierNumber - 1].tierAccessPriceUsd =
-				(1 - ((value as number) / 100)) * this.lowestTierPrice
-		} else if (key === "isPurchaseTierChecked") {
-			this.newVideoDetails.tierData[tierNumber - 1][key] = value
-		} else if (key === "tierAccessPriceUsd") {
-			this.newVideoDetails.tierData[tierNumber - 1][key] = value
-			if (tierNumber === 2) {
-				this.newVideoDetails.tierData[0].tierAccessPriceUsd =
-					(1 - ((this.newVideoDetails.tierData[0].tierDiscount as number) / 100)) * this.lowestTierPrice
-			} else if (tierNumber === 3) {
-				this.newVideoDetails.tierData[0].tierAccessPriceUsd =
-					(1 - ((this.newVideoDetails.tierData[0].tierDiscount as number) / 100)) * this.lowestTierPrice
-				this.newVideoDetails.tierData[1].tierAccessPriceUsd =
-					(1 - ((this.newVideoDetails.tierData[1].tierDiscount as number) / 100)) * this.lowestTierPrice
-			}
+			return
 		}
 	})
 
@@ -131,10 +113,9 @@ class CreatorClass {
 		if (this.newVideoDetails.tierData.length >= 3) return
 		this.newVideoDetails.tierData.push({
 			tierNumber: this.newVideoDetails.tierData.length + 1,
-			tierDiscount: 0,
 			isPurchaseTierChecked: false,
 			purchasesInThisTier: null,
-			tierAccessPriceUsd: this.newVideoDetails.tierData[this.newVideoDetails.tierData.length - 1].tierAccessPriceUsd
+			tierAccessPriceUsd: 2
 		})
 		this.resetVideoTierDetailsAboveLowestTier()
 	}
@@ -169,11 +150,11 @@ class CreatorClass {
 		return this.newVideoDetails.tierData[this.newVideoDetails.tierData.length - 1].purchasesInThisTier !== null
 	}
 
-	public getProfitByVideoTier(tierNumber: number): number | null {
+	private getProfitByVideoTier(tierNumber: number): number | null {
 		const tierData = this.newVideoDetails.tierData.find(tier => tier.tierNumber === tierNumber)
 		if (_.isUndefined(tierData) || _.isNull(tierData.purchasesInThisTier)) return null
 
-		return (tierData.purchasesInThisTier) * this.lowestTierPrice * (1 - (tierData.tierDiscount / 100))
+		return tierData.purchasesInThisTier * tierData.tierAccessPriceUsd
 	}
 
 	get totalMaxProfit(): number | null {
@@ -217,10 +198,9 @@ class CreatorClass {
 			isContentExclusive: true,
 			tierData: [{
 				tierNumber: 1,
-				tierDiscount: 0,
 				isPurchaseTierChecked: false,
 				purchasesInThisTier: null,
-				tierAccessPriceUsd: 0.5
+				tierAccessPriceUsd: 2
 			}]
 		}
 	})
