@@ -3,6 +3,7 @@ import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import ChooseTierLimit from "./choose-tier-limit"
 import DeleteTierButton from "./delete-tier-button"
+import ShowTierDiscount from "./show-tier-discount"
 import RangeSelectorSlider from "../../range-selector-slider"
 import { useCreatorContext } from "../../../contexts/creator-context"
 import useIsNewVideoLoading from "../../../hooks/creator/create-video/is-new-video-loading"
@@ -53,10 +54,14 @@ function ExclusiveContentTier(props: Props) {
 			/>
 			<div>
 				{tierAccessPriceUsd === 0 ? (
-					<>FREE</>
+					<>
+						FREE
+						<ShowTierDiscount tierNumber={tierNumber} />
+					</>
 				) : (
 					<>
-						${_.round(tierAccessPriceUsd, 2)}
+						${_.round(tierAccessPriceUsd, 2)} {" "}
+						<ShowTierDiscount tierNumber={tierNumber} />
 					</>
 				)}
 			</div>
