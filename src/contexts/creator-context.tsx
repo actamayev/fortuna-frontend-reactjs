@@ -97,7 +97,6 @@ class CreatorClass {
 		this.newVideoDetails.tierData[tierNumber - 1][key] = value
 		if (key === "purchasesInThisTier") {
 			if (_.isNull(value)) this.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked = false
-			return
 		}
 	})
 

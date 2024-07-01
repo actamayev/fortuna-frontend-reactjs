@@ -54,16 +54,11 @@ function ExclusiveContentTier(props: Props) {
 			/>
 			<div>
 				{tierAccessPriceUsd === 0 ? (
-					<>
-						FREE
-						<ShowTierDiscount tierNumber={tierNumber} />
-					</>
+					<>FREE</>
 				) : (
-					<>
-						${_.round(tierAccessPriceUsd, 2)} {" "}
-						<ShowTierDiscount tierNumber={tierNumber} />
-					</>
+					<>${_.round(tierAccessPriceUsd, 2)}</>
 				)}
+				<ShowTierDiscount tierNumber={tierNumber} />
 			</div>
 			<ChooseTierLimit
 				tierNumber={tierNumber}
