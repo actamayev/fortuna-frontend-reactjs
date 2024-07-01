@@ -15,7 +15,7 @@ function MoreVideosMap(props: Props) {
 	if (_.isUndefined(creatorData) || _.isEmpty(creatorData.videoData)) return null
 
 	return (
-		<div className="mt-3">
+		<div>
 			<div className="flex text-xl font-medium my-2">
 				More from {video.creatorUsername}
 			</div>

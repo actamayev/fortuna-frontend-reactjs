@@ -20,7 +20,7 @@ export default function SingleRecommendedVideo(props: Props) {
 	return (
 		<div
 			className="flex-none flex flex-col items-center \
-		  hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer"
+		  		hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer"
 			style={{ width: "49%" }} // Change the width here
 			onClick={navigateToVideoPageCallback}
 		>
@@ -31,8 +31,8 @@ export default function SingleRecommendedVideo(props: Props) {
 					className="absolute top-0 left-0 w-full h-full rounded-lg object-cover"
 				/>
 			</div>
-			<div className="flex flex-col justify-start overflow-hidden w-full mt-2">
-				<div className="text-lg font-semibold truncate dark:text-zinc-200">
+			<div className="flex flex-col justify-start overflow-hidden w-full">
+				<div className="text-md font-semibold truncate dark:text-zinc-200">
 					{videoName}
 				</div>
 				<div className="text-xs text-zinc-600 dark:text-zinc-300">
