@@ -57,8 +57,8 @@ function Video() {
 					<SubVideoSection video={video} />
 				</div>
 			</div>
-			<div className="grid grid-cols-12">
-				<div className="col-span-12 overflow-x-auto">
+			<div className="flex flex-col">
+				<div className="w-full overflow-x-auto">
 					<MoreVideosMap video={video} />
 				</div>
 			</div>

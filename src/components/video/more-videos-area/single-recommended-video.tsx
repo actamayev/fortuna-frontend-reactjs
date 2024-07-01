@@ -19,16 +19,17 @@ export default function SingleRecommendedVideo(props: Props) {
 
 	return (
 		<div
-			className="flex-none flex flex-col items-start \
-				hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-64 p-1"
+			className="flex-none flex flex-col items-center \
+				hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-full h-full"
 			onClick={navigateToVideoPageCallback}
+			style={{ aspectRatio: "16/9" }}
 		>
 			<img
 				src={imageUrl}
 				alt={videoName}
-				className="w-64 h-36 rounded-lg object-cover"
+				className="w-full h-full rounded-lg object-cover"
 			/>
-			<div className="flex flex-col justify-start overflow-hidden w-full">
+			<div className="flex flex-col justify-start overflow-hidden w-full mt-2">
 				<div className="text-lg font-semibold truncate dark:text-zinc-200">
 					{videoName}
 				</div>
