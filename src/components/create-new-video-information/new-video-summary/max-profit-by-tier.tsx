@@ -14,20 +14,25 @@ function MaxProfitByTier(props: Props) {
 
 	const purchasesInThisTier = useMemo(() => {
 		if (_.isNull(creatorClass)) return null
-		return creatorClass.newVideoDetails.tierData[tierNumber - 1].purchasesInThisTier
+		return creatorClass.newVideoDetails.tierData[tierNumber - 1]?.purchasesInThisTier
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, tierNumber, creatorClass?.newVideoDetails.tierData[tierNumber - 1].purchasesInThisTier])
+	}, [creatorClass, tierNumber, creatorClass?.newVideoDetails.tierData[tierNumber - 1]?.purchasesInThisTier])
 
-	if (_.isNull(creatorClass) || _.isNull(purchasesInThisTier)) return null
+	const tierAccessPriceUsd = useMemo(() => {
+		if (_.isNull(creatorClass)) return 0
+		return creatorClass.newVideoDetails.tierData[tierNumber - 1]?.tierAccessPriceUsd
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [creatorClass, tierNumber, creatorClass?.newVideoDetails.tierData[tierNumber - 1]?.tierAccessPriceUsd])
+
+	if (_.isNull(purchasesInThisTier) || tierAccessPriceUsd === 0) return null
 
 	return (
 		<div>
-			Max Profit From Tier {tierNumber}: ${numberWithCommas(_.round(creatorClass.getProfitByVideoTier(tierNumber) || 0, 3))} {" "}
+			Max Profit From Tier {tierNumber}:
+			${numberWithCommas(_.round(purchasesInThisTier * tierAccessPriceUsd, 2))} {" "}
 			({purchasesInThisTier} {" "}
 			purchase{purchasesInThisTier > 1 ? "s" : ""} {" "}
-			X {" "}
-			{(100 - creatorClass.newVideoDetails.tierData[tierNumber - 1].tierDiscount) / 100} X {" "}
-			${creatorClass.lowestTierPrice})
+			X {" "} ${tierAccessPriceUsd})
 		</div>
 	)
 }
