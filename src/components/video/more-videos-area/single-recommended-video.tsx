@@ -27,7 +27,7 @@ export default function SingleRecommendedVideo(props: Props) {
 			onClick={navigateToVideoPageCallback}
 		>
 			<div className="flex w-full">
-				<div className="relative" style={{ width: "60%", height: "0", paddingBottom: "33.75%" }}>
+				<div className="relative" style={{ width: "60%", paddingBottom: "33.75%" }}>
 					<img
 						src={imageUrl}
 						alt={videoName}
