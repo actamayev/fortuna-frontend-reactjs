@@ -11,7 +11,7 @@ export default function SingleRecommendedVideo(props: Props) {
 	const dateFormatter = useDateFormatter()
 	const navigateToVideoPage = useNavigateToVideoPage()
 
-	const { uuid, imageUrl, videoName, createdAt } = videoData
+	const { uuid, imageUrl, videoName, createdAt, description } = videoData
 
 	const navigateToVideoPageCallback = useCallback(() => {
 		navigateToVideoPage(uuid)
@@ -20,16 +20,23 @@ export default function SingleRecommendedVideo(props: Props) {
 	return (
 		<div
 			className="flex-none flex flex-col items-center \
-		  		hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer"
-			style={{ width: "49%" }} // Change the width here
+				hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer"
+			style={{ width: "49%" }}
 			onClick={navigateToVideoPageCallback}
 		>
-			<div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
-				<img
-					src={imageUrl}
-					alt={videoName}
-					className="absolute top-0 left-0 w-full h-full rounded-lg object-cover"
-				/>
+			<div className="flex w-full">
+				<div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+					<img
+						src={imageUrl}
+						alt={videoName}
+						className="absolute top-0 left-0 w-full h-full rounded-lg object-cover"
+					/>
+				</div>
+				<div className="flex flex-col justify-start pl-4">
+					<div className="text-sm text-zinc-600 dark:text-zinc-300 mt-2">
+						{description}
+					</div>
+				</div>
 			</div>
 			<div className="flex flex-col justify-start overflow-hidden w-full">
 				<div className="text-md font-semibold truncate dark:text-zinc-200">
