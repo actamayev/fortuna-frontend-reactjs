@@ -1,3 +1,4 @@
+import _ from "lodash"
 import { useCallback } from "react"
 import useDateFormatter from "../../../hooks/date-formatter"
 import useNavigateToVideoPage from "../../../hooks/navigate/navigate-to-video-page"
@@ -40,7 +41,7 @@ export default function SingleRecommendedVideo(props: Props) {
 			</div>
 			<div className="flex flex-col justify-start overflow-hidden w-full">
 				<div className="text-md font-semibold truncate dark:text-zinc-200">
-					{videoName}
+					{_.truncate(videoName, { length: 50 })}
 				</div>
 				<div className="text-xs text-zinc-600 dark:text-zinc-300">
 					{dateFormatter(createdAt)}
