@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import _ from "lodash"
 import { observer } from "mobx-react"
 import TierNumberSnowball from "./tier-number-snowball"
@@ -53,8 +54,7 @@ function TierProgressBar (props: Props) {
 		<div className="flex items-center space-x-2 relative mb-4">
 			<TierNumberSnowball isActive={isActive} tier={tier} />
 			<div
-				className="flex items-center w-full h-8 bg-zinc-200 dark:bg-zinc-700 \
-					rounded-full border border-black dark:border-zinc-300 overflow-hidden"
+				className="flex items-center w-full h-8 bg-zinc-200 dark:bg-zinc-700 rounded-full border border-black dark:border-zinc-300 overflow-hidden"
 				style={{ width: containerWidth }}
 			>
 				<div className="bg-zinc-200 dark:bg-zinc-700 h-full flex items-center justify-center ml-4 mr-2 w-8">
@@ -66,7 +66,7 @@ function TierProgressBar (props: Props) {
 					className="h-full flex items-center pr-2 rounded-full border-r-0 border border-black dark:border-zinc-300"
 					style={{
 						width: `${progress}%`,
-						minWidth: "30px",
+						minWidth: progress < 20 ? "30px" : undefined,
 						minHeight: "30px",
 						backgroundColor: progressColor
 					}}
