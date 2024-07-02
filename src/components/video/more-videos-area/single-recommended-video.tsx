@@ -28,13 +28,15 @@ export default function SingleRecommendedVideo(props: Props) {
 		>
 			<div className="flex w-full">
 				<div className="relative" style={{ width: "60%", paddingBottom: "33.75%" }}>
-					<img
-						src={imageUrl}
-						alt={videoName}
-						className="absolute top-0 left-0 w-full h-full rounded-lg object-cover"
-					/>
+					<div className="absolute top-0 left-0 w-full h-full">
+						<img
+							src={imageUrl}
+							alt={videoName}
+							className="w-full h-full rounded-lg object-cover"
+						/>
+					</div>
 				</div>
-				<div className="flex flex-col justify-start pl-4 w-2/5 mt-2">
+				<div className="flex flex-col justify-start pl-4 w-2/5">
 					<TiersInfo videoData={videoData} />
 				</div>
 			</div>
