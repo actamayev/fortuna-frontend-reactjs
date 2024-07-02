@@ -66,7 +66,7 @@ function TierProgressBar (props: Props) {
 					className="h-full flex items-center pr-2 rounded-full border-r-0 border border-black dark:border-zinc-300"
 					style={{
 						width: `${progress}%`,
-						minWidth: progress === 0 ? "30px" : undefined,
+						minWidth: progress < 20 ? "30px" : undefined,
 						minHeight: "30px",
 						backgroundColor: progressColor
 					}}
@@ -78,9 +78,11 @@ function TierProgressBar (props: Props) {
 							</span>
 						</div>
 					) : (
-						<span className="text-white font-medium ml-auto text-xs" style={{ fontSize: "1vw" }}>
-							{progress.toFixed(0)}%
-						</span>
+						<div className="flex-1 flex justify-center">
+							<span className="text-white font-medium ml-auto" style={{ fontSize: "1vw" }}>
+								{progress.toFixed(0)}%
+							</span>
+						</div>
 					)}
 				</div>
 			</div>
