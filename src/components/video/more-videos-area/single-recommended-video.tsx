@@ -27,18 +27,18 @@ export default function SingleRecommendedVideo(props: Props) {
 			onClick={navigateToVideoPageCallback}
 		>
 			<div className="flex w-full">
-				<div className="relative w-full" style={{ paddingBottom: "28.25%" }}>
+				<div className="relative" style={{ width: "60%", paddingBottom: "33.75%" }}>
 					<img
 						src={imageUrl}
 						alt={videoName}
 						className="absolute top-0 left-0 w-full h-full rounded-lg object-cover"
 					/>
 				</div>
-				<div className="flex flex-col justify-start pl-4 w-full mt-2">
+				<div className="flex flex-col justify-start pl-4 w-2/5 mt-2">
 					<TiersInfo videoData={videoData} />
 				</div>
 			</div>
-			<div className="flex flex-col justify-start overflow-hidden w-full">
+			<div className="flex flex-col justify-start overflow-hidden w-full mt-2">
 				<div className="text-md font-semibold truncate dark:text-zinc-200">
 					{_.truncate(videoName, { length: 50 })}
 				</div>
