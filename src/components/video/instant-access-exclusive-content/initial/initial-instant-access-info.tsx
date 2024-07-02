@@ -15,11 +15,13 @@ function InitialInstantAccessInfo() {
 
 	if (
 		_.isUndefined(video) ||
-		video.isVideoExclusive === false ||
 		marketClass?.instantAccessToExclusiveContentStage !== "initial"
 	) return null
 
-	if (_.isNull(video.numberOfExclusivePurchasesSoFar)) {
+	if (
+		video.isVideoExclusive === false ||
+		_.isNull(video.numberOfExclusivePurchasesSoFar)
+	) {
 		return <>Not exclusive</>
 	}
 

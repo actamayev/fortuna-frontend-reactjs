@@ -2,9 +2,8 @@ import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
-import TierProgressBar from "./tier-progress-bar/tier-progress-bar"
 import { useMarketContext } from "../../../../contexts/market-context"
-import ShowUserPurchasedContentMessage from "./show-user-purchased-content-message"
+import OneTierTemplate from "../../video-tiers/tiers-templates/one-tier-template"
 import useCheckIfUUIDExistsInExclusiveContentList
 	from "../../../../hooks/positions-and-transactions/check-if-uuid-exists-in-exclusive-content-list"
 
@@ -28,20 +27,16 @@ function OneTierInfo(props: Props) {
 		marketClass.setInstantAccessToExclusiveContentStage("review")
 	}, [doesUserHaveAccessToExclusiveContent, marketClass, tier.isTierSoldOut])
 
+	if (_.isUndefined(videoUUID)) return null
+
 	return (
-		<div>
-			<div
-				onClick={onClickButton}
-				style={{ cursor: (tier.isTierSoldOut || doesUserHaveAccessToExclusiveContent) ? "" : "pointer" }}
-			>
-				<TierProgressBar
-					tier={tier}
-					isActive={true}
-					numberOfPurchasesInThisTierSoFar={numberOfExclusivePurchasesSoFar}
-				/>
-			</div>
-			<ShowUserPurchasedContentMessage />
-		</div>
+		<OneTierTemplate
+			onClick={onClickButton}
+			tier={tier}
+			numberOfExclusivePurchasesSoFar={numberOfExclusivePurchasesSoFar}
+			doesUserHaveAccessToExclusiveContent={doesUserHaveAccessToExclusiveContent}
+			uuid={videoUUID}
+		/>
 	)
 }
 

@@ -1,5 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
+import TiersInfo from "./tiers-info"
 import useDateFormatter from "../../../hooks/date-formatter"
 import useNavigateToVideoPage from "../../../hooks/navigate/navigate-to-video-page"
 
@@ -12,7 +13,7 @@ export default function SingleRecommendedVideo(props: Props) {
 	const dateFormatter = useDateFormatter()
 	const navigateToVideoPage = useNavigateToVideoPage()
 
-	const { uuid, imageUrl, videoName, createdAt, description } = videoData
+	const { uuid, imageUrl, videoName, createdAt } = videoData
 
 	const navigateToVideoPageCallback = useCallback(() => {
 		navigateToVideoPage(uuid)
@@ -33,10 +34,8 @@ export default function SingleRecommendedVideo(props: Props) {
 						className="absolute top-0 left-0 w-full h-full rounded-lg object-cover"
 					/>
 				</div>
-				<div className="flex flex-col justify-start pl-4 w-full">
-					<div className="text-sm text-zinc-600 dark:text-zinc-300 mt-2">
-						{description}
-					</div>
+				<div className="flex flex-col justify-start pl-4 w-full mt-2">
+					<TiersInfo videoData={videoData} />
 				</div>
 			</div>
 			<div className="flex flex-col justify-start overflow-hidden w-full">
