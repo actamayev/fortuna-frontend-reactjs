@@ -58,7 +58,7 @@ function TierProgressBar (props: Props) {
 				style={{ width: containerWidth }}
 			>
 				<div className="bg-zinc-200 dark:bg-zinc-700 h-full flex items-center justify-center ml-4 mr-2 w-8">
-					<span className="text-black dark:text-white text-sm font-extrabold">
+					<span className="text-black dark:text-white font-extrabold" style={{ fontSize: "1vw" }}>
 						${tier.tierAccessPriceUsd}
 					</span>
 				</div>
@@ -73,12 +73,12 @@ function TierProgressBar (props: Props) {
 				>
 					{textInProgressBar ? (
 						<div className="flex-1 flex justify-center">
-							<span className="text-white font-medium" style={{ fontSize: "2vw" }}>
+							<span className="text-white font-medium" style={{ fontSize: "1vw" }}>
 								{textInProgressBar}
 							</span>
 						</div>
 					) : (
-						<span className="text-white font-medium ml-auto text-xs" style={{ fontSize: "2vw" }}>
+						<span className="text-white font-medium ml-auto text-xs" style={{ fontSize: "1vw" }}>
 							{progress.toFixed(0)}%
 						</span>
 					)}
