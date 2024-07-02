@@ -23,7 +23,7 @@ export default function SingleRecommendedVideo(props: Props) {
 		<div
 			className="flex-none flex flex-col items-center \
 				hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer p-1"
-			style={{ width: "100%" }}
+			style={{ width: "100%", height: "100%" }}
 			onClick={navigateToVideoPageCallback}
 		>
 			<div className="flex w-full">

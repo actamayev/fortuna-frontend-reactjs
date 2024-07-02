@@ -31,7 +31,7 @@ function TierProgressBar(props: Props) {
 		tier.isTierSoldOut !== true &&
 		numberOfPurchasesInThisTierSoFar !== tier.purchasesInThisTier
 	) {
-		progress = ( 100 * numberOfPurchasesInThisTierSoFar / tier.purchasesInThisTier)
+		progress = (100 * numberOfPurchasesInThisTierSoFar / tier.purchasesInThisTier)
 	}
 
 	const containerWidth = isActive ||
@@ -59,6 +59,7 @@ function TierProgressBar(props: Props) {
 					style={{
 						width: `${progress}%`,
 						minWidth: "30px",
+						minHeight: "30px",
 						backgroundColor: progressColor
 					}}
 				>
