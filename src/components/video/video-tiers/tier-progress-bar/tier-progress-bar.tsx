@@ -48,7 +48,7 @@ function TierProgressBar (props: Props) {
 		_.isNull(tier.purchasesInThisTier) ||
 		numberOfPurchasesInThisTierSoFar === tier.purchasesInThisTier
 		? "100%"
-		: "34.2%"
+		: "88px"  // Set a fixed width in pixels
 
 	return (
 		<div className="flex items-center space-x-2 relative mb-4">
@@ -66,19 +66,19 @@ function TierProgressBar (props: Props) {
 					className="h-full flex items-center pr-2 rounded-full border-r-0 border border-black dark:border-zinc-300"
 					style={{
 						width: `${progress}%`,
-						minWidth: progress < 20 ? "30px" : undefined,
+						minWidth: progress === 0 ? "30px" : undefined,
 						minHeight: "30px",
 						backgroundColor: progressColor
 					}}
 				>
 					{textInProgressBar ? (
 						<div className="flex-1 flex justify-center">
-							<span className="text-white font-medium">
+							<span className="text-white font-medium" style={{ fontSize: "2vw" }}>
 								{textInProgressBar}
 							</span>
 						</div>
 					) : (
-						<span className="text-white font-medium ml-auto text-xs">
+						<span className="text-white font-medium ml-auto text-xs" style={{ fontSize: "2vw" }}>
 							{progress.toFixed(0)}%
 						</span>
 					)}
