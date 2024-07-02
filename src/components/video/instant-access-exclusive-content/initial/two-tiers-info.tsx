@@ -1,7 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
-import { useParams } from "react-router-dom"
 import { useMarketContext } from "../../../../contexts/market-context"
 import TwoTiersTemplate from "../../video-tiers/tiers-templates/two-tiers-template"
 import getTierByTierNumber from "../../../../utils/video-access-tiers/get-tier-by-tier-number"
@@ -9,17 +8,15 @@ import useCheckIfUUIDExistsInExclusiveContentList
 	from "../../../../hooks/positions-and-transactions/check-if-uuid-exists-in-exclusive-content-list"
 
 interface Props {
-	tiers: TierDataFromDB[]
-	numberOfExclusivePurchasesSoFar: number
+	video: SingleVideoDataFromBackend
 }
 
 function TwoTiersInfo(props: Props) {
-	const { tiers, numberOfExclusivePurchasesSoFar } = props
-	const { videoUUID } = useParams<{ videoUUID: string}>()
-	const firstTier = getTierByTierNumber(tiers, 1)
-	const secondTier = getTierByTierNumber(tiers, 2)
+	const { video } = props
+	const firstTier = getTierByTierNumber(video.tierData, 1)
+	const secondTier = getTierByTierNumber(video.tierData, 2)
 	const marketClass = useMarketContext()
-	const doesUserHaveAccessToExclusiveContent = useCheckIfUUIDExistsInExclusiveContentList(videoUUID)
+	const doesUserHaveAccessToExclusiveContent = useCheckIfUUIDExistsInExclusiveContentList(video.uuid)
 
 	const onClickButton = useCallback(() => {
 		if (
@@ -30,16 +27,20 @@ function TwoTiersInfo(props: Props) {
 		marketClass.setInstantAccessToExclusiveContentStage("review")
 	}, [doesUserHaveAccessToExclusiveContent, marketClass, secondTier?.isTierSoldOut])
 
-	if (_.isUndefined(firstTier) || _.isUndefined(secondTier) || _.isUndefined(videoUUID)) return null
+	if (
+		_.isUndefined(firstTier) ||
+		_.isUndefined(secondTier) ||
+		_.isNull(video.numberOfExclusivePurchasesSoFar)
+	) return null
 
 	return (
 		<TwoTiersTemplate
 			onClick={onClickButton}
 			firstTier={firstTier}
 			secondTier={secondTier}
-			numberOfExclusivePurchasesSoFar={numberOfExclusivePurchasesSoFar}
+			numberOfExclusivePurchasesSoFar={video.numberOfExclusivePurchasesSoFar}
 			doesUserHaveAccessToExclusiveContent={doesUserHaveAccessToExclusiveContent}
-			uuid={videoUUID}
+			uuid={video.uuid}
 		/>
 	)
 }

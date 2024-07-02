@@ -1,7 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
-import { useParams } from "react-router-dom"
 import { useMarketContext } from "../../../../contexts/market-context"
 import ThreeTiersTemplate from "../../video-tiers/tiers-templates/three-tiers-template"
 import getTierByTierNumber from "../../../../utils/video-access-tiers/get-tier-by-tier-number"
@@ -9,18 +8,16 @@ import useCheckIfUUIDExistsInExclusiveContentList
 	from "../../../../hooks/positions-and-transactions/check-if-uuid-exists-in-exclusive-content-list"
 
 interface Props {
-	tiers: TierDataFromDB[]
-	numberOfExclusivePurchasesSoFar: number
+	video: SingleVideoDataFromBackend
 }
 
 function ThreeTiersInfo(props: Props) {
-	const { tiers, numberOfExclusivePurchasesSoFar } = props
-	const { videoUUID } = useParams<{ videoUUID: string}>()
-	const firstTier = getTierByTierNumber(tiers, 1)
-	const secondTier = getTierByTierNumber(tiers, 2)
-	const thirdTier = getTierByTierNumber(tiers, 3)
+	const { video } = props
+	const firstTier = getTierByTierNumber(video.tierData, 1)
+	const secondTier = getTierByTierNumber(video.tierData, 2)
+	const thirdTier = getTierByTierNumber(video.tierData, 3)
 	const marketClass = useMarketContext()
-	const doesUserHaveAccessToExclusiveContent = useCheckIfUUIDExistsInExclusiveContentList(videoUUID)
+	const doesUserHaveAccessToExclusiveContent = useCheckIfUUIDExistsInExclusiveContentList(video.uuid)
 
 	const onClickButton = useCallback(() => {
 		if (
@@ -31,7 +28,12 @@ function ThreeTiersInfo(props: Props) {
 		marketClass.setInstantAccessToExclusiveContentStage("review")
 	}, [doesUserHaveAccessToExclusiveContent, marketClass, thirdTier?.isTierSoldOut])
 
-	if (_.isUndefined(firstTier) || _.isUndefined(secondTier) || _.isUndefined(thirdTier) || _.isUndefined(videoUUID)) return null
+	if (
+		_.isUndefined(firstTier) ||
+		_.isUndefined(secondTier) ||
+		_.isUndefined(thirdTier) ||
+		_.isNull(video.numberOfExclusivePurchasesSoFar)
+	) return null
 
 	return (
 		<ThreeTiersTemplate
@@ -39,9 +41,9 @@ function ThreeTiersInfo(props: Props) {
 			firstTier={firstTier}
 			secondTier={secondTier}
 			thirdTier={thirdTier}
-			numberOfExclusivePurchasesSoFar={numberOfExclusivePurchasesSoFar}
+			numberOfExclusivePurchasesSoFar={video.numberOfExclusivePurchasesSoFar}
 			doesUserHaveAccessToExclusiveContent={doesUserHaveAccessToExclusiveContent}
-			uuid={videoUUID}
+			uuid={video.uuid}
 		/>
 	)
 }
