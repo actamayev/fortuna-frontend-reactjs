@@ -13,7 +13,6 @@ interface Props {
 	numberOfExclusivePurchasesSoFar: number
 }
 
-// eslint-disable-next-line max-lines-per-function, complexity
 function ThreeTiersInfo(props: Props) {
 	const { tiers, numberOfExclusivePurchasesSoFar } = props
 	const { videoUUID } = useParams<{ videoUUID: string}>()
@@ -26,11 +25,11 @@ function ThreeTiersInfo(props: Props) {
 	const onClickButton = useCallback(() => {
 		if (
 			_.isNull(marketClass) ||
-			secondTier?.isTierSoldOut === true ||
+			thirdTier?.isTierSoldOut === true ||
 			doesUserHaveAccessToExclusiveContent === true
 		) return
 		marketClass.setInstantAccessToExclusiveContentStage("review")
-	}, [doesUserHaveAccessToExclusiveContent, marketClass, secondTier?.isTierSoldOut])
+	}, [doesUserHaveAccessToExclusiveContent, marketClass, thirdTier?.isTierSoldOut])
 
 	if (_.isUndefined(firstTier) || _.isUndefined(secondTier) || _.isUndefined(thirdTier) || _.isUndefined(videoUUID)) return null
 
