@@ -1,5 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
+import { useEffect, useRef } from "react"
 
 interface Props {
 	video: SingleVideoDataFromBackend
@@ -7,6 +8,13 @@ interface Props {
 
 function VideoPlayer(props: Props) {
 	const { video } = props
+	const videoRef = useRef<HTMLVideoElement>(null)
+
+	useEffect(() => {
+		if (videoRef.current) {
+			videoRef.current.load()
+		}
+	}, [video.videoUrl])
 
 	if (_.isUndefined(video.videoUrl)) {
 		return (
@@ -31,6 +39,7 @@ function VideoPlayer(props: Props) {
 	return (
 		<div className="w-full">
 			<video
+				ref={videoRef}
 				controls
 				autoPlay
 				className="w-full h-full rounded-xl"
@@ -38,7 +47,7 @@ function VideoPlayer(props: Props) {
 				style={{ aspectRatio: "16/9" }}
 			>
 				<source src={video.videoUrl} type="video/mp4" />
-					Your browser does not support the video tag.
+				Your browser does not support the video tag.
 			</video>
 		</div>
 	)

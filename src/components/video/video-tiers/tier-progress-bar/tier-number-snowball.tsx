@@ -1,5 +1,5 @@
 import { observer } from "mobx-react"
-import useDefaultSiteTheme from "../../../../../hooks/memos/default-site-theme"
+import useDefaultSiteTheme from "../../../../hooks/memos/default-site-theme"
 
 interface Props {
 	isActive: boolean
