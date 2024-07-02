@@ -1,11 +1,14 @@
 import { observer } from "mobx-react"
-import { useParams } from "react-router-dom"
 import useCheckIfUUIDExistsInExclusiveContentList
 	from "../../../../hooks/positions-and-transactions/check-if-uuid-exists-in-exclusive-content-list"
 
-function ShowUserPurchasedContentMessage() {
-	const { videoUUID } = useParams<{ videoUUID: string}>()
-	const doesUserHaveAccessToExclusiveContent = useCheckIfUUIDExistsInExclusiveContentList(videoUUID)
+interface Props {
+	uuid: string
+}
+
+function ShowUserPurchasedContentMessage(props: Props) {
+	const { uuid } = props
+	const doesUserHaveAccessToExclusiveContent = useCheckIfUUIDExistsInExclusiveContentList(uuid)
 
 	if (doesUserHaveAccessToExclusiveContent === false) return null
 

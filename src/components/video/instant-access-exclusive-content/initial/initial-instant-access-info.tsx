@@ -15,11 +15,13 @@ function InitialInstantAccessInfo() {
 
 	if (
 		_.isUndefined(video) ||
-		video.isVideoExclusive === false ||
 		marketClass?.instantAccessToExclusiveContentStage !== "initial"
 	) return null
 
-	if (_.isNull(video.numberOfExclusivePurchasesSoFar)) {
+	if (
+		video.isVideoExclusive === false ||
+		_.isNull(video.numberOfExclusivePurchasesSoFar)
+	) {
 		return <>Not exclusive</>
 	}
 
@@ -29,22 +31,13 @@ function InitialInstantAccessInfo() {
 				Instant Access
 			</div>
 			{video.tierData.length === 1 && (
-				<OneTierInfo
-					tier={video.tierData[0]}
-					numberOfExclusivePurchasesSoFar={video.numberOfExclusivePurchasesSoFar}
-				/>
+				<OneTierInfo video={video} />
 			)}
 			{video.tierData.length === 2 && (
-				<TwoTiersInfo
-					tiers={video.tierData}
-					numberOfExclusivePurchasesSoFar={video.numberOfExclusivePurchasesSoFar}
-				/>
+				<TwoTiersInfo video={video} />
 			)}
 			{video.tierData.length === 3 && (
-				<ThreeTiersInfo
-					tiers={video.tierData}
-					numberOfExclusivePurchasesSoFar={video.numberOfExclusivePurchasesSoFar}
-				/>
+				<ThreeTiersInfo video={video} />
 			)}
 		</>
 	)

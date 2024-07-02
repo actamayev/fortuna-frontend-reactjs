@@ -1,4 +1,6 @@
+import _ from "lodash"
 import { useCallback } from "react"
+import TiersInfo from "./tiers-info"
 import useDateFormatter from "../../../hooks/date-formatter"
 import useNavigateToVideoPage from "../../../hooks/navigate/navigate-to-video-page"
 
@@ -19,18 +21,26 @@ export default function SingleRecommendedVideo(props: Props) {
 
 	return (
 		<div
-			className="flex-none flex flex-col items-start \
-				hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-64 p-1"
+			className="flex-none flex flex-col items-center \
+				hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer p-1"
+			style={{ width: "100%" }}
 			onClick={navigateToVideoPageCallback}
 		>
-			<img
-				src={imageUrl}
-				alt={videoName}
-				className="w-64 h-36 rounded-lg object-cover"
-			/>
+			<div className="flex w-full">
+				<div className="relative w-full" style={{ paddingBottom: "28.25%" }}>
+					<img
+						src={imageUrl}
+						alt={videoName}
+						className="absolute top-0 left-0 w-full h-full rounded-lg object-cover"
+					/>
+				</div>
+				<div className="flex flex-col justify-start pl-4 w-full mt-2">
+					<TiersInfo videoData={videoData} />
+				</div>
+			</div>
 			<div className="flex flex-col justify-start overflow-hidden w-full">
-				<div className="text-lg font-semibold truncate dark:text-zinc-200">
-					{videoName}
+				<div className="text-md font-semibold truncate dark:text-zinc-200">
+					{_.truncate(videoName, { length: 50 })}
 				</div>
 				<div className="text-xs text-zinc-600 dark:text-zinc-300">
 					{dateFormatter(createdAt)}
