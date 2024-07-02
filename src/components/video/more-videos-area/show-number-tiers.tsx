@@ -23,7 +23,11 @@ function ShowNumberTiers(props: Props) {
 		navigate(videoData.uuid)
 	}, [navigate, videoData.uuid])
 
-	if (_.isEmpty(videoData.tierData) || videoData.tierData.length > 3) return null
+	if (
+		_.isEmpty(videoData.tierData) ||
+		videoData.tierData.length > 3 ||
+		_.isNull(videoData.numberOfExclusivePurchasesSoFar)
+	) return null
 
 	if (videoData.tierData.length === 1) {
 		if (_.isUndefined(firstTier)) return null
@@ -32,7 +36,7 @@ function ShowNumberTiers(props: Props) {
 			<OneTierTemplate
 				onClick={onClickButton}
 				tier={firstTier}
-				numberOfExclusivePurchasesSoFar={videoData.numberOfExclusivePurchasesSoFar || 0}
+				numberOfExclusivePurchasesSoFar={videoData.numberOfExclusivePurchasesSoFar}
 				doesUserHaveAccessToExclusiveContent={false}
 				uuid={videoData.uuid}
 			/>
@@ -45,7 +49,7 @@ function ShowNumberTiers(props: Props) {
 				onClick={onClickButton}
 				firstTier={firstTier}
 				secondTier={secondTier}
-				numberOfExclusivePurchasesSoFar={videoData.numberOfExclusivePurchasesSoFar || 0}
+				numberOfExclusivePurchasesSoFar={videoData.numberOfExclusivePurchasesSoFar}
 				doesUserHaveAccessToExclusiveContent={false}
 				uuid={videoData.uuid}
 			/>
@@ -59,7 +63,7 @@ function ShowNumberTiers(props: Props) {
 				firstTier={firstTier}
 				secondTier={secondTier}
 				thirdTier={thirdTier}
-				numberOfExclusivePurchasesSoFar={videoData.numberOfExclusivePurchasesSoFar || 0}
+				numberOfExclusivePurchasesSoFar={videoData.numberOfExclusivePurchasesSoFar}
 				doesUserHaveAccessToExclusiveContent={false}
 				uuid={videoData.uuid}
 			/>
