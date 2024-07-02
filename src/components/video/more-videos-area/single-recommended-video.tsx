@@ -25,14 +25,14 @@ export default function SingleRecommendedVideo(props: Props) {
 			onClick={navigateToVideoPageCallback}
 		>
 			<div className="flex w-full">
-				<div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+				<div className="relative w-full" style={{ paddingBottom: "28.25%" }}>
 					<img
 						src={imageUrl}
 						alt={videoName}
 						className="absolute top-0 left-0 w-full h-full rounded-lg object-cover"
 					/>
 				</div>
-				<div className="flex flex-col justify-start pl-4">
+				<div className="flex flex-col justify-start pl-4 w-full">
 					<div className="text-sm text-zinc-600 dark:text-zinc-300 mt-2">
 						{description}
 					</div>
