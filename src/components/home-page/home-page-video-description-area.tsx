@@ -1,5 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
+import { FaUserCircle } from "react-icons/fa"
 import ShowUsdOrSolPrice from "../show-usd-or-sol-price"
 import ShowHomeVideoLockStatus from "./show-home-video-lock-status"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
@@ -29,10 +30,15 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 
 	return (
 		<div className="flex items-center pt-1 dark:text-zinc-200 rounded-lg mx-1">
-			{creatorProfilePictureUrl && (
+			{creatorProfilePictureUrl ? (
 				<img
 					src={creatorProfilePictureUrl}
 					alt="Creator's Profile"
+					className="w-8 h-8 rounded-full mr-2 object-cover cursor-pointer"
+					onClick={navigateToCreatorPageCallback}
+				/>
+			) : (
+				<FaUserCircle
 					className="w-8 h-8 rounded-full mr-2 object-cover cursor-pointer"
 					onClick={navigateToCreatorPageCallback}
 				/>
