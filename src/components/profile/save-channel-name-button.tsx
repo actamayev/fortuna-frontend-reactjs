@@ -25,7 +25,7 @@ function SaveChannelNameButton(props: Props) {
 			classes="relative flex items-center justify-center inline-block mb-4"
 			onClickAction={handleSave}
 		>
-			<FaSave  color={defaultSiteTheme === "dark" ? "white" : "black"}/>
+			<FaSave color={defaultSiteTheme === "dark" ? "white" : "black"} />
 		</HoverOutlineComponent>
 	)
 }
