@@ -79,19 +79,21 @@ function ChannelName() {
 						{channelName.length}/{maxLength}
 					</span>
 				</div>
-				<div className="flex items-center h-full">
-					<Button
-						titleIcon={<FaSave size={20} />}
-						onClick={handleSave}
-						disabled={isLoading}
-						colorClass="bg-emerald-500"
-						hoverClass="hover:bg-emerald-600"
-						className="text-white rounded-md disabled:opacity-50 h-full flex items-center justify-center mb-4"
-						style={{
-							height: "38px" // Make this the same height as your input box, adjust as needed
-						}}
-					/>
-				</div>
+				{creatorClass?.channelName !== channelName && (
+					<div className="flex items-center h-full">
+						<Button
+							titleIcon={<FaSave size={20} />}
+							onClick={handleSave}
+							disabled={isLoading}
+							colorClass="bg-emerald-500"
+							hoverClass="hover:bg-emerald-600"
+							className="text-white rounded-md disabled:opacity-50 h-full flex items-center justify-center mb-4"
+							style={{
+								height: "38px"
+							}}
+						/>
+					</div>
+				)}
 			</div>
 		</div>
 	)

@@ -15,8 +15,10 @@ function MyProfile() {
 	return (
 		<>
 			<SectionHeader siteTitle="My Profile" />
-			<UploadProfilePicture />
-			<ChannelName />
+			<div className="flex items-start space-x-4">
+				<UploadProfilePicture />
+				<ChannelName />
+			</div>
 		</>
 	)
 }
