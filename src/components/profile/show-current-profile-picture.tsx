@@ -1,5 +1,4 @@
 import _ from "lodash"
-import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { RiPencilFill } from "react-icons/ri"
 import { FaUserCircle } from "react-icons/fa"
@@ -16,13 +15,9 @@ interface Props {
 }
 
 function ShowCurrentProfilePicture(props: Props) {
-	const { handleImageChange, fileInputRef, handleMouseEnter, handleMouseLeave, imageStyle } = props
+	const { handleImageChange, fileInputRef, handleMouseEnter, handleMouseLeave, imageStyle, editPictureCallback } = props
 	const personalInfoClass = usePersonalInfoContext()
 	const defaultSiteTheme = useDefaultSiteTheme()
-
-	const editPictureCallback = useCallback(() => {
-		fileInputRef.current?.click()
-	}, [fileInputRef])
 
 	if (_.isNull(personalInfoClass)) return null
 
