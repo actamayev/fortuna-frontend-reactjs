@@ -1,20 +1,16 @@
 import { observer } from "mobx-react"
-import { FaSave } from "react-icons/fa"
 import { useState, useCallback, useRef, useEffect } from "react"
-import Button from "../buttons/button"
+import SaveChannelNameButton from "./save-channel-name-button"
 import { useCreatorContext } from "../../contexts/creator-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
-import useAddOrEditChannelName from "../../hooks/creator/add-or-edit-channel-name"
 
 function ChannelName() {
 	const creatorClass = useCreatorContext()
 	const personalInfoClass = usePersonalInfoContext()
-	const [isLoading, setIsLoading] = useState(false)
 	const [channelName, setChannelName] = useState("")
 	const [inputWidth, setInputWidth] = useState("100px")
 	const maxLength = 60
 	const spanRef = useRef<HTMLSpanElement>(null)
-	const addOrEditChannelName = useAddOrEditChannelName()
 
 	useEffect(() => {
 		if (creatorClass?.channelName) {
@@ -38,10 +34,6 @@ function ChannelName() {
 			updateWidth(value)
 		}
 	}, [updateWidth])
-
-	const handleSave = useCallback(async () => {
-		await addOrEditChannelName(channelName, setIsLoading)
-	}, [addOrEditChannelName, channelName])
 
 	return (
 		<div>
@@ -79,21 +71,7 @@ function ChannelName() {
 						{channelName.length}/{maxLength}
 					</span>
 				</div>
-				{creatorClass?.channelName !== channelName && (
-					<div className="flex items-center h-full">
-						<Button
-							titleIcon={<FaSave size={20} />}
-							onClick={handleSave}
-							disabled={isLoading}
-							colorClass="bg-emerald-500"
-							hoverClass="hover:bg-emerald-600"
-							className="text-white rounded-md disabled:opacity-50 h-full flex items-center justify-center mb-4"
-							style={{
-								height: "38px"
-							}}
-						/>
-					</div>
-				)}
+				<SaveChannelNameButton channelName={channelName} />
 			</div>
 		</div>
 	)

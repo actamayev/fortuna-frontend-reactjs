@@ -3,9 +3,9 @@ import { observer } from "mobx-react"
 import { RiPencilFill } from "react-icons/ri"
 import { FaSave, FaTrash } from "react-icons/fa"
 import { useRef, useState, useCallback } from "react"
+import ShowCurrentProfilePicture from "./show-current-profile-picture"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import useUploadProfilePicture from "../../hooks/personal-info/upload-profile-picture"
-import ShowCurrentProfilePicture from "./show-current-profile-picture"
 
 // eslint-disable-next-line max-lines-per-function
 function UploadProfilePicture() {
