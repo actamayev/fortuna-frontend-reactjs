@@ -56,7 +56,6 @@ function UploadProfilePicture() {
 
 	if (_.isNull(personalInfoClass)) return null
 
-	console.log(previewUrl)
 	if (!_.isNull(previewUrl)) {
 		return (
 			<div className="relative inline-block my-3">
@@ -65,21 +64,30 @@ function UploadProfilePicture() {
 					className="w-36 h-36 rounded-full object-cover cursor-pointer"
 					onClick={editPictureCallback}
 				/>
-				<div className="absolute top-2 right-2 bg-gray-500 p-1 rounded-full cursor-pointer">
+				<div
+					className="absolute top-2 right-2 bg-blue-500 dark:bg-blue-600 p-1 rounded-full \
+						cursor-pointer hover:bg-blue-600 dark:hover:bg-blue-700"
+				>
 					<RiPencilFill
 						color="white"
 						size={22}
 						onClick={editPictureCallback}
 					/>
 				</div>
-				<div className="absolute top-2 left-2 bg-gray-500 p-1 rounded-full cursor-pointer">
+				<div
+					className="absolute top-2 left-2 bg-red-500 dark:bg-red-600 p-1 rounded-full \
+						cursor-pointer hover:bg-red-600 dark:hover:bg-red-700"
+				>
 					<FaTrash
 						color="white"
 						size={22}
 						onClick={removeContent}
 					/>
 				</div>
-				<div className="absolute bottom-2 right-2 bg-gray-500 p-1 rounded-full cursor-pointer">
+				<div
+					className="absolute bottom-2 right-2 bg-green-500 dark:bg-green-600 p-1 rounded-full
+					cursor-pointer hover:bg-green-600 dark:hover:bg-green-700"
+				>
 					<FaSave
 						color="white"
 						size={22}
