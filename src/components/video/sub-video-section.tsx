@@ -1,4 +1,5 @@
 import { useCallback } from "react"
+import { FaUserCircle } from "react-icons/fa"
 import ShareVideoButton from "./like-dislike/share-video-button"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import VideoLikeDislikeSection from "./like-dislike/video-like-dislike-section"
@@ -27,11 +28,18 @@ export default function SubVideoSection(props: Props) {
 				<div className="mt-0.5">
 					<div className="flex items-center justify-between mb-2">
 						<div className="flex items-center">
-							{creatorProfilePictureUrl && (
+							{creatorProfilePictureUrl ? (
 								<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center mr-2">
 									<img
 										src={creatorProfilePictureUrl}
 										alt="Creator's Profile"
+										className="min-w-full min-h-full object-cover cursor-pointer"
+										onClick={navigateToCreatorPageCallback}
+									/>
+								</div>
+							) : (
+								<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center mr-2">
+									<FaUserCircle
 										className="min-w-full min-h-full object-cover cursor-pointer"
 										onClick={navigateToCreatorPageCallback}
 									/>
