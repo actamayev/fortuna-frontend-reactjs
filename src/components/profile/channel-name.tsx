@@ -27,6 +27,10 @@ function ChannelName() {
 		}
 	}, [])
 
+	useEffect(() => {
+		updateWidth(channelName)
+	}, [channelName, updateWidth])
+
 	const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value
 		if (value.length <= maxLength) {

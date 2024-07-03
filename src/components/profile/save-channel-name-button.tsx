@@ -1,3 +1,4 @@
+import _ from "lodash"
 import { observer } from "mobx-react"
 import { FaSave } from "react-icons/fa"
 import { useCallback, useState } from "react"
@@ -22,7 +23,10 @@ function SaveChannelNameButton(props: Props) {
 	}, [addOrEditChannelName, channelName])
 
 	if (creatorClass?.channelName && creatorClass.channelName === channelName) return null
-	else if (personalInfoClass?.username && personalInfoClass.username === channelName) return null
+	else if (
+		_.isEmpty(creatorClass?.channelName) &&
+		(personalInfoClass?.username && personalInfoClass.username === channelName)
+	) return null
 
 	return (
 		<div className="flex items-center h-full">
