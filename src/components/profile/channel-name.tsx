@@ -1,5 +1,5 @@
 import { observer } from "mobx-react"
-import { useState, useCallback, useEffect } from "react"
+import { useState, useCallback, useEffect, useRef } from "react"
 import Button from "../buttons/button"
 import { useCreatorContext } from "../../contexts/creator-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
@@ -12,6 +12,14 @@ function ChannelName() {
 	const [isLoading, setIsLoading] = useState(false)
 	const [channelName, setChannelName] = useState("")
 	const maxLength = 60
+	const [inputWidth, setInputWidth] = useState("100px")
+	const spanRef = useRef<HTMLSpanElement>(null)
+
+	useEffect(() => {
+		if (spanRef.current) {
+			setInputWidth(`${spanRef.current.offsetWidth + 30}px`)
+		}
+	}, [channelName])
 
 	useEffect(() => {
 		if (creatorClass?.channelName) {
@@ -36,18 +44,34 @@ function ChannelName() {
 	return (
 		<div>
 			<label className="block text-sm font-medium text-zinc-600 dark:text-zinc-200">
-				Channel Name
+		Channel Name
 			</label>
 			<div className="flex items-center space-x-2">
-				<div>
+				<div className="relative">
+					<span
+						ref={spanRef}
+						className="invisible absolute whitespace-pre"
+						style={{
+							padding: "0 2px",
+							whiteSpace: "pre",
+						}}
+					>
+						{channelName}
+					</span>
 					<input
 						type="text"
 						className={`p-2 border rounded text-zinc-950 border-zinc-100 dark:border-zinc-700 
-							dark:text-zinc-200 bg-white dark:bg-zinc-800 outline-none
-							${channelName.length === maxLength ? "border-red-500 dark:border-red-500" : ""}`}
+						dark:text-zinc-200 bg-white dark:bg-zinc-800 outline-none 
+						${channelName.length === maxLength ? "border-red-500 dark:border-red-500" : ""}`}
 						value={channelName}
 						onChange={handleChange}
 						maxLength={maxLength}
+						style={{
+							minWidth: "150px",
+							width: inputWidth,
+							paddingRight: "10px",
+							boxSizing: "border-box",
+						}}
 					/>
 				</div>
 				<Button
