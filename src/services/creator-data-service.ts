@@ -18,4 +18,10 @@ export default class CreatorDataService {
 			`${this.pathHeader}/create-video`, { newVideoData }
 		)
 	}
+
+	async addOrEditChannelName(channelName: string): Promise<AxiosResponse<SuccessResponse | ErrorResponses>> {
+		return await this.httpClient.http.post<SuccessResponse | ErrorResponses>(
+			`${this.pathHeader}/add-or-edit-channel-name`, { channelName }
+		)
+	}
 }
