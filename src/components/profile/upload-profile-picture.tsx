@@ -61,7 +61,7 @@ function UploadProfilePicture() {
 			<div className="relative inline-block my-3">
 				<img
 					src={previewUrl}
-					className="w-36 h-36 rounded-full object-cover cursor-pointer"
+					className="w-36 h-36 rounded-full object-cover cursor-pointer hover:opacity-80"
 					onClick={editPictureCallback}
 				/>
 				<div
@@ -111,12 +111,12 @@ function UploadProfilePicture() {
 			{personalInfoClass.profilePictureUrl ? (
 				<img
 					src={personalInfoClass.profilePictureUrl || ""}
-					className="w-36 h-36 rounded-full object-cover cursor-pointer"
+					className="w-36 h-36 rounded-full object-cover cursor-pointer hover:opacity-80"
 					onClick={editPictureCallback}
 				/>
 			) : (
 				<FaUserCircle
-					className="w-36 h-36 rounded-full object-cover cursor-pointer"
+					className="w-36 h-36 rounded-full object-cover cursor-pointer hover:opacity-80"
 					onClick={editPictureCallback}
 				/>
 			)}
