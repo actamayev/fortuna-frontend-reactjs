@@ -31,25 +31,24 @@ function ChannelName() {
 		await addOrEditChannelName(channelName, setIsLoading)
 	}, [addOrEditChannelName, channelName])
 
+	// TODO: Add a character counter
+
 	return (
 		<div>
 			<label className="block text-sm font-medium text-zinc-600 dark:text-zinc-200">
 				Channel Name
 			</label>
-			<div className="flex flex-row">
+			<div className="flex items-center space-x-2">
 				<div>
 					<input
 						type="text"
-						className={`mt-1 p-2 border rounded-md text-zinc-950 border-zinc-100 dark:border-zinc-700 
+						className={`p-2 border rounded text-zinc-950 border-zinc-100 dark:border-zinc-700 
 							dark:text-zinc-200 bg-white dark:bg-zinc-800 outline-none
 							${channelName.length === maxLength ? "border-red-500 dark:border-red-500" : ""}`}
 						value={channelName}
 						onChange={handleChange}
 						maxLength={maxLength}
 					/>
-					{/* <div className="absolute bottom-1 right-2 text-sm text-zinc-600 dark:text-zinc-200">
-						{channelName.length}/{maxLength}
-					</div> */}
 				</div>
 				<Button
 					title="Save"
@@ -57,7 +56,7 @@ function ChannelName() {
 					disabled={isLoading}
 					colorClass="bg-blue-500"
 					hoverClass="hover:bg-blue-600"
-					className="text-white rounded-md disabled:opacity-50 h-10 ml-2 justify-center"
+					className="text-white rounded-md disabled:opacity-50 h-full"
 				/>
 			</div>
 		</div>
