@@ -51,7 +51,7 @@ function ChannelName() {
 				Channel Name
 			</label>
 			<div className="flex items-center space-x-2">
-				<div className="relative">
+				<div className="relative flex items-center">
 					<span
 						ref={spanRef}
 						className="invisible absolute whitespace-pre"
@@ -78,14 +78,19 @@ function ChannelName() {
 						}}
 					/>
 				</div>
-				<Button
-					titleIcon={<FaSave size={25} />}
-					onClick={handleSave}
-					disabled={isLoading}
-					colorClass="bg-emerald-500"
-					hoverClass="hover:bg-emerald-600"
-					className="text-white rounded-md disabled:opacity-50 h-full flex items-center justify-center"
-				/>
+				<div className="flex items-center h-full">
+					<Button
+						titleIcon={<FaSave size={20} />}
+						onClick={handleSave}
+						disabled={isLoading}
+						colorClass="bg-emerald-500"
+						hoverClass="hover:bg-emerald-600"
+						className="text-white rounded-md disabled:opacity-50 h-full flex items-center justify-center mt-1"
+						style={{
+							height: "38px"
+						}}
+					/>
+				</div>
 			</div>
 		</div>
 	)
