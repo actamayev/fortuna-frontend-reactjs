@@ -2,23 +2,27 @@ import _ from "lodash"
 import { useCallback } from "react"
 import { isErrorResponses } from "../../utils/type-checks"
 import { useCreatorContext } from "../../contexts/creator-context"
+import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useAddOrEditChannelName(): (
 	channelName: string,
-	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
 ) => Promise<void> {
 	const creatorClass = useCreatorContext()
 	const fortunaApiClient = useApiClientContext()
+	const personalInfoClass = usePersonalInfoContext()
 
 	const addOrEditChannelName = useCallback(async (
 		channelName: string,
-		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
 	): Promise<void> => {
 		try {
-			if (_.isNull(creatorClass)) return
-
-			setIsLoading(true)
+			if (
+				_.isNull(creatorClass) ||
+				creatorClass.channelName === channelName ||
+				(_.isEmpty(creatorClass.channelName) && (
+					personalInfoClass?.username && personalInfoClass.username === channelName
+				))
+			) return
 
 			const response = await fortunaApiClient.creatorDataService.addOrEditChannelName(channelName)
 
@@ -29,10 +33,8 @@ export default function useAddOrEditChannelName(): (
 			creatorClass.channelName = channelName
 		} catch (error) {
 			console.error(error)
-		} finally {
-			setIsLoading(false)
 		}
-	}, [creatorClass, fortunaApiClient.creatorDataService])
+	}, [creatorClass, fortunaApiClient.creatorDataService, personalInfoClass?.username])
 
 	return addOrEditChannelName
 }
