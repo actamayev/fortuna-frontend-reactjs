@@ -25,6 +25,7 @@ class CreatorClass {
 	public isNewVideoLoading = false
 
 	public channelName = "" // TODO: Retrieve the channel name along with other important channel details.
+	public isRetrievingCreatorInfo = false
 
 	constructor() {
 		makeAutoObservable(this)
@@ -182,6 +183,10 @@ class CreatorClass {
 		return (this.totalMaxProfit - this.newVideoFortunaFee)
 	}
 
+	public setRetrievedCreatorInfo(creatorInfo: CreatorInfoResponse) {
+		this.channelName = creatorInfo.channelName
+	}
+
 	public setHasContentToRetrieve = action((newState: boolean): void => {
 		this.hasContentToRetrieve = newState
 	})
@@ -206,6 +211,10 @@ class CreatorClass {
 		}
 	})
 
+	public setIsRetrievingCreatorInfo = action((newState: boolean): void => {
+		this.isRetrievingCreatorInfo = newState
+	})
+
 	public logout() {
 		this.myContent = []
 		this.hasContentToRetrieve = true
@@ -213,6 +222,9 @@ class CreatorClass {
 
 		this.resetNewVideoDetails()
 		this.isNewVideoLoading = false
+
+		this.channelName = ""
+		this.isRetrievingCreatorInfo = false
 	}
 }
 

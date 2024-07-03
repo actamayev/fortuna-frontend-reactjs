@@ -16,6 +16,7 @@ declare global {
 	// Creator Responses:
 	type CreateVideoResponse = { newVideoId: number }
 	type RetrieveMyContentResponse = { creatorContentList: MyContent[] }
+	type CreatorInfoResponse = { channelName: string }
 
 	// Market Resposnes:
 	type PurchaseInstantAccessResponse = { videoUrl: string, isTierSoldOut: boolean, isVideoSoldOut: boolean }
