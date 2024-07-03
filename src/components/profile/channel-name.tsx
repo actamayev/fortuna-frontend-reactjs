@@ -1,4 +1,5 @@
 import { observer } from "mobx-react"
+import { FaSave } from "react-icons/fa"
 import { useState, useCallback, useRef, useEffect } from "react"
 import Button from "../buttons/button"
 import { useCreatorContext } from "../../contexts/creator-context"
@@ -8,12 +9,12 @@ import useAddOrEditChannelName from "../../hooks/creator/add-or-edit-channel-nam
 function ChannelName() {
 	const creatorClass = useCreatorContext()
 	const personalInfoClass = usePersonalInfoContext()
-	const addOrEditChannelName = useAddOrEditChannelName()
 	const [isLoading, setIsLoading] = useState(false)
 	const [channelName, setChannelName] = useState("")
-	const maxLength = 60
 	const [inputWidth, setInputWidth] = useState("100px")
+	const maxLength = 60
 	const spanRef = useRef<HTMLSpanElement>(null)
+	const addOrEditChannelName = useAddOrEditChannelName()
 
 	useEffect(() => {
 		if (creatorClass?.channelName) {
@@ -23,12 +24,12 @@ function ChannelName() {
 		}
 	}, [creatorClass?.channelName, personalInfoClass?.username])
 
-	const updateWidth = (text: string) => {
+	const updateWidth = useCallback((text: string) => {
 		if (spanRef.current) {
 			spanRef.current.textContent = text || " "
 			setInputWidth(`${spanRef.current.offsetWidth + 30}px`)
 		}
-	}
+	}, [])
 
 	const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value
@@ -36,7 +37,7 @@ function ChannelName() {
 			setChannelName(value)
 			updateWidth(value)
 		}
-	}, [])
+	}, [updateWidth])
 
 	const handleSave = useCallback(async () => {
 		await addOrEditChannelName(channelName, setIsLoading)
@@ -78,12 +79,12 @@ function ChannelName() {
 					/>
 				</div>
 				<Button
-					title="Save"
+					titleIcon={<FaSave size={25} />}
 					onClick={handleSave}
 					disabled={isLoading}
-					colorClass="bg-blue-500"
-					hoverClass="hover:bg-blue-600"
-					className="text-white rounded-md disabled:opacity-50 h-full"
+					colorClass="bg-emerald-500"
+					hoverClass="hover:bg-emerald-600"
+					className="text-white rounded-md disabled:opacity-50 h-full flex items-center justify-center"
 				/>
 			</div>
 		</div>
