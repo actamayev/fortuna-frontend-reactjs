@@ -21,7 +21,6 @@ function ChannelName() {
 		}
 	}, [creatorClass?.channelName, personalInfoClass?.username])
 
-
 	const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (event.target.value.length <= maxLength) {
 			setChannelName(event.target.value)
@@ -39,12 +38,12 @@ function ChannelName() {
 				<input
 					type="text"
 					className={`mt-1 p-2 w-full border rounded-md text-zinc-950 border-zinc-100 dark:border-zinc-700 \
-						dark:text-zinc-200 bg-white dark:bg-zinc-800 ${channelName.length === maxLength ? "border-red-500" : ""}`}
-					placeholder=""
+						dark:text-zinc-200 bg-white dark:bg-zinc-800 outline-none
+						${channelName.length === maxLength ? "border-red-500 dark:border-red-500" : ""}`}
 					value={channelName}
 					onChange={handleChange}
 					maxLength={maxLength}
-					style={{ width: `${Math.max(100, channelName.length * 10)}px` }}
+					style={{ width: `calc(${channelName.length}ch + 2rem)` }}
 				/>
 				<Button
 					title="Save"
