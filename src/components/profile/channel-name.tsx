@@ -43,15 +43,13 @@ function ChannelName() {
 		await addOrEditChannelName(channelName, setIsLoading)
 	}, [addOrEditChannelName, channelName])
 
-	// TODO: Add a character counter
-
 	return (
 		<div>
 			<label className="block text-sm font-medium text-zinc-600 dark:text-zinc-200">
 				Channel Name
 			</label>
 			<div className="flex items-center space-x-2">
-				<div className="relative flex items-center">
+				<div className="relative flex flex-col">
 					<span
 						ref={spanRef}
 						className="invisible absolute whitespace-pre"
@@ -77,6 +75,9 @@ function ChannelName() {
 							boxSizing: "border-box"
 						}}
 					/>
+					<span className="text-xs text-zinc-600 dark:text-zinc-400 mt-1">
+						{channelName.length}/{maxLength}
+					</span>
 				</div>
 				<div className="flex items-center h-full">
 					<Button
@@ -85,9 +86,9 @@ function ChannelName() {
 						disabled={isLoading}
 						colorClass="bg-emerald-500"
 						hoverClass="hover:bg-emerald-600"
-						className="text-white rounded-md disabled:opacity-50 h-full flex items-center justify-center mt-1"
+						className="text-white rounded-md disabled:opacity-50 h-full flex items-center justify-center mb-4"
 						style={{
-							height: "38px"
+							height: "38px" // Make this the same height as your input box, adjust as needed
 						}}
 					/>
 				</div>
