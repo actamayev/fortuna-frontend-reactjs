@@ -24,7 +24,7 @@ class CreatorClass {
 	}
 	public isNewVideoLoading = false
 
-	public channelName = "" // TODO: Retrieve the channel name along with other important channel details.
+	public channelName = ""
 	public isRetrievingCreatorInfo = false
 
 	constructor() {

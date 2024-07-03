@@ -50,7 +50,7 @@ function ChannelName() {
 	}, [isEditing])
 
 	return (
-		<div>
+		<div className="my-3">
 			<label className="block text-sm font-medium text-zinc-600 dark:text-zinc-200">
 				Channel Name
 			</label>
