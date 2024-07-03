@@ -3,16 +3,19 @@ import { observer } from "mobx-react"
 import { RiPencilFill } from "react-icons/ri"
 import { useRef, useState, useCallback } from "react"
 import { FaSave, FaTrash, FaUserCircle } from "react-icons/fa"
+import useDefaultSiteTheme from "../../hooks/memos/default-site-theme"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import useUploadProfilePicture from "../../hooks/personal-info/upload-profile-picture"
 
 // eslint-disable-next-line max-lines-per-function
 function UploadProfilePicture() {
+	const [isHovered, setIsHovered] = useState(false)
 	const [previewUrl, setPreviewUrl] = useState<null | string>(null)
 	const [selectedImage, setSelectedImage] = useState<File | null>(null)
 	const fileInputRef = useRef<HTMLInputElement>(null)
 	const personalInfoClass = usePersonalInfoContext()
 	const uploadProfilePicture = useUploadProfilePicture()
+	const defaultSiteTheme = useDefaultSiteTheme()
 
 	const removeContent = useCallback(() => {
 		setSelectedImage(null)
@@ -54,6 +57,12 @@ function UploadProfilePicture() {
 		removeContent()
 	}, [removeContent, selectedImage, uploadProfilePicture])
 
+	const handleMouseEnter = useCallback(() => setIsHovered(true), [])
+
+	const handleMouseLeave = useCallback(() => setIsHovered(false), [])
+
+	const imageStyle = isHovered ? { opacity: 0.8 } : { opacity: 1 }
+
 	if (_.isNull(personalInfoClass)) return null
 
 	if (!_.isNull(previewUrl)) {
@@ -61,12 +70,17 @@ function UploadProfilePicture() {
 			<div className="relative inline-block my-3">
 				<img
 					src={previewUrl}
-					className="w-36 h-36 rounded-full object-cover cursor-pointer hover:opacity-80"
+					className="w-36 h-36 rounded-full object-cover cursor-pointer"
 					onClick={editPictureCallback}
+					onMouseEnter={handleMouseEnter}
+					onMouseLeave={handleMouseLeave}
+					style={imageStyle}
 				/>
 				<div
 					className="absolute top-2 right-2 bg-blue-500 dark:bg-blue-600 p-1 rounded-full \
 						cursor-pointer hover:bg-blue-600 dark:hover:bg-blue-700"
+					onMouseEnter={handleMouseEnter}
+					onMouseLeave={handleMouseLeave}
 				>
 					<RiPencilFill
 						color="white"
@@ -111,16 +125,27 @@ function UploadProfilePicture() {
 			{personalInfoClass.profilePictureUrl ? (
 				<img
 					src={personalInfoClass.profilePictureUrl || ""}
-					className="w-36 h-36 rounded-full object-cover cursor-pointer hover:opacity-80"
+					className="w-36 h-36 rounded-full object-cover cursor-pointer"
+					style={imageStyle}
 					onClick={editPictureCallback}
+					onMouseEnter={handleMouseEnter}
+					onMouseLeave={handleMouseLeave}
 				/>
 			) : (
 				<FaUserCircle
-					className="w-36 h-36 rounded-full object-cover cursor-pointer hover:opacity-80"
+					className="w-36 h-36 rounded-full object-cover cursor-pointer"
+					style={imageStyle}
 					onClick={editPictureCallback}
+					onMouseEnter={handleMouseEnter}
+					onMouseLeave={handleMouseLeave}
+					color={defaultSiteTheme === "dark" ? "white" : "black" }
 				/>
 			)}
-			<div className="absolute top-2 right-2 bg-gray-500 p-1 rounded-full cursor-pointer">
+			<div
+				className="absolute top-2 right-2 bg-gray-500 p-1 rounded-full cursor-pointer"
+				onMouseEnter={handleMouseEnter}
+				onMouseLeave={handleMouseLeave}
+			>
 				<RiPencilFill
 					color="white"
 					size={22}
