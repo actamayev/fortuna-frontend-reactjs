@@ -2,8 +2,8 @@ import { observer } from "mobx-react"
 import { FaPencilAlt } from "react-icons/fa"
 import { useState, useCallback, useRef, useEffect } from "react"
 import SaveChannelNameButton from "./save-channel-name-button"
-import { useCreatorContext } from "../../contexts/creator-context"
 import HoverOutlineComponent from "../hover-outline-component"
+import { useCreatorContext } from "../../contexts/creator-context"
 import useDefaultSiteTheme from "../../hooks/memos/default-site-theme"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
@@ -92,10 +92,12 @@ function ChannelName() {
 							<b>{channelName}</b>
 						</span>
 					)}
-
 				</div>
 				{isEditing ? (
-					<></>
+					<SaveChannelNameButton
+						channelName={channelName}
+						toggleEditMode={toggleEditMode}
+					/>
 				) : (
 					<HoverOutlineComponent
 						onClickAction={toggleEditMode}
@@ -103,12 +105,6 @@ function ChannelName() {
 					>
 						<FaPencilAlt color={defaultSiteTheme === "dark" ? "white" : "black"}/>
 					</HoverOutlineComponent>
-				)}
-				{isEditing && (
-					<SaveChannelNameButton
-						channelName={channelName}
-						toggleEditMode={toggleEditMode}
-					/>
 				)}
 			</div>
 		</div>
