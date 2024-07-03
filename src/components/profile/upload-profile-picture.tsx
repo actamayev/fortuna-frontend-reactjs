@@ -27,7 +27,7 @@ export default function UploadProfilePicture() {
 			>
 				<img
 					src={previewUrl || ""}
-					style={{ maxWidth: "35%", height: "auto" }}
+					className="rounded-full w-36 h-36 object-cover"
 				/>
 			</ContentPreview>
 			<SaveProfilePictureButton

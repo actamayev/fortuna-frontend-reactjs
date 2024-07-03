@@ -39,7 +39,7 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 				/>
 			) : (
 				<FaUserCircle
-					className="w-8 h-8 rounded-full mr-2 object-cover cursor-pointer text-gray-500"
+					className="w-8 h-8 rounded-full mr-2 object-cover cursor-pointer"
 					onClick={navigateToCreatorPageCallback}
 				/>
 			)}
