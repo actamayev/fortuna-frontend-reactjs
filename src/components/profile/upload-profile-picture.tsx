@@ -45,7 +45,7 @@ function UploadProfilePicture() {
 		fileInputRef.current.value = ""
 	}, [removeContent])
 
-	const onClickButtonCallback = useCallback(() => {
+	const editPictureCallback = useCallback(() => {
 		fileInputRef.current?.click()
 	}, [fileInputRef])
 
@@ -63,13 +63,13 @@ function UploadProfilePicture() {
 				<img
 					src={previewUrl}
 					className="w-36 h-36 rounded-full object-cover cursor-pointer"
-					onClick={onClickButtonCallback}
+					onClick={editPictureCallback}
 				/>
 				<div className="absolute top-2 right-2 bg-gray-500 p-1 rounded-full cursor-pointer">
 					<RiPencilFill
 						color="white"
 						size={22}
-						onClick={onClickButtonCallback}
+						onClick={editPictureCallback}
 					/>
 				</div>
 				<div className="absolute top-2 left-2 bg-gray-500 p-1 rounded-full cursor-pointer">
@@ -86,6 +86,14 @@ function UploadProfilePicture() {
 						onClick={uploadProfilePictureCallback}
 					/>
 				</div>
+				<input
+					ref={fileInputRef}
+					type="file"
+					onChange={handleImageChange}
+					accept="image/jpeg, image/png"
+					style={{ display: "none" }}
+					max={1}
+				/>
 			</div>
 		)
 	}
@@ -96,19 +104,19 @@ function UploadProfilePicture() {
 				<img
 					src={personalInfoClass.profilePictureUrl || ""}
 					className="w-36 h-36 rounded-full object-cover cursor-pointer"
-					onClick={onClickButtonCallback}
+					onClick={editPictureCallback}
 				/>
 			) : (
 				<FaUserCircle
 					className="w-36 h-36 rounded-full object-cover cursor-pointer"
-					onClick={onClickButtonCallback}
+					onClick={editPictureCallback}
 				/>
 			)}
-			<div className="absolute top-3 right-2 bg-gray-500 p-1 rounded-full cursor-pointer">
+			<div className="absolute top-2 right-2 bg-gray-500 p-1 rounded-full cursor-pointer">
 				<RiPencilFill
 					color="white"
 					size={22}
-					onClick={onClickButtonCallback}
+					onClick={editPictureCallback}
 				/>
 			</div>
 			<input
