@@ -50,7 +50,7 @@ function ChannelDescription() {
 							<textarea
 								ref={textAreaRef}
 								className={
-									`mt-1 p-1.5 border rounded text-zinc-950 dark:text-zinc-200 text-base \
+									`mt-1 p-1.5 border rounded text-zinc-950 dark:text-zinc-200 text-sm \
 									bg-white dark:bg-zinc-800 outline-none
 									${channelDescription.length === maxLength ?
 							"border-red-500 dark:border-red-500" : "border-zinc-100 dark:border-zinc-700"}`
@@ -72,7 +72,7 @@ function ChannelDescription() {
 						</>
 					) : (
 						<span
-							className="text-zinc-950 dark:text-zinc-50 text-base"
+							className="text-zinc-950 dark:text-zinc-50 text-sm"
 							style={{ width: "75vw", wordWrap: "break-word", whiteSpace: "normal" }}
 						>
 							<div>{channelDescription}</div>
