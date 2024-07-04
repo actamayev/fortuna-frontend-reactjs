@@ -2,6 +2,7 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import { useVideoContext } from "../../contexts/video-context"
+import ShowChannelDescription from "./show-channel-description"
 import { removeLeadingAt } from "../../utils/leading-at-operations"
 
 function CreatorPageHeaderArea() {
@@ -28,9 +29,7 @@ function CreatorPageHeaderArea() {
 				<div className="text-lg dark:text-zinc-200">
 					@{creatorData.creatorUsername}
 				</div>
-				<div className="text-sm dark:text-zinc-200">
-					{creatorData.channelDescription}
-				</div>
+				<ShowChannelDescription channelDescription={creatorData.channelDescription} />
 			</div>
 		</div>
 	)
