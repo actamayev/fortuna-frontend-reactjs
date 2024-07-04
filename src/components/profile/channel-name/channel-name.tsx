@@ -1,5 +1,5 @@
 import { observer } from "mobx-react"
-import { FaPencilAlt } from "react-icons/fa"
+import { RiPencilFill } from "react-icons/ri"
 import { useState, useCallback, useRef, useEffect } from "react"
 import SaveChannelNameButton from "./save-channel-name-button"
 import HoverOutlineComponent from "../../hover-outline-component"
@@ -101,7 +101,7 @@ function ChannelName() {
 						onClickAction={toggleEditMode}
 						classes="flex items-center justify-center"
 					>
-						<FaPencilAlt color={defaultSiteTheme === "dark" ? "white" : "black"} size={15}/>
+						<RiPencilFill color={defaultSiteTheme === "dark" ? "white" : "black"} size={20} />
 					</HoverOutlineComponent>
 				)}
 			</div>
