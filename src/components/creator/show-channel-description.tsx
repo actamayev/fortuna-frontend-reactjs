@@ -7,13 +7,12 @@ interface Props {
 
 function ShowChannelDescription(props: Props) {
 	const { channelDescription } = props
-	const [isExpanded, setIsExpanded] = useState(false)
 	const maxLength = 120
+	const [isExpanded, setIsExpanded] = useState(false)
 
 	const handleToggle = useCallback(() => {
 		setIsExpanded(!isExpanded)
 	}, [isExpanded])
-
 
 	return (
 		<div
@@ -32,7 +31,9 @@ function ShowChannelDescription(props: Props) {
 					{channelDescription.length > maxLength ? (
 						<>
 							{channelDescription.slice(0, maxLength)}...
-							<button onClick={handleToggle} className="text-blue-500">Show more</button>
+							<button onClick={handleToggle} className="text-blue-500">
+								Show more
+							</button>
 						</>
 					) : (
 						channelDescription
