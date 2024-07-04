@@ -1,5 +1,5 @@
 import { observer } from "mobx-react"
-import { FaPencilAlt } from "react-icons/fa"
+import { RiPencilFill } from "react-icons/ri"
 import { useState, useCallback, useRef, useEffect } from "react"
 import HoverOutlineComponent from "../../hover-outline-component"
 import { useCreatorContext } from "../../../contexts/creator-context"
@@ -25,7 +25,7 @@ function ChannelDescription() {
 			textAreaRef.current.style.height = "auto"
 			textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`
 		}
-	}, [channelDescription])
+	}, [channelDescription, creatorClass?.channelDescription, isEditing])
 
 	const handleChange = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
 		const value = event.target.value
@@ -50,8 +50,8 @@ function ChannelDescription() {
 							<textarea
 								ref={textAreaRef}
 								className={
-									`mt-1 p-1.5 border rounded text-zinc-950 dark:text-zinc-200 \
-										bg-white dark:bg-zinc-800 outline-none
+									`mt-1 p-1.5 border rounded text-zinc-950 dark:text-zinc-200 text-sm \
+									bg-white dark:bg-zinc-800 outline-none
 									${channelDescription.length === maxLength ?
 							"border-red-500 dark:border-red-500" : "border-zinc-100 dark:border-zinc-700"}`
 								}
@@ -59,10 +59,10 @@ function ChannelDescription() {
 								onChange={handleChange}
 								maxLength={maxLength}
 								style={{
-									width: "800px",
+									width: "75vw",
 									boxSizing: "border-box",
 									resize: "none",
-									overflow: "hidden",
+									overflow: "hidden"
 								}}
 								rows={2}
 							/>
@@ -71,8 +71,11 @@ function ChannelDescription() {
 							</span>
 						</>
 					) : (
-						<span className="text-zinc-950 dark:text-zinc-50 text-lg">
-							<b>{channelDescription}</b>
+						<span
+							className="text-zinc-950 dark:text-zinc-50 text-sm"
+							style={{ width: "75vw", wordWrap: "break-word", whiteSpace: "normal" }}
+						>
+							<div>{channelDescription}</div>
 						</span>
 					)}
 				</div>
@@ -86,7 +89,7 @@ function ChannelDescription() {
 						onClickAction={toggleEditMode}
 						classes="flex items-center justify-center"
 					>
-						<FaPencilAlt color={defaultSiteTheme === "dark" ? "white" : "black"} size={15} />
+						<RiPencilFill color={defaultSiteTheme === "dark" ? "white" : "black"} size={20} />
 					</HoverOutlineComponent>
 				)}
 			</div>

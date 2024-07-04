@@ -1,5 +1,5 @@
 import { observer } from "mobx-react"
-import { FaPencilAlt } from "react-icons/fa"
+import { RiPencilFill } from "react-icons/ri"
 import { useState, useCallback, useRef, useEffect } from "react"
 import SaveChannelNameButton from "./save-channel-name-button"
 import HoverOutlineComponent from "../../hover-outline-component"
@@ -66,7 +66,7 @@ function ChannelName() {
 								type="text"
 								className={
 									`mt-1 p-1.5 border rounded text-zinc-950 dark:text-zinc-200 \
-										bg-white dark:bg-zinc-800 outline-none 
+										bg-white dark:bg-zinc-800 outline-none text-base
 									${channelName.length === maxLength ?
 							"border-red-500 dark:border-red-500" : "border-zinc-100 dark:border-zinc-700"}`
 								}
@@ -85,8 +85,8 @@ function ChannelName() {
 							</span>
 						</>
 					) : (
-						<span className="text-zinc-950 dark:text-zinc-50 text-lg">
-							<b>{channelName}</b>
+						<span className="text-zinc-950 dark:text-zinc-50 text-base">
+							<div>{channelName}</div>
 						</span>
 					)}
 				</div>
@@ -101,7 +101,7 @@ function ChannelName() {
 						onClickAction={toggleEditMode}
 						classes="flex items-center justify-center"
 					>
-						<FaPencilAlt color={defaultSiteTheme === "dark" ? "white" : "black"} size={15}/>
+						<RiPencilFill color={defaultSiteTheme === "dark" ? "white" : "black"} size={20} />
 					</HoverOutlineComponent>
 				)}
 			</div>
