@@ -183,6 +183,10 @@ class CreatorClass {
 		return (this.totalMaxProfit - this.newVideoFortunaFee)
 	}
 
+	public setChannelName = action((newChannelName: string): void => {
+		this.channelName = newChannelName
+	})
+
 	public setRetrievedCreatorInfo(creatorInfo: CreatorInfoResponse) {
 		this.channelName = creatorInfo.channelName
 	}

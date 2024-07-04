@@ -30,7 +30,7 @@ export default function useAddOrEditChannelName(): (
 				return
 			}
 
-			creatorClass.channelName = channelName
+			creatorClass.setChannelName(channelName)
 		} catch (error) {
 			console.error(error)
 		}
