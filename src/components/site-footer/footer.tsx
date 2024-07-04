@@ -12,8 +12,8 @@ export default function Footer() {
 					<FooterSocialSection />
 				</div>
 				<hr className="flex-grow mt-4 border-zinc-300" />
-				<div className="text-center text-zinc-950 mt-8 font-medium dark:text-zinc-50">
-					<p>Fortuna</p>
+				<div className="text-center text-zinc-950 mt-8 dark:text-zinc-50 font-normal text-base">
+					<p>Fortuna Systems Inc</p>
 				</div>
 			</div>
 		</footer>

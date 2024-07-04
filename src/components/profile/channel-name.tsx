@@ -3,33 +3,27 @@ import { FaPencilAlt } from "react-icons/fa"
 import { useState, useCallback, useRef, useEffect } from "react"
 import SaveChannelNameButton from "./save-channel-name-button"
 import HoverOutlineComponent from "../hover-outline-component"
-import { useCreatorContext } from "../../contexts/creator-context"
 import useDefaultSiteTheme from "../../hooks/memos/default-site-theme"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import useAssignDefaultChannelName from "../../hooks/creator/assign-default-channel-name"
 
 // eslint-disable-next-line max-lines-per-function
 function ChannelName() {
-	const creatorClass = useCreatorContext()
-	const personalInfoClass = usePersonalInfoContext()
 	const [channelName, setChannelName] = useState("")
 	const [inputWidth, setInputWidth] = useState("100px")
 	const [isEditing, setIsEditing] = useState(false)
 	const maxLength = 60
 	const spanRef = useRef<HTMLSpanElement>(null)
 	const defaultSiteTheme = useDefaultSiteTheme()
+	const assignDefaultChannelName = useAssignDefaultChannelName()
 
 	useEffect(() => {
-		if (creatorClass?.channelName) {
-			setChannelName(creatorClass.channelName)
-		} else if (personalInfoClass?.username) {
-			setChannelName(personalInfoClass.username)
-		}
-	}, [creatorClass?.channelName, personalInfoClass?.username])
+		assignDefaultChannelName(setChannelName)
+	}, [assignDefaultChannelName])
 
 	const updateWidth = useCallback((text: string) => {
 		if (spanRef.current) {
 			spanRef.current.textContent = text || " "
-			setInputWidth(`${spanRef.current.offsetWidth + 50}px`)
+			setInputWidth(`${spanRef.current.offsetWidth + 20}px`)
 		}
 	}, [])
 
@@ -79,7 +73,7 @@ function ChannelName() {
 								style={{
 									minWidth: "100px",
 									width: inputWidth,
-									paddingRight: "30px",
+									paddingRight: "10px",
 									boxSizing: "border-box"
 								}}
 							/>
@@ -97,13 +91,14 @@ function ChannelName() {
 					<SaveChannelNameButton
 						channelName={channelName}
 						toggleEditMode={toggleEditMode}
+						setChannelName={setChannelName}
 					/>
 				) : (
 					<HoverOutlineComponent
 						onClickAction={toggleEditMode}
 						classes="flex items-center justify-center"
 					>
-						<FaPencilAlt color={defaultSiteTheme === "dark" ? "white" : "black"}/>
+						<FaPencilAlt color={defaultSiteTheme === "dark" ? "white" : "black"} size={15}/>
 					</HoverOutlineComponent>
 				)}
 			</div>
