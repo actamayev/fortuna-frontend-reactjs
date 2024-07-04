@@ -25,7 +25,7 @@ function ChannelDescription() {
 			textAreaRef.current.style.height = "auto"
 			textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`
 		}
-	}, [channelDescription])
+	}, [channelDescription, creatorClass?.channelDescription, isEditing])
 
 	const handleChange = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
 		const value = event.target.value
@@ -50,8 +50,8 @@ function ChannelDescription() {
 							<textarea
 								ref={textAreaRef}
 								className={
-									`mt-1 p-1.5 border rounded text-zinc-950 dark:text-zinc-200 \
-										bg-white dark:bg-zinc-800 outline-none
+									`mt-1 p-1.5 border rounded text-zinc-950 dark:text-zinc-200 text-base \
+									bg-white dark:bg-zinc-800 outline-none
 									${channelDescription.length === maxLength ?
 							"border-red-500 dark:border-red-500" : "border-zinc-100 dark:border-zinc-700"}`
 								}
@@ -72,10 +72,10 @@ function ChannelDescription() {
 						</>
 					) : (
 						<span
-							className="text-zinc-950 dark:text-zinc-50 text-lg"
+							className="text-zinc-950 dark:text-zinc-50 text-base"
 							style={{ width: "75vw", wordWrap: "break-word", whiteSpace: "normal" }}
 						>
-							<b>{channelDescription}</b>
+							<div>{channelDescription}</div>
 						</span>
 					)}
 				</div>
