@@ -1,11 +1,9 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { RiPencilFill } from "react-icons/ri"
 import { useState, useCallback, useRef, useEffect } from "react"
+import EditPencilButton from "../edit-pencil-button"
 import ChannelNameTextInput from "./channel-name-text-input"
 import SaveChannelNameButton from "./save-channel-name-button"
-import HoverOutlineComponent from "../../hover-outline-component"
-import useDefaultSiteTheme from "../../../hooks/memos/default-site-theme"
 import useAddOrEditChannelName from "../../../hooks/creator/add-or-edit-channel-name"
 import useAssignDefaultChannelName from "../../../hooks/creator/assign-default-channel-name"
 
@@ -16,7 +14,6 @@ function ChannelName() {
 	const maxLength = 60
 	const spanRef = useRef<HTMLSpanElement>(null)
 	const inputRef = useRef<HTMLInputElement>(null)
-	const defaultSiteTheme = useDefaultSiteTheme()
 	const assignDefaultChannelName = useAssignDefaultChannelName()
 	const addOrEditChannelName = useAddOrEditChannelName()
 
@@ -63,12 +60,7 @@ function ChannelName() {
 						handleSaveChannelName={handleSaveChannelName}
 					/>
 				) : (
-					<HoverOutlineComponent
-						onClickAction={toggleEditMode}
-						classes="flex items-center justify-center"
-					>
-						<RiPencilFill color={defaultSiteTheme === "dark" ? "white" : "black"} size={17} />
-					</HoverOutlineComponent>
+					<EditPencilButton toggleEditMode={toggleEditMode} />
 				)}
 			</div>
 			<div className="flex items-center">
