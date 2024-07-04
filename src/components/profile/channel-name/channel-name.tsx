@@ -15,6 +15,7 @@ function ChannelName() {
 	const [isEditing, setIsEditing] = useState(false)
 	const maxLength = 60
 	const spanRef = useRef<HTMLSpanElement>(null)
+	const inputRef = useRef<HTMLInputElement>(null)
 	const defaultSiteTheme = useDefaultSiteTheme()
 	const assignDefaultChannelName = useAssignDefaultChannelName()
 	const addOrEditChannelName = useAddOrEditChannelName()
@@ -34,15 +35,21 @@ function ChannelName() {
 		updateWidth(channelName)
 	}, [channelName, updateWidth])
 
-	const toggleEditMode = useCallback(() => {
-		setIsEditing(!isEditing)
+	useEffect(() => {
+		if (isEditing && inputRef.current) {
+			inputRef.current.focus()
+		}
 	}, [isEditing])
+
+	const toggleEditMode = useCallback(() => {
+		setIsEditing(prev => !prev)
+	}, [])
 
 	const handleSaveChannelName = useCallback(async () => {
 		if (!_.isEmpty(channelName)) await addOrEditChannelName(channelName)
 		else assignDefaultChannelName(setChannelName)
-		toggleEditMode()
-	}, [addOrEditChannelName, assignDefaultChannelName, channelName, setChannelName, toggleEditMode])
+		setIsEditing(false)
+	}, [addOrEditChannelName, assignDefaultChannelName, channelName, setChannelName])
 
 	return (
 		<div className="mt-3">
@@ -84,6 +91,7 @@ function ChannelName() {
 							handleSaveChannelName={handleSaveChannelName}
 							updateWidth={updateWidth}
 							inputWidth={inputWidth}
+							inputRef={inputRef}
 						/>
 					) : (
 						<span className="text-zinc-950 dark:text-zinc-50 text-base">

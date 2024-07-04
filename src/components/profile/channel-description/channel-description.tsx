@@ -24,6 +24,13 @@ function ChannelDescription() {
 	}, [creatorClass?.channelDescription])
 
 	useEffect(() => {
+		if (isEditing && textAreaRef.current) {
+			textAreaRef.current.focus()
+			textAreaRef.current.setSelectionRange(channelDescription.length, channelDescription.length)
+		}
+	}, [isEditing, channelDescription])
+
+	useEffect(() => {
 		if (textAreaRef.current) {
 			textAreaRef.current.style.height = "auto"
 			textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`
@@ -31,13 +38,13 @@ function ChannelDescription() {
 	}, [channelDescription, creatorClass?.channelDescription, isEditing])
 
 	const toggleEditMode = useCallback(() => {
-		setIsEditing(!isEditing)
-	}, [isEditing])
+		setIsEditing(prev => !prev)
+	}, [])
 
 	const handleSaveChannelDescription = useCallback(async () => {
 		await addOrEditChannelDescription(channelDescription)
-		toggleEditMode()
-	}, [addOrEditChannelDescription, channelDescription, toggleEditMode])
+		setIsEditing(false)
+	}, [addOrEditChannelDescription, channelDescription])
 
 	return (
 		<div className="mt-3">

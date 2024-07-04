@@ -7,6 +7,7 @@ interface Props {
 	handleSaveChannelName: () => Promise<void>
 	updateWidth: (text: string) => void
 	inputWidth: string
+	inputRef: React.RefObject<HTMLInputElement>
 }
 
 export default function ChannelNameTextInput(props: Props) {
@@ -16,7 +17,8 @@ export default function ChannelNameTextInput(props: Props) {
 		setChannelName,
 		handleSaveChannelName,
 		updateWidth,
-		inputWidth
+		inputWidth,
+		inputRef
 	} = props
 
 	const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,6 +39,7 @@ export default function ChannelNameTextInput(props: Props) {
 		<>
 			<input
 				type="text"
+				ref={inputRef}
 				className={
 					`mt-1 p-1.5 border rounded text-zinc-950 dark:text-zinc-200 \
 					bg-white dark:bg-zinc-800 outline-none text-base
