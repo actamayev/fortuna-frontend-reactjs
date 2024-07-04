@@ -5,7 +5,9 @@ import HoverOutlineComponent from "../../hover-outline-component"
 import { useCreatorContext } from "../../../contexts/creator-context"
 import useDefaultSiteTheme from "../../../hooks/memos/default-site-theme"
 import SaveChannelDescriptionButton from "./save-channel-description-button"
+import useAddOrEditChannelDescription from "../../../hooks/creator/add-or-edit-channel-description"
 
+// eslint-disable-next-line max-lines-per-function
 function ChannelDescription() {
 	const creatorClass = useCreatorContext()
 	const [channelDescription, setChannelDescription] = useState("")
@@ -13,6 +15,7 @@ function ChannelDescription() {
 	const maxLength = 1000
 	const defaultSiteTheme = useDefaultSiteTheme()
 	const textAreaRef = useRef<HTMLTextAreaElement>(null)
+	const addOrEditChannelDescription = useAddOrEditChannelDescription()
 
 	useEffect(() => {
 		if (creatorClass?.channelDescription) {
@@ -38,11 +41,34 @@ function ChannelDescription() {
 		setIsEditing(!isEditing)
 	}, [isEditing])
 
+	const handleSaveChannelDescription = useCallback(async () => {
+		await addOrEditChannelDescription(channelDescription)
+		toggleEditMode()
+	}, [addOrEditChannelDescription, channelDescription, toggleEditMode])
+
+	const handleKeyDown = useCallback((event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+		if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
+			handleSaveChannelDescription()
+		}
+	}, [handleSaveChannelDescription])
+
 	return (
 		<div className="mt-3">
-			<label className="block text-sm font-medium text-zinc-600 dark:text-zinc-200">
-				Channel Description
-			</label>
+			<div className="flex flex-row">
+				<label className="block text-sm font-medium text-zinc-600 dark:text-zinc-200">
+					Channel Description
+				</label>
+				{isEditing ? (
+					<SaveChannelDescriptionButton handleSaveChannelDescription = {handleSaveChannelDescription}/>
+				) : (
+					<HoverOutlineComponent
+						onClickAction={toggleEditMode}
+						classes="flex items-center justify-center"
+					>
+						<RiPencilFill color={defaultSiteTheme === "dark" ? "white" : "black"} size={17} />
+					</HoverOutlineComponent>
+				)}
+			</div>
 			<div className="flex items-center">
 				<div className="relative flex flex-col">
 					{isEditing ? (
@@ -57,6 +83,7 @@ function ChannelDescription() {
 								}
 								value={channelDescription}
 								onChange={handleChange}
+								onKeyDown={handleKeyDown}
 								maxLength={maxLength}
 								style={{
 									width: "75vw",
@@ -79,19 +106,6 @@ function ChannelDescription() {
 						</span>
 					)}
 				</div>
-				{isEditing ? (
-					<SaveChannelDescriptionButton
-						channelDescription={channelDescription}
-						toggleEditMode={toggleEditMode}
-					/>
-				) : (
-					<HoverOutlineComponent
-						onClickAction={toggleEditMode}
-						classes="flex items-center justify-center"
-					>
-						<RiPencilFill color={defaultSiteTheme === "dark" ? "white" : "black"} size={20} />
-					</HoverOutlineComponent>
-				)}
 			</div>
 		</div>
 	)
