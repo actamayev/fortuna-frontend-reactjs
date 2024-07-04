@@ -2,34 +2,28 @@ import { observer } from "mobx-react"
 import { FaPencilAlt } from "react-icons/fa"
 import { useState, useCallback, useRef, useEffect } from "react"
 import SaveChannelNameButton from "./save-channel-name-button"
-import HoverOutlineComponent from "../hover-outline-component"
-import { useCreatorContext } from "../../contexts/creator-context"
-import useDefaultSiteTheme from "../../hooks/memos/default-site-theme"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import HoverOutlineComponent from "../../hover-outline-component"
+import useDefaultSiteTheme from "../../../hooks/memos/default-site-theme"
+import useAssignDefaultChannelName from "../../../hooks/creator/assign-default-channel-name"
 
 // eslint-disable-next-line max-lines-per-function
 function ChannelName() {
-	const creatorClass = useCreatorContext()
-	const personalInfoClass = usePersonalInfoContext()
 	const [channelName, setChannelName] = useState("")
 	const [inputWidth, setInputWidth] = useState("100px")
 	const [isEditing, setIsEditing] = useState(false)
 	const maxLength = 60
 	const spanRef = useRef<HTMLSpanElement>(null)
 	const defaultSiteTheme = useDefaultSiteTheme()
+	const assignDefaultChannelName = useAssignDefaultChannelName()
 
 	useEffect(() => {
-		if (creatorClass?.channelName) {
-			setChannelName(creatorClass.channelName)
-		} else if (personalInfoClass?.username) {
-			setChannelName(personalInfoClass.username)
-		}
-	}, [creatorClass?.channelName, personalInfoClass?.username])
+		assignDefaultChannelName(setChannelName)
+	}, [assignDefaultChannelName])
 
 	const updateWidth = useCallback((text: string) => {
 		if (spanRef.current) {
 			spanRef.current.textContent = text || " "
-			setInputWidth(`${spanRef.current.offsetWidth + 50}px`)
+			setInputWidth(`${spanRef.current.offsetWidth + 20}px`)
 		}
 	}, [])
 
@@ -50,7 +44,7 @@ function ChannelName() {
 	}, [isEditing])
 
 	return (
-		<div className="my-3">
+		<div className="mt-3">
 			<label className="block text-sm font-medium text-zinc-600 dark:text-zinc-200">
 				Channel Name
 			</label>
@@ -70,16 +64,19 @@ function ChannelName() {
 						<>
 							<input
 								type="text"
-								className={`mt-1 p-1.5 border rounded text-zinc-950 border-zinc-100 dark:border-zinc-700 
-									dark:text-zinc-200 bg-white dark:bg-zinc-800 outline-none 
-									${channelName.length === maxLength ? "border-red-500 dark:border-red-500" : ""}`}
+								className={
+									`mt-1 p-1.5 border rounded text-zinc-950 dark:text-zinc-200 \
+										bg-white dark:bg-zinc-800 outline-none 
+									${channelName.length === maxLength ?
+							"border-red-500 dark:border-red-500" : "border-zinc-100 dark:border-zinc-700"}`
+								}
 								value={channelName}
 								onChange={handleChange}
 								maxLength={maxLength}
 								style={{
 									minWidth: "100px",
 									width: inputWidth,
-									paddingRight: "30px",
+									paddingRight: "10px",
 									boxSizing: "border-box"
 								}}
 							/>
@@ -97,13 +94,14 @@ function ChannelName() {
 					<SaveChannelNameButton
 						channelName={channelName}
 						toggleEditMode={toggleEditMode}
+						setChannelName={setChannelName}
 					/>
 				) : (
 					<HoverOutlineComponent
 						onClickAction={toggleEditMode}
 						classes="flex items-center justify-center"
 					>
-						<FaPencilAlt color={defaultSiteTheme === "dark" ? "white" : "black"}/>
+						<FaPencilAlt color={defaultSiteTheme === "dark" ? "white" : "black"} size={15}/>
 					</HoverOutlineComponent>
 				)}
 			</div>

@@ -28,6 +28,9 @@ function CreatorPageHeaderArea() {
 				<div className="text-lg dark:text-zinc-200">
 					@{creatorData.creatorUsername}
 				</div>
+				<div className="text-sm dark:text-zinc-200">
+					{creatorData.channelDescription}
+				</div>
 			</div>
 		</div>
 	)
