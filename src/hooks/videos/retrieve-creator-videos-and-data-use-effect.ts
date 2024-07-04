@@ -27,6 +27,7 @@ export default function useRetrieveCreatorVideosAndDataUseEffect(creatorUsername
 			const creatorDataHeldInClass: CreatorDataHeldInClass = {
 				creatorUsername: creatorDataResponse.data.creatorData.creatorUsername,
 				channelName: creatorDataResponse.data.creatorData.channelName,
+				channelDescription: creatorDataResponse.data.creatorData.channelDescription,
 				creatorProfilePictureUrl: creatorDataResponse.data.creatorData.creatorProfilePictureUrl,
 				videoData: creatorDataResponse.data.videoData
 			}
