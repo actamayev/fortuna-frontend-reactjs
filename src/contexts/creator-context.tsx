@@ -233,8 +233,8 @@ class CreatorClass {
 		this.resetNewVideoDetails()
 		this.isNewVideoLoading = false
 
-		this.channelName = ""
-		this.channelDescription = ""
+		this.channelName = null
+		this.channelDescription = null
 		this.isRetrievingCreatorInfo = false
 	}
 }
