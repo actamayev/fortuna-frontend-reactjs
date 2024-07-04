@@ -14,8 +14,7 @@ export default function useAddOrEditChannelDescription(): (
 		channelDescription: string
 	): Promise<void> => {
 		try {
-			// Check that the description is less than or equal to 5000 characters
-			if (_.isNull(creatorClass)) return
+			if (_.isNull(creatorClass) || channelDescription.length > 1000) return
 
 			const response = await fortunaApiClient.creatorDataService.addOrEditChannelDescription(channelDescription)
 
