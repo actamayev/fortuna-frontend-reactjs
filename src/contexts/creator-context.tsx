@@ -24,6 +24,9 @@ class CreatorClass {
 	}
 	public isNewVideoLoading = false
 
+	public channelName = ""
+	public isRetrievingCreatorInfo = false
+
 	constructor() {
 		makeAutoObservable(this)
 	}
@@ -180,6 +183,14 @@ class CreatorClass {
 		return (this.totalMaxProfit - this.newVideoFortunaFee)
 	}
 
+	public setChannelName = action((newChannelName: string): void => {
+		this.channelName = newChannelName
+	})
+
+	public setRetrievedCreatorInfo(creatorInfo: CreatorInfoResponse) {
+		this.channelName = creatorInfo.channelName
+	}
+
 	public setHasContentToRetrieve = action((newState: boolean): void => {
 		this.hasContentToRetrieve = newState
 	})
@@ -204,6 +215,10 @@ class CreatorClass {
 		}
 	})
 
+	public setIsRetrievingCreatorInfo = action((newState: boolean): void => {
+		this.isRetrievingCreatorInfo = newState
+	})
+
 	public logout() {
 		this.myContent = []
 		this.hasContentToRetrieve = true
@@ -211,6 +226,9 @@ class CreatorClass {
 
 		this.resetNewVideoDetails()
 		this.isNewVideoLoading = false
+
+		this.channelName = ""
+		this.isRetrievingCreatorInfo = false
 	}
 }
 

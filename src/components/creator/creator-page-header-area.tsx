@@ -21,8 +21,13 @@ function CreatorPageHeaderArea() {
 					className="w-24 h-24 rounded-full object-cover"
 				/>
 			)}
-			<div className="text-3xl dark:text-zinc-200">
-				{creatorData.creatorUsername}
+			<div>
+				<div className="text-3xl dark:text-zinc-200">
+					{creatorData.channelName}
+				</div>
+				<div className="text-lg dark:text-zinc-200">
+					@{creatorData.creatorUsername}
+				</div>
 			</div>
 		</div>
 	)
