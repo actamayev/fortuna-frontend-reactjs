@@ -29,6 +29,7 @@ export default function useRetrieveCreatorVideosAndDataUseEffect(creatorUsername
 				channelName: creatorDataResponse.data.creatorData.channelName,
 				channelDescription: creatorDataResponse.data.creatorData.channelDescription,
 				creatorProfilePictureUrl: creatorDataResponse.data.creatorData.creatorProfilePictureUrl,
+				socialPlatformLinks: creatorDataResponse.data.creatorData.socialPlatformLinks,
 				videoData: creatorDataResponse.data.videoData
 			}
 			videoClass.addRetrievedCreatorData(creatorDataHeldInClass)
