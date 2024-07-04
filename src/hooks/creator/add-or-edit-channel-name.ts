@@ -16,6 +16,7 @@ export default function useAddOrEditChannelName(): (
 		channelName: string,
 	): Promise<void> => {
 		try {
+			// TODO: Add a check to make sure it's less than 60 characters
 			if (
 				_.isNull(creatorClass) ||
 				creatorClass.channelName === channelName ||

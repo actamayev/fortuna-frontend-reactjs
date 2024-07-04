@@ -3,10 +3,10 @@ import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { FaSave } from "react-icons/fa"
 import { FaRegCircleXmark } from "react-icons/fa6"
-import HoverOutlineComponent from "../hover-outline-component"
-import useDefaultSiteTheme from "../../hooks/memos/default-site-theme"
-import useAddOrEditChannelName from "../../hooks/creator/add-or-edit-channel-name"
-import useAssignDefaultChannelName from "../../hooks/creator/assign-default-channel-name"
+import HoverOutlineComponent from "../../hover-outline-component"
+import useDefaultSiteTheme from "../../../hooks/memos/default-site-theme"
+import useAddOrEditChannelName from "../../../hooks/creator/add-or-edit-channel-name"
+import useAssignDefaultChannelName from "../../../hooks/creator/assign-default-channel-name"
 
 interface Props {
 	channelName: string

@@ -24,7 +24,8 @@ class CreatorClass {
 	}
 	public isNewVideoLoading = false
 
-	public channelName = ""
+	public channelName: string | null = null
+	public channelDescription: string | null = null
 	public isRetrievingCreatorInfo = false
 
 	constructor() {
@@ -187,8 +188,13 @@ class CreatorClass {
 		this.channelName = newChannelName
 	})
 
+	public setChannelDescription = action((newChannelDescription: string): void => {
+		this.channelDescription = newChannelDescription
+	})
+
 	public setRetrievedCreatorInfo(creatorInfo: CreatorInfoResponse) {
 		this.channelName = creatorInfo.channelName
+		this.channelDescription = creatorInfo.channelDescription
 	}
 
 	public setHasContentToRetrieve = action((newState: boolean): void => {
@@ -228,6 +234,7 @@ class CreatorClass {
 		this.isNewVideoLoading = false
 
 		this.channelName = ""
+		this.channelDescription = ""
 		this.isRetrievingCreatorInfo = false
 	}
 }

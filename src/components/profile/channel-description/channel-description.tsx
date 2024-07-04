@@ -1,24 +1,26 @@
 import { observer } from "mobx-react"
 import { FaPencilAlt } from "react-icons/fa"
 import { useState, useCallback, useRef, useEffect } from "react"
-import SaveChannelNameButton from "./save-channel-name-button"
-import HoverOutlineComponent from "../hover-outline-component"
-import useDefaultSiteTheme from "../../hooks/memos/default-site-theme"
-import useAssignDefaultChannelName from "../../hooks/creator/assign-default-channel-name"
+import HoverOutlineComponent from "../../hover-outline-component"
+import useDefaultSiteTheme from "../../../hooks/memos/default-site-theme"
+import SaveChannelDescriptionButton from "./save-channel-description-button"
+import { useCreatorContext } from "../../../contexts/creator-context"
 
 // eslint-disable-next-line max-lines-per-function
-function ChannelName() {
-	const [channelName, setChannelName] = useState("")
+function ChannelDescription() {
+	const creatorClass = useCreatorContext()
+	const [channelDescription, setChannelDescription] = useState("")
 	const [inputWidth, setInputWidth] = useState("100px")
 	const [isEditing, setIsEditing] = useState(false)
-	const maxLength = 60
+	const maxLength = 5000
 	const spanRef = useRef<HTMLSpanElement>(null)
 	const defaultSiteTheme = useDefaultSiteTheme()
-	const assignDefaultChannelName = useAssignDefaultChannelName()
 
 	useEffect(() => {
-		assignDefaultChannelName(setChannelName)
-	}, [assignDefaultChannelName])
+		if (creatorClass?.channelDescription) {
+			setChannelDescription(creatorClass.channelDescription)
+		}
+	}, [creatorClass?.channelDescription])
 
 	const updateWidth = useCallback((text: string) => {
 		if (spanRef.current) {
@@ -28,13 +30,13 @@ function ChannelName() {
 	}, [])
 
 	useEffect(() => {
-		updateWidth(channelName)
-	}, [channelName, updateWidth])
+		updateWidth(channelDescription)
+	}, [channelDescription, updateWidth])
 
-	const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChange = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
 		const value = event.target.value
 		if (value.length <= maxLength) {
-			setChannelName(value)
+			setChannelDescription(value)
 			updateWidth(value)
 		}
 	}, [updateWidth])
@@ -46,7 +48,7 @@ function ChannelName() {
 	return (
 		<div className="mt-3">
 			<label className="block text-sm font-medium text-zinc-600 dark:text-zinc-200">
-				Channel Name
+				Channel Description
 			</label>
 			<div className="flex items-center">
 				<div className="relative flex flex-col">
@@ -58,40 +60,41 @@ function ChannelName() {
 							whiteSpace: "pre"
 						}}
 					>
-						{channelName}
+						{channelDescription}
 					</span>
 					{isEditing ? (
 						<>
-							<input
-								type="text"
+							<textarea
 								className={`mt-1 p-1.5 border rounded text-zinc-950 border-zinc-100 dark:border-zinc-700 
 									dark:text-zinc-200 bg-white dark:bg-zinc-800 outline-none 
-									${channelName.length === maxLength ? "border-red-500 dark:border-red-500" : ""}`}
-								value={channelName}
+									${channelDescription.length === maxLength ? "border-red-500 dark:border-red-500" : ""}`}
+								value={channelDescription}
 								onChange={handleChange}
 								maxLength={maxLength}
 								style={{
 									minWidth: "100px",
 									width: inputWidth,
 									paddingRight: "10px",
-									boxSizing: "border-box"
+									boxSizing: "border-box",
+									resize: "none"
 								}}
+								rows={2} // You can adjust the number of rows as needed
 							/>
+
 							<span className="text-xs text-zinc-600 dark:text-zinc-400 mt-1">
-								{channelName.length}/{maxLength}
+								{channelDescription.length}/{maxLength}
 							</span>
 						</>
 					) : (
 						<span className="text-zinc-950 dark:text-zinc-50 text-lg">
-							<b>{channelName}</b>
+							<b>{channelDescription}</b>
 						</span>
 					)}
 				</div>
 				{isEditing ? (
-					<SaveChannelNameButton
-						channelName={channelName}
+					<SaveChannelDescriptionButton
+						channelDescription={channelDescription}
 						toggleEditMode={toggleEditMode}
-						setChannelName={setChannelName}
 					/>
 				) : (
 					<HoverOutlineComponent
@@ -106,4 +109,4 @@ function ChannelName() {
 	)
 }
 
-export default observer(ChannelName)
+export default observer(ChannelDescription)

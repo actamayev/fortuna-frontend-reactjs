@@ -25,6 +25,12 @@ export default class CreatorDataService {
 		)
 	}
 
+	async addOrEditChannelDescription(channelDescription: string): Promise<AxiosResponse<SuccessResponse | ErrorResponses>> {
+		return await this.httpClient.http.post<SuccessResponse | ErrorResponses>(
+			`${this.pathHeader}/add-or-edit-channel-description`, { channelDescription }
+		)
+	}
+
 	async retrieveCreatorInfo(): Promise<AxiosResponse<CreatorInfoResponse | ErrorResponse>> {
 		return await this.httpClient.http.get<CreatorInfoResponse | ErrorResponse>(
 			`${this.pathHeader}/retrieve-creator-info`

@@ -20,7 +20,7 @@ export default function useAssignDefaultChannelName(): (
 		} catch (error) {
 			console.error(error)
 		}
-	}, [creatorClass, personalInfoClass?.username])
+	}, [creatorClass?.channelName, personalInfoClass?.username])
 
 	return assignDefaultChannelName
 }
