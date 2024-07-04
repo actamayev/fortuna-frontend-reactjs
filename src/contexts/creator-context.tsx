@@ -26,6 +26,7 @@ class CreatorClass {
 
 	public channelName: string | null = null
 	public channelDescription: string | null = null
+	public socialPlatformLinks: SocialPlatformLinks[] = []
 	public isRetrievingCreatorInfo = false
 
 	constructor() {
@@ -195,6 +196,7 @@ class CreatorClass {
 	public setRetrievedCreatorInfo(creatorInfo: CreatorInfoResponse) {
 		this.channelName = creatorInfo.channelName
 		this.channelDescription = creatorInfo.channelDescription
+		this.socialPlatformLinks = creatorInfo.socialPlatformLinks
 	}
 
 	public setHasContentToRetrieve = action((newState: boolean): void => {
@@ -235,6 +237,7 @@ class CreatorClass {
 
 		this.channelName = null
 		this.channelDescription = null
+		this.socialPlatformLinks = []
 		this.isRetrievingCreatorInfo = false
 	}
 }

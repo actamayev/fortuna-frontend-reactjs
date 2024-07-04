@@ -35,6 +35,11 @@ declare global {
 		createdAt: Date
 		numberOfExclusivePurchasesSoFar: number | null
 	}
+
+	interface SocialPlatformLinks {
+		socialPlatform: string
+		socialLink: string
+	}
 }
 
 export {}
