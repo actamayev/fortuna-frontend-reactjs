@@ -59,10 +59,10 @@ function ChannelDescription() {
 								onChange={handleChange}
 								maxLength={maxLength}
 								style={{
-									width: "800px",
+									width: "75vw",
 									boxSizing: "border-box",
 									resize: "none",
-									overflow: "hidden",
+									overflow: "hidden"
 								}}
 								rows={2}
 							/>
@@ -71,7 +71,10 @@ function ChannelDescription() {
 							</span>
 						</>
 					) : (
-						<span className="text-zinc-950 dark:text-zinc-50 text-lg">
+						<span
+							className="text-zinc-950 dark:text-zinc-50 text-lg"
+							style={{ width: "75vw", wordWrap: "break-word", whiteSpace: "normal" }}
+						>
 							<b>{channelDescription}</b>
 						</span>
 					)}
