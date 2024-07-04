@@ -7,6 +7,7 @@ interface Props {
 	disabled?: boolean
 	onClick?: (e: any) => void | Promise<void>
 	className?: string
+	style?: Object
 }
 
 export default function Button (props: Props) {
@@ -28,6 +29,7 @@ export default function Button (props: Props) {
 			className={css}
 			onClick={props.onClick}
 			disabled={props.disabled ?? false}
+			style={props.style}
 		>
 			<span className="flex items-center justify-center space-x-1">
 				{props.title && <span>{props.title}</span>}
