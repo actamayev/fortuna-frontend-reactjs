@@ -28,6 +28,7 @@ declare global {
 	interface CreatorData {
 		creatorUsername: string
 		channelName: string
+		channelDescription: string
 		creatorProfilePictureUrl: string | null
 	}
 
