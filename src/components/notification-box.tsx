@@ -1,12 +1,9 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { CSSTransition } from "react-transition-group"
 import { useNotificationsContext } from "../contexts/notifications-context"
 
 function NotificationBox() {
 	const notificationsClass = useNotificationsContext()
-
-	if (_.isNull(notificationsClass.notification)) return null
 
 	return (
 		<CSSTransition
@@ -21,9 +18,6 @@ function NotificationBox() {
 				style={{
 					opacity: notificationsClass.notification ? 1 : 0,
 					transform: notificationsClass.notification ? "translateY(0)" : "translateY(100%)",
-					// The transition doesn't currently work. It works if the _.isNull(notificationsClass.notification) is removed.
-					// eslint-disable-next-line max-len
-					// However, if it's removed, there is a small white dot that stays on the bottom right of the screen after the notification is set to null
 					transition: "opacity 300ms, transform 300ms"
 				}}
 			>
