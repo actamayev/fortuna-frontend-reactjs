@@ -1,22 +1,24 @@
 import { useCallback } from "react"
+import { observer } from "mobx-react"
+import { useNotificationsContext } from "../../contexts/notifications-context"
 
 interface Props {
 	name: string
 	email: string
-	setNotification: React.Dispatch<React.SetStateAction<string | null>>
 }
 
-export default function ContactItemInCard(props: Props) {
-	const { name, email, setNotification } = props
+function ContactItemInCard(props: Props) {
+	const { name, email } = props
+	const notificationsClass = useNotificationsContext()
 
 	const copyToClipboard = useCallback(async () => {
 		try {
 			await navigator.clipboard.writeText(email)
-			setNotification(`${email} copied to clipboard`)
+			notificationsClass.setNotification(`${email} copied to clipboard`)
 		} catch (error) {
 			console.error(error)
 		}
-	}, [email, setNotification])
+	}, [email, notificationsClass])
 
 	return (
 		<div
@@ -28,3 +30,5 @@ export default function ContactItemInCard(props: Props) {
 		</div>
 	)
 }
+
+export default observer(ContactItemInCard)

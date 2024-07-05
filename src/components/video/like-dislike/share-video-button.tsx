@@ -1,20 +1,22 @@
+import { useCallback } from "react"
+import { observer } from "mobx-react"
 import { IoIosShareAlt } from "react-icons/io"
-import { useCallback, useState } from "react"
 import NotificationBox from "../../notification-box"
 import HoverOutlineComponent from "../../hover-outline-component"
+import { useNotificationsContext } from "../../../contexts/notifications-context"
 
-export default function ShareVideoButton() {
-	const [notification, setNotification] = useState<string | null>(null)
+function ShareVideoButton() {
+	const notificationsClass = useNotificationsContext()
 
 	const copyToClipboard = useCallback(async () => {
 		try {
 			const currentUrl = window.location.href
 			await navigator.clipboard.writeText(currentUrl)
-			setNotification("Link copied to clipboard")
+			notificationsClass.setNotification("Link copied to clipboard")
 		} catch (error) {
 			console.error(error)
 		}
-	}, [])
+	}, [notificationsClass])
 
 	return (
 		<div>
@@ -26,12 +28,9 @@ export default function ShareVideoButton() {
 					<IoIosShareAlt size={22} />
 				</div>
 			</HoverOutlineComponent>
-			{notification && (
-				<NotificationBox
-					message={notification}
-					onClose={() => setNotification(null)}
-				/>
-			)}
+			<NotificationBox />
 		</div>
 	)
 }
+
+export default observer(ShareVideoButton)

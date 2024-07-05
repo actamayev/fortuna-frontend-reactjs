@@ -5,23 +5,24 @@ import NotificationBox from "../notification-box"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { useSolanaContext } from "../../contexts/solana-context"
 import useDefaultSiteTheme from "../../hooks/memos/default-site-theme"
+import { useNotificationsContext } from "../../contexts/notifications-context"
 
 function ShowMyPublicKey() {
 	const solanaClass = useSolanaContext()
 	const defaultSiteTheme = useDefaultSiteTheme()
 	const [showPublicKey, setShowPublicKey] = useState(false)
-	const [notification, setNotification] = useState<string | null>(null)
+	const notificationsClass = useNotificationsContext()
 
 	const copyToClipboard = useCallback(async () => {
 		if (_.isNull(solanaClass) || _.isNull(solanaClass.walletPublicKey)) return
 
 		try {
 			await navigator.clipboard.writeText(solanaClass.walletPublicKey.toString())
-			setNotification("Public Key copied to clipboard")
+			notificationsClass.setNotification("Public Key copied to clipboard")
 		} catch (error) {
 			console.error("Failed to copy text: ", error)
 		}
-	}, [solanaClass])
+	}, [notificationsClass, solanaClass])
 
 	const setShowPublicKeyCallback = useCallback((whatToSet: boolean): void => {
 		setShowPublicKey(whatToSet)
@@ -54,12 +55,7 @@ function ShowMyPublicKey() {
 					</div>
 				</div>
 			</div>
-			{notification && (
-				<NotificationBox
-					message={notification}
-					onClose={() => setNotification(null)}
-				/>
-			)}
+			<NotificationBox />
 		</div>
 	)
 }

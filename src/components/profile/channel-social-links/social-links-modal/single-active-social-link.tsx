@@ -2,6 +2,7 @@ import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { FaTrashAlt } from "react-icons/fa"
+import NotificationBox from "../../../notification-box"
 import platformIcons from "../../../../utils/platform-icons"
 import HoverOutlineComponent from "../../../hover-outline-component"
 import { useCreatorContext } from "../../../../contexts/creator-context"
@@ -43,25 +44,27 @@ function SingleActiveSocialLink(props: Props) {
 	const IconComponent = platformIcons[link.socialPlatform as SocialPlatformKey]
 
 	return (
-		<div key={link.socialPlatform} className="flex items-center mb-2">
-			<IconComponent className="mr-3" size={24} />
-			<input
-				type="text"
-				value={link.socialLink}
-				className="flex-1 border p-1 rounded text-zinc-950 border-zinc-100 dark:border-zinc-700 \
-					dark:text-zinc-200 bg-white dark:bg-zinc-800 outline-none w-5/6 text-sm"
-				onChange={e => handleInputChange(link.socialPlatform, e.target.value)}
-			/>
-			<HoverOutlineComponent
-				classes="relative flex items-center justify-center inline-block ml-1"
-				onClickAction={() => removeSocialLink(link.socialPlatform, setTempSocialLinks)}
-				circlePixelSize="33px"
-			>
-				<FaTrashAlt />
-			</HoverOutlineComponent>
+		<div>
+			<div className="flex items-center mb-2">
+				<IconComponent className="mr-3" size={24} />
+				<input
+					type="text"
+					value={link.socialLink}
+					className="flex-1 border p-1 rounded text-zinc-950 border-zinc-100 dark:border-zinc-700 \
+				dark:text-zinc-200 bg-white dark:bg-zinc-800 outline-none w-5/6 text-sm"
+					onChange={e => handleInputChange(link.socialPlatform, e.target.value)}
+				/>
+				<HoverOutlineComponent
+					classes="relative flex items-center justify-center inline-block ml-1"
+					onClickAction={() => removeSocialLink(link.socialPlatform, setTempSocialLinks)}
+					circlePixelSize="33px"
+				>
+					<FaTrashAlt />
+				</HoverOutlineComponent>
+			</div>
+			<NotificationBox />
 		</div>
 	)
-
 }
 
 export default observer(SingleActiveSocialLink)

@@ -3,18 +3,19 @@ import { useCallback } from "react"
 import { isErrorResponses } from "../../../utils/type-checks"
 import { useCreatorContext } from "../../../contexts/creator-context"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
+import { useNotificationsContext } from "../../../contexts/notifications-context"
 
 export default function useAddOrEditSocialLink(): (
 	socialLink: string,
-	socialPlatform: SocialPlatformKey
+	socialPlatform: SocialPlatformKey,
 ) => Promise<void> {
 	const creatorClass = useCreatorContext()
 	const fortunaApiClient = useApiClientContext()
+	const notificationsClass = useNotificationsContext()
 
-	// TODO: Show a notification that the link was saved
 	const addOrEditSocialLink = useCallback(async (
 		socialLink: string,
-		socialPlatform: SocialPlatformKey
+		socialPlatform: SocialPlatformKey,
 	): Promise<void> => {
 		try {
 			if (_.isNull(creatorClass) || _.isEmpty(socialLink.trim())) return
@@ -26,11 +27,12 @@ export default function useAddOrEditSocialLink(): (
 			if (!_.isEqual(response.status, 200) || isErrorResponses(response.data)) {
 				creatorClass.removeSocialPlatformLink(socialPlatform)
 			}
+			notificationsClass.setNotification(`Saved ${socialPlatform} link`)
 		} catch (error) {
 			console.error(error)
 			if (!_.isNull(creatorClass)) creatorClass.removeSocialPlatformLink(socialPlatform)
 		}
-	}, [creatorClass, fortunaApiClient.creatorDataService])
+	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass])
 
 	return addOrEditSocialLink
 }
