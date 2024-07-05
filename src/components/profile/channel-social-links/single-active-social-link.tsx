@@ -1,8 +1,10 @@
 import _ from "lodash"
 import { useCallback } from "react"
+import { observer } from "mobx-react"
 import { FaTrashAlt } from "react-icons/fa"
 import platformIcons from "../../../utils/platform-icons"
 import HoverOutlineComponent from "../../hover-outline-component"
+import { useCreatorContext } from "../../../contexts/creator-context"
 import useRemoveSocialLink from "../../../hooks/creator/social-links/remove-social-link"
 import useAddOrEditSocialLink from "../../../hooks/creator/social-links/add-or-edit-social-link"
 
@@ -11,10 +13,11 @@ interface Props {
 	setTempSocialLinks: React.Dispatch<React.SetStateAction<SocialPlatformLinks[]>>
 }
 
-export default function SingleActiveSocialLink(props: Props) {
+function SingleActiveSocialLink(props: Props) {
 	const { link, setTempSocialLinks } = props
 	const removeSocialLink = useRemoveSocialLink()
 	const addOrEditSocialLink = useAddOrEditSocialLink()
+	const creatorClass = useCreatorContext()
 
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const debouncedAddOrEditSocialLink = useCallback(
@@ -24,7 +27,7 @@ export default function SingleActiveSocialLink(props: Props) {
 		[addOrEditSocialLink]
 	)
 
-	const handleInputChange = (socialPlatform: SocialPlatformKey, value: string) => {
+	const handleInputChange = useCallback((socialPlatform: SocialPlatformKey, value: string) => {
 		setTempSocialLinks(prevLinks =>
 			prevLinks.map(prevLink =>
 				prevLink.socialPlatform === socialPlatform
@@ -32,8 +35,10 @@ export default function SingleActiveSocialLink(props: Props) {
 					: prevLink
 			)
 		)
+		if (_.isNull(creatorClass)) return
+		creatorClass.addSocialPlatformLink({ socialLink: value, socialPlatform })
 		debouncedAddOrEditSocialLink(value, socialPlatform)
-	}
+	}, [creatorClass, debouncedAddOrEditSocialLink, setTempSocialLinks])
 
 	const IconComponent = platformIcons[link.socialPlatform as SocialPlatformKey]
 
@@ -57,3 +62,5 @@ export default function SingleActiveSocialLink(props: Props) {
 	)
 
 }
+
+export default observer(SingleActiveSocialLink)

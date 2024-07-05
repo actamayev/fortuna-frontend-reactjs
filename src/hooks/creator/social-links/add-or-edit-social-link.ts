@@ -16,19 +16,23 @@ export default function useAddOrEditSocialLink(): (
 		socialPlatform: SocialPlatformKey
 	): Promise<void> => {
 		try {
-			if (_.isNull(creatorClass)) return
+			if (
+				_.isNull(creatorClass) ||
+				_.isEmpty(socialLink.trim())
+			) return
 
 			const response = await fortunaApiClient.creatorDataService.addOrEditSocialPlatformLink(
 				socialLink, socialPlatform
 			)
 
 			if (!_.isEqual(response.status, 200) || isErrorResponses(response.data)) {
+				creatorClass.removeSocialPlatformLink(socialPlatform)
 				return
 			}
 
-			creatorClass.addSocialPlatformLink({ socialLink, socialPlatform })
 		} catch (error) {
 			console.error(error)
+			if (!_.isNull(creatorClass)) creatorClass.removeSocialPlatformLink(socialPlatform)
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService])
 

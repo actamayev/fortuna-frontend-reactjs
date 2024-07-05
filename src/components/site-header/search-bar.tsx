@@ -31,7 +31,7 @@ function SearchBar() {
 
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
-			if (event.key === "/") {
+			if (event.key === "/" && document.activeElement?.tagName !== "INPUT" && document.activeElement?.tagName !== "TEXTAREA") {
 				event.preventDefault()
 				inputRef.current?.focus()
 			}
