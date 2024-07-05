@@ -1,5 +1,5 @@
 import { observer } from "mobx-react"
-import SingleLinkToSocialPlatform from "../profile/channel-social-links/single-link-to-social-platform"
+import SingleLinkToSocialPlatform from "../single-link-to-social-platform"
 
 interface Props {
 	socialPlatformLinks: SocialPlatformLinks[]

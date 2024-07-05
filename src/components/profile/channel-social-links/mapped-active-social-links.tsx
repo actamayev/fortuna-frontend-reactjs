@@ -2,7 +2,7 @@ import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { useCreatorContext } from "../../../contexts/creator-context"
-import SingleLinkToSocialPlatform from "./single-link-to-social-platform"
+import SingleLinkToSocialPlatform from "../../single-link-to-social-platform"
 
 function MappedActiveSocialLinks() {
 	const creatorClass = useCreatorContext()
