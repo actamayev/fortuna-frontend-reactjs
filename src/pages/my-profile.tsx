@@ -21,9 +21,9 @@ function MyProfile() {
 			<div className="flex items-start space-x-4">
 				<div className="flex flex-col items-center">
 					<UploadProfilePicture />
+					<ShowMyUsername />
 				</div>
 				<div className="flex flex-col">
-					<ShowMyUsername />
 					<ChannelName />
 					<ChannelDescription />
 					<ChannelSocialLinks />
