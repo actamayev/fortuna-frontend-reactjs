@@ -38,7 +38,7 @@ function SocialLinksModal(props: Props) {
 				className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg w-1/3"
 				onClick={e => e.stopPropagation()}
 			>
-				<div className="flex justify-between items-center px-3 py-1 border-b border-zinc-200 dark:border-zinc-700">
+				<div className="flex justify-between items-center px-3 pt-1 border-b border-zinc-200 dark:border-zinc-700">
 					<h2 className="text-lg font-medium">
                         Social Links
 					</h2>

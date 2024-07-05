@@ -1,5 +1,5 @@
 import { observer } from "mobx-react"
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import SocialLinksModal from "./social-links-modal"
 import EditPencilButton from "../edit-pencil-button"
 
@@ -9,6 +9,25 @@ function ChannelSocialLinks() {
 	const toggleModalOpen = useCallback(() => {
 		setIsModalOpen(prev => !prev)
 	}, [])
+
+	useEffect(() => {
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key === "Escape") {
+				setIsModalOpen(false)
+			}
+		}
+
+		if (isModalOpen) {
+			window.addEventListener("keydown", handleKeyDown)
+		} else {
+			window.removeEventListener("keydown", handleKeyDown)
+		}
+
+		// Clean up the event listener on component unmount
+		return () => {
+			window.removeEventListener("keydown", handleKeyDown)
+		}
+	}, [isModalOpen])
 
 	return (
 		<div>
