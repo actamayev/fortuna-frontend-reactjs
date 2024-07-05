@@ -5,6 +5,7 @@ import ShowAuthToNullUser from "../components/show-auth-to-null-user"
 import ChannelName from "../components/profile/channel-name/channel-name"
 import UploadProfilePicture from "../components/profile/upload-profile-picture"
 import ChannelDescription from "../components/profile/channel-description/channel-description"
+import ChannelSocialLinks from "../components/profile/channel-social-links/channel-social-links"
 
 function MyProfile() {
 	const authClass = useAuthContext()
@@ -21,6 +22,7 @@ function MyProfile() {
 				<div className="flex flex-col">
 					<ChannelName />
 					<ChannelDescription />
+					<ChannelSocialLinks />
 				</div>
 			</div>
 		</>
