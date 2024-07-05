@@ -1,6 +1,7 @@
 import { observer } from "mobx-react"
 import { useAuthContext } from "../contexts/auth-context"
 import SectionHeader from "../components/headers/section-header"
+import ShowMyUsername from "../components/profile/show-my-username"
 import ShowAuthToNullUser from "../components/show-auth-to-null-user"
 import ChannelName from "../components/profile/channel-name/channel-name"
 import UploadProfilePicture from "../components/profile/upload-profile-picture"
@@ -18,8 +19,11 @@ function MyProfile() {
 		<>
 			<SectionHeader siteTitle="My Profile" />
 			<div className="flex items-start space-x-4">
-				<UploadProfilePicture />
+				<div className="flex flex-col items-center">
+					<UploadProfilePicture />
+				</div>
 				<div className="flex flex-col">
+					<ShowMyUsername />
 					<ChannelName />
 					<ChannelDescription />
 					<ChannelSocialLinks />
