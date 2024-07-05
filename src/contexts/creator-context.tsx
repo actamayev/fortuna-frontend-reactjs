@@ -194,7 +194,15 @@ class CreatorClass {
 	})
 
 	public addSocialPlatformLink = action((socialPlatformLink: SocialPlatformLinks): void => {
-		this.socialPlatformLinks.push(socialPlatformLink)
+		const index = this.socialPlatformLinks.findIndex(
+			link => link.socialPlatform === socialPlatformLink.socialPlatform
+		)
+
+		if (index === -1) {
+			this.socialPlatformLinks.push(socialPlatformLink)
+			return
+		}
+		this.socialPlatformLinks[index].socialLink = socialPlatformLink.socialLink
 	})
 
 	public removeSocialPlatformLink = action((socialPlatform: SocialPlatformKey): void => {

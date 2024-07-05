@@ -8,12 +8,11 @@ import useAddOrEditSocialLink from "../../../hooks/creator/social-links/add-or-e
 
 interface Props {
 	link: SocialPlatformLinks
-	tempSocialLinks: SocialPlatformLinks[]
 	setTempSocialLinks: React.Dispatch<React.SetStateAction<SocialPlatformLinks[]>>
 }
 
 export default function SingleActiveSocialLink(props: Props) {
-	const { link, tempSocialLinks, setTempSocialLinks } = props
+	const { link, setTempSocialLinks } = props
 	const removeSocialLink = useRemoveSocialLink()
 	const addOrEditSocialLink = useAddOrEditSocialLink()
 
@@ -40,21 +39,20 @@ export default function SingleActiveSocialLink(props: Props) {
 
 	return (
 		<div key={link.socialPlatform} className="flex items-center mb-2">
-			<IconComponent className="mr-2" size={24} />
+			<IconComponent className="mr-3" size={24} />
 			<input
 				type="text"
 				value={link.socialLink}
-				className="flex-1 border p-1 rounded"
+				className="flex-1 border p-1 rounded text-zinc-950 border-zinc-100 dark:border-zinc-700 \
+					dark:text-zinc-200 bg-white dark:bg-zinc-800 outline-none w-5/6"
 				onChange={e => handleInputChange(link.socialPlatform, e.target.value)}
 			/>
-			{tempSocialLinks.some(tempLink => tempLink.socialPlatform === link.socialPlatform) && (
-				<HoverOutlineComponent
-					classes="relative flex items-center justify-center inline-block ml-1"
-					onClickAction={() => removeSocialLink(link.socialPlatform, setTempSocialLinks)}
-				>
-					<FaTrashAlt />
-				</HoverOutlineComponent>
-			)}
+			<HoverOutlineComponent
+				classes="relative flex items-center justify-center inline-block ml-1"
+				onClickAction={() => removeSocialLink(link.socialPlatform, setTempSocialLinks)}
+			>
+				<FaTrashAlt />
+			</HoverOutlineComponent>
 		</div>
 	)
 
