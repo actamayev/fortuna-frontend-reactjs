@@ -20,8 +20,8 @@ function SearchBar() {
 	const handleSearch = useCallback(async (event: React.KeyboardEvent<HTMLInputElement>) => {
 		if (
 			event.key !== "Enter" ||
-      _.isNull(videoClass.searchTerm) ||
-      _.isEmpty(videoClass.searchTerm.trim())
+			_.isNull(videoClass.searchTerm) ||
+			_.isEmpty(videoClass.searchTerm.trim())
 		) return
 		await videoSearch()
 		if (location.pathname !== (`/s/${videoClass.searchTerm}`)) {

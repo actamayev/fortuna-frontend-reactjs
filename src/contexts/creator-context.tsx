@@ -193,10 +193,6 @@ class CreatorClass {
 		this.channelDescription = newChannelDescription
 	})
 
-	get activeSocialPlatforms(): SocialPlatformKey[] {
-		return this.socialPlatformLinks.map(socialPlatformLink => socialPlatformLink.socialPlatform)
-	}
-
 	public addSocialPlatformLink = action((socialPlatformLink: SocialPlatformLinks): void => {
 		const index = this.socialPlatformLinks.findIndex(
 			link => link.socialPlatform === socialPlatformLink.socialPlatform

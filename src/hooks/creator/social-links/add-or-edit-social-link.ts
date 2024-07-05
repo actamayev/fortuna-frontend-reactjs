@@ -11,15 +11,13 @@ export default function useAddOrEditSocialLink(): (
 	const creatorClass = useCreatorContext()
 	const fortunaApiClient = useApiClientContext()
 
+	// TODO: Show a notification that the link was saved
 	const addOrEditSocialLink = useCallback(async (
 		socialLink: string,
 		socialPlatform: SocialPlatformKey
 	): Promise<void> => {
 		try {
-			if (
-				_.isNull(creatorClass) ||
-				_.isEmpty(socialLink.trim())
-			) return
+			if (_.isNull(creatorClass) || _.isEmpty(socialLink.trim())) return
 
 			const response = await fortunaApiClient.creatorDataService.addOrEditSocialPlatformLink(
 				socialLink, socialPlatform
@@ -27,9 +25,7 @@ export default function useAddOrEditSocialLink(): (
 
 			if (!_.isEqual(response.status, 200) || isErrorResponses(response.data)) {
 				creatorClass.removeSocialPlatformLink(socialPlatform)
-				return
 			}
-
 		} catch (error) {
 			console.error(error)
 			if (!_.isNull(creatorClass)) creatorClass.removeSocialPlatformLink(socialPlatform)
