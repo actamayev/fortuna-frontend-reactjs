@@ -1,3 +1,4 @@
+import _ from "lodash"
 import { useCallback } from "react"
 import platformIcons from "../utils/platform-icons"
 import HoverOutlineComponent from "./hover-outline-component"
@@ -12,6 +13,7 @@ export default function SingleLinkToSocialPlatform(props: Props) {
 	const IconComponent = platformIcons[socialPlatformLink.socialPlatform]
 
 	const handleClick = useCallback(() => {
+		if (_.isEmpty(socialPlatformLink.socialLink)) return
 		const url = socialPlatformLink.socialLink.startsWith("http")
 			? socialPlatformLink.socialLink
 			: `http://${socialPlatformLink.socialLink}`

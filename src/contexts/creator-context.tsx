@@ -193,6 +193,10 @@ class CreatorClass {
 		this.channelDescription = newChannelDescription
 	})
 
+	get nonEmptySocialPlatformLinks(): SocialPlatformLinks[] {
+		return this.socialPlatformLinks.filter(link => link.socialLink.trim() !== "")
+	}
+
 	public addSocialPlatformLink = action((socialPlatformLink: SocialPlatformLinks): void => {
 		const index = this.socialPlatformLinks.findIndex(
 			link => link.socialPlatform === socialPlatformLink.socialPlatform
