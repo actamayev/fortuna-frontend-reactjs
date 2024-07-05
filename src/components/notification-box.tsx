@@ -29,7 +29,10 @@ function NotificationBox() {
 					text-zinc-950 dark:text-white px-4 py-2 rounded-lg shadow-lg transition-opacity duration-300 ease-in-out"
 				style={{
 					transform: notificationsClass.notification ? "translateY(0)" : "translateY(100%)",
-					transition: "opacity 300ms, transform 300ms" // The transition doesn't currently work
+					// The transition doesn't currently work. It works if the _.isNull(notificationsClass.notification) is removed.
+					// eslint-disable-next-line max-len
+					// However, if it's removed, there is a small white dot that stays on the bottom right of the screen after the notification is set to null
+					transition: "opacity 300ms, transform 300ms"
 				}}
 			>
 				{notificationsClass.notification}
