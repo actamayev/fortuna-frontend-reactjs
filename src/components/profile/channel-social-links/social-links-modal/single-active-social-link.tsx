@@ -49,7 +49,7 @@ function SingleActiveSocialLink(props: Props) {
 				type="text"
 				value={link.socialLink}
 				className="flex-1 border p-1 rounded text-zinc-950 border-zinc-100 dark:border-zinc-700 \
-					dark:text-zinc-200 bg-white dark:bg-zinc-800 outline-none w-5/6"
+					dark:text-zinc-200 bg-white dark:bg-zinc-800 outline-none w-5/6 text-sm"
 				onChange={e => handleInputChange(link.socialPlatform, e.target.value)}
 			/>
 			<HoverOutlineComponent

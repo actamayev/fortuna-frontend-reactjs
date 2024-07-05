@@ -1,10 +1,9 @@
-import { observer } from "mobx-react"
 import { useCallback, useEffect, useState } from "react"
 import EditPencilButton from "../edit-pencil-button"
 import MappedActiveSocialLinks from "./mapped-active-social-links"
 import SocialLinksModal from "./social-links-modal/social-links-modal"
 
-function ChannelSocialLinks() {
+export default function ChannelSocialLinks() {
 	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	const toggleModalOpen = useCallback(() => {
@@ -43,5 +42,3 @@ function ChannelSocialLinks() {
 		</div>
 	)
 }
-
-export default observer(ChannelSocialLinks)
