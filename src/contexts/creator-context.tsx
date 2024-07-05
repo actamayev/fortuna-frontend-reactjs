@@ -193,6 +193,16 @@ class CreatorClass {
 		this.channelDescription = newChannelDescription
 	})
 
+	public addSocialPlatformLink = action((socialPlatformLink: SocialPlatformLinks): void => {
+		this.socialPlatformLinks.push(socialPlatformLink)
+	})
+
+	public removeSocialPlatformLink = action((socialPlatform: SocialPlatformKey): void => {
+		this.socialPlatformLinks = this.socialPlatformLinks.filter(
+			socialPlatformLink => socialPlatformLink.socialPlatform !== socialPlatform
+		)
+	})
+
 	public setRetrievedCreatorInfo(creatorInfo: CreatorInfoResponse) {
 		this.channelName = creatorInfo.channelName
 		this.channelDescription = creatorInfo.channelDescription

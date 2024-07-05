@@ -1,4 +1,4 @@
-import { SocialPlatformKey } from "../utils/platform-icons"
+import { SocialPlatforms } from "../utils/platform-icons"
 
 declare global {
 	interface CommonNewVideoDetails {
@@ -42,6 +42,8 @@ declare global {
 		socialPlatform: SocialPlatformKey
 		socialLink: string
 	}
+
+	type SocialPlatformKey = keyof typeof SocialPlatforms
 }
 
 export {}

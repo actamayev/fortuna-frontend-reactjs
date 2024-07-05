@@ -1,17 +1,17 @@
 import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
-import HoverOutlineComponent from "../../hover-outline-component"
+import { SocialPlatforms } from "../../../utils/platform-icons"
 import { useCreatorContext } from "../../../contexts/creator-context"
-import platformIcons, { SocialPlatformKey, SocialPlatforms } from "../../../utils/platform-icons"
+import SingleAvailableSocialLink from "./single-available-social-link"
 
 interface Props {
 	tempSocialLinks: SocialPlatformLinks[]
-	handleAddLink: (platform: SocialPlatformKey) => void
+	setTempSocialLinks: React.Dispatch<React.SetStateAction<SocialPlatformLinks[]>>
 }
 
 function AvailableLinks (props: Props) {
-	const { tempSocialLinks, handleAddLink } = props
+	const { tempSocialLinks, setTempSocialLinks } = props
 	const creatorClass = useCreatorContext()
 
 	const availablePlatforms = useMemo(() => {
@@ -27,18 +27,14 @@ function AvailableLinks (props: Props) {
 
 	return (
 		<div className="flex flex-wrap items-center justify-center">
-			{availablePlatforms.map(platform => {
-				const IconComponent = platformIcons[platform]
-				return (
-					<HoverOutlineComponent
-						key={platform}
-						classes="relative flex items-center justify-center inline-block"
-						onClickAction={() => handleAddLink(platform)}
-					>
-						<IconComponent size={24} />
-					</HoverOutlineComponent>
-				)
-			})}
+			{availablePlatforms.map(platform => (
+				<SingleAvailableSocialLink
+					key={platform}
+					socialPlatform={platform}
+					tempSocialLinks={tempSocialLinks}
+					setTempSocialLinks={setTempSocialLinks}
+				/>
+			))}
 		</div>
 	)
 }

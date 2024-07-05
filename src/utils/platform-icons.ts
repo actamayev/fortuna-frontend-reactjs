@@ -14,8 +14,6 @@ const platformIcons = {
 	tiktok: FaTiktok
 }
 
-export type SocialPlatformKey = keyof typeof SocialPlatforms
-
 export const SocialPlatforms = {
 	youtube: "youtube",
 	twitter: "twitter",
