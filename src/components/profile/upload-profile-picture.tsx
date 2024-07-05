@@ -73,7 +73,7 @@ function UploadProfilePicture() {
 	}
 
 	return (
-		<div className="relative inline-block my-3">
+		<div className="relative inline-block">
 			<img
 				src={previewUrl}
 				className="w-36 h-36 rounded-full object-cover cursor-pointer"

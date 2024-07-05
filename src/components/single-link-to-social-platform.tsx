@@ -1,14 +1,17 @@
 import _ from "lodash"
 import { useCallback } from "react"
+import { observer } from "mobx-react"
 import platformIcons from "../utils/platform-icons"
 import HoverOutlineComponent from "./hover-outline-component"
+import useDefaultSiteTheme from "../hooks/memos/default-site-theme"
 
 interface Props {
 	socialPlatformLink: SocialPlatformLinks
 }
 
-export default function SingleLinkToSocialPlatform(props: Props) {
+function SingleLinkToSocialPlatform(props: Props) {
 	const { socialPlatformLink } = props
+	const defaultSiteTheme = useDefaultSiteTheme()
 
 	const IconComponent = platformIcons[socialPlatformLink.socialPlatform]
 
@@ -25,7 +28,9 @@ export default function SingleLinkToSocialPlatform(props: Props) {
 			classes="relative flex items-center justify-center right-2 bottom-2"
 			onClickAction={handleClick}
 		>
-			<IconComponent size={24} />
+			<IconComponent size={24} color={defaultSiteTheme === "light" ? "black" : "white"} />
 		</HoverOutlineComponent>
 	)
 }
+
+export default observer(SingleLinkToSocialPlatform)
