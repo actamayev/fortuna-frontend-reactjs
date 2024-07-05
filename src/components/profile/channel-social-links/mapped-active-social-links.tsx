@@ -7,18 +7,18 @@ import SingleLinkToSocialPlatform from "../../single-link-to-social-platform"
 function MappedActiveSocialLinks() {
 	const creatorClass = useCreatorContext()
 
-	const socialPlatformLinks = useMemo(() => {
+	const nonEmptySocialPlatformLinks = useMemo(() => {
 		if (_.isNull(creatorClass)) return []
-		return creatorClass.socialPlatformLinks
+		return creatorClass.nonEmptySocialPlatformLinks
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.socialPlatformLinks])
+	}, [creatorClass, creatorClass?.nonEmptySocialPlatformLinks])
 
 	return (
 		<div className="flex">
-			{socialPlatformLinks.map(socialPlatformLink => (
+			{nonEmptySocialPlatformLinks.map(nonEmptySocialPlatformLink => (
 				<SingleLinkToSocialPlatform
-					key={socialPlatformLink.socialPlatform}
-					socialPlatformLink={socialPlatformLink}
+					key={nonEmptySocialPlatformLink.socialPlatform}
+					socialPlatformLink={nonEmptySocialPlatformLink}
 				/>
 			))}
 		</div>

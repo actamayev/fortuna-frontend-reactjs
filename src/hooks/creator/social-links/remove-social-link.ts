@@ -3,6 +3,7 @@ import { useCallback } from "react"
 import { isErrorResponses } from "../../../utils/type-checks"
 import { useCreatorContext } from "../../../contexts/creator-context"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
+import { useNotificationsContext } from "../../../contexts/notifications-context"
 
 export default function useRemoveSocialLink(): (
 	socialPlatform: SocialPlatformKey,
@@ -10,6 +11,7 @@ export default function useRemoveSocialLink(): (
 ) => Promise<void> {
 	const creatorClass = useCreatorContext()
 	const fortunaApiClient = useApiClientContext()
+	const notificationsClass = useNotificationsContext()
 
 	const removeSocialLink = useCallback(async (
 		socialPlatform: SocialPlatformKey,
@@ -32,10 +34,11 @@ export default function useRemoveSocialLink(): (
 			}
 
 			creatorClass.removeSocialPlatformLink(socialPlatform)
+			notificationsClass.setNotification(`Removed ${_.upperFirst(socialPlatform)}`)
 		} catch (error) {
 			console.error(error)
 		}
-	}, [creatorClass, fortunaApiClient.creatorDataService])
+	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass])
 
 	return removeSocialLink
 }

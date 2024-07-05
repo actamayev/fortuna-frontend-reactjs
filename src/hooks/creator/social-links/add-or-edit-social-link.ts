@@ -27,7 +27,7 @@ export default function useAddOrEditSocialLink(): (
 			if (!_.isEqual(response.status, 200) || isErrorResponses(response.data)) {
 				creatorClass.removeSocialPlatformLink(socialPlatform)
 			}
-			notificationsClass.setNotification(`Saved ${socialPlatform} link`)
+			notificationsClass.setNotification(`Saved ${_.upperFirst(socialPlatform)} link`)
 		} catch (error) {
 			console.error(error)
 			if (!_.isNull(creatorClass)) creatorClass.removeSocialPlatformLink(socialPlatform)
