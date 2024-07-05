@@ -20,8 +20,7 @@ function AvailableLinks(props: Props) {
 		return Object.keys(SocialPlatforms).filter(platform =>
 			!tempSocialPlatforms.includes(platform as SocialPlatformKey)
 		) as SocialPlatformKey[]
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, tempSocialLinks, creatorClass?.socialPlatformLinks])
+	}, [creatorClass, tempSocialLinks])
 
 	return (
 		<div className="flex flex-wrap items-center justify-center">
