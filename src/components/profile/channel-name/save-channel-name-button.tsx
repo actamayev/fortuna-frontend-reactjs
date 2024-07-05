@@ -18,6 +18,7 @@ function SaveChannelNameButton(props: Props) {
 		<HoverOutlineComponent
 			classes="relative flex items-center justify-center inline-block"
 			onClickAction={handleSaveChannelName}
+			circlePixelSize="33px"
 		>
 			{_.isEmpty(channelName) ? (
 				<FaRegCircleXmark color={defaultSiteTheme === "dark" ? "white" : "black"} />

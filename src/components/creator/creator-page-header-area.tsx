@@ -3,6 +3,7 @@ import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import { useVideoContext } from "../../contexts/video-context"
 import ShowChannelDescription from "./show-channel-description"
+import ShowChannelSocialLinks from "./show-channel-social-links"
 import { removeLeadingAt } from "../../utils/leading-at-operations"
 
 function CreatorPageHeaderArea() {
@@ -30,6 +31,7 @@ function CreatorPageHeaderArea() {
 					@{creatorData.creatorUsername}
 				</div>
 				<ShowChannelDescription channelDescription={creatorData.channelDescription} />
+				<ShowChannelSocialLinks socialPlatformLinks={creatorData.socialPlatformLinks} />
 			</div>
 		</div>
 	)

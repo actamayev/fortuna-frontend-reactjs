@@ -45,6 +45,7 @@ function SocialLinksModal(props: Props) {
 					<HoverOutlineComponent
 						classes="relative flex items-center justify-center inline-block"
 						onClickAction={toggleModalOpen}
+						circlePixelSize="33px"
 					>
 						<FaTimes />
 					</HoverOutlineComponent>

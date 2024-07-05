@@ -55,6 +55,7 @@ function SingleActiveSocialLink(props: Props) {
 			<HoverOutlineComponent
 				classes="relative flex items-center justify-center inline-block ml-1"
 				onClickAction={() => removeSocialLink(link.socialPlatform, setTempSocialLinks)}
+				circlePixelSize="33px"
 			>
 				<FaTrashAlt />
 			</HoverOutlineComponent>

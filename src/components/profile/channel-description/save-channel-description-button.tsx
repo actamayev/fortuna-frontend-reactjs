@@ -15,6 +15,7 @@ function SaveChannelDescriptionButton(props: Props) {
 		<HoverOutlineComponent
 			classes="relative flex items-center justify-center inline-block"
 			onClickAction={handleSaveChannelDescription}
+			circlePixelSize="33px"
 		>
 			<FaSave color={defaultSiteTheme === "dark" ? "white" : "black"} />
 		</HoverOutlineComponent>

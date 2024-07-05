@@ -15,6 +15,7 @@ function EditPencilButton(props: Props) {
 		<HoverOutlineComponent
 			onClickAction={toggleEditMode}
 			classes="flex items-center justify-center"
+			circlePixelSize="33px"
 		>
 			<RiPencilFill color={defaultSiteTheme === "dark" ? "white" : "black"} size={17} />
 		</HoverOutlineComponent>

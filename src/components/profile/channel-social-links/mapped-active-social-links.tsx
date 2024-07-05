@@ -1,8 +1,8 @@
 import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
-import SingleActivePlatformLink from "./single-active-platform-link"
 import { useCreatorContext } from "../../../contexts/creator-context"
+import SingleLinkToSocialPlatform from "./single-link-to-social-platform"
 
 function MappedActiveSocialLinks() {
 	const creatorClass = useCreatorContext()
@@ -16,7 +16,7 @@ function MappedActiveSocialLinks() {
 	return (
 		<div className="flex">
 			{socialPlatformLinks.map(socialPlatformLink => (
-				<SingleActivePlatformLink
+				<SingleLinkToSocialPlatform
 					key={socialPlatformLink.socialPlatform}
 					socialPlatformLink={socialPlatformLink}
 				/>

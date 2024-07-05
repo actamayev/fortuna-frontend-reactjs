@@ -6,7 +6,7 @@ interface Props {
 	socialPlatformLink: SocialPlatformLinks
 }
 
-export default function SingleActivePlatformLink(props: Props) {
+export default function SingleLinkToSocialPlatform(props: Props) {
 	const { socialPlatformLink } = props
 
 	const IconComponent = platformIcons[socialPlatformLink.socialPlatform]

@@ -6,10 +6,11 @@ interface Props {
 	classes: string
 	children: React.ReactNode
 	top?: string
+	circlePixelSize?: string
 }
 
 export default function HoverOutlineComponent(props: Props) {
-	const { onClickAction, id, classes, children, top } = props
+	const { onClickAction, id, classes, children, top, circlePixelSize } = props
 	const [isHovered, setIsHovered] = useState(false)
 
 	return (
@@ -20,8 +21,8 @@ export default function HoverOutlineComponent(props: Props) {
 			onMouseLeave={() => setIsHovered(false)}
 			style={{
 				backgroundColor: isHovered ? "rgba(128, 128, 128, 0.2)" : "transparent",
-				height: "40px",
-				width: "40px",
+				height: circlePixelSize || "40px",
+				width: circlePixelSize || "40px",
 				borderRadius: "50%",
 				cursor: "pointer",
 				top: top
