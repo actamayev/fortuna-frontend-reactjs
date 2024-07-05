@@ -4,16 +4,15 @@ import HoverOutlineComponent from "../../../hover-outline-component"
 
 interface Props {
 	socialPlatform: SocialPlatformKey
-	tempSocialLinks: SocialPlatformLinks[]
 	setTempSocialLinks: React.Dispatch<React.SetStateAction<SocialPlatformLinks[]>>
 }
 
 export default function SingleAvailableSocialLink(props: Props) {
-	const { socialPlatform, tempSocialLinks, setTempSocialLinks } = props
+	const { socialPlatform, setTempSocialLinks } = props
 
 	const handleAddTempLink = useCallback(() => {
-		setTempSocialLinks([...tempSocialLinks, { socialPlatform, socialLink: "" }])
-	}, [setTempSocialLinks, socialPlatform, tempSocialLinks])
+		setTempSocialLinks(prevState => [...prevState, { socialPlatform, socialLink: "" }])
+	}, [setTempSocialLinks, socialPlatform])
 
 	const IconComponent = platformIcons[socialPlatform]
 

@@ -15,9 +15,9 @@ interface Props {
 
 function SingleActiveSocialLink(props: Props) {
 	const { link, setTempSocialLinks } = props
+	const creatorClass = useCreatorContext()
 	const removeSocialLink = useRemoveSocialLink()
 	const addOrEditSocialLink = useAddOrEditSocialLink()
-	const creatorClass = useCreatorContext()
 
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const debouncedAddOrEditSocialLink = useCallback(
