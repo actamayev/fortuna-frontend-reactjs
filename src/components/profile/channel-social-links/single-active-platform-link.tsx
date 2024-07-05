@@ -1,17 +1,29 @@
+import { useCallback } from "react"
 import platformIcons from "../../../utils/platform-icons"
+import HoverOutlineComponent from "../../hover-outline-component"
 
 interface Props {
-	platform: SocialPlatformKey
+	socialPlatformLink: SocialPlatformLinks
 }
 
 export default function SingleActivePlatformLink(props: Props) {
-	const { platform } = props
+	const { socialPlatformLink } = props
 
-	const IconComponent = platformIcons[platform]
+	const IconComponent = platformIcons[socialPlatformLink.socialPlatform]
+
+	const handleClick = useCallback(() => {
+		const url = socialPlatformLink.socialLink.startsWith("http")
+			? socialPlatformLink.socialLink
+			: `http://${socialPlatformLink.socialLink}`
+		window.open(url, "_blank")
+	}, [socialPlatformLink.socialLink])
 
 	return (
-		<div className="flex items-center mr-3">
+		<HoverOutlineComponent
+			classes="relative flex items-center justify-center right-2 bottom-2"
+			onClickAction={handleClick}
+		>
 			<IconComponent size={24} />
-		</div>
+		</HoverOutlineComponent>
 	)
 }

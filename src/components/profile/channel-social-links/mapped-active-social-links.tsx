@@ -7,18 +7,18 @@ import { useCreatorContext } from "../../../contexts/creator-context"
 function MappedActiveSocialLinks() {
 	const creatorClass = useCreatorContext()
 
-	const activeSocialPlatforms = useMemo(() => {
+	const socialPlatformLinks = useMemo(() => {
 		if (_.isNull(creatorClass)) return []
-		return creatorClass.activeSocialPlatforms
+		return creatorClass.socialPlatformLinks
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.activeSocialPlatforms])
+	}, [creatorClass, creatorClass?.socialPlatformLinks])
 
 	return (
 		<div className="flex">
-			{activeSocialPlatforms.map(platform => (
+			{socialPlatformLinks.map(socialPlatformLink => (
 				<SingleActivePlatformLink
-					key={platform}
-					platform={platform}
+					key={socialPlatformLink.socialPlatform}
+					socialPlatformLink={socialPlatformLink}
 				/>
 			))}
 		</div>

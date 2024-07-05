@@ -43,6 +43,11 @@ function SearchBar() {
 		}
 	}, [])
 
+	useEffect(() => {
+		if (location.pathname !== "/") return
+		inputRef.current?.focus()
+	}, [location.pathname])
+
 	return (
 		<div className="flex justify-center items-center w-full">
 			<div
@@ -54,9 +59,9 @@ function SearchBar() {
 					type="text"
 					ref={inputRef}
 					className="w-full pl-10 pr-10 p-1.5 border text-sm h-11 bg-inherit
-						placeholder-neutral-500 rounded-[3px] focus:outline-none \
-						border-zinc-200 hover:border-zinc-400  focus:border-zinc-800 \
-						dark:border-zinc-800 dark:hover:border-zinc-700 dark:focus:border-zinc-200 dark:text-zinc-200"
+						placeholder-neutral-500 rounded-[3px] outline-none \
+						border-zinc-200 hover:border-zinc-400  focus:border-zinc-700 \
+						dark:border-zinc-800 dark:hover:border-zinc-700 dark:focus:border-zinc-300 dark:text-zinc-200"
 					placeholder="Search"
 					value={videoClass.searchTerm || ""}
 					onChange={e => videoClass.setSearchTerm(handleTypeUsername(e))}
