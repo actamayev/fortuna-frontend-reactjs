@@ -18,7 +18,7 @@ function MyProfile() {
 			<SectionHeader siteTitle="My Profile" />
 			<div className="flex items-start space-x-4">
 				<UploadProfilePicture />
-				<div className="flex flex-col space-y-2">
+				<div className="flex flex-col">
 					<ChannelName />
 					<ChannelDescription />
 				</div>

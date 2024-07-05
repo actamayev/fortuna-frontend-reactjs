@@ -44,9 +44,9 @@ function ChannelDescription() {
 	}, [addOrEditChannelDescription, channelDescription])
 
 	return (
-		<div className="mt-3">
-			<div className="flex flex-row">
-				<label className="block text-sm font-medium text-zinc-600 dark:text-zinc-200">
+		<div>
+			<div className="flex flex-row items-center">
+				<label className="block text-sm font-medium text-zinc-800 dark:text-zinc-50">
 					Channel Description
 				</label>
 				{isEditing ? (
