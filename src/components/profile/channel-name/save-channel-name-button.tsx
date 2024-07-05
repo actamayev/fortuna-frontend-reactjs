@@ -1,7 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { FaSave } from "react-icons/fa"
-import { FaRegCircleXmark } from "react-icons/fa6"
+import { FaSave, FaTimes } from "react-icons/fa"
 import HoverOutlineComponent from "../../hover-outline-component"
 import useDefaultSiteTheme from "../../../hooks/memos/default-site-theme"
 
@@ -21,7 +20,7 @@ function SaveChannelNameButton(props: Props) {
 			circlePixelSize="33px"
 		>
 			{_.isEmpty(channelName) ? (
-				<FaRegCircleXmark color={defaultSiteTheme === "dark" ? "white" : "black"} />
+				<FaTimes color={defaultSiteTheme === "dark" ? "white" : "black"} />
 			) : (
 				<FaSave color={defaultSiteTheme === "dark" ? "white" : "black"} />
 			)}

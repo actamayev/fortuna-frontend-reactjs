@@ -75,13 +75,13 @@ function ChannelName() {
 				<label className="block text-sm font-bold text-zinc-800 dark:text-zinc-50">
 					Channel Name
 				</label>
-				{isEditing ? (
+				{!isEditing ? (
+					<EditPencilButton toggleEditMode={toggleEditMode} />
+				) : (
 					<SaveChannelNameButton
 						channelName={channelName}
 						handleSaveChannelName={handleSaveChannelName}
 					/>
-				) : (
-					<EditPencilButton toggleEditMode={toggleEditMode} />
 				)}
 			</div>
 			<div className="flex items-center">
@@ -96,7 +96,11 @@ function ChannelName() {
 					>
 						{channelName}
 					</span>
-					{isEditing ? (
+					{!isEditing ? (
+						<span className="text-zinc-950 dark:text-zinc-50 text-base">
+							<div>{channelName}</div>
+						</span>
+					) : (
 						<ChannelNameTextInput
 							maxLength={maxLength}
 							channelName={channelName}
@@ -106,10 +110,6 @@ function ChannelName() {
 							inputWidth={inputWidth}
 							inputRef={inputRef}
 						/>
-					) : (
-						<span className="text-zinc-950 dark:text-zinc-50 text-base">
-							<div>{channelName}</div>
-						</span>
 					)}
 				</div>
 			</div>

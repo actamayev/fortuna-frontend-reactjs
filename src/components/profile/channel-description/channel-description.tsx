@@ -72,15 +72,22 @@ function ChannelDescription() {
 				<label className="block text-sm font-bold text-zinc-800 dark:text-zinc-50">
 					Channel Description
 				</label>
-				{isEditing ? (
-					<SaveChannelDescriptionButton handleSaveChannelDescription = {handleSaveChannelDescription}/>
-				) : (
+				{!isEditing ? (
 					<EditPencilButton toggleEditMode={toggleEditMode} />
+				) : (
+					<SaveChannelDescriptionButton handleSaveChannelDescription = {handleSaveChannelDescription}/>
 				)}
 			</div>
 			<div className="flex items-center">
 				<div className="relative flex flex-col">
-					{isEditing ? (
+					{!isEditing ? (
+						<span
+							className="text-zinc-950 dark:text-zinc-50 text-sm"
+							style={{ width: "75vw", wordWrap: "break-word", whiteSpace: "normal" }}
+						>
+							<div>{channelDescription}</div>
+						</span>
+					) : (
 						<ChannelDescriptionTextInput
 							maxLength={maxLength}
 							channelDescription={channelDescription}
@@ -88,13 +95,6 @@ function ChannelDescription() {
 							textAreaRef={textAreaRef}
 							handleSaveChannelDescription={handleSaveChannelDescription}
 						/>
-					) : (
-						<span
-							className="text-zinc-950 dark:text-zinc-50 text-sm"
-							style={{ width: "75vw", wordWrap: "break-word", whiteSpace: "normal" }}
-						>
-							<div>{channelDescription}</div>
-						</span>
 					)}
 				</div>
 			</div>
