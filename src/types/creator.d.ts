@@ -1,3 +1,5 @@
+import { SocialPlatformKey } from "../utils/platform-icons"
+
 declare global {
 	interface CommonNewVideoDetails {
 		videoName: string
@@ -37,7 +39,7 @@ declare global {
 	}
 
 	interface SocialPlatformLinks {
-		socialPlatform: string
+		socialPlatform: SocialPlatformKey
 		socialLink: string
 	}
 }
