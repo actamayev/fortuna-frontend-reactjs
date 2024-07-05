@@ -1,5 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
+import { FaUserCircle } from "react-icons/fa"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
@@ -13,10 +14,14 @@ export default function SingleVideoSearchItem(props: Props) {
 	const navigateToVideoPage = useNavigateToVideoPage()
 	const navigateToCreatorPage = useNavigateToCreatorPage()
 
-	const navigateToCreatorPageCallback = useCallback((e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
-		e.stopPropagation() // Prevents the video click event when clicking the image
+	const navigateToCreatorPageCallback = useCallback(() => {
 		navigateToCreatorPage(addDefiniteLeadingAt(videoData.creatorUsername))
 	}, [navigateToCreatorPage, videoData.creatorUsername])
+
+	const navigateToCreatorPageCallbackEvent = useCallback((e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
+		e.stopPropagation() // Prevents the video click event when clicking the image
+		navigateToCreatorPageCallback()
+	}, [navigateToCreatorPageCallback])
 
 	const navigateToVideoPageCallback = useCallback(() => {
 		navigateToVideoPage(videoData.uuid)
@@ -37,17 +42,22 @@ export default function SingleVideoSearchItem(props: Props) {
 					{_.truncate(videoData.videoName, { length: 24, omission: "..." })}
 				</div>
 				<div className="flex items-center space-x-2">
-					{videoData.creatorProfilePictureUrl && (
+					{videoData.creatorProfilePictureUrl ? (
 						<img
 							src={videoData.creatorProfilePictureUrl}
 							alt="Creator's Profile"
+							className="w-8 h-8 rounded-full object-cover cursor-pointer"
+							onClick={navigateToCreatorPageCallbackEvent}
+						/>
+					) : (
+						<FaUserCircle
 							className="w-8 h-8 rounded-full object-cover cursor-pointer"
 							onClick={navigateToCreatorPageCallback}
 						/>
 					)}
 					<div
 						className="text-sm text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-100 cursor-pointer"
-						onClick={navigateToCreatorPageCallback}
+						onClick={navigateToCreatorPageCallbackEvent}
 					>
 						{videoData.creatorUsername}
 					</div>

@@ -19,6 +19,7 @@ declare global {
 	type CreatorInfoResponse = {
 		channelName: string | null
 		channelDescription: string | null
+		socialPlatformLinks: SocialPlatformLinks[]
 	}
 
 	// Market Resposnes:

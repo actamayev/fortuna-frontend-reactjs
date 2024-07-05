@@ -24,14 +24,7 @@ export default function useRetrieveCreatorVideosAndDataUseEffect(creatorUsername
 				throw Error("Unable to retrieve creator data")
 			}
 			videoClass.setIsCreatorDataBeingRetrieved(false)
-			const creatorDataHeldInClass: CreatorDataHeldInClass = {
-				creatorUsername: creatorDataResponse.data.creatorData.creatorUsername,
-				channelName: creatorDataResponse.data.creatorData.channelName,
-				channelDescription: creatorDataResponse.data.creatorData.channelDescription,
-				creatorProfilePictureUrl: creatorDataResponse.data.creatorData.creatorProfilePictureUrl,
-				videoData: creatorDataResponse.data.videoData
-			}
-			videoClass.addRetrievedCreatorData(creatorDataHeldInClass)
+			videoClass.addRetrievedCreatorData(creatorDataResponse.data)
 		} catch (error) {
 			console.error(error)
 		} finally {

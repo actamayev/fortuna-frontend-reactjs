@@ -135,7 +135,12 @@ class VideoClass {
 		this.videoSearchMap.set(searchTerm, [...existingData, videoSearchData])
 	})
 
-	public addRetrievedCreatorData (newCreatorData: CreatorDataHeldInClass): void {
+	public addRetrievedCreatorData (creatorDataResponse: CreatorDataResponse): void {
+		const { creatorData, videoData } = creatorDataResponse
+		const newCreatorData: CreatorDataHeldInClass = {
+			...creatorData,
+			videoData
+		}
 		const existingData = this.contextForCreatorData(newCreatorData.creatorUsername)
 		if (!_.isUndefined(existingData)) return
 
