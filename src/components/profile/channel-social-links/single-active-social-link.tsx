@@ -1,4 +1,5 @@
 import _ from "lodash"
+import { useCallback } from "react"
 import { FaTrashAlt } from "react-icons/fa"
 import platformIcons from "../../../utils/platform-icons"
 import HoverOutlineComponent from "../../hover-outline-component"
@@ -16,9 +17,13 @@ export default function SingleActiveSocialLink(props: Props) {
 	const removeSocialLink = useRemoveSocialLink()
 	const addOrEditSocialLink = useAddOrEditSocialLink()
 
-	const debouncedAddOrEditSocialLink = _.debounce((socialLink: string, socialPlatform: SocialPlatformKey) => {
-		addOrEditSocialLink(socialLink, socialPlatform)
-	}, 2000)
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	const debouncedAddOrEditSocialLink = useCallback(
+		_.debounce((socialLink: string, socialPlatform: SocialPlatformKey) => {
+			addOrEditSocialLink(socialLink, socialPlatform)
+		}, 2000),
+		[addOrEditSocialLink]
+	)
 
 	const handleInputChange = (socialPlatform: SocialPlatformKey, value: string) => {
 		setTempSocialLinks(prevLinks =>
