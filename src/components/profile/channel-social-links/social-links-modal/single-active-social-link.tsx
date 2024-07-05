@@ -24,7 +24,7 @@ function SingleActiveSocialLink(props: Props) {
 	const debouncedAddOrEditSocialLink = useCallback(
 		_.debounce((socialLink: string, socialPlatform: SocialPlatformKey) => {
 			addOrEditSocialLink(socialLink, socialPlatform)
-		}, 2000),
+		}, 1000),
 		[addOrEditSocialLink]
 	)
 

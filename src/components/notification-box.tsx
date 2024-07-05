@@ -8,12 +8,12 @@ function NotificationBox() {
 	const notificationsClass = useNotificationsContext()
 
 	useEffect(() => {
-		// if (_.isNull(notificationsClass.notification)) return
+		if (_.isNull(notificationsClass.notification)) return
 		const timer = setTimeout(() => {
 			notificationsClass.setNotificationNull()
 		}, 3000)
 		return () => clearTimeout(timer)
-	}, [notificationsClass])
+	}, [notificationsClass, notificationsClass.notification])
 
 	if (_.isNull(notificationsClass.notification)) return null
 
