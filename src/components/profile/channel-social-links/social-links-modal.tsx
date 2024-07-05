@@ -1,8 +1,9 @@
 import { FaTimes } from "react-icons/fa"
-import { useCallback, useRef } from "react"
+import { useCallback, useRef, useState } from "react"
 import ActiveSocialLinks from "./active-social-links"
 import AvailableSocialLinks from "./available-social-links"
 import HoverOutlineComponent from "../../hover-outline-component"
+import { SocialPlatformKey } from "../../../utils/platform-icons"
 
 interface Props {
     toggleEditMode: () => void
@@ -11,6 +12,21 @@ interface Props {
 export default function SocialLinksModal(props: Props) {
 	const { toggleEditMode } = props
 	const modalRef = useRef<HTMLDivElement>(null)
+	const [tempSocialLinks, setTempSocialLinks] = useState<SocialPlatformLinks[]>([])
+
+	const handleAddLink = (platform: SocialPlatformKey) => {
+		setTempSocialLinks([...tempSocialLinks, { socialPlatform: platform, socialLink: "" }])
+	}
+
+	const handleRemoveLink = (updatedLink: SocialPlatformLinks) => {
+		setTempSocialLinks(tempSocialLinks.map(link => link.socialPlatform === updatedLink.socialPlatform ? updatedLink : link))
+	}
+
+	// const handleSave = () => {
+	// 	// Update the context with new links
+	// 	// You can implement this functionality as needed
+	// 	toggleEditMode()
+	// }
 
 	const handleClickOutside = useCallback((event: React.MouseEvent) => {
 		if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
@@ -40,8 +56,14 @@ export default function SocialLinksModal(props: Props) {
 					</HoverOutlineComponent>
 				</div>
 				<div className="p-4">
-					<ActiveSocialLinks />
-					<AvailableSocialLinks />
+					<ActiveSocialLinks
+						tempSocialLinks={tempSocialLinks}
+						handleRemoveLink={handleRemoveLink}
+					/>
+					<AvailableSocialLinks
+						tempSocialLinks={tempSocialLinks}
+						handleAddLink={handleAddLink}
+					/>
 				</div>
 			</div>
 		</div>
