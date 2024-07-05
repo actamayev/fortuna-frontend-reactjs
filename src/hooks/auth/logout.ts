@@ -17,8 +17,8 @@ export default function useLogout(): () => void {
 	const fortunaApiClient = useApiClientContext()
 	const notificationsClass = useNotificationsContext()
 	const personalInfoClass = usePersonalInfoContext()
-	const solanaClass = useSolanaContext()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
+	const solanaClass = useSolanaContext()
 	const videoClass = useVideoContext()
 	const navigate = useTypedNavigate()
 
