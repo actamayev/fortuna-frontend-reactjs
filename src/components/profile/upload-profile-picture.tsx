@@ -1,6 +1,5 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { RiPencilFill } from "react-icons/ri"
 import { FaSave, FaTrash } from "react-icons/fa"
 import { useRef, useState, useCallback } from "react"
 import ShowCurrentProfilePicture from "./show-current-profile-picture"
@@ -88,19 +87,7 @@ function UploadProfilePicture() {
 				style={imageStyle}
 			/>
 			<div
-				className="absolute top-2 right-2 bg-blue-500 dark:bg-blue-600 p-1 rounded-full \
-					cursor-pointer hover:bg-blue-600 dark:hover:bg-blue-700"
-				onMouseEnter={handleMouseEnter}
-				onMouseLeave={handleMouseLeave}
-			>
-				<RiPencilFill
-					color="white"
-					size={22}
-					onClick={editPictureCallback}
-				/>
-			</div>
-			<div
-				className="absolute top-2 left-2 bg-red-500 dark:bg-red-600 p-1 rounded-full \
+				className="absolute top-2 right-2 bg-red-500 dark:bg-red-600 p-1 rounded-full \
 					cursor-pointer hover:bg-red-600 dark:hover:bg-red-700"
 			>
 				<FaTrash
