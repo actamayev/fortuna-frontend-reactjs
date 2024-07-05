@@ -3,8 +3,8 @@ import { FaTimes } from "react-icons/fa"
 import { useCallback, useEffect, useRef, useState } from "react"
 import ActiveSocialLinks from "./active-social-links"
 import AvailableSocialLinks from "./available-social-links"
-import HoverOutlineComponent from "../../hover-outline-component"
-import { useCreatorContext } from "../../../contexts/creator-context"
+import HoverOutlineComponent from "../../../hover-outline-component"
+import { useCreatorContext } from "../../../../contexts/creator-context"
 
 interface Props {
     toggleModalOpen: () => void

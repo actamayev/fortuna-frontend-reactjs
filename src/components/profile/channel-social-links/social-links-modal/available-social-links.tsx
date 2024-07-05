@@ -1,9 +1,9 @@
 import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
-import { SocialPlatforms } from "../../../utils/platform-icons"
-import { useCreatorContext } from "../../../contexts/creator-context"
+import { SocialPlatforms } from "../../../../utils/platform-icons"
 import SingleAvailableSocialLink from "./single-available-social-link"
+import { useCreatorContext } from "../../../../contexts/creator-context"
 
 interface Props {
 	tempSocialLinks: SocialPlatformLinks[]

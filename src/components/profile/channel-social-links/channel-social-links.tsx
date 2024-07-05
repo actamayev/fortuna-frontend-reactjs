@@ -1,7 +1,8 @@
 import { observer } from "mobx-react"
 import { useCallback, useEffect, useState } from "react"
-import SocialLinksModal from "./social-links-modal"
 import EditPencilButton from "../edit-pencil-button"
+import MappedActiveSocialLinks from "./mapped-active-social-links"
+import SocialLinksModal from "./social-links-modal/social-links-modal"
 
 function ChannelSocialLinks() {
 	const [isModalOpen, setIsModalOpen] = useState(false)
@@ -37,6 +38,7 @@ function ChannelSocialLinks() {
 				</label>
 				<EditPencilButton toggleEditMode={toggleModalOpen} />
 			</div>
+			<MappedActiveSocialLinks />
 			{isModalOpen && <SocialLinksModal toggleModalOpen={toggleModalOpen} />}
 		</div>
 	)
