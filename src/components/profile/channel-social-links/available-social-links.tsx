@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
+import HoverOutlineComponent from "../../hover-outline-component"
 import { useCreatorContext } from "../../../contexts/creator-context"
 import platformIcons, { SocialPlatformKey, SocialPlatforms } from "../../../utils/platform-icons"
 
@@ -25,17 +26,17 @@ function AvailableLinks (props: Props) {
 	}, [creatorClass, tempSocialLinks, creatorClass?.socialPlatformLinks])
 
 	return (
-		<div className="flex flex-wrap">
+		<div className="flex flex-wrap items-center justify-center">
 			{availablePlatforms.map(platform => {
 				const IconComponent = platformIcons[platform]
 				return (
-					<div
+					<HoverOutlineComponent
 						key={platform}
-						className="flex items-center m-2 cursor-pointer"
-						onClick={() => handleAddLink(platform)}
+						classes="relative flex items-center justify-center inline-block"
+						onClickAction={() => handleAddLink(platform)}
 					>
 						<IconComponent size={24} />
-					</div>
+					</HoverOutlineComponent>
 				)
 			})}
 		</div>

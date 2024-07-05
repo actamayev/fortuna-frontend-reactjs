@@ -41,7 +41,7 @@ export default function SocialLinksModal(props: Props) {
 		>
 			<div
 				ref={modalRef}
-				className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg w-1/4"
+				className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg w-1/3"
 				onClick={e => e.stopPropagation()}
 			>
 				<div className="flex justify-between items-center p-1 border-b border-zinc-200 dark:border-zinc-700">
@@ -58,6 +58,7 @@ export default function SocialLinksModal(props: Props) {
 				<div className="p-4">
 					<ActiveSocialLinks
 						tempSocialLinks={tempSocialLinks}
+						setTempSocialLinks={setTempSocialLinks}
 						handleRemoveLink={handleRemoveLink}
 					/>
 					<AvailableSocialLinks
