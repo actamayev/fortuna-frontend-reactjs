@@ -1,3 +1,4 @@
+import _ from "lodash"
 import { observer } from "mobx-react"
 import { useState, useCallback, useRef, useEffect } from "react"
 import EditPencilButton from "../edit-pencil-button"
@@ -42,6 +43,28 @@ function ChannelDescription() {
 		await addOrEditChannelDescription(channelDescription)
 		setIsEditing(false)
 	}, [addOrEditChannelDescription, channelDescription])
+
+	useEffect(() => {
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key === "Escape") {
+				setIsEditing(false)
+				if (!_.isNil(creatorClass?.channelDescription)) {
+					setChannelDescription(creatorClass.channelDescription)
+				}
+			}
+		}
+
+		if (isEditing) {
+			window.addEventListener("keydown", handleKeyDown)
+		} else {
+			window.removeEventListener("keydown", handleKeyDown)
+		}
+
+		// Clean up the event listener on component unmount
+		return () => {
+			window.removeEventListener("keydown", handleKeyDown)
+		}
+	}, [creatorClass?.channelDescription, isEditing])
 
 	return (
 		<div>

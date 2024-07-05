@@ -7,6 +7,7 @@ import SaveChannelNameButton from "./save-channel-name-button"
 import useAddOrEditChannelName from "../../../hooks/creator/add-or-edit-channel-name"
 import useAssignDefaultChannelName from "../../../hooks/creator/assign-default-channel-name"
 
+// eslint-disable-next-line max-lines-per-function
 function ChannelName() {
 	const [channelName, setChannelName] = useState("")
 	const [inputWidth, setInputWidth] = useState("100px")
@@ -47,6 +48,26 @@ function ChannelName() {
 		else assignDefaultChannelName(setChannelName)
 		setIsEditing(false)
 	}, [addOrEditChannelName, assignDefaultChannelName, channelName, setChannelName])
+
+	useEffect(() => {
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key === "Escape") {
+				setIsEditing(false)
+				assignDefaultChannelName(setChannelName)
+			}
+		}
+
+		if (isEditing) {
+			window.addEventListener("keydown", handleKeyDown)
+		} else {
+			window.removeEventListener("keydown", handleKeyDown)
+		}
+
+		// Clean up the event listener on component unmount
+		return () => {
+			window.removeEventListener("keydown", handleKeyDown)
+		}
+	}, [assignDefaultChannelName, isEditing])
 
 	return (
 		<div>
