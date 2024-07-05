@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
 import XLink from "../../components/social-links/x-link"
-import NotificationBox from "../../components/notification-box"
 import LinkedinLink from "../../components/social-links/linkedin-link"
 import ContactItemInCard from "../../components/contact/contact-item-in-card"
 import DescriptionPagesHeaderText from "../../components/description-pages-header-text"
@@ -30,7 +29,6 @@ export default function Contact() {
 
 				</div>
 			</div>
-			<NotificationBox />
 		</div>
 	)
 }

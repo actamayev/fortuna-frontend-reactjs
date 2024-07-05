@@ -1,7 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useState } from "react"
-import NotificationBox from "../notification-box"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { useSolanaContext } from "../../contexts/solana-context"
 import useDefaultSiteTheme from "../../hooks/memos/default-site-theme"
@@ -40,22 +39,19 @@ function ShowMyPublicKey() {
 	}
 
 	return (
-		<div>
-			<div className="font-semibold flex items-center">
-				<div
-					className="cursor-pointer mr-2"
-					onClick={() => setShowPublicKeyCallback(false)}
-				>
-					<FaEye style={{ color: defaultSiteTheme === "dark" ? "white" : "" }}/>
-				</div>
-				<div className="flex items-center dark:text-zinc-200">
-					<span className="mr-2">My Public Key:</span>
-					<div className="cursor-pointer flex-shrink-0" onClick={copyToClipboard}>
-						{solanaClass.walletPublicKey.toString()}
-					</div>
+		<div className="font-semibold flex items-center">
+			<div
+				className="cursor-pointer mr-2"
+				onClick={() => setShowPublicKeyCallback(false)}
+			>
+				<FaEye style={{ color: defaultSiteTheme === "dark" ? "white" : "" }}/>
+			</div>
+			<div className="flex items-center dark:text-zinc-200">
+				<span className="mr-2">My Public Key:</span>
+				<div className="cursor-pointer flex-shrink-0" onClick={copyToClipboard}>
+					{solanaClass.walletPublicKey.toString()}
 				</div>
 			</div>
-			<NotificationBox />
 		</div>
 	)
 }
