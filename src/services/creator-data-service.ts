@@ -19,6 +19,12 @@ export default class CreatorDataService {
 		)
 	}
 
+	async retrieveCreatorInfo(): Promise<AxiosResponse<CreatorInfoResponse | ErrorResponse>> {
+		return await this.httpClient.http.get<CreatorInfoResponse | ErrorResponse>(
+			`${this.pathHeader}/retrieve-creator-info`
+		)
+	}
+
 	async addOrEditChannelName(channelName: string): Promise<AxiosResponse<SuccessResponse | ErrorResponses>> {
 		return await this.httpClient.http.post<SuccessResponse | ErrorResponses>(
 			`${this.pathHeader}/add-or-edit-channel-name`, { channelName }
@@ -31,9 +37,18 @@ export default class CreatorDataService {
 		)
 	}
 
-	async retrieveCreatorInfo(): Promise<AxiosResponse<CreatorInfoResponse | ErrorResponse>> {
-		return await this.httpClient.http.get<CreatorInfoResponse | ErrorResponse>(
-			`${this.pathHeader}/retrieve-creator-info`
+	async addOrEditSocialPlatformLink(
+		socialLink: string,
+		socialPlatform: SocialPlatformKey
+	): Promise<AxiosResponse<SuccessResponse | ErrorResponses>> {
+		return await this.httpClient.http.post<SuccessResponse | ErrorResponses>(
+			`${this.pathHeader}/add-or-edit-social-platform-link`, { socialLink, socialPlatform }
+		)
+	}
+
+	async removeSocialPlatformLink(socialPlatform: SocialPlatformKey): Promise<AxiosResponse<SuccessResponse | ErrorResponses>> {
+		return await this.httpClient.http.post<SuccessResponse | ErrorResponses>(
+			`${this.pathHeader}/remove-social-platform-link/${socialPlatform}`
 		)
 	}
 }

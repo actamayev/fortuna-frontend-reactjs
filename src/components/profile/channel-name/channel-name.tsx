@@ -1,9 +1,10 @@
+import _ from "lodash"
 import { observer } from "mobx-react"
-import { RiPencilFill } from "react-icons/ri"
 import { useState, useCallback, useRef, useEffect } from "react"
+import EditPencilButton from "../edit-pencil-button"
+import ChannelNameTextInput from "./channel-name-text-input"
 import SaveChannelNameButton from "./save-channel-name-button"
-import HoverOutlineComponent from "../../hover-outline-component"
-import useDefaultSiteTheme from "../../../hooks/memos/default-site-theme"
+import useAddOrEditChannelName from "../../../hooks/creator/add-or-edit-channel-name"
 import useAssignDefaultChannelName from "../../../hooks/creator/assign-default-channel-name"
 
 // eslint-disable-next-line max-lines-per-function
@@ -13,8 +14,9 @@ function ChannelName() {
 	const [isEditing, setIsEditing] = useState(false)
 	const maxLength = 60
 	const spanRef = useRef<HTMLSpanElement>(null)
-	const defaultSiteTheme = useDefaultSiteTheme()
+	const inputRef = useRef<HTMLInputElement>(null)
 	const assignDefaultChannelName = useAssignDefaultChannelName()
+	const addOrEditChannelName = useAddOrEditChannelName()
 
 	useEffect(() => {
 		assignDefaultChannelName(setChannelName)
@@ -31,23 +33,57 @@ function ChannelName() {
 		updateWidth(channelName)
 	}, [channelName, updateWidth])
 
-	const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-		const value = event.target.value
-		if (value.length <= maxLength) {
-			setChannelName(value)
-			updateWidth(value)
+	useEffect(() => {
+		if (isEditing && inputRef.current) {
+			inputRef.current.focus()
 		}
-	}, [updateWidth])
-
-	const toggleEditMode = useCallback(() => {
-		setIsEditing(!isEditing)
 	}, [isEditing])
 
+	const toggleEditMode = useCallback(() => {
+		setIsEditing(prev => !prev)
+	}, [])
+
+	const handleSaveChannelName = useCallback(async () => {
+		if (!_.isEmpty(channelName)) await addOrEditChannelName(channelName)
+		else assignDefaultChannelName(setChannelName)
+		setIsEditing(false)
+	}, [addOrEditChannelName, assignDefaultChannelName, channelName, setChannelName])
+
+	useEffect(() => {
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key === "Escape") {
+				setIsEditing(false)
+				assignDefaultChannelName(setChannelName)
+			}
+		}
+
+		if (isEditing) {
+			window.addEventListener("keydown", handleKeyDown)
+		} else {
+			window.removeEventListener("keydown", handleKeyDown)
+		}
+
+		// Clean up the event listener on component unmount
+		return () => {
+			window.removeEventListener("keydown", handleKeyDown)
+		}
+	}, [assignDefaultChannelName, isEditing])
+
 	return (
-		<div className="mt-3">
-			<label className="block text-sm font-medium text-zinc-600 dark:text-zinc-200">
-				Channel Name
-			</label>
+		<div>
+			<div className="flex flex-row items-center">
+				<label className="block text-sm font-bold text-zinc-800 dark:text-zinc-50">
+					Channel Name
+				</label>
+				{!isEditing ? (
+					<EditPencilButton toggleEditMode={toggleEditMode} />
+				) : (
+					<SaveChannelNameButton
+						channelName={channelName}
+						handleSaveChannelName={handleSaveChannelName}
+					/>
+				)}
+			</div>
 			<div className="flex items-center">
 				<div className="relative flex flex-col">
 					<span
@@ -60,50 +96,22 @@ function ChannelName() {
 					>
 						{channelName}
 					</span>
-					{isEditing ? (
-						<>
-							<input
-								type="text"
-								className={
-									`mt-1 p-1.5 border rounded text-zinc-950 dark:text-zinc-200 \
-										bg-white dark:bg-zinc-800 outline-none text-base
-									${channelName.length === maxLength ?
-							"border-red-500 dark:border-red-500" : "border-zinc-100 dark:border-zinc-700"}`
-								}
-								value={channelName}
-								onChange={handleChange}
-								maxLength={maxLength}
-								style={{
-									minWidth: "100px",
-									width: inputWidth,
-									paddingRight: "10px",
-									boxSizing: "border-box"
-								}}
-							/>
-							<span className="text-xs text-zinc-600 dark:text-zinc-400 mt-1">
-								{channelName.length}/{maxLength}
-							</span>
-						</>
-					) : (
+					{!isEditing ? (
 						<span className="text-zinc-950 dark:text-zinc-50 text-base">
 							<div>{channelName}</div>
 						</span>
+					) : (
+						<ChannelNameTextInput
+							maxLength={maxLength}
+							channelName={channelName}
+							setChannelName={setChannelName}
+							handleSaveChannelName={handleSaveChannelName}
+							updateWidth={updateWidth}
+							inputWidth={inputWidth}
+							inputRef={inputRef}
+						/>
 					)}
 				</div>
-				{isEditing ? (
-					<SaveChannelNameButton
-						channelName={channelName}
-						toggleEditMode={toggleEditMode}
-						setChannelName={setChannelName}
-					/>
-				) : (
-					<HoverOutlineComponent
-						onClickAction={toggleEditMode}
-						classes="flex items-center justify-center"
-					>
-						<RiPencilFill color={defaultSiteTheme === "dark" ? "white" : "black"} size={20} />
-					</HoverOutlineComponent>
-				)}
 			</div>
 		</div>
 	)

@@ -15,7 +15,7 @@ function ShowOrHidePasswordButton (props: Props) {
 	return (
 		<HoverOutlineComponent
 			onClickAction={() => setShowPassword(!showPassword)}
-			classes="absolute flex items-center justify-center right-0.5 cursor-pointer"
+			classes="absolute flex items-center justify-center right-0.5"
 			top="39%"
 		>
 			{showPassword ? (

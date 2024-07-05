@@ -29,6 +29,7 @@ declare global {
 		creatorUsername: string
 		channelName: string
 		channelDescription: string
+		socialPlatformLinks: SocialPlatformLinks[]
 		creatorProfilePictureUrl: string | null
 	}
 

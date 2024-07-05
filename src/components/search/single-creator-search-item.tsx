@@ -1,4 +1,5 @@
 import { useCallback } from "react"
+import { FaUserCircle } from "react-icons/fa"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
 
@@ -19,11 +20,15 @@ export default function SingleCreatorSearchItem(props: Props) {
 			className="flex items-center space-x-4 p-4 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-7/12"
 			onClick={navigateToCreatorPageCallback}
 		>
-			<img
-				src={creatorData.creatorProfilePictureUrl || "https://via.placeholder.com/150"}
-				alt={`Profile of ${creatorData.creatorUsername}`}
-				className="w-36 h-36 rounded-full object-cover"
-			/>
+			{creatorData.creatorProfilePictureUrl ? (
+				<img
+					src={creatorData.creatorProfilePictureUrl}
+					alt={`Profile of ${creatorData.creatorUsername}`}
+					className="w-36 h-36 rounded-full object-cover"
+				/>
+			) : (
+				<FaUserCircle className="w-36 h-36 rounded-full object-cover" />
+			)}
 			<div className="flex-grow text-lg text-center dark:text-zinc-200">
 				{creatorData.creatorUsername}
 			</div>
