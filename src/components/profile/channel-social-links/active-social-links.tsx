@@ -1,5 +1,5 @@
 import _ from "lodash"
-import { useMemo } from "react"
+import { useCallback, useMemo } from "react"
 import { observer } from "mobx-react"
 import { FaTrashAlt } from "react-icons/fa"
 import HoverOutlineComponent from "../../hover-outline-component"
@@ -22,9 +22,10 @@ function ActiveSocialLinks(props: Props) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [creatorClass, tempSocialLinks, creatorClass?.socialPlatformLinks])
 
-	const handleDelete = (platform: string) => {
+	const handleDelete = useCallback((platform: string) => {
+		//TODO: will need to figure out how to delete from the context or from the temp links, conditionally.
 		setTempSocialLinks(tempSocialLinks.filter(link => link.socialPlatform !== platform))
-	}
+	}, [setTempSocialLinks, tempSocialLinks])
 
 	return (
 		<div>

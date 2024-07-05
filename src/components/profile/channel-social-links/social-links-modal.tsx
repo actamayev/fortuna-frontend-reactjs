@@ -6,11 +6,11 @@ import HoverOutlineComponent from "../../hover-outline-component"
 import { SocialPlatformKey } from "../../../utils/platform-icons"
 
 interface Props {
-    toggleEditMode: () => void
+    toggleModalOpen: () => void
 }
 
 export default function SocialLinksModal(props: Props) {
-	const { toggleEditMode } = props
+	const { toggleModalOpen } = props
 	const modalRef = useRef<HTMLDivElement>(null)
 	const [tempSocialLinks, setTempSocialLinks] = useState<SocialPlatformLinks[]>([])
 
@@ -25,14 +25,14 @@ export default function SocialLinksModal(props: Props) {
 	// const handleSave = () => {
 	// 	// Update the context with new links
 	// 	// You can implement this functionality as needed
-	// 	toggleEditMode()
+	// 	toggleModalOpen()
 	// }
 
 	const handleClickOutside = useCallback((event: React.MouseEvent) => {
 		if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-			toggleEditMode()
+			toggleModalOpen()
 		}
-	}, [toggleEditMode])
+	}, [toggleModalOpen])
 
 	return (
 		<div
@@ -50,7 +50,7 @@ export default function SocialLinksModal(props: Props) {
 					</h2>
 					<HoverOutlineComponent
 						classes="relative flex items-center justify-center inline-block"
-						onClickAction={toggleEditMode}
+						onClickAction={toggleModalOpen}
 					>
 						<FaTimes />
 					</HoverOutlineComponent>

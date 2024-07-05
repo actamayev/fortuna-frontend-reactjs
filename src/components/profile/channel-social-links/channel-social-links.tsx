@@ -6,7 +6,7 @@ import EditPencilButton from "../edit-pencil-button"
 function ChannelSocialLinks() {
 	const [isModalOpen, setIsModalOpen] = useState(false)
 
-	const toggleEditMode = useCallback(() => {
+	const toggleModalOpen = useCallback(() => {
 		setIsModalOpen(prev => !prev)
 	}, [])
 
@@ -16,9 +16,9 @@ function ChannelSocialLinks() {
 				<label className="block text-sm font-medium text-zinc-800 dark:text-zinc-50">
 					Social Links
 				</label>
-				<EditPencilButton toggleEditMode={toggleEditMode} />
+				<EditPencilButton toggleEditMode={toggleModalOpen} />
 			</div>
-			{isModalOpen && <SocialLinksModal toggleEditMode={toggleEditMode} />}
+			{isModalOpen && <SocialLinksModal toggleModalOpen={toggleModalOpen} />}
 		</div>
 	)
 }
