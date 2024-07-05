@@ -19,7 +19,6 @@ function ChannelSocialLinks() {
 				<EditPencilButton toggleEditMode={toggleEditMode} />
 			</div>
 			{isModalOpen && <SocialLinksModal toggleEditMode={toggleEditMode} />}
-
 		</div>
 	)
 }
