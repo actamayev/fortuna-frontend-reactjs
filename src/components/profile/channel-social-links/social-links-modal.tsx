@@ -38,8 +38,8 @@ function SocialLinksModal(props: Props) {
 				className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg w-1/3"
 				onClick={e => e.stopPropagation()}
 			>
-				<div className="flex justify-between items-center p-1 border-b border-zinc-200 dark:border-zinc-700">
-					<h2 className="text-lg font-medium ml-3">
+				<div className="flex justify-between items-center px-3 py-1 border-b border-zinc-200 dark:border-zinc-700">
+					<h2 className="text-lg font-medium">
                         Social Links
 					</h2>
 					<HoverOutlineComponent
@@ -49,7 +49,7 @@ function SocialLinksModal(props: Props) {
 						<FaTimes />
 					</HoverOutlineComponent>
 				</div>
-				<div className="p-4">
+				<div className="p-3">
 					<ActiveSocialLinks
 						tempSocialLinks={tempSocialLinks}
 						setTempSocialLinks={setTempSocialLinks}
