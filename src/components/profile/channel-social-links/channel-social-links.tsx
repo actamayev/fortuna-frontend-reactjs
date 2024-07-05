@@ -32,7 +32,7 @@ function ChannelSocialLinks() {
 	return (
 		<div>
 			<div className="flex flex-row items-center">
-				<label className="block text-sm font-medium text-zinc-800 dark:text-zinc-50">
+				<label className="block text-sm font-bold text-zinc-800 dark:text-zinc-50">
 					Social Links
 				</label>
 				<EditPencilButton toggleEditMode={toggleModalOpen} />

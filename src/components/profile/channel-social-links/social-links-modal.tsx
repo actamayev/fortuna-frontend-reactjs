@@ -39,7 +39,7 @@ function SocialLinksModal(props: Props) {
 				onClick={e => e.stopPropagation()}
 			>
 				<div className="flex justify-between items-center px-3 pt-1 border-b border-zinc-200 dark:border-zinc-700">
-					<h2 className="text-lg font-medium">
+					<h2 className="text-lg font-bold">
                         Social Links
 					</h2>
 					<HoverOutlineComponent
