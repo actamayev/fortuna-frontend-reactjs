@@ -36,9 +36,8 @@ export default function Login(props: Props) {
 			<AuthTemplate title="Login">
 				<form onSubmit={loginSubmit} className="mb-3">
 					<ContactInput
-						credentials={loginInformation}
-						setCredentials={createSetCredentialsFunction(setLoginInformation)}
-						label="Username or Email/Phone Number"
+						loginInformation={loginInformation}
+						setLoginInformation={setLoginInformation}
 					/>
 
 					<PasswordInput

@@ -1,7 +1,5 @@
 declare global {
-	type EmailOrPhone = "Email" | "Phone"
-
-	type EmailOrPhoneOrUnknown = EmailOrPhone | "Unknown"
+	type EmailOrUnknown = "Email" | "Unknown"
 
 	type StaticPageNames =
 		"/" |
