@@ -16,21 +16,21 @@ function HeaderDropdown () {
 			<div className="relative inline-block" ref = {dropdownRef}>
 				<div
 					className="flex items-center cursor-pointer hover:bg-zinc-100 text-zinc-950 \
-					dark:text-zinc-100 dark:hover:bg-zinc-800 p-2 rounded"
+						dark:text-zinc-100 dark:hover:bg-zinc-800 p-2 rounded"
 					onClick={() => setIsOpen(!isOpen)}
 				>
 					<div
 						className="w-8 h-8 rounded-full overflow-hidden flex justify-center \
 							items-center text-zinc-950 dark:text-zinc-100"
 					>
-						{personalInfoClass?.profilePictureUrl ? (
+						{!personalInfoClass?.profilePictureUrl ? (
+							<FaUserCircle className="min-w-full min-h-full object-cover" />
+						) : (
 							<img
 								src={personalInfoClass.profilePictureUrl}
 								alt="Profile"
 								className="min-w-full min-h-full object-cover"
 							/>
-						) : (
-							<FaUserCircle className="min-w-full min-h-full object-cover" />
 						)}
 					</div>
 				</div>
