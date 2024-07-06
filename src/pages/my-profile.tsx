@@ -22,6 +22,7 @@ function MyProfile() {
 				<div className="flex flex-col items-center">
 					<UploadProfilePicture />
 					<ShowMyUsername />
+					{/* TODO: Show user email */}
 				</div>
 				<div className="flex flex-col">
 					<ChannelName />
