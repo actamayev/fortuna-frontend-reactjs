@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Button from "../buttons/button"
-import ContactInput from "./contact-input"
+import EmailInput from "./email-input"
 import ErrorMessage from "../error-message"
 import PasswordInput from "./password-input"
 import UsernameInput from "./username-input"
@@ -20,7 +20,7 @@ export default function Register(props: Props) {
 	const { whereToNavigate, setLoginOrRegister } = props
 	useRedirectKnownUser()
 	const [registerInformation, setRegisterInformation] = useState<RegisterCredentials>({
-		contact: "",
+		email: "",
 		username: "",
 		password: "",
 		passwordConfirmation: ""
@@ -39,10 +39,9 @@ export default function Register(props: Props) {
 		<div>
 			<AuthTemplate title="Register">
 				<form onSubmit={registerSubmit} className="mb-3">
-					<ContactInput
-						credentials={registerInformation}
-						setCredentials={createSetCredentialsFunction(setRegisterInformation)}
-						label="Email/Phone Number"
+					<EmailInput
+						registerInformation={registerInformation}
+						setRegisterInformation={setRegisterInformation}
 					/>
 
 					<UsernameInput

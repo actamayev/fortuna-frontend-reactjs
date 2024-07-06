@@ -3,7 +3,6 @@ import { observer } from "mobx-react"
 import { FaSave, FaTrash } from "react-icons/fa"
 import { useRef, useState, useCallback } from "react"
 import ShowCurrentProfilePicture from "./show-current-profile-picture"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import useUploadProfilePicture from "../../hooks/personal-info/upload-profile-picture"
 
 // eslint-disable-next-line max-lines-per-function
@@ -12,7 +11,6 @@ function UploadProfilePicture() {
 	const [previewUrl, setPreviewUrl] = useState<null | string>(null)
 	const [selectedImage, setSelectedImage] = useState<File | null>(null)
 	const fileInputRef = useRef<HTMLInputElement>(null)
-	const personalInfoClass = usePersonalInfoContext()
 	const uploadProfilePicture = useUploadProfilePicture()
 
 	const removeContent = useCallback(() => {
@@ -61,8 +59,6 @@ function UploadProfilePicture() {
 
 	const imageStyle = isHovered ? { opacity: 0.8 } : { opacity: 1 }
 
-	if (_.isNull(personalInfoClass)) return null
-
 	if (_.isNull(previewUrl)) {
 		return (
 			<ShowCurrentProfilePicture
@@ -77,7 +73,7 @@ function UploadProfilePicture() {
 	}
 
 	return (
-		<div className="relative inline-block my-3">
+		<div className="relative inline-block">
 			<img
 				src={previewUrl}
 				className="w-36 h-36 rounded-full object-cover cursor-pointer"

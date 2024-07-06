@@ -4,12 +4,16 @@ declare global {
 		password: string
 	}
 
-	interface RegisterCredentialsToSend extends LoginCredentials {
+	interface RegisterCredentialsToSend {
+		email: string
+		password: string
 		username: string
 		siteTheme: SiteThemes
 	}
 
-	interface RegisterCredentials extends LoginCredentials {
+	interface RegisterCredentials {
+		email: string
+		password: string
 		username: string
 		passwordConfirmation: string
 	}
