@@ -26,7 +26,7 @@ function ShowCurrentProfilePicture(props: Props) {
 	}, [personalInfoClass, personalInfoClass?.profilePictureUrl])
 
 	return (
-		<div className="relative inline-block my-3">
+		<div className="relative inline-block">
 			{profilePictureUrl ? (
 				<img
 					src={profilePictureUrl}
