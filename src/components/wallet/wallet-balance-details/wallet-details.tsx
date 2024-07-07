@@ -7,13 +7,13 @@ import RequestAirdropButton from "../request-airdrop/request-airdrop-button"
 export default function WalletDetails () {
 	return (
 		<>
+			<WalletBalanceAndLastUpdate />
 			<div className="flex flex-row">
 				<div className="mr-4"><TransferFundsButton /></div>
 				<div className="mr-4"><RequestAirdropButton /></div>
 				<div><SolOrUsdSlider /></div>
 			</div>
 			<div className="mt-3"><ShowMyPublicKey /></div>
-			<WalletBalanceAndLastUpdate />
 		</>
 	)
 }

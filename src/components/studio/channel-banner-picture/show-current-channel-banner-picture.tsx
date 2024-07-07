@@ -27,7 +27,7 @@ function ShowCurrentChannelBannerPicture(props: Props) {
 			{channelBannerPictureUrl ? (
 				<img
 					src={channelBannerPictureUrl}
-					className="object-cover cursor-pointer w-full h-44 rounded-md"
+					className="object-cover cursor-pointer w-full h-44 rounded"
 					style={imageStyle}
 					onClick={editPictureCallback}
 					onMouseEnter={handleMouseEnter}
@@ -36,7 +36,7 @@ function ShowCurrentChannelBannerPicture(props: Props) {
 			) : (
 				<img
 					src="/sand_picture.jpg"
-					className="object-cover cursor-pointer w-full h-44 rounded-md"
+					className="object-cover cursor-pointer w-full h-44 rounded"
 					style={imageStyle}
 					onClick={editPictureCallback}
 					onMouseEnter={handleMouseEnter}

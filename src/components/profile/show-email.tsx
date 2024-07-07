@@ -15,7 +15,7 @@ function ShowEmail() {
 	return (
 		<div>
 			<label className="block text-sm font-bold text-zinc-800 dark:text-zinc-50">
-					Email
+				Email
 			</label>
 			<div className="text-zinc-950 dark:text-zinc-50 text-base">
 				{email}

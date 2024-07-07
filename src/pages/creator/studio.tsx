@@ -1,6 +1,5 @@
 import { observer } from "mobx-react"
 import { useAuthContext } from "../../contexts/auth-context"
-import SectionHeader from "../../components/headers/section-header"
 import ShowMyUsername from "../../components/studio/show-my-username"
 import ShowAuthToNullUser from "../../components/show-auth-to-null-user"
 import ChannelName from "../../components/studio/channel-name/channel-name"
@@ -19,7 +18,6 @@ function Studio() {
 
 	return (
 		<>
-			<SectionHeader siteTitle="Creator Studio" />
 			<UploadChannelBannerPicture />
 			<div className="flex items-start space-x-4">
 				<div className="flex flex-col items-center">
