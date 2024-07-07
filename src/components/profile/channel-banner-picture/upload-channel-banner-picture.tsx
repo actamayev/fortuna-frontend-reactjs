@@ -73,10 +73,10 @@ function UploadChannelBannerPicture() {
 	}
 
 	return (
-		<div className="relative inline-block">
+		<div className="relative inline-block w-full">
 			<img
 				src={previewUrl}
-				className="w-36 h-36 rounded-full object-cover cursor-pointer"
+				className="object-cover cursor-pointer w-full h-44 rounded-md"
 				onClick={editPictureCallback}
 				onMouseEnter={handleMouseEnter}
 				onMouseLeave={handleMouseLeave}

@@ -19,11 +19,11 @@ function MyProfile() {
 	return (
 		<>
 			<SectionHeader siteTitle="My Profile" />
+			<UploadChannelBannerPicture />
 			<div className="flex items-start space-x-4">
 				<div className="flex flex-col items-center">
 					<UploadProfilePicture />
 					<ShowMyUsername />
-					<UploadChannelBannerPicture />
 					{/* TODO: Show user email */}
 				</div>
 				<div className="flex flex-col">

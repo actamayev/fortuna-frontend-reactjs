@@ -1,9 +1,7 @@
 import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
-import { FaUserCircle } from "react-icons/fa"
 import { useCreatorContext } from "../../../contexts/creator-context"
-import useDefaultSiteTheme from "../../../hooks/memos/default-site-theme"
 
 interface Props {
 	handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -17,7 +15,6 @@ interface Props {
 function ShowCurrentChannelBannerPicture(props: Props) {
 	const { handleImageChange, fileInputRef, handleMouseEnter, handleMouseLeave, imageStyle, editPictureCallback } = props
 	const creatorClass = useCreatorContext()
-	const defaultSiteTheme = useDefaultSiteTheme()
 
 	const channelBannerPictureUrl = useMemo(() => {
 		if (_.isNull(creatorClass)) return ""
@@ -26,24 +23,24 @@ function ShowCurrentChannelBannerPicture(props: Props) {
 	}, [creatorClass, creatorClass?.channelBannerUrl])
 
 	return (
-		<div className="relative inline-block">
+		<div className="relative inline-block w-full">
 			{channelBannerPictureUrl ? (
 				<img
 					src={channelBannerPictureUrl}
-					className="w-36 h-36 rounded-full object-cover cursor-pointer"
+					className="object-cover cursor-pointer w-full h-44 rounded-md"
 					style={imageStyle}
 					onClick={editPictureCallback}
 					onMouseEnter={handleMouseEnter}
 					onMouseLeave={handleMouseLeave}
 				/>
 			) : (
-				<FaUserCircle
-					className="w-36 h-36 rounded-full object-cover cursor-pointer"
+				<img
+					src="/sand_picture.jpg"
+					className="object-cover cursor-pointer w-full h-44 rounded-md"
 					style={imageStyle}
 					onClick={editPictureCallback}
 					onMouseEnter={handleMouseEnter}
 					onMouseLeave={handleMouseLeave}
-					color={defaultSiteTheme === "dark" ? "white" : "black" }
 				/>
 			)}
 			<input
@@ -52,7 +49,6 @@ function ShowCurrentChannelBannerPicture(props: Props) {
 				onChange={handleImageChange}
 				accept="image/jpeg, image/png"
 				style={{ display: "none" }}
-				max={1}
 			/>
 		</div>
 	)
