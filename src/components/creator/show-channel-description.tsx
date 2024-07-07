@@ -17,7 +17,7 @@ function ShowChannelDescription(props: Props) {
 	return (
 		<div
 			className="text-zinc-600 dark:text-zinc-300 text-sm font-semibold \
-		hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer px-1 py-2.5"
+			hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer px-1 py-2.5"
 			style={{
 				width: "80vw",
 				wordWrap: "break-word",
