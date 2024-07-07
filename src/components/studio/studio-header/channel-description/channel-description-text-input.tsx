@@ -1,4 +1,5 @@
 import { useCallback } from "react"
+import CancelEditingButton from "../cancel-editing-button"
 import SaveChannelDescriptionButton from "./save-channel-description-button"
 
 interface Props {
@@ -7,6 +8,7 @@ interface Props {
 	setChannelDescription: React.Dispatch<React.SetStateAction<string>>
 	textAreaRef: React.RefObject<HTMLTextAreaElement>
 	handleSaveChannelDescription: () => Promise<void>
+	toggleEditAndAssignDefaultDescriptionName: () => void
 }
 
 export default function ChannelDescriptionTextInput(props: Props) {
@@ -15,7 +17,8 @@ export default function ChannelDescriptionTextInput(props: Props) {
 		channelDescription,
 		setChannelDescription,
 		textAreaRef,
-		handleSaveChannelDescription
+		handleSaveChannelDescription,
+		toggleEditAndAssignDefaultDescriptionName
 	} = props
 
 	const handleChange = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -57,6 +60,9 @@ export default function ChannelDescriptionTextInput(props: Props) {
 					{channelDescription.length}/{maxLength}
 				</span>
 				<div className="flex items-center">
+					<CancelEditingButton
+						toggleEditAndAssignDefaultValue={toggleEditAndAssignDefaultDescriptionName}
+					/>
 					<SaveChannelDescriptionButton handleSaveChannelDescription={handleSaveChannelDescription} />
 				</div>
 			</div>

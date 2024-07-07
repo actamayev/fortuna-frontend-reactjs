@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useState, useCallback, useRef, useEffect } from "react"
+import CancelEditingButton from "../cancel-editing-button"
 import ChannelNameTextInput from "./channel-name-text-input"
 import SaveChannelNameButton from "./save-channel-name-button"
 import useAddOrEditChannelName from "../../../../hooks/creator/add-or-edit-channel-name"
@@ -42,6 +43,11 @@ function ChannelName() {
 		setIsEditing(prev => !prev)
 	}, [])
 
+	const toggleEditAndAssignDefaultChannelName = useCallback(() => {
+		setIsEditing(false)
+		assignDefaultChannelName(setChannelName)
+	}, [assignDefaultChannelName])
+
 	const handleSaveChannelName = useCallback(async () => {
 		if (!_.isEmpty(channelName)) await addOrEditChannelName(channelName)
 		else assignDefaultChannelName(setChannelName)
@@ -51,8 +57,7 @@ function ChannelName() {
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
 			if (event.key === "Escape") {
-				setIsEditing(false)
-				assignDefaultChannelName(setChannelName)
+				toggleEditAndAssignDefaultChannelName()
 			}
 		}
 
@@ -66,7 +71,7 @@ function ChannelName() {
 		return () => {
 			window.removeEventListener("keydown", handleKeyDown)
 		}
-	}, [assignDefaultChannelName, isEditing])
+	}, [assignDefaultChannelName, isEditing, toggleEditAndAssignDefaultChannelName])
 
 	return (
 		<div className="flex items-center">
@@ -102,10 +107,16 @@ function ChannelName() {
 				)}
 			</div>
 			{isEditing && (
-				<SaveChannelNameButton
-					channelName={channelName}
-					handleSaveChannelName={handleSaveChannelName}
-				/>
+				<>
+					<CancelEditingButton
+						toggleEditAndAssignDefaultValue={toggleEditAndAssignDefaultChannelName}
+						extraClasses="mb-4"
+					/>
+					<SaveChannelNameButton
+						channelName={channelName}
+						handleSaveChannelName={handleSaveChannelName}
+					/>
+				</>
 			)}
 		</div>
 	)

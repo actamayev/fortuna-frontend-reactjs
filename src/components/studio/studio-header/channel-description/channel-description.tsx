@@ -37,6 +37,13 @@ function ChannelDescription() {
 		setIsEditing(prev => !prev)
 	}, [])
 
+	const toggleEditAndAssignDefaultDescriptionName = useCallback(() => {
+		setIsEditing(false)
+		if (!_.isNil(creatorClass?.channelDescription)) {
+			setChannelDescription(creatorClass.channelDescription)
+		}
+	}, [creatorClass?.channelDescription])
+
 	const handleSaveChannelDescription = useCallback(async () => {
 		await addOrEditChannelDescription(channelDescription)
 		setIsEditing(false)
@@ -45,10 +52,7 @@ function ChannelDescription() {
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
 			if (event.key === "Escape") {
-				setIsEditing(false)
-				if (!_.isNil(creatorClass?.channelDescription)) {
-					setChannelDescription(creatorClass.channelDescription)
-				}
+				toggleEditAndAssignDefaultDescriptionName()
 			}
 		}
 
@@ -62,7 +66,7 @@ function ChannelDescription() {
 		return () => {
 			window.removeEventListener("keydown", handleKeyDown)
 		}
-	}, [creatorClass?.channelDescription, isEditing])
+	}, [creatorClass?.channelDescription, isEditing, toggleEditAndAssignDefaultDescriptionName])
 
 	return (
 		<div className="flex items-center">
@@ -73,6 +77,7 @@ function ChannelDescription() {
 					setChannelDescription={setChannelDescription}
 					textAreaRef={textAreaRef}
 					handleSaveChannelDescription={handleSaveChannelDescription}
+					toggleEditAndAssignDefaultDescriptionName={toggleEditAndAssignDefaultDescriptionName}
 				/>
 			) : (
 				<span
