@@ -2,16 +2,16 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { FaSave, FaTrash } from "react-icons/fa"
 import { useRef, useState, useCallback } from "react"
-import ShowCurrentProfilePicture from "./show-current-profile-picture"
-import useUploadProfilePicture from "../../../hooks/personal-info/upload-profile-picture"
+import ShowCurrentChannelBannerPicture from "./show-current-channel-banner-picture"
+import useUploadChannelBannerPicture from "../../../../hooks/creator/upload-channel-banner-picture"
 
 // eslint-disable-next-line max-lines-per-function
-function UploadProfilePicture() {
+function UploadChannelBannerPicture() {
 	const [isHovered, setIsHovered] = useState(false)
 	const [previewUrl, setPreviewUrl] = useState<null | string>(null)
 	const [selectedImage, setSelectedImage] = useState<File | null>(null)
 	const fileInputRef = useRef<HTMLInputElement>(null)
-	const uploadProfilePicture = useUploadProfilePicture()
+	const uploadChannelBannerPicture = useUploadChannelBannerPicture()
 
 	const removeContent = useCallback(() => {
 		setSelectedImage(null)
@@ -48,10 +48,10 @@ function UploadProfilePicture() {
 		fileInputRef.current?.click()
 	}, [fileInputRef])
 
-	const uploadProfilePictureCallback = useCallback(async() => {
-		await uploadProfilePicture(selectedImage)
+	const uploadChannelBannerPictureCallback = useCallback(async() => {
+		await uploadChannelBannerPicture(selectedImage)
 		removeContent()
-	}, [removeContent, selectedImage, uploadProfilePicture])
+	}, [removeContent, selectedImage, uploadChannelBannerPicture])
 
 	const handleMouseEnter = useCallback(() => setIsHovered(true), [])
 
@@ -61,7 +61,7 @@ function UploadProfilePicture() {
 
 	if (_.isNull(previewUrl)) {
 		return (
-			<ShowCurrentProfilePicture
+			<ShowCurrentChannelBannerPicture
 				handleImageChange = {handleImageChange}
 				fileInputRef={fileInputRef}
 				handleMouseEnter={handleMouseEnter}
@@ -73,10 +73,10 @@ function UploadProfilePicture() {
 	}
 
 	return (
-		<div className="relative inline-block" style={{ minWidth: "128px", maxWidth: "128px" }} >
+		<div className="relative inline-block w-full">
 			<img
 				src={previewUrl}
-				className="w-32 h-32 rounded-full object-cover cursor-pointer"
+				className="object-cover cursor-pointer w-full h-44 rounded"
 				onClick={editPictureCallback}
 				onMouseEnter={handleMouseEnter}
 				onMouseLeave={handleMouseLeave}
@@ -99,7 +99,7 @@ function UploadProfilePicture() {
 				<FaSave
 					color="white"
 					size={22}
-					onClick={uploadProfilePictureCallback}
+					onClick={uploadChannelBannerPictureCallback}
 				/>
 			</div>
 			<input
@@ -114,4 +114,4 @@ function UploadProfilePicture() {
 	)
 }
 
-export default observer(UploadProfilePicture)
+export default observer(UploadChannelBannerPicture)

@@ -11,7 +11,7 @@ function EditPencilButton() {
 			classes="flex items-center justify-center mb-1"
 			circlePixelSize="33px"
 		>
-			<RiPencilFill color={defaultSiteTheme === "dark" ? "white" : "black"} size={17} />
+			<RiPencilFill color={defaultSiteTheme === "dark" ? "white" : "black"} size={20} />
 		</HoverOutlineComponent>
 	)
 }

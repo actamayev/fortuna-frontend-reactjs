@@ -1,6 +1,6 @@
 import { useMemo } from "react"
 import { observer } from "mobx-react"
-import { useCreatorContext } from "../../contexts/creator-context"
+import { useCreatorContext } from "../../../contexts/creator-context"
 
 function ShowNumberVideos() {
 	const creatorClass = useCreatorContext()

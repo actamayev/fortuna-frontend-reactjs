@@ -1,8 +1,8 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { FaSave, FaTimes } from "react-icons/fa"
-import HoverOutlineComponent from "../../hover-outline-component"
-import useDefaultSiteTheme from "../../../hooks/memos/default-site-theme"
+import HoverOutlineComponent from "../../../hover-outline-component"
+import useDefaultSiteTheme from "../../../../hooks/memos/default-site-theme"
 
 interface Props {
 	channelName: string

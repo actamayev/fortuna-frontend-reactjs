@@ -25,7 +25,7 @@ function SingleLinkToSocialPlatform(props: Props) {
 
 	return (
 		<HoverOutlineComponent
-			classes="relative flex items-center justify-center right-2 bottom-2"
+			classes="relative flex items-center justify-center"
 			onClickAction={handleClick}
 		>
 			<IconComponent size={24} color={defaultSiteTheme === "light" ? "black" : "white"} />

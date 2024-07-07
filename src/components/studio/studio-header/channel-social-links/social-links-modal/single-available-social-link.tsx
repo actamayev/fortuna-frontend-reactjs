@@ -1,6 +1,6 @@
 import { useCallback } from "react"
-import platformIcons from "../../../../utils/platform-icons"
-import HoverOutlineComponent from "../../../hover-outline-component"
+import platformIcons from "../../../../../utils/platform-icons"
+import HoverOutlineComponent from "../../../../hover-outline-component"
 
 interface Props {
 	socialPlatform: SocialPlatformKey

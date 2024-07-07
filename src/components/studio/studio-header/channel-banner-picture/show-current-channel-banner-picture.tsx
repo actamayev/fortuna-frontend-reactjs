@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
-import { useCreatorContext } from "../../../contexts/creator-context"
+import { useCreatorContext } from "../../../../contexts/creator-context"
 
 interface Props {
 	handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void

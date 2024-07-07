@@ -2,11 +2,11 @@ import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { FaTrashAlt } from "react-icons/fa"
-import platformIcons from "../../../../utils/platform-icons"
-import HoverOutlineComponent from "../../../hover-outline-component"
-import { useCreatorContext } from "../../../../contexts/creator-context"
-import useRemoveSocialLink from "../../../../hooks/creator/social-links/remove-social-link"
-import useAddOrEditSocialLink from "../../../../hooks/creator/social-links/add-or-edit-social-link"
+import platformIcons from "../../../../../utils/platform-icons"
+import HoverOutlineComponent from "../../../../hover-outline-component"
+import { useCreatorContext } from "../../../../../contexts/creator-context"
+import useRemoveSocialLink from "../../../../../hooks/creator/social-links/remove-social-link"
+import useAddOrEditSocialLink from "../../../../../hooks/creator/social-links/add-or-edit-social-link"
 
 interface Props {
 	link: SocialPlatformLinks

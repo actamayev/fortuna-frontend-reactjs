@@ -1,9 +1,9 @@
 import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
-import platformIcons from "../../../utils/platform-icons"
-import { useCreatorContext } from "../../../contexts/creator-context"
-import useDefaultSiteTheme from "../../../hooks/memos/default-site-theme"
+import platformIcons from "../../../../utils/platform-icons"
+import { useCreatorContext } from "../../../../contexts/creator-context"
+import useDefaultSiteTheme from "../../../../hooks/memos/default-site-theme"
 
 function MappedActiveSocialLinks() {
 	const creatorClass = useCreatorContext()

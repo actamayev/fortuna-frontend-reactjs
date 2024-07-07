@@ -2,8 +2,8 @@ import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { FaUserCircle } from "react-icons/fa"
-import useDefaultSiteTheme from "../../../hooks/memos/default-site-theme"
-import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
+import useDefaultSiteTheme from "../../../../hooks/memos/default-site-theme"
+import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
 
 interface Props {
 	handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void

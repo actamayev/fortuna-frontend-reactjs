@@ -1,11 +1,11 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useState, useCallback, useRef, useEffect } from "react"
-import EditPencilButton from "../edit-pencil-button"
-import { useCreatorContext } from "../../../contexts/creator-context"
+import EditPencilButton from "../../edit-pencil-button"
+import { useCreatorContext } from "../../../../contexts/creator-context"
 import ChannelDescriptionTextInput from "./channel-description-text-input"
 import SaveChannelDescriptionButton from "./save-channel-description-button"
-import useAddOrEditChannelDescription from "../../../hooks/creator/add-or-edit-channel-description"
+import useAddOrEditChannelDescription from "../../../../hooks/creator/add-or-edit-channel-description"
 
 function ChannelDescription() {
 	const creatorClass = useCreatorContext()

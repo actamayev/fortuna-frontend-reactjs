@@ -1,11 +1,11 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useState, useCallback, useRef, useEffect } from "react"
-import EditPencilButton from "../edit-pencil-button"
+import EditPencilButton from "../../edit-pencil-button"
 import ChannelNameTextInput from "./channel-name-text-input"
 import SaveChannelNameButton from "./save-channel-name-button"
-import useAddOrEditChannelName from "../../../hooks/creator/add-or-edit-channel-name"
-import useAssignDefaultChannelName from "../../../hooks/creator/assign-default-channel-name"
+import useAddOrEditChannelName from "../../../../hooks/creator/add-or-edit-channel-name"
+import useAssignDefaultChannelName from "../../../../hooks/creator/assign-default-channel-name"
 
 // eslint-disable-next-line max-lines-per-function
 function ChannelName() {

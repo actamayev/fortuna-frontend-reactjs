@@ -1,6 +1,6 @@
 import { useMemo } from "react"
 import { observer } from "mobx-react"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 
 function ShowMyUsername() {
 	const personalInfoClass = usePersonalInfoContext()

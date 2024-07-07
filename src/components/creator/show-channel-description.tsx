@@ -1,3 +1,4 @@
+import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useState } from "react"
 
@@ -7,7 +8,6 @@ interface Props {
 
 function ShowChannelDescription(props: Props) {
 	const { channelDescription } = props
-	const maxLength = 120
 	const [isExpanded, setIsExpanded] = useState(false)
 
 	const handleToggle = useCallback(() => {
@@ -16,29 +16,19 @@ function ShowChannelDescription(props: Props) {
 
 	return (
 		<div
-			className="text-sm dark:text-zinc-200"
-			style={{ width: "80vw", wordWrap: "break-word", whiteSpace: "normal" }}
+			className="text-zinc-600 dark:text-zinc-300 text-sm font-semibold \
+		hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer px-1 py-2.5"
+			style={{
+				width: "80vw",
+				wordWrap: "break-word",
+				whiteSpace: "normal"
+			}}
+			onClick={handleToggle}
 		>
 			{isExpanded ? (
-				<>
-					{channelDescription}
-					<button onClick={handleToggle} className="text-blue-500">
-						Show less
-					</button>
-				</>
+				<>{channelDescription}</>
 			) : (
-				<>
-					{channelDescription.length > maxLength ? (
-						<>
-							{channelDescription.slice(0, maxLength)}...
-							<button onClick={handleToggle} className="text-blue-500">
-								Show more
-							</button>
-						</>
-					) : (
-						channelDescription
-					)}
-				</>
+				<>{_.truncate(channelDescription, { length: 320, omission: "..." })}</>
 			)}
 		</div>
 	)
