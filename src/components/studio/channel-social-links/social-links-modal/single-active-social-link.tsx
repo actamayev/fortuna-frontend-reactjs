@@ -40,11 +40,24 @@ function SingleActiveSocialLink(props: Props) {
 		debouncedAddOrEditSocialLink(value, socialPlatform)
 	}, [creatorClass, debouncedAddOrEditSocialLink, setTempSocialLinks])
 
+	const handleClick = useCallback(() => {
+		if (_.isEmpty(link.socialLink)) return
+		const url = link.socialLink.startsWith("http")
+			? link.socialLink
+			: `http://${link.socialLink}`
+		window.open(url, "_blank")
+	}, [link.socialLink])
+
 	const IconComponent = platformIcons[link.socialPlatform as SocialPlatformKey]
 
 	return (
 		<div className="flex items-center mb-2">
-			<IconComponent className="mr-3" size={24} />
+			<HoverOutlineComponent
+				classes="relative flex items-center justify-center right-2 bottom-2"
+				onClickAction={handleClick}
+			>
+				<IconComponent className="mr-3" size={24} />
+			</HoverOutlineComponent>
 			<input
 				type="text"
 				value={link.socialLink}

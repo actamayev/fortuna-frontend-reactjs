@@ -10,7 +10,7 @@ function ShowMyUsername() {
 	}, [personalInfoClass?.username])
 
 	return (
-		<div className="text-center dark:text-zinc-100 text-md font-semibold">
+		<div className="text-zinc-600 dark:text-zinc-300 text-sm ml-1">
 			@{username}
 		</div>
 	)

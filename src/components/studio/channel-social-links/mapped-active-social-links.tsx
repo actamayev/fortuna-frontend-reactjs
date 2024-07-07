@@ -1,11 +1,13 @@
 import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
+import platformIcons from "../../../utils/platform-icons"
 import { useCreatorContext } from "../../../contexts/creator-context"
-import SingleLinkToSocialPlatform from "../../single-link-to-social-platform"
+import useDefaultSiteTheme from "../../../hooks/memos/default-site-theme"
 
 function MappedActiveSocialLinks() {
 	const creatorClass = useCreatorContext()
+	const defaultSiteTheme = useDefaultSiteTheme()
 
 	const nonEmptySocialPlatformLinks = useMemo(() => {
 		if (_.isNull(creatorClass)) return []
@@ -15,12 +17,14 @@ function MappedActiveSocialLinks() {
 
 	return (
 		<div className="flex">
-			{nonEmptySocialPlatformLinks.map(nonEmptySocialPlatformLink => (
-				<SingleLinkToSocialPlatform
-					key={nonEmptySocialPlatformLink.socialPlatform}
-					socialPlatformLink={nonEmptySocialPlatformLink}
-				/>
-			))}
+			{nonEmptySocialPlatformLinks.map(nonEmptySocialPlatformLink => {
+				const IconComponent = platformIcons[nonEmptySocialPlatformLink.socialPlatform]
+				return (
+					<div key={nonEmptySocialPlatformLink.socialPlatform} className="mr-3">
+						<IconComponent size={24} color={defaultSiteTheme === "light" ? "black" : "white"} />
+					</div>
+				)
+			})}
 		</div>
 	)
 }

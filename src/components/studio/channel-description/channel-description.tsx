@@ -11,6 +11,7 @@ function ChannelDescription() {
 	const creatorClass = useCreatorContext()
 	const [channelDescription, setChannelDescription] = useState("")
 	const [isEditing, setIsEditing] = useState(false)
+	const [isHovered, setIsHovered] = useState(false)
 	const maxLength = 1000
 	const textAreaRef = useRef<HTMLTextAreaElement>(null)
 	const addOrEditChannelDescription = useAddOrEditChannelDescription()
@@ -67,37 +68,37 @@ function ChannelDescription() {
 	}, [creatorClass?.channelDescription, isEditing])
 
 	return (
-		<div>
-			<div className="flex flex-row items-center">
-				<label className="block text-sm font-bold text-zinc-800 dark:text-zinc-50">
-					Channel Description
-				</label>
+		<div className="flex items-center">
+			<div className="relative flex flex-col">
 				{!isEditing ? (
-					<EditPencilButton toggleEditMode={toggleEditMode} />
+					<span
+						className="text-zinc-950 dark:text-zinc-50 text-sm font-semibold \
+						hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer px-1 py-3"
+						style={{
+							width: "75vw",
+							wordWrap: "break-word",
+							whiteSpace: "normal"
+						}}
+						onClick={toggleEditMode}
+						onMouseEnter={() => setIsHovered(true)}
+						onMouseLeave={() => setIsHovered(false)}
+					>
+						{_.truncate(channelDescription, { length: 150, omission: "..." })}
+					</span>
 				) : (
-					<SaveChannelDescriptionButton handleSaveChannelDescription = {handleSaveChannelDescription}/>
+					<ChannelDescriptionTextInput
+						maxLength={maxLength}
+						channelDescription={channelDescription}
+						setChannelDescription={setChannelDescription}
+						textAreaRef={textAreaRef}
+						handleSaveChannelDescription={handleSaveChannelDescription}
+					/>
 				)}
 			</div>
-			<div className="flex items-center">
-				<div className="relative flex flex-col">
-					{!isEditing ? (
-						<span
-							className="text-zinc-950 dark:text-zinc-50 text-sm"
-							style={{ width: "75vw", wordWrap: "break-word", whiteSpace: "normal" }}
-						>
-							<div>{channelDescription}</div>
-						</span>
-					) : (
-						<ChannelDescriptionTextInput
-							maxLength={maxLength}
-							channelDescription={channelDescription}
-							setChannelDescription={setChannelDescription}
-							textAreaRef={textAreaRef}
-							handleSaveChannelDescription={handleSaveChannelDescription}
-						/>
-					)}
-				</div>
-			</div>
+			{(isHovered && !isEditing) && (<EditPencilButton />)}
+			{isEditing && (
+				<SaveChannelDescriptionButton handleSaveChannelDescription = {handleSaveChannelDescription}/>
+			)}
 		</div>
 	)
 }

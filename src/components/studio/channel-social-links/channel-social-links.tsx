@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react"
-import EditPencilButton from "../edit-pencil-button"
 import MappedActiveSocialLinks from "./mapped-active-social-links"
 import SocialLinksModal from "./social-links-modal/social-links-modal"
 
@@ -30,15 +29,14 @@ export default function ChannelSocialLinks() {
 	}, [isModalOpen])
 
 	return (
-		<div>
-			<div className="flex flex-row items-center">
-				<label className="block text-sm font-bold text-zinc-800 dark:text-zinc-50">
-					Social Links
-				</label>
-				<EditPencilButton toggleEditMode={toggleModalOpen} />
+		<>
+			<div
+				className="hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer p-1"
+				onClick={toggleModalOpen}
+			>
+				<MappedActiveSocialLinks />
 			</div>
-			<MappedActiveSocialLinks />
 			{isModalOpen && <SocialLinksModal toggleModalOpen={toggleModalOpen} />}
-		</div>
+		</>
 	)
 }

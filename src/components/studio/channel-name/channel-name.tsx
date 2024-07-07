@@ -12,6 +12,7 @@ function ChannelName() {
 	const [channelName, setChannelName] = useState("")
 	const [inputWidth, setInputWidth] = useState("100px")
 	const [isEditing, setIsEditing] = useState(false)
+	const [isHovered, setIsHovered] = useState(false)
 	const maxLength = 60
 	const spanRef = useRef<HTMLSpanElement>(null)
 	const inputRef = useRef<HTMLInputElement>(null)
@@ -25,7 +26,7 @@ function ChannelName() {
 	const updateWidth = useCallback((text: string) => {
 		if (spanRef.current) {
 			spanRef.current.textContent = text || " "
-			setInputWidth(`${spanRef.current.offsetWidth + 20}px`)
+			setInputWidth(`${spanRef.current.offsetWidth + 120}px`)
 		}
 	}, [])
 
@@ -70,46 +71,47 @@ function ChannelName() {
 	}, [assignDefaultChannelName, isEditing])
 
 	return (
-		<div>
-			<div className="flex items-center">
-				<div className="relative flex flex-col">
+		<div className="flex items-center">
+			<div className="relative flex flex-col">
+				<span
+					ref={spanRef}
+					className="invisible absolute whitespace-pre"
+					style={{
+						padding: "0 2px",
+						whiteSpace: "pre"
+					}}
+				>
+					{channelName}
+				</span>
+				{!isEditing ? (
 					<span
-						ref={spanRef}
-						className="invisible absolute whitespace-pre"
-						style={{
-							padding: "0 2px",
-							whiteSpace: "pre"
-						}}
+						className="text-zinc-950 dark:text-zinc-50 text-4xl font-semibold \
+						hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer p-1"
+						onClick={toggleEditMode}
+						onMouseEnter={() => setIsHovered(true)}
+						onMouseLeave={() => setIsHovered(false)}
 					>
 						{channelName}
 					</span>
-					{!isEditing ? (
-						<span className="text-zinc-950 dark:text-zinc-50 text-4xl">
-							<div>{channelName}</div>
-						</span>
-					) : (
-						<ChannelNameTextInput
-							maxLength={maxLength}
-							channelName={channelName}
-							setChannelName={setChannelName}
-							handleSaveChannelName={handleSaveChannelName}
-							updateWidth={updateWidth}
-							inputWidth={inputWidth}
-							inputRef={inputRef}
-						/>
-					)}
-				</div>
-			</div>
-			<div className="flex flex-row items-center">
-				{!isEditing ? (
-					<EditPencilButton toggleEditMode={toggleEditMode} />
 				) : (
-					<SaveChannelNameButton
+					<ChannelNameTextInput
+						maxLength={maxLength}
 						channelName={channelName}
+						setChannelName={setChannelName}
 						handleSaveChannelName={handleSaveChannelName}
+						updateWidth={updateWidth}
+						inputWidth={inputWidth}
+						inputRef={inputRef}
 					/>
 				)}
 			</div>
+			{(isHovered && !isEditing) && (<EditPencilButton />)}
+			{isEditing && (
+				<SaveChannelNameButton
+					channelName={channelName}
+					handleSaveChannelName={handleSaveChannelName}
+				/>
+			)}
 		</div>
 	)
 }

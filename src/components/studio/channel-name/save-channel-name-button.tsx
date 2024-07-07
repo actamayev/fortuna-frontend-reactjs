@@ -15,7 +15,7 @@ function SaveChannelNameButton(props: Props) {
 
 	return (
 		<HoverOutlineComponent
-			classes="relative flex items-center justify-center inline-block mb-1"
+			classes="relative flex items-center justify-center inline-block mb-3"
 			onClickAction={handleSaveChannelName}
 			circlePixelSize="33px"
 		>
