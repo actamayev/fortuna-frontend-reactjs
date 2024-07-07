@@ -45,7 +45,7 @@ export default function ChannelDescriptionTextInput(props: Props) {
 				onKeyDown={handleKeyDown}
 				maxLength={maxLength}
 				style={{
-					width: "75vw",
+					width: "81vw",
 					boxSizing: "border-box",
 					resize: "none",
 					overflow: "hidden"

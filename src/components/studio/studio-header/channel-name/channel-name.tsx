@@ -1,7 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useState, useCallback, useRef, useEffect } from "react"
-import EditPencilButton from "../../edit-pencil-button"
 import ChannelNameTextInput from "./channel-name-text-input"
 import SaveChannelNameButton from "./save-channel-name-button"
 import useAddOrEditChannelName from "../../../../hooks/creator/add-or-edit-channel-name"
@@ -12,7 +11,6 @@ function ChannelName() {
 	const [channelName, setChannelName] = useState("")
 	const [inputWidth, setInputWidth] = useState("120px")
 	const [isEditing, setIsEditing] = useState(false)
-	const [isHovered, setIsHovered] = useState(false)
 	const maxLength = 60
 	const spanRef = useRef<HTMLSpanElement>(null)
 	const inputRef = useRef<HTMLInputElement>(null)
@@ -88,8 +86,6 @@ function ChannelName() {
 						className="text-zinc-950 dark:text-zinc-50 text-3xl font-semibold \
 						hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer p-1"
 						onClick={toggleEditMode}
-						onMouseEnter={() => setIsHovered(true)}
-						onMouseLeave={() => setIsHovered(false)}
 					>
 						{channelName}
 					</span>
@@ -105,7 +101,6 @@ function ChannelName() {
 					/>
 				)}
 			</div>
-			{(isHovered && !isEditing) && (<EditPencilButton />)}
 			{isEditing && (
 				<SaveChannelNameButton
 					channelName={channelName}

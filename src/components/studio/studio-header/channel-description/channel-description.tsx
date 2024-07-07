@@ -1,7 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useState, useCallback, useRef, useEffect } from "react"
-import EditPencilButton from "../../edit-pencil-button"
 import { useCreatorContext } from "../../../../contexts/creator-context"
 import ChannelDescriptionTextInput from "./channel-description-text-input"
 import SaveChannelDescriptionButton from "./save-channel-description-button"
@@ -11,7 +10,6 @@ function ChannelDescription() {
 	const creatorClass = useCreatorContext()
 	const [channelDescription, setChannelDescription] = useState("")
 	const [isEditing, setIsEditing] = useState(false)
-	const [isHovered, setIsHovered] = useState(false)
 	const maxLength = 1000
 	const textAreaRef = useRef<HTMLTextAreaElement>(null)
 	const addOrEditChannelDescription = useAddOrEditChannelDescription()
@@ -72,18 +70,15 @@ function ChannelDescription() {
 			<div className="relative flex flex-col">
 				{!isEditing ? (
 					<span
-						className="text-zinc-600 dark:text-zinc-300 text-sm font-semibold \
-						hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer px-1 py-2.5"
+						className="text-zinc-600 dark:text-zinc-300 text-sm \
+						hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer px-1 mt-0.5 pt-0.5 pb-2 w-full"
 						style={{
-							width: "80vw",
 							wordWrap: "break-word",
 							whiteSpace: "normal"
 						}}
 						onClick={toggleEditMode}
-						onMouseEnter={() => setIsHovered(true)}
-						onMouseLeave={() => setIsHovered(false)}
 					>
-						{_.truncate(channelDescription, { length: 320, omission: "..." })}
+						{_.truncate(channelDescription, { length: 350, omission: "..." })}
 					</span>
 				) : (
 					<ChannelDescriptionTextInput
@@ -95,7 +90,6 @@ function ChannelDescription() {
 					/>
 				)}
 			</div>
-			{(isHovered && !isEditing) && (<EditPencilButton />)}
 			{isEditing && (
 				<SaveChannelDescriptionButton handleSaveChannelDescription = {handleSaveChannelDescription}/>
 			)}

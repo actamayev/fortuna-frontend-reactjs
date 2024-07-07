@@ -18,11 +18,11 @@ export default function useAddOrEditChannelName(): (
 		try {
 			if (
 				_.isNull(creatorClass) ||
+				channelName.length > 60 ||
 				creatorClass.channelName === channelName ||
 				(_.isEmpty(creatorClass.channelName) && (
 					personalInfoClass?.username && personalInfoClass.username === channelName
-				)) ||
-				channelName.length > 60
+				))
 			) return
 
 			const response = await fortunaApiClient.creatorDataService.addOrEditChannelName(channelName)
