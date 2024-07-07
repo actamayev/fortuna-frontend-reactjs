@@ -81,15 +81,7 @@ function ChannelName() {
 				>
 					{channelName}
 				</span>
-				{!isEditing ? (
-					<span
-						className="text-zinc-950 dark:text-zinc-50 text-3xl font-semibold \
-						hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer p-1"
-						onClick={toggleEditMode}
-					>
-						{channelName}
-					</span>
-				) : (
+				{isEditing ? (
 					<ChannelNameTextInput
 						maxLength={maxLength}
 						channelName={channelName}
@@ -99,6 +91,14 @@ function ChannelName() {
 						inputWidth={inputWidth}
 						inputRef={inputRef}
 					/>
+				) : (
+					<span
+						className="text-zinc-950 dark:text-zinc-50 text-3xl font-semibold \
+						hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer py-1 pl-1 pr-3"
+						onClick={toggleEditMode}
+					>
+						{channelName}
+					</span>
 				)}
 			</div>
 			{isEditing && (

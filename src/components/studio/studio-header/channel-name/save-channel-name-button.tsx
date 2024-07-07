@@ -17,7 +17,7 @@ function SaveChannelNameButton(props: Props) {
 		<HoverOutlineComponent
 			classes="relative flex items-center justify-center inline-block mb-3"
 			onClickAction={handleSaveChannelName}
-			circlePixelSize="33px"
+			circlePixelSize="30px"
 		>
 			{_.isEmpty(channelName) ? (
 				<FaTimes color={defaultSiteTheme === "dark" ? "white" : "black"} />

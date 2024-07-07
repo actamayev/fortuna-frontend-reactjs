@@ -3,7 +3,6 @@ import { observer } from "mobx-react"
 import { useState, useCallback, useRef, useEffect } from "react"
 import { useCreatorContext } from "../../../../contexts/creator-context"
 import ChannelDescriptionTextInput from "./channel-description-text-input"
-import SaveChannelDescriptionButton from "./save-channel-description-button"
 import useAddOrEditChannelDescription from "../../../../hooks/creator/add-or-edit-channel-description"
 
 function ChannelDescription() {
@@ -67,31 +66,26 @@ function ChannelDescription() {
 
 	return (
 		<div className="flex items-center">
-			<div className="relative flex flex-col">
-				{!isEditing ? (
-					<span
-						className="text-zinc-600 dark:text-zinc-300 text-sm \
+			{isEditing ? (
+				<ChannelDescriptionTextInput
+					maxLength={maxLength}
+					channelDescription={channelDescription}
+					setChannelDescription={setChannelDescription}
+					textAreaRef={textAreaRef}
+					handleSaveChannelDescription={handleSaveChannelDescription}
+				/>
+			) : (
+				<span
+					className="text-zinc-600 dark:text-zinc-300 text-sm \
 						hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer px-1 mt-0.5 pt-0.5 pb-2 w-full"
-						style={{
-							wordWrap: "break-word",
-							whiteSpace: "normal"
-						}}
-						onClick={toggleEditMode}
-					>
-						{_.truncate(channelDescription, { length: 350, omission: "..." })}
-					</span>
-				) : (
-					<ChannelDescriptionTextInput
-						maxLength={maxLength}
-						channelDescription={channelDescription}
-						setChannelDescription={setChannelDescription}
-						textAreaRef={textAreaRef}
-						handleSaveChannelDescription={handleSaveChannelDescription}
-					/>
-				)}
-			</div>
-			{isEditing && (
-				<SaveChannelDescriptionButton handleSaveChannelDescription = {handleSaveChannelDescription}/>
+					style={{
+						wordWrap: "break-word",
+						whiteSpace: "normal"
+					}}
+					onClick={toggleEditMode}
+				>
+					{_.truncate(channelDescription, { length: 350, omission: "..." })}
+				</span>
 			)}
 		</div>
 	)

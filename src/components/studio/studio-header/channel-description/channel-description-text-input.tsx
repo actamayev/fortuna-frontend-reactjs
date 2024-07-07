@@ -1,4 +1,5 @@
 import { useCallback } from "react"
+import SaveChannelDescriptionButton from "./save-channel-description-button"
 
 interface Props {
 	maxLength: number
@@ -31,12 +32,12 @@ export default function ChannelDescriptionTextInput(props: Props) {
 	}, [handleSaveChannelDescription])
 
 	return (
-		<>
+		<div className="w-full">
 			<textarea
 				ref={textAreaRef}
 				className={
-					`mt-1 p-1.5 border rounded text-zinc-950 dark:text-zinc-200 text-sm \
-					bg-white dark:bg-zinc-800 outline-none
+					`mt-1 p-1 border rounded text-zinc-950 dark:text-zinc-200 text-sm \
+					bg-white dark:bg-zinc-800 outline-none w-full
 					${channelDescription.length === maxLength ?
 			"border-red-500 dark:border-red-500" : "border-zinc-200 dark:border-zinc-700"}`
 				}
@@ -45,16 +46,20 @@ export default function ChannelDescriptionTextInput(props: Props) {
 				onKeyDown={handleKeyDown}
 				maxLength={maxLength}
 				style={{
-					width: "81vw",
 					boxSizing: "border-box",
 					resize: "none",
 					overflow: "hidden"
 				}}
 				rows={2}
 			/>
-			<span className="text-xs text-zinc-600 dark:text-zinc-400 mt-1">
-				{channelDescription.length}/{maxLength}
-			</span>
-		</>
+			<div className="flex items-center justify-between">
+				<span className="text-xs text-zinc-600 dark:text-zinc-400">
+					{channelDescription.length}/{maxLength}
+				</span>
+				<div className="flex items-center">
+					<SaveChannelDescriptionButton handleSaveChannelDescription={handleSaveChannelDescription} />
+				</div>
+			</div>
+		</div>
 	)
 }
