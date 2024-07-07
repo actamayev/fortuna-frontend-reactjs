@@ -26,7 +26,7 @@ function ShowCurrentProfilePicture(props: Props) {
 	}, [personalInfoClass, personalInfoClass?.profilePictureUrl])
 
 	return (
-		<div className="relative inline-block" style={{ minWidth: "128px", maxWidth: "128px" }}>
+		<div className="relative inline-block" style={{ minWidth: "128px", maxWidth: "128px" }} >
 			{profilePictureUrl ? (
 				<img
 					src={profilePictureUrl}
