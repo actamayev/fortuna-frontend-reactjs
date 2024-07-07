@@ -35,4 +35,13 @@ export default class UploadDataService {
 			`${this.pathHeader}/upload-profile-picture`, formData, { headers: { "Content-Type": file.type }}
 		)
 	}
+
+	async uploadChannelBannerPicture(file: File): Promise<AxiosResponse<ChannelBannerPictureUrl | NonSuccessResponse>> {
+		const formData = new FormData()
+		formData.append("file", file, file.name)
+
+		return await this.httpClient.http.post<ChannelBannerPictureUrl | NonSuccessResponse>(
+			`${this.pathHeader}/upload-channel-banner-picture`, formData, { headers: { "Content-Type": file.type }}
+		)
+	}
 }

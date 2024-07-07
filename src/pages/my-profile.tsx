@@ -4,9 +4,10 @@ import SectionHeader from "../components/headers/section-header"
 import ShowMyUsername from "../components/profile/show-my-username"
 import ShowAuthToNullUser from "../components/show-auth-to-null-user"
 import ChannelName from "../components/profile/channel-name/channel-name"
-import UploadProfilePicture from "../components/profile/upload-profile-picture"
 import ChannelDescription from "../components/profile/channel-description/channel-description"
+import UploadProfilePicture from "../components/profile/profile-picture/upload-profile-picture"
 import ChannelSocialLinks from "../components/profile/channel-social-links/channel-social-links"
+import UploadChannelBannerPicture from "../components/profile/channel-banner-picture/upload-channel-banner-picture"
 
 function MyProfile() {
 	const authClass = useAuthContext()
@@ -22,6 +23,7 @@ function MyProfile() {
 				<div className="flex flex-col items-center">
 					<UploadProfilePicture />
 					<ShowMyUsername />
+					<UploadChannelBannerPicture />
 					{/* TODO: Show user email */}
 				</div>
 				<div className="flex flex-col">

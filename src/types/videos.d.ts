@@ -7,6 +7,7 @@ declare global {
 		uuid: string
 		creatorUsername: string
 		creatorProfilePictureUrl: string | null
+		channelBannerPictureUrl: string | null
 		isVideoExclusive: boolean
 		isUserAbleToAccessVideo: boolean
 		createdAt: Date
@@ -31,6 +32,7 @@ declare global {
 		channelDescription: string
 		socialPlatformLinks: SocialPlatformLinks[]
 		creatorProfilePictureUrl: string | null
+		channelBannerPictureUrl: string | null
 	}
 
 	type SearchData = VideoDataLessVideoUrl | CreatorData
