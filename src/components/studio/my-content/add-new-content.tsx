@@ -1,5 +1,5 @@
 import { useCallback } from "react"
-import useTypedNavigate from "../../hooks/navigate/typed-navigate"
+import useTypedNavigate from "../../../hooks/navigate/typed-navigate"
 
 export default function AddNewContent() {
 	const navigate = useTypedNavigate()

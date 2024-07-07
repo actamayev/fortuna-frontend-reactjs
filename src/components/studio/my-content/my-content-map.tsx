@@ -2,7 +2,7 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import AddNewContent from "./add-new-content"
 import SingleMyContent from "./single-my-content"
-import { useCreatorContext } from "../../contexts/creator-context"
+import { useCreatorContext } from "../../../contexts/creator-context"
 
 function MyContentMap() {
 	const creatorClass = useCreatorContext()
