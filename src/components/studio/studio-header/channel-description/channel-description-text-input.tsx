@@ -4,7 +4,7 @@ import SaveChannelDescriptionButton from "./save-channel-description-button"
 
 interface Props {
 	maxLength: number
-	channelDescription: string
+channelDescription: string
 	setChannelDescription: React.Dispatch<React.SetStateAction<string>>
 	textAreaRef: React.RefObject<HTMLTextAreaElement>
 	handleSaveChannelDescription: () => Promise<void>
