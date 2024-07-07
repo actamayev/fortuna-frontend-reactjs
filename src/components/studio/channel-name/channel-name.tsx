@@ -71,19 +71,6 @@ function ChannelName() {
 
 	return (
 		<div>
-			<div className="flex flex-row items-center">
-				<label className="block text-sm font-bold text-zinc-800 dark:text-zinc-50">
-					Channel Name
-				</label>
-				{!isEditing ? (
-					<EditPencilButton toggleEditMode={toggleEditMode} />
-				) : (
-					<SaveChannelNameButton
-						channelName={channelName}
-						handleSaveChannelName={handleSaveChannelName}
-					/>
-				)}
-			</div>
 			<div className="flex items-center">
 				<div className="relative flex flex-col">
 					<span
@@ -97,7 +84,7 @@ function ChannelName() {
 						{channelName}
 					</span>
 					{!isEditing ? (
-						<span className="text-zinc-950 dark:text-zinc-50 text-base">
+						<span className="text-zinc-950 dark:text-zinc-50 text-4xl">
 							<div>{channelName}</div>
 						</span>
 					) : (
@@ -112,6 +99,16 @@ function ChannelName() {
 						/>
 					)}
 				</div>
+			</div>
+			<div className="flex flex-row items-center">
+				{!isEditing ? (
+					<EditPencilButton toggleEditMode={toggleEditMode} />
+				) : (
+					<SaveChannelNameButton
+						channelName={channelName}
+						handleSaveChannelName={handleSaveChannelName}
+					/>
+				)}
 			</div>
 		</div>
 	)

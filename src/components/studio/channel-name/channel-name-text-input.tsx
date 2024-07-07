@@ -42,7 +42,7 @@ export default function ChannelNameTextInput(props: Props) {
 				ref={inputRef}
 				className={
 					`mt-1 p-1.5 border rounded text-zinc-950 dark:text-zinc-200 \
-					bg-white dark:bg-zinc-800 outline-none text-base
+					bg-white dark:bg-zinc-800 outline-none text-3xl
 					${channelName.length === maxLength ?
 			"border-red-500 dark:border-red-500" : "border-zinc-200 dark:border-zinc-700"}`
 				}

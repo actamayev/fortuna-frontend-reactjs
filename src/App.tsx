@@ -28,9 +28,11 @@ import useRetrieveWalletBalanceUseEffect from "./hooks/solana/retrieve-wallet-ba
 import useRedirectBackToRegisterUsername from "./hooks/redirects/redirect-back-to-register-username"
 import useRetrievePersonalInfoUseEffect from "./hooks/personal-info/retrieve-personal-info-use-effect"
 import useResetInstantAccessStageOnLocationChangeUseEffect from "./hooks/market/reset-instant-access-stage-on-location-change-use-effect"
+import useScrollToTop from "./hooks/scroll-to-top"
 
 function App() {
 	// Don't change the getAuthData to a useEffect, or else it doesn't work immediately after login
+	useScrollToTop()
 	const getAuthDataFromStorage = useGetAuthDataFromStorage()
 	getAuthDataFromStorage()
 	useLogoutListenerUseEffect()
