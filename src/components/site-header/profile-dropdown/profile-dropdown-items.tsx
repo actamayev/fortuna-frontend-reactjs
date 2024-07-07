@@ -28,11 +28,11 @@ function ProfileDropdownItems() {
 				@{personalInfoClass?.username || ""}
 			</div>
 
-			<Link to="/my-ownership" className={classes.middle}>
+			<Link to="/ownership" className={classes.middle}>
 				<FaShoppingBag className="mr-2" size={17} />
 				Ownership
 			</Link>
-			<Link to="/my-wallet" className={classes.middle}>
+			<Link to="/wallet" className={classes.middle}>
 				<IoWallet className="mr-2" size={17} />
 				Wallet
 			</Link>
@@ -40,7 +40,7 @@ function ProfileDropdownItems() {
 				<BsFillCollectionPlayFill className="mr-2" size={17} />
 				Studio
 			</Link>
-			<Link to="/my-profile" className={classes.middle}>
+			<Link to="/profile" className={classes.middle}>
 				<FaUser className="mr-2" size={17} />
 				Profile
 			</Link>

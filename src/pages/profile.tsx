@@ -9,16 +9,16 @@ import UploadProfilePicture from "../components/profile/profile-picture/upload-p
 import ChannelSocialLinks from "../components/profile/channel-social-links/channel-social-links"
 import UploadChannelBannerPicture from "../components/profile/channel-banner-picture/upload-channel-banner-picture"
 
-function MyProfile() {
+function Profile() {
 	const authClass = useAuthContext()
 
 	if (authClass.isLoggedIn === false) {
-		return <ShowAuthToNullUser whereToNavigate="/my-profile" />
+		return <ShowAuthToNullUser whereToNavigate="/profile" />
 	}
 
 	return (
 		<>
-			<SectionHeader siteTitle="My Profile" />
+			<SectionHeader siteTitle="Profile" />
 			<UploadChannelBannerPicture />
 			<div className="flex items-start space-x-4">
 				<div className="flex flex-col items-center">
@@ -36,4 +36,4 @@ function MyProfile() {
 	)
 }
 
-export default observer(MyProfile)
+export default observer(Profile)

@@ -1,5 +1,5 @@
 import Login from "../../components/auth/login"
 
 export default function LoginPage() {
-	return <Login whereToNavigate="/my-ownership"/>
+	return <Login whereToNavigate="/ownership"/>
 }

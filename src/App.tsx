@@ -3,15 +3,15 @@ import { Routes, Route } from "react-router-dom"
 
 import Home from "./pages/home"
 import Video from "./pages/video"
+import Wallet from "./pages/wallet"
 import Creator from "./pages/creator"
 import Missing from "./pages/missing"
-import MyWallet from "./pages/my-wallet"
-import MyProfile from "./pages/my-profile"
+import Profile from "./pages/profile"
+import Ownership from "./pages/ownership"
 import Contact from "./pages/company/contact"
 import LoginPage from "./pages/auth/login-page"
 import SearchResults from "./pages/search-results"
 import RegisterPage from "./pages/auth/register-page"
-import MyOwnership from "./pages/supporter/my-ownership"
 import RegisterUsername from "./pages/auth/register-username"
 
 import CreatorRoutes from "./routes/creator-routes"
@@ -51,10 +51,10 @@ function App() {
 			<Route path = "/register" element = {<RegisterPage />} />
 			<Route path = "/register-username" element = {<RegisterUsername />} />
 
-			<Route path = "/my-ownership" element = {<MyOwnership />} />
-			<Route path = "/my-wallet" element = {<MyWallet />} />
+			<Route path = "/ownership" element = {<Ownership />} />
+			<Route path = "/wallet" element = {<Wallet />} />
 			<Route path = "/v/:videoUUID" element = {<Video />} />
-			<Route path = "/my-profile" element = {<MyProfile />} />
+			<Route path = "/profile" element = {<Profile />} />
 			<Route path = "/c/:creatorUsername" element = {<Creator />} />
 			<Route path = "/s/:searchTerm" element = {<SearchResults />} />
 

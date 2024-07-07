@@ -2,23 +2,23 @@ import { observer } from "mobx-react"
 import { useAuthContext } from "../contexts/auth-context"
 import SectionHeader from "../components/headers/section-header"
 import ShowAuthToNullUser from "../components/show-auth-to-null-user"
-import Transactions from "../components/my-wallet/transactions/transactions-map"
-import WalletDetails from "../components/my-wallet/wallet-balance-details/wallet-details"
+import Transactions from "../components/wallet/transactions/transactions-map"
+import WalletDetails from "../components/wallet/wallet-balance-details/wallet-details"
 
-function MyWallet() {
+function Wallet() {
 	const authClass = useAuthContext()
 
 	if (authClass.isLoggedIn === false) {
-		return <ShowAuthToNullUser whereToNavigate="/my-wallet" />
+		return <ShowAuthToNullUser whereToNavigate="/wallet" />
 	}
 
 	return (
 		<>
-			<SectionHeader siteTitle="My Wallet" />
+			<SectionHeader siteTitle="Wallet" />
 			<WalletDetails />
 			<Transactions />
 		</>
 	)
 }
 
-export default observer(MyWallet)
+export default observer(Wallet)

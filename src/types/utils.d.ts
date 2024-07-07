@@ -6,9 +6,9 @@ declare global {
 		"/login" |
 		"/register" |
 		"/register-username" |
-		"/my-ownership" |
-		"/my-profile" |
-		"/my-wallet" |
+		"/ownership" |
+		"/profile" |
+		"/wallet" |
 
 		"/creator/studio" |
 		"/creator/create-content" |
