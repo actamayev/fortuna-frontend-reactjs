@@ -19,7 +19,7 @@ export default function StudioHeader() {
 						<ChannelName />
 						<ChannelSocialLinks />
 					</div>
-					<div className="flex items-center">
+					<div className="flex items-center my-0.5">
 						<ShowMyUsername />
 						<ShowNumberVideos />
 					</div>

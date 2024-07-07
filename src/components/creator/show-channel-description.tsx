@@ -14,6 +14,8 @@ function ShowChannelDescription(props: Props) {
 		setIsExpanded(!isExpanded)
 	}, [isExpanded])
 
+	if (_.isEmpty(channelDescription)) return null
+
 	return (
 		<div
 			className="text-zinc-600 dark:text-zinc-300 text-sm \
