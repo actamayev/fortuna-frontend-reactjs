@@ -53,10 +53,10 @@ function SingleActiveSocialLink(props: Props) {
 	return (
 		<div className="flex items-center mb-2">
 			<HoverOutlineComponent
-				classes="relative flex items-center justify-center right-2 bottom-2"
+				classes="relative flex items-center justify-center mr-1"
 				onClickAction={handleClick}
 			>
-				<IconComponent className="mr-3" size={24} />
+				<IconComponent size={24} />
 			</HoverOutlineComponent>
 			<input
 				type="text"

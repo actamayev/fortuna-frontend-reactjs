@@ -24,14 +24,16 @@ function Studio() {
 				<div className="flex flex-col items-center mr-2">
 					<UploadProfilePicture />
 				</div>
-				<div className="flex flex-col">
-					<ChannelName />
-					<div className="flex items-center">
+				<div className="flex flex-col w-full">
+					<div className="flex justify-between items-center">
+						<ChannelName />
+						<ChannelSocialLinks />
+					</div>
+					<div className="flex items-center mt-2">
 						<ShowMyUsername />
 						<ShowNumberVideos />
 					</div>
 					<ChannelDescription />
-					<ChannelSocialLinks />
 				</div>
 			</div>
 			<MyContentMap />

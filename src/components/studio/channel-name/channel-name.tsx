@@ -10,7 +10,7 @@ import useAssignDefaultChannelName from "../../../hooks/creator/assign-default-c
 // eslint-disable-next-line max-lines-per-function
 function ChannelName() {
 	const [channelName, setChannelName] = useState("")
-	const [inputWidth, setInputWidth] = useState("100px")
+	const [inputWidth, setInputWidth] = useState("120px")
 	const [isEditing, setIsEditing] = useState(false)
 	const [isHovered, setIsHovered] = useState(false)
 	const maxLength = 60
@@ -26,7 +26,7 @@ function ChannelName() {
 	const updateWidth = useCallback((text: string) => {
 		if (spanRef.current) {
 			spanRef.current.textContent = text || " "
-			setInputWidth(`${spanRef.current.offsetWidth + 120}px`)
+			setInputWidth(`${spanRef.current.offsetWidth + 250}px`)
 		}
 	}, [])
 
@@ -85,7 +85,7 @@ function ChannelName() {
 				</span>
 				{!isEditing ? (
 					<span
-						className="text-zinc-950 dark:text-zinc-50 text-4xl font-semibold \
+						className="text-zinc-950 dark:text-zinc-50 text-3xl font-semibold \
 						hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer p-1"
 						onClick={toggleEditMode}
 						onMouseEnter={() => setIsHovered(true)}

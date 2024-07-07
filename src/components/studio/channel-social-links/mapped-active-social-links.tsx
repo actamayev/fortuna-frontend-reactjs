@@ -20,8 +20,11 @@ function MappedActiveSocialLinks() {
 			{nonEmptySocialPlatformLinks.map(nonEmptySocialPlatformLink => {
 				const IconComponent = platformIcons[nonEmptySocialPlatformLink.socialPlatform]
 				return (
-					<div key={nonEmptySocialPlatformLink.socialPlatform} className="mr-3">
-						<IconComponent size={24} color={defaultSiteTheme === "light" ? "black" : "white"} />
+					<div key={nonEmptySocialPlatformLink.socialPlatform} className="mx-2">
+						<IconComponent
+							size={24}
+							color={defaultSiteTheme === "light" ? "black" : "white"}
+						/>
 					</div>
 				)
 			})}

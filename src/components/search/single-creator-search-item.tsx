@@ -24,10 +24,10 @@ export default function SingleCreatorSearchItem(props: Props) {
 				<img
 					src={creatorData.creatorProfilePictureUrl}
 					alt={`Profile of ${creatorData.creatorUsername}`}
-					className="w-36 h-36 rounded-full object-cover"
+					className="w-32 h-32 rounded-full object-cover"
 				/>
 			) : (
-				<FaUserCircle className="w-36 h-36 rounded-full object-cover" />
+				<FaUserCircle className="w-32 h-32 rounded-full object-cover" />
 			)}
 			<div className="flex-grow text-lg text-center dark:text-zinc-200">
 				{creatorData.creatorUsername}

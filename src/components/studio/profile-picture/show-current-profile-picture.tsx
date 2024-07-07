@@ -26,11 +26,11 @@ function ShowCurrentProfilePicture(props: Props) {
 	}, [personalInfoClass, personalInfoClass?.profilePictureUrl])
 
 	return (
-		<div className="relative inline-block">
+		<div className="relative inline-block" style={{ minWidth: "128px", maxWidth: "128px" }}>
 			{profilePictureUrl ? (
 				<img
 					src={profilePictureUrl}
-					className="w-36 h-36 rounded-full object-cover cursor-pointer"
+					className="w-32 h-32 rounded-full object-cover cursor-pointer"
 					style={imageStyle}
 					onClick={editPictureCallback}
 					onMouseEnter={handleMouseEnter}
@@ -38,12 +38,12 @@ function ShowCurrentProfilePicture(props: Props) {
 				/>
 			) : (
 				<FaUserCircle
-					className="w-36 h-36 rounded-full object-cover cursor-pointer"
+					className="w-32 h-32 rounded-full object-cover cursor-pointer"
 					style={imageStyle}
 					onClick={editPictureCallback}
 					onMouseEnter={handleMouseEnter}
 					onMouseLeave={handleMouseLeave}
-					color={defaultSiteTheme === "dark" ? "white" : "black" }
+					color={defaultSiteTheme === "dark" ? "white" : "black"}
 				/>
 			)}
 			<input

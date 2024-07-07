@@ -72,10 +72,10 @@ function ChannelDescription() {
 			<div className="relative flex flex-col">
 				{!isEditing ? (
 					<span
-						className="text-zinc-950 dark:text-zinc-50 text-sm font-semibold \
-						hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer px-1 py-3"
+						className="text-zinc-600 dark:text-zinc-300 text-sm font-semibold \
+						hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer px-1 py-2.5"
 						style={{
-							width: "75vw",
+							width: "80vw",
 							wordWrap: "break-word",
 							whiteSpace: "normal"
 						}}
@@ -83,7 +83,7 @@ function ChannelDescription() {
 						onMouseEnter={() => setIsHovered(true)}
 						onMouseLeave={() => setIsHovered(false)}
 					>
-						{_.truncate(channelDescription, { length: 150, omission: "..." })}
+						{_.truncate(channelDescription, { length: 320, omission: "..." })}
 					</span>
 				) : (
 					<ChannelDescriptionTextInput

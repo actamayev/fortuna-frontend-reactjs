@@ -29,14 +29,14 @@ export default function ChannelSocialLinks() {
 	}, [isModalOpen])
 
 	return (
-		<>
+		<div className="flex items-center">
 			<div
-				className="hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer p-1"
+				className="hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer p-2"
 				onClick={toggleModalOpen}
 			>
 				<MappedActiveSocialLinks />
 			</div>
 			{isModalOpen && <SocialLinksModal toggleModalOpen={toggleModalOpen} />}
-		</>
+		</div>
 	)
 }

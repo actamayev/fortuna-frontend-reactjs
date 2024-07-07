@@ -73,10 +73,10 @@ function UploadProfilePicture() {
 	}
 
 	return (
-		<div className="relative inline-block">
+		<div className="relative inline-block" style={{ minWidth: "128px", maxWidth: "128px" }} >
 			<img
 				src={previewUrl}
-				className="w-36 h-36 rounded-full object-cover cursor-pointer"
+				className="w-32 h-32 rounded-full object-cover cursor-pointer"
 				onClick={editPictureCallback}
 				onMouseEnter={handleMouseEnter}
 				onMouseLeave={handleMouseLeave}
