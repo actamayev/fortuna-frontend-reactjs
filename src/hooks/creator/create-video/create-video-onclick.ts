@@ -81,7 +81,7 @@ export default function useCreateVideoOnclick(): (
 			creatorClass.addContent(myContent)
 			creatorClass.resetNewVideoDetails()
 
-			navigate("/creator/my-content")
+			navigate("/creator/studio")
 		} catch (error) {
 			console.error(error)
 		} finally {

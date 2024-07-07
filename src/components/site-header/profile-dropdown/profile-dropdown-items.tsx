@@ -30,19 +30,19 @@ function ProfileDropdownItems() {
 
 			<Link to="/my-ownership" className={classes.middle}>
 				<FaShoppingBag className="mr-2" size={17} />
-				My Ownership
+				Ownership
 			</Link>
 			<Link to="/my-wallet" className={classes.middle}>
 				<IoWallet className="mr-2" size={17} />
-				My Wallet
+				Wallet
 			</Link>
-			<Link to="/creator/my-content" className={classes.middle}>
+			<Link to="/creator/studio" className={classes.middle}>
 				<BsFillCollectionPlayFill className="mr-2" size={17} />
-				My Content
+				Studio
 			</Link>
 			<Link to="/my-profile" className={classes.middle}>
 				<FaUser className="mr-2" size={17} />
-				My Profile
+				Profile
 			</Link>
 			<div className="block">
 				<button

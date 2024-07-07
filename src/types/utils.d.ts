@@ -10,7 +10,7 @@ declare global {
 		"/my-profile" |
 		"/my-wallet" |
 
-		"/creator/my-content" |
+		"/creator/studio" |
 		"/creator/create-content" |
 
 		"/contact"

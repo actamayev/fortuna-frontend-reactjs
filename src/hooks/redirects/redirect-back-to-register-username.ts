@@ -9,7 +9,7 @@ const PrivatePageNames = [
 	"/my-ownership",
 	"/my-profile",
 	"/my-wallet",
-	"/creator/my-content",
+	"/creator/studio",
 	"/creator/create-content"
 ]
 
