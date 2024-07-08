@@ -19,6 +19,7 @@ declare global {
 	type CreatorInfoResponse = {
 		channelName: string | null
 		channelDescription: string | null
+		profilePictureUrl: string | null
 		channelBannerUrl: string | null
 		socialPlatformLinks: SocialPlatformLinks[]
 	}
@@ -32,7 +33,6 @@ declare global {
 		email: string | null
 		defaultCurrency: Currencies
 		defaultSiteTheme: SiteThemes
-		profilePictureUrl: string | null
 		publicKey: string
 	}
 

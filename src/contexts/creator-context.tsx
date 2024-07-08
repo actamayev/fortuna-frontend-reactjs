@@ -26,6 +26,7 @@ class CreatorClass {
 
 	public channelName: string | null = null
 	public channelDescription: string | null = null
+	public profilePictureUrl: string | null = null
 	public channelBannerUrl: string | null = null
 	public socialPlatformLinks: SocialPlatformLinks[] = []
 	public isRetrievingCreatorInfo = false
@@ -194,7 +195,11 @@ class CreatorClass {
 		this.channelDescription = newChannelDescription
 	})
 
-	public setChannelBannerUrl = action((newChannelBannerUrl: string): void => {
+	public setProfilePictureUrl = action((newProfilePictureUrl: string | null): void => {
+		this.profilePictureUrl = newProfilePictureUrl
+	})
+
+	public setChannelBannerUrl = action((newChannelBannerUrl: string | null): void => {
 		this.channelBannerUrl = newChannelBannerUrl
 	})
 
@@ -223,6 +228,7 @@ class CreatorClass {
 	public setRetrievedCreatorInfo(creatorInfo: CreatorInfoResponse) {
 		this.channelName = creatorInfo.channelName
 		this.channelDescription = creatorInfo.channelDescription
+		this.profilePictureUrl = creatorInfo.profilePictureUrl
 		this.channelBannerUrl = creatorInfo.channelBannerUrl
 		this.socialPlatformLinks = creatorInfo.socialPlatformLinks
 	}
@@ -265,6 +271,7 @@ class CreatorClass {
 
 		this.channelName = null
 		this.channelDescription = null
+		this.profilePictureUrl = null
 		this.channelBannerUrl = null
 		this.socialPlatformLinks = []
 		this.isRetrievingCreatorInfo = false

@@ -15,7 +15,7 @@ class NotificationsClass {
 		this.resetTimer()
 	})
 
-	public setNotificationNull = action((): void => {
+	private setNotificationNull = action((): void => {
 		this.notification = null
 		this.clearTimer()
 	})

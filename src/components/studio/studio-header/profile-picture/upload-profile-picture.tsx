@@ -1,7 +1,7 @@
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { FaSave, FaTrash } from "react-icons/fa"
-import useUploadProfilePicture from "../../../../hooks/personal-info/upload-profile-picture"
+import useUploadProfilePicture from "../../../../hooks/upload/upload-profile-picture"
 
 interface Props {
 	previewUrl: string
@@ -33,8 +33,6 @@ function UploadProfilePicture(props: Props) {
 		await uploadProfilePicture(selectedImage)
 		removeContent()
 	}, [removeContent, selectedImage, uploadProfilePicture])
-
-	// TODO: Add ability to delete current pfp (resets to stock pfp picture). Same for banner. It should update is_active to false
 
 	return (
 		<div className="relative inline-block" style={{ minWidth: "128px", maxWidth: "128px" }}>

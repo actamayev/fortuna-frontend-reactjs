@@ -3,53 +3,16 @@ import { createContext, useContext, useMemo } from "react"
 import { isValidCurrency, isValidSiteTheme } from "../utils/type-checks"
 
 class PersonalInfoClass {
-	private _username: string | null = null
-	private _email?: string | null = null
-	private _profilePictureUrl?: string | null = null
+	public username: string | null = null
+	public email: string | null = null
 
-	private _isRetrievingPersonalInfo = false
-	private _defaultCurrency: Currencies = "usd"
-	private _defaultSiteTheme: SiteThemes = "light"
+	public isRetrievingPersonalInfo = false
+	public defaultCurrency: Currencies = "usd"
+	public defaultSiteTheme: SiteThemes = "light"
 
 	constructor() {
 		makeAutoObservable(this)
 		this.setDefaultsFromLocalStorage()
-	}
-
-	get username(): string | null {
-		return this._username
-	}
-
-	set username(username: string | null) {
-		this._username = username
-	}
-
-	get email(): string | null | undefined {
-		return this._email
-	}
-
-	set email(email: string | null | undefined) {
-		this._email = email
-	}
-
-	get profilePictureUrl(): string | null | undefined {
-		return this._profilePictureUrl
-	}
-
-	set profilePictureUrl(profilePictureUrl: string | null | undefined) {
-		this._profilePictureUrl = profilePictureUrl
-	}
-
-	get isRetrievingPersonalInfo(): boolean {
-		return this._isRetrievingPersonalInfo
-	}
-
-	get defaultCurrency(): Currencies {
-		return this._defaultCurrency
-	}
-
-	get defaultSiteTheme(): SiteThemes {
-		return this._defaultSiteTheme
 	}
 
 	private setDefaultsFromLocalStorage(): void {
@@ -64,24 +27,23 @@ class PersonalInfoClass {
 	}
 
 	public setIsRetrievingPersonalDetails = action((newState: boolean): void => {
-		this._isRetrievingPersonalInfo = newState
+		this.isRetrievingPersonalInfo = newState
 	})
 
 	public setRetrievedPersonalData = action((retrievedData: PersonalInfoResponse): void => {
 		this.username = retrievedData.username
 		this.email = retrievedData.email
-		this.profilePictureUrl = retrievedData.profilePictureUrl
 		this.setDefaultCurrency(retrievedData.defaultCurrency)
 		this.setDefaultSiteTheme(retrievedData.defaultSiteTheme)
 	})
 
 	public setDefaultCurrency = action((newDefaultCurrency: Currencies, addToLocalStorage: boolean = true): void => {
-		this._defaultCurrency = newDefaultCurrency
+		this.defaultCurrency = newDefaultCurrency
 		if (addToLocalStorage === true) localStorage.setItem("defaultCurrency", newDefaultCurrency)
 	})
 
 	public setDefaultSiteTheme = action((newSiteTheme: SiteThemes, addToLocalStorage: boolean = true): void => {
-		this._defaultSiteTheme = newSiteTheme
+		this.defaultSiteTheme = newSiteTheme
 		if (addToLocalStorage === true) localStorage.setItem("defaultSiteTheme", newSiteTheme)
 		if (newSiteTheme === "dark") document.documentElement.classList.add("dark")
 		else document.documentElement.classList.remove("dark")
@@ -90,7 +52,6 @@ class PersonalInfoClass {
 	public logout() {
 		this.username = null
 		this.email = null
-		this.profilePictureUrl = null
 		this.setIsRetrievingPersonalDetails(false)
 	}
 }
