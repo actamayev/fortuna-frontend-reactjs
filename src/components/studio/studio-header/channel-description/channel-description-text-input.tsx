@@ -56,7 +56,7 @@ export default function ChannelDescriptionTextInput(props: Props) {
 				rows={2}
 			/>
 			<div className="flex items-center justify-between">
-				<span className="text-xs text-zinc-600 dark:text-zinc-400">
+				<span className="text-xs text-zinc-600 dark:text-zinc-400 ml-0.5">
 					{channelDescription.length}/{maxLength}
 				</span>
 				<div className="flex items-center">

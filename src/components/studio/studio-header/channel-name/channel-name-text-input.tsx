@@ -52,7 +52,7 @@ export default function ChannelNameTextInput(props: Props) {
 					boxSizing: "border-box"
 				}}
 			/>
-			<span className="text-xs text-zinc-600 dark:text-zinc-400 mt-1">
+			<span className="text-xs text-zinc-600 dark:text-zinc-400 mt-1 ml-0.5">
 				{channelName.length}/{maxLength}
 			</span>
 		</>
