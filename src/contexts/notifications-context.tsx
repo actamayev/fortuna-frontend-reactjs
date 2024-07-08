@@ -5,7 +5,7 @@ import { useContext, useMemo, createContext } from "react"
 class NotificationsClass {
 	public notification: string | null = null
 	private timer: NodeJS.Timeout | null = null
-	public notificationBoxClasses: string = "bg-zinc-100 dark:bg-zinc-900 text-zinc-950 dark:text-white"
+	public notificationBoxClasses: string = "bg-white dark:bg-black text-black dark:text-white"
 
 	constructor() {
 		makeAutoObservable(this)
@@ -18,7 +18,7 @@ class NotificationsClass {
 
 	public setNeutralNotification = action((notificationMessage: string): void => {
 		this.setNotification(notificationMessage)
-		this.notificationBoxClasses = "bg-zinc-100 dark:bg-zinc-900 text-zinc-950 dark:text-white"
+		this.notificationBoxClasses = "bg-white dark:bg-black text-black dark:text-white"
 	})
 
 	public setNegativeNotification = action((notificationMessage: string): void => {
