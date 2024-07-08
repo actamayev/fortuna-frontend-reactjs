@@ -4,7 +4,7 @@ import { isValidCurrency, isValidSiteTheme } from "../utils/type-checks"
 
 class PersonalInfoClass {
 	private _username: string | null = null
-	private _email?: string | null = null
+	private _email: string | null = null
 
 	private _isRetrievingPersonalInfo = false
 	private _defaultCurrency: Currencies = "usd"
@@ -23,11 +23,11 @@ class PersonalInfoClass {
 		this._username = username
 	}
 
-	get email(): string | null | undefined {
+	get email(): string | null {
 		return this._email
 	}
 
-	set email(email: string | null | undefined) {
+	set email(email: string | null) {
 		this._email = email
 	}
 
