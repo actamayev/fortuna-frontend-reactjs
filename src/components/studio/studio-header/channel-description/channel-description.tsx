@@ -68,9 +68,9 @@ function ChannelDescription() {
 		}
 	}, [creatorClass?.channelDescription, isEditing, cancelEditAction])
 
-	return (
-		<div className="flex items-center">
-			{isEditing ? (
+	if (isEditing === true) {
+		return (
+			<div className="flex items-center">
 				<ChannelDescriptionTextInput
 					maxLength={maxLength}
 					channelDescription={channelDescription}
@@ -79,25 +79,30 @@ function ChannelDescription() {
 					handleSaveChannelDescription={handleSaveChannelDescription}
 					cancelEditAction={cancelEditAction}
 				/>
-			) : (
-				<span
-					className="text-zinc-600 dark:text-zinc-300 text-sm \
-						hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer px-1 mt-0.5 pt-0.5 pb-2 w-full"
-					style={{
-						wordWrap: "break-word",
-						whiteSpace: "normal"
-					}}
-					onClick={toggleEditMode}
-				>
-					{_.isEmpty(channelDescription) ? (
-						<>Click here to add a description</>
-					) : (
-						<>
-							{_.truncate(channelDescription, { length: 350, omission: "..." })}
-						</>
-					)}
-				</span>
-			)}
+			</div>
+
+		)
+	}
+
+	return (
+		<div className="flex items-center">
+			<span
+				className="text-zinc-600 dark:text-zinc-300 text-sm \
+					hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer px-1 mt-0.5 pt-0.5 pb-2 w-full"
+				style={{
+					wordWrap: "break-word",
+					whiteSpace: "normal"
+				}}
+				onClick={toggleEditMode}
+			>
+				{_.isEmpty(channelDescription) ? (
+					<>Click here to add a description</>
+				) : (
+					<>
+						{_.truncate(channelDescription, { length: 350, omission: "..." })}
+					</>
+				)}
+			</span>
 		</div>
 	)
 }

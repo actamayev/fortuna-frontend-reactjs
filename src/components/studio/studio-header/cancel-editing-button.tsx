@@ -10,7 +10,6 @@ interface Props {
 
 function CancelEditingButton(props: Props) {
 	const { cancelEditAction, extraClasses = "" } = props
-
 	const defaultSiteTheme = useDefaultSiteTheme()
 
 	return (

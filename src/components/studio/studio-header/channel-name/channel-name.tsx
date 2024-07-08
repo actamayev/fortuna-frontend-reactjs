@@ -59,18 +59,10 @@ function ChannelName() {
 		}
 	}, [assignDefaultChannelName, isEditing, cancelEditAction])
 
-	return (
-		<div className="flex items-center">
-			<div className="relative flex flex-col">
-				{isEditing ? (
-					<ChannelNameTextInput
-						maxLength={maxLength}
-						channelName={channelName}
-						setChannelName={setChannelName}
-						handleSaveChannelName={handleSaveChannelName}
-						inputRef={inputRef}
-					/>
-				) : (
+	if (isEditing === false) {
+		return (
+			<div className="flex items-center">
+				<div className="relative flex flex-col">
 					<span
 						className="text-zinc-950 dark:text-zinc-50 text-3xl font-semibold \
 						hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer py-1 pl-1 pr-3"
@@ -78,20 +70,31 @@ function ChannelName() {
 					>
 						{channelName}
 					</span>
-				)}
+				</div>
 			</div>
-			{isEditing && (
-				<>
-					<CancelEditingButton
-						cancelEditAction={cancelEditAction}
-						extraClasses="mb-4"
-					/>
-					<SaveChannelNameButton
-						channelName={channelName}
-						handleSaveChannelName={handleSaveChannelName}
-					/>
-				</>
-			)}
+		)
+	}
+	return (
+		<div className="flex items-center">
+			<div className="relative flex flex-col">
+				<ChannelNameTextInput
+					maxLength={maxLength}
+					channelName={channelName}
+					setChannelName={setChannelName}
+					handleSaveChannelName={handleSaveChannelName}
+					inputRef={inputRef}
+				/>
+			</div>
+			<>
+				<CancelEditingButton
+					cancelEditAction={cancelEditAction}
+					extraClasses="mb-4"
+				/>
+				<SaveChannelNameButton
+					channelName={channelName}
+					handleSaveChannelName={handleSaveChannelName}
+				/>
+			</>
 		</div>
 	)
 }
