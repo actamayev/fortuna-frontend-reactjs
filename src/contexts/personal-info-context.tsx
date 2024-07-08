@@ -75,14 +75,14 @@ class PersonalInfoClass {
 		this.setDefaultSiteTheme(retrievedData.defaultSiteTheme)
 	})
 
-	public setDefaultCurrency = action((newDefaultCurrency: Currencies): void => {
+	public setDefaultCurrency = action((newDefaultCurrency: Currencies, addToLocalStorage: boolean = true): void => {
 		this._defaultCurrency = newDefaultCurrency
-		localStorage.setItem("defaultCurrency", newDefaultCurrency)
+		if (addToLocalStorage === true) localStorage.setItem("defaultCurrency", newDefaultCurrency)
 	})
 
-	public setDefaultSiteTheme = action((newSiteTheme: SiteThemes): void => {
+	public setDefaultSiteTheme = action((newSiteTheme: SiteThemes, addToLocalStorage: boolean = true): void => {
 		this._defaultSiteTheme = newSiteTheme
-		localStorage.setItem("defaultSiteTheme", newSiteTheme)
+		if (addToLocalStorage === true) localStorage.setItem("defaultSiteTheme", newSiteTheme)
 		if (newSiteTheme === "dark") document.documentElement.classList.add("dark")
 		else document.documentElement.classList.remove("dark")
 	})
