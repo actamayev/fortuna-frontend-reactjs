@@ -21,7 +21,7 @@ function SingleCreatorSearchItem(props: Props) {
 
 	return (
 		<div
-			className="flex items-center space-x-4 p-4 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-7/12"
+			className="flex space-x-4 p-4 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-7/12"
 			onClick={navigateToCreatorPageCallback}
 		>
 			{_.isNull(creatorData.creatorProfilePictureUrl) ? (
@@ -36,8 +36,16 @@ function SingleCreatorSearchItem(props: Props) {
 					className="w-32 h-32 rounded-full object-cover"
 				/>
 			)}
-			<div className="flex-grow text-lg text-center dark:text-zinc-200">
-				{creatorData.channelName}
+			<div className="flex flex-col text-start">
+				<div className="text-zinc-950 dark:text-zinc-100 text-base font-semibold">
+					{creatorData.channelName}
+				</div>
+				<div className="text-zinc-600 dark:text-zinc-400 text-sm mt-1.5">
+					@{creatorData.creatorUsername}
+				</div>
+				<div className="text-zinc-600 dark:text-zinc-400 text-sm mt-1.5">
+					{_.truncate(creatorData.channelDescription, { length: 90, omission: "..."})}
+				</div>
 			</div>
 		</div>
 	)
