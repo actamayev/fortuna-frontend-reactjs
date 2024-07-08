@@ -1,11 +1,11 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
+import ChannelDescription from "./channel-description"
+import ChannelSocialLinks from "./channel-social-links"
 import ChannelBannerPicture from "./channel-banner-picture"
 import CreatorProfilePicture from "./creator-profile-picture"
 import { useVideoContext } from "../../contexts/video-context"
-import ChannelDescription from "./channel-description"
-import ChannelSocialLinks from "./channel-social-links"
 import { removeLeadingAt } from "../../utils/leading-at-operations"
 
 function CreatorPageHeaderArea() {
