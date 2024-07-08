@@ -5,7 +5,7 @@ import useDefaultSiteTheme from "../../../hooks/memos/default-site-theme"
 
 interface Props {
 	toggleEditAndAssignDefaultValue: () => void
-	extraClasses?: string // Add the extraClasses prop
+	extraClasses?: string
 }
 
 function CancelEditingButton(props: Props) {

@@ -18,7 +18,9 @@ function ProfilePicture() {
 	const handleImageChange = useCallback((e: React.ChangeEvent<HTMLInputElement>): void => {
 		const files = e.target.files
 
-		if (!_.isNull(files) && !_.isEmpty(files)) {
+		if (_.isNull(files) || _.isEmpty(files)) {
+			removeContent()
+		} else {
 			const file = files[0]
 			const maxFileSize = 10 * 1024 * 1024 // 10 MB in bytes
 
@@ -33,8 +35,6 @@ function ProfilePicture() {
 
 			const newPreviewUrl = URL.createObjectURL(file)
 			setPreviewUrl(newPreviewUrl)
-		} else {
-			removeContent()
 		}
 
 		if (_.isNull(fileInputRef.current)) return
