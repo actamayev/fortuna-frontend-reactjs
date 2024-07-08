@@ -74,6 +74,7 @@ function ChannelName() {
 			</div>
 		)
 	}
+
 	return (
 		<div className="flex items-center">
 			<div className="relative flex flex-col">
@@ -90,10 +91,9 @@ function ChannelName() {
 					cancelEditAction={cancelEditAction}
 					extraClasses="mb-4"
 				/>
-				<SaveChannelNameButton
-					channelName={channelName}
-					handleSaveChannelName={handleSaveChannelName}
-				/>
+				{!_.isEmpty(channelName) && (
+					<SaveChannelNameButton handleSaveChannelName={handleSaveChannelName} />
+				)}
 			</>
 		</div>
 	)

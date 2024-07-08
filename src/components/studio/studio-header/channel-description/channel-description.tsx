@@ -95,7 +95,7 @@ function ChannelDescription() {
 				}}
 				onClick={toggleEditMode}
 			>
-				{_.isEmpty(channelDescription) ? (
+				{_.isEmpty(channelDescription.trim()) ? (
 					<>Click here to add a description</>
 				) : (
 					<>
