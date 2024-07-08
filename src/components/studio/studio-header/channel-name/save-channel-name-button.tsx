@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { FaSave, FaTimes } from "react-icons/fa"
+import { FaSave } from "react-icons/fa"
 import HoverOutlineComponent from "../../../hover-outline-component"
 import useDefaultSiteTheme from "../../../../hooks/memos/default-site-theme"
 
@@ -13,17 +13,15 @@ function SaveChannelNameButton(props: Props) {
 	const { channelName, handleSaveChannelName } = props
 	const defaultSiteTheme = useDefaultSiteTheme()
 
+	if (_.isEmpty(channelName)) return null
+
 	return (
 		<HoverOutlineComponent
 			classes="relative flex items-center justify-center inline-block mb-4"
 			onClickAction={handleSaveChannelName}
 			circlePixelSize="30px"
 		>
-			{_.isEmpty(channelName) ? (
-				<FaTimes color={defaultSiteTheme === "dark" ? "white" : "black"} />
-			) : (
-				<FaSave color={defaultSiteTheme === "dark" ? "white" : "black"} />
-			)}
+			<FaSave color={defaultSiteTheme === "dark" ? "white" : "black"} />
 		</HoverOutlineComponent>
 	)
 }

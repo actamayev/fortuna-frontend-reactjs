@@ -10,10 +10,8 @@ import useAssignDefaultChannelName from "../../../../hooks/creator/assign-defaul
 // eslint-disable-next-line max-lines-per-function
 function ChannelName() {
 	const [channelName, setChannelName] = useState("")
-	const [inputWidth, setInputWidth] = useState("120px")
 	const [isEditing, setIsEditing] = useState(false)
 	const maxLength = 60
-	const spanRef = useRef<HTMLSpanElement>(null)
 	const inputRef = useRef<HTMLInputElement>(null)
 	const assignDefaultChannelName = useAssignDefaultChannelName()
 	const addOrEditChannelName = useAddOrEditChannelName()
@@ -21,17 +19,6 @@ function ChannelName() {
 	useEffect(() => {
 		assignDefaultChannelName(setChannelName)
 	}, [assignDefaultChannelName])
-
-	const updateWidth = useCallback((text: string) => {
-		if (spanRef.current) {
-			spanRef.current.textContent = text || " "
-			setInputWidth(`${spanRef.current.offsetWidth + 250}px`)
-		}
-	}, [])
-
-	useEffect(() => {
-		updateWidth(channelName)
-	}, [channelName, updateWidth])
 
 	useEffect(() => {
 		if (isEditing && inputRef.current) {
@@ -76,24 +63,12 @@ function ChannelName() {
 	return (
 		<div className="flex items-center">
 			<div className="relative flex flex-col">
-				<span
-					ref={spanRef}
-					className="invisible absolute whitespace-pre"
-					style={{
-						padding: "0 2px",
-						whiteSpace: "pre"
-					}}
-				>
-					{channelName}
-				</span>
 				{isEditing ? (
 					<ChannelNameTextInput
 						maxLength={maxLength}
 						channelName={channelName}
 						setChannelName={setChannelName}
 						handleSaveChannelName={handleSaveChannelName}
-						updateWidth={updateWidth}
-						inputWidth={inputWidth}
 						inputRef={inputRef}
 					/>
 				) : (

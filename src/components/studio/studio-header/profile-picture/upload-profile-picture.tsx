@@ -72,6 +72,8 @@ function UploadProfilePicture() {
 		)
 	}
 
+	// TODO: Add ability to delete current pfp (resets to stock pfp picture). Same for banner. It should update is_active to false
+
 	return (
 		<div className="relative inline-block" style={{ minWidth: "128px", maxWidth: "128px" }} >
 			<img
