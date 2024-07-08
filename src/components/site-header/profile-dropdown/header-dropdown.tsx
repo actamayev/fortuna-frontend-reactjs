@@ -1,3 +1,4 @@
+import _ from "lodash"
 import { observer } from "mobx-react"
 import { useState, useRef } from "react"
 import { FaUserCircle } from "react-icons/fa"
@@ -13,7 +14,7 @@ function HeaderDropdown () {
 
 	return (
 		<div className="flex items-center">
-			<div className="relative inline-block" ref = {dropdownRef}>
+			<div className="relative inline-block" ref={dropdownRef}>
 				<div
 					className="flex items-center cursor-pointer hover:bg-zinc-100 text-zinc-950 \
 						dark:text-zinc-100 dark:hover:bg-zinc-800 p-2 rounded"
@@ -23,7 +24,7 @@ function HeaderDropdown () {
 						className="w-8 h-8 rounded-full overflow-hidden flex justify-center \
 							items-center text-zinc-950 dark:text-zinc-100"
 					>
-						{!creatorClass?.profilePictureUrl ? (
+						{_.isNil(creatorClass?.profilePictureUrl) ? (
 							<FaUserCircle className="min-w-full min-h-full object-cover" />
 						) : (
 							<img
