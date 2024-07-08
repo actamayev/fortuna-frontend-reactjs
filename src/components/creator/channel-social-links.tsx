@@ -9,7 +9,7 @@ interface Props {
 	socialPlatformLinks: SocialPlatformLinks[]
 }
 
-function ShowChannelSocialLinks(props: Props) {
+function ChannelSocialLinks(props: Props) {
 	const { socialPlatformLinks } = props
 	const defaultSiteTheme = useDefaultSiteTheme()
 
@@ -40,4 +40,4 @@ function ShowChannelSocialLinks(props: Props) {
 	)
 }
 
-export default observer(ShowChannelSocialLinks)
+export default observer(ChannelSocialLinks)

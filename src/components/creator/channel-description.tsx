@@ -6,7 +6,7 @@ interface Props {
 	channelDescription: string
 }
 
-function ShowChannelDescription(props: Props) {
+function ChannelDescription(props: Props) {
 	const { channelDescription } = props
 	const [isExpanded, setIsExpanded] = useState(false)
 
@@ -35,4 +35,4 @@ function ShowChannelDescription(props: Props) {
 	)
 }
 
-export default observer(ShowChannelDescription)
+export default observer(ChannelDescription)

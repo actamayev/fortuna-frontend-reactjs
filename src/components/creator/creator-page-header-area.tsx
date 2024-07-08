@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom"
 import ChannelBannerPicture from "./channel-banner-picture"
 import CreatorProfilePicture from "./creator-profile-picture"
 import { useVideoContext } from "../../contexts/video-context"
-import ShowChannelDescription from "./show-channel-description"
-import ShowChannelSocialLinks from "./show-channel-social-links"
+import ChannelDescription from "./channel-description"
+import ChannelSocialLinks from "./channel-social-links"
 import { removeLeadingAt } from "../../utils/leading-at-operations"
 
 function CreatorPageHeaderArea() {
@@ -28,7 +28,7 @@ function CreatorPageHeaderArea() {
 						<span className="text-zinc-950 dark:text-zinc-50 text-3xl font-semibold p-1">
 							{creatorData.channelName}
 						</span>
-						<ShowChannelSocialLinks socialPlatformLinks={creatorData.socialPlatformLinks} />
+						<ChannelSocialLinks socialPlatformLinks={creatorData.socialPlatformLinks} />
 					</div>
 					<div className="flex items-center">
 						<div className="text-zinc-600 dark:text-zinc-300 text-sm ml-1">
@@ -38,7 +38,7 @@ function CreatorPageHeaderArea() {
 							• {creatorData.videoData.length} video{creatorData.videoData.length === 1 ? "" : "s"}
 						</div>
 					</div>
-					<ShowChannelDescription channelDescription={creatorData.channelDescription} />
+					<ChannelDescription channelDescription={creatorData.channelDescription} />
 				</div>
 			</div>
 		</>
