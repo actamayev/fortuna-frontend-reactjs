@@ -59,7 +59,7 @@ export default function SingleVideoSearchItem(props: Props) {
 						className="text-sm text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-100 cursor-pointer"
 						onClick={navigateToCreatorPageCallbackEvent}
 					>
-						{videoData.creatorUsername}
+						{videoData.channelName}
 					</div>
 				</div>
 				<div className="text-xl text-zinc-600 dark:text-zinc-300 cursor-pointer">
