@@ -6,6 +6,7 @@ import platformIcons from "../../../../../utils/platform-icons"
 import HoverOutlineComponent from "../../../../hover-outline-component"
 import { useCreatorContext } from "../../../../../contexts/creator-context"
 import useRemoveSocialLink from "../../../../../hooks/creator/social-links/remove-social-link"
+import useHandleClickExternalSocialLink from "../../../../../hooks/handle-click-external-social-url"
 import useAddOrEditSocialLink from "../../../../../hooks/creator/social-links/add-or-edit-social-link"
 
 interface Props {
@@ -18,6 +19,7 @@ function SingleActiveSocialLink(props: Props) {
 	const creatorClass = useCreatorContext()
 	const removeSocialLink = useRemoveSocialLink()
 	const addOrEditSocialLink = useAddOrEditSocialLink()
+	const handleClickExternalSocialLink = useHandleClickExternalSocialLink()
 
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const debouncedAddOrEditSocialLink = useCallback(
@@ -40,21 +42,13 @@ function SingleActiveSocialLink(props: Props) {
 		debouncedAddOrEditSocialLink(value, socialPlatform)
 	}, [creatorClass, debouncedAddOrEditSocialLink, setTempSocialLinks])
 
-	const handleClick = useCallback(() => {
-		if (_.isEmpty(link.socialLink)) return
-		const url = link.socialLink.startsWith("http")
-			? link.socialLink
-			: `http://${link.socialLink}`
-		window.open(url, "_blank")
-	}, [link.socialLink])
-
 	const IconComponent = platformIcons[link.socialPlatform as SocialPlatformKey]
 
 	return (
 		<div className="flex items-center mb-2">
 			<HoverOutlineComponent
 				classes="relative flex items-center justify-center mr-1"
-				onClickAction={handleClick}
+				onClickAction={() => handleClickExternalSocialLink(link.socialLink)}
 			>
 				<IconComponent size={24} />
 			</HoverOutlineComponent>

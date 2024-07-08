@@ -1,9 +1,8 @@
-import _ from "lodash"
-import { useCallback } from "react"
 import { observer } from "mobx-react"
 import platformIcons from "../../utils/platform-icons"
 import HoverOutlineComponent from "../hover-outline-component"
 import useDefaultSiteTheme from "../../hooks/memos/default-site-theme"
+import useHandleClickExternalSocialLink from "../../hooks/handle-click-external-social-url"
 
 interface Props {
 	socialPlatformLinks: SocialPlatformLinks[]
@@ -12,14 +11,7 @@ interface Props {
 function ChannelSocialLinks(props: Props) {
 	const { socialPlatformLinks } = props
 	const defaultSiteTheme = useDefaultSiteTheme()
-
-	const handleClick = useCallback((socialLink: string) => {
-		if (_.isEmpty(socialLink)) return
-		const url = socialLink.startsWith("http")
-			? socialLink
-			: `http://${socialLink}`
-		window.open(url, "_blank")
-	}, [])
+	const handleClickExternalSocialLink = useHandleClickExternalSocialLink()
 
 	return (
 		<div className="flex">
@@ -29,7 +21,7 @@ function ChannelSocialLinks(props: Props) {
 					<div key={socialPlatformLink.socialPlatform}>
 						<HoverOutlineComponent
 							classes="relative flex items-center justify-center"
-							onClickAction={() => handleClick(socialPlatformLink.socialLink)}
+							onClickAction={() => handleClickExternalSocialLink(socialPlatformLink.socialLink)}
 						>
 							<IconComponent size={24} color={defaultSiteTheme === "light" ? "black" : "white"} />
 						</HoverOutlineComponent>
