@@ -21,7 +21,6 @@ export default function useSetDefaultSiteTheme(): () => Promise<void> {
 					throw Error("Unable to save new default site theme")
 				}
 			}
-			notificationsClass.setPositiveNotification(`Successfully changed to ${newSiteTheme} mode`)
 		} catch (error) {
 			console.error(error)
 			notificationsClass.setNegativeNotification(

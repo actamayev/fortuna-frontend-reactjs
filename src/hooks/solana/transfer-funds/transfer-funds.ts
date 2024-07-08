@@ -62,7 +62,7 @@ export default function useTransferFunds(): (
 			} else {
 				solanaClass.alterWalletBalanceUsd(-transferFundsData.transferAmount)
 			}
-			notificationsClass.setPositiveNotification("Successfully transferred funds")
+			notificationsClass.setPositiveNotification("Funds transferred")
 		} catch (error) {
 			console.error(error)
 			notificationsClass.setNegativeNotification("Unable to transfer funds at this time. Please reload page and try again")

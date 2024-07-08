@@ -18,7 +18,7 @@ export default function useUploadProfilePicture(): (selectedImage: File | null) 
 				return
 			}
 			creatorClass.setProfilePictureUrl(uploadProfilePictureResponse.data.profilePictureUrl)
-			notificationsClass.setPositiveNotification("Successfully uploaded new profile picture")
+			notificationsClass.setPositiveNotification("New profile picture uploaded")
 		} catch (error) {
 			console.error(error)
 			notificationsClass.setNegativeNotification("Unable to upload profile picture at this time. Please reload page and try again")

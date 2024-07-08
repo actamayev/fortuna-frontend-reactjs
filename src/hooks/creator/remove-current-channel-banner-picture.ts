@@ -25,7 +25,7 @@ export default function useRemoveCurrentChannelBannerPicture(): (
 			if (!_.isEqual(response.status, 200) || isErrorResponse(response.data)) {
 				return
 			}
-			notificationsClass.setPositiveNotification("Successfully removed channel banner picture")
+			notificationsClass.setPositiveNotification("Channel banner removed")
 		} catch (error) {
 			console.error(error)
 			creatorClass.setChannelBannerUrl(channelBannerUrl) // if fails, reset the url to what it previously was

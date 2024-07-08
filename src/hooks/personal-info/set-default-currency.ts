@@ -39,7 +39,7 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 					throw Error("Unable to save new default currency")
 				}
 			}
-			notificationsClass.setPositiveNotification(`Successfully changed default currency to ${newCurrency.toUpperCase()}`)
+			notificationsClass.setPositiveNotification(`Default currency changed to ${newCurrency.toUpperCase()}`)
 		} catch (error) {
 			console.error(error)
 			notificationsClass.setNegativeNotification("Unable to change default currency at this time. Please reload page and try again.")

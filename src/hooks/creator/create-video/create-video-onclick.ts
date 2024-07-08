@@ -12,10 +12,10 @@ export default function useCreateVideoOnclick(): (
 	setStatus: React.Dispatch<React.SetStateAction<string>>
 ) => Promise<void> {
 	const navigate = useTypedNavigate()
-	const fortunaApiClient = useApiClientContext()
 	const creatorClass = useCreatorContext()
-	const confirmNewVideoDetails = useConfirmNewVideoDetails()
+	const fortunaApiClient = useApiClientContext()
 	const notificationsClass = useNotificationsContext()
+	const confirmNewVideoDetails = useConfirmNewVideoDetails()
 
 	// eslint-disable-next-line complexity
 	const createVideoOnclick = useCallback(async (
@@ -82,7 +82,7 @@ export default function useCreateVideoOnclick(): (
 
 			creatorClass.addContent(myContent)
 			creatorClass.resetNewVideoDetails()
-			notificationsClass.setPositiveNotification("Successfully uploaded video")
+			notificationsClass.setPositiveNotification("Video uploaded")
 
 			navigate("/creator/studio")
 		} catch (error) {

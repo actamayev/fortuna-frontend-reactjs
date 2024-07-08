@@ -21,7 +21,7 @@ export default function useUploadChannelBannerPicture(): (selectedImage: File | 
 				return
 			}
 			creatorClass.setChannelBannerUrl(uploadChannelBannerPictureResponse.data.channelBannerPictureUrl)
-			notificationsClass.setPositiveNotification("Successfully uploaded new channel banner")
+			notificationsClass.setPositiveNotification("New channel banner uploaded")
 		} catch (error) {
 			console.error(error)
 			notificationsClass.setNegativeNotification("Unable to upload channel banner at this time. Please reload page and try again")
