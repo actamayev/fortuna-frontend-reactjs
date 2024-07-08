@@ -6,7 +6,7 @@ import Video from "./pages/video"
 import Wallet from "./pages/wallet"
 import Creator from "./pages/creator"
 import Missing from "./pages/missing"
-import Profile from "./pages/profile"
+// import Profile from "./pages/profile"
 import Ownership from "./pages/ownership"
 import Contact from "./pages/company/contact"
 import LoginPage from "./pages/auth/login-page"
@@ -16,6 +16,7 @@ import RegisterUsername from "./pages/auth/register-username"
 
 import CreatorRoutes from "./routes/creator-routes"
 
+import useScrollToTop from "./hooks/scroll-to-top"
 import useGetAuthDataFromStorage from "./hooks/auth/get-auth-data-from-storage"
 import useInitializeTagManager from "./hooks/analytics/initiallize-tag-manager"
 import useLogoutListenerUseEffect from "./hooks/auth/logout-listener-use-effect"
@@ -28,7 +29,6 @@ import useRetrieveWalletBalanceUseEffect from "./hooks/solana/retrieve-wallet-ba
 import useRedirectBackToRegisterUsername from "./hooks/redirects/redirect-back-to-register-username"
 import useRetrievePersonalInfoUseEffect from "./hooks/personal-info/retrieve-personal-info-use-effect"
 import useResetInstantAccessStageOnLocationChangeUseEffect from "./hooks/market/reset-instant-access-stage-on-location-change-use-effect"
-import useScrollToTop from "./hooks/scroll-to-top"
 
 function App() {
 	// Don't change the getAuthData to a useEffect, or else it doesn't work immediately after login
@@ -56,7 +56,7 @@ function App() {
 			<Route path = "/ownership" element = {<Ownership />} />
 			<Route path = "/wallet" element = {<Wallet />} />
 			<Route path = "/v/:videoUUID" element = {<Video />} />
-			<Route path = "/profile" element = {<Profile />} />
+			{/* <Route path = "/profile" element = {<Profile />} /> */}
 			<Route path = "/c/:creatorUsername" element = {<Creator />} />
 			<Route path = "/s/:searchTerm" element = {<SearchResults />} />
 
