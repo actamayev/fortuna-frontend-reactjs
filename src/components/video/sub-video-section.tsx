@@ -13,7 +13,7 @@ interface Props {
 export default function SubVideoSection(props: Props) {
 	const { video } = props
 	const navigateToCreatorPage = useNavigateToCreatorPage()
-	const { videoName, creatorProfilePictureUrl, creatorUsername, description } = video
+	const { videoName, creatorProfilePictureUrl, creatorUsername, description, channelName } = video
 
 	const navigateToCreatorPageCallback = useCallback(() => {
 		navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))
@@ -47,7 +47,7 @@ export default function SubVideoSection(props: Props) {
 								className="text-sm font-medium cursor-pointer text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"
 								onClick={navigateToCreatorPageCallback}
 							>
-								{creatorUsername}
+								{channelName}
 							</span>
 						</div>
 						<div className="flex items-center">

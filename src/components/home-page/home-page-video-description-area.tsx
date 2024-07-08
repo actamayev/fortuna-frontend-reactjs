@@ -17,8 +17,7 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 	const { video, index } = props
 	const navigateToVideoPage = useNavigateToVideoPage()
 	const navigateToCreatorPage = useNavigateToCreatorPage()
-
-	const { videoName, creatorProfilePictureUrl, creatorUsername, uuid } = video
+	const { videoName, creatorProfilePictureUrl, creatorUsername, uuid, channelName } = video
 
 	const navigateToCreatorPageCallback = useCallback(() => {
 		navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))
@@ -56,9 +55,7 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 					style={{ maxWidth: "fit-content" }}
 					onClick={navigateToCreatorPageCallback}
 				>
-					{/* TODO: Change this to be the channel name.
-					Also, change the search function to search on channel name, not username */}
-					{creatorUsername}
+					{channelName}
 				</div>
 			</div>
 			<div className="ml-auto flex flex-col items-end space-y-1">

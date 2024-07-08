@@ -17,7 +17,7 @@ function MoreVideosMap(props: Props) {
 	return (
 		<div>
 			<div className="flex text-xl font-medium my-2">
-				More from {video.creatorUsername}
+				More from {video.channelName}
 			</div>
 			<div className="grid grid-cols-2">
 				{creatorData.videoData.map(videoData => (

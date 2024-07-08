@@ -14,7 +14,7 @@ function ChannelDescription(props: Props) {
 		setIsExpanded(!isExpanded)
 	}, [isExpanded])
 
-	if (_.isEmpty(channelDescription)) return null
+	if (_.isEmpty(channelDescription.trim())) return null
 
 	return (
 		<div
