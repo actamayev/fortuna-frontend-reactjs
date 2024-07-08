@@ -1,5 +1,3 @@
-import _ from "lodash"
-import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { useCreatorContext } from "../../../../contexts/creator-context"
 
@@ -16,17 +14,11 @@ function ShowCurrentChannelBannerPicture(props: Props) {
 	const { handleImageChange, fileInputRef, handleMouseEnter, handleMouseLeave, imageStyle, editPictureCallback } = props
 	const creatorClass = useCreatorContext()
 
-	const channelBannerPictureUrl = useMemo(() => {
-		if (_.isNull(creatorClass)) return ""
-		return creatorClass.channelBannerUrl || ""
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.channelBannerUrl])
-
 	return (
 		<div className="relative inline-block w-full">
-			{channelBannerPictureUrl ? (
+			{creatorClass?.channelBannerUrl ? (
 				<img
-					src={channelBannerPictureUrl}
+					src={creatorClass.channelBannerUrl}
 					className="object-cover cursor-pointer w-full h-44 rounded"
 					style={imageStyle}
 					onClick={editPictureCallback}

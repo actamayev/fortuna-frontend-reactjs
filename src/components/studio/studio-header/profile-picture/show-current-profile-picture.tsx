@@ -1,5 +1,3 @@
-import _ from "lodash"
-import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { FaUserCircle } from "react-icons/fa"
 import useDefaultSiteTheme from "../../../../hooks/memos/default-site-theme"
@@ -19,17 +17,11 @@ function ShowCurrentProfilePicture(props: Props) {
 	const personalInfoClass = usePersonalInfoContext()
 	const defaultSiteTheme = useDefaultSiteTheme()
 
-	const profilePictureUrl = useMemo(() => {
-		if (_.isNull(personalInfoClass)) return ""
-		return personalInfoClass.profilePictureUrl || ""
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [personalInfoClass, personalInfoClass?.profilePictureUrl])
-
 	return (
 		<div className="relative inline-block" style={{ minWidth: "128px", maxWidth: "128px" }} >
-			{profilePictureUrl ? (
+			{personalInfoClass?.profilePictureUrl ? (
 				<img
-					src={profilePictureUrl}
+					src={personalInfoClass.profilePictureUrl}
 					className="w-32 h-32 rounded-full object-cover cursor-pointer"
 					style={imageStyle}
 					onClick={editPictureCallback}
