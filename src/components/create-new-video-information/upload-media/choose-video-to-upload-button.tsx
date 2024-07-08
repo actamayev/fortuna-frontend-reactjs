@@ -19,7 +19,10 @@ function ChooseVideoToUploadButton(props: Props) {
 		if (_.isNull(creatorClass)) return
 		const files = e.target.files
 
-		if (!_.isNull(files) && !_.isEmpty(files)) {
+		if (_.isNull(files) || _.isEmpty(files)) {
+			creatorClass.updateNewVideoDetails("selectedVideo", null)
+			setPreviewUrl(null)
+		} else {
 			const file = files[0]
 			const maxFileSize = 150 * 1024 * 1024 // 150 MB in bytes
 
@@ -35,9 +38,6 @@ function ChooseVideoToUploadButton(props: Props) {
 
 			const newPreviewUrl = URL.createObjectURL(file)
 			setPreviewUrl(newPreviewUrl)
-		} else {
-			creatorClass.updateNewVideoDetails("selectedVideo", null)
-			setPreviewUrl(null)
 		}
 
 		if (_.isNull(fileInputRef.current)) return

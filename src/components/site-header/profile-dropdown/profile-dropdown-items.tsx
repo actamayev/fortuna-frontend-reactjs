@@ -2,8 +2,8 @@ import { useState } from "react"
 import { observer } from "mobx-react"
 import { Link } from "react-router-dom"
 import { IoWallet } from "react-icons/io5"
+import { FaShoppingBag } from "react-icons/fa"
 import { RiLogoutBoxRLine } from "react-icons/ri"
-import { FaShoppingBag, FaUser } from "react-icons/fa"
 import { BsFillCollectionPlayFill } from "react-icons/bs"
 import useHandleLogout from "../../../hooks/auth/handle-logout"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
@@ -28,22 +28,22 @@ function ProfileDropdownItems() {
 				@{personalInfoClass?.username || ""}
 			</div>
 
-			<Link to="/my-ownership" className={classes.middle}>
+			<Link to="/ownership" className={classes.middle}>
 				<FaShoppingBag className="mr-2" size={17} />
-				My Ownership
+				Ownership
 			</Link>
-			<Link to="/my-wallet" className={classes.middle}>
+			<Link to="/wallet" className={classes.middle}>
 				<IoWallet className="mr-2" size={17} />
-				My Wallet
+				Wallet
 			</Link>
-			<Link to="/creator/my-content" className={classes.middle}>
+			<Link to="/creator/studio" className={classes.middle}>
 				<BsFillCollectionPlayFill className="mr-2" size={17} />
-				My Content
+				Studio
 			</Link>
-			<Link to="/my-profile" className={classes.middle}>
+			{/* <Link to="/profile" className={classes.middle}>
 				<FaUser className="mr-2" size={17} />
-				My Profile
-			</Link>
+				Profile
+			</Link> */}
 			<div className="block">
 				<button
 					onClick={handleLogout}

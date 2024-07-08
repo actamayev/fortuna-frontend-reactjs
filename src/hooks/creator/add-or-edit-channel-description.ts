@@ -14,7 +14,11 @@ export default function useAddOrEditChannelDescription(): (
 		channelDescription: string
 	): Promise<void> => {
 		try {
-			if (_.isNull(creatorClass) || channelDescription.length > 1000) return
+			if (
+				_.isNull(creatorClass) ||
+				channelDescription.length > 1000 ||
+				creatorClass.channelDescription === channelDescription
+			) return
 
 			const response = await fortunaApiClient.creatorDataService.addOrEditChannelDescription(channelDescription)
 

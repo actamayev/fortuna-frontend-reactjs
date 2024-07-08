@@ -19,7 +19,10 @@ function ChooseThumbnailToUploadButton(props: Props) {
 		if (_.isNull(creatorClass)) return
 		const files = e.target.files
 
-		if (!_.isNull(files) && !_.isEmpty(files)) {
+		if (_.isNull(files) || _.isEmpty(files)) {
+			creatorClass.updateNewVideoDetails("selectedImage", null)
+			setPreviewUrl(null)
+		} else {
 			const file = files[0]
 			const maxFileSize = 10 * 1024 * 1024 // 10 MB in bytes
 
@@ -34,9 +37,6 @@ function ChooseThumbnailToUploadButton(props: Props) {
 
 			const newPreviewUrl = URL.createObjectURL(file)
 			setPreviewUrl(newPreviewUrl)
-		} else {
-			creatorClass.updateNewVideoDetails("selectedImage", null)
-			setPreviewUrl(null)
 		}
 
 		if (_.isNull(fileInputRef.current)) return
