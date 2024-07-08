@@ -1,7 +1,7 @@
 import { observer } from "mobx-react"
 import { FaUserCircle } from "react-icons/fa"
+import { useCreatorContext } from "../../../../contexts/creator-context"
 import useDefaultSiteTheme from "../../../../hooks/memos/default-site-theme"
-import { usePersonalInfoContext } from "../../../../contexts/personal-info-context"
 
 interface Props {
 	handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -14,14 +14,14 @@ interface Props {
 
 function ShowCurrentProfilePicture(props: Props) {
 	const { handleImageChange, fileInputRef, handleMouseEnter, handleMouseLeave, imageStyle, editPictureCallback } = props
-	const personalInfoClass = usePersonalInfoContext()
+	const creatorClass = useCreatorContext()
 	const defaultSiteTheme = useDefaultSiteTheme()
 
 	return (
 		<div className="relative inline-block" style={{ minWidth: "128px", maxWidth: "128px" }}>
-			{personalInfoClass?.profilePictureUrl ? (
+			{creatorClass?.profilePictureUrl ? (
 				<img
-					src={personalInfoClass.profilePictureUrl}
+					src={creatorClass.profilePictureUrl}
 					className="w-32 h-32 rounded-full object-cover cursor-pointer"
 					style={imageStyle}
 					onClick={editPictureCallback}

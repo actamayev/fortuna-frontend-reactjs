@@ -5,7 +5,6 @@ import { isValidCurrency, isValidSiteTheme } from "../utils/type-checks"
 class PersonalInfoClass {
 	private _username: string | null = null
 	private _email?: string | null = null
-	private _profilePictureUrl?: string | null = null
 
 	private _isRetrievingPersonalInfo = false
 	private _defaultCurrency: Currencies = "usd"
@@ -30,14 +29,6 @@ class PersonalInfoClass {
 
 	set email(email: string | null | undefined) {
 		this._email = email
-	}
-
-	get profilePictureUrl(): string | null | undefined {
-		return this._profilePictureUrl
-	}
-
-	set profilePictureUrl(profilePictureUrl: string | null | undefined) {
-		this._profilePictureUrl = profilePictureUrl
 	}
 
 	get isRetrievingPersonalInfo(): boolean {
@@ -70,7 +61,6 @@ class PersonalInfoClass {
 	public setRetrievedPersonalData = action((retrievedData: PersonalInfoResponse): void => {
 		this.username = retrievedData.username
 		this.email = retrievedData.email
-		this.profilePictureUrl = retrievedData.profilePictureUrl
 		this.setDefaultCurrency(retrievedData.defaultCurrency)
 		this.setDefaultSiteTheme(retrievedData.defaultSiteTheme)
 	})
@@ -90,7 +80,6 @@ class PersonalInfoClass {
 	public logout() {
 		this.username = null
 		this.email = null
-		this.profilePictureUrl = null
 		this.setIsRetrievingPersonalDetails(false)
 	}
 }

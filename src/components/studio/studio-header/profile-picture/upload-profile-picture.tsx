@@ -1,7 +1,7 @@
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { FaSave, FaTrash } from "react-icons/fa"
-import useUploadProfilePicture from "../../../../hooks/personal-info/upload-profile-picture"
+import useUploadProfilePicture from "../../../../hooks/upload/upload-profile-picture"
 
 interface Props {
 	previewUrl: string

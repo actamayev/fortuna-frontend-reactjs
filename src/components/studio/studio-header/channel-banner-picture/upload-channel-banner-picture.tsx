@@ -1,7 +1,7 @@
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { FaSave, FaTrash } from "react-icons/fa"
-import useUploadChannelBannerPicture from "../../../../hooks/creator/upload-channel-banner-picture"
+import useUploadChannelBannerPicture from "../../../../hooks/upload/upload-channel-banner-picture"
 
 interface Props {
 	previewUrl: string

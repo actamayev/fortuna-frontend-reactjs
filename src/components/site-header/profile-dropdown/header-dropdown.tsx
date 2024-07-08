@@ -2,13 +2,13 @@ import { observer } from "mobx-react"
 import { useState, useRef } from "react"
 import { FaUserCircle } from "react-icons/fa"
 import DropdownItemsContainer from "./dropdown-items-container"
+import { useCreatorContext } from "../../../contexts/creator-context"
 import useClickOutSideUseEffect from "../../../hooks/click-outside-use-effect"
-import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 
 function HeaderDropdown () {
 	const [isOpen, setIsOpen] = useState(false)
 	const dropdownRef = useRef<HTMLDivElement>(null)
-	const personalInfoClass = usePersonalInfoContext()
+	const creatorClass = useCreatorContext()
 	useClickOutSideUseEffect(dropdownRef, setIsOpen)
 
 	return (
@@ -23,11 +23,11 @@ function HeaderDropdown () {
 						className="w-8 h-8 rounded-full overflow-hidden flex justify-center \
 							items-center text-zinc-950 dark:text-zinc-100"
 					>
-						{!personalInfoClass?.profilePictureUrl ? (
+						{!creatorClass?.profilePictureUrl ? (
 							<FaUserCircle className="min-w-full min-h-full object-cover" />
 						) : (
 							<img
-								src={personalInfoClass.profilePictureUrl}
+								src={creatorClass.profilePictureUrl}
 								alt="Profile"
 								className="min-w-full min-h-full object-cover"
 							/>
