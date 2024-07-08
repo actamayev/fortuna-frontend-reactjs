@@ -1,3 +1,4 @@
+import _ from "lodash"
 import { useCallback } from "react"
 import { FaUserCircle } from "react-icons/fa"
 import ShareVideoButton from "./like-dislike/share-video-button"
@@ -12,7 +13,6 @@ interface Props {
 export default function SubVideoSection(props: Props) {
 	const { video } = props
 	const navigateToCreatorPage = useNavigateToCreatorPage()
-
 	const { videoName, creatorProfilePictureUrl, creatorUsername, description } = video
 
 	const navigateToCreatorPageCallback = useCallback(() => {
@@ -28,23 +28,21 @@ export default function SubVideoSection(props: Props) {
 				<div className="mt-0.5">
 					<div className="flex items-center justify-between mb-2">
 						<div className="flex items-center">
-							{creatorProfilePictureUrl ? (
-								<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center mr-2">
+							<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center mr-2">
+								{_.isNull(creatorProfilePictureUrl) ? (
+									<FaUserCircle
+										className="min-w-full min-h-full object-cover cursor-pointer"
+										onClick={navigateToCreatorPageCallback}
+									/>
+								) : (
 									<img
 										src={creatorProfilePictureUrl}
 										alt="Creator's Profile"
 										className="min-w-full min-h-full object-cover cursor-pointer"
 										onClick={navigateToCreatorPageCallback}
 									/>
-								</div>
-							) : (
-								<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center mr-2">
-									<FaUserCircle
-										className="min-w-full min-h-full object-cover cursor-pointer"
-										onClick={navigateToCreatorPageCallback}
-									/>
-								</div>
-							)}
+								)}
+							</div>
 							<span
 								className="text-sm font-medium cursor-pointer text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"
 								onClick={navigateToCreatorPageCallback}

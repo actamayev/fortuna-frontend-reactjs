@@ -29,7 +29,7 @@ export default function useUsernameSubmit (
 				return
 			}
 			personalInfoClass.username = username
-			navigate("/my-wallet")
+			navigate("/wallet")
 		} catch (error: unknown) {
 			setErrorAxiosResponse(error, setError, "Unable to register username")
 		} finally {

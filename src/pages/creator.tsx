@@ -8,9 +8,9 @@ export default function Creator() {
 	useRetrieveCreatorVideosAndDataUseEffect(creatorUsername)
 
 	return (
-		<div >
+		<>
 			<CreatorPageHeaderArea />
 			<CreatorPageVideoMap />
-		</div>
+		</>
 	)
 }

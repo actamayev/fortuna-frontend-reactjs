@@ -56,6 +56,8 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 					style={{ maxWidth: "fit-content" }}
 					onClick={navigateToCreatorPageCallback}
 				>
+					{/* TODO: Change this to be the channel name.
+					Also, change the search function to search on channel name, not username */}
 					{creatorUsername}
 				</div>
 			</div>

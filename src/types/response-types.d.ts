@@ -19,6 +19,7 @@ declare global {
 	type CreatorInfoResponse = {
 		channelName: string | null
 		channelDescription: string | null
+		channelBannerUrl: string | null
 		socialPlatformLinks: SocialPlatformLinks[]
 	}
 
@@ -60,6 +61,7 @@ declare global {
 		uuid: string
 	}
 	type ProfilePictureUrl = { profilePictureUrl: string }
+	type ChannelBannerPictureUrl = { channelBannerPictureUrl: string }
 
 	// Video Responses:
 	type RetrievedVideo = { videoData: SingleVideoDataFromBackend }
