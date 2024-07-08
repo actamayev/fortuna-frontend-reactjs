@@ -2,8 +2,8 @@ import _ from "lodash"
 import { useCallback } from "react"
 import { isErrorResponses } from "../../../utils/type-checks"
 import { useCreatorContext } from "../../../contexts/creator-context"
-import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 import { useNotificationsContext } from "../../../contexts/notifications-context"
+import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 import convertSocialLinkToProperCasing from "../../../utils/convert-social-link-to-proper-casing"
 
 export default function useAddOrEditSocialLink(): (

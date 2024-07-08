@@ -11,6 +11,11 @@ class NotificationsClass {
 		makeAutoObservable(this)
 	}
 
+	public setSuperPositiveNotification = action((notificationMessage: string): void => {
+		this.setNotification(notificationMessage)
+		this.notificationBoxClasses = "bg-green-500 dark:bg-green-500 text-white dark:text-white"
+	})
+
 	public setPositiveNotification = action((notificationMessage: string): void => {
 		this.setNotification(notificationMessage)
 		this.notificationBoxClasses = "bg-blue-500 dark:bg-blue-500 text-white dark:text-white"

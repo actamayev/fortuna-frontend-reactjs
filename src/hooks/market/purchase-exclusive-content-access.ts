@@ -55,7 +55,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 				uuid: video.uuid
 			}
 			positionsAndTransactionsClass.addExclusiveContent(exclusiveContentToAddToList)
-			notificationClass.setPositiveNotification("Successfully purchased access to video. Enjoy!")
+			notificationClass.setSuperPositiveNotification("Successfully purchased access to video. Enjoy!")
 			videoClass.updateVideoDetailsAfterUserPurchase(
 				videoUUID,
 				tierNumber,
