@@ -1,76 +1,38 @@
-import _ from "lodash"
+import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { FaSave, FaTrash } from "react-icons/fa"
-import { useRef, useState, useCallback } from "react"
-import ShowCurrentProfilePicture from "./show-current-profile-picture"
 import useUploadProfilePicture from "../../../../hooks/personal-info/upload-profile-picture"
 
-// eslint-disable-next-line max-lines-per-function
-function UploadProfilePicture() {
-	const [isHovered, setIsHovered] = useState(false)
-	const [previewUrl, setPreviewUrl] = useState<null | string>(null)
-	const [selectedImage, setSelectedImage] = useState<File | null>(null)
-	const fileInputRef = useRef<HTMLInputElement>(null)
+interface Props {
+	previewUrl: string
+	handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+	removeContent: () => void
+	selectedImage: File | null
+	editPictureCallback: () => void
+	handleMouseEnter: () => void
+	handleMouseLeave: () => void
+	imageStyle: { opacity: number }
+	fileInputRef: React.RefObject<HTMLInputElement>
+}
+
+function UploadProfilePicture(props: Props) {
+	const {
+		previewUrl,
+		handleImageChange,
+		removeContent,
+		selectedImage,
+		editPictureCallback,
+		handleMouseEnter,
+		handleMouseLeave,
+		imageStyle,
+		fileInputRef
+	} = props
 	const uploadProfilePicture = useUploadProfilePicture()
-
-	const removeContent = useCallback(() => {
-		setSelectedImage(null)
-		setPreviewUrl(null)
-	}, [setPreviewUrl])
-
-	const handleImageChange = useCallback((e: React.ChangeEvent<HTMLInputElement>): void => {
-		const files = e.target.files
-
-		if (!_.isNull(files) && !_.isEmpty(files)) {
-			const file = files[0]
-			const maxFileSize = 10 * 1024 * 1024 // 10 MB in bytes
-
-			if (file.size > maxFileSize) {
-				alert("The selected file exceeds the maximum size limit of 150MB.")
-				if (fileInputRef.current) {
-					fileInputRef.current.value = "" // Reset the input
-				}
-				return // Exit the function if the file is too large
-			}
-			setSelectedImage(file)
-
-			const newPreviewUrl = URL.createObjectURL(file)
-			setPreviewUrl(newPreviewUrl)
-		} else {
-			removeContent()
-		}
-
-		if (_.isNull(fileInputRef.current)) return
-		fileInputRef.current.value = ""
-	}, [removeContent])
-
-	const editPictureCallback = useCallback(() => {
-		fileInputRef.current?.click()
-	}, [fileInputRef])
 
 	const uploadProfilePictureCallback = useCallback(async() => {
 		await uploadProfilePicture(selectedImage)
 		removeContent()
 	}, [removeContent, selectedImage, uploadProfilePicture])
-
-	const handleMouseEnter = useCallback(() => setIsHovered(true), [])
-
-	const handleMouseLeave = useCallback(() => setIsHovered(false), [])
-
-	const imageStyle = isHovered ? { opacity: 0.8 } : { opacity: 1 }
-
-	if (_.isNull(previewUrl)) {
-		return (
-			<ShowCurrentProfilePicture
-				handleImageChange = {handleImageChange}
-				fileInputRef={fileInputRef}
-				handleMouseEnter={handleMouseEnter}
-				handleMouseLeave={handleMouseLeave}
-				imageStyle={imageStyle}
-				editPictureCallback={editPictureCallback}
-			/>
-		)
-	}
 
 	// TODO: Add ability to delete current pfp (resets to stock pfp picture). Same for banner. It should update is_active to false
 

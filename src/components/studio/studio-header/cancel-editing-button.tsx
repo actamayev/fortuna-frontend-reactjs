@@ -9,13 +9,13 @@ interface Props {
 }
 
 function CancelEditingButton(props: Props) {
-	const { toggleEditAndAssignDefaultValue, extraClasses = "" } = props // Destructure extraClasses with a default value
+	const { toggleEditAndAssignDefaultValue, extraClasses = "" } = props
 
 	const defaultSiteTheme = useDefaultSiteTheme()
 
 	return (
 		<HoverOutlineComponent
-			classes={`relative flex items-center justify-center inline-block ${extraClasses}`} // Concatenate extraClasses
+			classes={`relative flex items-center justify-center inline-block ${extraClasses}`}
 			onClickAction={toggleEditAndAssignDefaultValue}
 			circlePixelSize="30px"
 		>
