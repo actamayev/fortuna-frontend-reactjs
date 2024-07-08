@@ -37,7 +37,7 @@ function ChannelDescription() {
 		setIsEditing(prev => !prev)
 	}, [])
 
-	const toggleEditAndAssignDefaultDescriptionName = useCallback(() => {
+	const cancelEditAction = useCallback(() => {
 		setIsEditing(false)
 		if (!_.isNil(creatorClass?.channelDescription)) {
 			setChannelDescription(creatorClass.channelDescription)
@@ -52,7 +52,7 @@ function ChannelDescription() {
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
 			if (event.key === "Escape") {
-				toggleEditAndAssignDefaultDescriptionName()
+				cancelEditAction()
 			}
 		}
 
@@ -66,7 +66,7 @@ function ChannelDescription() {
 		return () => {
 			window.removeEventListener("keydown", handleKeyDown)
 		}
-	}, [creatorClass?.channelDescription, isEditing, toggleEditAndAssignDefaultDescriptionName])
+	}, [creatorClass?.channelDescription, isEditing, cancelEditAction])
 
 	return (
 		<div className="flex items-center">
@@ -77,7 +77,7 @@ function ChannelDescription() {
 					setChannelDescription={setChannelDescription}
 					textAreaRef={textAreaRef}
 					handleSaveChannelDescription={handleSaveChannelDescription}
-					toggleEditAndAssignDefaultDescriptionName={toggleEditAndAssignDefaultDescriptionName}
+					cancelEditAction={cancelEditAction}
 				/>
 			) : (
 				<span

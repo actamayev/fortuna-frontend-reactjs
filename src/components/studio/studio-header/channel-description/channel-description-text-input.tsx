@@ -8,7 +8,7 @@ interface Props {
 	setChannelDescription: React.Dispatch<React.SetStateAction<string>>
 	textAreaRef: React.RefObject<HTMLTextAreaElement>
 	handleSaveChannelDescription: () => Promise<void>
-	toggleEditAndAssignDefaultDescriptionName: () => void
+	cancelEditAction: () => void
 }
 
 export default function ChannelDescriptionTextInput(props: Props) {
@@ -18,7 +18,7 @@ export default function ChannelDescriptionTextInput(props: Props) {
 		setChannelDescription,
 		textAreaRef,
 		handleSaveChannelDescription,
-		toggleEditAndAssignDefaultDescriptionName
+		cancelEditAction
 	} = props
 
 	const handleChange = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -61,7 +61,7 @@ export default function ChannelDescriptionTextInput(props: Props) {
 				</span>
 				<div className="flex items-center">
 					<CancelEditingButton
-						toggleEditAndAssignDefaultValue={toggleEditAndAssignDefaultDescriptionName}
+						cancelEditAction={cancelEditAction}
 					/>
 					<SaveChannelDescriptionButton handleSaveChannelDescription={handleSaveChannelDescription} />
 				</div>

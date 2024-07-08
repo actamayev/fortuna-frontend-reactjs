@@ -29,7 +29,7 @@ function ChannelName() {
 		setIsEditing(prev => !prev)
 	}, [])
 
-	const toggleEditAndAssignDefaultChannelName = useCallback(() => {
+	const cancelEditAction = useCallback(() => {
 		setIsEditing(false)
 		assignDefaultChannelName(setChannelName)
 	}, [assignDefaultChannelName])
@@ -43,7 +43,7 @@ function ChannelName() {
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
 			if (event.key === "Escape") {
-				toggleEditAndAssignDefaultChannelName()
+				cancelEditAction()
 			}
 		}
 
@@ -57,7 +57,7 @@ function ChannelName() {
 		return () => {
 			window.removeEventListener("keydown", handleKeyDown)
 		}
-	}, [assignDefaultChannelName, isEditing, toggleEditAndAssignDefaultChannelName])
+	}, [assignDefaultChannelName, isEditing, cancelEditAction])
 
 	return (
 		<div className="flex items-center">
@@ -83,7 +83,7 @@ function ChannelName() {
 			{isEditing && (
 				<>
 					<CancelEditingButton
-						toggleEditAndAssignDefaultValue={toggleEditAndAssignDefaultChannelName}
+						cancelEditAction={cancelEditAction}
 						extraClasses="mb-4"
 					/>
 					<SaveChannelNameButton
