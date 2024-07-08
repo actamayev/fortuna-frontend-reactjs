@@ -43,7 +43,7 @@ function SingleCreatorSearchItem(props: Props) {
 				<div className="text-zinc-600 dark:text-zinc-400 text-sm mt-1.5">
 					@{creatorData.creatorUsername}
 				</div>
-				<div className="text-zinc-600 dark:text-zinc-400 text-sm mt-1.5">
+				<div className="text-zinc-600 dark:text-zinc-400 text-sm mt-1">
 					{_.truncate(creatorData.channelDescription, { length: 90, omission: "..."})}
 				</div>
 			</div>
