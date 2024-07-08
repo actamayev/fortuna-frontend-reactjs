@@ -11,7 +11,7 @@ function ShareVideoButton() {
 		try {
 			const currentUrl = window.location.href
 			await navigator.clipboard.writeText(currentUrl)
-			notificationsClass.setNotification("Link copied to clipboard")
+			notificationsClass.setNeutralNotification("Link copied to clipboard")
 		} catch (error) {
 			console.error(error)
 		}

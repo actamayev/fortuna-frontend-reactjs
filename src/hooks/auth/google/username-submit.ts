@@ -25,7 +25,7 @@ export default function useUsernameSubmit (
 			setLoading(true)
 			const response = await fortunaApiClient.authDataService.registerUsername(username)
 			if (!_.isEqual(response.status, 200) || isNonSuccessResponse(response.data)) {
-				setError("Unable to register username. Please reload and try again.")
+				setError("Unable to register username. Please reload page and try again.")
 				return
 			}
 			personalInfoClass.username = username

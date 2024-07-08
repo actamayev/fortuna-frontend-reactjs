@@ -10,9 +10,9 @@ export default function useRetrieveMyContentUseEffect(): void {
 
 	// eslint-disable-next-line complexity
 	const retrieveMyContent = useCallback(async () => {
+		if (_.isNull(creatorClass)) return
 		try {
 			if (
-				_.isNull(creatorClass) ||
 				creatorClass.hasContentToRetrieve === false ||
 				creatorClass.isRetrievingContent === true ||
 				!_.isEmpty(creatorClass.myContent)
@@ -31,7 +31,7 @@ export default function useRetrieveMyContentUseEffect(): void {
 		} catch (error) {
 			console.error(error)
 		} finally {
-			if (!_.isNull(creatorClass)) creatorClass.setIsRetrievingContent(false)
+			creatorClass.setIsRetrievingContent(false)
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService])
 

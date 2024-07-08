@@ -31,7 +31,6 @@ export default function useLikeDislikeVideo(): (
 				if (!_.isEqual(removeLikeOrDislikeResponse.status, 200) || isErrorResponses(removeLikeOrDislikeResponse.data)) {
 					throw new Error("Removal of like/dislike failed")
 				}
-
 			}
 			videoClass.updateVideoDetailsAfterLikeDislike(video.uuid, newLikeStatus)
 		} catch (error) {

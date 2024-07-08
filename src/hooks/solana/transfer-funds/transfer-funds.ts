@@ -4,6 +4,7 @@ import useRetrieveSolPrice from "../retrieve-sol-price"
 import { isNonSuccessResponse } from "../../../utils/type-checks"
 import { useSolanaContext } from "../../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
+import { useNotificationsContext } from "../../../contexts/notifications-context"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 
@@ -15,6 +16,7 @@ export default function useTransferFunds(): (
 	const personalInfoClass = usePersonalInfoContext()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const retrieveSolPrice = useRetrieveSolPrice()
+	const notificationsClass = useNotificationsContext()
 
 	// eslint-disable-next-line complexity
 	const transferSol = useCallback(async (
@@ -60,13 +62,15 @@ export default function useTransferFunds(): (
 			} else {
 				solanaClass.alterWalletBalanceUsd(-transferFundsData.transferAmount)
 			}
+			notificationsClass.setPositiveNotification("Funds transferred")
 		} catch (error) {
 			console.error(error)
+			notificationsClass.setNegativeNotification("Unable to transfer funds at this time. Please reload page and try again")
 		} finally {
 			setIsLoading(false)
 		}
 	}, [solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService,
-		personalInfoClass, positionsAndTransactionsClass, retrieveSolPrice])
+		personalInfoClass, positionsAndTransactionsClass, retrieveSolPrice, notificationsClass])
 
 	return transferSol
 }

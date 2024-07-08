@@ -17,7 +17,7 @@ function ShowMyPublicKey() {
 
 		try {
 			await navigator.clipboard.writeText(solanaClass.walletPublicKey.toString())
-			notificationsClass.setNotification("Public Key copied to clipboard")
+			notificationsClass.setNeutralNotification("Public Key copied to clipboard")
 		} catch (error) {
 			console.error("Failed to copy text: ", error)
 		}
