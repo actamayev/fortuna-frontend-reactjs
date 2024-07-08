@@ -19,15 +19,17 @@ import CreatorRoutes from "./routes/creator-routes"
 import useScrollToTop from "./hooks/scroll-to-top"
 import useGetAuthDataFromStorage from "./hooks/auth/get-auth-data-from-storage"
 import useInitializeTagManager from "./hooks/analytics/initiallize-tag-manager"
-import useLogoutListenerUseEffect from "./hooks/auth/logout-listener-use-effect"
+import useLogoutListenerUseEffect from "./hooks/listeners/logout-listener-use-effect"
 import useRetrieveSolPriceUseEffect from "./hooks/solana/retrieve-sol-price-use-effect"
 import useRetrieveMyContentUseEffect from "./hooks/creator/retrieve-my-content-use-effect"
+import useSiteThemeListenerUseEffect from "./hooks/listeners/site-theme-listener-use-effect"
 import useRetrieveCreatorInfoUseEffect from "./hooks/creator/retrieve-creator-info-use-effect"
 import useRetrieveMyPurchasedExclusiveContentUseEffect
 	from "./hooks/positions-and-transactions/retrieve-my-purchased-exclusive-content-use-effect"
 import useRetrieveWalletBalanceUseEffect from "./hooks/solana/retrieve-wallet-balance-use-effect"
 import useRedirectBackToRegisterUsername from "./hooks/redirects/redirect-back-to-register-username"
 import useRetrievePersonalInfoUseEffect from "./hooks/personal-info/retrieve-personal-info-use-effect"
+import useDefaultCurrencyListenerUseEffect from "./hooks/listeners/default-currency-listener-use-effect"
 import useResetInstantAccessStageOnLocationChangeUseEffect from "./hooks/market/reset-instant-access-stage-on-location-change-use-effect"
 
 function App() {
@@ -36,6 +38,8 @@ function App() {
 	const getAuthDataFromStorage = useGetAuthDataFromStorage()
 	getAuthDataFromStorage()
 	useLogoutListenerUseEffect()
+	useSiteThemeListenerUseEffect()
+	useDefaultCurrencyListenerUseEffect()
 	useRetrieveWalletBalanceUseEffect()
 	useRetrievePersonalInfoUseEffect()
 	useRetrieveCreatorInfoUseEffect()

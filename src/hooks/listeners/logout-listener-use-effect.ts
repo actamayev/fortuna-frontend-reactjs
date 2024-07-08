@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import useLogout from "./logout"
+import useLogout from "../auth/logout"
 
 export default function useLogoutListenerUseEffect(): void {
 	const logout = useLogout()
