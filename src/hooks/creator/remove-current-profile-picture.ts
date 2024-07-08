@@ -25,10 +25,11 @@ export default function useRemoveCurrentProfilePicture(): (
 			if (!_.isEqual(response.status, 200) || isErrorResponse(response.data)) {
 				return
 			}
+			notificationsClass.setPositiveNotification("Profile picture removed")
 		} catch (error) {
 			console.error(error)
 			creatorClass.setProfilePictureUrl(profilePictureUrl)  // if fails, reset the url to what it previously was
-			notificationsClass.setNotification("Removing Profile picture failed. Please refresh and try again")
+			notificationsClass.setNegativeNotification("Unable to remove profile picture at this time. Please reload page and try again")
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass])
 

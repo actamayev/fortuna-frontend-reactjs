@@ -31,7 +31,7 @@ export default function useLoginSubmit (
 			setLoading(true)
 			const response = await fortunaApiClient.authDataService.login(loginInformation)
 			if (!_.isEqual(response.status, 200) || isNonSuccessResponse(response.data)) {
-				setError("Unable to login. Please reload and try again.")
+				setError("Unable to login. Please reload page and try again.")
 				return
 			}
 			setDataAfterLogin(response.data)

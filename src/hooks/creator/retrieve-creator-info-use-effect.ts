@@ -9,9 +9,9 @@ export default function useRetrieveCreatorInfoUseEffect(): void {
 	const creatorClass = useCreatorContext()
 
 	const retrievePersonalInfo = useCallback(async () => {
+		if (_.isNull(creatorClass)) return
 		try {
 			if (
-				_.isNull(creatorClass) ||
 				creatorClass.isRetrievingCreatorInfo === true ||
 				_.isNull(fortunaApiClient.httpClient.accessToken)
 			) return
@@ -26,7 +26,7 @@ export default function useRetrieveCreatorInfoUseEffect(): void {
 		} catch (error) {
 			console.error(error)
 		} finally {
-			if (!_.isNull(creatorClass)) creatorClass.setIsRetrievingCreatorInfo(false)
+			creatorClass.setIsRetrievingCreatorInfo(false)
 		}
 	}, [creatorClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.creatorDataService])
 

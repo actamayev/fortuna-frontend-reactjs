@@ -2,8 +2,9 @@ import _ from "lodash"
 import { useCallback } from "react"
 import { isErrorResponses } from "../../../utils/type-checks"
 import { useCreatorContext } from "../../../contexts/creator-context"
-import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 import { useNotificationsContext } from "../../../contexts/notifications-context"
+import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
+import convertSocialLinkToProperCasing from "../../../utils/convert-social-link-to-proper-casing"
 
 export default function useAddOrEditSocialLink(): (
 	socialLink: string,
@@ -17,8 +18,9 @@ export default function useAddOrEditSocialLink(): (
 		socialLink: string,
 		socialPlatform: SocialPlatformKey,
 	): Promise<void> => {
+		if (_.isNull(creatorClass)) return
 		try {
-			if (_.isNull(creatorClass) || _.isEmpty(socialLink.trim())) return
+			if (_.isEmpty(socialLink.trim())) return
 
 			const response = await fortunaApiClient.creatorDataService.addOrEditSocialPlatformLink(
 				socialLink, socialPlatform
@@ -27,10 +29,13 @@ export default function useAddOrEditSocialLink(): (
 			if (!_.isEqual(response.status, 200) || isErrorResponses(response.data)) {
 				creatorClass.removeSocialPlatformLink(socialPlatform)
 			}
-			notificationsClass.setNotification(`Saved ${_.upperFirst(socialPlatform)} link`)
+			notificationsClass.setPositiveNotification(`Saved ${convertSocialLinkToProperCasing(socialPlatform)} link`)
 		} catch (error) {
 			console.error(error)
-			if (!_.isNull(creatorClass)) creatorClass.removeSocialPlatformLink(socialPlatform)
+			creatorClass.removeSocialPlatformLink(socialPlatform)
+			notificationsClass.setNegativeNotification(
+				`Unable to add ${convertSocialLinkToProperCasing(socialPlatform)} link at this time. Please reload page and try again.`
+			)
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass])
 

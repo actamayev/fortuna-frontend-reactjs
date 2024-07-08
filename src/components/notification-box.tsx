@@ -13,8 +13,8 @@ function NotificationBox() {
 			unmountOnExit
 		>
 			<div
-				className="fixed bottom-5 right-1 transform -translate-x-1/2 bg-white dark:bg-black font-medium \
-					text-zinc-950 dark:text-white px-4 py-2 rounded-lg shadow-lg transition-opacity duration-300 ease-in-out"
+				className={`fixed bottom-2 right-2 transform -translate-x-1/2 ${notificationsClass.notificationBoxClasses} \
+					font-medium px-4 py-2 rounded-lg shadow-lg transition-opacity duration-300 ease-in-out`}
 				style={{
 					opacity: notificationsClass.notification ? 1 : 0,
 					transform: notificationsClass.notification ? "translateY(0)" : "translateY(100%)",

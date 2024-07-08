@@ -3,6 +3,7 @@ import { useCallback } from "react"
 import { isErrorResponses } from "../../utils/type-checks"
 import { useCreatorContext } from "../../contexts/creator-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import { useNotificationsContext } from "../../contexts/notifications-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useEditChannelName(): (
@@ -11,6 +12,7 @@ export default function useEditChannelName(): (
 	const creatorClass = useCreatorContext()
 	const fortunaApiClient = useApiClientContext()
 	const personalInfoClass = usePersonalInfoContext()
+	const notificationsClass = useNotificationsContext()
 
 	const editChannelName = useCallback(async (
 		channelName: string,
@@ -32,10 +34,12 @@ export default function useEditChannelName(): (
 			}
 
 			creatorClass.setChannelName(channelName)
+			notificationsClass.setPositiveNotification("Channel name saved")
 		} catch (error) {
 			console.error(error)
+			notificationsClass.setNegativeNotification("Unable to edit channel name at this time. Please reload page and try again.")
 		}
-	}, [creatorClass, fortunaApiClient.creatorDataService, personalInfoClass?.username])
+	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass, personalInfoClass?.username])
 
 	return editChannelName
 }

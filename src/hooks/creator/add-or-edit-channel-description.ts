@@ -2,6 +2,7 @@ import _ from "lodash"
 import { useCallback } from "react"
 import { isErrorResponses } from "../../utils/type-checks"
 import { useCreatorContext } from "../../contexts/creator-context"
+import { useNotificationsContext } from "../../contexts/notifications-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useAddOrEditChannelDescription(): (
@@ -9,6 +10,7 @@ export default function useAddOrEditChannelDescription(): (
 ) => Promise<void> {
 	const creatorClass = useCreatorContext()
 	const fortunaApiClient = useApiClientContext()
+	const notificationsClass = useNotificationsContext()
 
 	const addOrEditChannelDescription = useCallback(async (
 		channelDescription: string
@@ -27,10 +29,12 @@ export default function useAddOrEditChannelDescription(): (
 			}
 
 			creatorClass.setChannelDescription(channelDescription)
+			notificationsClass.setPositiveNotification("Channel description saved")
 		} catch (error) {
 			console.error(error)
+			notificationsClass.setNegativeNotification("Unable to edit channel description at this time. Please reload page and try again.")
 		}
-	}, [creatorClass, fortunaApiClient.creatorDataService])
+	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass])
 
 	return addOrEditChannelDescription
 }

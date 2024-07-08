@@ -5,6 +5,7 @@ import { useVideoContext } from "../../contexts/video-context"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { useMarketContext } from "../../contexts/market-context"
 import useRetrieveWalletBalance from "../solana/retrieve-wallet-balance"
+import { useNotificationsContext } from "../../contexts/notifications-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import getTieredAccessPriceUsd from "../../utils/video-access-tiers/get-tiered-access-price-usd"
 import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
@@ -19,6 +20,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 	const solanaClass = useSolanaContext()
 	const marketClass = useMarketContext()
 	const fortunaApiClient = useApiClientContext()
+	const notificationClass = useNotificationsContext()
 	const retrieveWalletBalance = useRetrieveWalletBalance()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const confirmUserHasSufficientFundsForInstantAccess = useConfirmUserHasSufficientFundsForInstantAccess()
@@ -53,6 +55,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 				uuid: video.uuid
 			}
 			positionsAndTransactionsClass.addExclusiveContent(exclusiveContentToAddToList)
+			notificationClass.setSuperPositiveNotification("Successfully purchased access to video. Enjoy!")
 			videoClass.updateVideoDetailsAfterUserPurchase(
 				videoUUID,
 				tierNumber,
@@ -71,11 +74,12 @@ export default function usePurchaseExclusiveContentAccess(): (
 			// Add that single new transaction to the transaction array
 		} catch (error) {
 			console.error(error)
+			notificationClass.setNegativeNotification("Unable to purchase access to video at this time. Please reload page and try again")
 		} finally {
 			setIsLoading(false)
 		}
 	}, [marketClass, solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.marketDataService,
-		positionsAndTransactionsClass, confirmUserHasSufficientFundsForInstantAccess, videoClass, retrieveWalletBalance])
+		positionsAndTransactionsClass, confirmUserHasSufficientFundsForInstantAccess, videoClass, retrieveWalletBalance, notificationClass])
 
 	return purchaseInstantAccess
 }

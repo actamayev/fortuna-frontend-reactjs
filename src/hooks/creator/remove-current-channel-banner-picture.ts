@@ -25,10 +25,11 @@ export default function useRemoveCurrentChannelBannerPicture(): (
 			if (!_.isEqual(response.status, 200) || isErrorResponse(response.data)) {
 				return
 			}
+			notificationsClass.setPositiveNotification("Channel banner removed")
 		} catch (error) {
 			console.error(error)
 			creatorClass.setChannelBannerUrl(channelBannerUrl) // if fails, reset the url to what it previously was
-			notificationsClass.setNotification("Removing Channel Banner failed. Please refresh and try again")
+			notificationsClass.setNegativeNotification("Unable to remove channel banner at this time. Please reload page and try again")
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass])
 
