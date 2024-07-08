@@ -34,10 +34,10 @@ export default function useEditChannelName(): (
 			}
 
 			creatorClass.setChannelName(channelName)
-			notificationsClass.setPositiveNotification("Successfully changed channel name")
+			notificationsClass.setPositiveNotification("Channel name saved")
 		} catch (error) {
 			console.error(error)
-			notificationsClass.setNegativeNotification("Unable to change channel name at this time. Please reload page and try again.")
+			notificationsClass.setNegativeNotification("Unable to edit channel name at this time. Please reload page and try again.")
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass, personalInfoClass?.username])
 

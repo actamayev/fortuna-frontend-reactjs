@@ -29,7 +29,7 @@ export default function useAddOrEditChannelDescription(): (
 			}
 
 			creatorClass.setChannelDescription(channelDescription)
-			notificationsClass.setPositiveNotification("Successfully edited channel description")
+			notificationsClass.setPositiveNotification("Channel description saved")
 		} catch (error) {
 			console.error(error)
 			notificationsClass.setNegativeNotification("Unable to edit channel description at this time. Please reload page and try again.")
