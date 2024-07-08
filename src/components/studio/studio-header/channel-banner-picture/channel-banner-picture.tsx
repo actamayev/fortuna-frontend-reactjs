@@ -4,7 +4,6 @@ import { useRef, useState, useCallback } from "react"
 import UploadChannelBannerPicture from "./upload-channel-banner-picture"
 import ShowCurrentChannelBannerPicture from "./show-current-channel-banner-picture"
 
-// eslint-disable-next-line max-lines-per-function
 function ChannelBannerPicture() {
 	const [isHovered, setIsHovered] = useState(false)
 	const [previewUrl, setPreviewUrl] = useState<null | string>(null)

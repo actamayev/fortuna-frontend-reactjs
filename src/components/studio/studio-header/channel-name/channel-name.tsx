@@ -7,7 +7,6 @@ import SaveChannelNameButton from "./save-channel-name-button"
 import useAddOrEditChannelName from "../../../../hooks/creator/add-or-edit-channel-name"
 import useAssignDefaultChannelName from "../../../../hooks/creator/assign-default-channel-name"
 
-// eslint-disable-next-line max-lines-per-function
 function ChannelName() {
 	const [channelName, setChannelName] = useState("")
 	const [isEditing, setIsEditing] = useState(false)
