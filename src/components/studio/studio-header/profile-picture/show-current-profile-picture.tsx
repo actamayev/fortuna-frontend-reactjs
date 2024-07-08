@@ -18,7 +18,7 @@ function ShowCurrentProfilePicture(props: Props) {
 	const defaultSiteTheme = useDefaultSiteTheme()
 
 	return (
-		<div className="relative inline-block" style={{ minWidth: "128px", maxWidth: "128px" }} >
+		<div className="relative inline-block" style={{ minWidth: "128px", maxWidth: "128px" }}>
 			{personalInfoClass?.profilePictureUrl ? (
 				<img
 					src={personalInfoClass.profilePictureUrl}

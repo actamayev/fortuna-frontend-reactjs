@@ -12,4 +12,3 @@ export default function useHandleClickExternalSocialLink(): (socialLink: string)
 
 	return handleClickExternalSocialLink
 }
-

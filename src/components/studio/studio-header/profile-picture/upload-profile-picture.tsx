@@ -37,7 +37,7 @@ function UploadProfilePicture(props: Props) {
 	// TODO: Add ability to delete current pfp (resets to stock pfp picture). Same for banner. It should update is_active to false
 
 	return (
-		<div className="relative inline-block" style={{ minWidth: "128px", maxWidth: "128px" }} >
+		<div className="relative inline-block" style={{ minWidth: "128px", maxWidth: "128px" }}>
 			<img
 				src={previewUrl}
 				className="w-32 h-32 rounded-full object-cover cursor-pointer"
