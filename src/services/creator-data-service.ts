@@ -51,4 +51,16 @@ export default class CreatorDataService {
 			`${this.pathHeader}/remove-social-platform-link/${socialPlatform}`
 		)
 	}
+
+	async removeCurrentProfilePicture(): Promise<AxiosResponse<SuccessResponse | ErrorResponse>> {
+		return await this.httpClient.http.post<SuccessResponse | ErrorResponse>(
+			`${this.pathHeader}/remove-current-profile-picture`
+		)
+	}
+
+	async removeCurrentChannelBannerPicture(): Promise<AxiosResponse<SuccessResponse | ErrorResponse>> {
+		return await this.httpClient.http.post<SuccessResponse | ErrorResponse>(
+			`${this.pathHeader}/remove-current-channel-banner-picture`
+		)
+	}
 }
