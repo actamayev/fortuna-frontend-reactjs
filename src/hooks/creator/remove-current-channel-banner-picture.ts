@@ -4,11 +4,14 @@ import { isErrorResponse } from "../../utils/type-checks"
 import { useCreatorContext } from "../../contexts/creator-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useRemoveCurrentChannelBannerPicture(): () => Promise<void> {
+export default function useRemoveCurrentChannelBannerPicture(): (
+	setIsDeletingCurrentPicture: React.Dispatch<React.SetStateAction<boolean>>
+) => Promise<void> {
 	const creatorClass = useCreatorContext()
 	const fortunaApiClient = useApiClientContext()
 
 	const removeCurrentChannelBannerPicture = useCallback(async (
+		setIsDeletingCurrentPicture: React.Dispatch<React.SetStateAction<boolean>>
 	): Promise<void> => {
 		try {
 			if (_.isNull(creatorClass)) return
@@ -20,6 +23,7 @@ export default function useRemoveCurrentChannelBannerPicture(): () => Promise<vo
 			}
 
 			creatorClass.setChannelBannerUrl(null)
+			setIsDeletingCurrentPicture(false)
 		} catch (error) {
 			console.error(error)
 		}

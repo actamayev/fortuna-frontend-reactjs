@@ -4,11 +4,14 @@ import { isErrorResponse } from "../../utils/type-checks"
 import { useCreatorContext } from "../../contexts/creator-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useRemoveCurrentProfilePicture(): () => Promise<void> {
+export default function useRemoveCurrentProfilePicture(): (
+	setIsDeletingCurrentPicture: React.Dispatch<React.SetStateAction<boolean>>
+) => Promise<void> {
 	const creatorClass = useCreatorContext()
 	const fortunaApiClient = useApiClientContext()
 
 	const removeCurrentProfilePicture = useCallback(async (
+		setIsDeletingCurrentPicture: React.Dispatch<React.SetStateAction<boolean>>
 	): Promise<void> => {
 		try {
 			if (_.isNull(creatorClass)) return
@@ -20,6 +23,7 @@ export default function useRemoveCurrentProfilePicture(): () => Promise<void> {
 			}
 
 			creatorClass.setProfilePictureUrl(null)
+			setIsDeletingCurrentPicture(false)
 		} catch (error) {
 			console.error(error)
 		}

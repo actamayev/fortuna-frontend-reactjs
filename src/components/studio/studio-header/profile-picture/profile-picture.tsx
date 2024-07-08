@@ -64,8 +64,6 @@ function ProfilePicture() {
 		)
 	}
 
-	// TODO: Add ability to delete current pfp (resets to stock pfp picture). Same for banner. It should update is_active to false
-
 	return (
 		<UploadProfilePicture
 			previewUrl={previewUrl}
