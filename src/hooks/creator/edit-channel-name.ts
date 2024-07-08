@@ -5,14 +5,14 @@ import { useCreatorContext } from "../../contexts/creator-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useAddOrEditChannelName(): (
+export default function useEditChannelName(): (
 	channelName: string,
 ) => Promise<void> {
 	const creatorClass = useCreatorContext()
 	const fortunaApiClient = useApiClientContext()
 	const personalInfoClass = usePersonalInfoContext()
 
-	const addOrEditChannelName = useCallback(async (
+	const editChannelName = useCallback(async (
 		channelName: string,
 	): Promise<void> => {
 		try {
@@ -25,7 +25,7 @@ export default function useAddOrEditChannelName(): (
 				))
 			) return
 
-			const response = await fortunaApiClient.creatorDataService.addOrEditChannelName(channelName)
+			const response = await fortunaApiClient.creatorDataService.editChannelName(channelName)
 
 			if (!_.isEqual(response.status, 200) || isErrorResponses(response.data)) {
 				return
@@ -37,5 +37,5 @@ export default function useAddOrEditChannelName(): (
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService, personalInfoClass?.username])
 
-	return addOrEditChannelName
+	return editChannelName
 }

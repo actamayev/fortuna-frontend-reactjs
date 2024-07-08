@@ -4,7 +4,7 @@ import { useState, useCallback, useRef, useEffect } from "react"
 import CancelEditingButton from "../cancel-editing-button"
 import ChannelNameTextInput from "./channel-name-text-input"
 import SaveChannelNameButton from "./save-channel-name-button"
-import useAddOrEditChannelName from "../../../../hooks/creator/add-or-edit-channel-name"
+import useEditChannelName from "../../../../hooks/creator/edit-channel-name"
 import useAssignDefaultChannelName from "../../../../hooks/creator/assign-default-channel-name"
 
 function ChannelName() {
@@ -13,7 +13,7 @@ function ChannelName() {
 	const maxLength = 60
 	const inputRef = useRef<HTMLInputElement>(null)
 	const assignDefaultChannelName = useAssignDefaultChannelName()
-	const addOrEditChannelName = useAddOrEditChannelName()
+	const editChannelName = useEditChannelName()
 
 	useEffect(() => {
 		assignDefaultChannelName(setChannelName)
@@ -35,10 +35,10 @@ function ChannelName() {
 	}, [assignDefaultChannelName])
 
 	const handleSaveChannelName = useCallback(async () => {
-		if (!_.isEmpty(channelName)) await addOrEditChannelName(channelName)
+		if (!_.isEmpty(channelName)) await editChannelName(channelName)
 		else assignDefaultChannelName(setChannelName)
 		setIsEditing(false)
-	}, [addOrEditChannelName, assignDefaultChannelName, channelName, setChannelName])
+	}, [editChannelName, assignDefaultChannelName, channelName, setChannelName])
 
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {

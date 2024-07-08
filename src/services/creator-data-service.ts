@@ -25,9 +25,9 @@ export default class CreatorDataService {
 		)
 	}
 
-	async addOrEditChannelName(channelName: string): Promise<AxiosResponse<SuccessResponse | ErrorResponses>> {
+	async editChannelName(channelName: string): Promise<AxiosResponse<SuccessResponse | ErrorResponses>> {
 		return await this.httpClient.http.post<SuccessResponse | ErrorResponses>(
-			`${this.pathHeader}/add-or-edit-channel-name`, { channelName }
+			`${this.pathHeader}/edit-channel-name`, { channelName }
 		)
 	}
 
