@@ -21,7 +21,7 @@ function CreatorProfilePicture(props: Props) {
 			) : (
 				<img
 					src={creatorData.creatorProfilePictureUrl}
-					alt={`Profile of ${creatorData.creatorUsername}`}
+					alt={`Profile of ${creatorData.channelName}`}
 					className="w-32 h-32 rounded-full object-cover"
 				/>
 			)}

@@ -16,6 +16,7 @@ declare global {
 		numberOfLikes: number
 		numberOfDislikes: number
 		userLikeStatus: boolean | null
+		channelName: string
 	}
 
 	interface TierDataFromDB extends TierDataToSend {

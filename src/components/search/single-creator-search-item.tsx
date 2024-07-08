@@ -32,12 +32,12 @@ function SingleCreatorSearchItem(props: Props) {
 			) : (
 				<img
 					src={creatorData.creatorProfilePictureUrl}
-					alt={`Profile of ${creatorData.creatorUsername}`}
+					alt={`Profile of ${creatorData.channelName}`}
 					className="w-32 h-32 rounded-full object-cover"
 				/>
 			)}
 			<div className="flex-grow text-lg text-center dark:text-zinc-200">
-				{creatorData.creatorUsername}
+				{creatorData.channelName}
 			</div>
 		</div>
 	)
