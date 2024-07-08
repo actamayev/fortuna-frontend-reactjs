@@ -4,6 +4,7 @@ import { isErrorResponse } from "../../utils/type-checks"
 import useRetrieveSolPrice from "../solana/retrieve-sol-price"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import { useNotificationsContext } from "../../contexts/notifications-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import useUpdateTransferFundsDetiailsNewDefaultCurrency from "../solana/transfer-funds/update-transfer-funds-details-new-default-currency"
 
@@ -11,6 +12,7 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 	const solanaClass = useSolanaContext()
 	const fortunaApiClient = useApiClientContext()
 	const personalInfoClass = usePersonalInfoContext()
+	const notificationsClass = useNotificationsContext()
 	const retrieveSolPrice = useRetrieveSolPrice()
 	const updateTransferFundsDetailsNewDefaultCurrency = useUpdateTransferFundsDetiailsNewDefaultCurrency()
 
@@ -37,11 +39,13 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 					throw Error("Unable to save new default currency")
 				}
 			}
+			notificationsClass.setPositiveNotification(`Successfully changed default currency to ${newCurrency.toUpperCase()}`)
 		} catch (error) {
 			console.error(error)
+			notificationsClass.setNegativeNotification("Unable to change default currency at this time. Please reload page and try again.")
 		}
 	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService, personalInfoClass,
-		retrieveSolPrice, solanaClass, updateTransferFundsDetailsNewDefaultCurrency])
+		retrieveSolPrice, solanaClass, updateTransferFundsDetailsNewDefaultCurrency, notificationsClass])
 
 	return setDefaultCurrency
 }

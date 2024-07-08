@@ -34,9 +34,12 @@ export default function useRemoveSocialLink(): (
 			}
 
 			creatorClass.removeSocialPlatformLink(socialPlatform)
-			notificationsClass.setNotification(`Removed ${_.upperFirst(socialPlatform)}`)
+			notificationsClass.setPositiveNotification(`Removed ${_.upperFirst(socialPlatform)}`)
 		} catch (error) {
 			console.error(error)
+			notificationsClass.setNegativeNotification(
+				`Unable to remove ${_.upperFirst(socialPlatform)} link at this time. Please reload page and try again.`
+			)
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass])
 

@@ -4,6 +4,7 @@ import useTypedNavigate from "../../navigate/typed-navigate"
 import { isNonSuccessResponse } from "../../../utils/type-checks"
 import useConfirmNewVideoDetails from "./confirm-new-video-details"
 import { useCreatorContext } from "../../../contexts/creator-context"
+import { useNotificationsContext } from "../../../contexts/notifications-context"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 
 export default function useCreateVideoOnclick(): (
@@ -14,15 +15,16 @@ export default function useCreateVideoOnclick(): (
 	const fortunaApiClient = useApiClientContext()
 	const creatorClass = useCreatorContext()
 	const confirmNewVideoDetails = useConfirmNewVideoDetails()
+	const notificationsClass = useNotificationsContext()
 
 	// eslint-disable-next-line complexity
 	const createVideoOnclick = useCallback(async (
 		setError: React.Dispatch<React.SetStateAction<string>>,
 		setStatus: React.Dispatch<React.SetStateAction<string>>
 	): Promise<void> => {
+		if (_.isNull(creatorClass)) return
 		try {
 			if (
-				_.isNull(creatorClass) ||
 				_.isNull(creatorClass.newVideoDetails.selectedVideo) ||
 				_.isNull(creatorClass.newVideoDetails.selectedImage) ||
 				confirmNewVideoDetails === false
@@ -80,15 +82,18 @@ export default function useCreateVideoOnclick(): (
 
 			creatorClass.addContent(myContent)
 			creatorClass.resetNewVideoDetails()
+			notificationsClass.setPositiveNotification("Successfully uploaded video")
 
 			navigate("/creator/studio")
 		} catch (error) {
 			console.error(error)
+			notificationsClass.setNegativeNotification("Unable to upload video at this time. Please reload page and try again.")
 		} finally {
 			setStatus("")
-			if (!_.isNull(creatorClass)) creatorClass.setIsNewVideoLoading(false)
+			creatorClass.setIsNewVideoLoading(false)
 		}
-	}, [creatorClass, confirmNewVideoDetails, fortunaApiClient.uploadDataService, fortunaApiClient.creatorDataService, navigate])
+	}, [creatorClass, confirmNewVideoDetails, fortunaApiClient.uploadDataService,
+		fortunaApiClient.creatorDataService, notificationsClass, navigate])
 
 	return createVideoOnclick
 }

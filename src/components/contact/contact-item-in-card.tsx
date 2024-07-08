@@ -14,7 +14,7 @@ function ContactItemInCard(props: Props) {
 	const copyToClipboard = useCallback(async () => {
 		try {
 			await navigator.clipboard.writeText(email)
-			notificationsClass.setNotification(`${email} copied to clipboard`)
+			notificationsClass.setNeutralNotification(`${email} copied to clipboard`)
 		} catch (error) {
 			console.error(error)
 		}

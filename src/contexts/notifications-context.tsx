@@ -5,12 +5,28 @@ import { useContext, useMemo, createContext } from "react"
 class NotificationsClass {
 	public notification: string | null = null
 	private timer: NodeJS.Timeout | null = null
+	public notificationBoxClasses: string = "bg-zinc-100 dark:bg-zinc-900 text-zinc-950 dark:text-white"
 
 	constructor() {
 		makeAutoObservable(this)
 	}
 
-	public setNotification = action((newNotification: string): void => {
+	public setPositiveNotification = action((notificationMessage: string): void => {
+		this.setNotification(notificationMessage)
+		this.notificationBoxClasses = "bg-blue-500 dark:bg-blue-500 text-white dark:text-white"
+	})
+
+	public setNeutralNotification = action((notificationMessage: string): void => {
+		this.setNotification(notificationMessage)
+		this.notificationBoxClasses = "bg-zinc-100 dark:bg-zinc-900 text-zinc-950 dark:text-white"
+	})
+
+	public setNegativeNotification = action((notificationMessage: string): void => {
+		this.setNotification(notificationMessage)
+		this.notificationBoxClasses = "bg-red-500 dark:bg-red-500 text-white dark:text-white"
+	})
+
+	private setNotification = action((newNotification: string): void => {
 		this.notification = newNotification
 		this.resetTimer()
 	})
