@@ -2,8 +2,8 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import ChannelBannerPicture from "./channel-banner-picture"
-import { useVideoContext } from "../../contexts/video-context"
 import CreatorProfilePicture from "./creator-profile-picture"
+import { useVideoContext } from "../../contexts/video-context"
 import ShowChannelDescription from "./show-channel-description"
 import ShowChannelSocialLinks from "./show-channel-social-links"
 import { removeLeadingAt } from "../../utils/leading-at-operations"
@@ -35,7 +35,7 @@ function CreatorPageHeaderArea() {
 							@{creatorData.creatorUsername}
 						</div>
 						<div className="text-zinc-600 dark:text-zinc-300 text-sm ml-1">
-							• {creatorData.videoData.length} videos
+							• {creatorData.videoData.length} video{creatorData.videoData.length === 1 ? "" : "s"}
 						</div>
 					</div>
 					<ShowChannelDescription channelDescription={creatorData.channelDescription} />

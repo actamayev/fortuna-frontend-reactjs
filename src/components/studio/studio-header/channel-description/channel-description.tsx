@@ -89,7 +89,13 @@ function ChannelDescription() {
 					}}
 					onClick={toggleEditMode}
 				>
-					{_.truncate(channelDescription, { length: 350, omission: "..." })}
+					{_.isEmpty(channelDescription) ? (
+						<>Click here to add a description</>
+					) : (
+						<>
+							{_.truncate(channelDescription, { length: 350, omission: "..." })}
+						</>
+					)}
 				</span>
 			)}
 		</div>

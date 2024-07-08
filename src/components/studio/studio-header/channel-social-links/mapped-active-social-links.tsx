@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
+import { FaPlusCircle } from "react-icons/fa"
 import platformIcons from "../../../../utils/platform-icons"
 import { useCreatorContext } from "../../../../contexts/creator-context"
 import useDefaultSiteTheme from "../../../../hooks/memos/default-site-theme"
@@ -17,17 +18,26 @@ function MappedActiveSocialLinks() {
 
 	return (
 		<div className="flex">
-			{nonEmptySocialPlatformLinks.map(nonEmptySocialPlatformLink => {
-				const IconComponent = platformIcons[nonEmptySocialPlatformLink.socialPlatform]
-				return (
-					<div key={nonEmptySocialPlatformLink.socialPlatform} className="mx-2">
-						<IconComponent
-							size={24}
-							color={defaultSiteTheme === "light" ? "black" : "white"}
-						/>
-					</div>
-				)
-			})}
+			{_.isEmpty(nonEmptySocialPlatformLinks) ? (
+				<FaPlusCircle
+					size={24}
+					color={defaultSiteTheme === "light" ? "black" : "white"}
+				/>
+			) : (
+				<>
+					{nonEmptySocialPlatformLinks.map(nonEmptySocialPlatformLink => {
+						const IconComponent = platformIcons[nonEmptySocialPlatformLink.socialPlatform]
+						return (
+							<div key={nonEmptySocialPlatformLink.socialPlatform} className="mx-1">
+								<IconComponent
+									size={24}
+									color={defaultSiteTheme === "light" ? "black" : "white"}
+								/>
+							</div>
+						)
+					})}
+				</>
+			)}
 		</div>
 	)
 }
