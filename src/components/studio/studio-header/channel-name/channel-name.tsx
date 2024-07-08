@@ -86,15 +86,13 @@ function ChannelName() {
 					inputRef={inputRef}
 				/>
 			</div>
-			<>
-				<CancelEditingButton
-					cancelEditAction={cancelEditAction}
-					extraClasses="mb-4"
-				/>
-				{!_.isEmpty(channelName) && (
-					<SaveChannelNameButton handleSaveChannelName={handleSaveChannelName} />
-				)}
-			</>
+			<CancelEditingButton
+				cancelEditAction={cancelEditAction}
+				extraClasses="mb-4"
+			/>
+			{!_.isEmpty(channelName) && (
+				<SaveChannelNameButton handleSaveChannelName={handleSaveChannelName} />
+			)}
 		</div>
 	)
 }
