@@ -59,13 +59,9 @@ function SingleMyContent(props: Props) {
 					</div>
 				</div>
 				<div className="flex-grow">
-					<div className="text-xl dark:text-zinc-50 font-medium">
-						<VideoName content={content} toggleModalOpen={toggleModalOpen} />
-					</div>
-					<div className="text-sm dark:text-zinc-400">
-						<VideoDescription content={content} toggleModalOpen={toggleModalOpen} />
-					</div>
-					<div className="text-sm dark:text-zinc-400">
+					<VideoName content={content} toggleModalOpen={toggleModalOpen} />
+					<VideoDescription content={content} toggleModalOpen={toggleModalOpen} />
+					<div className="text-sm text-zinc-600 dark:text-zinc-400 ml-1.5">
 						{dateFormatter(content.createdAt)}
 					</div>
 				</div>

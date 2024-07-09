@@ -2,14 +2,14 @@ import { observer } from "mobx-react"
 import { useState, useRef } from "react"
 import DropdownItemsContainer from "./dropdown-items-container"
 import { useCreatorContext } from "../../../contexts/creator-context"
-import useClickOutSideUseEffect from "../../../hooks/click-outside-use-effect"
+import useClickOutsideUseEffect from "../../../hooks/click-outside/click-outside-use-effect"
 import ShowUserProfileImageOrDefaultImage from "../../show-user-profile-image-or-default-image"
 
 function HeaderDropdown () {
 	const [isOpen, setIsOpen] = useState(false)
 	const dropdownRef = useRef<HTMLDivElement>(null)
 	const creatorClass = useCreatorContext()
-	useClickOutSideUseEffect(dropdownRef, setIsOpen)
+	useClickOutsideUseEffect(dropdownRef, setIsOpen)
 
 	return (
 		<div className="flex items-center">

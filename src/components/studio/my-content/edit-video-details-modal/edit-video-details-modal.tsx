@@ -1,9 +1,10 @@
+import { useRef } from "react"
 import { observer } from "mobx-react"
 import { FaTimes } from "react-icons/fa"
-import { useCallback, useRef } from "react"
 import VideoNameTextInput from "./video-name-text-input"
 import HoverOutlineComponent from "../../../hover-outline-component"
 import VideoDescriptionTextInput from "./video-description-text-input"
+import useClickOutsideModalUseEffect from "../../../../hooks/click-outside/click-outside-modal-use-effect"
 
 interface Props {
 	videoUUID: string
@@ -13,18 +14,11 @@ interface Props {
 function EditVideoDetailsModal(props: Props) {
 	const { videoUUID, toggleModalOpen } = props
 	const modalRef = useRef<HTMLDivElement>(null)
-
-	const handleClickOutside = useCallback((event: React.MouseEvent) => {
-		if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-			toggleModalOpen()
-		}
-	}, [toggleModalOpen])
+	const mouseDownTarget = useRef<EventTarget | null>(null)
+	useClickOutsideModalUseEffect(mouseDownTarget, modalRef, toggleModalOpen)
 
 	return (
-		<div
-			className="fixed inset-0 flex items-start justify-center z-50 bg-black bg-opacity-50 pt-28 text-zinc-800 dark:text-zinc-50"
-			onClick={handleClickOutside}
-		>
+		<div className="fixed inset-0 flex items-start justify-center z-50 bg-black bg-opacity-50 pt-28 text-zinc-800 dark:text-zinc-50">
 			<div
 				ref={modalRef}
 				className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg w-2/3"
