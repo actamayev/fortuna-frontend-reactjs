@@ -1,6 +1,5 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import AddNewContent from "./add-new-content"
 import SingleMyContent from "./single-my-content"
 import { useCreatorContext } from "../../../contexts/creator-context"
 
@@ -14,8 +13,7 @@ function MyContentMap() {
 	}
 
 	return (
-		<div className="grid grid-cols-4">
-			<AddNewContent />
+		<div className="flex flex-col space-y-4">
 			{creatorClass.myContent.map(singleMyContent => (
 				<SingleMyContent key={singleMyContent.uuid} content={singleMyContent} />
 			))}

@@ -29,7 +29,8 @@ export default function SingleVideoSearchItem(props: Props) {
 
 	return (
 		<div
-			className="flex items-start space-x-4 p-4 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-7/12"
+			className="flex items-start space-x-4 p-4 rounded-lg cursor-pointer w-7/12
+			bg-zinc-100 dark:bg-zinc-800  border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700"
 			onClick={navigateToVideoPageCallback}
 		>
 			<img
