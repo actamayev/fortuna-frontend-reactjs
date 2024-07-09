@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react"
 import VideoName from "./video-name"
 import VideoDescription from "./video-description"
 import VideoListingStatus from "./video-listing-status"
-import dateFormatter from "../../../utils/date-formatter"
+import { formatGBDate } from "../../../utils/date-formatter"
 import EditVideoDetailsModal from "./edit-video-details-modal/edit-video-details-modal"
 
 interface Props {
@@ -38,41 +38,45 @@ function SingleMyContent(props: Props) {
 	}, [isVideoEditingModalOpen])
 
 	return (
-		<>
-			<div className="flex bg-zinc-100 dark:bg-zinc-800 rounded-lg px-4 pt-4 pb-3 border border-zinc-200 dark:border-zinc-700">
-				<div className="flex-shrink-0 mr-4 relative">
+		<div className="grid grid-cols-12 gap-4 bg-white dark:bg-neutral-900
+			p-4 border-b border-gray-200 dark:border-gray-800"
+		>
+			<div className="col-span-2 relative">
+				<div className="aspect-w-16 aspect-h-9">
 					<img
 						src={content.imageUrl}
 						alt={content.videoName}
-						className="w-64 h-36 object-cover rounded-lg"
+						className="object-cover rounded-lg"
 						style={{
 							filter: content.videoListingStatus === "UNLISTED" ? "brightness(0.6)" : "none"
 						}}
 					/>
 					{content.videoListingStatus === "SOLDOUT" && (
 						<div className="absolute top-2 right-2 bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded">
-							Sold Out
+						Sold Out
 						</div>
 					)}
-					<div className="flex justify-center">
-						<VideoListingStatus content={content}/>
-					</div>
 				</div>
+			</div>
+			<div className="col-span-2">
 				<div className="flex-grow">
 					<VideoName content={content} toggleModalOpen={toggleModalOpen} />
 					<VideoDescription content={content} toggleModalOpen={toggleModalOpen} />
-					<div className="text-sm text-zinc-600 dark:text-zinc-400 ml-1.5">
-						{dateFormatter(content.createdAt)}
-					</div>
 				</div>
-				{isVideoEditingModalOpen && (
-					<EditVideoDetailsModal
-						videoUUID={content.uuid}
-						toggleModalOpen={toggleModalOpen}
-					/>
-				)}
 			</div>
-		</>
+			<div className="flex col-span-2">
+				<VideoListingStatus content={content}/>
+			</div>
+			<div className="text-sm text-zinc-700 dark:text-zinc-300 col-span-2">
+				{formatGBDate(content.createdAt)}
+			</div>
+			{isVideoEditingModalOpen && (
+				<EditVideoDetailsModal
+					videoUUID={content.uuid}
+					toggleModalOpen={toggleModalOpen}
+				/>
+			)}
+		</div>
 	)
 }
 

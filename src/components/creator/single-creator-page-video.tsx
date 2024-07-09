@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import dateFormatter from "../../utils/date-formatter"
+import { dateFormatter } from "../../utils/date-formatter"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 
 interface Props {
