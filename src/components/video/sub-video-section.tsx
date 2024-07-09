@@ -1,10 +1,9 @@
-import _ from "lodash"
 import { useCallback } from "react"
-import { FaUserCircle } from "react-icons/fa"
 import ShareVideoButton from "./like-dislike/share-video-button"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import VideoLikeDislikeSection from "./like-dislike/video-like-dislike-section"
 import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
+import ShowUserProfileImageOrDefaultImage from "../show-user-profile-image-or-default-image"
 
 interface Props {
 	video: SingleVideoDataFromBackend
@@ -29,19 +28,12 @@ export default function SubVideoSection(props: Props) {
 					<div className="flex items-center justify-between mb-2">
 						<div className="flex items-center">
 							<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center mr-2">
-								{_.isNull(creatorProfilePictureUrl) ? (
-									<FaUserCircle
-										className="min-w-full min-h-full object-cover cursor-pointer"
-										onClick={navigateToCreatorPageCallback}
-									/>
-								) : (
-									<img
-										src={creatorProfilePictureUrl}
-										alt="Creator's Profile"
-										className="min-w-full min-h-full object-cover cursor-pointer"
-										onClick={navigateToCreatorPageCallback}
-									/>
-								)}
+								<ShowUserProfileImageOrDefaultImage
+									profileImageUrl={creatorProfilePictureUrl}
+									extraClasses="min-w-full min-h-full object-cover cursor-pointer"
+									onClickCreatorPicture={navigateToCreatorPageCallback}
+									onClickDefaultPicture={navigateToCreatorPageCallback}
+								/>
 							</div>
 							<span
 								className="text-sm font-medium cursor-pointer text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"

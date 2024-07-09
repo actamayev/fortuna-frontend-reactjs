@@ -1,9 +1,9 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import { FaUserCircle } from "react-icons/fa"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
+import ShowUserProfileImageOrDefaultImage from "../show-user-profile-image-or-default-image"
 
 interface Props {
 	videoData: VideoDataLessVideoUrl
@@ -43,19 +43,12 @@ export default function SingleVideoSearchItem(props: Props) {
 					{_.truncate(videoData.videoName, { length: 24, omission: "..." })}
 				</div>
 				<div className="flex items-center space-x-2">
-					{videoData.creatorProfilePictureUrl ? (
-						<img
-							src={videoData.creatorProfilePictureUrl}
-							alt="Creator's Profile"
-							className="w-8 h-8 rounded-full object-cover cursor-pointer"
-							onClick={navigateToCreatorPageCallbackEvent}
-						/>
-					) : (
-						<FaUserCircle
-							className="w-8 h-8 rounded-full object-cover cursor-pointer"
-							onClick={navigateToCreatorPageCallback}
-						/>
-					)}
+					<ShowUserProfileImageOrDefaultImage
+						profileImageUrl={videoData.creatorProfilePictureUrl}
+						onClickCreatorPicture={navigateToCreatorPageCallbackEvent}
+						onClickDefaultPicture={navigateToCreatorPageCallback}
+						extraClasses="w-8 h-8 rounded-full object-cover cursor-pointer"
+					/>
 					<div
 						className="text-sm text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-100 cursor-pointer"
 						onClick={navigateToCreatorPageCallbackEvent}
