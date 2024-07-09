@@ -17,7 +17,7 @@ export default function SingleMyContent(props: Props) {
 	return (
 		<div
 			className="bg-zinc-100 dark:bg-zinc-800 rounded-lg p-4 border border-zinc-200 dark:border-zinc-700
-			cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 flex items-center"
+			cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 flex"
 			onClick={navigateToVideoPageCallback}
 		>
 			<div className="flex-shrink-0 mr-4 relative">
