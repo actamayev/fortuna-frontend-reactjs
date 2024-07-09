@@ -54,13 +54,13 @@ function VideoDescriptionTextInput(props: Props) {
 					Video Description
 				</label>
 				<textarea
+					ref={textAreaRef}
 					className={
 						`mt-0.5 p-1 border rounded text-zinc-800 dark:text-zinc-200 \
 					bg-white dark:bg-zinc-800 outline-none text-base font-medium w-full
 					${videoDescription.length === maxLength ?
 			"border-red-500 dark:border-red-500" : "border-zinc-200 dark:border-zinc-700"}`
 					}
-					ref={textAreaRef}
 					value={videoDescription}
 					onChange={handleChange}
 					onKeyDown={handleKeyDown}
