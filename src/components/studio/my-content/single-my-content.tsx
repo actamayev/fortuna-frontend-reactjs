@@ -1,9 +1,11 @@
 import { observer } from "mobx-react"
 import { useCallback, useEffect, useState } from "react"
 import VideoName from "./video-name"
+import EarningsSection from "./earnings-section"
 import VideoDescription from "./video-description"
 import VideoListingStatus from "./video-listing-status"
 import { formatGBDate } from "../../../utils/date-formatter"
+import LikesDislikesRatioSection from "./likes-dislikes-ratio-section"
 import EditVideoDetailsModal from "./edit-video-details-modal/edit-video-details-modal"
 
 interface Props {
@@ -38,9 +40,7 @@ function SingleMyContent(props: Props) {
 	}, [isVideoEditingModalOpen])
 
 	return (
-		<div className="grid grid-cols-12 gap-4 bg-white dark:bg-neutral-900
-			p-4 border-b border-gray-200 dark:border-gray-800"
-		>
+		<div className="grid grid-cols-12 gap-4 bg-white dark:bg-neutral-900 p-4 border-b border-gray-200 dark:border-gray-800">
 			<div className="col-span-2 relative">
 				<div className="aspect-w-16 aspect-h-9">
 					<img
@@ -53,7 +53,7 @@ function SingleMyContent(props: Props) {
 					/>
 					{content.videoListingStatus === "SOLDOUT" && (
 						<div className="absolute top-2 right-2 bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded">
-						Sold Out
+							Sold Out
 						</div>
 					)}
 				</div>
@@ -67,8 +67,14 @@ function SingleMyContent(props: Props) {
 			<div className="flex col-span-2">
 				<VideoListingStatus content={content}/>
 			</div>
-			<div className="text-sm text-zinc-700 dark:text-zinc-300 col-span-2">
+			<div className="col-span-2 text-sm text-zinc-700 dark:text-zinc-300">
 				{formatGBDate(content.createdAt)}
+			</div>
+			<div className="col-span-2">
+				<LikesDislikesRatioSection content={content} />
+			</div>
+			<div className="col-span-2 text-sm text-zinc-700 dark:text-zinc-300">
+				<EarningsSection content={content} />
 			</div>
 			{isVideoEditingModalOpen && (
 				<EditVideoDetailsModal
