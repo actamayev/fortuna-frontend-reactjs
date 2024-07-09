@@ -1,6 +1,6 @@
 import { useCallback } from "react"
+import SaveButton from "../save-button"
 import CancelEditingButton from "../cancel-editing-button"
-import SaveChannelDescriptionButton from "./save-channel-description-button"
 
 interface Props {
 	maxLength: number
@@ -63,7 +63,7 @@ export default function ChannelDescriptionTextInput(props: Props) {
 					<CancelEditingButton
 						cancelEditAction={cancelEditAction}
 					/>
-					<SaveChannelDescriptionButton handleSaveChannelDescription={handleSaveChannelDescription} />
+					<SaveButton handleSaveButton={handleSaveChannelDescription} />
 				</div>
 			</div>
 		</div>

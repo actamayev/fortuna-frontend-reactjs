@@ -1,9 +1,9 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useState, useCallback, useRef, useEffect } from "react"
+import SaveButton from "../save-button"
 import CancelEditingButton from "../cancel-editing-button"
 import ChannelNameTextInput from "./channel-name-text-input"
-import SaveChannelNameButton from "./save-channel-name-button"
 import useEditChannelName from "../../../../hooks/creator/edit-channel-name"
 import useAssignDefaultChannelName from "../../../../hooks/creator/assign-default-channel-name"
 
@@ -88,10 +88,10 @@ function ChannelName() {
 			</div>
 			<CancelEditingButton
 				cancelEditAction={cancelEditAction}
-				extraClasses="mb-4"
+				extraClasses="mb-4 ml-1"
 			/>
 			{!_.isEmpty(channelName) && (
-				<SaveChannelNameButton handleSaveChannelName={handleSaveChannelName} />
+				<SaveButton handleSaveButton={handleSaveChannelName} extraClasses="mb-4" />
 			)}
 		</div>
 	)

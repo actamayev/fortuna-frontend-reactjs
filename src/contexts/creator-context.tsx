@@ -4,7 +4,7 @@ import { action, makeAutoObservable } from "mobx"
 import { createContext, useContext, useMemo } from "react"
 
 class CreatorClass {
-	private _myContent: MyContent[] = []
+	public myContent: MyContent[] = []
 
 	public hasContentToRetrieve = true
 	public isRetrievingContent = false
@@ -33,14 +33,6 @@ class CreatorClass {
 
 	constructor() {
 		makeAutoObservable(this)
-	}
-
-	get myContent(): MyContent[] {
-		return this._myContent
-	}
-
-	set myContent(myContent: MyContent[]) {
-		this._myContent = myContent
 	}
 
 	private contextForMyContent(uuid: string): MyContent | undefined {
@@ -206,6 +198,12 @@ class CreatorClass {
 	get nonEmptySocialPlatformLinks(): SocialPlatformLinks[] {
 		return this.socialPlatformLinks.filter(link => link.socialLink.trim() !== "")
 	}
+
+	public updateVideoListingStatus = action((videoUUID: string) => {
+		const video = this.myContent.find(content => content.uuid === videoUUID)
+		if (_.isUndefined(video) || video.videoListingStatus === "SOLDOUT") return
+		video.videoListingStatus = video.videoListingStatus === "LISTED" ? "UNLISTED" : "LISTED"
+	})
 
 	public addSocialPlatformLink = action((socialPlatformLink: SocialPlatformLinks): void => {
 		const index = this.socialPlatformLinks.findIndex(

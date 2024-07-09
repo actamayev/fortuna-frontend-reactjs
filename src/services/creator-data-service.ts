@@ -63,4 +63,10 @@ export default class CreatorDataService {
 			`${this.pathHeader}/remove-current-channel-banner-picture`
 		)
 	}
+
+	async updateVideoListingStatus(videoUUID: string): Promise<AxiosResponse<AllCommonResponses>> {
+		return await this.httpClient.http.post<AllCommonResponses>(
+			`${this.pathHeader}/update-video-listing-status/${videoUUID}`
+		)
+	}
 }
