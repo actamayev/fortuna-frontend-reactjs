@@ -200,19 +200,19 @@ class CreatorClass {
 	}
 
 	public updateVideoListingStatus = action((videoUUID: string) => {
-		const video = this.myContent.find(content => content.uuid === videoUUID)
+		const video = this.contextForMyContent(videoUUID)
 		if (_.isUndefined(video) || video.videoListingStatus === "SOLDOUT") return
 		video.videoListingStatus = video.videoListingStatus === "LISTED" ? "UNLISTED" : "LISTED"
 	})
 
 	public updateVideoName = action((videoUUID: string, newVideoName: string) => {
-		const video = this.myContent.find(content => content.uuid === videoUUID)
-		if (_.isUndefined(video) || video.videoListingStatus === "SOLDOUT") return
+		const video = this.contextForMyContent(videoUUID)
+		if (_.isUndefined(video)) return
 		video.videoName = newVideoName
 	})
 
 	public updateVideoDescription = action((videoUUID: string, newVideoDescription: string) => {
-		const video = this.myContent.find(content => content.uuid === videoUUID)
+		const video = this.contextForMyContent(videoUUID)
 		if (_.isUndefined(video)) return
 		video.description = newVideoDescription
 	})

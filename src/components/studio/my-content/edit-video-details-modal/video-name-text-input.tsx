@@ -1,19 +1,22 @@
 import _ from "lodash"
+import { observer } from "mobx-react"
 import { useCallback, useEffect, useState } from "react"
 import SaveButton from "../../save-button"
 import useEditVideoName from "../../../../hooks/creator/edit-video-name"
+import { useCreatorContext } from "../../../../contexts/creator-context"
 import useAssignDefaultVideoName from "../../../../hooks/creator/assign-default-video-name"
 
 interface Props {
 	videoUUID: string
 }
 
-export default function VideoNameTextInput(props: Props) {
+function VideoNameTextInput(props: Props) {
 	const { videoUUID } = props
 	const maxLength = 100
 	const [videoName, setVideoName] = useState("")
 	const editVideoName = useEditVideoName()
 	const assignDefaultVideoName = useAssignDefaultVideoName()
+	const creatorClass = useCreatorContext()
 
 	useEffect(() => {
 		assignDefaultVideoName(videoUUID, setVideoName)
@@ -38,36 +41,34 @@ export default function VideoNameTextInput(props: Props) {
 	}, [handleSaveVideoName])
 
 	return (
-		<>
-			<div className="flex items-center">
-				<div className="relative flex flex-col">
-					<input
-						type="text"
-						className={
-							`mt-1 p-1 border rounded text-zinc-950 dark:text-zinc-200 \
-						bg-white dark:bg-zinc-800 outline-none text-3xl font-semibold
+		<div className="flex items-center w-full">
+			<div className="relative flex flex-col flex-grow">
+				<input
+					type="text"
+					className={
+						`mt-1 p-1 border rounded text-zinc-950 dark:text-zinc-200 \
+						bg-white dark:bg-zinc-800 outline-none text-3xl font-semibold w-full
 						${videoName.length === maxLength ?
 			"border-red-500 dark:border-red-500" : "border-zinc-200 dark:border-zinc-700"}`
-						}
-						value={videoName}
-						onChange={handleChange}
-						onKeyDown={handleKeyDown}
-						maxLength={maxLength}
-						style={{
-							minWidth: "100px",
-							width: `${videoName.length}ch`,
-							maxWidth: "1000px",
-							boxSizing: "border-box"
-						}}
-					/>
-					<span className="text-xs text-zinc-600 dark:text-zinc-400 mt-1 ml-0.5">
-						{videoName.length}/{maxLength}
-					</span>
-				</div>
+					}
+					value={videoName}
+					onChange={handleChange}
+					onKeyDown={handleKeyDown}
+					maxLength={maxLength}
+				/>
+				<span className="text-xs text-zinc-600 dark:text-zinc-400 mt-1 ml-0.5">
+					{videoName.length}/{maxLength}
+				</span>
 			</div>
-			{!_.isEmpty(videoName) && (
-				<SaveButton handleSaveButton={handleSaveVideoName} extraClasses="mb-4" />
+			{(!_.isEmpty(videoName) && (videoName !== creatorClass?.contextForMyContent(videoUUID)?.videoName)) && (
+				<SaveButton
+					handleSaveButton={handleSaveVideoName}
+					extraClasses="mb-4 ml-2"
+					customCirclePixelSize="33px"
+				/>
 			)}
-		</>
+		</div>
 	)
 }
+
+export default observer(VideoNameTextInput)

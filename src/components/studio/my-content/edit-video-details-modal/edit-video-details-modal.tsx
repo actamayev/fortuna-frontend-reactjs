@@ -27,13 +27,13 @@ function EditVideoDetailsModal(props: Props) {
 		>
 			<div
 				ref={modalRef}
-				className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg w-5/12"
+				className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg w-7/12"
 				onClick={e => e.stopPropagation()}
 			>
 				<div className="flex justify-between items-center px-3 pt-1 border-b border-zinc-200 dark:border-zinc-700">
-					<h2 className="text-lg font-bold">
+					<div className="text-lg font-bold">
                         Edit Video Details
-					</h2>
+					</div>
 					<HoverOutlineComponent
 						classes="relative flex items-center justify-center inline-block"
 						onClickAction={toggleModalOpen}
