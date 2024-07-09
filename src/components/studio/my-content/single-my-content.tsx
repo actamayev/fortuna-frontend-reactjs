@@ -1,8 +1,10 @@
 import { observer } from "mobx-react"
+import { useCallback, useEffect, useState } from "react"
 import VideoName from "./video-name"
 import VideoDescription from "./video-description"
 import VideoListingStatus from "./video-listing-status"
 import dateFormatter from "../../../utils/date-formatter"
+import EditVideoDetailsModal from "./edit-video-details-modal/edit-video-details-modal"
 
 interface Props {
 	content: MyContent
@@ -10,39 +12,71 @@ interface Props {
 
 function SingleMyContent(props: Props) {
 	const { content } = props
+	const [isVideoEditingModalOpen, setIsVideoEditingModalOpen] = useState(false)
+
+	const toggleModalOpen = useCallback(() => {
+		setIsVideoEditingModalOpen(prev => !prev)
+	}, [])
+
+	useEffect(() => {
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key === "Escape") {
+				setIsVideoEditingModalOpen(false)
+			}
+		}
+
+		if (isVideoEditingModalOpen) {
+			window.addEventListener("keydown", handleKeyDown)
+		} else {
+			window.removeEventListener("keydown", handleKeyDown)
+		}
+
+		// Clean up the event listener on component unmount
+		return () => {
+			window.removeEventListener("keydown", handleKeyDown)
+		}
+	}, [isVideoEditingModalOpen])
 
 	return (
-		<div className="flex bg-zinc-100 dark:bg-zinc-800 rounded-lg px-4 pt-4 pb-3 border border-zinc-200 dark:border-zinc-700">
-			<div className="flex-shrink-0 mr-4 relative">
-				<img
-					src={content.imageUrl}
-					alt={content.videoName}
-					className="w-64 h-36 object-cover rounded-lg"
-					style={{
-						opacity: content.videoListingStatus === "UNLISTED" ? 0.6 : 1
-					}}
-				/>
-				{content.videoListingStatus === "SOLDOUT" && (
-					<div className="absolute top-2 right-2 bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded">
-						Sold Out
+		<>
+			<div className="flex bg-zinc-100 dark:bg-zinc-800 rounded-lg px-4 pt-4 pb-3 border border-zinc-200 dark:border-zinc-700">
+				<div className="flex-shrink-0 mr-4 relative">
+					<img
+						src={content.imageUrl}
+						alt={content.videoName}
+						className="w-64 h-36 object-cover rounded-lg"
+						style={{
+							opacity: content.videoListingStatus === "UNLISTED" ? 0.6 : 1
+						}}
+					/>
+					{content.videoListingStatus === "SOLDOUT" && (
+						<div className="absolute top-2 right-2 bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded">
+							Sold Out
+						</div>
+					)}
+					<div className="flex justify-center">
+						<VideoListingStatus content={content}/>
 					</div>
+				</div>
+				<div className="flex-grow">
+					<div className="text-xl dark:text-zinc-50 font-medium">
+						<VideoName content={content} toggleModalOpen={toggleModalOpen} />
+					</div>
+					<div className="text-sm dark:text-zinc-400">
+						<VideoDescription content={content} toggleModalOpen={toggleModalOpen} />
+					</div>
+					<div className="text-sm dark:text-zinc-400">
+						{dateFormatter(content.createdAt)}
+					</div>
+				</div>
+				{isVideoEditingModalOpen && (
+					<EditVideoDetailsModal
+						videoUUID={content.uuid}
+						toggleModalOpen={toggleModalOpen}
+					/>
 				)}
-				<div className="flex justify-center">
-					<VideoListingStatus content={content}/>
-				</div>
 			</div>
-			<div className="flex-grow">
-				<div className="text-xl dark:text-zinc-50 font-medium">
-					<VideoName content={content} />
-				</div>
-				<div className="text-sm dark:text-zinc-400">
-					<VideoDescription content={content} />
-				</div>
-				<div className="text-sm dark:text-zinc-400">
-					{dateFormatter(content.createdAt)}
-				</div>
-			</div>
-		</div>
+		</>
 	)
 }
 
