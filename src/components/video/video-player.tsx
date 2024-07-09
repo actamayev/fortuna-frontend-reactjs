@@ -11,9 +11,8 @@ function VideoPlayer(props: Props) {
 	const videoRef = useRef<HTMLVideoElement>(null)
 
 	useEffect(() => {
-		if (videoRef.current) {
-			videoRef.current.load()
-		}
+		if (!videoRef.current) return
+		videoRef.current.load()
 	}, [video.videoUrl])
 
 	if (_.isUndefined(video.videoUrl)) {

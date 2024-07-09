@@ -43,11 +43,14 @@ function VideoNameTextInput(props: Props) {
 	return (
 		<div className="flex items-center w-full">
 			<div className="relative flex flex-col flex-grow">
+				<label className="text-sm text-zinc-700 dark:text-zinc-300 ml-0.5 font-semibold">
+					Video Name
+				</label>
 				<input
 					type="text"
 					className={
 						`mt-1 p-1 border rounded text-zinc-950 dark:text-zinc-200 \
-						bg-white dark:bg-zinc-800 outline-none text-3xl font-semibold w-full
+						bg-white dark:bg-zinc-800 outline-none text-base font-medium w-full
 						${videoName.length === maxLength ?
 			"border-red-500 dark:border-red-500" : "border-zinc-200 dark:border-zinc-700"}`
 					}
@@ -63,7 +66,7 @@ function VideoNameTextInput(props: Props) {
 			{(!_.isEmpty(videoName) && (videoName !== creatorClass?.contextForMyContent(videoUUID)?.videoName)) && (
 				<SaveButton
 					handleSaveButton={handleSaveVideoName}
-					extraClasses="mb-4 ml-2"
+					extraClasses="mt-0.5 ml-2"
 					customCirclePixelSize="33px"
 				/>
 			)}

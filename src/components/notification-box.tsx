@@ -18,7 +18,8 @@ function NotificationBox() {
 				style={{
 					opacity: notificationsClass.notification ? 1 : 0,
 					transform: notificationsClass.notification ? "translateY(0)" : "translateY(100%)",
-					transition: "opacity 300ms, transform 300ms"
+					transition: "opacity 300ms, transform 300ms",
+					zIndex: 100
 				}}
 			>
 				{notificationsClass.notification}

@@ -27,7 +27,7 @@ function EditVideoDetailsModal(props: Props) {
 		>
 			<div
 				ref={modalRef}
-				className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg w-7/12"
+				className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg w-2/3"
 				onClick={e => e.stopPropagation()}
 			>
 				<div className="flex justify-between items-center px-3 pt-1 border-b border-zinc-200 dark:border-zinc-700">

@@ -48,11 +48,6 @@ export default function ChannelDescriptionTextInput(props: Props) {
 				onChange={handleChange}
 				onKeyDown={handleKeyDown}
 				maxLength={maxLength}
-				style={{
-					boxSizing: "border-box",
-					resize: "none",
-					overflow: "hidden"
-				}}
 				rows={2}
 			/>
 			<div className="flex items-center justify-between">

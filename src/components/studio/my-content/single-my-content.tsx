@@ -46,7 +46,7 @@ function SingleMyContent(props: Props) {
 						alt={content.videoName}
 						className="w-64 h-36 object-cover rounded-lg"
 						style={{
-							opacity: content.videoListingStatus === "UNLISTED" ? 0.6 : 1
+							filter: content.videoListingStatus === "UNLISTED" ? "brightness(0.6)" : "none"
 						}}
 					/>
 					{content.videoListingStatus === "SOLDOUT" && (

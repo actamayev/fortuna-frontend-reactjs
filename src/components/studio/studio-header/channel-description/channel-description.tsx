@@ -27,10 +27,9 @@ function ChannelDescription() {
 	}, [isEditing, channelDescription])
 
 	useEffect(() => {
-		if (textAreaRef.current) {
-			textAreaRef.current.style.height = "auto"
-			textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`
-		}
+		if (!textAreaRef.current) return
+		textAreaRef.current.style.height = "auto"
+		textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`
 	}, [channelDescription, creatorClass?.channelDescription, isEditing])
 
 	const toggleEditMode = useCallback(() => {
