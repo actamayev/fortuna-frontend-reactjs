@@ -1,5 +1,6 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
+import VideoName from "./video-name"
+import VideoDescription from "./video-description"
 import VideoListingStatus from "./video-listing-status"
 import dateFormatter from "../../../utils/date-formatter"
 
@@ -32,10 +33,10 @@ function SingleMyContent(props: Props) {
 			</div>
 			<div className="flex-grow">
 				<div className="text-xl dark:text-zinc-50 font-medium">
-					{_.truncate(content.videoName, { length: 50, omission: "..." })}
+					<VideoName content={content} />
 				</div>
 				<div className="text-sm dark:text-zinc-400">
-					{_.truncate(content.description, { length: 100, omission: "..." })}
+					<VideoDescription content={content} />
 				</div>
 				<div className="text-sm dark:text-zinc-400">
 					{dateFormatter(content.createdAt)}

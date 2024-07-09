@@ -1,6 +1,6 @@
 import { useCallback } from "react"
-import SaveButton from "../save-button"
-import CancelEditingButton from "../cancel-editing-button"
+import SaveButton from "../../save-button"
+import CancelEditingButton from "../../cancel-editing-button"
 
 interface Props {
 	maxLength: number

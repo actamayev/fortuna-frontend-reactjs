@@ -1,23 +1,28 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useState, useCallback, useRef, useEffect } from "react"
-import SaveButton from "../../save-button"
-import CancelEditingButton from "../../cancel-editing-button"
-import ChannelNameTextInput from "./channel-name-text-input"
-import useEditChannelName from "../../../../hooks/creator/edit-channel-name"
-import useAssignDefaultChannelName from "../../../../hooks/creator/assign-default-channel-name"
+import SaveButton from "../save-button"
+import VideoNameTextInput from "./video-name-text-input"
+import CancelEditingButton from "../cancel-editing-button"
+import useEditVideoName from "../../../hooks/creator/edit-video-name"
+import useAssignDefaultVideoName from "../../../hooks/creator/assign-default-video-name"
 
-function ChannelName() {
-	const [channelName, setChannelName] = useState("")
+interface Props {
+	content: MyContent
+}
+
+function VideoName(props: Props) {
+	const { content } = props
+	const [videoName, setVideoName] = useState("")
 	const [isEditing, setIsEditing] = useState(false)
-	const maxLength = 60
+	const maxLength = 100
 	const inputRef = useRef<HTMLInputElement>(null)
-	const assignDefaultChannelName = useAssignDefaultChannelName()
-	const editChannelName = useEditChannelName()
+	const assignDefaultVideoName = useAssignDefaultVideoName()
+	const editVideoName = useEditVideoName()
 
 	useEffect(() => {
-		assignDefaultChannelName(setChannelName)
-	}, [assignDefaultChannelName])
+		assignDefaultVideoName(content.uuid, setVideoName)
+	}, [assignDefaultVideoName, content.uuid])
 
 	useEffect(() => {
 		if (isEditing && inputRef.current) {
@@ -31,14 +36,14 @@ function ChannelName() {
 
 	const cancelEditAction = useCallback(() => {
 		setIsEditing(false)
-		assignDefaultChannelName(setChannelName)
-	}, [assignDefaultChannelName])
+		assignDefaultVideoName(content.uuid, setVideoName)
+	}, [assignDefaultVideoName, content.uuid])
 
-	const handleSaveChannelName = useCallback(async () => {
-		if (!_.isEmpty(channelName)) await editChannelName(channelName)
-		else assignDefaultChannelName(setChannelName)
+	const handleSaveVideoName = useCallback(async () => {
+		if (!_.isEmpty(videoName)) await editVideoName(content.uuid, videoName, setVideoName)
+		else assignDefaultVideoName(content.uuid, setVideoName)
 		setIsEditing(false)
-	}, [editChannelName, assignDefaultChannelName, channelName, setChannelName])
+	}, [videoName, editVideoName, content.uuid, assignDefaultVideoName])
 
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
@@ -57,7 +62,7 @@ function ChannelName() {
 		return () => {
 			window.removeEventListener("keydown", handleKeyDown)
 		}
-	}, [assignDefaultChannelName, isEditing, cancelEditAction])
+	}, [assignDefaultVideoName, isEditing, cancelEditAction])
 
 	if (isEditing === false) {
 		return (
@@ -68,7 +73,7 @@ function ChannelName() {
 						hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer py-1 pl-1 pr-3"
 						onClick={toggleEditMode}
 					>
-						{channelName}
+						{videoName}
 					</span>
 				</div>
 			</div>
@@ -78,11 +83,11 @@ function ChannelName() {
 	return (
 		<div className="flex items-center">
 			<div className="relative flex flex-col">
-				<ChannelNameTextInput
+				<VideoNameTextInput
 					maxLength={maxLength}
-					channelName={channelName}
-					setChannelName={setChannelName}
-					handleSaveChannelName={handleSaveChannelName}
+					videoName={videoName}
+					setVideoName={setVideoName}
+					handleSaveVideoName={handleSaveVideoName}
 					inputRef={inputRef}
 				/>
 			</div>
@@ -90,11 +95,11 @@ function ChannelName() {
 				cancelEditAction={cancelEditAction}
 				extraClasses="mb-4 ml-1"
 			/>
-			{!_.isEmpty(channelName) && (
-				<SaveButton handleSaveButton={handleSaveChannelName} extraClasses="mb-4" />
+			{!_.isEmpty(videoName) && (
+				<SaveButton handleSaveButton={handleSaveVideoName} extraClasses="mb-4" />
 			)}
 		</div>
 	)
 }
 
-export default observer(ChannelName)
+export default observer(VideoName)

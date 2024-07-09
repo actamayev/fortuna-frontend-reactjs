@@ -35,7 +35,7 @@ class CreatorClass {
 		makeAutoObservable(this)
 	}
 
-	private contextForMyContent(uuid: string): MyContent | undefined {
+	public contextForMyContent(uuid: string): MyContent | undefined {
 		return this.myContent.find(content => content.uuid === uuid)
 	}
 
@@ -203,6 +203,18 @@ class CreatorClass {
 		const video = this.myContent.find(content => content.uuid === videoUUID)
 		if (_.isUndefined(video) || video.videoListingStatus === "SOLDOUT") return
 		video.videoListingStatus = video.videoListingStatus === "LISTED" ? "UNLISTED" : "LISTED"
+	})
+
+	public updateVideoName = action((videoUUID: string, newVideoName: string) => {
+		const video = this.myContent.find(content => content.uuid === videoUUID)
+		if (_.isUndefined(video) || video.videoListingStatus === "SOLDOUT") return
+		video.videoName = newVideoName
+	})
+
+	public updateVideoDescription = action((videoUUID: string, newVideoDescription: string) => {
+		const video = this.myContent.find(content => content.uuid === videoUUID)
+		if (_.isUndefined(video)) return
+		video.description = newVideoDescription
 	})
 
 	public addSocialPlatformLink = action((socialPlatformLink: SocialPlatformLinks): void => {
