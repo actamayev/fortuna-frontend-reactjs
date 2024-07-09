@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { FaLock } from "react-icons/fa"
+import Tooltip from "../../tooltip"
 import SaveButton from "../studio-header/save-button"
 import CancelEditingButton from "../studio-header/cancel-editing-button"
 import capitalizeFirstLetter from "../../../utils/capitalize-first-letter"
@@ -20,10 +22,19 @@ export default function VideoListingStatus(props: Props) {
 
 	if (content.isContentExclusive === true) {
 		return (
-			<span
-				className="mt-1.5 text-sm text-white text-center bg-blue-500 rounded-md px-1 py-0.5 cursor-default"
+			<span className="mt-1.5 text-sm text-white text-center bg-blue-500 \
+				rounded-md px-1 py-0.5 cursor-default inline-flex items-center"
 			>
 				Listed
+				<div className="ml-1 flex items-center">
+					<Tooltip
+						message="Unable to change listing status since this is an exclusive video"
+						messageStart="center"
+						width="250px"
+					>
+						<FaLock />
+					</Tooltip>
+				</div>
 			</span>
 		)
 	}

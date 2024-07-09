@@ -14,6 +14,7 @@ function Studio() {
 	return (
 		<>
 			<StudioHeader />
+			{/* TODO: Add an 'order by' filter (order by created date, # purchases, or $earnings, ascending and descending) */}
 			<MyContentMap />
 		</>
 	)
