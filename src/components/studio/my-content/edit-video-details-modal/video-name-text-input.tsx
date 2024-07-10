@@ -50,7 +50,7 @@ function VideoNameTextInput(props: Props) {
 					type="text"
 					className={
 						`mt-1 p-1 border rounded text-zinc-950 dark:text-zinc-200 \
-						bg-white dark:bg-zinc-800 outline-none text-base font-medium w-full
+						bg-white dark:bg-zinc-800 outline-none font-normal w-full
 						${videoName.length === maxLength ?
 			"border-red-500 dark:border-red-500" : "border-zinc-200 dark:border-zinc-700"}`
 					}
