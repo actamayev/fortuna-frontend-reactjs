@@ -17,7 +17,7 @@ function EarningsSection(props: Props) {
 
 	return (
 		<div>
-			$?
+			Coming soon...
 		</div>
 	)
 }

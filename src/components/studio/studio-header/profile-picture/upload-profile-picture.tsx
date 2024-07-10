@@ -1,5 +1,6 @@
-import { useCallback } from "react"
 import { observer } from "mobx-react"
+import { useCallback, useState } from "react"
+import LoadingOval from "../../../loading-oval"
 import { FaSave, FaTrash } from "react-icons/fa"
 import useUploadProfilePicture from "../../../../hooks/upload/upload-profile-picture"
 
@@ -28,9 +29,10 @@ function UploadProfilePicture(props: Props) {
 		fileInputRef
 	} = props
 	const uploadProfilePicture = useUploadProfilePicture()
+	const [isLoading, setIsLoading] = useState(false)
 
 	const uploadProfilePictureCallback = useCallback(async() => {
-		await uploadProfilePicture(selectedImage)
+		await uploadProfilePicture(selectedImage, setIsLoading)
 		removeContent()
 	}, [removeContent, selectedImage, uploadProfilePicture])
 
@@ -55,14 +57,19 @@ function UploadProfilePicture(props: Props) {
 				/>
 			</div>
 			<div
-				className="absolute bottom-2 right-2 bg-green-500 dark:bg-green-600 p-1 rounded-full
-					cursor-pointer hover:bg-green-600 dark:hover:bg-green-700"
+				className={`absolute bottom-2 right-2 bg-green-500 dark:bg-green-600 p-1 rounded-full
+					${isLoading ? "" : "hover:bg-green-600 dark:hover:bg-green-700"}`}
 			>
-				<FaSave
-					color="white"
-					size={22}
-					onClick={uploadProfilePictureCallback}
-				/>
+				{isLoading ? (
+					<LoadingOval />
+				) : (
+					<FaSave
+						color="white"
+						size={22}
+						onClick={uploadProfilePictureCallback}
+						className="cursor-pointer"
+					/>
+				)}
 			</div>
 			<input
 				ref={fileInputRef}

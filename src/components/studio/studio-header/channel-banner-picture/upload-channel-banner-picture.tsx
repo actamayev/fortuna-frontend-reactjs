@@ -1,6 +1,7 @@
-import { useCallback } from "react"
 import { observer } from "mobx-react"
+import { useCallback, useState } from "react"
 import { FaSave, FaTrash } from "react-icons/fa"
+import LoadingOval from "../../../loading-oval"
 import useUploadChannelBannerPicture from "../../../../hooks/upload/upload-channel-banner-picture"
 
 interface Props {
@@ -28,9 +29,10 @@ function UploadChannelBannerPicture(props: Props) {
 		fileInputRef
 	} = props
 	const uploadChannelBannerPicture = useUploadChannelBannerPicture()
+	const [isLoading, setIsLoading] = useState(false)
 
 	const uploadChannelBannerPictureCallback = useCallback(async() => {
-		await uploadChannelBannerPicture(selectedImage)
+		await uploadChannelBannerPicture(selectedImage, setIsLoading)
 		removeContent()
 	}, [removeContent, selectedImage, uploadChannelBannerPicture])
 
@@ -55,14 +57,19 @@ function UploadChannelBannerPicture(props: Props) {
 				/>
 			</div>
 			<div
-				className="absolute bottom-2 right-2 bg-green-500 dark:bg-green-600 p-1 rounded-full
-					cursor-pointer hover:bg-green-600 dark:hover:bg-green-700"
+				className={`absolute bottom-2 right-2 bg-green-500 dark:bg-green-600 p-1 rounded-full
+					${isLoading ? "" : "hover:bg-green-600 dark:hover:bg-green-700"}`}
 			>
-				<FaSave
-					color="white"
-					size={22}
-					onClick={uploadChannelBannerPictureCallback}
-				/>
+				{isLoading ? (
+					<LoadingOval />
+				) : (
+					<FaSave
+						color="white"
+						size={22}
+						onClick={uploadChannelBannerPictureCallback}
+						className="cursor-pointer"
+					/>
+				)}
 			</div>
 			<input
 				ref={fileInputRef}

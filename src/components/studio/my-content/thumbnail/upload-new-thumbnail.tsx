@@ -1,6 +1,7 @@
-import { useCallback } from "react"
 import { observer } from "mobx-react"
+import { useCallback, useState } from "react"
 import { FaSave, FaTrash } from "react-icons/fa"
+import LoadingOval from "../../../loading-oval"
 import useUploadNewThumnailPicture from "../../../../hooks/upload/upload-new-thumbnail-picture"
 
 interface Props {
@@ -30,9 +31,10 @@ function UploadNewThumbnail(props: Props) {
 		fileInputRef
 	} = props
 	const uploadNewThumbnailPicture = useUploadNewThumnailPicture()
+	const [isLoading, setIsLoading] = useState(false)
 
 	const uploadNewThumbnailPictureCallback = useCallback(async() => {
-		await uploadNewThumbnailPicture(selectedImage, content.uuid, content.videoId)
+		await uploadNewThumbnailPicture(selectedImage, content.uuid, content.videoId, setIsLoading)
 		removeContent()
 	}, [content.uuid, content.videoId, removeContent, selectedImage, uploadNewThumbnailPicture])
 
@@ -62,14 +64,19 @@ function UploadNewThumbnail(props: Props) {
 				/>
 			</div>
 			<div
-				className="absolute bottom-2 -right-2 bg-green-500 dark:bg-green-600 p-1 rounded-full
-					cursor-pointer hover:bg-green-600 dark:hover:bg-green-700"
+				className={`absolute bottom-2 -right-2 bg-green-500 dark:bg-green-600 p-1 rounded-full
+					${isLoading ? "" : "hover:bg-green-600 dark:hover:bg-green-700"}`}
 			>
-				<FaSave
-					color="white"
-					size={22}
-					onClick={uploadNewThumbnailPictureCallback}
-				/>
+				{isLoading ? (
+					<LoadingOval />
+				) : (
+					<FaSave
+						color="white"
+						size={22}
+						onClick={uploadNewThumbnailPictureCallback}
+						className="cursor-pointer"
+					/>
+				)}
 			</div>
 			<input
 				ref={fileInputRef}
