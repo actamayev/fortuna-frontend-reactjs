@@ -1,3 +1,5 @@
+import _ from "lodash"
+
 interface Props {
 	content: MyContent
 	toggleModalOpen: () => void
@@ -7,14 +9,13 @@ export default function VideoName(props: Props) {
 	const { content, toggleModalOpen } = props
 
 	return (
-		<div className="flex items-center">
-			<div className="relative flex flex-col">
-				<span
-					className="text-zinc-950 dark:text-zinc-50 text-xl font-semibold \
-						hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer py-1 px-2"
-					onClick={toggleModalOpen}
-				>
-					{content.videoName}
+		<div className="flex items-center w-full">
+			<div
+				className="relative flex flex-grow hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer py-1 px-2"
+				onClick={toggleModalOpen}
+			>
+				<span className="text-zinc-900 dark:text-zinc-100 text-md font-medium w-full">
+					{_.truncate(content.videoName, { length: 30, omission: "..." })}
 				</span>
 			</div>
 		</div>
