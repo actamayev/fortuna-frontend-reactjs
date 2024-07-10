@@ -31,7 +31,7 @@ export default function useEditVideoDescription(): (
 				return
 			}
 
-			creatorClass.updateVideoDescription(videoUUID, videoDescription)
+			creatorClass.updateVideoProperty(videoUUID, "description", videoDescription)
 			notificationsClass.setPositiveNotification("Video description updated")
 		} catch (error) {
 			console.error(error)

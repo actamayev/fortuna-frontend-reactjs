@@ -28,7 +28,7 @@ export default function useUploadNewThumnailPicture(): (
 			if (!_.isEqual(uploadProfilePictureResponse.status, 200) || isNonSuccessResponse(uploadProfilePictureResponse.data)) {
 				return
 			}
-			creatorClass.updateVideoThumbnail(uuid, uploadProfilePictureResponse.data.imageUploadUrl)
+			creatorClass.updateVideoProperty(uuid, "imageUrl", uploadProfilePictureResponse.data.imageUploadUrl)
 			notificationsClass.setPositiveNotification("New thumbnail uploaded")
 		} catch (error) {
 			console.error(error)

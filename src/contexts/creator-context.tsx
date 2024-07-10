@@ -205,22 +205,12 @@ class CreatorClass {
 		video.videoListingStatus = video.videoListingStatus === "LISTED" ? "UNLISTED" : "LISTED"
 	})
 
-	public updateVideoName = action((videoUUID: string, newVideoName: string) => {
+	public updateVideoProperty = action(<K extends keyof MyContent>(
+		videoUUID: string, key: K, newValue: MyContent[K]
+	) => {
 		const video = this.contextForMyContent(videoUUID)
 		if (_.isUndefined(video)) return
-		video.videoName = newVideoName
-	})
-
-	public updateVideoDescription = action((videoUUID: string, newVideoDescription: string) => {
-		const video = this.contextForMyContent(videoUUID)
-		if (_.isUndefined(video)) return
-		video.description = newVideoDescription
-	})
-
-	public updateVideoThumbnail = action((videoUUID: string, newImageUrl: string) => {
-		const video = this.contextForMyContent(videoUUID)
-		if (_.isUndefined(video)) return
-		video.imageUrl = newImageUrl
+		video[key] = newValue
 	})
 
 	public addSocialPlatformLink = action((socialPlatformLink: SocialPlatformLinks): void => {

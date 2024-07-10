@@ -31,7 +31,7 @@ export default function useEditVideoName(): (
 				return
 			}
 
-			creatorClass.updateVideoName(videoUUID, videoName)
+			creatorClass.updateVideoProperty(videoUUID, "videoName", videoName)
 			notificationsClass.setPositiveNotification("Video name updated")
 		} catch (error) {
 			console.error(error)
