@@ -27,18 +27,19 @@ export default function SingleVideoSearchItem(props: Props) {
 		navigateToVideoPage(videoData.uuid)
 	}, [navigateToVideoPage, videoData.uuid])
 
-	// TODO: Make the image a specific aspect ratio (regardless of the length of the channel name and description)
 	return (
 		<div
 			className="flex items-start space-x-4 p-4 rounded-lg cursor-pointer w-7/12
-			bg-zinc-100 dark:bg-zinc-800  border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700"
+			bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700"
 			onClick={navigateToVideoPageCallback}
 		>
-			<img
-				src={videoData.imageUrl}
-				alt={videoData.videoName}
-				className="w-64 h-36 rounded-lg object-cover"
-			/>
+			<div className="w-64 h-36 flex-shrink-0">
+				<img
+					src={videoData.imageUrl}
+					alt={videoData.videoName}
+					className="w-full h-full rounded-lg object-cover"
+				/>
+			</div>
 			<div className="flex flex-col justify-start overflow-hidden">
 				<div className="text-3xl font-semibold truncate dark:text-zinc-200">
 					{_.truncate(videoData.videoName, { length: 24, omission: "..." })}
@@ -58,7 +59,7 @@ export default function SingleVideoSearchItem(props: Props) {
 					</div>
 				</div>
 				<div className="text-xl text-zinc-600 dark:text-zinc-300 cursor-pointer">
-					{_.truncate(videoData.description, { length: 40, omission: "..."})}
+					{_.truncate(videoData.description, { length: 40, omission: "..." })}
 				</div>
 			</div>
 		</div>
