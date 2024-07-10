@@ -41,14 +41,14 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 					style={{ maxWidth: "fit-content" }}
 					onClick={navigateToVideoPageCallback}
 				>
-					{_.truncate(videoName, { length: 29, omission: "..." })}
+					{_.truncate(videoName, { length: 29 })}
 				</div>
 				<div
 					className="text-xs text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-100 cursor-pointer"
 					style={{ maxWidth: "fit-content" }}
 					onClick={navigateToCreatorPageCallback}
 				>
-					{_.truncate(channelName, { length: 40, omission: "..." })}
+					{_.truncate(channelName, { length: 40 })}
 				</div>
 			</div>
 			<div className="ml-auto flex flex-col items-end space-y-1">

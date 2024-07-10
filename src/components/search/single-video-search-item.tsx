@@ -41,25 +41,28 @@ export default function SingleVideoSearchItem(props: Props) {
 				/>
 			</div>
 			<div className="col-span-8 flex flex-col justify-start overflow-hidden">
-				<div className="text-zinc-950 dark:text-white text-2xl font-semibold break-words">
-					{_.truncate(videoData.videoName, { length: 24, omission: "..." })}
+				<div className="text-zinc-950 dark:text-white text-2xl font-semibold overflow-hidden text-ellipsis whitespace-nowrap">
+					{videoData.videoName}
 				</div>
 				<div className="flex items-center space-x-2 my-2">
-					<ShowUserProfileImageOrDefaultImage
-						profileImageUrl={videoData.creatorProfilePictureUrl}
-						onClickCreatorPicture={navigateToCreatorPageCallbackEvent}
-						onClickDefaultPicture={navigateToCreatorPageCallback}
-						extraClasses="w-8 h-8 rounded-full object-cover cursor-pointer"
-					/>
+					<div className="flex-shrink-0">
+						<ShowUserProfileImageOrDefaultImage
+							profileImageUrl={videoData.creatorProfilePictureUrl}
+							onClickCreatorPicture={navigateToCreatorPageCallbackEvent}
+							onClickDefaultPicture={navigateToCreatorPageCallback}
+							extraClasses="w-8 h-8 rounded-full object-cover cursor-pointer"
+						/>
+					</div>
 					<div
-						className="text-base text-zinc-700 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-50 cursor-pointer"
+						className="text-base text-zinc-700 hover:text-zinc-950 dark:text-zinc-300
+						hover:dark:text-zinc-50 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap"
 						onClick={navigateToCreatorPageCallbackEvent}
 					>
 						{videoData.channelName}
 					</div>
 				</div>
 				<div className="text-zinc-700 dark:text-zinc-300 text-base break-words">
-					{_.truncate(videoData.description, { length: 40, omission: "..." })}
+					{_.truncate(videoData.description, { length: 100 })}
 				</div>
 			</div>
 		</div>

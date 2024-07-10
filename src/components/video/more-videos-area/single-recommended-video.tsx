@@ -39,7 +39,7 @@ export default function SingleRecommendedVideo(props: Props) {
 			</div>
 			<div className="flex flex-col justify-start overflow-hidden w-full mt-2">
 				<div className="text-md font-semibold truncate dark:text-zinc-200">
-					{_.truncate(videoName, { length: 50 })}
+					{_.truncate(videoName, { length: 45 })}
 				</div>
 				<div className="text-xs text-zinc-600 dark:text-zinc-300">
 					{dateFormatter(createdAt)}

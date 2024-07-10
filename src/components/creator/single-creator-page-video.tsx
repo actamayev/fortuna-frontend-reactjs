@@ -35,7 +35,7 @@ export default function SingleCreatorPageVideo(props: Props) {
 			/>
 			<div className="flex flex-col justify-start overflow-hidden">
 				<div className="text-3xl font-semibold truncate dark:text-zinc-200">
-					{_.truncate(videoName, { length: 35, omission: "..." })}
+					{_.truncate(videoName, { length: 35 })}
 				</div>
 				<div className="text-xl text-zinc-600 dark:text-zinc-300">
 					{description}

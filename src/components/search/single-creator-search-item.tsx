@@ -29,14 +29,14 @@ export default function SingleCreatorSearchItem(props: Props) {
 				/>
 			</div>
 			<div className="col-span-8 flex flex-col text-start">
-				<div className="text-zinc-950 dark:text-white text-2xl font-semibold break-words">
-					{_.truncate(creatorData.channelName, { length: 50, omission: "..." })}
+				<div className="text-zinc-950 dark:text-white text-2xl font-semibold overflow-hidden text-ellipsis whitespace-nowrap">
+					{creatorData.channelName}
 				</div>
-				<div className="text-zinc-700 dark:text-zinc-300 text-base mt-1.5">
+				<div className="text-zinc-700 dark:text-zinc-300 text-base mt-1.5 overflow-hidden text-ellipsis whitespace-nowrap">
 					@{creatorData.creatorUsername}
 				</div>
-				<div className="text-zinc-700 dark:text-zinc-300 text-base mt-1">
-					{_.truncate(creatorData.channelDescription, { length: 150, omission: "..." })}
+				<div className="text-zinc-700 dark:text-zinc-300 text-base mt-1 break-words">
+					{_.truncate(creatorData.channelDescription, { length: 150 })}
 				</div>
 			</div>
 		</div>

@@ -18,7 +18,7 @@ export default function VideoDescription(props: Props) {
 				onClick={() => setIsOpen(true)}
 			>
 				<div>{dateFormatter(video.createdAt)}</div>
-				<div>{_.truncate(video.description, { length: 300, omission: "..." })}</div>
+				<div>{_.truncate(video.description, { length: 300 })}</div>
 			</div>
 		)
 	}

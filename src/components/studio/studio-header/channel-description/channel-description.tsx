@@ -84,7 +84,7 @@ function ChannelDescription() {
 	}
 
 	return (
-		<div className="flex items-center">
+		<div className="flex items-center w-full">
 			<span
 				className="text-zinc-600 dark:text-zinc-300 text-sm \
 					hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer p-2 w-full"
@@ -97,9 +97,9 @@ function ChannelDescription() {
 				{_.isEmpty(channelDescription.trim()) ? (
 					<>Click here to add a description</>
 				) : (
-					<>
-						{_.truncate(channelDescription, { length: 350, omission: "..." })}
-					</>
+					<div className="break-words">
+						{_.truncate(channelDescription, { length: 350 })}
+					</div>
 				)}
 			</span>
 		</div>
