@@ -1,11 +1,12 @@
 import _ from "lodash"
+import { observer } from "mobx-react"
 
 interface Props {
 	content: MyContent
 	toggleModalOpen: () => void
 }
 
-export default function VideoDescription(props: Props) {
+function VideoDescription(props: Props) {
 	const { content, toggleModalOpen } = props
 
 	return (
@@ -15,9 +16,11 @@ export default function VideoDescription(props: Props) {
 				onClick={toggleModalOpen}
 			>
 				<span className="text-zinc-700 dark:text-zinc-300 text-sm font-normal w-full">
-					{_.truncate(content.description, { length: 70, omission: "..."})}
+					{_.truncate(content.description, { length: 150, omission: "..."})}
 				</span>
 			</div>
 		</div>
 	)
 }
+
+export default observer(VideoDescription)

@@ -45,22 +45,22 @@ function SingleMyContent(props: Props) {
 			<div className="col-span-2 relative">
 				<MyContentThumbnail content={content} />
 			</div>
-			<div className="col-span-2">
+			<div className="col-span-3">
 				<div className="flex-grow">
 					<VideoName content={content} toggleModalOpen={toggleModalOpen} />
 					<VideoDescription content={content} toggleModalOpen={toggleModalOpen} />
 				</div>
 			</div>
-			<div className="flex col-span-2">
+			<div className="flex col-span-1">
 				<VideoListingStatus content={content}/>
 			</div>
-			<div className="col-span-2 text-sm text-zinc-700 dark:text-zinc-300">
+			<div className="col-span-1 text-sm text-zinc-700 dark:text-zinc-300">
 				{formatGBDate(content.createdAt)}
 			</div>
 			<div className="col-span-2">
 				<LikesDislikesRatioSection content={content} />
 			</div>
-			<div className="col-span-2 text-sm text-zinc-700 dark:text-zinc-300">
+			<div className="col-span-3 text-sm text-zinc-700 dark:text-zinc-300">
 				<EarningsSection content={content} />
 			</div>
 			{isVideoEditingModalOpen && (
