@@ -217,6 +217,12 @@ class CreatorClass {
 		video.description = newVideoDescription
 	})
 
+	public updateVideoThumbnail = action((videoUUID: string, newImageUrl: string) => {
+		const video = this.contextForMyContent(videoUUID)
+		if (_.isUndefined(video)) return
+		video.imageUrl = newImageUrl
+	})
+
 	public addSocialPlatformLink = action((socialPlatformLink: SocialPlatformLinks): void => {
 		const index = this.socialPlatformLinks.findIndex(
 			link => link.socialPlatform === socialPlatformLink.socialPlatform

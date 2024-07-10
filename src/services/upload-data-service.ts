@@ -8,22 +8,32 @@ export default class UploadDataService {
 	constructor(private readonly httpClient: FortunaHttpClient) {
 	}
 
-	async uploadVideoToS3(file: File): Promise<AxiosResponse<UploadVideoToS3 | NonSuccessResponse>> {
+	async uploadVideo(file: File): Promise<AxiosResponse<UploadVideoResponse | NonSuccessResponse>> {
 		const formData = new FormData()
 		formData.append("file", file, file.name)
 
-		return await this.httpClient.http.post<UploadVideoToS3 | NonSuccessResponse>(
-			`${this.pathHeader}/upload-video-to-s3`, formData, { headers: { "Content-Type": file.type }}
+		return await this.httpClient.http.post<UploadVideoResponse | NonSuccessResponse>(
+			`${this.pathHeader}/upload-video`, formData, { headers: { "Content-Type": file.type }}
 		)
 	}
 
-	async uploadImageToS3(file: File, uuid: string): Promise<AxiosResponse<UploadImageToS3 | NonSuccessResponse>> {
+	async uploadThumbnailPicture(file: File, uuid: string): Promise<AxiosResponse<UploadThumbnailResponse | NonSuccessResponse>> {
 		const formData = new FormData()
 		formData.append("file", file, file.name)
 		formData.append("uuid", uuid)
 
-		return await this.httpClient.http.post<UploadImageToS3 | NonSuccessResponse>(
-			`${this.pathHeader}/upload-image-to-s3`, formData, { headers: { "Content-Type": file.type }}
+		return await this.httpClient.http.post<UploadThumbnailResponse | NonSuccessResponse>(
+			`${this.pathHeader}/upload-thumbnail-picture`, formData, { headers: { "Content-Type": file.type }}
+		)
+	}
+
+	async uploadNewThumbnailPicture(file: File, videoId: number): Promise<AxiosResponse<UploadNewThumbnailResponse | NonSuccessResponse>> {
+		const formData = new FormData()
+		formData.append("file", file, file.name)
+		formData.append("videoId", videoId)
+
+		return await this.httpClient.http.post<UploadNewThumbnailResponse | NonSuccessResponse>(
+			`${this.pathHeader}/upload-new-thumbnail-picture`, formData, { headers: { "Content-Type": file.type }}
 		)
 	}
 

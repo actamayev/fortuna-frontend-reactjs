@@ -34,14 +34,14 @@ export default function useCreateVideoOnclick(): (
 
 			setStatus("Uploading Video")
 			// eslint-disable-next-line max-len
-			const uploadVideoResponse = await fortunaApiClient.uploadDataService.uploadVideoToS3(creatorClass.newVideoDetails.selectedVideo)
+			const uploadVideoResponse = await fortunaApiClient.uploadDataService.uploadVideo(creatorClass.newVideoDetails.selectedVideo)
 			if (!_.isEqual(uploadVideoResponse.status, 200) || isNonSuccessResponse(uploadVideoResponse.data)) {
 				setError("Error uploading image")
 				return
 			}
 
 			setStatus("Uploading Thumbnail")
-			const uploadImageResponse = await fortunaApiClient.uploadDataService.uploadImageToS3(
+			const uploadImageResponse = await fortunaApiClient.uploadDataService.uploadThumbnailPicture(
 				creatorClass.newVideoDetails.selectedImage, uploadVideoResponse.data.uuid
 			)
 			if (!_.isEqual(uploadImageResponse.status, 200) || isNonSuccessResponse(uploadImageResponse.data)) {
@@ -73,6 +73,7 @@ export default function useCreateVideoOnclick(): (
 
 			const myContent: MyContent = {
 				...restOfVideoDetails,
+				videoId: createVideoResponse.data.newVideoId,
 				videoListingStatus: "LISTED",
 				imageUrl: uploadImageResponse.data.imageUploadUrl,
 				uuid: uploadVideoResponse.data.uuid,

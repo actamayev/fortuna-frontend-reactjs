@@ -1,10 +1,15 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useRef, useState, useCallback } from "react"
-import UploadProfilePicture from "./upload-profile-picture"
-import ShowCurrentProfilePicture from "./show-current-profile-picture"
+import UploadNewThumbnail from "./upload-new-thumbnail"
+import ShowCurrentThumbnail from "./show-current-thumbnail"
 
-function ProfilePicture() {
+interface Props {
+	content: MyContent
+}
+
+function MyContentThumbnail(props: Props) {
+	const { content } = props
 	const [isHovered, setIsHovered] = useState(false)
 	const [previewUrl, setPreviewUrl] = useState<null | string>(null)
 	const [selectedImage, setSelectedImage] = useState<File | null>(null)
@@ -53,7 +58,8 @@ function ProfilePicture() {
 
 	if (_.isNull(previewUrl)) {
 		return (
-			<ShowCurrentProfilePicture
+			<ShowCurrentThumbnail
+				content={content}
 				handleImageChange = {handleImageChange}
 				fileInputRef={fileInputRef}
 				handleMouseEnter={handleMouseEnter}
@@ -65,7 +71,8 @@ function ProfilePicture() {
 	}
 
 	return (
-		<UploadProfilePicture
+		<UploadNewThumbnail
+			content={content}
 			previewUrl={previewUrl}
 			handleImageChange={handleImageChange}
 			removeContent={removeContent}
@@ -79,4 +86,4 @@ function ProfilePicture() {
 	)
 }
 
-export default observer(ProfilePicture)
+export default observer(MyContentThumbnail)

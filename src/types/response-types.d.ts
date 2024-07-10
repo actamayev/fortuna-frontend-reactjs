@@ -52,11 +52,12 @@ declare global {
 	}
 
 	// Upload Responses:
-	type UploadImageToS3 = {
+	type UploadThumbnailResponse = {
 		imageUploadUrl: string
 		uploadedImageId: number
 	}
-	type UploadVideoToS3 = {
+	type UploadNewThumbnailResponse = { imageUploadUrl: string }
+	type UploadVideoResponse = {
 		uploadedVideoId: number
 		uuid: string
 	}

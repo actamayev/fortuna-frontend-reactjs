@@ -7,6 +7,7 @@ import VideoListingStatus from "./video-listing-status"
 import { formatGBDate } from "../../../utils/date-formatter"
 import LikesDislikesRatioSection from "./likes-dislikes-ratio-section"
 import EditVideoDetailsModal from "./edit-video-details-modal/edit-video-details-modal"
+import MyContentThumbnail from "./thumbnail/my-content-thumbnail"
 
 interface Props {
 	content: MyContent
@@ -42,21 +43,7 @@ function SingleMyContent(props: Props) {
 	return (
 		<div className="grid grid-cols-12 gap-4 bg-white dark:bg-neutral-900 p-4 border-b border-gray-200 dark:border-gray-800">
 			<div className="col-span-2 relative">
-				<div className="aspect-w-16 aspect-h-9">
-					<img
-						src={content.imageUrl}
-						alt={content.videoName}
-						className="object-cover rounded-lg"
-						style={{
-							filter: content.videoListingStatus === "UNLISTED" ? "brightness(0.6)" : "none"
-						}}
-					/>
-					{content.videoListingStatus === "SOLDOUT" && (
-						<div className="absolute top-2 right-2 bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded">
-							Sold Out
-						</div>
-					)}
-				</div>
+				<MyContentThumbnail content={content} />
 			</div>
 			<div className="col-span-2">
 				<div className="flex-grow">
