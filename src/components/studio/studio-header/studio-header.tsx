@@ -10,7 +10,7 @@ export default function StudioHeader() {
 	return (
 		<>
 			<ChannelBannerPicture />
-			<div className="flex items-start border-b border-zinc-200 dark:border-zinc-600 pb-3 mb-2">
+			<div className="flex items-start border-b border-zinc-200 dark:border-zinc-600 pb-3">
 				<div className="flex flex-col items-center mr-2">
 					<ProfilePicture />
 				</div>
@@ -19,7 +19,7 @@ export default function StudioHeader() {
 						<ChannelName />
 						<ChannelSocialLinks />
 					</div>
-					<div className="flex items-center my-0.5">
+					<div className="flex items-center my-1">
 						<ShowMyUsername />
 						<ShowNumberVideos />
 					</div>

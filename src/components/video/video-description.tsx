@@ -14,7 +14,7 @@ export default function VideoDescription(props: Props) {
 		return (
 			<div
 				className="rounded-md px-2 py-1.5 cursor-pointer dark:text-white
-			bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-700 hover:dark:bg-zinc-800"
+			bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-700 hover:dark:bg-zinc-600"
 				onClick={() => setIsOpen(true)}
 			>
 				<div>{dateFormatter(video.createdAt)}</div>

@@ -87,7 +87,7 @@ function ChannelDescription() {
 		<div className="flex items-center">
 			<span
 				className="text-zinc-600 dark:text-zinc-300 text-sm \
-					hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer px-1 mt-0.5 pt-0.5 pb-2 w-full"
+					hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer p-2 w-full"
 				style={{
 					wordWrap: "break-word",
 					whiteSpace: "normal"

@@ -65,7 +65,7 @@ function ChannelName() {
 				<div className="relative flex flex-col">
 					<span
 						className="text-zinc-950 dark:text-zinc-50 text-3xl font-semibold \
-						hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer py-1 pl-1 pr-3"
+						hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer px-2 pt-2 pb-1.5"
 						onClick={toggleEditMode}
 					>
 						{channelName}

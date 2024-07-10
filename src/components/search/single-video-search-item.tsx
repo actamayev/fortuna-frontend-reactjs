@@ -29,22 +29,22 @@ export default function SingleVideoSearchItem(props: Props) {
 
 	return (
 		<div
-			className="flex items-start space-x-4 p-4 rounded-lg cursor-pointer w-7/12
-			bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700"
+			className="grid grid-cols-12 items-start gap-4 p-4 rounded-lg cursor-pointer w-7/12
+		bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700"
 			onClick={navigateToVideoPageCallback}
 		>
-			<div className="w-64 h-36 flex-shrink-0">
+			<div className="col-span-4 flex items-center justify-center">
 				<img
 					src={videoData.imageUrl}
 					alt={videoData.videoName}
-					className="w-full h-full rounded-lg object-cover"
+					className="w-64 h-36 rounded-lg object-cover"
 				/>
 			</div>
-			<div className="flex flex-col justify-start overflow-hidden">
-				<div className="text-3xl font-semibold truncate dark:text-zinc-200">
+			<div className="col-span-8 flex flex-col justify-start overflow-hidden">
+				<div className="text-zinc-950 dark:text-white text-2xl font-semibold break-words">
 					{_.truncate(videoData.videoName, { length: 24, omission: "..." })}
 				</div>
-				<div className="flex items-center space-x-2">
+				<div className="flex items-center space-x-2 my-2">
 					<ShowUserProfileImageOrDefaultImage
 						profileImageUrl={videoData.creatorProfilePictureUrl}
 						onClickCreatorPicture={navigateToCreatorPageCallbackEvent}
@@ -52,13 +52,13 @@ export default function SingleVideoSearchItem(props: Props) {
 						extraClasses="w-8 h-8 rounded-full object-cover cursor-pointer"
 					/>
 					<div
-						className="text-sm text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-100 cursor-pointer"
+						className="text-base text-zinc-700 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-50 cursor-pointer"
 						onClick={navigateToCreatorPageCallbackEvent}
 					>
 						{videoData.channelName}
 					</div>
 				</div>
-				<div className="text-xl text-zinc-600 dark:text-zinc-300 cursor-pointer">
+				<div className="text-zinc-700 dark:text-zinc-300 text-base break-words">
 					{_.truncate(videoData.description, { length: 40, omission: "..." })}
 				</div>
 			</div>
