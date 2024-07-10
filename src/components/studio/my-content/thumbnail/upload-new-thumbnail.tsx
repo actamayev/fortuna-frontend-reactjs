@@ -36,20 +36,21 @@ function UploadNewThumbnail(props: Props) {
 		removeContent()
 	}, [content.uuid, content.videoId, removeContent, selectedImage, uploadNewThumbnailPicture])
 
-	// TODO: Make sure the aspect ratio applies when uploading a new thumbnail.
-	//removed the aspect ratio stuff for now bc it was messing with the trash/save.
 	// eslint-disable-next-line max-len
-	// Also, make sure to either disable the trash/save while it's processing, or make it dissappear instantly to prevent doubleclicks. Fix everywhere
+	// TODO: make sure to either disable the trash/save while it's processing, or make it dissappear instantly to prevent doubleclicks. Fix everywhere
 	return (
-		<div className="relative inline-block">
-			<img
-				src={previewUrl}
-				className="object-cover rounded-lg"
-				onClick={editPictureCallback}
-				onMouseEnter={handleMouseEnter}
-				onMouseLeave={handleMouseLeave}
-				style={{ filter: content.videoListingStatus === "UNLISTED" ? "brightness(0.6)" : "none", ...imageStyle}}
-			/>
+		<div>
+			<div className="aspect-w-16 aspect-h-9">
+				<img
+					src={previewUrl}
+					className="object-cover rounded-lg"
+					onClick={editPictureCallback}
+					onMouseEnter={handleMouseEnter}
+					onMouseLeave={handleMouseLeave}
+					style={{ filter: content.videoListingStatus === "UNLISTED" ? "brightness(0.6)" : "none", ...imageStyle}}
+				/>
+
+			</div>
 			<div
 				className="absolute top-2 -right-2 bg-red-500 dark:bg-red-600 p-1 rounded-full \
 					cursor-pointer hover:bg-red-600 dark:hover:bg-red-700"
