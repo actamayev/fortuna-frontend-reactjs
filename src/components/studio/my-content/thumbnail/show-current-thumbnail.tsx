@@ -22,19 +22,21 @@ function ShowCurrentThumbnail(props: Props) {
 	} = props
 
 	return (
-		<div className="aspect-w-16 aspect-h-9">
-			<img
-				src={content.imageUrl}
-				alt={content.videoName}
-				className="object-cover rounded-lg cursor-pointer"
-				style={{
-					filter: content.videoListingStatus === "UNLISTED" ? "brightness(0.6)" : "none",
-					...imageStyle
-				}}
-				onClick={editPictureCallback}
-				onMouseEnter={handleMouseEnter}
-				onMouseLeave={handleMouseLeave}
-			/>
+		<div>
+			<div className="aspect-w-16 aspect-h-9">
+				<img
+					src={content.imageUrl}
+					alt={content.videoName}
+					className="object-cover rounded-lg cursor-pointer w-full h-full"
+					style={{
+						filter: content.videoListingStatus === "UNLISTED" ? "brightness(0.6)" : "none",
+						...imageStyle
+					}}
+					onClick={editPictureCallback}
+					onMouseEnter={handleMouseEnter}
+					onMouseLeave={handleMouseLeave}
+				/>
+			</div>
 			{content.videoListingStatus === "SOLDOUT" && (
 				<div className="absolute top-2 right-2 bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded">
 					Sold Out

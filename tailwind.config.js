@@ -11,4 +11,6 @@ export const theme = {
 	}
 }
 export const darkMode = "class"
-export const plugins = [ aspectRatio ]
+export const plugins = [
+	aspectRatio
+]

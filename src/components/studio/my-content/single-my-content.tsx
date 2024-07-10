@@ -5,9 +5,9 @@ import EarningsSection from "./earnings-section"
 import VideoDescription from "./video-description"
 import VideoListingStatus from "./video-listing-status"
 import { formatGBDate } from "../../../utils/date-formatter"
+import MyContentThumbnail from "./thumbnail/my-content-thumbnail"
 import LikesDislikesRatioSection from "./likes-dislikes-ratio-section"
 import EditVideoDetailsModal from "./edit-video-details-modal/edit-video-details-modal"
-import MyContentThumbnail from "./thumbnail/my-content-thumbnail"
 
 interface Props {
 	content: MyContent
@@ -41,7 +41,7 @@ function SingleMyContent(props: Props) {
 	}, [isVideoEditingModalOpen])
 
 	return (
-		<div className="grid grid-cols-12 gap-4 bg-white dark:bg-neutral-900 py-2 border-b border-gray-200 dark:border-gray-800">
+		<div className="grid grid-cols-12 gap-4 bg-white dark:bg-neutral-900 py-2 border-b border-zinc-200 dark:border-zinc-800">
 			<div className="col-span-2 relative">
 				<MyContentThumbnail content={content} />
 			</div>
