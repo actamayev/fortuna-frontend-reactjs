@@ -38,8 +38,6 @@ function UploadNewThumbnail(props: Props) {
 		removeContent()
 	}, [content.uuid, content.videoId, removeContent, selectedImage, uploadNewThumbnailPicture])
 
-	// eslint-disable-next-line max-len
-	// TODO: make sure to either disable the trash/save while it's processing, or make it dissappear instantly to prevent doubleclicks. Fix everywhere
 	return (
 		<div>
 			<div className="aspect-w-16 aspect-h-9">
