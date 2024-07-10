@@ -115,7 +115,7 @@
 	  "src/",
 	  "./.eslintrc.json",
 	  "./postcss.config.js",
-	  "tailwind.config.ts",
+	  "tailwind.config.js",
 	  "./webpack.config.js"
 	],
 	"exclude": [
