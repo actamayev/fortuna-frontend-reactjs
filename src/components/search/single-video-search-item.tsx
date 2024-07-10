@@ -27,6 +27,7 @@ export default function SingleVideoSearchItem(props: Props) {
 		navigateToVideoPage(videoData.uuid)
 	}, [navigateToVideoPage, videoData.uuid])
 
+	// TODO: Make the image a specific aspect ratio (regardless of the length of the channel name and description)
 	return (
 		<div
 			className="flex items-start space-x-4 p-4 rounded-lg cursor-pointer w-7/12
@@ -57,7 +58,7 @@ export default function SingleVideoSearchItem(props: Props) {
 					</div>
 				</div>
 				<div className="text-xl text-zinc-600 dark:text-zinc-300 cursor-pointer">
-					{videoData.description}
+					{_.truncate(videoData.description, { length: 40, omission: "..."})}
 				</div>
 			</div>
 		</div>

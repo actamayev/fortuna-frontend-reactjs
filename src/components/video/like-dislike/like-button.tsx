@@ -16,6 +16,8 @@ function LikeButton(props: Props) {
 		likeDislikeVideo(video, true)
 	}, [likeDislikeVideo, video])
 
+	// TODO: Need to somehow show to the user that they can't like/dislike a video they dont own.
+	// Maybe a tooltip?
 	return (
 		<HoverOutlineComponent
 			classes="flex items-center justify-center"

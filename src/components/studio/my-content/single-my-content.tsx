@@ -57,7 +57,7 @@ function SingleMyContent(props: Props) {
 			<div className="col-span-1 text-sm text-zinc-700 dark:text-zinc-300">
 				{formatGBDate(content.createdAt)}
 			</div>
-			<div className="col-span-2">
+			<div className="col-span-2 text-sm text-zinc-700 dark:text-zinc-300">
 				<LikesDislikesRatioSection content={content} />
 			</div>
 			<div className="col-span-3 text-sm text-zinc-700 dark:text-zinc-300">

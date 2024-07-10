@@ -27,13 +27,13 @@ export default function SingleCreatorSearchItem(props: Props) {
 				extraClasses="w-32 h-32 rounded-full object-cover"
 			/>
 			<div className="flex flex-col text-start">
-				<div className="text-zinc-950 dark:text-zinc-100 text-base font-semibold">
+				<div className="text-zinc-950 dark:text-zinc-100 text-lg font-semibold">
 					{creatorData.channelName}
 				</div>
-				<div className="text-zinc-600 dark:text-zinc-400 text-sm mt-1.5">
+				<div className="text-zinc-700 dark:text-zinc-300 text-sm mt-1.5">
 					@{creatorData.creatorUsername}
 				</div>
-				<div className="text-zinc-600 dark:text-zinc-400 text-sm mt-1">
+				<div className="text-zinc-700 dark:text-zinc-300 text-sm mt-1">
 					{_.truncate(creatorData.channelDescription, { length: 90, omission: "..."})}
 				</div>
 			</div>

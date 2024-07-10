@@ -48,7 +48,7 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 					style={{ maxWidth: "fit-content" }}
 					onClick={navigateToCreatorPageCallback}
 				>
-					{channelName}
+					{_.truncate(channelName, { length: 40, omission: "..." })}
 				</div>
 			</div>
 			<div className="ml-auto flex flex-col items-end space-y-1">

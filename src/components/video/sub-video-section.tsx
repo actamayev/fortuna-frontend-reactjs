@@ -1,4 +1,5 @@
 import { useCallback } from "react"
+import VideoDescription from "./video-description"
 import ShareVideoButton from "./like-dislike/share-video-button"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import VideoLikeDislikeSection from "./like-dislike/video-like-dislike-section"
@@ -12,7 +13,7 @@ interface Props {
 export default function SubVideoSection(props: Props) {
 	const { video } = props
 	const navigateToCreatorPage = useNavigateToCreatorPage()
-	const { videoName, creatorProfilePictureUrl, creatorUsername, description, channelName } = video
+	const { videoName, creatorProfilePictureUrl, creatorUsername, channelName } = video
 
 	const navigateToCreatorPageCallback = useCallback(() => {
 		navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))
@@ -21,7 +22,7 @@ export default function SubVideoSection(props: Props) {
 	return (
 		<div className="flex mx-0.5"> {/* This div will align its children side by side */}
 			<div className="flex-1"> {/* Existing content takes up the space it needs */}
-				<div className="text-2xl font-semibold mt-1">
+				<div className="text-lg font-medium mt-1">
 					{videoName}
 				</div>
 				<div className="mt-0.5">
@@ -47,9 +48,7 @@ export default function SubVideoSection(props: Props) {
 							<VideoLikeDislikeSection video={video} />
 						</div>
 					</div>
-					<div className="bg-zinc-100 dark:bg-zinc-700 rounded-md p-2 dark:text-white">
-						{description}
-					</div>
+					<VideoDescription video={video} />
 				</div>
 			</div>
 		</div>

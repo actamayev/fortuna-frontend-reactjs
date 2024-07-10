@@ -17,6 +17,7 @@ function EditVideoDetailsModal(props: Props) {
 	const mouseDownTarget = useRef<EventTarget | null>(null)
 	useClickOutsideModalUseEffect(mouseDownTarget, modalRef, toggleModalOpen)
 
+	// TODO: Make this scrollable (if the description is 5000 chracters it gives problems)
 	return (
 		<div className="fixed inset-0 flex items-start justify-center z-50 bg-black bg-opacity-50 pt-28 text-zinc-800 dark:text-zinc-50">
 			<div
