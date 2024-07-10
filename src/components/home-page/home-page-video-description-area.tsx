@@ -37,7 +37,7 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 			/>
 			<div className="flex flex-col">
 				<div
-					className="text-md font-semibold cursor-pointer"
+					className="text-md font-semibold cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap"
 					style={{ maxWidth: "fit-content" }}
 					onClick={navigateToVideoPageCallback}
 				>

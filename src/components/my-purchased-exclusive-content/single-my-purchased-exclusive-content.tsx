@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useCallback } from "react"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 
@@ -22,8 +21,8 @@ export default function SingleMyPurchasedExclusiveContent(props: Props) {
 			onClick={navigateToVideoPageCallback}
 		>
 			<div className="flex flex-col">
-				<h2 className="text-lg font-semibold mb-2 dark:text-zinc-200">
-					{_.truncate(myPurchasedExclusiveContent.videoName, { length: 30, omission: "..."})}
+				<h2 className="text-lg font-semibold mb-2 dark:text-zinc-200 overflow-hidden text-ellipsis whitespace-nowrap">
+					{myPurchasedExclusiveContent.videoName}
 				</h2>
 				<img
 					src={myPurchasedExclusiveContent.imageUrl}
