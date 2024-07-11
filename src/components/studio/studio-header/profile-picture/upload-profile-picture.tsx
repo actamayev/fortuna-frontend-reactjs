@@ -32,9 +32,10 @@ function UploadProfilePicture(props: Props) {
 	const [isLoading, setIsLoading] = useState(false)
 
 	const uploadProfilePictureCallback = useCallback(async() => {
+		if (isLoading === true) return
 		await uploadProfilePicture(selectedImage, setIsLoading)
 		removeContent()
-	}, [removeContent, selectedImage, uploadProfilePicture])
+	}, [isLoading, removeContent, selectedImage, uploadProfilePicture])
 
 	return (
 		<div className="relative inline-block" style={{ minWidth: "128px", maxWidth: "128px" }}>
@@ -49,26 +50,19 @@ function UploadProfilePicture(props: Props) {
 			<div
 				className="absolute top-2 right-2 bg-red-500 dark:bg-red-600 p-1 rounded-full \
 					cursor-pointer hover:bg-red-600 dark:hover:bg-red-700"
+				onClick={removeContent}
 			>
-				<FaTrash
-					color="white"
-					size={22}
-					onClick={removeContent}
-				/>
+				<FaTrash color="white" size={22} />
 			</div>
 			<div
 				className={`absolute bottom-2 right-2 bg-green-500 dark:bg-green-600 p-1 rounded-full
-					${isLoading ? "" : "hover:bg-green-600 dark:hover:bg-green-700"}`}
+					${isLoading ? "" : "hover:bg-green-600 dark:hover:bg-green-700 cursor-pointer"}`}
+				onClick={uploadProfilePictureCallback}
 			>
 				{isLoading ? (
 					<LoadingOval />
 				) : (
-					<FaSave
-						color="white"
-						size={22}
-						onClick={uploadProfilePictureCallback}
-						className="cursor-pointer"
-					/>
+					<FaSave color="white" size={22} />
 				)}
 			</div>
 			<input

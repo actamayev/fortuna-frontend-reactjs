@@ -32,9 +32,11 @@ function UploadChannelBannerPicture(props: Props) {
 	const [isLoading, setIsLoading] = useState(false)
 
 	const uploadChannelBannerPictureCallback = useCallback(async() => {
+		if (isLoading === true) return
 		await uploadChannelBannerPicture(selectedImage, setIsLoading)
 		removeContent()
-	}, [removeContent, selectedImage, uploadChannelBannerPicture])
+	}, [isLoading, removeContent, selectedImage, uploadChannelBannerPicture])
+
 
 	return (
 		<div className="relative inline-block w-full">
@@ -49,26 +51,19 @@ function UploadChannelBannerPicture(props: Props) {
 			<div
 				className="absolute top-2 right-2 bg-red-500 dark:bg-red-600 p-1 rounded-full \
 					cursor-pointer hover:bg-red-600 dark:hover:bg-red-700"
+				onClick={removeContent}
 			>
-				<FaTrash
-					color="white"
-					size={22}
-					onClick={removeContent}
-				/>
+				<FaTrash color="white" size={22} />
 			</div>
 			<div
 				className={`absolute bottom-2 right-2 bg-green-500 dark:bg-green-600 p-1 rounded-full
-					${isLoading ? "" : "hover:bg-green-600 dark:hover:bg-green-700"}`}
+					${isLoading ? "" : "hover:bg-green-600 dark:hover:bg-green-700 cursor-pointer"}`}
+				onClick={uploadChannelBannerPictureCallback}
 			>
 				{isLoading ? (
 					<LoadingOval />
 				) : (
-					<FaSave
-						color="white"
-						size={22}
-						onClick={uploadChannelBannerPictureCallback}
-						className="cursor-pointer"
-					/>
+					<FaSave color="white" size={22} />
 				)}
 			</div>
 			<input

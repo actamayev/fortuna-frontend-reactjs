@@ -35,12 +35,10 @@ function ShowCurrentProfilePicture(props: Props) {
 					<div
 						className="absolute top-2 right-2 bg-red-500 dark:bg-red-600 p-1 rounded-full \
 							cursor-pointer hover:bg-red-600 dark:hover:bg-red-700"
+						onClick={() => setIsDeletingCurrentPicture(true)}
+
 					>
-						<FaTrash
-							color="white"
-							size={22}
-							onClick={() => setIsDeletingCurrentPicture(true)}
-						/>
+						<FaTrash color="white" size={22} />
 					</div>
 				</>
 			) : (
@@ -52,7 +50,6 @@ function ShowCurrentProfilePicture(props: Props) {
 							onClick={editPictureCallback}
 							onMouseEnter={handleMouseEnter}
 							onMouseLeave={handleMouseLeave}
-							// color={defaultSiteTheme === "dark" ? "white" : "black"}
 						/>
 					</div>
 					{!_.isNil(creatorClass?.profilePictureUrl) && (
@@ -60,22 +57,18 @@ function ShowCurrentProfilePicture(props: Props) {
 							<div
 								className="absolute top-2 right-2 bg-red-500 dark:bg-red-600 p-1 rounded-full \
 									cursor-pointer hover:bg-red-600 dark:hover:bg-red-700"
+								onClick={() => setIsDeletingCurrentPicture(false)}
+
 							>
-								<FaTimesCircle
-									color="white"
-									size={22}
-									onClick={() => setIsDeletingCurrentPicture(false)}
-								/>
+								<FaTimesCircle color="white" size={22} />
 							</div>
 							<div
 								className="absolute bottom-2 right-2 bg-green-500 dark:bg-green-600 p-1 rounded-full
 									cursor-pointer hover:bg-green-600 dark:hover:bg-green-700"
+								onClick={() => removeCurrentProfilePicture(setIsDeletingCurrentPicture)}
+
 							>
-								<FaSave
-									color="white"
-									size={22}
-									onClick={() => removeCurrentProfilePicture(setIsDeletingCurrentPicture)}
-								/>
+								<FaSave color="white" size={22} />
 							</div>
 						</>
 					)}

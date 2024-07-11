@@ -34,13 +34,10 @@ function ShowCurrentChannelBannerPicture(props: Props) {
 					/>
 					<div
 						className="absolute top-2 right-2 bg-red-500 dark:bg-red-600 p-1 rounded-full \
-					cursor-pointer hover:bg-red-600 dark:hover:bg-red-700"
+							cursor-pointer hover:bg-red-600 dark:hover:bg-red-700"
+						onClick={() => setIsDeletingCurrentPicture(true)}
 					>
-						<FaTrash
-							color="white"
-							size={22}
-							onClick={() => setIsDeletingCurrentPicture(true)}
-						/>
+						<FaTrash color="white" size={22} />
 					</div>
 				</>
 			) : (
@@ -58,22 +55,16 @@ function ShowCurrentChannelBannerPicture(props: Props) {
 							<div
 								className="absolute top-2 right-2 bg-red-500 dark:bg-red-600 p-1 rounded-full \
 									cursor-pointer hover:bg-red-600 dark:hover:bg-red-700"
+								onClick={() => setIsDeletingCurrentPicture(false)}
 							>
-								<FaTimesCircle
-									color="white"
-									size={22}
-									onClick={() => setIsDeletingCurrentPicture(false)}
-								/>
+								<FaTimesCircle color="white" size={22} />
 							</div>
 							<div
 								className="absolute bottom-2 right-2 bg-green-500 dark:bg-green-600 p-1 rounded-full
 									cursor-pointer hover:bg-green-600 dark:hover:bg-green-700"
+								onClick={() => removeCurrentChannelBannerPicture(setIsDeletingCurrentPicture)}
 							>
-								<FaSave
-									color="white"
-									size={22}
-									onClick={() => removeCurrentChannelBannerPicture(setIsDeletingCurrentPicture)}
-								/>
+								<FaSave color="white" size={22} />
 							</div>
 						</>
 					)}

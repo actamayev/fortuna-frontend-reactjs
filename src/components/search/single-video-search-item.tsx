@@ -36,7 +36,7 @@ export default function SingleVideoSearchItem(props: Props) {
 			bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700"
 			onClick={navigateToVideoPageCallback}
 		>
-			<div className="col-span-4 flex items-center justify-center relative">
+			<div className="col-span-4 flex items-center justify-center">
 				<div className="w-full h-full">
 					<GeneralizedVideoThumbnail thumbnailData={videoData} />
 				</div>
