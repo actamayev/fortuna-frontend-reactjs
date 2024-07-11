@@ -1,6 +1,7 @@
 import { observer } from "mobx-react"
 import { useCallback, useEffect, useState } from "react"
 import VideoName from "./video-name"
+import LinkToVideo from "./link-to-video"
 import EarningsSection from "./earnings-section"
 import VideoDescription from "./video-description"
 import VideoListingStatus from "./video-listing-status"
@@ -60,8 +61,11 @@ function SingleMyContent(props: Props) {
 			<div className="col-span-2 text-sm text-zinc-700 dark:text-zinc-300">
 				<LikesDislikesRatioSection content={content} />
 			</div>
-			<div className="col-span-3 text-sm text-zinc-700 dark:text-zinc-300">
+			<div className="col-span-2 text-sm text-zinc-700 dark:text-zinc-300">
 				<EarningsSection content={content} />
+			</div>
+			<div className="col-span-1 text-sm text-black dark:text-white">
+				<LinkToVideo content={content} />
 			</div>
 			{isVideoEditingModalOpen && (
 				<EditVideoDetailsModal

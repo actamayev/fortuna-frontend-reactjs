@@ -8,7 +8,8 @@ export default function MyContentHeader() {
 			<div className="col-span-1">Visibility</div>
 			<div className="col-span-1">Date</div>
 			<div className="col-span-2">Likes (vs. dislikes)</div>
-			<div className="col-span-3">Earnings ($)</div>
+			<div className="col-span-2">Earnings ($)</div>
+			<div className="col-span-1 justify-end flex">Link to Video</div>
 		</div>
 	)
 }

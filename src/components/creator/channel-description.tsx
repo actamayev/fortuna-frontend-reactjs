@@ -15,7 +15,7 @@ function ChannelDescription(props: Props) {
 	return (
 		<div className="w-full">
 			<div
-				className="dark:bg-zinc-700 dark:text-white text-sm w-full block"
+				className="dark:text-white text-sm w-full block"
 				style={{
 					wordBreak: "break-word",
 					overflowWrap: "break-word",
@@ -36,7 +36,7 @@ function ChannelDescription(props: Props) {
 					</div>
 				) : (
 					<div
-						className="cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded p-2"
+						className="cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded p-2"
 						onClick={() => setIsExpanded(true)}
 					>
 						{_.truncate(channelDescription, { length: 350 })}
