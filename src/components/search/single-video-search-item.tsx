@@ -33,12 +33,19 @@ export default function SingleVideoSearchItem(props: Props) {
 		bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700"
 			onClick={navigateToVideoPageCallback}
 		>
-			<div className="col-span-4 flex items-center justify-center">
-				<img
-					src={videoData.imageUrl}
-					alt={videoData.videoName}
-					className="w-64 h-36 rounded-lg object-cover"
-				/>
+			<div className="col-span-4 flex items-center justify-center relative">
+				<div className="aspect-w-16 aspect-h-9 w-full h-full">
+					<img
+						src={videoData.imageUrl}
+						alt={videoData.videoName}
+						className="object-cover rounded-lg cursor-pointer w-full h-full"
+					/>
+				</div>
+				{videoData.videoListingStatus === "SOLDOUT" && (
+					<div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">
+						Sold Out
+					</div>
+				)}
 			</div>
 			<div className="col-span-8 flex flex-col justify-start overflow-hidden">
 				<div className="text-zinc-950 dark:text-white text-2xl font-semibold overflow-hidden text-ellipsis whitespace-nowrap">

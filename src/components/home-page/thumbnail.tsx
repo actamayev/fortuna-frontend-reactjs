@@ -16,19 +16,19 @@ export default function Thumbnail(props: Props) {
 	}, [navigateToVideoPage, uuid])
 
 	return (
-		<div className="cursor-pointer" onClick={navigateToVideoPageCallback}>
-			<div className="relative w-full" style={{ paddingTop: "56.25%" }}>
+		<div className="relative cursor-pointer" onClick={navigateToVideoPageCallback}>
+			<div className="aspect-w-16 aspect-h-9">
 				<img
 					src={imageUrl}
 					alt={videoName}
-					className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
+					className="object-cover rounded-lg cursor-pointer w-full h-full"
 				/>
-				{videoListingStatus === "SOLDOUT" && (
-					<div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">
-						Sold Out
-					</div>
-				)}
 			</div>
+			{videoListingStatus === "SOLDOUT" && (
+				<div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">
+					Sold Out
+				</div>
+			)}
 		</div>
 	)
 }

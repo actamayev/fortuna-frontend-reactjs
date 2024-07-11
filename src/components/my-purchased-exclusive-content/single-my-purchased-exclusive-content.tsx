@@ -24,12 +24,13 @@ export default function SingleMyPurchasedExclusiveContent(props: Props) {
 				<h2 className="text-lg font-semibold mb-2 dark:text-zinc-200 overflow-hidden text-ellipsis whitespace-nowrap">
 					{myPurchasedExclusiveContent.videoName}
 				</h2>
-				<img
-					src={myPurchasedExclusiveContent.imageUrl}
-					className="w-full h-full object-cover rounded-lg"
-					alt={myPurchasedExclusiveContent.videoName}
-					style={{ aspectRatio: "16/9" }}
-				/>
+				<div className="aspect-w-16 aspect-h-9">
+					<img
+						src={myPurchasedExclusiveContent.imageUrl}
+						className="w-full h-full object-cover rounded-lg"
+						alt={myPurchasedExclusiveContent.videoName}
+					/>
+				</div>
 			</div>
 		</div>
 	)
