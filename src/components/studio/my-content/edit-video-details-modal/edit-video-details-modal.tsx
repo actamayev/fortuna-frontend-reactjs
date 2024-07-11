@@ -5,14 +5,15 @@ import VideoNameTextInput from "./video-name-text-input"
 import HoverOutlineComponent from "../../../hover-outline-component"
 import VideoDescriptionTextInput from "./video-description-text-input"
 import useClickOutsideModalUseEffect from "../../../../hooks/click-outside/click-outside-modal-use-effect"
+import ChangeVideoListingStatus from "./change-video-listing-status"
 
 interface Props {
-	videoUUID: string
+	content: MyContent
 	toggleModalOpen: () => void
 }
 
 function EditVideoDetailsModal(props: Props) {
-	const { videoUUID, toggleModalOpen } = props
+	const { content, toggleModalOpen } = props
 	const modalRef = useRef<HTMLDivElement>(null)
 	const mouseDownTarget = useRef<EventTarget | null>(null)
 	useClickOutsideModalUseEffect(mouseDownTarget, modalRef, toggleModalOpen)
@@ -25,7 +26,7 @@ function EditVideoDetailsModal(props: Props) {
 				className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg w-2/3"
 				onClick={e => e.stopPropagation()}
 			>
-				<div className="flex justify-between items-center px-3 pt-1 border-b border-zinc-200 dark:border-zinc-700">
+				<div className="flex justify-between items-center px-3 pt-1.5 border-b border-zinc-200 dark:border-zinc-700">
 					<div className="text-lg font-bold">
                         Edit Video Details
 					</div>
@@ -38,8 +39,9 @@ function EditVideoDetailsModal(props: Props) {
 					</HoverOutlineComponent>
 				</div>
 				<div className="p-3">
-					<VideoNameTextInput videoUUID={videoUUID} />
-					<VideoDescriptionTextInput videoUUID={videoUUID} />
+					<VideoNameTextInput videoUUID={content.uuid} />
+					<VideoDescriptionTextInput videoUUID={content.uuid} />
+					<ChangeVideoListingStatus content={content} />
 				</div>
 			</div>
 		</div>

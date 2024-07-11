@@ -53,7 +53,10 @@ function SingleMyContent(props: Props) {
 				</div>
 			</div>
 			<div className="flex col-span-1">
-				<VideoListingStatus content={content}/>
+				<VideoListingStatus
+					content={content}
+					toggleModalOpen={toggleModalOpen}
+				/>
 			</div>
 			<div className="col-span-1 text-sm text-zinc-700 dark:text-zinc-300">
 				{formatGBDate(content.createdAt)}
@@ -69,7 +72,7 @@ function SingleMyContent(props: Props) {
 			</div>
 			{isVideoEditingModalOpen && (
 				<EditVideoDetailsModal
-					videoUUID={content.uuid}
+					content={content}
 					toggleModalOpen={toggleModalOpen}
 				/>
 			)}

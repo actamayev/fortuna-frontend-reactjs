@@ -5,18 +5,12 @@ import { useCreatorContext } from "../../contexts/creator-context"
 import { useNotificationsContext } from "../../contexts/notifications-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useUpdateVideoListingStatus(): (
-	videoUUID: string,
-	setIsChangingListingStatus: (value: React.SetStateAction<boolean>) => void
-) => Promise<void> {
+export default function useUpdateVideoListingStatus(): (videoUUID: string) => Promise<void> {
 	const creatorClass = useCreatorContext()
 	const fortunaApiClient = useApiClientContext()
 	const notificationsClass = useNotificationsContext()
 
-	const updateVideoListingStatus = useCallback(async (
-		videoUUID: string,
-		setIsChangingListingStatus: (value: React.SetStateAction<boolean>) => void
-	): Promise<void> => {
+	const updateVideoListingStatus = useCallback(async (videoUUID: string): Promise<void> => {
 		try {
 			if (_.isNull(creatorClass)) return
 
@@ -26,7 +20,6 @@ export default function useUpdateVideoListingStatus(): (
 				return
 			}
 
-			setIsChangingListingStatus(false)
 			creatorClass.updateVideoListingStatus(videoUUID)
 			notificationsClass.setPositiveNotification("Video Listing status updated")
 		} catch (error) {

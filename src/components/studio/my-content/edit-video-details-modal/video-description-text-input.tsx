@@ -51,7 +51,7 @@ function VideoDescriptionTextInput(props: Props) {
 		<div className="flex items-center w-full">
 			<div className="relative flex flex-col flex-grow">
 				<label className="text-sm text-zinc-700 dark:text-zinc-300 mt-2 ml-0.5 font-semibold">
-					Video Description
+					Description
 				</label>
 				<textarea
 					ref={textAreaRef}
