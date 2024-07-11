@@ -37,7 +37,6 @@ function VideoListingStatus(props: Props) {
 				{capitalizeFirstLetter(content.videoListingStatus)}
 			</div>
 		</>
-
 	)
 }
 

@@ -56,22 +56,22 @@ function VideoDescriptionTextInput(props: Props) {
 				<textarea
 					ref={textAreaRef}
 					className={
-						`mt-0.5 p-1 border rounded text-zinc-800 dark:text-zinc-200 \
-					bg-white dark:bg-zinc-800 outline-none font-normal w-full
-					${videoDescription.length === maxLength ?
+						`mt-0.5 p-1 border rounded text-zinc-800 dark:text-zinc-200 
+						bg-white dark:bg-zinc-800 outline-none font-normal w-full
+            			max-h-80 overflow-y-auto
+						${videoDescription.length === maxLength ?
 			"border-red-500 dark:border-red-500" : "border-zinc-200 dark:border-zinc-700"}`
 					}
 					value={videoDescription}
 					onChange={handleChange}
 					onKeyDown={handleKeyDown}
 					maxLength={maxLength}
-					rows={2}
 				/>
 				<span className="text-xs text-zinc-600 dark:text-zinc-400 mt-1 ml-0.5">
 					{videoDescription.length}/{maxLength}
 				</span>
 			</div>
-			{(!_.isEmpty(videoDescription) && (videoDescription !== creatorClass?.contextForMyContent(videoUUID)?.description)) &&  (
+			{(!_.isEmpty(videoDescription) && (videoDescription !== creatorClass?.contextForMyContent(videoUUID)?.description)) && (
 				<SaveButton
 					handleSaveButton={handleSaveVideoDescription}
 					extraClasses="mt-1 ml-2"

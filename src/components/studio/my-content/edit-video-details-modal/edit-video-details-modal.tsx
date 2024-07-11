@@ -18,17 +18,16 @@ function EditVideoDetailsModal(props: Props) {
 	const mouseDownTarget = useRef<EventTarget | null>(null)
 	useClickOutsideModalUseEffect(mouseDownTarget, modalRef, toggleModalOpen)
 
-	// TODO: Make this scrollable (if the description is 5000 chracters it gives problems)
 	return (
 		<div className="fixed inset-0 flex items-start justify-center z-50 bg-black bg-opacity-50 pt-28 text-zinc-800 dark:text-zinc-50">
 			<div
 				ref={modalRef}
-				className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg w-2/3"
+				className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg w-2/3 max-h-full overflow-y-auto"
 				onClick={e => e.stopPropagation()}
 			>
 				<div className="flex justify-between items-center px-3 pt-1.5 border-b border-zinc-200 dark:border-zinc-700">
 					<div className="text-lg font-bold">
-                        Edit Video Details
+						Edit Video Details
 					</div>
 					<HoverOutlineComponent
 						classes="relative flex items-center justify-center inline-block"
