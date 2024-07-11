@@ -1,8 +1,8 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import TiersInfo from "./tiers-info"
-import SoldOutSticker from "../../sold-out-sticker"
 import { dateFormatter } from "../../../utils/date-formatter"
+import GeneralizedVideoThumbnail from "../../generalized-video-thumbnail"
 import useNavigateToVideoPage from "../../../hooks/navigate/navigate-to-video-page"
 
 interface Props {
@@ -13,7 +13,7 @@ export default function SingleRecommendedVideo(props: Props) {
 	const { videoData } = props
 	const navigateToVideoPage = useNavigateToVideoPage()
 
-	const { uuid, imageUrl, videoName, createdAt, videoListingStatus } = videoData
+	const { uuid, videoName, createdAt } = videoData
 
 	const navigateToVideoPageCallback = useCallback(() => {
 		navigateToVideoPage(uuid)
@@ -21,21 +21,13 @@ export default function SingleRecommendedVideo(props: Props) {
 
 	return (
 		<div
-			className="flex-none flex flex-col items-center \
+			className="flex-none flex flex-col items-center w-full h-full \
 				hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer p-1"
-			style={{ width: "100%", height: "100%" }}
 			onClick={navigateToVideoPageCallback}
 		>
 			<div className="flex w-full">
-				<div className="relative w-3/5">
-					<div className="aspect-w-16 aspect-h-9">
-						<img
-							src={imageUrl}
-							alt={videoName}
-							className="object-cover rounded-lg cursor-pointer w-full h-full"
-						/>
-					</div>
-					<SoldOutSticker videoListingStatus={videoListingStatus} />
+				<div className="w-3/5">
+					<GeneralizedVideoThumbnail thumbnailData={videoData} />
 				</div>
 				<div className="flex flex-col justify-start pl-4 w-2/5 mt-2">
 					<TiersInfo videoData={videoData} />

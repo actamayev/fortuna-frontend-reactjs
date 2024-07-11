@@ -1,5 +1,5 @@
 import { useCallback } from "react"
-import SoldOutSticker from "../sold-out-sticker"
+import GeneralizedVideoThumbnail from "../generalized-video-thumbnail"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 
 interface Props {
@@ -10,22 +10,13 @@ export default function HomePageThumbnail(props: Props) {
 	const { video } = props
 	const navigateToVideoPage = useNavigateToVideoPage()
 
-	const { uuid, imageUrl, videoName, videoListingStatus } = video
-
 	const navigateToVideoPageCallback = useCallback(() => {
-		navigateToVideoPage(uuid)
-	}, [navigateToVideoPage, uuid])
+		navigateToVideoPage(video.uuid)
+	}, [navigateToVideoPage, video.uuid])
 
 	return (
-		<div className="relative cursor-pointer" onClick={navigateToVideoPageCallback}>
-			<div className="aspect-w-16 aspect-h-9">
-				<img
-					src={imageUrl}
-					alt={videoName}
-					className="object-cover rounded-lg cursor-pointer w-full h-full"
-				/>
-			</div>
-			<SoldOutSticker videoListingStatus={videoListingStatus} />
+		<div className="cursor-pointer" onClick={navigateToVideoPageCallback}>
+			<GeneralizedVideoThumbnail thumbnailData={video} />
 		</div>
 	)
 }

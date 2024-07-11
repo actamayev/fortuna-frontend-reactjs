@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import SoldOutSticker from "../sold-out-sticker"
 import { dateFormatter } from "../../utils/date-formatter"
+import GeneralizedVideoThumbnail from "../generalized-video-thumbnail"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 
 interface Props {
@@ -14,11 +14,9 @@ export default function SingleCreatorPageVideo(props: Props) {
 
 	const {
 		uuid,
-		imageUrl,
 		videoName,
 		description,
 		createdAt,
-		videoListingStatus
 	} = videoData
 
 	const navigateToVideoPageCallback = useCallback(() => {
@@ -31,14 +29,7 @@ export default function SingleCreatorPageVideo(props: Props) {
 			onClick={navigateToVideoPageCallback}
 		>
 			<div className="w-64 flex-shrink-0 relative">
-				<div className="aspect-w-16 aspect-h-9 w-full h-full">
-					<img
-						src={imageUrl}
-						alt={videoName}
-						className="w-full h-full rounded-lg object-cover"
-					/>
-				</div>
-				<SoldOutSticker videoListingStatus={videoListingStatus} />
+				<GeneralizedVideoThumbnail thumbnailData={videoData} />
 			</div>
 			<div className="flex flex-col justify-start overflow-hidden">
 				<div className="text-3xl font-semibold truncate dark:text-zinc-200 overflow-hidden text-ellipsis whitespace-nowrap">
