@@ -23,9 +23,8 @@ export default function ChannelDescriptionTextInput(props: Props) {
 
 	const handleChange = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
 		const value = event.target.value
-		if (value.length <= maxLength) {
-			setChannelDescription(value)
-		}
+		if (value.length > maxLength) return
+		setChannelDescription(value)
 	}, [maxLength, setChannelDescription])
 
 	const handleKeyDown = useCallback(async (event: React.KeyboardEvent<HTMLTextAreaElement>) => {

@@ -29,9 +29,8 @@ function VideoNameTextInput(props: Props) {
 
 	const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value
-		if (value.length <= maxLength) {
-			setVideoName(value)
-		}
+		if (value.length > maxLength) return
+		setVideoName(value)
 	}, [maxLength, setVideoName])
 
 	const handleKeyDown = useCallback((event: React.KeyboardEvent<HTMLInputElement>) => {

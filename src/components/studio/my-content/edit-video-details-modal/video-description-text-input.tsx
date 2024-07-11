@@ -36,9 +36,8 @@ function VideoDescriptionTextInput(props: Props) {
 
 	const handleChange = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
 		const value = event.target.value
-		if (value.length <= maxLength) {
-			setVideoDescription(value)
-		}
+		if (value.length > maxLength) return
+		setVideoDescription(value)
 	}, [maxLength, setVideoDescription])
 
 	const handleKeyDown = useCallback(async (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
