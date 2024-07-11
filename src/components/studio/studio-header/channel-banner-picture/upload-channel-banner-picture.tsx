@@ -28,15 +28,14 @@ function UploadChannelBannerPicture(props: Props) {
 		imageStyle,
 		fileInputRef
 	} = props
-	const uploadChannelBannerPicture = useUploadChannelBannerPicture()
 	const [isLoading, setIsLoading] = useState(false)
+	const uploadChannelBannerPicture = useUploadChannelBannerPicture()
 
 	const uploadChannelBannerPictureCallback = useCallback(async() => {
 		if (isLoading === true) return
 		await uploadChannelBannerPicture(selectedImage, setIsLoading)
 		removeContent()
 	}, [isLoading, removeContent, selectedImage, uploadChannelBannerPicture])
-
 
 	return (
 		<div className="relative inline-block w-full">
