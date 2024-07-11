@@ -21,14 +21,13 @@ function DeleteTierButton(props: Props) {
 	if (tierNumber === 1) return null
 
 	return (
-		<div className="text-white dark:text-black">
-			<Button
-				titleIcon={<FaTrash />}
-				colorClass="bg-red-500 dark:bg-red-600"
-				hoverClass="hover:bg-red-600 dark:hover:bg-red-700"
-				onClick={deleteTier}
-			/>
-		</div>
+		<Button
+			titleIcon={<FaTrash />}
+			colorClass="bg-red-500 dark:bg-red-600"
+			hoverClass="hover:bg-red-600 dark:hover:bg-red-700"
+			onClick={deleteTier}
+			className="text-white dark:text-black"
+		/>
 	)
 }
 
