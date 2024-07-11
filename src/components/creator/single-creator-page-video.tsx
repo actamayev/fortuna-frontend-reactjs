@@ -28,7 +28,7 @@ export default function SingleCreatorPageVideo(props: Props) {
 			className="flex items-start space-x-4 p-4 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer w-7/12"
 			onClick={navigateToVideoPageCallback}
 		>
-			<div className="w-64 flex-shrink-0">
+			<div className="w-64">
 				<GeneralizedVideoThumbnail thumbnailData={videoData} />
 			</div>
 			<div className="flex flex-col justify-start overflow-hidden">
