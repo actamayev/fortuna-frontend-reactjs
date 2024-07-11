@@ -14,19 +14,19 @@ function VideoListingStatus(props: Props) {
 	if (content.isContentExclusive === true) {
 		return (
 			<div
-				className="mt-1.5 text-sm dark:text-white text-black text-center \
-					rounded-md px-1 py-0.5 cursor-pointer inline-flex items-center hover:bg-zinc-200 dark:hover:bg-zinc-700"
+				className=" text-sm dark:text-white text-black text-center rounded-md
+				px-1 py-0.5 cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700"
 				onClick={toggleModalOpen}
 			>
-				<FaEye color="green" size={20} className="mr-1"/>
-				Listed
-				<div className="ml-1 flex items-center">
+				<div className="inline-flex items-center">
+					<FaEye color="green" size={20} className="mr-1" />
+                    Listed
 					<Tooltip
 						message="Unable to change listing status since this is an exclusive video"
 						messageStart="center"
 						width="250px"
 					>
-						<FaLock />
+						<FaLock className="ml-1" />
 					</Tooltip>
 				</div>
 			</div>
@@ -35,16 +35,18 @@ function VideoListingStatus(props: Props) {
 
 	return (
 		<div
-			className="mt-1.5 text-sm dark:text-white text-black text-center \
-				rounded-md px-1 py-0.5 cursor-pointer inline-flex items-center hover:bg-zinc-200 dark:hover:bg-zinc-700"
+			className="text-sm dark:text-white text-black text-center rounded-md
+				px-1 py-0.5 cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700"
 			onClick={toggleModalOpen}
 		>
-			{content.videoListingStatus === "UNLISTED" ? (
-				<FaEyeSlash size={20} className="mr-1"/>
-			) : (
-				<FaEye color="green" size={20} className="mr-1"/>
-			)}
-			{capitalizeFirstLetter(content.videoListingStatus)}
+			<div className="inline-flex items-center">
+				{content.videoListingStatus === "UNLISTED" ? (
+					<FaEyeSlash size={20} className="mr-1" />
+				) : (
+					<FaEye color="green" size={20} className="mr-1" />
+				)}
+				{capitalizeFirstLetter(content.videoListingStatus)}
+			</div>
 		</div>
 	)
 }
