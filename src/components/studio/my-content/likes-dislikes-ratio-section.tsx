@@ -12,7 +12,7 @@ function LikesDislikesRatioSection(props: Props) {
 	if (content.numberOfLikes === 0 && content.numberOfDislikes === 0) {
 		return (
 			<div className="flex flex-col items-start">
-				<div className="text-sm text-zinc-600 dark:text-zinc-300">
+				<div className="text-sm">
 					No likes/dislikes
 				</div>
 			</div>
@@ -27,10 +27,10 @@ function LikesDislikesRatioSection(props: Props) {
 
 	return (
 		<div className="flex flex-col items-start space-y-5">
-			<div className="text-sm text-zinc-600 dark:text-zinc-300">
+			<div className="text-sm">
 				{likePercentage}%
 			</div>
-			<div className="text-sm text-zinc-600 dark:text-zinc-300">
+			<div className="text-sm">
 				{content.numberOfLikes} like{content.numberOfLikes !== 1 && "s"}
 			</div>
 			{content.numberOfLikes > 0 || content.numberOfDislikes > 0 ? (

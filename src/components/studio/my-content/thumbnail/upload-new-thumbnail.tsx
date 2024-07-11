@@ -48,9 +48,11 @@ function UploadNewThumbnail(props: Props) {
 					onClick={editPictureCallback}
 					onMouseEnter={handleMouseEnter}
 					onMouseLeave={handleMouseLeave}
-					style={{ filter: content.videoListingStatus === "UNLISTED" ? "brightness(0.6)" : "none", ...imageStyle}}
+					style={{
+						filter: content.videoListingStatus === "UNLISTED" ? "brightness(0.6)" : "none",
+						...imageStyle
+					}}
 				/>
-
 			</div>
 			<div
 				className="absolute top-2 -right-2 bg-red-500 dark:bg-red-600 p-1 rounded-full \
@@ -64,11 +66,10 @@ function UploadNewThumbnail(props: Props) {
 					${isLoading ? "" : "hover:bg-green-600 dark:hover:bg-green-700 cursor-pointer"}`}
 				onClick={uploadNewThumbnailPictureCallback}
 			>
-				{isLoading ? (
-					<LoadingOval />
-				) : (
+				{isLoading ?
+					<LoadingOval /> :
 					<FaSave color="white" size={22} />
-				)}
+				}
 			</div>
 			<input
 				ref={fileInputRef}

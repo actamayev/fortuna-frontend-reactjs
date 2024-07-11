@@ -38,7 +38,10 @@ function ShowCurrentThumbnail(props: Props) {
 					onMouseLeave={handleMouseLeave}
 				/>
 			</div>
-			<SoldOutSticker videoListingStatus={content.videoListingStatus} backgroundColor="bg-green-600" />
+			<SoldOutSticker
+				videoListingStatus={content.videoListingStatus}
+				backgroundColor="bg-green-600"
+			/>
 			<input
 				ref={fileInputRef}
 				type="file"
