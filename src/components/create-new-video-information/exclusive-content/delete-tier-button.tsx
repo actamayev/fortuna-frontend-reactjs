@@ -4,7 +4,6 @@ import { observer } from "mobx-react"
 import { FaTrash } from "react-icons/fa"
 import Button from "../../buttons/button"
 import { useCreatorContext } from "../../../contexts/creator-context"
-import useDefaultSiteTheme from "../../../hooks/memos/default-site-theme"
 
 interface Props {
 	tierNumber: number
@@ -12,7 +11,6 @@ interface Props {
 
 function DeleteTierButton(props: Props) {
 	const { tierNumber } = props
-	const defaultSiteTheme = useDefaultSiteTheme()
 	const creatorClass = useCreatorContext()
 
 	const deleteTier = useCallback(() => {
@@ -23,12 +21,14 @@ function DeleteTierButton(props: Props) {
 	if (tierNumber === 1) return null
 
 	return (
-		<Button
-			titleIcon={<FaTrash color={defaultSiteTheme === "light" ? "white" : "black"}/>}
-			colorClass="bg-red-500 dark:bg-red-600"
-			hoverClass="hover:bg-red-600 dark:hover:bg-red-700"
-			onClick={deleteTier}
-		/>
+		<div className="text-white dark:text-black">
+			<Button
+				titleIcon={<FaTrash />}
+				colorClass="bg-red-500 dark:bg-red-600"
+				hoverClass="hover:bg-red-600 dark:hover:bg-red-700"
+				onClick={deleteTier}
+			/>
+		</div>
 	)
 }
 

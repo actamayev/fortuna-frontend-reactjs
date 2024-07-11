@@ -39,7 +39,7 @@ function ChannelDescription(props: Props) {
 						className="cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded p-2"
 						onClick={() => setIsExpanded(true)}
 					>
-						{_.truncate(channelDescription, { length: 350 })}
+						{_.truncate(channelDescription, { length: 300 })}
 					</div>
 				)}
 			</div>

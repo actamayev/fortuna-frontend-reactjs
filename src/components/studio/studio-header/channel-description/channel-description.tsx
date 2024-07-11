@@ -98,7 +98,7 @@ function ChannelDescription() {
 					<>Click here to add a description</>
 				) : (
 					<div>
-						{_.truncate(channelDescription, { length: 350 })}
+						{_.truncate(channelDescription, { length: 300 })}
 					</div>
 				)}
 			</span>

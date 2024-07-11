@@ -1,7 +1,5 @@
-import { observer } from "mobx-react"
 import { FaTimes } from "react-icons/fa"
 import HoverOutlineComponent from "../hover-outline-component"
-import useDefaultSiteTheme from "../../hooks/memos/default-site-theme"
 
 interface Props {
 	cancelEditAction: () => void
@@ -9,19 +7,16 @@ interface Props {
 	customCirclePixelSize?: string
 }
 
-function CancelEditingButton(props: Props) {
+export default function CancelEditingButton(props: Props) {
 	const { cancelEditAction, extraClasses = "", customCirclePixelSize = "30px" } = props
-	const defaultSiteTheme = useDefaultSiteTheme()
 
 	return (
 		<HoverOutlineComponent
-			classes={`relative flex items-center justify-center inline-block ${extraClasses}`}
+			classes={`relative flex items-center justify-center inline-block text-black dark:text-white ${extraClasses}`}
 			onClickAction={cancelEditAction}
 			circlePixelSize={customCirclePixelSize}
 		>
-			<FaTimes color={defaultSiteTheme === "dark" ? "white" : "black"} />
+			<FaTimes />
 		</HoverOutlineComponent>
 	)
 }
-
-export default observer(CancelEditingButton)

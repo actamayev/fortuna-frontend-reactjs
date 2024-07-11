@@ -3,7 +3,6 @@ import { useState } from "react"
 import { observer } from "mobx-react"
 import { FaSave, FaTimesCircle, FaTrash, FaUserCircle } from "react-icons/fa"
 import { useCreatorContext } from "../../../../contexts/creator-context"
-import useDefaultSiteTheme from "../../../../hooks/memos/default-site-theme"
 import useRemoveCurrentProfilePicture from "../../../../hooks/creator/remove-current-profile-picture"
 
 interface Props {
@@ -18,7 +17,6 @@ interface Props {
 function ShowCurrentProfilePicture(props: Props) {
 	const { handleImageChange, fileInputRef, handleMouseEnter, handleMouseLeave, imageStyle, editPictureCallback } = props
 	const creatorClass = useCreatorContext()
-	const defaultSiteTheme = useDefaultSiteTheme()
 	const removeCurrentProfilePicture = useRemoveCurrentProfilePicture()
 	const [isDeletingCurrentPicture, setIsDeletingCurrentPicture] = useState(false)
 
@@ -47,14 +45,16 @@ function ShowCurrentProfilePicture(props: Props) {
 				</>
 			) : (
 				<>
-					<FaUserCircle
-						className="w-32 h-32 rounded-full object-cover cursor-pointer"
-						style={imageStyle}
-						onClick={editPictureCallback}
-						onMouseEnter={handleMouseEnter}
-						onMouseLeave={handleMouseLeave}
-						color={defaultSiteTheme === "dark" ? "white" : "black"}
-					/>
+					<div className="text-black dark:text-white">
+						<FaUserCircle
+							className="w-32 h-32 rounded-full object-cover cursor-pointer"
+							style={imageStyle}
+							onClick={editPictureCallback}
+							onMouseEnter={handleMouseEnter}
+							onMouseLeave={handleMouseLeave}
+							// color={defaultSiteTheme === "dark" ? "white" : "black"}
+						/>
+					</div>
 					{!_.isNil(creatorClass?.profilePictureUrl) && (
 						<>
 							<div

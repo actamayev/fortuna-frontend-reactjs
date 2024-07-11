@@ -1,7 +1,5 @@
 import _ from "lodash"
-import { observer } from "mobx-react"
 import { FaUserCircle } from "react-icons/fa"
-import useDefaultSiteTheme from "../hooks/memos/default-site-theme"
 
 interface Props {
 	profileImageUrl: string | null | undefined
@@ -10,15 +8,13 @@ interface Props {
 	extraClasses: string
 }
 
-function ShowUserProfileImageOrDefaultImage(props: Props) {
+export default function ShowUserProfileImageOrDefaultImage(props: Props) {
 	const { profileImageUrl, onClickCreatorPicture, onClickDefaultPicture, extraClasses } = props
-	const defaultSiteTheme = useDefaultSiteTheme()
 
 	if (_.isNil(profileImageUrl)) {
 		return (
 			<FaUserCircle
-				color={defaultSiteTheme === "dark" ? "white" : "black"}
-				className={extraClasses}
+				className={`text-black dark:text-white ${extraClasses}`}
 				onClick={onClickDefaultPicture}
 			/>
 		)
@@ -33,5 +29,3 @@ function ShowUserProfileImageOrDefaultImage(props: Props) {
 		/>
 	)
 }
-
-export default observer(ShowUserProfileImageOrDefaultImage)
