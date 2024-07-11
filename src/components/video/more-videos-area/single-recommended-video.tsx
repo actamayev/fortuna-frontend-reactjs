@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import TiersInfo from "./tiers-info"
-import { dateFormatter } from "../../../utils/date-formatter"
+import { useDateFormatter } from "../../../utils/date-formatter"
 import GeneralizedVideoThumbnail from "../../generalized-video-thumbnail"
 import useNavigateToVideoPage from "../../../hooks/navigate/navigate-to-video-page"
 
@@ -11,9 +11,9 @@ interface Props {
 
 export default function SingleRecommendedVideo(props: Props) {
 	const { videoData } = props
-	const navigateToVideoPage = useNavigateToVideoPage()
-
 	const { uuid, videoName, createdAt } = videoData
+	const dateFormatter = useDateFormatter()
+	const navigateToVideoPage = useNavigateToVideoPage()
 
 	const navigateToVideoPageCallback = useCallback(() => {
 		navigateToVideoPage(uuid)

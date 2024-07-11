@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import { dateFormatter } from "../../utils/date-formatter"
+import { useDateFormatter } from "../../utils/date-formatter"
 import GeneralizedVideoThumbnail from "../generalized-video-thumbnail"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 
@@ -10,6 +10,7 @@ interface Props {
 
 export default function SingleCreatorPageVideo(props: Props) {
 	const { videoData } = props
+	const dateFormatter = useDateFormatter()
 	const navigateToVideoPage = useNavigateToVideoPage()
 
 	const {

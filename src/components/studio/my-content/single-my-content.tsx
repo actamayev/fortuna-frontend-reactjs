@@ -5,7 +5,7 @@ import LinkToVideo from "./link-to-video"
 import EarningsSection from "./earnings-section"
 import VideoDescription from "./video-description"
 import VideoListingStatus from "./video-listing-status"
-import { formatGBDate } from "../../../utils/date-formatter"
+import { useFormatGBDate } from "../../../utils/date-formatter"
 import MyContentThumbnail from "./thumbnail/my-content-thumbnail"
 import LikesDislikesRatioSection from "./likes-dislikes-ratio-section"
 import EditVideoDetailsModal from "./edit-video-details-modal/edit-video-details-modal"
@@ -16,6 +16,7 @@ interface Props {
 
 function SingleMyContent(props: Props) {
 	const { content } = props
+	const formatGBDate = useFormatGBDate()
 	const [isVideoEditingModalOpen, setIsVideoEditingModalOpen] = useState(false)
 
 	const toggleModalOpen = useCallback(() => {

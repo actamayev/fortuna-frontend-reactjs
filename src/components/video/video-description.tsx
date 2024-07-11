@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { useState } from "react"
-import { dateFormatter } from "../../utils/date-formatter"
+import { useDateFormatter } from "../../utils/date-formatter"
 
 interface Props {
 	video: SingleVideoDataFromBackend
@@ -9,6 +9,7 @@ interface Props {
 export default function VideoDescription(props: Props) {
 	const { video } = props
 	const [isOpen, setIsOpen] = useState(false)
+	const dateFormatter = useDateFormatter()
 
 	if (isOpen === false) {
 		return (
