@@ -10,7 +10,7 @@ function EarningsSection(props: Props) {
 	if (content.isContentExclusive === false) {
 		return (
 			<div>
-				N/A: Content is not exclusive
+				N/A: Non-exclusive video
 			</div>
 		)
 	}

@@ -27,12 +27,12 @@ function ChangeVideoListingStatus(props: Props) {
 		return videoListingStatus === status ? `${baseClass} ${activeClass}` : `${baseClass} ${inactiveClass}`
 	}, [videoListingStatus])
 
-	const getCursorClass = (status: AllVideoListingStatuses) => {
+	const getCursorClass = useCallback((status: AllVideoListingStatuses) => {
 		if (content.isContentExclusive && status === "UNLISTED") {
 			return "cursor-not-allowed"
 		}
 		return "cursor-pointer"
-	}
+	}, [content.isContentExclusive])
 
 	return (
 		<div className="flex flex-col items-start w-full mt-2">
