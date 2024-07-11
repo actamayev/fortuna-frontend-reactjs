@@ -46,11 +46,9 @@ function SingleMyContent(props: Props) {
 			<div className="col-span-2 relative">
 				<MyContentThumbnail content={content} />
 			</div>
-			<div className="col-span-3">
-				<div className="flex-grow">
-					<VideoName content={content} toggleModalOpen={toggleModalOpen} />
-					<VideoDescription content={content} toggleModalOpen={toggleModalOpen} />
-				</div>
+			<div className="col-span-3 flex-grow">
+				<VideoName content={content} toggleModalOpen={toggleModalOpen} />
+				<VideoDescription content={content} toggleModalOpen={toggleModalOpen} />
 			</div>
 			<div className="flex col-span-1">
 				<VideoListingStatus
