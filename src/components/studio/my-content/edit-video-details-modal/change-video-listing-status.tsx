@@ -1,5 +1,7 @@
 import { observer } from "mobx-react"
+import { FaLock } from "react-icons/fa"
 import { useCallback, useState } from "react"
+import Tooltip from "../../../tooltip"
 import SaveButton from "../../save-button"
 import useUpdateVideoListingStatus from "../../../../hooks/creator/update-video-listing-status"
 
@@ -18,35 +20,56 @@ function ChangeVideoListingStatus(props: Props) {
 	}, [content.isContentExclusive])
 
 	const getStatusButtonClass = useCallback((status: AllVideoListingStatuses) => {
-		const baseClass = "cursor-pointer p-2 rounded"
+		const baseClass = "cursor-pointer p-2 rounded flex items-center"
 		const activeClass = "bg-zinc-200 dark:bg-zinc-900"
 		const inactiveClass = "bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-900"
 
 		return videoListingStatus === status ? `${baseClass} ${activeClass}` : `${baseClass} ${inactiveClass}`
 	}, [videoListingStatus])
 
+	const getCursorClass = (status: AllVideoListingStatuses) => {
+		if (content.isContentExclusive && status === "UNLISTED") {
+			return "cursor-not-allowed"
+		}
+		return "cursor-pointer"
+	}
+
 	return (
-		<div className="flex items-center w-full mt-2">
-			<div className="relative flex flex-row">
-				<label className="text-sm text-zinc-700 dark:text-zinc-300 ml-0.5 font-semibold">
-					Visibility
-				</label>
+		<div className="flex flex-col items-start w-full mt-2">
+			<label className="text-sm text-zinc-700 dark:text-zinc-300 ml-0.5 font-semibold">
+				Visibility
+			</label>
+			<div className="flex flex-row mt-2">
 				<div
-					className={getStatusButtonClass("LISTED")}
+					className={`${getStatusButtonClass("LISTED")} ${getCursorClass("LISTED")}`}
 					onClick={() => handleStatusChange("LISTED")}
 				>
 					Listed
+					{content.isContentExclusive && (
+						<Tooltip
+							message="Unable to change listing status since this is an exclusive video"
+							messageStart="center"
+							width="250px"
+						>
+							<FaLock className="ml-1" />
+						</Tooltip>
+					)}
 				</div>
 				<div
-					className={getStatusButtonClass("UNLISTED")}
+					className={`${getStatusButtonClass("UNLISTED")} ${getCursorClass("UNLISTED")} mx-2`}
 					onClick={() => handleStatusChange("UNLISTED")}
 				>
 					Unlisted
 				</div>
+				{content.videoListingStatus !== videoListingStatus && (
+					<div className="mt-0.5">
+						<SaveButton
+							handleSaveButton={() => updateVideoListingStatus(content.uuid)}
+							customCirclePixelSize="35px"
+						/>
+					</div>
+				)}
 			</div>
-			{content.videoListingStatus !== videoListingStatus && (
-				<SaveButton handleSaveButton={() => updateVideoListingStatus(content.uuid)} />
-			)}
 		</div>
 	)
 }
