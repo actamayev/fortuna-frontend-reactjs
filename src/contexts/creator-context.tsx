@@ -71,6 +71,10 @@ class CreatorClass {
 		return false
 	}
 
+	get numberOfUnlistedVideos(): number {
+		return this.myContent.filter(content => content.videoListingStatus === "UNLISTED").length
+	}
+
 	public updateNewVideoDetails = action(<K extends keyof NewVideoDetails>(
 		key: K, value: NewVideoDetails[K]
 	) => {
