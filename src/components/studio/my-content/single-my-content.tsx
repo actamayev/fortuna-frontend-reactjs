@@ -51,10 +51,15 @@ function SingleMyContent(props: Props) {
 				<VideoDescription content={content} toggleModalOpen={toggleModalOpen} />
 			</div>
 			<div className="flex col-span-1">
-				<VideoListingStatus
-					content={content}
-					toggleModalOpen={toggleModalOpen}
-				/>
+				<div
+					className=" text-sm dark:text-white text-black text-center rounded-md
+					px-1 py-0.5 cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 w-full"
+					onClick={toggleModalOpen}
+				>
+					<div className="inline-flex items-center">
+						<VideoListingStatus content={content} />
+					</div>
+				</div>
 			</div>
 			<div className="col-span-1 text-sm text-zinc-700 dark:text-zinc-300">
 				{formatGBDate(content.createdAt)}

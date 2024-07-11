@@ -5,49 +5,39 @@ import capitalizeFirstLetter from "../../../utils/capitalize-first-letter"
 
 interface Props {
 	content: MyContent
-	toggleModalOpen: () => void
 }
 
 function VideoListingStatus(props: Props) {
-	const { content, toggleModalOpen } = props
+	const { content } = props
 
 	if (content.isContentExclusive === true) {
 		return (
-			<div
-				className=" text-sm dark:text-white text-black text-center rounded-md
-				px-1 py-0.5 cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700"
-				onClick={toggleModalOpen}
-			>
-				<div className="inline-flex items-center">
-					<FaEye color="green" size={20} className="mr-1" />
-                    Listed
-					<Tooltip
-						message="Unable to change listing status since this is an exclusive video"
-						messageStart="center"
-						width="250px"
-					>
-						<FaLock className="ml-1" />
-					</Tooltip>
-				</div>
-			</div>
+			<>
+				<FaEye color="green" size={20} />
+				<div className="mx-2">Listed</div>
+				<Tooltip
+					message="Unable to change listing status since this is an exclusive video"
+					messageStart="center"
+					width="250px"
+				>
+					<FaLock />
+				</Tooltip>
+			</>
 		)
 	}
 
 	return (
-		<div
-			className="text-sm dark:text-white text-black text-center rounded-md
-				px-1 py-0.5 cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700"
-			onClick={toggleModalOpen}
-		>
-			<div className="inline-flex items-center">
-				{content.videoListingStatus === "UNLISTED" ? (
-					<FaEyeSlash size={20} className="mr-1" />
-				) : (
-					<FaEye color="green" size={20} className="mr-1" />
-				)}
+		<>
+			{content.videoListingStatus === "UNLISTED" ? (
+				<FaEyeSlash size={20} />
+			) : (
+				<FaEye color="green" size={20} />
+			)}
+			<div className="ml-2">
 				{capitalizeFirstLetter(content.videoListingStatus)}
 			</div>
-		</div>
+		</>
+
 	)
 }
 
