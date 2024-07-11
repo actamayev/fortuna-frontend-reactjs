@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import TiersInfo from "./tiers-info"
+import SoldOutSticker from "../../sold-out-sticker"
 import { dateFormatter } from "../../../utils/date-formatter"
 import useNavigateToVideoPage from "../../../hooks/navigate/navigate-to-video-page"
 
@@ -12,7 +13,7 @@ export default function SingleRecommendedVideo(props: Props) {
 	const { videoData } = props
 	const navigateToVideoPage = useNavigateToVideoPage()
 
-	const { uuid, imageUrl, videoName, createdAt } = videoData
+	const { uuid, imageUrl, videoName, createdAt, videoListingStatus } = videoData
 
 	const navigateToVideoPageCallback = useCallback(() => {
 		navigateToVideoPage(uuid)
@@ -26,12 +27,15 @@ export default function SingleRecommendedVideo(props: Props) {
 			onClick={navigateToVideoPageCallback}
 		>
 			<div className="flex w-full">
-				<div className="relative" style={{ width: "60%", paddingBottom: "33.75%" }}>
-					<img
-						src={imageUrl}
-						alt={videoName}
-						className="absolute top-0 left-0 w-full h-full rounded-lg object-cover"
-					/>
+				<div className="relative w-3/5">
+					<div className="aspect-w-16 aspect-h-9">
+						<img
+							src={imageUrl}
+							alt={videoName}
+							className="object-cover rounded-lg cursor-pointer w-full h-full"
+						/>
+					</div>
+					<SoldOutSticker videoListingStatus={videoListingStatus} />
 				</div>
 				<div className="flex flex-col justify-start pl-4 w-2/5 mt-2">
 					<TiersInfo videoData={videoData} />
