@@ -1,11 +1,12 @@
 import { useCallback } from "react"
+import SoldOutSticker from "../sold-out-sticker"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 
 interface Props {
 	video: VideoDataLessVideoUrl
 }
 
-export default function Thumbnail(props: Props) {
+export default function HomePageThumbnail(props: Props) {
 	const { video } = props
 	const navigateToVideoPage = useNavigateToVideoPage()
 
@@ -24,11 +25,7 @@ export default function Thumbnail(props: Props) {
 					className="object-cover rounded-lg cursor-pointer w-full h-full"
 				/>
 			</div>
-			{videoListingStatus === "SOLDOUT" && (
-				<div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">
-					Sold Out
-				</div>
-			)}
+			<SoldOutSticker videoListingStatus={videoListingStatus} />
 		</div>
 	)
 }

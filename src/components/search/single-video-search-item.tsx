@@ -1,5 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
+import SoldOutSticker from "../sold-out-sticker"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
@@ -41,11 +42,7 @@ export default function SingleVideoSearchItem(props: Props) {
 						className="object-cover rounded-lg cursor-pointer w-full h-full"
 					/>
 				</div>
-				{videoData.videoListingStatus === "SOLDOUT" && (
-					<div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">
-						Sold Out
-					</div>
-				)}
+				<SoldOutSticker videoListingStatus={videoData.videoListingStatus} />
 			</div>
 			<div className="col-span-8 flex flex-col justify-start overflow-hidden">
 				<div className="text-zinc-950 dark:text-white text-2xl font-semibold overflow-hidden text-ellipsis whitespace-nowrap">

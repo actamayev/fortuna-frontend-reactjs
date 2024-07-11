@@ -95,7 +95,7 @@ function ChannelDescription() {
 				onClick={toggleEditMode}
 			>
 				{_.isEmpty(channelDescription.trim()) ? (
-					<>Click here to add a description</>
+					<div>Click here to add a description</div>
 				) : (
 					<div>
 						{_.truncate(channelDescription, { length: 300 })}

@@ -1,6 +1,6 @@
 import _ from "lodash"
-import { useState } from "react"
 import { observer } from "mobx-react"
+import { useCallback, useState } from "react"
 
 interface Props {
 	channelDescription: string
@@ -9,6 +9,10 @@ interface Props {
 function ChannelDescription(props: Props) {
 	const { channelDescription } = props
 	const [isExpanded, setIsExpanded] = useState(false)
+
+	const handleToggle = useCallback(() => {
+		setIsExpanded(!isExpanded)
+	}, [isExpanded])
 
 	if (_.isEmpty(channelDescription.trim())) return null
 
@@ -28,7 +32,7 @@ function ChannelDescription(props: Props) {
 							<span
 								className="rounded-lg cursor-pointer p-2 font-medium
 								bg-zinc-300 dark:bg-zinc-800 hover:bg-zinc-400 hover:dark:bg-zinc-900"
-								onClick={() => setIsExpanded(false)}
+								onClick={handleToggle}
 							>
 								Collapse
 							</span>
@@ -37,7 +41,7 @@ function ChannelDescription(props: Props) {
 				) : (
 					<div
 						className="cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded p-2"
-						onClick={() => setIsExpanded(true)}
+						onClick={handleToggle}
 					>
 						{_.truncate(channelDescription, { length: 300 })}
 					</div>
