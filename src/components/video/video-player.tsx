@@ -15,6 +15,7 @@ function VideoPlayer(props: Props) {
 		videoRef.current.load()
 	}, [video.videoUrl])
 
+	// FUTURE TODO: Figure out how to use aspect-width and aspect-height instead.
 	if (_.isUndefined(video.videoUrl)) {
 		return (
 			<div className="w-full">
