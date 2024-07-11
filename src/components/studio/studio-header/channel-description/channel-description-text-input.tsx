@@ -55,9 +55,7 @@ export default function ChannelDescriptionTextInput(props: Props) {
 					{channelDescription.length}/{maxLength}
 				</span>
 				<div className="flex items-center">
-					<CancelEditingButton
-						cancelEditAction={cancelEditAction}
-					/>
+					<CancelEditingButton cancelEditAction={cancelEditAction} />
 					<SaveButton handleSaveButton={handleSaveChannelDescription} />
 				</div>
 			</div>
