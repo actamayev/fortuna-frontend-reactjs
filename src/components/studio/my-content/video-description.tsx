@@ -9,6 +9,8 @@ interface Props {
 function VideoDescription(props: Props) {
 	const { content, toggleModalOpen } = props
 
+	// FUTURE TODO: Figure out the height problem
+	// Should simply expand to fill the full height of the container, shouldn't need to use minHeight)
 	return (
 		<div
 			className="relative flex flex-grow hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer pt-1 px-2 w-full"
