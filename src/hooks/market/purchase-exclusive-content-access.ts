@@ -69,7 +69,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 			} else {
 				solanaClass.alterWalletBalanceUsd(-tierAccessPriceUsd)
 			}
-			// ASAP TODO: Add this transaction to my transactions (don't just call retrieveTransactions - redundant)
+			// TODO: Add this transaction to my transactions (don't just call retrieveTransactions - redundant)
 			// Consider returning the sol transfer details with the purchaseExclusiveContentAccess response.
 			// Add that single new transaction to the transaction array
 		} catch (error) {

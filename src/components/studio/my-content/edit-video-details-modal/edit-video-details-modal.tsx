@@ -3,9 +3,9 @@ import { observer } from "mobx-react"
 import { FaTimes } from "react-icons/fa"
 import VideoNameTextInput from "./video-name-text-input"
 import HoverOutlineComponent from "../../../hover-outline-component"
+import ChangeVideoListingStatus from "./change-video-listing-status"
 import VideoDescriptionTextInput from "./video-description-text-input"
 import useClickOutsideModalUseEffect from "../../../../hooks/click-outside/click-outside-modal-use-effect"
-import ChangeVideoListingStatus from "./change-video-listing-status"
 
 interface Props {
 	content: MyContent
