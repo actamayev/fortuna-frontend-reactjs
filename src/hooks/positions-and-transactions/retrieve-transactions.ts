@@ -8,11 +8,10 @@ export default function useRetrieveTransactions(): () => Promise<void> {
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const fortunaApiClient = useApiClientContext()
 
-	// eslint-disable-next-line complexity
-	const retrieveTransactions = useCallback(async () => {
+	return useCallback(async () => {
+		if (_.isNull(positionsAndTransactionsClass)) return
 		try {
 			if (
-				_.isNull(positionsAndTransactionsClass) ||
 				_.isNull(fortunaApiClient.httpClient.accessToken) ||
 				positionsAndTransactionsClass.hasTransactionsToRetrieve === false ||
 				positionsAndTransactionsClass.isRetrievingTransactions === true ||
@@ -35,9 +34,7 @@ export default function useRetrieveTransactions(): () => Promise<void> {
 		} catch (error) {
 			console.error(error)
 		} finally {
-			if (!_.isNull(positionsAndTransactionsClass)) positionsAndTransactionsClass.setIsRetrievingTransactions(false)
+			positionsAndTransactionsClass.setIsRetrievingTransactions(false)
 		}
 	}, [positionsAndTransactionsClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.positionsAndTransactionsDataService])
-
-	return retrieveTransactions
 }

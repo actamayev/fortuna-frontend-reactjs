@@ -15,7 +15,7 @@ export default function useUploadNewThumnailPicture(): (
 	const creatorClass = useCreatorContext()
 	const notificationsClass = useNotificationsContext()
 
-	const uploadNewThumbnailPicture = useCallback(async (
+	return useCallback(async (
 		selectedImage: File | null,
 		uuid: string,
 		videoId: number,
@@ -40,6 +40,4 @@ export default function useUploadNewThumnailPicture(): (
 			setIsLoading(false)
 		}
 	}, [creatorClass, fortunaApiClient.uploadDataService, notificationsClass])
-
-	return uploadNewThumbnailPicture
 }

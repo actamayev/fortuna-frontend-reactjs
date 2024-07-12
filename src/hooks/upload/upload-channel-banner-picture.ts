@@ -13,7 +13,7 @@ export default function useUploadChannelBannerPicture(): (
 	const creatorClass = useCreatorContext()
 	const notificationsClass = useNotificationsContext()
 
-	const uploadChannelBannerPicture = useCallback(async (
+	return useCallback(async (
 		selectedImage: File | null,
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 	) => {
@@ -36,6 +36,4 @@ export default function useUploadChannelBannerPicture(): (
 			setIsLoading(false)
 		}
 	}, [creatorClass, fortunaApiClient.uploadDataService, notificationsClass])
-
-	return uploadChannelBannerPicture
 }

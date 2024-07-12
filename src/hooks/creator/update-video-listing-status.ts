@@ -10,7 +10,7 @@ export default function useUpdateVideoListingStatus(): (videoUUID: string) => Pr
 	const fortunaApiClient = useApiClientContext()
 	const notificationsClass = useNotificationsContext()
 
-	const updateVideoListingStatus = useCallback(async (videoUUID: string): Promise<void> => {
+	return useCallback(async (videoUUID: string): Promise<void> => {
 		try {
 			if (_.isNull(creatorClass)) return
 
@@ -29,6 +29,4 @@ export default function useUpdateVideoListingStatus(): (videoUUID: string) => Pr
 			)
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass])
-
-	return updateVideoListingStatus
 }

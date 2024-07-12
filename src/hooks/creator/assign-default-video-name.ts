@@ -8,7 +8,7 @@ export default function useAssignDefaultVideoName(): (
 ) => void {
 	const creatorClass = useCreatorContext()
 
-	const assignDefaultVideoName = useCallback((
+	return useCallback((
 		videoUUID: string,
 		setVideoName: (value: React.SetStateAction<string>) => void
 	): void => {
@@ -21,6 +21,4 @@ export default function useAssignDefaultVideoName(): (
 			console.error(error)
 		}
 	}, [creatorClass])
-
-	return assignDefaultVideoName
 }

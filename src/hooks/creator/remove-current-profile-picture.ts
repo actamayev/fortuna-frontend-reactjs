@@ -12,7 +12,7 @@ export default function useRemoveCurrentProfilePicture(): (
 	const fortunaApiClient = useApiClientContext()
 	const notificationsClass = useNotificationsContext()
 
-	const removeCurrentProfilePicture = useCallback(async (
+	return useCallback(async (
 		setIsDeletingCurrentPicture: React.Dispatch<React.SetStateAction<boolean>>
 	): Promise<void> => {
 		if (_.isNull(creatorClass)) return
@@ -32,6 +32,4 @@ export default function useRemoveCurrentProfilePicture(): (
 			notificationsClass.setNegativeNotification("Unable to remove profile picture at this time. Please reload page and try again")
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass])
-
-	return removeCurrentProfilePicture
 }

@@ -26,7 +26,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 	const confirmUserHasSufficientFundsForInstantAccess = useConfirmUserHasSufficientFundsForInstantAccess()
 
 	// eslint-disable-next-line complexity
-	const purchaseInstantAccess = useCallback(async (
+	return useCallback(async (
 		videoUUID: string,
 		tierNumber: number,
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
@@ -80,6 +80,4 @@ export default function usePurchaseExclusiveContentAccess(): (
 		}
 	}, [marketClass, solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.marketDataService,
 		positionsAndTransactionsClass, confirmUserHasSufficientFundsForInstantAccess, videoClass, retrieveWalletBalance, notificationClass])
-
-	return purchaseInstantAccess
 }

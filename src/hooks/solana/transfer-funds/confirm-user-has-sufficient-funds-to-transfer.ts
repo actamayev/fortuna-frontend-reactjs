@@ -11,7 +11,7 @@ export default function useConfirmUserHasSufficientFundsToTransfer(): (
 	const personalInfoClass = usePersonalInfoContext()
 
 	// eslint-disable-next-line complexity
-	const confirmUserHasSufficientFundsToTransfer = useCallback((
+	return useCallback((
 		setDoesUserHaveSufficientFunds: React.Dispatch<React.SetStateAction<boolean>>
 	): void => {
 		try {
@@ -62,6 +62,4 @@ export default function useConfirmUserHasSufficientFundsToTransfer(): (
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [personalInfoClass, solanaClass, solanaClass?.walletBalanceSol])
-
-	return confirmUserHasSufficientFundsToTransfer
 }

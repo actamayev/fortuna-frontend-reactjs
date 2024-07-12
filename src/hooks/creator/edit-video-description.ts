@@ -14,7 +14,7 @@ export default function useEditVideoDescription(): (
 	const fortunaApiClient = useApiClientContext()
 	const notificationsClass = useNotificationsContext()
 
-	const editVideolDescription = useCallback(async (
+	return useCallback(async (
 		videoUUID: string,
 		videoDescription: string,
 		setVideoDescription: React.Dispatch<React.SetStateAction<string>>
@@ -39,6 +39,4 @@ export default function useEditVideoDescription(): (
 			setVideoDescription(existingVideo.description)
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass])
-
-	return editVideolDescription
 }

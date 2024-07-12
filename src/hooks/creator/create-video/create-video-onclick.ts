@@ -18,7 +18,7 @@ export default function useCreateVideoOnclick(): (
 	const confirmNewVideoDetails = useConfirmNewVideoDetails()
 
 	// eslint-disable-next-line complexity
-	const createVideoOnclick = useCallback(async (
+	return useCallback(async (
 		setError: React.Dispatch<React.SetStateAction<string>>,
 		setStatus: React.Dispatch<React.SetStateAction<string>>
 	): Promise<void> => {
@@ -97,6 +97,4 @@ export default function useCreateVideoOnclick(): (
 		}
 	}, [creatorClass, confirmNewVideoDetails, fortunaApiClient.uploadDataService,
 		fortunaApiClient.creatorDataService, notificationsClass, navigate])
-
-	return createVideoOnclick
 }

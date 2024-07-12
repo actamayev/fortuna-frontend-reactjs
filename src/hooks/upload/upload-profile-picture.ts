@@ -13,7 +13,7 @@ export default function useUploadProfilePicture(): (
 	const creatorClass = useCreatorContext()
 	const notificationsClass = useNotificationsContext()
 
-	const uploadProfilePicture = useCallback(async (
+	return useCallback(async (
 		selectedImage: File | null,
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 	) => {
@@ -33,6 +33,4 @@ export default function useUploadProfilePicture(): (
 			setIsLoading(false)
 		}
 	}, [creatorClass, fortunaApiClient.uploadDataService, notificationsClass])
-
-	return uploadProfilePicture
 }

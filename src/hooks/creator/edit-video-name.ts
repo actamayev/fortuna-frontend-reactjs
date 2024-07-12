@@ -14,7 +14,7 @@ export default function useEditVideoName(): (
 	const fortunaApiClient = useApiClientContext()
 	const notificationsClass = useNotificationsContext()
 
-	const editVideolName = useCallback(async (
+	return useCallback(async (
 		videoUUID: string,
 		videoName: string,
 		setVideoName: React.Dispatch<React.SetStateAction<string>>
@@ -39,6 +39,4 @@ export default function useEditVideoName(): (
 			setVideoName(existingVideo.videoName)
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass])
-
-	return editVideolName
 }

@@ -8,7 +8,7 @@ export default function useAssignDefaultVideoDescription(): (
 ) => void {
 	const creatorClass = useCreatorContext()
 
-	const assignDefaultVideoDescription = useCallback((
+	return useCallback((
 		videoUUID: string,
 		setVideoDescription: (value: React.SetStateAction<string>) => void
 	): void => {
@@ -21,6 +21,4 @@ export default function useAssignDefaultVideoDescription(): (
 			console.error(error)
 		}
 	}, [creatorClass])
-
-	return assignDefaultVideoDescription
 }

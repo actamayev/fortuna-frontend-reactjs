@@ -8,7 +8,7 @@ export default function useAssignDefaultChannelName(): (
 	const creatorClass = useCreatorContext()
 	const personalInfoClass = usePersonalInfoContext()
 
-	const assignDefaultChannelName = useCallback((
+	return useCallback((
 		setChannelName: (value: React.SetStateAction<string>) => void
 	): void => {
 		try {
@@ -21,6 +21,4 @@ export default function useAssignDefaultChannelName(): (
 			console.error(error)
 		}
 	}, [creatorClass?.channelName, personalInfoClass?.username])
-
-	return assignDefaultChannelName
 }
