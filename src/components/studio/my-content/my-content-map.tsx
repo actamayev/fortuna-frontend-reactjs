@@ -3,9 +3,11 @@ import { observer } from "mobx-react"
 import SingleMyContent from "./single-my-content"
 import MyContentHeader from "./my-content-header"
 import { useCreatorContext } from "../../../contexts/creator-context"
+import useMyContentToShow from "../../../hooks/creator/my-content-to-show"
 
 function MyContentMap() {
 	const creatorClass = useCreatorContext()
+	const myContentToShow = useMyContentToShow()
 
 	if (_.isNull(creatorClass)) return null
 
@@ -16,7 +18,7 @@ function MyContentMap() {
 	return (
 		<div className="flex flex-col">
 			<MyContentHeader />
-			{creatorClass.myContent.map(singleMyContent => (
+			{myContentToShow.map(singleMyContent => (
 				<SingleMyContent key={singleMyContent.uuid} content={singleMyContent} />
 			))}
 		</div>

@@ -49,6 +49,12 @@ declare global {
 	}
 
 	type SocialPlatformKey = keyof typeof SocialPlatforms
+
+	interface MyContentFilter {
+		sortBy: "Date" | "Earnings"
+		orderBy: "asc" | "desc",
+		titleIncludes: string
+	}
 }
 
 export {}
