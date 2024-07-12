@@ -1,4 +1,6 @@
+import _ from "lodash"
 import { observer } from "mobx-react"
+import useDefaultCurrency from "../../../hooks/memos/default-currency"
 
 interface Props {
 	content: MyContent
@@ -6,6 +8,7 @@ interface Props {
 
 function EarningsSection(props: Props) {
 	const { content } = props
+	const defaultCurrency = useDefaultCurrency()
 
 	if (content.isContentExclusive === false) {
 		return (
@@ -17,7 +20,18 @@ function EarningsSection(props: Props) {
 
 	return (
 		<div>
-			Coming soon...
+			Profit from video: {" "}
+			{defaultCurrency === "sol" && (
+				<>{content.totalCreatorProfitInSol.toFixed(4)} SOL</>
+			)}
+			{defaultCurrency === "usd" && (
+				<>${content.totalCreatorProfitInUsd.toFixed(2)}</>
+			)}
+			{!_.isNull(content.numberOfExclusivePurchasesSoFar) && (
+				<div>
+					Number of purchases: {content.numberOfExclusivePurchasesSoFar}
+				</div>
+			)}
 		</div>
 	)
 }

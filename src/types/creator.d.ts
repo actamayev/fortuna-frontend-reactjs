@@ -38,6 +38,8 @@ declare global {
 		numberOfLikes: number
 		numberOfDislikes: number
 		createdAt: Date
+		totalCreatorProfitInSol: number
+		totalCreatorProfitInUsd: number
 		numberOfExclusivePurchasesSoFar: number | null
 	}
 
