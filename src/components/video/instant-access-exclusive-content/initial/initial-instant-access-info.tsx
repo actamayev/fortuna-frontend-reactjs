@@ -6,6 +6,7 @@ import TwoTiersInfo from "./two-tiers-info"
 import ThreeTiersInfo from "./three-tiers-info"
 import { useVideoContext } from "../../../../contexts/video-context"
 import { useMarketContext } from "../../../../contexts/market-context"
+import ReviewInstantAccessButton from "./review-instant-access-button"
 
 function InitialInstantAccessInfo() {
 	const { videoUUID } = useParams<{ videoUUID: string}>()
@@ -26,7 +27,7 @@ function InitialInstantAccessInfo() {
 	}
 
 	return (
-		<>
+		<div>
 			<div className="text-center font-semibold flex justify-center items-center text-xl mb-2">
 				Instant Access
 			</div>
@@ -39,7 +40,9 @@ function InitialInstantAccessInfo() {
 			{video.tierData.length === 3 && (
 				<ThreeTiersInfo video={video} />
 			)}
-		</>
+
+			<ReviewInstantAccessButton video={video} />
+		</div>
 	)
 }
 

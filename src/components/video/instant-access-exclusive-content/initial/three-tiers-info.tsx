@@ -1,7 +1,6 @@
 import _ from "lodash"
-import { useCallback } from "react"
 import { observer } from "mobx-react"
-import { useMarketContext } from "../../../../contexts/market-context"
+import useClickTiersButton from "../../../../hooks/market/click-tiers-button"
 import ThreeTiersTemplate from "../../video-tiers/tiers-templates/three-tiers-template"
 import getTierByTierNumber from "../../../../utils/video-access-tiers/get-tier-by-tier-number"
 import useCheckIfUUIDExistsInExclusiveContentList
@@ -16,17 +15,8 @@ function ThreeTiersInfo(props: Props) {
 	const firstTier = getTierByTierNumber(video.tierData, 1)
 	const secondTier = getTierByTierNumber(video.tierData, 2)
 	const thirdTier = getTierByTierNumber(video.tierData, 3)
-	const marketClass = useMarketContext()
 	const doesUserHaveAccessToExclusiveContent = useCheckIfUUIDExistsInExclusiveContentList(video.uuid)
-
-	const onClickButton = useCallback(() => {
-		if (
-			_.isNull(marketClass) ||
-			thirdTier?.isTierSoldOut === true ||
-			doesUserHaveAccessToExclusiveContent === true
-		) return
-		marketClass.setInstantAccessToExclusiveContentStage("review")
-	}, [doesUserHaveAccessToExclusiveContent, marketClass, thirdTier?.isTierSoldOut])
+	const clickTiersButton = useClickTiersButton(video)
 
 	if (
 		_.isUndefined(firstTier) ||
@@ -37,7 +27,7 @@ function ThreeTiersInfo(props: Props) {
 
 	return (
 		<ThreeTiersTemplate
-			onClick={onClickButton}
+			onClick={clickTiersButton}
 			firstTier={firstTier}
 			secondTier={secondTier}
 			thirdTier={thirdTier}

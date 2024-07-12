@@ -53,7 +53,7 @@ function SingleMyContent(props: Props) {
 			</div>
 			<div className="flex col-span-1">
 				<div
-					className=" text-sm dark:text-white text-black text-center rounded-md
+					className=" text-sm dark:text-white text-black rounded-md
 					px-1 py-0.5 cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 w-full"
 					onClick={toggleModalOpen}
 				>

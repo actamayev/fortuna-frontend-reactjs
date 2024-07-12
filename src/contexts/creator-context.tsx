@@ -9,6 +9,12 @@ class CreatorClass {
 	public hasContentToRetrieve = true
 	public isRetrievingContent = false
 
+	public myContentFilter: MyContentFilter = {
+		sortBy: "Date",
+		orderBy: "desc",
+		titleIncludes: ""
+	}
+
 	public newVideoDetails: NewVideoDetails = {
 		videoName: "",
 		description: "",
@@ -74,6 +80,23 @@ class CreatorClass {
 	get numberOfUnlistedVideos(): number {
 		return this.myContent.filter(content => content.videoListingStatus === "UNLISTED").length
 	}
+
+	public updateMyContentFilter = action((sortBy: SortByFields) => {
+		if (this.myContentFilter.sortBy === sortBy) this.updateMyContentOrderBy()
+		else {
+			this.myContentFilter.sortBy = sortBy
+			this.myContentFilter.orderBy = "desc"
+		}
+	})
+
+	private updateMyContentOrderBy = action(() => {
+		if (this.myContentFilter.orderBy === "asc") this.myContentFilter.orderBy = "desc"
+		else this.myContentFilter.orderBy = "asc"
+	})
+
+	public updateMyContentTitle = action((newTitle: string) => {
+		this.myContentFilter.titleIncludes = newTitle
+	})
 
 	public updateNewVideoDetails = action(<K extends keyof NewVideoDetails>(
 		key: K, value: NewVideoDetails[K]
@@ -275,6 +298,12 @@ class CreatorClass {
 		this.myContent = []
 		this.hasContentToRetrieve = true
 		this.isRetrievingContent = false
+
+		this.myContentFilter = {
+			sortBy: "Date",
+			orderBy: "desc",
+			titleIncludes: ""
+		}
 
 		this.resetNewVideoDetails()
 		this.isNewVideoLoading = false
