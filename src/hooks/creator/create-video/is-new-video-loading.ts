@@ -5,11 +5,9 @@ import { useCreatorContext } from "../../../contexts/creator-context"
 export default function useIsNewVideoLoading(): boolean {
 	const creatorClass = useCreatorContext()
 
-	const isNewVideoLoading = useMemo(() => {
+	return useMemo(() => {
 		if (_.isNull(creatorClass)) return true
 		return creatorClass.isNewVideoLoading
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [creatorClass, creatorClass?.isNewVideoLoading])
-
-	return isNewVideoLoading
 }
