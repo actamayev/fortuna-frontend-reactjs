@@ -14,7 +14,7 @@ export default function useAddOrEditSocialLink(): (
 	const fortunaApiClient = useApiClientContext()
 	const notificationsClass = useNotificationsContext()
 
-	const addOrEditSocialLink = useCallback(async (
+	return useCallback(async (
 		socialLink: string,
 		socialPlatform: SocialPlatformKey,
 	): Promise<void> => {
@@ -38,6 +38,4 @@ export default function useAddOrEditSocialLink(): (
 			)
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass])
-
-	return addOrEditSocialLink
 }

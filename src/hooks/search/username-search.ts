@@ -11,7 +11,7 @@ export default function useUsernameSearch(): (
 	const solanaClass = useSolanaContext()
 	const fortunaApiClient = useApiClientContext()
 
-	const usernameSearch = useCallback(async (
+	return useCallback(async (
 		setIsLoading: (value: React.SetStateAction<boolean>) => void,
 		setUsernameSearchResults: React.Dispatch<React.SetStateAction<{ username: string }[]>>
 	) => {
@@ -39,6 +39,4 @@ export default function useUsernameSearch(): (
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [fortunaApiClient.searchDataService, solanaClass?.transferFundsDetails.isUsernameSelected,
 		solanaClass?.transferFundsDetails.username])
-
-	return usernameSearch
 }

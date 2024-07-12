@@ -1,16 +1,13 @@
-import { observer } from "mobx-react"
 import platformIcons from "../../utils/platform-icons"
 import HoverOutlineComponent from "../hover-outline-component"
-import useDefaultSiteTheme from "../../hooks/memos/default-site-theme"
 import useHandleClickExternalSocialLink from "../../hooks/handle-click-external-social-url"
 
 interface Props {
 	socialPlatformLinks: SocialPlatformLinks[]
 }
 
-function ChannelSocialLinks(props: Props) {
+export default function ChannelSocialLinks(props: Props) {
 	const { socialPlatformLinks } = props
-	const defaultSiteTheme = useDefaultSiteTheme()
 	const handleClickExternalSocialLink = useHandleClickExternalSocialLink()
 
 	return (
@@ -20,10 +17,10 @@ function ChannelSocialLinks(props: Props) {
 				return (
 					<div key={socialPlatformLink.socialPlatform}>
 						<HoverOutlineComponent
-							classes="relative flex items-center justify-center"
+							classes="relative flex items-center justify-center text-black dark:text-white"
 							onClickAction={() => handleClickExternalSocialLink(socialPlatformLink.socialLink)}
 						>
-							<IconComponent size={24} color={defaultSiteTheme === "light" ? "black" : "white"} />
+							<IconComponent size={24} />
 						</HoverOutlineComponent>
 					</div>
 				)
@@ -31,5 +28,3 @@ function ChannelSocialLinks(props: Props) {
 		</div>
 	)
 }
-
-export default observer(ChannelSocialLinks)

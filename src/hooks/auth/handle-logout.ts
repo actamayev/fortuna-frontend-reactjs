@@ -12,7 +12,7 @@ export default function useHandleLogout(
 	const fortunaApiClient = useApiClientContext()
 	const logout = useLogout()
 
-	const handleLogout = useCallback(async (e: React.MouseEvent<HTMLButtonElement>) => {
+	return useCallback(async (e: React.MouseEvent<HTMLButtonElement>) => {
 		try {
 			e.preventDefault()
 			setLogoutDisabled(true)
@@ -27,6 +27,4 @@ export default function useHandleLogout(
 			setLogoutDisabled(false)
 		}
 	}, [fortunaApiClient.authDataService, logout, setLogoutDisabled])
-
-	return handleLogout
 }

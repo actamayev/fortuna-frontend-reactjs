@@ -24,4 +24,4 @@ function LogoHeaderSection() {
 	)
 }
 
-export default observer(LogoHeaderSection) // Keep this an observer (defaultSiteTheme needs to be observed)
+export default observer(LogoHeaderSection)

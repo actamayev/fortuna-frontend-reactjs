@@ -10,12 +10,10 @@ export default function useSetDataAfterLoginOrRegister(): (authData: LoginOrRegi
 	const fortunaApiClient = useApiClientContext()
 	const solanaClass = useSolanaContext()
 
-	const handleSetDataAfterLoginOrRegister = useCallback((authData: LoginOrRegisterSuccess): void => {
+	return useCallback((authData: LoginOrRegisterSuccess): void => {
 		fortunaApiClient.httpClient.accessToken = authData.accessToken
 		authClass.setAccessToken(authData.accessToken, true)
 		if (_.isNull(solanaClass)) return
 		solanaClass.walletPublicKey = new PublicKey(authData.publicKey)
 	}, [authClass, fortunaApiClient.httpClient, solanaClass])
-
-	return handleSetDataAfterLoginOrRegister
 }

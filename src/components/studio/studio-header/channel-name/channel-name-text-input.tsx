@@ -19,9 +19,8 @@ export default function ChannelNameTextInput(props: Props) {
 
 	const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value
-		if (value.length <= maxLength) {
-			setChannelName(value)
-		}
+		if (value.length > maxLength) return
+		setChannelName(value)
 	}, [maxLength, setChannelName])
 
 	const handleKeyDown = useCallback((event: React.KeyboardEvent<HTMLInputElement>) => {

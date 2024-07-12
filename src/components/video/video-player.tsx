@@ -11,11 +11,11 @@ function VideoPlayer(props: Props) {
 	const videoRef = useRef<HTMLVideoElement>(null)
 
 	useEffect(() => {
-		if (videoRef.current) {
-			videoRef.current.load()
-		}
+		if (!videoRef.current) return
+		videoRef.current.load()
 	}, [video.videoUrl])
 
+	// FUTURE TODO: Figure out how to use aspect-width and aspect-height instead.
 	if (_.isUndefined(video.videoUrl)) {
 		return (
 			<div className="w-full">

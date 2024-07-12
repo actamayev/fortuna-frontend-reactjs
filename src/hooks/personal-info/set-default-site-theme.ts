@@ -10,7 +10,7 @@ export default function useSetDefaultSiteTheme(): () => Promise<void> {
 	const personalInfoClass = usePersonalInfoContext()
 	const notificationsClass = useNotificationsContext()
 
-	const setDefaultSiteTheme = useCallback(async () => {
+	return useCallback(async () => {
 		try {
 			if (_.isNull(personalInfoClass)) return
 			const newSiteTheme = personalInfoClass.defaultSiteTheme === "light" ? "dark" : "light"
@@ -28,6 +28,4 @@ export default function useSetDefaultSiteTheme(): () => Promise<void> {
 			)
 		}
 	}, [personalInfoClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService, notificationsClass])
-
-	return setDefaultSiteTheme
 }

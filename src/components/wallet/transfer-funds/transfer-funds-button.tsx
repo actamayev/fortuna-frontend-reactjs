@@ -5,12 +5,12 @@ import { FaArrowAltCircleUp } from "react-icons/fa"
 import Button from "../../buttons/button"
 import TransferFundsCard from "./transfer-funds-card"
 import { useSolanaContext } from "../../../contexts/solana-context"
-import useClickOutSideUseEffect from "../../../hooks/click-outside-use-effect"
+import useClickOutsideUseEffect from "../../../hooks/click-outside/click-outside-use-effect"
 
 function TransferFundsButton() {
 	const dropdownRef = useRef<HTMLDivElement>(null)
 	const solanaClass = useSolanaContext()
-	useClickOutSideUseEffect(dropdownRef, solanaClass?.setIsTransferFundsButtonPressed)
+	useClickOutsideUseEffect(dropdownRef, solanaClass?.setIsTransferFundsButtonPressed)
 
 	const setIsTransferFundsButtonPressed = useCallback(() => {
 		if (_.isNull(solanaClass)) return

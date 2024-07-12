@@ -7,7 +7,7 @@ export default function useUpdateTransferFundsDetiailsNewDefaultCurrency() : (
 ) => void {
 	const solanaClass = useSolanaContext()
 
-	const updateTransferFundsDetailsNewDefaultCurrency = useCallback((newDefaultCurrency: Currencies) => {
+	return useCallback((newDefaultCurrency: Currencies) => {
 		try {
 			if (_.isNull(solanaClass) || _.isUndefined(solanaClass.solPriceDetails?.solPriceInUSD)) return
 			if (newDefaultCurrency === "sol") {
@@ -26,6 +26,4 @@ export default function useUpdateTransferFundsDetiailsNewDefaultCurrency() : (
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [solanaClass, solanaClass?.solPriceDetails?.solPriceInUSD])
-
-	return updateTransferFundsDetailsNewDefaultCurrency
 }

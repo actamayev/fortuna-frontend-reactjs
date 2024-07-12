@@ -28,7 +28,7 @@ function SearchResults() {
 	}
 
 	return (
-		<div className="flex flex-col items-center">
+		<div className="flex flex-col items-center space-y-3">
 			{searchResults.map((searchResult, index) => (
 				<SingleSearchItem key={index} searchResult={searchResult} />
 			))}

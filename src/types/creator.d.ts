@@ -31,9 +31,12 @@ declare global {
 	}
 
 	interface MyContent extends CommonNewVideoDetails {
-		videoListingStatus: PostedVideoListingStatuses
+		videoId: number
+		videoListingStatus: AllVideoListingStatuses
 		imageUrl: string
 		uuid: string
+		numberOfLikes: number
+		numberOfDislikes: number
 		createdAt: Date
 		numberOfExclusivePurchasesSoFar: number | null
 	}

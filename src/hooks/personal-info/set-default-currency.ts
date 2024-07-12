@@ -16,7 +16,7 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 	const retrieveSolPrice = useRetrieveSolPrice()
 	const updateTransferFundsDetailsNewDefaultCurrency = useUpdateTransferFundsDetiailsNewDefaultCurrency()
 
-	const setDefaultCurrency = useCallback(async () => {
+	return useCallback(async () => {
 		try {
 			if (_.isNull(personalInfoClass)) return
 			const newCurrency = personalInfoClass.defaultCurrency === "usd" ? "sol" : "usd"
@@ -46,6 +46,4 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 		}
 	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService, personalInfoClass,
 		retrieveSolPrice, solanaClass, updateTransferFundsDetailsNewDefaultCurrency, notificationsClass])
-
-	return setDefaultCurrency
 }

@@ -1,7 +1,9 @@
+import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { BiSolidLike, BiLike } from "react-icons/bi"
 import HoverOutlineComponent from "../../hover-outline-component"
+import HoverNotAllowedComponent from "../../hover-not-allowed-component"
 import useLikeDislikeVideo from "../../../hooks/videos/like-dislike-video"
 
 interface Props {
@@ -15,6 +17,23 @@ function LikeButton(props: Props) {
 	const likeDislikeVideoCallback = useCallback(() => {
 		likeDislikeVideo(video, true)
 	}, [likeDislikeVideo, video])
+
+	if (_.isUndefined(video.videoUrl)) {
+		return (
+			<HoverNotAllowedComponent>
+				{video.userLikeStatus === true ? (
+					<BiSolidLike size={20}/>
+				) : (
+					<BiLike size={20}/>
+				)}
+				{video.numberOfLikes > 0 && (
+					<span className="ml-1.5 text-md">
+						{video.numberOfLikes}
+					</span>
+				)}
+			</HoverNotAllowedComponent>
+		)
+	}
 
 	return (
 		<HoverOutlineComponent

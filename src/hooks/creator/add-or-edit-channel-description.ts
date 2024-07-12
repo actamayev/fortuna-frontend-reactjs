@@ -12,7 +12,7 @@ export default function useAddOrEditChannelDescription(): (
 	const fortunaApiClient = useApiClientContext()
 	const notificationsClass = useNotificationsContext()
 
-	const addOrEditChannelDescription = useCallback(async (
+	return useCallback(async (
 		channelDescription: string
 	): Promise<void> => {
 		try {
@@ -35,6 +35,4 @@ export default function useAddOrEditChannelDescription(): (
 			notificationsClass.setNegativeNotification("Unable to edit channel description at this time. Please reload page and try again.")
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass])
-
-	return addOrEditChannelDescription
 }

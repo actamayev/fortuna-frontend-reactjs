@@ -8,7 +8,8 @@ export default function useRequestAirdrop(): (
 ) => Promise<void> {
 	const solanaClass = useSolanaContext()
 
-	const requestAirdop = useCallback(async (
+	// TODO: Figure out why this doesn't work
+	return useCallback(async (
 		setIsButtonDisabled: React.Dispatch<React.SetStateAction<boolean>>
 	) => {
 		try {
@@ -36,6 +37,4 @@ export default function useRequestAirdrop(): (
 			setIsButtonDisabled(false)
 		}
 	}, [solanaClass])
-
-	return requestAirdop
 }

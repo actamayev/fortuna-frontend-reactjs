@@ -1,4 +1,5 @@
 import { useCallback } from "react"
+import GeneralizedVideoThumbnail from "../generalized-video-thumbnail"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 
 interface Props {
@@ -21,14 +22,16 @@ export default function SingleMyPurchasedExclusiveContent(props: Props) {
 			onClick={navigateToVideoPageCallback}
 		>
 			<div className="flex flex-col">
-				<h2 className="text-lg font-semibold mb-2 dark:text-zinc-200">
+				<h2 className="text-lg font-semibold mb-2 dark:text-zinc-200 overflow-hidden text-ellipsis whitespace-nowrap">
 					{myPurchasedExclusiveContent.videoName}
 				</h2>
-				<img
-					src={myPurchasedExclusiveContent.imageUrl}
-					className="w-full h-full object-cover"
-					alt={myPurchasedExclusiveContent.videoName}
-					style={{ aspectRatio: "16/9" }}
+				<GeneralizedVideoThumbnail
+					thumbnailData={{
+						imageUrl: myPurchasedExclusiveContent.imageUrl,
+						videoName: myPurchasedExclusiveContent.videoName,
+						videoListingStatus: "LISTED" // Doesn't matter, just has to be supplied
+					}}
+					showSoldOutSticker={false}
 				/>
 			</div>
 		</div>

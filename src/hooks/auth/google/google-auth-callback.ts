@@ -13,7 +13,7 @@ export default function useGoogleAuthCallback(whereToNavigate: PageNames): (succ
 	const videoClass = useVideoContext()
 	const setDataAfterLogin = useSetDataAfterLoginOrRegister()
 
-	const googleAuthCallback = useCallback(async (successResponse: CredentialResponse) => {
+	return useCallback(async (successResponse: CredentialResponse) => {
 		try {
 			if (_.isUndefined(successResponse.credential) || _.isUndefined(successResponse.clientId)) return
 
@@ -38,6 +38,4 @@ export default function useGoogleAuthCallback(whereToNavigate: PageNames): (succ
 			console.error(error)
 		}
 	}, [fortunaApiClient.authDataService, navigate, setDataAfterLogin, videoClass, whereToNavigate])
-
-	return googleAuthCallback
 }

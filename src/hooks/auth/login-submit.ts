@@ -21,7 +21,7 @@ export default function useLoginSubmit (
 	const setDataAfterLogin = useSetDataAfterLoginOrRegister()
 	const navigate = useTypedNavigate()
 
-	const loginSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+	return useCallback(async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
 		e.preventDefault()
 		setError("")
 		try {
@@ -43,6 +43,4 @@ export default function useLoginSubmit (
 			setLoading(false)
 		}
 	}, [fortunaApiClient.authDataService, loginInformation, navigate, setDataAfterLogin, setError, setLoading, videoClass, whereToNavigate])
-
-	return loginSubmit
 }

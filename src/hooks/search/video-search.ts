@@ -8,7 +8,7 @@ export default function useVideoSearch(): () => Promise<void> {
 	const videoClass = useVideoContext()
 	const fortunaApiClient = useApiClientContext()
 
-	const videoSearch = useCallback(async () => {
+	return useCallback(async () => {
 		try {
 			if (
 				_.isNull(videoClass.searchTerm) ||
@@ -30,6 +30,4 @@ export default function useVideoSearch(): () => Promise<void> {
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [fortunaApiClient.searchDataService, videoClass.searchTerm, videoClass.isCurrentlySearching])
-
-	return videoSearch
 }

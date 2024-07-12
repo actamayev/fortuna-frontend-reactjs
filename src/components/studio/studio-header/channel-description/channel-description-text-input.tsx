@@ -1,6 +1,6 @@
 import { useCallback } from "react"
-import CancelEditingButton from "../cancel-editing-button"
-import SaveChannelDescriptionButton from "./save-channel-description-button"
+import SaveButton from "../../save-button"
+import CancelEditingButton from "../../cancel-editing-button"
 
 interface Props {
 	maxLength: number
@@ -23,9 +23,8 @@ export default function ChannelDescriptionTextInput(props: Props) {
 
 	const handleChange = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
 		const value = event.target.value
-		if (value.length <= maxLength) {
-			setChannelDescription(value)
-		}
+		if (value.length > maxLength) return
+		setChannelDescription(value)
 	}, [maxLength, setChannelDescription])
 
 	const handleKeyDown = useCallback(async (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -48,11 +47,6 @@ export default function ChannelDescriptionTextInput(props: Props) {
 				onChange={handleChange}
 				onKeyDown={handleKeyDown}
 				maxLength={maxLength}
-				style={{
-					boxSizing: "border-box",
-					resize: "none",
-					overflow: "hidden"
-				}}
 				rows={2}
 			/>
 			<div className="flex items-center justify-between">
@@ -60,10 +54,8 @@ export default function ChannelDescriptionTextInput(props: Props) {
 					{channelDescription.length}/{maxLength}
 				</span>
 				<div className="flex items-center">
-					<CancelEditingButton
-						cancelEditAction={cancelEditAction}
-					/>
-					<SaveChannelDescriptionButton handleSaveChannelDescription={handleSaveChannelDescription} />
+					<CancelEditingButton cancelEditAction={cancelEditAction} />
+					<SaveButton handleSaveButton={handleSaveChannelDescription} />
 				</div>
 			</div>
 		</div>

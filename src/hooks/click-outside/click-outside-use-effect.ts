@@ -2,7 +2,7 @@ import _ from "lodash"
 import { useCallback, useEffect } from "react"
 import { useLocation } from "react-router-dom"
 
-export default function useClickOutSideUseEffect(
+export default function useClickOutsideUseEffect(
 	dropdownRef: React.RefObject<HTMLDivElement>,
 	setIsOpen?: (newState: boolean) => void
 ): void {

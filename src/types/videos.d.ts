@@ -43,6 +43,10 @@ declare global {
 	}
 
 	type PostedVideoListingStatuses = "LISTED" | "SOLDOUT"
+
+	type NonExclusiveVideoListingStatuses = "LISTED" | "UNLISTED"
+
+	type AllVideoListingStatuses = PostedVideoListingStatuses | NonExclusiveVideoListingStatuses
 }
 
 export {}

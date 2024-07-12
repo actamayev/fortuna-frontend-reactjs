@@ -14,7 +14,7 @@ export default function useRemoveSocialLink(): (
 	const fortunaApiClient = useApiClientContext()
 	const notificationsClass = useNotificationsContext()
 
-	const removeSocialLink = useCallback(async (
+	return useCallback(async (
 		socialPlatform: SocialPlatformKey,
 		setTempSocialLinks: React.Dispatch<React.SetStateAction<SocialPlatformLinks[]>>
 	): Promise<void> => {
@@ -43,6 +43,4 @@ export default function useRemoveSocialLink(): (
 			)
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass])
-
-	return removeSocialLink
 }

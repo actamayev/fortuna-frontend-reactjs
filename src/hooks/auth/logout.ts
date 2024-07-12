@@ -22,7 +22,7 @@ export default function useLogout(): () => void {
 	const videoClass = useVideoContext()
 	const navigate = useTypedNavigate()
 
-	const logout = useCallback((): void => {
+	return useCallback((): void => {
 		personalInfoClass?.logout()
 		solanaClass?.logout()
 		creatorClass?.logout()
@@ -35,6 +35,4 @@ export default function useLogout(): () => void {
 		navigate("/")
 	}, [personalInfoClass, solanaClass, creatorClass, positionsAndTransactionsClass,
 		videoClass, marketClass, authClass, fortunaApiClient, notificationsClass, navigate])
-
-	return logout
 }

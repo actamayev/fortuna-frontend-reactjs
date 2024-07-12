@@ -8,10 +8,10 @@ export default function useRetrieveWalletBalance(): () => Promise<void> {
 	const solanaClass = useSolanaContext()
 	const personalInfoClass = usePersonalInfoContext()
 
-	const retrieveWalletBalance = useCallback(async () => {
+	return useCallback(async () => {
+		if (_.isNull(solanaClass)) return
 		try {
 			if (
-				_.isNull(solanaClass) ||
 				_.isNull(solanaClass.walletPublicKey) ||
 				_.isNil(personalInfoClass?.username) ||
 				solanaClass.isRetrievingWalletDetails === true
@@ -27,9 +27,7 @@ export default function useRetrieveWalletBalance(): () => Promise<void> {
 		} catch (error) {
 			console.error(error)
 		} finally {
-			if (!_.isNull(solanaClass)) solanaClass.setIsRetrievingWalletDetails(false)
+			solanaClass.setIsRetrievingWalletDetails(false)
 		}
 	}, [solanaClass, personalInfoClass?.username])
-
-	return retrieveWalletBalance
 }

@@ -2,13 +2,14 @@
 import XLink from "../../components/social-links/x-link"
 import LinkedinLink from "../../components/social-links/linkedin-link"
 import ContactItemInCard from "../../components/contact/contact-item-in-card"
-import DescriptionPagesHeaderText from "../../components/description-pages-header-text"
 
 export default function Contact() {
 	return (
 		<div>
 			<div className="text-zinc-950 dark:text-zinc-200 py-5 px-48">
-				<DescriptionPagesHeaderText headerText="Contact Us" />
+				<div className="text-3xl text-zinc-950 dark:text-zinc-200 mb-2">
+					Contact Us
+				</div>
 				<div className="grid grid-cols-2 gap-4">
 					<div className="mt-10">
 						We love hearing your feedback and helping with whatever we can.
