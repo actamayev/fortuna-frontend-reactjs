@@ -79,8 +79,10 @@ export default function useCreateVideoOnclick(): (
 				uuid: uploadVideoResponse.data.uuid,
 				numberOfLikes: 0,
 				numberOfDislikes: 0,
-				numberOfExclusivePurchasesSoFar: creatorClass.newVideoDetails.isContentExclusive === true ? 0 : null,
-				createdAt: new Date()
+				createdAt: new Date(),
+				totalCreatorProfitInSol: 0,
+				totalCreatorProfitInUsd: 0,
+				numberOfExclusivePurchasesSoFar: creatorClass.newVideoDetails.isContentExclusive === true ? 0 : null
 			}
 
 			creatorClass.addContent(myContent)
