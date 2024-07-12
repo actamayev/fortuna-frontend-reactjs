@@ -18,15 +18,13 @@ function MyVideoContainsSearchBox() {
 	}, [creatorClass, creatorClass?.myContentFilter.titleIncludes])
 
 	return (
-		<div className="w-full">
-			<input
-				type="text"
-				placeholder="Title contains..."
-				value={titleIncludes}
-				onChange={handleSearch}
-				className="w-full outline-none bg-inherit"
-			/>
-		</div>
+		<input
+			type="text"
+			placeholder="Title contains..."
+			value={titleIncludes}
+			onChange={handleSearch}
+			className="w-full outline-none bg-inherit"
+		/>
 	)
 }
 

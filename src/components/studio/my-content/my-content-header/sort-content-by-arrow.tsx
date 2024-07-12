@@ -38,11 +38,9 @@ function SortContentByArrow(props: Props) {
 			{sortBy}
 			{filterSortBy === sortBy && (
 				<div className="relative items-center justify-center text-black dark:text-white ml-2">
-					{pointingUpOrDown === "desc" ? (
-						<FaArrowDown />
-					) : (
-						<FaArrowUp />
-					)}
+					{pointingUpOrDown === "desc" ?
+						<FaArrowDown /> :
+						<FaArrowUp />}
 				</div>
 			)}
 		</div>
