@@ -1,3 +1,4 @@
+import _ from "lodash"
 import { observer } from "mobx-react"
 import Button from "../../../buttons/button"
 import useClickTiersButton from "../../../../hooks/market/click-tiers-button"
@@ -13,11 +14,28 @@ function ReviewInstantAccessButton(props: Props) {
 	const { video } = props
 	const clickTiersButton = useClickTiersButton(video)
 	const doesUserHaveAccessToExclusiveContent = useCheckIfUUIDExistsInExclusiveContentList(video.uuid)
+	const accessPrice = getTieredAccessPriceUsd(video)
+
+	if (video.videoListingStatus === "SOLDOUT") {
+		return (
+			<div className="flex justify-center items-center text-center font-semibold w-full">
+				Sold Out
+			</div>
+		)
+	}
 
 	if (doesUserHaveAccessToExclusiveContent === true) {
 		return (
-			<div className="flex items-center w-full">
-				<span>You already purchased access to this exclusive video</span>
+			<div className="flex justify-center items-center text-center font-semibold w-full">
+				You already purchased access to this exclusive video
+			</div>
+		)
+	}
+
+	if (_.isNull(accessPrice)) {
+		return (
+			<div className="flex justify-center items-center text-center font-semibold w-full">
+				Unable to purchase
 			</div>
 		)
 	}
@@ -25,10 +43,10 @@ function ReviewInstantAccessButton(props: Props) {
 	return (
 		<div className="text-center font-semibold flex justify-center items-center">
 			<Button
-				title={`Unlock Instant Access for $${getTieredAccessPriceUsd(video)}`}
+				title={`Unlock Instant Access for $${accessPrice}`}
 				colorClass="bg-blue-300 dark:bg-blue-400"
 				hoverClass="hover:bg-blue-400 dark:hover:bg-blue-500"
-				className="font-semibold text-zinc-950"
+				className={"font-semibold text-zinc-950 cursor-pointer"}
 				onClick={clickTiersButton}
 			/>
 		</div>
