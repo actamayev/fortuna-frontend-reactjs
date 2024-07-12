@@ -56,6 +56,7 @@ declare global {
 		sortBy: SortByFields
 		orderBy: "asc" | "desc"
 		titleIncludes: string
+		visibility: "all" | "listed" | "unlisted"
 	}
 }
 

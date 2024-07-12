@@ -1,3 +1,4 @@
+import VisibilityHeader from "./visibility-header"
 import SortContentByArrow from "./sort-content-by-arrow"
 import MyVideoContentContainsSearchBox from "./my-video-content-contains-search-box"
 
@@ -11,8 +12,9 @@ export default function MyContentHeader() {
 			<div className="col-span-3 px-2">
 				<MyVideoContentContainsSearchBox />
 			</div>
-			{/* TODO: Add a filter for visibliity */}
-			<div className="col-span-1">Visibility</div>
+			<div className="col-span-1">
+				<VisibilityHeader />
+			</div>
 			<div className="col-span-1 flex items-center">
 				<SortContentByArrow sortBy="Date" />
 			</div>
