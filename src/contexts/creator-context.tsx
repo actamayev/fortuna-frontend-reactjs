@@ -12,7 +12,8 @@ class CreatorClass {
 	public myContentFilter: MyContentFilter = {
 		sortBy: "Date",
 		orderBy: "desc",
-		titleIncludes: ""
+		titleIncludes: "",
+		visibility: "all"
 	}
 
 	public newVideoDetails: NewVideoDetails = {
@@ -92,6 +93,12 @@ class CreatorClass {
 	private updateMyContentOrderBy = action(() => {
 		if (this.myContentFilter.orderBy === "asc") this.myContentFilter.orderBy = "desc"
 		else this.myContentFilter.orderBy = "asc"
+	})
+
+	public updateVisibilityFilter = action(() => {
+		if (this.myContentFilter.visibility === "all") this.myContentFilter.visibility = "listed"
+		else if (this.myContentFilter.visibility === "listed") this.myContentFilter.visibility = "unlisted"
+		else this.myContentFilter.visibility = "all"
 	})
 
 	public updateMyContentTitle = action((newTitle: string) => {
@@ -302,7 +309,8 @@ class CreatorClass {
 		this.myContentFilter = {
 			sortBy: "Date",
 			orderBy: "desc",
-			titleIncludes: ""
+			titleIncludes: "",
+			visibility: "all"
 		}
 
 		this.resetNewVideoDetails()
