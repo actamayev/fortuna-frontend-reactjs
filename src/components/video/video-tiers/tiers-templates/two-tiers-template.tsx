@@ -1,7 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import TierProgressBar from "../tier-progress-bar/tier-progress-bar"
-import ShowUserPurchasedContentMessage from "../../instant-access-exclusive-content/initial/show-user-purchased-content-message"
 
 interface Props {
 	onClick: () => void
@@ -20,7 +19,6 @@ function TwoTiersTemplate(props: Props) {
 		secondTier,
 		numberOfExclusivePurchasesSoFar,
 		doesUserHaveAccessToExclusiveContent,
-		uuid
 	} = props
 
 	if ((firstTier.isTierSoldOut === true)) {
@@ -38,7 +36,6 @@ function TwoTiersTemplate(props: Props) {
 						tier={secondTier}
 						numberOfPurchasesInThisTierSoFar={secondTier.purchasesInThisTier}
 					/>
-					<ShowUserPurchasedContentMessage uuid={uuid}/>
 				</div>
 			)
 		}
@@ -62,7 +59,6 @@ function TwoTiersTemplate(props: Props) {
 							numberOfPurchasesInThisTierSoFar={secondTier.purchasesInThisTier}
 						/>
 					</div>
-					<ShowUserPurchasedContentMessage uuid={uuid}/>
 				</div>
 			)
 		}
@@ -85,7 +81,6 @@ function TwoTiersTemplate(props: Props) {
 						numberOfPurchasesInThisTierSoFar={numberOfExclusivePurchasesSoFar - (firstTier.purchasesInThisTier as number)}
 					/>
 				</div>
-				<ShowUserPurchasedContentMessage uuid={uuid}/>
 			</div>
 		)
 	}
@@ -107,7 +102,6 @@ function TwoTiersTemplate(props: Props) {
 					numberOfPurchasesInThisTierSoFar={0}
 				/>
 			</div>
-			<ShowUserPurchasedContentMessage uuid={uuid}/>
 		</div>
 	)
 }

@@ -1,6 +1,5 @@
 import { observer } from "mobx-react"
 import TierProgressBar from "../tier-progress-bar/tier-progress-bar"
-import ShowUserPurchasedContentMessage from "../../instant-access-exclusive-content/initial/show-user-purchased-content-message"
 
 interface Props {
 	onClick: () => void
@@ -11,7 +10,7 @@ interface Props {
 }
 
 function OneTierTemplate(props: Props) {
-	const { onClick, tier, numberOfExclusivePurchasesSoFar, doesUserHaveAccessToExclusiveContent, uuid } = props
+	const { onClick, tier, numberOfExclusivePurchasesSoFar, doesUserHaveAccessToExclusiveContent } = props
 
 	return (
 		<div>
@@ -25,7 +24,6 @@ function OneTierTemplate(props: Props) {
 					numberOfPurchasesInThisTierSoFar={numberOfExclusivePurchasesSoFar}
 				/>
 			</div>
-			<ShowUserPurchasedContentMessage uuid = {uuid}/>
 		</div>
 	)
 }
