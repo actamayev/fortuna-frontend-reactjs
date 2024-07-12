@@ -17,6 +17,15 @@ export default function useMyContentToShow(): MyContent[] {
 			)
 		}
 
+		if (creatorClass.myContentFilter.visibility !== "all") {
+			filteredContent = filteredContent.filter(content => {
+				if (creatorClass.myContentFilter.visibility === "listed") {
+					return content.videoListingStatus === "LISTED" || content.videoListingStatus === "SOLDOUT"
+				}
+				return content.videoListingStatus === "UNLISTED"
+			})
+		}
+
 		// Sort by date or earnings
 		if (creatorClass.myContentFilter.sortBy === "Date") {
 			filteredContent = filteredContent.slice().sort((a, b) =>
