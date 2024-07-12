@@ -1,14 +1,14 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
-import { useCreatorContext } from "../../../contexts/creator-context"
+import { useCreatorContext } from "../../../../contexts/creator-context"
 
 function MyVideoContainsSearchBox() {
 	const creatorClass = useCreatorContext()
 
 	const handleSearch = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(creatorClass)) return
-		creatorClass.updateMyContentFilter("titleIncludes", event.target.value)
+		creatorClass.updateMyContentTitle(event.target.value)
 	}, [creatorClass])
 
 	const titleIncludes = useMemo(() => {

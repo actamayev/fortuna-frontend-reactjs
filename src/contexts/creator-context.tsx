@@ -81,10 +81,21 @@ class CreatorClass {
 		return this.myContent.filter(content => content.videoListingStatus === "UNLISTED").length
 	}
 
-	public updateMyContentFilter = action(<K extends keyof MyContentFilter>(
-		key: K, newValue: MyContentFilter[K]
-	) => {
-		this.myContentFilter[key] = newValue
+	public updateMyContentFilter = action((sortBy: SortByFields) => {
+		if (this.myContentFilter.sortBy === sortBy) this.updateMyContentOrderBy()
+		else {
+			this.myContentFilter.sortBy = sortBy
+			this.myContentFilter.orderBy = "desc"
+		}
+	})
+
+	private updateMyContentOrderBy = action(() => {
+		if (this.myContentFilter.orderBy === "asc") this.myContentFilter.orderBy = "desc"
+		else this.myContentFilter.orderBy = "asc"
+	})
+
+	public updateMyContentTitle = action((newTitle: string) => {
+		this.myContentFilter.titleIncludes = newTitle
 	})
 
 	public updateNewVideoDetails = action(<K extends keyof NewVideoDetails>(
