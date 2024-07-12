@@ -1,6 +1,6 @@
 import _ from "lodash"
-import { useCallback } from "react"
 import { observer } from "mobx-react"
+import { useCallback, useMemo } from "react"
 import { useCreatorContext } from "../../../contexts/creator-context"
 
 function MyVideoContainsSearchBox() {
@@ -11,16 +11,20 @@ function MyVideoContainsSearchBox() {
 		creatorClass.updateMyContentFilter("titleIncludes", event.target.value)
 	}, [creatorClass])
 
-	if (_.isNull(creatorClass)) return null
+	const titleIncludes = useMemo(() => {
+		if (_.isNull(creatorClass)) return ""
+		return creatorClass.myContentFilter.titleIncludes
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [creatorClass, creatorClass?.myContentFilter.titleIncludes])
 
 	return (
 		<div className="w-full">
 			<input
 				type="text"
 				placeholder="Title contains..."
-				value={creatorClass.myContentFilter.titleIncludes}
+				value={titleIncludes}
 				onChange={handleSearch}
-				className="w-full outline-none"
+				className="w-full outline-none bg-inherit"
 			/>
 		</div>
 	)

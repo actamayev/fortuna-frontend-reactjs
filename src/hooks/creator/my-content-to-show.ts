@@ -1,11 +1,11 @@
 import _ from "lodash"
-import { useMemo } from "react"
+import { useObserver } from "mobx-react"
 import { useCreatorContext } from "../../contexts/creator-context"
 
 export default function useMyContentToShow(): MyContent[] {
 	const creatorClass = useCreatorContext()
 
-	return useMemo(() => {
+	return useObserver(() => {
 		if (_.isNull(creatorClass)) return []
 
 		let filteredContent = creatorClass.myContent
@@ -24,7 +24,6 @@ export default function useMyContentToShow(): MyContent[] {
 					? new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
 					: new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
 			)
-		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 		} else {
 			filteredContent = filteredContent.slice().sort((a, b) =>
 				creatorClass.myContentFilter.orderBy === "asc"
@@ -34,6 +33,5 @@ export default function useMyContentToShow(): MyContent[] {
 		}
 
 		return filteredContent
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.myContent, creatorClass?.myContentFilter])
+	})
 }
