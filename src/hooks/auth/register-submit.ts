@@ -21,7 +21,7 @@ export default function useRegisterSubmit (
 	const navigate = useTypedNavigate()
 	const setDataAfterRegister = useSetDataAfterLoginOrRegister()
 
-	const loginSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+	return useCallback(async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
 		e.preventDefault()
 		setError("")
 		try {
@@ -52,6 +52,4 @@ export default function useRegisterSubmit (
 		}
 	}, [fortunaApiClient.authDataService, navigate, registerCredentials,
 		setDataAfterRegister, setError, setLoading, videoClass, whereToNavigate])
-
-	return loginSubmit
 }

@@ -76,7 +76,6 @@ function ProfilePicture() {
 			imageStyle={imageStyle}
 			fileInputRef={fileInputRef}
 		/>
-
 	)
 }
 

@@ -17,20 +17,36 @@ function ChannelDescription(props: Props) {
 	if (_.isEmpty(channelDescription.trim())) return null
 
 	return (
-		<div
-			className="text-zinc-600 dark:text-zinc-300 text-sm \
-			hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer px-1 mt-0.5 pt-0.5 pb-2 w-full"
-			style={{
-				wordWrap: "break-word",
-				whiteSpace: "normal"
-			}}
-			onClick={handleToggle}
-		>
-			{isExpanded ? (
-				<>{channelDescription}</>
-			) : (
-				<>{_.truncate(channelDescription, { length: 350, omission: "..." })}</>
-			)}
+		<div className="w-full">
+			<div
+				className="dark:text-white text-sm w-full block"
+				style={{
+					wordBreak: "break-word",
+					overflowWrap: "break-word",
+				}}
+			>
+				{isExpanded ? (
+					<div className="bg-zinc-200 dark:bg-zinc-700 rounded p-2">
+						<div>{channelDescription}</div>
+						<div className="my-2 flex justify-end">
+							<span
+								className="rounded-lg cursor-pointer p-2 font-medium
+								bg-zinc-300 dark:bg-zinc-800 hover:bg-zinc-400 hover:dark:bg-zinc-900"
+								onClick={handleToggle}
+							>
+								Collapse
+							</span>
+						</div>
+					</div>
+				) : (
+					<div
+						className="cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded p-2"
+						onClick={handleToggle}
+					>
+						{_.truncate(channelDescription, { length: 300 })}
+					</div>
+				)}
+			</div>
 		</div>
 	)
 }

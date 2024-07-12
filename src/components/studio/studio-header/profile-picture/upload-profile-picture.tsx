@@ -1,5 +1,6 @@
-import { useCallback } from "react"
 import { observer } from "mobx-react"
+import { useCallback, useState } from "react"
+import LoadingOval from "../../../loading-oval"
 import { FaSave, FaTrash } from "react-icons/fa"
 import useUploadProfilePicture from "../../../../hooks/upload/upload-profile-picture"
 
@@ -28,11 +29,13 @@ function UploadProfilePicture(props: Props) {
 		fileInputRef
 	} = props
 	const uploadProfilePicture = useUploadProfilePicture()
+	const [isLoading, setIsLoading] = useState(false)
 
 	const uploadProfilePictureCallback = useCallback(async() => {
-		await uploadProfilePicture(selectedImage)
+		if (isLoading === true) return
+		await uploadProfilePicture(selectedImage, setIsLoading)
 		removeContent()
-	}, [removeContent, selectedImage, uploadProfilePicture])
+	}, [isLoading, removeContent, selectedImage, uploadProfilePicture])
 
 	return (
 		<div className="relative inline-block" style={{ minWidth: "128px", maxWidth: "128px" }}>
@@ -47,22 +50,20 @@ function UploadProfilePicture(props: Props) {
 			<div
 				className="absolute top-2 right-2 bg-red-500 dark:bg-red-600 p-1 rounded-full \
 					cursor-pointer hover:bg-red-600 dark:hover:bg-red-700"
+				onClick={removeContent}
 			>
-				<FaTrash
-					color="white"
-					size={22}
-					onClick={removeContent}
-				/>
+				<FaTrash color="white" size={22} />
 			</div>
 			<div
-				className="absolute bottom-2 right-2 bg-green-500 dark:bg-green-600 p-1 rounded-full
-					cursor-pointer hover:bg-green-600 dark:hover:bg-green-700"
+				className={`absolute bottom-2 right-2 bg-green-500 dark:bg-green-600 p-1 rounded-full
+					${isLoading ? "" : "hover:bg-green-600 dark:hover:bg-green-700 cursor-pointer"}`}
+				onClick={uploadProfilePictureCallback}
 			>
-				<FaSave
-					color="white"
-					size={22}
-					onClick={uploadProfilePictureCallback}
-				/>
+				{isLoading ? (
+					<LoadingOval />
+				) : (
+					<FaSave color="white" size={22} />
+				)}
 			</div>
 			<input
 				ref={fileInputRef}

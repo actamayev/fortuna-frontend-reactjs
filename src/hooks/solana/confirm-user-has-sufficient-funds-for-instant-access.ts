@@ -10,9 +10,7 @@ export default function useConfirmUserHasSufficientFundsForInstantAccess(): (
 	const solanaClass = useSolanaContext()
 	const videoClass = useVideoContext()
 
-	const confirmUserHasSufficientFundsForInstantAccess = useCallback((
-		videoUUID: string | undefined
-	): boolean => {
+	return useCallback((videoUUID: string | undefined): boolean => {
 		try {
 			const video = videoClass.findVideoFromUUID(videoUUID)
 			if (_.isNull(solanaClass) || _.isUndefined(video)) return false
@@ -27,6 +25,4 @@ export default function useConfirmUserHasSufficientFundsForInstantAccess(): (
 			return false
 		}
 	}, [solanaClass, videoClass])
-
-	return confirmUserHasSufficientFundsForInstantAccess
 }

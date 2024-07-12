@@ -1,10 +1,7 @@
 import { useCallback } from "react"
 
-export default function useHandleTypePublicKey(): (
-	event: React.ChangeEvent<HTMLInputElement>
-) => string {
-
-	const handleTypePublicKey = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+export default function useHandleTypePublicKey(): (event: React.ChangeEvent<HTMLInputElement>) => string {
+	return useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		try {
 			const newValue = event.target.value
 			// Regex to remove any characters not included in the Base58 character set
@@ -15,6 +12,4 @@ export default function useHandleTypePublicKey(): (
 			return ""
 		}
 	}, [])
-
-	return handleTypePublicKey
 }

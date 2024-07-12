@@ -11,7 +11,7 @@ export default function useLikeDislikeVideo(): (
 	const fortunaApiClient = useApiClientContext()
 	const videoClass = useVideoContext()
 
-	const likeDislikeVideo = useCallback(async (
+	return useCallback(async (
 		video: SingleVideoDataFromBackend,
 		newLikeStatus: boolean
 	) => {
@@ -37,6 +37,4 @@ export default function useLikeDislikeVideo(): (
 			console.error(error)
 		}
 	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.videoDataService, videoClass])
-
-	return likeDislikeVideo
 }

@@ -17,7 +17,7 @@ export default function useUsernameSubmit (
 	const navigate = useTypedNavigate()
 	const personalInfoClass = usePersonalInfoContext()
 
-	const usernameSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+	return useCallback(async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
 		e.preventDefault()
 		setError("")
 		try {
@@ -36,6 +36,4 @@ export default function useUsernameSubmit (
 			setLoading(false)
 		}
 	}, [fortunaApiClient.authDataService, navigate, personalInfoClass, setError, setLoading, username])
-
-	return usernameSubmit
 }

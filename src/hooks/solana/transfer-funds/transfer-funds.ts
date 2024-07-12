@@ -19,9 +19,7 @@ export default function useTransferFunds(): (
 	const notificationsClass = useNotificationsContext()
 
 	// eslint-disable-next-line complexity
-	const transferSol = useCallback(async (
-		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-	): Promise<void> => {
+	return useCallback(async (setIsLoading: React.Dispatch<React.SetStateAction<boolean>>): Promise<void> => {
 		try {
 			if (
 				_.isNull(solanaClass) ||
@@ -71,6 +69,4 @@ export default function useTransferFunds(): (
 		}
 	}, [solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.solanaDataService,
 		personalInfoClass, positionsAndTransactionsClass, retrieveSolPrice, notificationsClass])
-
-	return transferSol
 }

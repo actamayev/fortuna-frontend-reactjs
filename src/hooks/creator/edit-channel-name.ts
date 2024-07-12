@@ -6,17 +6,13 @@ import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import { useNotificationsContext } from "../../contexts/notifications-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useEditChannelName(): (
-	channelName: string,
-) => Promise<void> {
+export default function useEditChannelName(): (channelName: string) => Promise<void> {
 	const creatorClass = useCreatorContext()
 	const fortunaApiClient = useApiClientContext()
 	const personalInfoClass = usePersonalInfoContext()
 	const notificationsClass = useNotificationsContext()
 
-	const editChannelName = useCallback(async (
-		channelName: string,
-	): Promise<void> => {
+	return useCallback(async (channelName: string): Promise<void> => {
 		try {
 			if (
 				_.isNull(creatorClass) ||
@@ -40,6 +36,4 @@ export default function useEditChannelName(): (
 			notificationsClass.setNegativeNotification("Unable to edit channel name at this time. Please reload page and try again.")
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass, personalInfoClass?.username])
-
-	return editChannelName
 }

@@ -26,7 +26,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 	const confirmUserHasSufficientFundsForInstantAccess = useConfirmUserHasSufficientFundsForInstantAccess()
 
 	// eslint-disable-next-line complexity
-	const purchaseInstantAccess = useCallback(async (
+	return useCallback(async (
 		videoUUID: string,
 		tierNumber: number,
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
@@ -69,7 +69,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 			} else {
 				solanaClass.alterWalletBalanceUsd(-tierAccessPriceUsd)
 			}
-			// ASAP TODO: Add this transaction to my transactions (don't just call retrieveTransactions - redundant)
+			// TODO: Add this transaction to my transactions (don't just call retrieveTransactions - redundant)
 			// Consider returning the sol transfer details with the purchaseExclusiveContentAccess response.
 			// Add that single new transaction to the transaction array
 		} catch (error) {
@@ -80,6 +80,4 @@ export default function usePurchaseExclusiveContentAccess(): (
 		}
 	}, [marketClass, solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.marketDataService,
 		positionsAndTransactionsClass, confirmUserHasSufficientFundsForInstantAccess, videoClass, retrieveWalletBalance, notificationClass])
-
-	return purchaseInstantAccess
 }

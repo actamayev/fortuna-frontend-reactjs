@@ -1,11 +1,11 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import { FaUserCircle } from "react-icons/fa"
 import ShowUsdOrSolPrice from "../show-usd-or-sol-price"
 import ShowHomeVideoLockStatus from "./show-home-video-lock-status"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
+import ShowUserProfileImageOrDefaultImage from "../show-user-profile-image-or-default-image"
 import getTieredAccessPriceUsd from "../../utils/video-access-tiers/get-tiered-access-price-usd"
 
 interface Props {
@@ -29,33 +29,26 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 
 	return (
 		<div className="flex items-center pt-1 dark:text-zinc-200 rounded-lg mx-1">
-			{creatorProfilePictureUrl ? (
-				<img
-					src={creatorProfilePictureUrl}
-					alt="Creator's Profile"
-					className="w-8 h-8 rounded-full mr-2 object-cover cursor-pointer"
-					onClick={navigateToCreatorPageCallback}
-				/>
-			) : (
-				<FaUserCircle
-					className="w-8 h-8 rounded-full mr-2 object-cover cursor-pointer"
-					onClick={navigateToCreatorPageCallback}
-				/>
-			)}
+			<ShowUserProfileImageOrDefaultImage
+				profileImageUrl={creatorProfilePictureUrl}
+				extraClasses="w-8 h-8 rounded-full mr-2 object-cover cursor-pointer"
+				onClickCreatorPicture={navigateToCreatorPageCallback}
+				onClickDefaultPicture={navigateToCreatorPageCallback}
+			/>
 			<div className="flex flex-col">
 				<div
-					className="text-md font-semibold cursor-pointer"
+					className="text-md font-semibold cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap"
 					style={{ maxWidth: "fit-content" }}
 					onClick={navigateToVideoPageCallback}
 				>
-					{_.truncate(videoName, { length: 29, omission: "..." })}
+					{_.truncate(videoName, { length: 29 })}
 				</div>
 				<div
 					className="text-xs text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-100 cursor-pointer"
 					style={{ maxWidth: "fit-content" }}
 					onClick={navigateToCreatorPageCallback}
 				>
-					{channelName}
+					{_.truncate(channelName, { length: 40 })}
 				</div>
 			</div>
 			<div className="ml-auto flex flex-col items-end space-y-1">

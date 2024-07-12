@@ -8,9 +8,10 @@ export default function useRetrieveSolPrice (): () => Promise<void> {
 	const fortunaApiClient = useApiClientContext()
 	const solanaClass = useSolanaContext()
 
-	const retrieveSolPrice = useCallback(async () => {
+	return useCallback(async () => {
+		if (_.isNull(solanaClass)) return
 		try {
-			if (_.isNull(solanaClass) || solanaClass.isRetrievingSolPriceDetails === true) return
+			if (solanaClass.isRetrievingSolPriceDetails === true) return
 			solanaClass.setIsRetrievingSolPriceDetails(true)
 			const solPriceDetails = await fortunaApiClient.solanaDataService.retrieveSolPrice()
 			if (!_.isEqual(solPriceDetails.status, 200) || isErrorResponse(solPriceDetails.data)) {
@@ -20,9 +21,7 @@ export default function useRetrieveSolPrice (): () => Promise<void> {
 		} catch (error) {
 			console.error(error)
 		} finally {
-			if (!_.isNull(solanaClass)) solanaClass.setIsRetrievingSolPriceDetails(false)
+			solanaClass.setIsRetrievingSolPriceDetails(false)
 		}
 	}, [solanaClass, fortunaApiClient.solanaDataService])
-
-	return retrieveSolPrice
 }

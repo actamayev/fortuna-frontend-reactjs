@@ -6,6 +6,7 @@ import { useCreatorContext } from "../../contexts/creator-context"
 
 function VideoNameInput() {
 	const creatorClass = useCreatorContext()
+	const maxLength = 100
 
 	const videoName = useMemo(() => {
 		if (_.isNull(creatorClass)) return ""
@@ -19,15 +20,21 @@ function VideoNameInput() {
 	}, [creatorClass])
 
 	return (
-		<FormGroup
-			label = "Video Name"
-			type = "text"
-			placeholder = "Charlie bit my finger"
-			onChange = {updateNewVideoDetails}
-			required
-			value = {videoName}
-			maxLength={100}
-		/>
+		<>
+			<FormGroup
+				label = "Video Name"
+				type = "text"
+				placeholder = "Charlie bit my finger"
+				onChange = {updateNewVideoDetails}
+				required
+				value = {videoName}
+				maxLength={maxLength}
+				className="mb-0"
+			/>
+			<span className="text-xs text-zinc-600 dark:text-zinc-400 ml-0.5">
+				{videoName.length}/{maxLength}
+			</span>
+		</>
 	)
 }
 

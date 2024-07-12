@@ -27,10 +27,9 @@ function ChannelDescription() {
 	}, [isEditing, channelDescription])
 
 	useEffect(() => {
-		if (textAreaRef.current) {
-			textAreaRef.current.style.height = "auto"
-			textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`
-		}
+		if (!textAreaRef.current) return
+		textAreaRef.current.style.height = "auto"
+		textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`
 	}, [channelDescription, creatorClass?.channelDescription, isEditing])
 
 	const toggleEditMode = useCallback(() => {
@@ -85,22 +84,22 @@ function ChannelDescription() {
 	}
 
 	return (
-		<div className="flex items-center">
+		<div className="w-full">
 			<span
 				className="text-zinc-600 dark:text-zinc-300 text-sm \
-					hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer px-1 mt-0.5 pt-0.5 pb-2 w-full"
+					hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded cursor-pointer p-2 block w-full"
 				style={{
-					wordWrap: "break-word",
-					whiteSpace: "normal"
+					wordBreak: "break-word",
+					overflowWrap: "break-word",
 				}}
 				onClick={toggleEditMode}
 			>
 				{_.isEmpty(channelDescription.trim()) ? (
-					<>Click here to add a description</>
+					<div>Click here to add a description</div>
 				) : (
-					<>
-						{_.truncate(channelDescription, { length: 350, omission: "..." })}
-					</>
+					<div>
+						{_.truncate(channelDescription, { length: 300 })}
+					</div>
 				)}
 			</span>
 		</div>

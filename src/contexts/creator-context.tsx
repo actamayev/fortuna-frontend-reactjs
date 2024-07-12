@@ -4,7 +4,7 @@ import { action, makeAutoObservable } from "mobx"
 import { createContext, useContext, useMemo } from "react"
 
 class CreatorClass {
-	private _myContent: MyContent[] = []
+	public myContent: MyContent[] = []
 
 	public hasContentToRetrieve = true
 	public isRetrievingContent = false
@@ -35,15 +35,7 @@ class CreatorClass {
 		makeAutoObservable(this)
 	}
 
-	get myContent(): MyContent[] {
-		return this._myContent
-	}
-
-	set myContent(myContent: MyContent[]) {
-		this._myContent = myContent
-	}
-
-	private contextForMyContent(uuid: string): MyContent | undefined {
+	public contextForMyContent(uuid: string): MyContent | undefined {
 		return this.myContent.find(content => content.uuid === uuid)
 	}
 
@@ -77,6 +69,10 @@ class CreatorClass {
 			if (_.isEqual(content.uuid, uuid)) return true
 		}
 		return false
+	}
+
+	get numberOfUnlistedVideos(): number {
+		return this.myContent.filter(content => content.videoListingStatus === "UNLISTED").length
 	}
 
 	public updateNewVideoDetails = action(<K extends keyof NewVideoDetails>(
@@ -206,6 +202,20 @@ class CreatorClass {
 	get nonEmptySocialPlatformLinks(): SocialPlatformLinks[] {
 		return this.socialPlatformLinks.filter(link => link.socialLink.trim() !== "")
 	}
+
+	public updateVideoListingStatus = action((videoUUID: string) => {
+		const video = this.contextForMyContent(videoUUID)
+		if (_.isUndefined(video) || video.videoListingStatus === "SOLDOUT") return
+		video.videoListingStatus = video.videoListingStatus === "LISTED" ? "UNLISTED" : "LISTED"
+	})
+
+	public updateVideoProperty = action(<K extends keyof MyContent>(
+		videoUUID: string, key: K, newValue: MyContent[K]
+	) => {
+		const video = this.contextForMyContent(videoUUID)
+		if (_.isUndefined(video)) return
+		video[key] = newValue
+	})
 
 	public addSocialPlatformLink = action((socialPlatformLink: SocialPlatformLinks): void => {
 		const index = this.socialPlatformLinks.findIndex(

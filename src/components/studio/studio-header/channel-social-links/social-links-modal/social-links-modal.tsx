@@ -1,10 +1,11 @@
 import { observer } from "mobx-react"
 import { FaTimes } from "react-icons/fa"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import ActiveSocialLinks from "./active-social-links"
 import AvailableSocialLinks from "./available-social-links"
 import HoverOutlineComponent from "../../../../hover-outline-component"
 import { useCreatorContext } from "../../../../../contexts/creator-context"
+import useClickOutsideModalUseEffect from "../../../../../hooks/click-outside/click-outside-modal-use-effect"
 
 interface Props {
     toggleModalOpen: () => void
@@ -14,7 +15,9 @@ function SocialLinksModal(props: Props) {
 	const { toggleModalOpen } = props
 	const creatorClass = useCreatorContext()
 	const modalRef = useRef<HTMLDivElement>(null)
+	const mouseDownTarget = useRef<EventTarget | null>(null)
 	const [tempSocialLinks, setTempSocialLinks] = useState<SocialPlatformLinks[]>([])
+	useClickOutsideModalUseEffect(mouseDownTarget, modalRef, toggleModalOpen)
 
 	useEffect(() => {
 		if (creatorClass?.socialPlatformLinks) {
@@ -22,17 +25,8 @@ function SocialLinksModal(props: Props) {
 		}
 	}, [creatorClass?.socialPlatformLinks])
 
-	const handleClickOutside = useCallback((event: React.MouseEvent) => {
-		if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-			toggleModalOpen()
-		}
-	}, [toggleModalOpen])
-
 	return (
-		<div
-			className="fixed inset-0 flex items-start justify-center z-50 bg-black bg-opacity-50 pt-28 text-zinc-800 dark:text-zinc-50"
-			onClick={handleClickOutside}
-		>
+		<div className="fixed inset-0 flex items-start justify-center z-50 bg-black bg-opacity-50 pt-28 text-zinc-800 dark:text-zinc-50">
 			<div
 				ref={modalRef}
 				className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg w-1/3"

@@ -10,8 +10,11 @@ declare global {
 	type BooleanResponse = { exists: boolean }
 
 	//Auth Responses:
-	type LoginOrRegisterSuccess = { accessToken: string, publicKey: string }
-	type GoogleAuthSuccess = { accessToken: string, isNewUser: boolean, publicKey: string }
+	type LoginOrRegisterSuccess = {
+		accessToken: string
+		publicKey: string
+	}
+	type GoogleAuthSuccess = LoginOrRegisterSuccess & { isNewUser: boolean }
 
 	// Creator Responses:
 	type CreateVideoResponse = { newVideoId: number }
@@ -25,7 +28,11 @@ declare global {
 	}
 
 	// Market Resposnes:
-	type PurchaseInstantAccessResponse = { videoUrl: string, isTierSoldOut: boolean, isVideoSoldOut: boolean }
+	type PurchaseInstantAccessResponse = {
+		videoUrl: string
+		isTierSoldOut: boolean
+		isVideoSoldOut: boolean
+	}
 
 	// Personal Info Responses:
 	type PersonalInfoResponse = {
@@ -41,7 +48,11 @@ declare global {
 	type MyOwnershipResponse = { myPurchasedExclusiveContent: MyPurchasedExclusiveContent[] }
 
 	// Search Responses:
-	type SearchForUsersResponse = { usernames: { username: string }[] }
+	type SearchForUsersResponse = {
+		usernames: {
+			username: string
+		}[]
+	}
 	type GeneralSearchResponse = { searchResults: SearchData[] }
 
 	// Solana Responses:
@@ -52,11 +63,9 @@ declare global {
 	}
 
 	// Upload Responses:
-	type UploadImageToS3 = {
-		imageUploadUrl: string
-		uploadedImageId: number
-	}
-	type UploadVideoToS3 = {
+	type UploadNewThumbnailResponse = { imageUploadUrl: string }
+	type UploadThumbnailResponse = UploadNewThumbnailResponse & { uploadedImageId: number }
+	type UploadVideoResponse = {
 		uploadedVideoId: number
 		uuid: string
 	}
