@@ -16,14 +16,6 @@ function ReviewInstantAccessButton(props: Props) {
 	const doesUserHaveAccessToExclusiveContent = useCheckIfUUIDExistsInExclusiveContentList(video.uuid)
 	const accessPrice = getTieredAccessPriceUsd(video)
 
-	if (video.videoListingStatus === "SOLDOUT") {
-		return (
-			<div className="flex justify-center items-center text-center font-semibold w-full">
-				Sold Out
-			</div>
-		)
-	}
-
 	if (doesUserHaveAccessToExclusiveContent === true) {
 		return (
 			<div className="flex justify-center items-center text-center font-semibold w-full">
@@ -32,10 +24,10 @@ function ReviewInstantAccessButton(props: Props) {
 		)
 	}
 
-	if (_.isNull(accessPrice)) {
+	if (video.videoListingStatus === "SOLDOUT" || _.isNull(accessPrice)) {
 		return (
 			<div className="flex justify-center items-center text-center font-semibold w-full">
-				Unable to purchase
+				Sold Out
 			</div>
 		)
 	}
