@@ -3,14 +3,13 @@ declare global {
 		solTransferId: number
 		solAmountTransferred: number
 		usdAmountTransferred: number
+		transferByCurrency: Currencies
 		outgoingOrIncoming: "outgoing" | "incoming"
 
 		transferDateTime: Date
 		transferToUsername?: string
 		transferToPublicKey?: string
 		transferFromUsername: string
-		transferFeeSol?: number
-		transferFeeUsd?: number
 	}
 
 	interface MyPurchasedExclusiveContent {
