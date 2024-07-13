@@ -26,6 +26,7 @@ function MoneyTransferButton() {
 				hoverClass="hover:bg-blue-600 dark:hover:bg-blue-500"
 				onClick={setIsMoneyTransferButtonPressed}
 				className="text-white dark:text-zinc-950 font-medium"
+				style={{ padding: "6px" }}
 			/>
 			<div ref={dropdownRef}>
 				<TransferMoneyCard />

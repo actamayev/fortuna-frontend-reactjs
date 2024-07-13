@@ -7,7 +7,7 @@ export default function AddFundsButton() {
 		<Tooltip
 			message={
 				<div>
-					<p>1. Copy your Public Key (below)</p>
+					<p>1. Copy your Public Key (left)</p>
 					<p>
 						2. Go to {" "}
 						<a
@@ -15,6 +15,7 @@ export default function AddFundsButton() {
 							target="_blank"
 							rel="noopener noreferrer"
 							className="underline text-blue-500"
+							style={{ padding: ""}}
 						>
 							Solana Faucet
 						</a>
@@ -31,6 +32,7 @@ export default function AddFundsButton() {
 				colorClass="bg-green-600 dark:bg-green-400"
 				hoverClass="hover:bg-green-700 dark:hover:bg-green-600"
 				className="text-white dark:text-zinc-950 font-medium cursor-default"
+				style={ { padding: "6px" }}
 			/>
 		</Tooltip>
 	)
