@@ -69,9 +69,6 @@ export default function usePurchaseExclusiveContentAccess(): (
 			} else {
 				solanaClass.alterWalletBalanceUsd(-tierAccessPriceUsd)
 			}
-			// TODO: Add this transaction to my transactions (don't just call retrieveTransactions - redundant)
-			// Consider returning the sol transfer details with the purchaseExclusiveContentAccess response.
-			// Add that single new transaction to the transaction array
 		} catch (error) {
 			console.error(error)
 			notificationClass.setNegativeNotification("Unable to purchase access to video at this time. Please reload page and try again")
