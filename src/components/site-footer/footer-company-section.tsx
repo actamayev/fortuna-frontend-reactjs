@@ -8,7 +8,7 @@ export default function FooterCompanySection() {
 			<FooterHeaderText headerTitle="Company" />
 			<LinkToExternalSite
 				title="About Us"
-				link="https://help.mintfortuna.com"
+				link="https://help.createfortuna.com"
 			/>
 			<FooterLink linkTo="/contact" linkTitle="Contact" />
 		</div>
