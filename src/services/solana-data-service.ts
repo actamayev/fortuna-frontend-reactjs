@@ -7,19 +7,19 @@ export default class SolanaDataService {
 	constructor(private readonly httpClient: FortunaHttpClient) {
 	}
 
-	async transferFundsToUsername(
-		transferFundsData: TransferFundsData
+	async moneyTransferToUsername(
+		moneyTransferData: MoneyTransferData
 	): Promise<AxiosResponse<TransferFundsResponse | NonSuccessResponse>> {
 		return await this.httpClient.http.post<TransferFundsResponse | NonSuccessResponse>(
-			`${this.pathHeader}/transfer-funds-to-username`, { transferFundsData }
+			`${this.pathHeader}/money-transfer-to-username`, { moneyTransferData }
 		)
 	}
 
-	async transferFundsToPublicKey(
-		transferFundsData: TransferFundsData
+	async moneyTransferToPublicKey(
+		moneyTransferData: MoneyTransferData
 	): Promise<AxiosResponse<TransferFundsResponse | NonSuccessResponse>> {
 		return await this.httpClient.http.post<TransferFundsResponse | NonSuccessResponse>(
-			`${this.pathHeader}/transfer-funds-to-public-key`, { transferFundsData }
+			`${this.pathHeader}/money-transfer-to-public-key`, { moneyTransferData }
 		)
 	}
 

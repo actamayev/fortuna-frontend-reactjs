@@ -17,9 +17,9 @@ function DisplayUsernames() {
 
 	if (_.isNull(solanaClass)) return null
 	if (isLoading === true) return <>Loading...</>
-	if (solanaClass.transferFundsDetails.isUsernameSelected === true) return null
+	if (solanaClass.moneyTransferDetails.isUsernameSelected === true) return null
 
-	if (_.isEmpty(usernameSearchResults) && !_.isEmpty(solanaClass.transferFundsDetails.username)) {
+	if (_.isEmpty(usernameSearchResults) && !_.isEmpty(solanaClass.moneyTransferDetails.username)) {
 		return <>No users found</>
 	}
 

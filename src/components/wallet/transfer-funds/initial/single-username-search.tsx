@@ -13,8 +13,8 @@ function SingleUsernameSearch(props: Props) {
 
 	const selectUsername = useCallback(() => {
 		if (_.isNull(solanaClass)) return
-		solanaClass.updateTransferFundsDetails("isUsernameSelected", true)
-		solanaClass.updateTransferFundsDetails("username", searchResultsUsername)
+		solanaClass.updateMoneyTransferDetails("isUsernameSelected", true)
+		solanaClass.updateMoneyTransferDetails("username", searchResultsUsername)
 	}, [solanaClass, searchResultsUsername])
 
 	return (

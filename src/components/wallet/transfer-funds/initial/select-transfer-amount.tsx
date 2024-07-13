@@ -12,8 +12,8 @@ function SelectTransferAmount() {
 	if (_.isNull(solanaClass)) return null
 
 	if (
-		solanaClass.transferFundsDetails.transferOption === "username" &&
-		solanaClass.transferFundsDetails.isUsernameSelected === false
+		solanaClass.moneyTransferDetails.transferOption === "username" &&
+		solanaClass.moneyTransferDetails.isUsernameSelected === false
 	) {
 		return null
 	}
@@ -22,15 +22,14 @@ function SelectTransferAmount() {
 		return <>You have no Sol to transfer</>
 	}
 
-	if (solanaClass.transferFundsDetails.transferOption === "publicKey") {
-		if (!_.isEqual(solanaClass.transferFundsDetails.publicKey.length, 44)) {
+	if (solanaClass.moneyTransferDetails.transferOption === "publicKey") {
+		if (!_.isEqual(solanaClass.moneyTransferDetails.publicKey.length, 44)) {
 			return <>Public Key Must be 44 characters</>
-		} else if (solanaClass.transferFundsDetails.doesPublicKeyExist === false && solanaClass.isPublicKeySearchLoading === false) {
+		} else if (solanaClass.moneyTransferDetails.doesPublicKeyExist === false && solanaClass.isPublicKeySearchLoading === false) {
 			return <>This Public Key does not exist</>
 		} else if (_.isNull(solanaClass.walletPublicKey)) {
 			return <>Your Public Key Not found</>
-		}
-		else if (solanaClass.transferFundsDetails.publicKey === solanaClass.walletPublicKey.toString()) {
+		} else if (solanaClass.moneyTransferDetails.publicKey === solanaClass.walletPublicKey.toString()) {
 			return <>Cannot send funds to yourself</>
 		}
 	}
@@ -42,15 +41,15 @@ function SelectTransferAmount() {
 			<div className="flex flex-col space-y-4">
 				<RangeSelectorSlider
 					title=""
-					value={solanaClass.transferFundsDetails.transferAmount}
+					value={solanaClass.moneyTransferDetails.transferAmount}
 					onChange={(e) => {
-						solanaClass.updateTransferFundsDetails("transferAmount", Number(e.target.value))
+						solanaClass.updateMoneyTransferDetails("transferAmount", Number(e.target.value))
 					}}
 					min={0}
 					max={solanaClass.walletBalanceSol || 0}
 					step={0.0001}
 				/>
-				{solanaClass.transferFundsDetails.transferAmount.toFixed(4)} SOL
+				{solanaClass.moneyTransferDetails.transferAmount.toFixed(4)} SOL
 			</div>
 		)
 	}
@@ -59,15 +58,15 @@ function SelectTransferAmount() {
 		<div className="flex flex-col space-y-4">
 			<RangeSelectorSlider
 				title=""
-				value={solanaClass.transferFundsDetails.transferAmount}
+				value={solanaClass.moneyTransferDetails.transferAmount}
 				onChange={(e) => {
-					solanaClass.updateTransferFundsDetails("transferAmount", Number(e.target.value))
+					solanaClass.updateMoneyTransferDetails("transferAmount", Number(e.target.value))
 				}}
 				min={0}
 				max={solanaClass.walletBalanceUSD.get()}
 				step={0.01}
 			/>
-			${solanaClass.transferFundsDetails.transferAmount.toFixed(2)}
+			${solanaClass.moneyTransferDetails.transferAmount.toFixed(2)}
 		</div>
 	)
 }

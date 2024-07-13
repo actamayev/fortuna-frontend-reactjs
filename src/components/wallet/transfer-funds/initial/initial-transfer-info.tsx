@@ -1,15 +1,15 @@
 import SelectTransferAmount from "./select-transfer-amount"
 import ReviewTransferButton from "./review-transfer-button"
 import SelectTransferOption from "./select-transfer-option"
-import TransferFundsByOptions from "./transfer-funds-by-options"
+import OptionsToTransferMoneyBy from "./options-to-transfer-money-by"
 
 export default function InitialTransferInfo() {
 	return (
 		<>
-			<div className="text-center font-semibold text-lg">Transfer Funds</div>
+			<div className="text-center font-semibold text-lg">Transfer Money</div>
 			<SelectTransferOption />
 
-			<TransferFundsByOptions />
+			<OptionsToTransferMoneyBy />
 
 			<SelectTransferAmount />
 

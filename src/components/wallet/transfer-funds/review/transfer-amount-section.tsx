@@ -13,14 +13,14 @@ function TransferAmountSection() {
 		<div>
 			Sending {" "}
 			{defaultCurrency === "usd" && (
-				<>${_.round(solanaClass.transferFundsDetails.transferAmount, 2)} to </>
+				<>${_.round(solanaClass.moneyTransferDetails.transferAmount, 2)} to </>
 			)}
 			{defaultCurrency === "sol" && (
-				<>{_.round(solanaClass.transferFundsDetails.transferAmount, 4)} SOL to </>
+				<>{_.round(solanaClass.moneyTransferDetails.transferAmount, 4)} SOL to </>
 			)}
 			<span className="font-semibold break-all">
-				{solanaClass.transferFundsDetails.transferOption === "username" && solanaClass.transferFundsDetails.username}
-				{solanaClass.transferFundsDetails.transferOption === "publicKey" && solanaClass.transferFundsDetails.publicKey}
+				{solanaClass.moneyTransferDetails.transferOption === "username" && solanaClass.moneyTransferDetails.username}
+				{solanaClass.moneyTransferDetails.transferOption === "publicKey" && solanaClass.moneyTransferDetails.publicKey}
 			</span>
 		</div>
 	)

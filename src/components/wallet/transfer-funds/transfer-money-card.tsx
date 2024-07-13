@@ -4,10 +4,10 @@ import ReviewTransferInfo from "./review/review-transfer-info"
 import InitialTransferInfo from "./initial/initial-transfer-info"
 import { useSolanaContext } from "../../../contexts/solana-context"
 
-function TransferFundsCard() {
+function TransferMoneyCard() {
 	const solanaClass = useSolanaContext()
 
-	if (_.isNull(solanaClass) || solanaClass.isTransferFundsButtonPressed === false) return null
+	if (_.isNull(solanaClass) || solanaClass.isMoneyTransferButtonPressed === false) return null
 
 	return (
 		<div
@@ -15,10 +15,10 @@ function TransferFundsCard() {
 		text-zinc-950 dark:text-zinc-200 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
 			style={{ maxHeight: "calc(100vh - 40px)", overflowY: "auto", width: "350px" }}
 		>
-			{solanaClass.transferFundsDetails.transferStage === "initial" && <InitialTransferInfo />}
-			{solanaClass.transferFundsDetails.transferStage === "review" && <ReviewTransferInfo />}
+			{solanaClass.moneyTransferDetails.transferStage === "initial" && <InitialTransferInfo />}
+			{solanaClass.moneyTransferDetails.transferStage === "review" && <ReviewTransferInfo />}
 		</div>
 	)
 }
 
-export default observer(TransferFundsCard)
+export default observer(TransferMoneyCard)

@@ -3,35 +3,35 @@ import { observer } from "mobx-react"
 import { useCallback, useRef } from "react"
 import { FaArrowAltCircleUp } from "react-icons/fa"
 import Button from "../../buttons/button"
-import TransferFundsCard from "./transfer-funds-card"
+import TransferMoneyCard from "./transfer-money-card"
 import { useSolanaContext } from "../../../contexts/solana-context"
 import useClickOutsideUseEffect from "../../../hooks/click-outside/click-outside-use-effect"
 
-function TransferFundsButton() {
+function MoneyTransferButton() {
 	const dropdownRef = useRef<HTMLDivElement>(null)
 	const solanaClass = useSolanaContext()
-	useClickOutsideUseEffect(dropdownRef, solanaClass?.setIsTransferFundsButtonPressed)
+	useClickOutsideUseEffect(dropdownRef, solanaClass?.setIsMoneyTransferButtonPressed)
 
-	const setIsTransferFundsButtonPressed = useCallback(() => {
+	const setIsMoneyTransferButtonPressed = useCallback(() => {
 		if (_.isNull(solanaClass)) return
-		solanaClass.setIsTransferFundsButtonPressed(!solanaClass.isTransferFundsButtonPressed)
+		solanaClass.setIsMoneyTransferButtonPressed(!solanaClass.isMoneyTransferButtonPressed)
 	}, [solanaClass])
 
 	return (
 		<>
 			<Button
-				title="Transfer Funds"
+				title="Transfer Money"
 				titleIcon={<FaArrowAltCircleUp />}
 				colorClass="bg-blue-500 dark:bg-blue-400"
 				hoverClass="hover:bg-blue-600 dark:hover:bg-blue-500"
-				onClick={setIsTransferFundsButtonPressed}
+				onClick={setIsMoneyTransferButtonPressed}
 				className="text-white dark:text-zinc-950 font-medium"
 			/>
 			<div ref={dropdownRef}>
-				<TransferFundsCard />
+				<TransferMoneyCard />
 			</div>
 		</>
 	)
 }
 
-export default observer(TransferFundsButton)
+export default observer(MoneyTransferButton)

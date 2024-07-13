@@ -7,7 +7,7 @@ declare global {
 	type TransferOption = "username" | "publicKey"
 	type TransactionStage = "initial" | "review"
 
-	interface TransferFundsDetails {
+	interface MoneyTransferDetails {
 		transferOption: TransferOption
 
 		username: string
@@ -21,7 +21,7 @@ declare global {
 		transferStage: TransactionStage
 	}
 
-	interface TransferFundsData {
+	interface MoneyTransferData {
 		sendingTo: string
 		transferAmount: number
 		transferCurrency: Currencies

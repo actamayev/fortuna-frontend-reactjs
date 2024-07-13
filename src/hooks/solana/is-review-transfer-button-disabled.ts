@@ -7,17 +7,17 @@ export default function useIsReviewTransferButtonDisabled(): boolean {
 
 	return useObserver(() => {
 		if (_.isNull(solanaClass)) return true
-		if (_.isEqual(solanaClass.transferFundsDetails.transferAmount, 0)) return true
+		if (_.isEqual(solanaClass.moneyTransferDetails.transferAmount, 0)) return true
 		if (
-			solanaClass.transferFundsDetails.transferOption === "username" &&
-			solanaClass.transferFundsDetails.isUsernameSelected === false
+			solanaClass.moneyTransferDetails.transferOption === "username" &&
+			solanaClass.moneyTransferDetails.isUsernameSelected === false
 		) return true
 		if (_.isNull(solanaClass.walletPublicKey)) return true
 		if (
-			solanaClass.transferFundsDetails.transferOption === "publicKey" &&
+			solanaClass.moneyTransferDetails.transferOption === "publicKey" &&
 			(
-				solanaClass.transferFundsDetails.doesPublicKeyExist === false ||
-				solanaClass.transferFundsDetails.publicKey === solanaClass.walletPublicKey.toString())
+				solanaClass.moneyTransferDetails.doesPublicKeyExist === false ||
+				solanaClass.moneyTransferDetails.publicKey === solanaClass.walletPublicKey.toString())
 		) {
 			return true
 		}
