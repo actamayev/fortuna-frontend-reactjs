@@ -26,7 +26,17 @@ function LastSolanaPrice() {
 					<>${solanaClass.solPriceDetails.solPriceInUSD.toFixed(2)}</>
 				)}
 			</div>
-			<div>Last Solana price (Last updated {formattedTime})</div>
+			<div className="text-zinc-500 dark:text-zinc-400 text-sm">
+				Last Solana price {" "} (
+				<a
+					href="https://www.coingecko.com/en/coins/solana"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="underline decoration-dotted"
+				>
+					Last updated {formattedTime}
+				</a>)
+			</div>
 		</div>
 	)
 }

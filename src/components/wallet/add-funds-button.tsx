@@ -15,7 +15,6 @@ export default function AddFundsButton() {
 							target="_blank"
 							rel="noopener noreferrer"
 							className="underline text-blue-500"
-							style={{ padding: ""}}
 						>
 							Solana Faucet
 						</a>
@@ -27,7 +26,7 @@ export default function AddFundsButton() {
 			width="500px"
 		>
 			<Button
-				title="Add Funds (free)"
+				title="Add funds (free)"
 				titleIcon={<FaArrowAltCircleDown />}
 				colorClass="bg-green-600 dark:bg-green-400"
 				hoverClass="hover:bg-green-700 dark:hover:bg-green-600"

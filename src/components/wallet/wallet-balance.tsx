@@ -17,7 +17,9 @@ function WalletBalance() {
 				{defaultCurrency === "usd" && <>${solanaClass.walletBalanceUSD.get().toFixed(2)}</>}
 				{defaultCurrency === "sol" && <>{solanaClass.walletBalanceSol.toFixed(4)} SOL</>}
 			</div>
-			<div>Available Balance</div>
+			<div className="text-zinc-500 dark:text-zinc-400 text-sm">
+				Available balance
+			</div>
 		</div>
 	)
 }

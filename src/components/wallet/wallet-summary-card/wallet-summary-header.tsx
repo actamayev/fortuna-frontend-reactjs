@@ -17,9 +17,9 @@ export default function WalletSummaryHeader(props: Props) {
 	}, [setIsOpen])
 
 	return (
-		<div className="border-b">
+		<div className="border-b border-zinc-300 dark:border-zinc-700">
 			<div className="flex justify-between items-center mb-2">
-				<div className="text-lg font-semibold">
+				<div className="text-2xl font-semibold">
 					Wallet
 				</div>
 				<div className="flex items-center">

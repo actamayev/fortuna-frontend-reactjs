@@ -20,7 +20,7 @@ function MoneyTransferButton() {
 	return (
 		<>
 			<Button
-				title="Transfer Money"
+				title="Transfer money"
 				titleIcon={<FaArrowAltCircleUp />}
 				colorClass="bg-blue-500 dark:bg-blue-400"
 				hoverClass="hover:bg-blue-600 dark:hover:bg-blue-500"
