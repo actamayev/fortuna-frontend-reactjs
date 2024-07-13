@@ -4,25 +4,25 @@ import { observer } from "mobx-react"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import Button from "../../../buttons/button"
 import { useSolanaContext } from "../../../../contexts/solana-context"
-import useTransferFunds from "../../../../hooks/solana/transfer-funds/transfer-funds"
-import useConfirmUserHasSufficientFundsToTransfer
-	from "../../../../hooks/solana/transfer-funds/confirm-user-has-sufficient-funds-to-transfer"
+import useTransferFunds from "../../../../hooks/solana/money-transfer/money-transfer"
+import useConfirmSufficientMoneyToTransfer
+	from "../../../../hooks/solana/money-transfer/confirm-sufficient-money-to-transfer"
 
 function ConfirmTransferButton() {
 	const solanaClass = useSolanaContext()
 	const transferSol = useTransferFunds()
 	const [isLoading, setIsLoading] = useState(false)
 	const [doesUserHaveSufficientFunds, setDoesUserHaveSufficientFunds] = useState(false)
-	const confirmUserHasSufficientFundsToTransfer = useConfirmUserHasSufficientFundsToTransfer()
+	const confirmSufficientMoneyToTransfer = useConfirmSufficientMoneyToTransfer()
 
 	useEffect(() => {
-		confirmUserHasSufficientFundsToTransfer(setDoesUserHaveSufficientFunds)
-	}, [solanaClass?.transferFundsDetails.transferStage])
+		confirmSufficientMoneyToTransfer(setDoesUserHaveSufficientFunds)
+	}, [solanaClass?.moneyTransferDetails.transferStage])
 
 	const isTransferAmountZero = useMemo(() => {
 		if (_.isNull(solanaClass)) return true
-		return _.isEqual(solanaClass.transferFundsDetails.transferAmount, 0)
-	}, [solanaClass, solanaClass?.transferFundsDetails.transferAmount])
+		return _.isEqual(solanaClass.moneyTransferDetails.transferAmount, 0)
+	}, [solanaClass, solanaClass?.moneyTransferDetails.transferAmount])
 
 	const transferSolCallback = useCallback(async () => {
 		await transferSol(setIsLoading)

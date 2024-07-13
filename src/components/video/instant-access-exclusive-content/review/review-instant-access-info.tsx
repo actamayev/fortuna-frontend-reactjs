@@ -42,7 +42,10 @@ function ReviewInstantAccessInfo() {
 
 			<div className="flex justify-between mb-1">
 				<div>Instant Access Price:</div>
-				<ShowUsdOrSolPrice usdAmount={getTieredAccessPriceUsd(video)} />
+				<ShowUsdOrSolPrice
+					usdAmount={getTieredAccessPriceUsd(video)}
+					roundOrFixed="round"
+				/>
 			</div>
 
 			<div className="flex justify-between mb-2">

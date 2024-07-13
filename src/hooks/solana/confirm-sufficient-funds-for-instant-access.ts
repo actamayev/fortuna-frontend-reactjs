@@ -4,7 +4,7 @@ import { useVideoContext } from "../../contexts/video-context"
 import { useSolanaContext } from "../../contexts/solana-context"
 import getTieredAccessPriceUsd from "../../utils/video-access-tiers/get-tiered-access-price-usd"
 
-export default function useConfirmUserHasSufficientFundsForInstantAccess(): (
+export default function useConfirmSufficientFundsForInstantAccess(): (
 	videoUUID: string | undefined
 ) => boolean {
 	const solanaClass = useSolanaContext()

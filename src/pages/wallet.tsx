@@ -2,7 +2,7 @@ import { observer } from "mobx-react"
 import { useAuthContext } from "../contexts/auth-context"
 import ShowAuthToNullUser from "../components/show-auth-to-null-user"
 import Transactions from "../components/wallet/transactions/transactions-map"
-import WalletDetails from "../components/wallet/wallet-balance-details/wallet-details"
+import WalletSummaryCard from "../components/wallet/wallet-summary-card/wallet-balance-card"
 
 function Wallet() {
 	const authClass = useAuthContext()
@@ -13,7 +13,7 @@ function Wallet() {
 
 	return (
 		<>
-			<WalletDetails />
+			<WalletSummaryCard />
 			<Transactions />
 		</>
 	)

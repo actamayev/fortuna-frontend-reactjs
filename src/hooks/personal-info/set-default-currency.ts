@@ -6,7 +6,7 @@ import { useSolanaContext } from "../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 import { useNotificationsContext } from "../../contexts/notifications-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
-import useUpdateTransferFundsDetiailsNewDefaultCurrency from "../solana/transfer-funds/update-transfer-funds-details-new-default-currency"
+import useUpdateTransferFundsDetiailsNewDefaultCurrency from "../solana/money-transfer/update-transfer-funds-details-new-default-currency"
 
 export default function useSetDefaultCurrency(): () => Promise<void> {
 	const solanaClass = useSolanaContext()
@@ -14,14 +14,14 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 	const personalInfoClass = usePersonalInfoContext()
 	const notificationsClass = useNotificationsContext()
 	const retrieveSolPrice = useRetrieveSolPrice()
-	const updateTransferFundsDetailsNewDefaultCurrency = useUpdateTransferFundsDetiailsNewDefaultCurrency()
+	const updateMoneyTransferDetailsNewDefaultCurrency = useUpdateTransferFundsDetiailsNewDefaultCurrency()
 
 	return useCallback(async () => {
 		try {
 			if (_.isNull(personalInfoClass)) return
 			const newCurrency = personalInfoClass.defaultCurrency === "usd" ? "sol" : "usd"
 			personalInfoClass.setDefaultCurrency(newCurrency)
-			updateTransferFundsDetailsNewDefaultCurrency(newCurrency)
+			updateMoneyTransferDetailsNewDefaultCurrency(newCurrency)
 
 			// If the last sol price was retrieved more than 30 seconds ago, retrieve it from the backend again.
 			const currentTime = new Date()
@@ -45,5 +45,5 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 			notificationsClass.setNegativeNotification("Unable to change default currency at this time. Please reload page and try again.")
 		}
 	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService, personalInfoClass,
-		retrieveSolPrice, solanaClass, updateTransferFundsDetailsNewDefaultCurrency, notificationsClass])
+		retrieveSolPrice, solanaClass, updateMoneyTransferDetailsNewDefaultCurrency, notificationsClass])
 }

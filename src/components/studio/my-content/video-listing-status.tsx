@@ -17,7 +17,6 @@ function VideoListingStatus(props: Props) {
 				<div className="mx-2">Listed</div>
 				<Tooltip
 					message="Unable to change listing status since this is an exclusive video"
-					messageStart="center"
 					width="250px"
 				>
 					<FaLock />

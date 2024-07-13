@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom"
 import { useCallback, useMemo, useState } from "react"
 import Button from "../../../buttons/button"
 import usePurchaseExclusiveContentAccess from "../../../../hooks/market/purchase-exclusive-content-access"
-import useConfirmUserHasSufficientFundsForInstantAccess from "../../../../hooks/solana/confirm-user-has-sufficient-funds-for-instant-access"
+import useConfirmSufficientFundsForInstantAccess from "../../../../hooks/solana/confirm-sufficient-funds-for-instant-access"
 
 interface Props {
 	tierNumber: number | null
@@ -15,7 +15,7 @@ function ConfirmInstantAccessButton(props: Props) {
 	const { videoUUID } = useParams<{ videoUUID: string }>()
 	const [isLoading, setIsLoading] = useState(false)
 	const purchaseInstantAccess = usePurchaseExclusiveContentAccess()
-	const confirmUserHasSufficientFundsForInstantAccess = useConfirmUserHasSufficientFundsForInstantAccess()
+	const confirmSufficientFundsForInstantAccess = useConfirmSufficientFundsForInstantAccess()
 
 	const onClickButton = useCallback(async() => {
 		if (_.isUndefined(videoUUID) || _.isNull(tierNumber)) return
@@ -23,8 +23,8 @@ function ConfirmInstantAccessButton(props: Props) {
 	}, [purchaseInstantAccess, tierNumber, videoUUID])
 
 	const doesUserHaveSufficientFunds = useMemo(() => {
-		return confirmUserHasSufficientFundsForInstantAccess(videoUUID)
-	}, [confirmUserHasSufficientFundsForInstantAccess, videoUUID])
+		return confirmSufficientFundsForInstantAccess(videoUUID)
+	}, [confirmSufficientFundsForInstantAccess, videoUUID])
 
 	return (
 		<Button

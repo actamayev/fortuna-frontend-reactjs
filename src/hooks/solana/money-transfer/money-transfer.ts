@@ -29,41 +29,41 @@ export default function useTransferFunds(): (
 			) return
 			setIsLoading(true)
 			let sendingTo
-			if (solanaClass.transferFundsDetails.transferOption === "publicKey") {
-				sendingTo = solanaClass.transferFundsDetails.publicKey
+			if (solanaClass.moneyTransferDetails.transferOption === "publicKey") {
+				sendingTo = solanaClass.moneyTransferDetails.publicKey
 			} else {
-				sendingTo = solanaClass.transferFundsDetails.username
+				sendingTo = solanaClass.moneyTransferDetails.username
 			}
 
 			await retrieveSolPrice()
 			if (_.isNull(solanaClass.solPriceDetails)) return
-			const transferFundsData: TransferFundsData = {
+			const moneyTransferData: MoneyTransferData = {
 				sendingTo,
-				transferAmount: solanaClass.transferFundsDetails.transferAmount,
+				transferAmount: solanaClass.moneyTransferDetails.transferAmount,
 				transferCurrency: personalInfoClass.defaultCurrency
 			}
 
 			let transferSolResponse
-			if (solanaClass.transferFundsDetails.transferOption === "publicKey") {
-				transferSolResponse = await fortunaApiClient.solanaDataService.transferFundsToPublicKey(transferFundsData)
+			if (solanaClass.moneyTransferDetails.transferOption === "publicKey") {
+				transferSolResponse = await fortunaApiClient.solanaDataService.moneyTransferToPublicKey(moneyTransferData)
 			} else {
-				transferSolResponse = await fortunaApiClient.solanaDataService.transferFundsToUsername(transferFundsData)
+				transferSolResponse = await fortunaApiClient.solanaDataService.moneyTransferToUsername(moneyTransferData)
 			}
 			if (!_.isEqual(transferSolResponse.status, 200) || isNonSuccessResponse(transferSolResponse.data)) {
 				throw Error("Error transferring sol")
 			}
-			solanaClass.setIsTransferFundsButtonPressed(false)
-			solanaClass.resetTransferFundsDetails()
+			solanaClass.setIsMoneyTransferButtonPressed(false)
+			solanaClass.resetMoneyTransferDetails()
 			positionsAndTransactionsClass.addSolanaTransaction(transferSolResponse.data.solTransferData)
-			if (transferFundsData.transferCurrency === "sol") {
-				solanaClass.alterWalletBalanceSol(-transferFundsData.transferAmount)
+			if (moneyTransferData.transferCurrency === "sol") {
+				solanaClass.alterWalletBalanceSol(-moneyTransferData.transferAmount)
 			} else {
-				solanaClass.alterWalletBalanceUsd(-transferFundsData.transferAmount)
+				solanaClass.alterWalletBalanceUsd(-moneyTransferData.transferAmount)
 			}
 			notificationsClass.setPositiveNotification("Funds transferred")
 		} catch (error) {
 			console.error(error)
-			notificationsClass.setNegativeNotification("Unable to transfer funds at this time. Please reload page and try again")
+			notificationsClass.setNegativeNotification("Unable to complete money transfer at this time. Please reload page and try again")
 		} finally {
 			setIsLoading(false)
 		}

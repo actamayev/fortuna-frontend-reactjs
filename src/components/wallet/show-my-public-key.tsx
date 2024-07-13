@@ -21,8 +21,8 @@ function ShowMyPublicKey() {
 		}
 	}, [notificationsClass, solanaClass])
 
-	const setShowPublicKeyCallback = useCallback((whatToSet: boolean): void => {
-		setShowPublicKey(whatToSet)
+	const setShowPublicKeyCallback = useCallback((): void => {
+		setShowPublicKey(prevState => !prevState)
 	}, [])
 
 	if (_.isNull(solanaClass?.walletPublicKey) || showPublicKey === false) {
@@ -30,7 +30,7 @@ function ShowMyPublicKey() {
 			<div className="font-semibold flex items-center">
 				<div
 					className="mr-2 cursor-pointer text-black dark:text-white"
-					onClick={() => setShowPublicKeyCallback(true)}
+					onClick={setShowPublicKeyCallback}
 				>
 					<FaEyeSlash />
 				</div>
@@ -43,7 +43,7 @@ function ShowMyPublicKey() {
 		<div className="font-semibold flex items-center">
 			<div
 				className="cursor-pointer mr-2 text-black dark:text-white"
-				onClick={() => setShowPublicKeyCallback(false)}
+				onClick={setShowPublicKeyCallback}
 			>
 				<FaEye />
 			</div>

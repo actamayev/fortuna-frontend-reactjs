@@ -1,10 +1,12 @@
 import _ from "lodash"
-import { action, makeAutoObservable } from "mobx"
 import { createContext, useContext, useMemo } from "react"
+import { action, computed, makeAutoObservable } from "mobx"
 
 class PositionsAndTransactionsClass {
-	private _myTransactions: SolanaTransaction[] = []
-	private _myPurchasedExclusiveContent: MyPurchasedExclusiveContent[] = []
+	public myTransactions: SolanaTransaction[] = []
+	public transactionsTimeRange: WalletFilterRange = "Month"
+
+	public myPurchasedExclusiveContent: MyPurchasedExclusiveContent[] = []
 
 	public hasPurchasedExclusiveContentToRetrieve = true
 	public isRetrievingPurchasedExclusiveContent = false
@@ -14,22 +16,6 @@ class PositionsAndTransactionsClass {
 
 	constructor() {
 		makeAutoObservable(this)
-	}
-
-	get myTransactions(): SolanaTransaction[] {
-		return this._myTransactions
-	}
-
-	set myTransactions(myTransactions: SolanaTransaction[]) {
-		this._myTransactions = myTransactions
-	}
-
-	get myPurchasedExclusiveContent(): MyPurchasedExclusiveContent[] {
-		return this._myPurchasedExclusiveContent
-	}
-
-	set myPurchasedExclusiveContent(myPurchasedExclusiveContent: MyPurchasedExclusiveContent[]) {
-		this._myPurchasedExclusiveContent = myPurchasedExclusiveContent
 	}
 
 	public contextForMyTransaction(transactionId: number): SolanaTransaction | undefined {
@@ -49,6 +35,69 @@ class PositionsAndTransactionsClass {
 		const retrievedTransaction = this.contextForMyTransaction(solanaTransaction.solTransferId)
 		if (!_.isUndefined(retrievedTransaction)) return
 		this.myTransactions.unshift(solanaTransaction)
+	})
+
+	private filterTransactionsByTimeRange = (): SolanaTransaction[] => {
+		const now = new Date()
+		let timeLimit: Date
+
+		switch (this.transactionsTimeRange) {
+		case "Month":
+			timeLimit = new Date(now.setMonth(now.getMonth() - 1))
+			break
+		case "Week":
+			timeLimit = new Date(now.setDate(now.getDate() - 7))
+			break
+		case "Today":
+			timeLimit = new Date(now.setDate(now.getDate() - 1))
+			break
+		default:
+			timeLimit = new Date()
+		}
+
+		return this.myTransactions.filter(transaction => new Date(transaction.transferDateTime) >= timeLimit)
+	}
+
+	public calculateDepositsUsd = (): number => {
+		return computed(() => {
+			const transactions = this.filterTransactionsByTimeRange()
+			return transactions
+				.filter(transaction => transaction.outgoingOrIncoming === "incoming")
+				.reduce((total, transaction) => total + transaction.usdAmountTransferred, 0)
+		}).get()
+	}
+
+	public calculateDepositsSol = (): number => {
+		return computed(() => {
+			const transactions = this.filterTransactionsByTimeRange()
+			return transactions
+				.filter(transaction => transaction.outgoingOrIncoming === "incoming")
+				.reduce((total, transaction) => total + transaction.solAmountTransferred, 0)
+		}).get()
+	}
+
+	public calculateWithdrawalsUsd = (): number => {
+		return computed(() => {
+			const transactions = this.filterTransactionsByTimeRange()
+			return transactions
+				.filter(transaction => transaction.outgoingOrIncoming === "outgoing")
+				.reduce((total, transaction) => total + transaction.usdAmountTransferred, 0)
+		}).get()
+	}
+
+	public calculateWithdrawalsSol = (): number => {
+		return computed(() => {
+			const transactions = this.filterTransactionsByTimeRange()
+			return transactions
+				.filter(transaction => transaction.outgoingOrIncoming === "outgoing")
+				.reduce((total, transaction) => total + transaction.solAmountTransferred, 0)
+		}).get()
+	}
+
+	public handleTimeRangeClick = action(() => {
+		if (this.transactionsTimeRange === "Month") this.transactionsTimeRange = "Week"
+		else if (this.transactionsTimeRange === "Week") this.transactionsTimeRange = "Today"
+		else this.transactionsTimeRange = "Month"
 	})
 
 	public setExclusiveContent = action((newExclusiveContent: MyPurchasedExclusiveContent[]): void => {

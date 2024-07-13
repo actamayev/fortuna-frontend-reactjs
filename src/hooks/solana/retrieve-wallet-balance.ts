@@ -23,7 +23,7 @@ export default function useRetrieveWalletBalance(): () => Promise<void> {
 			const balanceInLamports = await connection.getBalance(solanaClass.walletPublicKey)
 			const balanceInSol = balanceInLamports / LAMPORTS_PER_SOL
 
-			solanaClass.walletBalanceSol = balanceInSol
+			solanaClass.setWalletBalanceSol(balanceInSol)
 		} catch (error) {
 			console.error(error)
 		} finally {

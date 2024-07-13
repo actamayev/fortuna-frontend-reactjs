@@ -16,11 +16,11 @@ function TransactionsMap() {
 	if (_.isNull(positionsAndTransactionClass)) return null
 
 	return (
-		<>
+		<div>
 			{positionsAndTransactionClass.myTransactions.map(transaction => (
 				<SingleTransaction key={transaction.solTransferId} transaction={transaction} />
 			))}
-		</>
+		</div>
 	)
 }
 

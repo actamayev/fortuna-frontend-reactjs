@@ -17,17 +17,17 @@ function PublicKeySearch() {
 
 	const publicKey = useMemo(() => {
 		if (_.isNull(solanaClass)) return ""
-		return solanaClass.transferFundsDetails.publicKey
-	}, [solanaClass, solanaClass?.transferFundsDetails.publicKey])
+		return solanaClass.moneyTransferDetails.publicKey
+	}, [solanaClass, solanaClass?.moneyTransferDetails.publicKey])
 
 	const isPublicKeySearchLoading = useMemo(() => {
 		if (_.isNull(solanaClass)) return false
 		return solanaClass.isPublicKeySearchLoading
 	}, [solanaClass, solanaClass?.isPublicKeySearchLoading])
 
-	const updateTransferFundsDetails = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+	const updateMoneyTransferDetails = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(solanaClass)) return false
-		solanaClass.updateTransferFundsDetails("publicKey", handleTypePublicKey(e))
+		solanaClass.updateMoneyTransferDetails("publicKey", handleTypePublicKey(e))
 	}, [handleTypePublicKey, solanaClass])
 
 	return (
@@ -36,7 +36,7 @@ function PublicKeySearch() {
 				<input
 					type="text"
 					value={publicKey}
-					onChange={updateTransferFundsDetails}
+					onChange={updateMoneyTransferDetails}
 					className="p-2 rounded-lg w-full text-zinc-950 dark:bg-zinc-800 dark:text-zinc-200 outline-none"
 					placeholder="123XYZ"
 				/>

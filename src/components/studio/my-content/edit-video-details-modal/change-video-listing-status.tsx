@@ -48,7 +48,6 @@ function ChangeVideoListingStatus(props: Props) {
 					{content.isContentExclusive && (
 						<Tooltip
 							message="Unable to change listing status since this is an exclusive video"
-							messageStart="center"
 							width="250px"
 						>
 							<FaLock className="ml-1" />
