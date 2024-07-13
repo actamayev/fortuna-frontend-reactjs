@@ -11,18 +11,18 @@ function UsernameSearchInput() {
 
 	const transferSolUsername = useMemo(() => {
 		if (_.isNull(solanaClass)) return ""
-		return solanaClass.transferFundsDetails.username
-	}, [solanaClass, solanaClass?.transferFundsDetails.username])
+		return solanaClass.moneyTransferDetails.username
+	}, [solanaClass, solanaClass?.moneyTransferDetails.username])
 
 	const isUsernameSelected = useMemo(() => {
 		if (_.isNull(solanaClass)) return false
-		return solanaClass.transferFundsDetails.isUsernameSelected
-	}, [solanaClass, solanaClass?.transferFundsDetails.isUsernameSelected])
+		return solanaClass.moneyTransferDetails.isUsernameSelected
+	}, [solanaClass, solanaClass?.moneyTransferDetails.isUsernameSelected])
 
-	const updateTransferFundsDetails = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+	const updateMoneyTransferDetails = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(solanaClass)) return
-		solanaClass.updateTransferFundsDetails("username", handleTypeUsername(e))
-		solanaClass.updateTransferFundsDetails("isUsernameSelected", false)
+		solanaClass.updateMoneyTransferDetails("username", handleTypeUsername(e))
+		solanaClass.updateMoneyTransferDetails("isUsernameSelected", false)
 	}, [solanaClass, handleTypeUsername])
 
 	return (
@@ -30,7 +30,7 @@ function UsernameSearchInput() {
 			<input
 				type="text"
 				value={transferSolUsername}
-				onChange={updateTransferFundsDetails}
+				onChange={updateMoneyTransferDetails}
 				className="p-2 rounded-lg w-full text-zinc-950 dark:bg-zinc-800 dark:text-zinc-200 outline-none"
 				placeholder="Username"
 			/>

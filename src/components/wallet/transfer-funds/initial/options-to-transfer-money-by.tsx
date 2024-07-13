@@ -4,18 +4,18 @@ import UsernameSearch from "./username-search"
 import PublicKeySearch from "./public-key-search"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 
-function TransferFundsByOptions() {
+function OptionsToTransferMoneyBy() {
 	const solanaClass = useSolanaContext()
 
 	if (_.isNull(solanaClass)) return null
 
 	return (
 		<>
-			{solanaClass.transferFundsDetails.transferOption === "username" && <UsernameSearch />}
+			{solanaClass.moneyTransferDetails.transferOption === "username" && <UsernameSearch />}
 
-			{solanaClass.transferFundsDetails.transferOption === "publicKey" && <PublicKeySearch />}
+			{solanaClass.moneyTransferDetails.transferOption === "publicKey" && <PublicKeySearch />}
 		</>
 	)
 }
 
-export default observer(TransferFundsByOptions)
+export default observer(OptionsToTransferMoneyBy)

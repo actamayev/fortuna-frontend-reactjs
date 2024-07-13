@@ -4,7 +4,7 @@ import { useCallback } from "react"
 import { useSolanaContext } from "../../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 
-export default function useConfirmUserHasSufficientFundsToTransfer(): (
+export default function useConfirmSufficientMoneyToTransfer(): (
 	setDoesUserHaveSufficientFunds: React.Dispatch<React.SetStateAction<boolean>>
 ) => void {
 	const solanaClass = useSolanaContext()
@@ -24,25 +24,25 @@ export default function useConfirmUserHasSufficientFundsToTransfer(): (
 			const myWalletBalanceSol = solanaClass.walletBalanceSol
 
 			if (
-				solanaClass.transferFundsDetails.transferOption === "publicKey" &&
-				solanaClass.transferFundsDetails.isPublicKeyRegisteredWithFortuna === false
+				solanaClass.moneyTransferDetails.transferOption === "publicKey" &&
+				solanaClass.moneyTransferDetails.isPublicKeyRegisteredWithFortuna === false
 			) {
 				if (personalInfoClass.defaultCurrency === "sol") {
-					if (myWalletBalanceSol < solanaClass.transferFundsDetails.transferAmount + 0.000005) {
+					if (myWalletBalanceSol < solanaClass.moneyTransferDetails.transferAmount + 0.000005) {
 						setDoesUserHaveSufficientFunds(false)
 						return
 					}
 				} else {
 					const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
 					if (_.isUndefined(solPriceInUSD)) return
-					if (solanaClass.walletBalanceUSD.get() < solanaClass.transferFundsDetails.transferAmount + (0.000005 * solPriceInUSD)) {
+					if (solanaClass.walletBalanceUSD.get() < solanaClass.moneyTransferDetails.transferAmount + (0.000005 * solPriceInUSD)) {
 						setDoesUserHaveSufficientFunds(false)
 						return
 					}
 				}
 			} else {
 				if (personalInfoClass.defaultCurrency === "sol") {
-					if (myWalletBalanceSol < solanaClass.transferFundsDetails.transferAmount) {
+					if (myWalletBalanceSol < solanaClass.moneyTransferDetails.transferAmount) {
 						setDoesUserHaveSufficientFunds(false)
 						return
 					}
@@ -50,7 +50,7 @@ export default function useConfirmUserHasSufficientFundsToTransfer(): (
 					const solPriceInUSD = solanaClass.solPriceDetails?.solPriceInUSD
 					if (_.isUndefined(solPriceInUSD)) return
 					const myWalletBalanceUsd = myWalletBalanceSol * solPriceInUSD
-					if (myWalletBalanceUsd < solanaClass.transferFundsDetails.transferAmount) {
+					if (myWalletBalanceUsd < solanaClass.moneyTransferDetails.transferAmount) {
 						setDoesUserHaveSufficientFunds(false)
 						return
 					}

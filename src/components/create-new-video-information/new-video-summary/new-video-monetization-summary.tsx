@@ -20,7 +20,6 @@ function NewVideoMonetizationSummary() {
 					<Tooltip
 						message="The USD value of accessing this video will not change with Solana's price fluctuations"
 						width="275px"
-						messageStart="center"
 					>
 					ℹ️
 					</Tooltip>

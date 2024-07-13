@@ -27,7 +27,7 @@ export default function useRetrievePersonalInfoUseEffect(): void {
 				throw Error ("Unable to retrieve personal info")
 			}
 			personalInfoClass.setRetrievedPersonalData(personalInfoResponse.data)
-			solanaClass.walletPublicKey = new PublicKey(personalInfoResponse.data.publicKey)
+			solanaClass.setWalletPublicKey(new PublicKey(personalInfoResponse.data.publicKey))
 		} catch (error) {
 			console.error(error)
 		} finally {

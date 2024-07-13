@@ -11,14 +11,14 @@ export default function useUpdateTransferFundsDetiailsNewDefaultCurrency() : (
 		try {
 			if (_.isNull(solanaClass) || _.isUndefined(solanaClass.solPriceDetails?.solPriceInUSD)) return
 			if (newDefaultCurrency === "sol") {
-				solanaClass.updateTransferFundsDetails(
+				solanaClass.updateMoneyTransferDetails(
 					"transferAmount",
-					solanaClass.transferFundsDetails.transferAmount / solanaClass.solPriceDetails.solPriceInUSD
+					solanaClass.moneyTransferDetails.transferAmount / solanaClass.solPriceDetails.solPriceInUSD
 				)
 			} else {
-				solanaClass.updateTransferFundsDetails(
+				solanaClass.updateMoneyTransferDetails(
 					"transferAmount",
-					solanaClass.transferFundsDetails.transferAmount * solanaClass.solPriceDetails.solPriceInUSD
+					solanaClass.moneyTransferDetails.transferAmount * solanaClass.solPriceDetails.solPriceInUSD
 				)
 			}
 		} catch (error) {

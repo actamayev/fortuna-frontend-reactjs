@@ -1,8 +1,8 @@
 import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
-import numberWithCommas from "../../../utils/numbers-with-commas"
 import { useCreatorContext } from "../../../contexts/creator-context"
+import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
 
 interface Props {
 	tierNumber: number
@@ -29,7 +29,7 @@ function MaxProfitByTier(props: Props) {
 	return (
 		<div>
 			Max Profit From Tier {tierNumber}:
-			${numberWithCommas(_.round(purchasesInThisTier * tierAccessPriceUsd, 2))} {" "}
+			${numberWithCommasFixed((purchasesInThisTier * tierAccessPriceUsd), 2)} {" "}
 			({purchasesInThisTier} {" "}
 			purchase{purchasesInThisTier > 1 ? "s" : ""} {" "}
 			X {" "} ${tierAccessPriceUsd})

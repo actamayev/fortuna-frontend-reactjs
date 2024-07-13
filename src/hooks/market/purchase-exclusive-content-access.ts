@@ -9,7 +9,7 @@ import { useNotificationsContext } from "../../contexts/notifications-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 import getTieredAccessPriceUsd from "../../utils/video-access-tiers/get-tiered-access-price-usd"
 import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
-import useConfirmUserHasSufficientFundsForInstantAccess from "../solana/confirm-user-has-sufficient-funds-for-instant-access"
+import useConfirmSufficientFundsForInstantAccess from "../solana/confirm-sufficient-funds-for-instant-access"
 
 export default function usePurchaseExclusiveContentAccess(): (
 	videoUUID: string,
@@ -23,7 +23,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 	const notificationClass = useNotificationsContext()
 	const retrieveWalletBalance = useRetrieveWalletBalance()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
-	const confirmUserHasSufficientFundsForInstantAccess = useConfirmUserHasSufficientFundsForInstantAccess()
+	const confirmSufficientFundsForInstantAccess = useConfirmSufficientFundsForInstantAccess()
 
 	// eslint-disable-next-line complexity
 	return useCallback(async (
@@ -39,7 +39,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 				_.isNull(positionsAndTransactionsClass)
 			) return
 
-			const doesUserHaveSufficientFunds = confirmUserHasSufficientFundsForInstantAccess(videoUUID)
+			const doesUserHaveSufficientFunds = confirmSufficientFundsForInstantAccess(videoUUID)
 			if (doesUserHaveSufficientFunds === false) return
 			const video = videoClass.findVideoFromUUID(videoUUID)
 			if (_.isUndefined(video)) return
@@ -69,9 +69,6 @@ export default function usePurchaseExclusiveContentAccess(): (
 			} else {
 				solanaClass.alterWalletBalanceUsd(-tierAccessPriceUsd)
 			}
-			// TODO: Add this transaction to my transactions (don't just call retrieveTransactions - redundant)
-			// Consider returning the sol transfer details with the purchaseExclusiveContentAccess response.
-			// Add that single new transaction to the transaction array
 		} catch (error) {
 			console.error(error)
 			notificationClass.setNegativeNotification("Unable to purchase access to video at this time. Please reload page and try again")
@@ -79,5 +76,5 @@ export default function usePurchaseExclusiveContentAccess(): (
 			setIsLoading(false)
 		}
 	}, [marketClass, solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.marketDataService,
-		positionsAndTransactionsClass, confirmUserHasSufficientFundsForInstantAccess, videoClass, retrieveWalletBalance, notificationClass])
+		positionsAndTransactionsClass, confirmSufficientFundsForInstantAccess, videoClass, retrieveWalletBalance, notificationClass])
 }

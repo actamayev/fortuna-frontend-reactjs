@@ -2,14 +2,14 @@ import _ from "lodash"
 import React, { useState, useEffect, useCallback } from "react"
 
 interface Props {
-	message: string
+	message: React.ReactNode
 	children: React.ReactNode
 	width?: string
-	messageStart: "center" | "left"
+	messageStart?: "center" | "left"
 }
 
 export default function Tooltip(props: Props) {
-	const { message, width, children, messageStart } = props
+	const { message, width, children, messageStart = "center" } = props
 	const [isVisible, setIsVisible] = useState(false)
 	const [timeoutId, setTimeoutId] = useState<number | null>(null)
 

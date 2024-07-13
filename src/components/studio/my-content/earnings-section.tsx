@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import useDefaultCurrency from "../../../hooks/memos/default-currency"
+import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
 
 interface Props {
 	content: MyContent
@@ -22,10 +23,10 @@ function EarningsSection(props: Props) {
 		<div>
 			Profit from video: {" "}
 			{defaultCurrency === "sol" && (
-				<>{content.totalCreatorProfitInSol.toFixed(4)} SOL</>
+				<>{numberWithCommasFixed(content.totalCreatorProfitInSol, 4)} SOL</>
 			)}
 			{defaultCurrency === "usd" && (
-				<>${content.totalCreatorProfitInUsd.toFixed(2)}</>
+				<>${numberWithCommasFixed(content.totalCreatorProfitInUsd, 2)}</>
 			)}
 			{!_.isNull(content.numberOfExclusivePurchasesSoFar) && (
 				<div>

@@ -9,15 +9,15 @@ function ReviewTransferButton() {
 	const solanaClass = useSolanaContext()
 	const isReviewTransferButtonDisabled = useIsReviewTransferButtonDisabled()
 
-	const updateTransferFundsDetails = useCallback(() => {
+	const updateMoneyTransferDetails = useCallback(() => {
 		if (_.isNull(solanaClass)) return
-		solanaClass.updateTransferFundsDetails("transferStage", "review")
+		solanaClass.updateMoneyTransferDetails("transferStage", "review")
 	}, [solanaClass])
 
 	return (
 		<Button
 			title="Review Transfer"
-			onClick={updateTransferFundsDetails}
+			onClick={updateMoneyTransferDetails}
 			colorClass="bg-blue-200 dark:bg-blue-400"
 			hoverClass="hover:bg-blue-300 hover:dark:bg-blue-500"
 			className="font-semibold text-zinc-950"

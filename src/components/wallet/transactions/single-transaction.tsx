@@ -3,6 +3,7 @@ import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { BsArrowUpRightSquareFill, BsArrowDownLeftSquareFill } from "react-icons/bs"
 import useDefaultCurrency from "../../../hooks/memos/default-currency"
+import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
 
 interface Props {
 	transaction: SolanaTransaction
@@ -51,15 +52,18 @@ function SingleTransaction(props: Props) {
 					>
 						{transaction.outgoingOrIncoming === "incoming" ? (<>+</>) : (<>-</>)}
 						{(defaultCurrency === "usd") ? (
-							<>${(transaction.usdAmountTransferred).toFixed(2)}</>
+							<>${numberWithCommasFixed(transaction.usdAmountTransferred, 2)}</>
 						) : (
-							<>{(transaction.solAmountTransferred).toFixed(4)} SOL</>
+							<>{numberWithCommasFixed(transaction.solAmountTransferred, 4)} SOL</>
 						)}
 					</div>
 					<span>&nbsp;
-						{transaction.outgoingOrIncoming === "incoming" && (<>from {transaction.transferFromUsername}</>)}
+						{transaction.outgoingOrIncoming === "incoming" && (<>from @{transaction.transferFromUsername}</>)}
 						{transaction.outgoingOrIncoming === "outgoing" && (
-							<>to {transaction.transferToUsername || transaction.transferToPublicKey}</>
+							<>
+								to {transaction.transferToUsername && <>@</>}
+								{transaction.transferToUsername || transaction.transferToPublicKey}
+							</>
 						)}
 					</span>
 				</div>
