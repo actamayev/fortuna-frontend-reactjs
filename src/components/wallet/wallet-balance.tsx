@@ -9,15 +9,16 @@ function WalletBalance() {
 
 	if (_.isNull(solanaClass)) return null
 
+	if (_.isNull(solanaClass.walletBalanceSol)) return <> Loading...</>
+
 	return (
-		<>
-			{_.isNull(solanaClass.walletBalanceSol) ? (<> Loading...</>) : (
-				<> {" "}
-					{defaultCurrency === "usd" && (<>${solanaClass.walletBalanceUSD.get().toFixed(2)}</>)}
-					{defaultCurrency === "sol" && (<>{solanaClass.walletBalanceSol.toFixed(4)} SOL</>)}
-				</>
-			)}
-		</>
+		<div>
+			<div className="text-2xl font-bold">
+				{defaultCurrency === "usd" && <>${solanaClass.walletBalanceUSD.get().toFixed(2)}</>}
+				{defaultCurrency === "sol" && <>{solanaClass.walletBalanceSol.toFixed(4)} SOL</>}
+			</div>
+			<div>Available Balance</div>
+		</div>
 	)
 }
 

@@ -1,3 +1,5 @@
+import Deposits from "./deposits"
+import Withdrawals from "./withdrawls"
 import WalletBalance from "../wallet-balance"
 import AddFundsButton from "../add-funds-button"
 import LastSolanaPrice from "./last-solana-price"
@@ -22,10 +24,14 @@ export default function WalletSummaryBody(props: Props) {
 					<div><MoneyTransferButton /></div>
 				</div>
 			</div>
-			<div>
-				Wallet Balance: <WalletBalance />
+			<div className="grid grid-cols-5 gap-4 mt-3">
+				<WalletBalance />
+				<div className="col-span-2">
+					<LastSolanaPrice />
+				</div>
+				<Deposits />
+				<Withdrawals />
 			</div>
-			<LastSolanaPrice />
 		</div>
 	)
 }

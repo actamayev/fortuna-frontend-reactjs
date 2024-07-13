@@ -19,13 +19,14 @@ function LastSolanaPrice() {
 
 	return (
 		<div>
-			Last Solana price: {" "}
-			{_.isUndefined(solanaClass.solPriceDetails?.solPriceInUSD) ? (<>Loading...</>) : (
-				<>
-					${(solanaClass.solPriceDetails.solPriceInUSD).toFixed(2)} {" "}
-					(Last updated {formattedTime})
-				</>
-			)}
+			<div className="text-lg font-bold">
+				{_.isUndefined(solanaClass.solPriceDetails?.solPriceInUSD) ? (
+					<>Loading...</>
+				) : (
+					<>${solanaClass.solPriceDetails.solPriceInUSD.toFixed(2)}</>
+				)}
+			</div>
+			<div>Last Solana price (Last updated {formattedTime})</div>
 		</div>
 	)
 }
