@@ -2,6 +2,7 @@ import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../contexts/solana-context"
+import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
 
 function LastSolanaPrice() {
 	const solanaClass = useSolanaContext()
@@ -23,7 +24,7 @@ function LastSolanaPrice() {
 				{_.isUndefined(solanaClass.solPriceDetails?.solPriceInUSD) ? (
 					<>Loading...</>
 				) : (
-					<>${solanaClass.solPriceDetails.solPriceInUSD.toFixed(2)}</>
+					<>${numberWithCommasFixed(solanaClass.solPriceDetails.solPriceInUSD, 2)}</>
 				)}
 			</div>
 			<div className="text-zinc-500 dark:text-zinc-400 text-sm">

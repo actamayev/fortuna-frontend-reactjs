@@ -1,5 +1,5 @@
 import Deposits from "./deposits"
-import Withdrawals from "./withdrawls"
+import Withdrawals from "./withdrawals"
 import WalletBalance from "../wallet-balance"
 import AddFundsButton from "../add-funds-button"
 import LastSolanaPrice from "./last-solana-price"

@@ -4,8 +4,8 @@ import { createContext, useContext, useMemo } from "react"
 import { action, computed, makeAutoObservable } from "mobx"
 
 class SolanaClass {
-	private _walletPublicKey: PublicKey | null = null
-	private _walletBalanceSol: number | null = null
+	public walletPublicKey: PublicKey | null = null
+	public walletBalanceSol: number | null = null
 
 	public isMoneyTransferButtonPressed = false
 	public moneyTransferDetails: MoneyTransferDetails = {
@@ -29,21 +29,13 @@ class SolanaClass {
 		makeAutoObservable(this)
 	}
 
-	get walletPublicKey(): PublicKey | null {
-		return this._walletPublicKey
-	}
+	public setWalletPublicKey = action((newValue: PublicKey): void => {
+		this.walletPublicKey = newValue
+	})
 
-	set walletPublicKey(walletPublicKey: PublicKey | null) {
-		this._walletPublicKey = walletPublicKey
-	}
-
-	get walletBalanceSol(): number | null {
-		return this._walletBalanceSol
-	}
-
-	set walletBalanceSol(walletBalanceSol: number | null) {
-		this._walletBalanceSol = walletBalanceSol
-	}
+	public setWalletBalanceSol = action((newValue: number): void => {
+		this.walletBalanceSol = newValue
+	})
 
 	public setIsPublicKeySearchLoading = action((newState: boolean): void => {
 		this.isPublicKeySearchLoading = newState

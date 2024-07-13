@@ -5,7 +5,7 @@ import useDefaultCurrency from "../../../hooks/memos/default-currency"
 import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
 import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 
-function Deposits() {
+function Withdrawals() {
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const defaultCurrency = useDefaultCurrency()
 
@@ -15,14 +15,14 @@ function Deposits() {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [positionsAndTransactionsClass, positionsAndTransactionsClass?.transactionsTimeRange])
 
-	const depositsSol = useObserver(() => {
+	const withdrawalsUsd = useObserver(() => {
 		if (_.isNull(positionsAndTransactionsClass)) return null
-		return positionsAndTransactionsClass.calculateDepositsSol()
+		return positionsAndTransactionsClass.calculateWithdrawalsUsd()
 	})
 
-	const depositsUsd = useObserver(() => {
+	const withdrawalsSol = useObserver(() => {
 		if (_.isNull(positionsAndTransactionsClass)) return null
-		return positionsAndTransactionsClass.calculateDepositsUsd()
+		return positionsAndTransactionsClass.calculateWithdrawalsSol()
 	})
 
 	return (
@@ -30,25 +30,25 @@ function Deposits() {
 			<div className="text-lg font-bold">
 				{defaultCurrency === "sol" && (
 					<>
-						{_.isNull(depositsSol) ? (
+						{_.isNull(withdrawalsSol) ? (
 							<>Loading...</>
 						) : (
-							<>+{numberWithCommasFixed(depositsSol, 4)} SOL</>
+							<>-{numberWithCommasFixed(withdrawalsSol, 4)} SOL</>
 						)}
 					</>
 				)}
 				{defaultCurrency === "usd" && (
 					<>
-						{_.isNull(depositsUsd) ? (
+						{_.isNull(withdrawalsUsd) ? (
 							<>Loading...</>
 						) : (
-							<>+${numberWithCommasFixed(depositsUsd, 2)}</>
+							<>-${numberWithCommasFixed(withdrawalsUsd, 2)}</>
 						)}
 					</>
 				)}
 			</div>
 			<div className="text-zinc-500 dark:text-zinc-400 text-sm">
-				Deposits {" "}
+				Withdrawals {" "}
 				{transactionsTimeRange !== "Today" && (<>this {" "}</>)}
 				<span
 					className="cursor-pointer underline decoration-dotted"
@@ -61,4 +61,4 @@ function Deposits() {
 	)
 }
 
-export default observer(Deposits)
+export default observer(Withdrawals)

@@ -11,7 +11,6 @@ declare global {
 		transferFromUsername: string
 		transferFeeSol?: number
 		transferFeeUsd?: number
-		createdAt: Date
 	}
 
 	interface MyPurchasedExclusiveContent {
@@ -19,6 +18,8 @@ declare global {
 		imageUrl: string
 		uuid: string
 	}
+
+	type WalletFilterRange = "Month" | "Week" | "Today"
 }
 
 export {}

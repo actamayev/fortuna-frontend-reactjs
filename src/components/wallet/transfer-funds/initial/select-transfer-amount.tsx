@@ -3,6 +3,7 @@ import { observer } from "mobx-react"
 import RangeSelectorSlider from "../../../range-selector-slider"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import useDefaultCurrency from "../../../../hooks/memos/default-currency"
+import { numberWithCommasFixed } from "../../../../utils/numbers-with-commas"
 
 // eslint-disable-next-line complexity
 function SelectTransferAmount() {
@@ -49,7 +50,7 @@ function SelectTransferAmount() {
 					max={solanaClass.walletBalanceSol || 0}
 					step={0.0001}
 				/>
-				{solanaClass.moneyTransferDetails.transferAmount.toFixed(4)} SOL
+				{numberWithCommasFixed(solanaClass.moneyTransferDetails.transferAmount, 4)} SOL
 			</div>
 		)
 	}
@@ -66,7 +67,7 @@ function SelectTransferAmount() {
 				max={solanaClass.walletBalanceUSD.get()}
 				step={0.01}
 			/>
-			${solanaClass.moneyTransferDetails.transferAmount.toFixed(2)}
+			${numberWithCommasFixed(solanaClass.moneyTransferDetails.transferAmount, 2)}
 		</div>
 	)
 }

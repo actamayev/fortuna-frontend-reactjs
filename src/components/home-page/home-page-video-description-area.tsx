@@ -53,7 +53,10 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 			</div>
 			<div className="ml-auto flex flex-col items-end space-y-1">
 				<div className="text-xs mt-1">
-					<ShowUsdOrSolPrice usdAmount={getTieredAccessPriceUsd(video)} />
+					<ShowUsdOrSolPrice
+						usdAmount={getTieredAccessPriceUsd(video)}
+						roundOrFixed="round"
+					/>
 				</div>
 				<div className="flex items-center space-x-1">
 					<ShowHomeVideoLockStatus
