@@ -31,7 +31,7 @@ export default function AddFundsButton() {
 				colorClass="bg-green-600 dark:bg-green-400"
 				hoverClass="hover:bg-green-700 dark:hover:bg-green-600"
 				className="text-white dark:text-zinc-950 font-medium cursor-default"
-				style={ { padding: "6px" }}
+				style={{ padding: "6px" }}
 			/>
 		</Tooltip>
 	)

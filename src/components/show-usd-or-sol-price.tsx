@@ -8,6 +8,7 @@ interface Props {
 	usdAmount: number | null
 	roundOrFixed: "round" | "fixed"
 }
+
 function ShowUSDOrSolPrice(props: Props) {
 	const { usdAmount, roundOrFixed } = props
 	const solanaClass = useSolanaContext()
