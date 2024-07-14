@@ -26,7 +26,11 @@ function Video() {
 	if (isVideoLoading === true) {
 		return (
 			<>
-				<BasicHelmet pageTitleData="Fortuna | Exclusive Videos" />
+				<BasicHelmet
+					pageTitleData="Loading... | Fortuna"
+					description="Loading exclusive video content on Fortuna. Discover and enjoy premium videos from your favorite creators."
+					url={`https://www.createfortuna.com/v/${videoUUID}`}
+				/>
 				<div className="dark:text-zinc-200 text-zinc-950">
 					Loading...
 				</div>
@@ -37,7 +41,11 @@ function Video() {
 	if (isVideoNotFound === true) {
 		return (
 			<>
-				<BasicHelmet pageTitleData="Video not found | Fortuna" />
+				<BasicHelmet
+					pageTitleData="Video Not Found | Fortuna"
+					description="The requested video could not be found on Fortuna. Explore other exclusive content from top creators."
+					url={`https://www.createfortuna.com/v/${videoUUID}`}
+				/>
 				<div className="dark:text-zinc-200 text-zinc-950">
 					Unable to find video
 				</div>
@@ -49,7 +57,11 @@ function Video() {
 
 	return (
 		<>
-			<BasicHelmet pageTitleData={`${video.videoName} | Fortuna`} />
+			<BasicHelmet
+				pageTitleData={`${video.videoName} | Fortuna`}
+				description={_.truncate(video.description, { length: 155 })}
+				url={`https://www.createfortuna.com/v/${videoUUID}`}
+			/>
 			<div className="dark:text-white text-zinc-950 relative">
 				<div className="grid grid-cols-12">
 					<div className="col-span-9">

@@ -19,7 +19,11 @@ function Creator() {
 
 	return (
 		<>
-			<BasicHelmet pageTitleData={`${creatorData.channelName} | Fortuna`} />
+			<BasicHelmet
+				pageTitleData={`${creatorData.channelName} | Fortuna`}
+				description={`${_.truncate(creatorData.channelDescription, { length: 155})}`}
+				url={`https://www.createfortuna.com/c/${creatorUsername}`}
+			/>
 			<CreatorPageHeaderArea creatorData={creatorData} />
 			<CreatorPageVideoMap creatorData={creatorData} />
 		</>
