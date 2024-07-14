@@ -1,4 +1,5 @@
 import { observer } from "mobx-react"
+import PageHelmet from "../../components/helmet/page-helmet"
 import { useAuthContext } from "../../contexts/auth-context"
 import ShowAuthToNullUser from "../../components/show-auth-to-null-user"
 import CreateNewVideoTemplate from "../../components/templates/create-new-video-template"
@@ -15,11 +16,17 @@ function CreateContent() {
 	const authClass = useAuthContext()
 
 	if (authClass.isLoggedIn === false) {
-		return <ShowAuthToNullUser whereToNavigate="/creator/create-content" />
+		return (
+			<>
+				<PageHelmet pageTitle="/creator/create-content" />
+				<ShowAuthToNullUser whereToNavigate="/creator/create-content" />
+			</>
+		)
 	}
 
 	return (
 		<>
+			<PageHelmet pageTitle="/creator/create-content" />
 			<CreateNewVideoTemplate>
 
 				<div className="mb-2">

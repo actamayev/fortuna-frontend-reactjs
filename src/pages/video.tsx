@@ -3,6 +3,7 @@ import { useState } from "react"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import VideoPlayer from "../components/video/video-player"
+import BasicHelmet from "../components/helmet/basic-helmet"
 import { useVideoContext } from "../contexts/video-context"
 import { addLeadingAt } from "../utils/leading-at-operations"
 import useSetSingleVideo from "../hooks/videos/set-single-video"
@@ -24,45 +25,54 @@ function Video() {
 
 	if (isVideoLoading === true) {
 		return (
-			<div className="dark:text-zinc-200 text-zinc-950">
-				Loading...
-			</div>
+			<>
+				<BasicHelmet pageTitleData="Fortuna | Exclusive Videos" />
+				<div className="dark:text-zinc-200 text-zinc-950">
+					Loading...
+				</div>
+			</>
 		)
 	}
 
 	if (isVideoNotFound === true) {
 		return (
-			<div className="dark:text-zinc-200 text-zinc-950">
-				Unable to find video
-			</div>
+			<>
+				<BasicHelmet pageTitleData="Video not found | Fortuna" />
+				<div className="dark:text-zinc-200 text-zinc-950">
+					Unable to find video
+				</div>
+			</>
 		)
 	}
 
 	if (_.isUndefined(video)) return null
 
 	return (
-		<div className="dark:text-white text-zinc-950 relative">
-			<div className="grid grid-cols-12">
-				<div className="col-span-9">
-					<VideoPlayer video={video} />
+		<>
+			<BasicHelmet pageTitleData={`${video.videoName} | Fortuna`} />
+			<div className="dark:text-white text-zinc-950 relative">
+				<div className="grid grid-cols-12">
+					<div className="col-span-9">
+						<VideoPlayer video={video} />
+					</div>
+					<div className="col-span-3 flex flex-col pl-14">
+						<div className="w-full h-full">
+							<PurchaseExclusiveAccessCard videoUUID={video.uuid} />
+						</div>
+					</div>
 				</div>
-				<div className="col-span-3 flex flex-col pl-14">
-					<div className="w-full h-full">
-						<PurchaseExclusiveAccessCard videoUUID={video.uuid} />
+				<div className="grid grid-cols-12">
+					<div className="col-span-9">
+						<SubVideoSection video={video} />
+					</div>
+				</div>
+				<div className="flex flex-col">
+					<div className="w-full overflow-x-auto">
+						<MoreVideosMap video={video} />
 					</div>
 				</div>
 			</div>
-			<div className="grid grid-cols-12">
-				<div className="col-span-9">
-					<SubVideoSection video={video} />
-				</div>
-			</div>
-			<div className="flex flex-col">
-				<div className="w-full overflow-x-auto">
-					<MoreVideosMap video={video} />
-				</div>
-			</div>
-		</div>
+		</>
 	)
 }
 

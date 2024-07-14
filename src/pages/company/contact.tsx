@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+import PageHelmet from "../../components/helmet/page-helmet"
 import XLink from "../../components/social-links/x-link"
 import LinkedinLink from "../../components/social-links/linkedin-link"
 import ContactItemInCard from "../../components/contact/contact-item-in-card"
@@ -6,6 +7,7 @@ import ContactItemInCard from "../../components/contact/contact-item-in-card"
 export default function Contact() {
 	return (
 		<div>
+			<PageHelmet pageTitle="/contact" />
 			<div className="text-zinc-950 dark:text-zinc-200 py-5 px-48">
 				<div className="text-3xl text-zinc-950 dark:text-zinc-200 mb-2">
 					Contact Us
