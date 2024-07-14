@@ -1,16 +1,14 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { MdIosShare } from "react-icons/md"
+import { FaEye } from "react-icons/fa"
 import { useCallback, useMemo } from "react"
 import { useLocation } from "react-router-dom"
-import HoverOutlineComponent from "./hover-outline-component"
-import { usePersonalInfoContext } from "../contexts/personal-info-context"
-import { useNotificationsContext } from "../contexts/notifications-context"
+import HoverOutlineComponent from "../hover-outline-component"
+import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
-function ShareChannelButton() {
+function ViewChannelAsFan() {
 	const location = useLocation()
 	const personalInfoClass = usePersonalInfoContext()
-	const notificationsClass = useNotificationsContext()
 
 	const creatorUsernameUrl = useMemo(() => {
 		const { protocol, hostname, port } = window.location
@@ -22,24 +20,19 @@ function ShareChannelButton() {
 		return window.location.href
 	}, [location.pathname, personalInfoClass])
 
-	const copyToClipboard = useCallback(async () => {
-		try {
-			await navigator.clipboard.writeText(creatorUsernameUrl)
-			notificationsClass.setNeutralNotification("Creator URL copied to clipboard")
-		} catch (error) {
-			console.error(error)
-		}
-	}, [creatorUsernameUrl, notificationsClass])
+	const openNewCreatorTab = useCallback(() => {
+		window.open(creatorUsernameUrl, "_blank", "noopener,noreferrer")
+	}, [creatorUsernameUrl])
 
 	return (
 		<HoverOutlineComponent
 			classes="flex items-center justify-center text-black dark:text-white"
-			onClickAction={copyToClipboard}
+			onClickAction={openNewCreatorTab}
 			circlePixelSize="35px"
 		>
-			<MdIosShare size={24}/>
+			<FaEye size={24}/>
 		</HoverOutlineComponent>
 	)
 }
 
-export default observer(ShareChannelButton)
+export default observer(ViewChannelAsFan)

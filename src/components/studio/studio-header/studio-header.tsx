@@ -1,6 +1,7 @@
 import ShowMyUsername from "./show-my-username"
 import ShowNumberVideos from "./show-number-videos"
 import ChannelName from "./channel-name/channel-name"
+import ViewChannelAsFan from "../view-channel-as-fan"
 import ShareChannelButton from "../../share-channel-button"
 import ProfilePicture from "./profile-picture/profile-picture"
 import ChannelDescription from "./channel-description/channel-description"
@@ -27,7 +28,8 @@ export default function StudioHeader() {
 								<ShowNumberVideos />
 							</div>
 							<div className="flex justify-between items-center">
-								<div className="mr-2">
+								<div className="flex flex-row mr-1">
+									<ViewChannelAsFan />
 									<ShareChannelButton />
 								</div>
 							</div>
