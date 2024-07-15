@@ -1,5 +1,5 @@
 import { observer } from "mobx-react"
-import { FaUnlock } from "react-icons/fa"
+import { FaLock, FaUnlock } from "react-icons/fa"
 import getTieredAccessPriceUsd from "../../../utils/video-access-tiers/get-tiered-access-price-usd"
 
 interface Props {
@@ -11,8 +11,8 @@ function ShowUnlockStatus(props: Props) {
 
 	if (videoData.isUserAbleToAccessVideo === true) {
 		return (
-			<div className="flex flex-row space-x-2">
-				<FaUnlock />
+			<div className="flex flex-row items-center space-x-2">
+				<div><FaUnlock /></div>
 				<div>
 					{videoData.isVideoExclusive === false && (
 						<>Non exclusive </>
@@ -26,8 +26,15 @@ function ShowUnlockStatus(props: Props) {
 	}
 
 	return (
-		<div>
-			${getTieredAccessPriceUsd(videoData)} to unlock
+		<div className="flex flex-row items-center space-x-1.5">
+			<div><FaLock className="mb-1"/></div>
+			<div>
+				{videoData.videoListingStatus === "SOLDOUT" ? (
+					<>Sold Out</>
+				) : (
+					<>${getTieredAccessPriceUsd(videoData)} to unlock</>
+				)}
+			</div>
 		</div>
 	)
 }

@@ -21,8 +21,10 @@ function BeneathThumbnailSection(props: Props) {
 
 	return (
 		<div className="flex flex-col justify-start overflow-hidden w-full mt-2">
-			<div className="flex flex-row items-center space-x-4">
-				<ShowUnlockStatus videoData={videoData}/>
+			<div className="flex flex-row items-center">
+				<div className="mr-4">
+					<ShowUnlockStatus videoData={videoData}/>
+				</div>
 				<div className="flex items-center">
 					{videoData.userLikeStatus === true ? (
 						<FaHeart size={22} color="red"/>
@@ -35,13 +37,15 @@ function BeneathThumbnailSection(props: Props) {
 						</span>
 					)}
 				</div>
-				<div className="flex items-center">
+				<div className="flex items-center mx-3">
 					<ShareVideoButton
 						urlToCopy={videoUrlToCopy}
 						extraClasses="mb-1"
 					/>
 				</div>
-				{relativeDateFormatter(videoData.createdAt)}
+				<div>
+					{relativeDateFormatter(videoData.createdAt)}
+				</div>
 			</div>
 		</div>
 	)
