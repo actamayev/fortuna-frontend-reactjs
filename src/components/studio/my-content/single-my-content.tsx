@@ -46,7 +46,7 @@ function SingleMyContent(props: Props) {
 			<div className="col-span-2 relative">
 				<MyContentThumbnail content={content} />
 			</div>
-			<div className="col-span-3">
+			<div className="col-span-4">
 				<VideoName content={content} toggleModalOpen={toggleModalOpen} />
 				<VideoDescription content={content} toggleModalOpen={toggleModalOpen} />
 			</div>
@@ -64,7 +64,7 @@ function SingleMyContent(props: Props) {
 			<div className="col-span-1 text-sm text-zinc-700 dark:text-zinc-300">
 				{formatGBDate(content.createdAt)}
 			</div>
-			<div className="col-span-2 text-sm text-zinc-600 dark:text-zinc-300">
+			<div className="col-span-1 text-sm text-zinc-600 dark:text-zinc-300">
 				<div className="flex flex-col items-start">
 					{content.numberOfLikes} like{content.numberOfLikes !== 1 && "s"}
 				</div>
