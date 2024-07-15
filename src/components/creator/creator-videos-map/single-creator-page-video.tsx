@@ -19,7 +19,7 @@ function SingleCreatorPageVideo(props: Props) {
 
 	return (
 		<div
-			className="flex flex-col items-center w-2/3 rounded-lg cursor-pointer mb-3
+			className="w-2/3 rounded-lg cursor-pointer mb-3
 			bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700"
 			onClick={navigateToVideoPageCallback}
 		>
@@ -32,16 +32,20 @@ function SingleCreatorPageVideo(props: Props) {
 						}}
 					/>
 				</div>
-				<div className="flex flex-col justify-start pl-4 w-2/5 mt-2">
-					<div className="text-md font-semibold truncate dark:text-zinc-200">
-						{_.truncate(videoData.videoName, { length: 45 })}
+				<div className="flex flex-col justify-start w-1/2 px-3">
+					<div className="text-2xl font-semibold truncate dark:text-zinc-200 overflow-hidden text-ellipsis whitespace-nowrap">
+						{videoData.videoName}
 					</div>
-					<div className="text-xs text-zinc-600 dark:text-zinc-300">
-						{_.truncate(videoData.description, { length: 100})}
+					<div className="text-base text-zinc-600 dark:text-zinc-300 font-light ">
+						{_.truncate(videoData.description, { length: 400})}
 					</div>
 				</div>
 			</div>
-			<BeneathThumbnailSection videoData={videoData} />
+			<div className="flex w-full">
+				<div className="w-1/2">
+					<BeneathThumbnailSection videoData={videoData} />
+				</div>
+			</div>
 		</div>
 	)
 }

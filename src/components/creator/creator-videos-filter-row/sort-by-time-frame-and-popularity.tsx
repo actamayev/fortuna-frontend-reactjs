@@ -13,7 +13,7 @@ function SortByTimeFrameAndPopularity() {
 	const colorClasses = useCallback((timeframeSort: TimeFramesToSortBy) => {
 		let classes = "bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-600 text-black dark:text-white rounded-lg"
 		if (timeframeSort === videosClass.creatorVideosFilter.timeframeSort) {
-			classes = "bg-black dark:bg-white dark:bg-zinc-800 text-white dark:text-black rounded-lg"
+			classes = "bg-black dark:bg-white text-white dark:text-black rounded-lg"
 		}
 		return classes
 	}, [videosClass.creatorVideosFilter.timeframeSort])

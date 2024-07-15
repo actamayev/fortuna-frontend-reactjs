@@ -13,10 +13,9 @@ function CreatorPageVideoMap(props: Props) {
 	return (
 		<>
 			{videosToShow.map(singleVideoData => (
-				<SingleCreatorPageVideo
-					key={singleVideoData.uuid}
-					videoData={singleVideoData}
-				/>
+				<div key={singleVideoData.uuid} className="flex flex-col items-center">
+					<SingleCreatorPageVideo videoData={singleVideoData} />
+				</div>
 			))}
 		</>
 	)

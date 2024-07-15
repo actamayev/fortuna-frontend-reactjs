@@ -6,11 +6,10 @@ import { useNotificationsContext } from "../../../contexts/notifications-context
 
 interface Props {
 	urlToCopy: string
-	extraClasses?: string
 }
 
 function ShareVideoButton(props: Props) {
-	const { urlToCopy, extraClasses = "mx-2" } = props
+	const { urlToCopy } = props
 	const notificationsClass = useNotificationsContext()
 
 	const copyToClipboard = useCallback(async () => {
@@ -27,7 +26,7 @@ function ShareVideoButton(props: Props) {
 			classes="flex items-center justify-center"
 			onClickAction={copyToClipboard}
 		>
-			<MdIosShare size={22} className={extraClasses} />
+			<MdIosShare size={22} className="mx-2" />
 		</HoverOutlineComponent>
 	)
 }
