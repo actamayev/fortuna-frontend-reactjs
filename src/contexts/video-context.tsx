@@ -183,23 +183,17 @@ class VideoClass {
 		video.isUserAbleToAccessVideo = true
 	}
 
-	public updateVideoDetailsAfterLikeDislike(videoUUID: string, newLikeStatus: boolean | null) {
+	public updateVideoDetailsAfterLikeOrRemoveLike(videoUUID: string) {
 		const video = this.contextForVideo(videoUUID)
 		if (_.isUndefined(video)) return
 
-		if (_.isNull(video.userLikeStatus)) {
-			if (newLikeStatus === true) video.numberOfLikes ++
-			else if (newLikeStatus === false) video.numberOfDislikes ++
-		} else if (video.userLikeStatus === true) {
-			video.numberOfLikes --
-			if (newLikeStatus === false) video.numberOfDislikes ++
-		} else {
-			video.numberOfDislikes --
-			if (newLikeStatus === true) video.numberOfLikes ++
+		if (video.userLikeStatus === false) {
+			video.numberOfLikes ++
+			video.userLikeStatus = true
+			return
 		}
-
-		if (video.userLikeStatus === newLikeStatus) video.userLikeStatus = null
-		else video.userLikeStatus = newLikeStatus
+		video.numberOfLikes --
+		video.userLikeStatus = false
 	}
 
 	public addVideoUUIDToRetrievingList(videoUUID: string): void {
@@ -228,14 +222,14 @@ class VideoClass {
 
 	private clearVideoDataOnLogout = action((): void => {
 		this.videos.map(video => {
-			video.userLikeStatus = null
+			video.userLikeStatus = false
 			if (video.isVideoExclusive === false) return
 			delete video.videoUrl
 			video.isUserAbleToAccessVideo = false
 		})
 		this.creatorData.map(creator => {
 			creator.videoData.map(video => {
-				video.userLikeStatus = null
+				video.userLikeStatus = false
 				if (video.isVideoExclusive === false) return
 				video.isUserAbleToAccessVideo = false
 			})

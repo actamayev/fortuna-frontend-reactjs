@@ -36,7 +36,6 @@ declare global {
 		imageUrl: string
 		uuid: string
 		numberOfLikes: number
-		numberOfDislikes: number
 		createdAt: Date
 		totalCreatorProfitInSol: number
 		totalCreatorProfitInUsd: number
@@ -50,7 +49,7 @@ declare global {
 
 	type SocialPlatformKey = keyof typeof SocialPlatforms
 
-	type SortByFields = "Date" | "Earnings"
+	type SortByFields = "Date" | "Earnings" | "Likes"
 
 	interface MyContentFilter {
 		sortBy: SortByFields

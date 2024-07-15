@@ -9,7 +9,7 @@ export default function MyContentHeader() {
 				bg-white dark:bg-neutral-900 border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-200"
 		>
 			<div className="col-span-2">Video</div>
-			<div className="col-span-3 px-2">
+			<div className="col-span-4 px-2">
 				<MyVideoContentContainsSearchBox />
 			</div>
 			<div className="col-span-1">
@@ -18,8 +18,9 @@ export default function MyContentHeader() {
 			<div className="col-span-1 flex items-center">
 				<SortContentByArrow sortBy="Date" />
 			</div>
-
-			<div className="col-span-2">Likes (vs. dislikes)</div>
+			<div className="col-span-1">
+				<SortContentByArrow sortBy="Likes" />
+			</div>
 			<div className="col-span-2 flex items-center">
 				<SortContentByArrow sortBy="Earnings" />
 			</div>

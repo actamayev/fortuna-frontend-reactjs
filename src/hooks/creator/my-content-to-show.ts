@@ -33,11 +33,17 @@ export default function useMyContentToShow(): MyContent[] {
 					? new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
 					: new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
 			)
-		} else {
+		} else if (creatorClass.myContentFilter.sortBy === "Earnings") {
 			filteredContent = filteredContent.slice().sort((a, b) =>
 				creatorClass.myContentFilter.orderBy === "asc"
 					? a.totalCreatorProfitInUsd - b.totalCreatorProfitInUsd
 					: b.totalCreatorProfitInUsd - a.totalCreatorProfitInUsd
+			)
+		} else {
+			filteredContent = filteredContent.slice().sort((a, b) =>
+				creatorClass.myContentFilter.orderBy === "asc"
+					? a.numberOfLikes - b.numberOfLikes
+					: b.numberOfLikes - a.numberOfLikes
 			)
 		}
 

@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { useState } from "react"
-import { useActualDateFormatter, useRelativeDateFormatter } from "../../utils/date-formatter"
+import { useActualDateFormatter, useRelativeDateFormatter } from "../../../utils/date-formatter"
 
 interface Props {
 	video: SingleVideoDataFromBackend
