@@ -12,10 +12,10 @@ function BeneathThumbnailSection(props: Props) {
 	const relativeDateFormatter = useRelativeDateFormatter()
 
 	return (
-		<div className="flex flex-col justify-start overflow-hidden w-full my-1 text-zinc-800 dark:text-zinc-100 text-xs">
+		<div className="flex flex-col justify-start overflow-hidden w-full my-1 text-zinc-700 dark:text-zinc-300 text-xs">
 			<div className="flex flex-row items-center justify-between">
 				<div className="flex flex-row items-center">
-					<div className="ml-1">
+					<div className="ml-1 font-medium">
 						<ShowUnlockStatus videoData={videoData} />
 					</div>
 					<div className="flex items-center mx-4">

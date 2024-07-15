@@ -37,14 +37,12 @@ function SingleCreatorPageVideo(props: Props) {
 						{videoData.videoName}
 					</div>
 					<div className="text-base text-zinc-600 dark:text-zinc-300 font-light ">
-						{_.truncate(videoData.description, { length: 400})}
+						{_.truncate(videoData.description, { length: 430 })}
 					</div>
 				</div>
 			</div>
-			<div className="flex w-full">
-				<div className="w-1/2">
-					<BeneathThumbnailSection videoData={videoData} />
-				</div>
+			<div className="w-1/2">
+				<BeneathThumbnailSection videoData={videoData} />
 			</div>
 		</div>
 	)
