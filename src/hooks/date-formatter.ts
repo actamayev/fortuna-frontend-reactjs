@@ -58,3 +58,19 @@ export function useRelativeDateFormatter(): (dateInput: Date) => string {
 		}
 	}, [])
 }
+
+
+export function useFormatDuration(): (seconds: number) => string {
+	return useCallback((seconds: number): string => {
+		const roundedSeconds = Math.round(seconds)
+		const hours = Math.floor(roundedSeconds / 3600)
+		const minutes = Math.floor((roundedSeconds % 3600) / 60)
+		const secs = roundedSeconds % 60
+
+		const hoursDisplay = hours > 0 ? `${hours}:` : ""
+		const minutesDisplay = hours > 0 ? String(minutes).padStart(2, "0") : String(minutes)
+		const secondsDisplay = String(secs).padStart(2, "0")
+
+		return `${hoursDisplay}${minutesDisplay}:${secondsDisplay}`
+	}, [])
+}

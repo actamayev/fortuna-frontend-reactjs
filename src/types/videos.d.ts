@@ -4,6 +4,7 @@ declare global {
 		videoListingStatus: PostedVideoListingStatuses
 		description: string
 		imageUrl: string
+		videoDurationSeconds: number
 		uuid: string
 		creatorUsername: string
 		creatorProfilePictureUrl: string | null

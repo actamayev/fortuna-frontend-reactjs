@@ -49,12 +49,8 @@ export default function usePurchaseExclusiveContentAccess(): (
 				throw Error ("Error completing exclusive content purchase")
 			}
 			videoClass.addVideoUrlToVideo(videoUUID, purchaseResponse.data.videoUrl)
-			const exclusiveContentToAddToList: MyPurchasedExclusiveContent = {
-				videoName: video.videoName,
-				imageUrl: video.imageUrl,
-				uuid: video.uuid
-			}
-			positionsAndTransactionsClass.addExclusiveContent(exclusiveContentToAddToList)
+
+			positionsAndTransactionsClass.addExclusiveContent(video)
 			notificationClass.setSuperPositiveNotification("Successfully purchased access to video. Enjoy!")
 			videoClass.updateVideoDetailsAfterUserPurchase(
 				videoUUID,

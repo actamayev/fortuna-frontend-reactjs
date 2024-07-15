@@ -1,10 +1,12 @@
 import { observer } from "mobx-react"
 import SoldOutSticker from "./sold-out-sticker"
+import VideoDurationSticker from "./video-duration-sticker"
 
 interface Props {
 	thumbnailData: {
 		imageUrl: string
 		videoName: string
+		videoDurationSeconds: number
 		videoListingStatus: AllVideoListingStatuses
 	}
 	showSoldOutSticker?: boolean
@@ -25,6 +27,7 @@ function GeneralizedVideoThumbnail(props: Props) {
 			{showSoldOutSticker && (
 				<SoldOutSticker videoListingStatus={thumbnailData.videoListingStatus} />
 			)}
+			<VideoDurationSticker videoDurationSeconds={thumbnailData.videoDurationSeconds} />
 		</div>
 	)
 }

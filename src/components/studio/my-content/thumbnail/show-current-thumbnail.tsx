@@ -1,5 +1,6 @@
 import { observer } from "mobx-react"
 import SoldOutSticker from "../../../sold-out-sticker"
+import VideoDurationSticker from "../../../video-duration-sticker"
 
 interface Props {
 	content: MyContent
@@ -42,6 +43,7 @@ function ShowCurrentThumbnail(props: Props) {
 				videoListingStatus={content.videoListingStatus}
 				backgroundColor="bg-green-600"
 			/>
+			<VideoDurationSticker videoDurationSeconds={content.videoDurationSeconds} />
 			<input
 				ref={fileInputRef}
 				type="file"

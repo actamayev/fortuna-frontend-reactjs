@@ -24,16 +24,20 @@ function ImageUploader() {
 				previewUrl={previewUrl}
 				setPreviewUrl={setPreviewUrl}
 			/>
-
 			<ContentPreview
 				previewUrl={previewUrl}
 				setPreviewUrlNull={setSelectedPreviewUrlNull}
 				setSelectedContentNull={setSelectedContentNull}
 			>
-				<img
-					src={previewUrl || ""}
-					className="max-w-[35%] h-auto rounded-lg"
-				/>
+				<div className="max-w-[35%] h-auto" style={{ aspectRatio: "16/9" }}>
+					<div className="relative w-full h-full rounded-xl overflow-hidden">
+						<img
+							src={previewUrl || ""}
+							className="w-full h-full object-cover"
+							alt="Video Thumbnail"
+						/>
+					</div>
+				</div>
 			</ContentPreview>
 		</>
 	)
