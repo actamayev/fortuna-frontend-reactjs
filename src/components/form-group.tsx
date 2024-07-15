@@ -43,7 +43,7 @@ export default function FormGroup(props: Props) {
 	const minAttribute = type === "datetime-local" ? minDate : minValue
 
 	return (
-		<div className= {`mb-4 ${className}`}>
+		<div className={className}>
 			{label && <label className = "block text-sm text-zinc-600 dark:text-zinc-200 font-semibold">{label}</label>}
 			<Component
 				className={`mt-1 p-2 w-full border rounded-md text-zinc-950 dark:text-zinc-200 bg-white dark:bg-zinc-800 outline-none

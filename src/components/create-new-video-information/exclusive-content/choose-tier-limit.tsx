@@ -53,6 +53,7 @@ function ChooseTierLimit(props: Props) {
 				onChange={updateNewVideoDetails}
 				value={purchasesInThisTier?.toString() || ""}
 				minValue={1}
+				className="mb-4"
 			/>
 		)
 	}
@@ -78,6 +79,7 @@ function ChooseTierLimit(props: Props) {
 					onChange={updateNewVideoDetails}
 					value={purchasesInThisTier?.toString() || ""}
 					minValue={1}
+					className="mb-4"
 				/>
 			)}
 		</div>

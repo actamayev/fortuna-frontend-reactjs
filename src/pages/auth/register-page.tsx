@@ -1,5 +1,11 @@
 import Register from "../../components/auth/register"
+import PageHelmet from "../../components/helmet/page-helmet"
 
 export default function RegisterPage() {
-	return <Register whereToNavigate="/wallet" />
+	return (
+		<>
+			<PageHelmet pageTitle="/register" />
+			<Register whereToNavigate="/wallet" />
+		</>
+	)
 }

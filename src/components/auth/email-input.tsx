@@ -17,6 +17,7 @@ export default function EmailInput (props: Props) {
 			required
 			value = {registerInformation.email || ""}
 			maxLength={100}
+			className="mb-4"
 		/>
 	)
 }

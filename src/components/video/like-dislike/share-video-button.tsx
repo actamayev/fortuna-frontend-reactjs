@@ -1,6 +1,6 @@
 import { useCallback } from "react"
 import { observer } from "mobx-react"
-import { IoIosShareAlt } from "react-icons/io"
+import { MdIosShare } from "react-icons/md"
 import HoverOutlineComponent from "../../hover-outline-component"
 import { useNotificationsContext } from "../../../contexts/notifications-context"
 
@@ -19,12 +19,10 @@ function ShareVideoButton() {
 
 	return (
 		<HoverOutlineComponent
-			classes="flex items-center justify-center border border-zinc-400 dark:border-zinc-600 rounded-full"
+			classes="flex items-center justify-center"
 			onClickAction={copyToClipboard}
 		>
-			<div className="mx-2">
-				<IoIosShareAlt size={22} />
-			</div>
+			<MdIosShare size={22} className="mx-2"/>
 		</HoverOutlineComponent>
 	)
 }
