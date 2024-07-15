@@ -2,16 +2,16 @@ import { observer } from "mobx-react"
 import SingleCreatorPageVideo from "./single-creator-page-video"
 
 interface Props {
-	creatorData: CreatorDataHeldInClass
+	videoData: VideoDataLessVideoUrl[]
 }
 
 function CreatorPageVideoMap(props: Props) {
-	const { creatorData } = props
+	const { videoData } = props
 
 	return (
 		<>
-			{creatorData.videoData.map(videoData => (
-				<SingleCreatorPageVideo key={videoData.uuid} videoData={videoData} />
+			{videoData.map(singleVideoData => (
+				<SingleCreatorPageVideo key={singleVideoData.uuid} videoData={singleVideoData} />
 			))}
 		</>
 	)

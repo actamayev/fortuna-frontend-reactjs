@@ -25,7 +25,7 @@ function Creator() {
 				url={`https://www.createfortuna.com/c/${creatorUsername}`}
 			/>
 			<CreatorPageHeaderArea creatorData={creatorData} />
-			<CreatorPageVideoMap creatorData={creatorData} />
+			<CreatorPageVideoMap videoData={creatorData.videoData} />
 		</>
 	)
 }
