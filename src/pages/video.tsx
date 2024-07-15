@@ -32,9 +32,7 @@ function Video() {
 					description="Loading exclusive video content on Fortuna. Discover and enjoy premium videos from your favorite creators."
 					url={`https://www.createfortuna.com/v/${videoUUID}`}
 				/>
-				<div className="dark:text-zinc-200 text-zinc-950">
-					<LoadingVideoPlayer />
-				</div>
+				<LoadingVideoPlayer />
 			</>
 		)
 	}
