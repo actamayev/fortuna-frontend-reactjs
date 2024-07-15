@@ -6,6 +6,7 @@ import { useVideoContext } from "../contexts/video-context"
 import { removeLeadingAt } from "../utils/leading-at-operations"
 import CreatorPageHeaderArea from "../components/creator/creator-header/creator-page-header-area"
 import CreatorPageVideoMap from "../components/creator/creator-videos-map/creator-page-video-map"
+import CreatorVideosFilterRow from "../components/creator/creator-videos-filter-row/creator-videos-filter-row"
 import useRetrieveCreatorVideosAndDataUseEffect from "../hooks/videos/retrieve-creator-videos-and-data-use-effect"
 
 function Creator() {
@@ -25,6 +26,7 @@ function Creator() {
 				url={`https://www.createfortuna.com/c/${creatorUsername}`}
 			/>
 			<CreatorPageHeaderArea creatorData={creatorData} />
+			<CreatorVideosFilterRow />
 			<CreatorPageVideoMap videoData={creatorData.videoData} />
 		</>
 	)

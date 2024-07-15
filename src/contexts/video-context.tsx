@@ -226,6 +226,12 @@ class VideoClass {
 		this.isCreatorDataBeingRetrieved = newState
 	})
 
+	public updateCreatorVideosFilter = action(<K extends keyof CreatorVideosFilter>(
+		key: K, newValue: CreatorVideosFilter[K]
+	) => {
+		this.creatorVideosFilter[key] = newValue
+	})
+
 	private clearVideoDataOnLogout = action((): void => {
 		this.videos.map(video => {
 			video.userLikeStatus = false
