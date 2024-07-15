@@ -36,7 +36,6 @@ declare global {
 		imageUrl: string
 		uuid: string
 		numberOfLikes: number
-		numberOfDislikes: number
 		createdAt: Date
 		totalCreatorProfitInSol: number
 		totalCreatorProfitInUsd: number

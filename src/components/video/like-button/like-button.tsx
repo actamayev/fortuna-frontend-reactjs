@@ -1,10 +1,10 @@
 import _ from "lodash"
-import { useCallback } from "react"
 import { observer } from "mobx-react"
-import { BiSolidLike, BiLike } from "react-icons/bi"
+import { useCallback, useState } from "react"
+import { FaHeart, FaRegHeart } from "react-icons/fa"
+import useLikeVideo from "../../../hooks/videos/like-video"
 import HoverOutlineComponent from "../../hover-outline-component"
 import HoverNotAllowedComponent from "../../hover-not-allowed-component"
-import useLikeDislikeVideo from "../../../hooks/videos/like-dislike-video"
 
 interface Props {
 	video: SingleVideoDataFromBackend
@@ -12,19 +12,21 @@ interface Props {
 
 function LikeButton(props: Props) {
 	const { video } = props
-	const likeDislikeVideo = useLikeDislikeVideo()
+	const [isLoading, setIsLoading] = useState(false)
+	const likeVideo = useLikeVideo()
 
-	const likeDislikeVideoCallback = useCallback(() => {
-		likeDislikeVideo(video, true)
-	}, [likeDislikeVideo, video])
+	const likeVideoCallback = useCallback(() => {
+		if (isLoading === true) return
+		likeVideo(video, setIsLoading)
+	}, [isLoading, likeVideo, video])
 
 	if (_.isUndefined(video.videoUrl)) {
 		return (
 			<HoverNotAllowedComponent>
 				{video.userLikeStatus === true ? (
-					<BiSolidLike size={20}/>
+					<FaHeart size={22} color="red"/>
 				) : (
-					<BiLike size={20}/>
+					<FaRegHeart size={22} />
 				)}
 				{video.numberOfLikes > 0 && (
 					<span className="ml-1.5 text-md">
@@ -38,12 +40,12 @@ function LikeButton(props: Props) {
 	return (
 		<HoverOutlineComponent
 			classes="flex items-center justify-center"
-			onClickAction={likeDislikeVideoCallback}
+			onClickAction={likeVideoCallback}
 		>
 			{video.userLikeStatus === true ? (
-				<BiSolidLike size={20}/>
+				<FaHeart size={22} color="red"/>
 			) : (
-				<BiLike size={20}/>
+				<FaRegHeart size={22} />
 			)}
 			{video.numberOfLikes > 0 && (
 				<span className="ml-1.5 text-md">
@@ -54,5 +56,5 @@ function LikeButton(props: Props) {
 	)
 }
 
-// Keep this observer for monitoring the like/dislike status
+// Keep this observer for monitoring the like status
 export default observer(LikeButton)

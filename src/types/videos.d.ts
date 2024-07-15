@@ -14,8 +14,7 @@ declare global {
 		tierData: TierDataFromDB[]
 		numberOfExclusivePurchasesSoFar: number | null
 		numberOfLikes: number
-		numberOfDislikes: number
-		userLikeStatus: boolean | null
+		userLikeStatus: boolean
 		channelName: string
 	}
 

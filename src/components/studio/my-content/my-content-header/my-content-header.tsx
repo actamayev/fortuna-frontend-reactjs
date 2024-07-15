@@ -19,7 +19,7 @@ export default function MyContentHeader() {
 				<SortContentByArrow sortBy="Date" />
 			</div>
 
-			<div className="col-span-2">Likes (vs. dislikes)</div>
+			<div className="col-span-2">Likes</div>
 			<div className="col-span-2 flex items-center">
 				<SortContentByArrow sortBy="Earnings" />
 			</div>

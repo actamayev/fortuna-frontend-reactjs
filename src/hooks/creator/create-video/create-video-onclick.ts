@@ -78,7 +78,6 @@ export default function useCreateVideoOnclick(): (
 				imageUrl: uploadImageResponse.data.imageUploadUrl,
 				uuid: uploadVideoResponse.data.uuid,
 				numberOfLikes: 0,
-				numberOfDislikes: 0,
 				createdAt: new Date(),
 				totalCreatorProfitInSol: 0,
 				totalCreatorProfitInUsd: 0,
