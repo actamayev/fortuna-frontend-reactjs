@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { observer } from "mobx-react"
+import PageHelmet from "../components/helmet/page-helmet"
 import { useVideoContext } from "../contexts/video-context"
 import useRetrieveHomePageVideos from "../hooks/videos/retrieve-home-page-videos"
 import SingleHomePageVideoCard from "../components/home-page/single-home-page-video-card"
@@ -12,11 +13,14 @@ function Home() {
 	if (areVideosLoading === true) return <div className="dark:text-zinc-200">Loading...</div>
 
 	return (
-		<div className="grid grid-cols-4 gap-4">
-			{videoClass.videos.map((video, index) => (
-				<SingleHomePageVideoCard key={video.uuid} video={video} index={index}/>
-			))}
-		</div>
+		<>
+			<PageHelmet pageTitle="/" />
+			<div className="grid grid-cols-4 gap-4">
+				{videoClass.videos.map((video, index) => (
+					<SingleHomePageVideoCard key={video.uuid} video={video} index={index}/>
+				))}
+			</div>
+		</>
 	)
 }
 

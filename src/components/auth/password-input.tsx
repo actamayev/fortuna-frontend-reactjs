@@ -21,6 +21,7 @@ export default function PasswordInput (props: Props) {
 				required
 				value={credentials.password || ""}
 				maxLength={100}
+				className="mb-4"
 			/>
 			<ShowOrHidePasswordButton
 				showPassword={showPassword}

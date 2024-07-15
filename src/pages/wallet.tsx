@@ -1,4 +1,5 @@
 import { observer } from "mobx-react"
+import PageHelmet from "../components/helmet/page-helmet"
 import { useAuthContext } from "../contexts/auth-context"
 import ShowAuthToNullUser from "../components/show-auth-to-null-user"
 import Transactions from "../components/wallet/transactions/transactions-map"
@@ -8,11 +9,17 @@ function Wallet() {
 	const authClass = useAuthContext()
 
 	if (authClass.isLoggedIn === false) {
-		return <ShowAuthToNullUser whereToNavigate="/wallet" />
+		return (
+			<>
+				<PageHelmet pageTitle="/wallet" />
+				<ShowAuthToNullUser whereToNavigate="/wallet" />
+			</>
+		)
 	}
 
 	return (
 		<>
+			<PageHelmet pageTitle="/wallet" />
 			<WalletSummaryCard />
 			<Transactions />
 		</>

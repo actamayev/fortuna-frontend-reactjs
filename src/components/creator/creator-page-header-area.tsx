@@ -1,20 +1,16 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
-import { useParams } from "react-router-dom"
 import ChannelDescription from "./channel-description"
 import ChannelSocialLinks from "./channel-social-links"
+import ShareChannelButton from "../share-channel-button"
 import ChannelBannerPicture from "./channel-banner-picture"
-import { useVideoContext } from "../../contexts/video-context"
-import { removeLeadingAt } from "../../utils/leading-at-operations"
 import ShowUserProfileImageOrDefaultImage from "../show-user-profile-image-or-default-image"
 
-function CreatorPageHeaderArea() {
-	const { creatorUsername } = useParams<{ creatorUsername: AtPrefixedString }>()
-	const videoClass = useVideoContext()
+interface Props {
+	creatorData: CreatorDataHeldInClass
+}
 
-	if (_.isUndefined(creatorUsername)) return null
-	const creatorData = videoClass.contextForCreatorData(removeLeadingAt(creatorUsername))
-	if (_.isUndefined(creatorData)) return null
+function CreatorPageHeaderArea(props: Props) {
+	const { creatorData } = props
 
 	return (
 		<>
@@ -35,12 +31,17 @@ function CreatorPageHeaderArea() {
 						</span>
 						<ChannelSocialLinks socialPlatformLinks={creatorData.socialPlatformLinks} />
 					</div>
-					<div className="flex items-center mb-1">
-						<div className="text-zinc-600 dark:text-zinc-300 text-sm ml-2">
-							@{creatorData.creatorUsername}
+					<div className="flex justify-between items-center">
+						<div className="flex flex-row">
+							<div className="text-zinc-600 dark:text-zinc-300 text-sm ml-2">
+								@{creatorData.creatorUsername}
+							</div>
+							<div className="text-zinc-600 dark:text-zinc-300 text-sm ml-1">
+								• {creatorData.videoData.length} video{creatorData.videoData.length === 1 ? "" : "s"}
+							</div>
 						</div>
-						<div className="text-zinc-600 dark:text-zinc-300 text-sm ml-1">
-							• {creatorData.videoData.length} video{creatorData.videoData.length === 1 ? "" : "s"}
+						<div className="flex justify-between items-center">
+							<ShareChannelButton />
 						</div>
 					</div>
 					<ChannelDescription channelDescription={creatorData.channelDescription} />

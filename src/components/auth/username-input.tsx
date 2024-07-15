@@ -19,6 +19,7 @@ export default function UsernameInput (props: Props) {
 			required
 			value = {credentials.username || ""}
 			maxLength={100}
+			className="mb-4"
 		/>
 	)
 }

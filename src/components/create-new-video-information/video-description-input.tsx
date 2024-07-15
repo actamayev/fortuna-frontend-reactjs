@@ -28,7 +28,7 @@ function VideoDescriptionInput() {
 	return (
 		<>
 			<div>
-				<label className="text-sm text-zinc-600 dark:text-zinc-200 mt-2 ml-0.5 font-semibold">
+				<label className="text-sm text-zinc-600 dark:text-zinc-200 ml-0.5 font-semibold">
 					Video Description
 				</label>
 				<textarea

@@ -29,7 +29,7 @@ function VideoNameInput() {
 				required
 				value = {videoName}
 				maxLength={maxLength}
-				className="mb-0"
+				className="mb-1"
 			/>
 			<span className="text-xs text-zinc-600 dark:text-zinc-400 ml-0.5">
 				{videoName.length}/{maxLength}

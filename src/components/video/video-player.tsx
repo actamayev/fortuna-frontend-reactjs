@@ -26,10 +26,7 @@ function VideoPlayer(props: Props) {
 							className="w-full h-full object-cover"
 							alt="Video Thumbnail"
 						/>
-						<div
-							className="absolute inset-0 bg-zinc-800 bg-opacity-50"
-							style={{ backdropFilter: "blur(8px)" }}
-						/>
+						<div className="absolute inset-0 bg-zinc-800 bg-opacity-50 backdrop-blur" />
 					</div>
 				</div>
 			</div>
@@ -42,6 +39,7 @@ function VideoPlayer(props: Props) {
 				ref={videoRef}
 				controls
 				autoPlay
+				playsInline
 				className="w-full h-full rounded-xl"
 				controlsList="nodownload"
 				style={{ aspectRatio: "16/9" }}
