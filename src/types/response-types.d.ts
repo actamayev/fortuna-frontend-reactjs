@@ -68,6 +68,7 @@ declare global {
 	type UploadVideoResponse = {
 		uploadedVideoId: number
 		uuid: string
+		videoDurationSeconds: number
 	}
 	type ProfilePictureUrl = { profilePictureUrl: string }
 	type ChannelBannerPictureUrl = { channelBannerPictureUrl: string }

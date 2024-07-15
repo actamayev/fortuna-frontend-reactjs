@@ -29,6 +29,7 @@ export default function SingleMyPurchasedExclusiveContent(props: Props) {
 					thumbnailData={{
 						imageUrl: myPurchasedExclusiveContent.imageUrl,
 						videoName: myPurchasedExclusiveContent.videoName,
+						videoDurationSeconds: myPurchasedExclusiveContent.videoDurationSeconds,
 						videoListingStatus: "LISTED" // Doesn't matter, just has to be supplied
 					}}
 					showSoldOutSticker={false}

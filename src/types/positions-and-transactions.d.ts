@@ -16,6 +16,7 @@ declare global {
 		videoName: string
 		imageUrl: string
 		uuid: string
+		videoDurationSeconds: number
 	}
 
 	type WalletFilterRange = "Month" | "Week" | "Today"

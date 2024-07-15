@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import TiersInfo from "./tiers-info"
-import { useRelativeDateFormatter } from "../../../utils/date-formatter"
+import { useRelativeDateFormatter } from "../../../hooks/date-formatter"
 import GeneralizedVideoThumbnail from "../../generalized-video-thumbnail"
 import useNavigateToVideoPage from "../../../hooks/navigate/navigate-to-video-page"
 

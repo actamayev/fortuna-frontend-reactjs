@@ -5,7 +5,7 @@ import LinkToVideo from "./link-to-video"
 import EarningsSection from "./earnings-section"
 import VideoDescription from "./video-description"
 import VideoListingStatus from "./video-listing-status"
-import { useFormatGBDate } from "../../../utils/date-formatter"
+import { useFormatGBDate } from "../../../hooks/date-formatter"
 import MyContentThumbnail from "./thumbnail/my-content-thumbnail"
 import EditVideoDetailsModal from "./edit-video-details-modal/edit-video-details-modal"
 
