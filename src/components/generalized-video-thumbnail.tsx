@@ -10,10 +10,11 @@ interface Props {
 		videoListingStatus: AllVideoListingStatuses
 	}
 	showSoldOutSticker?: boolean
+	imageStyles?: Object
 }
 
 function GeneralizedVideoThumbnail(props: Props) {
-	const { thumbnailData, showSoldOutSticker = true } = props
+	const { thumbnailData, showSoldOutSticker = true, imageStyles } = props
 
 	return (
 		<div className="relative">
@@ -22,6 +23,7 @@ function GeneralizedVideoThumbnail(props: Props) {
 					src={thumbnailData.imageUrl}
 					alt={thumbnailData.videoName}
 					className="object-cover rounded-lg w-full h-full"
+					style={imageStyles}
 				/>
 			</div>
 			{showSoldOutSticker && (

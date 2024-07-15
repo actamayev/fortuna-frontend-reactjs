@@ -22,12 +22,17 @@ export default function SingleRecommendedVideo(props: Props) {
 	return (
 		<div
 			className="flex-none flex flex-col items-center w-full h-full \
-				hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer p-1"
+				hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer"
 			onClick={navigateToVideoPageCallback}
 		>
 			<div className="flex w-full">
 				<div className="w-3/5">
-					<GeneralizedVideoThumbnail thumbnailData={videoData} />
+					<GeneralizedVideoThumbnail
+						thumbnailData={videoData}
+						imageStyles={{
+							borderTopRightRadius: 0, borderBottomLeftRadius: 0
+						}}
+					/>
 				</div>
 				<div className="flex flex-col justify-start pl-4 w-2/5 mt-2">
 					<TiersInfo videoData={videoData} />
