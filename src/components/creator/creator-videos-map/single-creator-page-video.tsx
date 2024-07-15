@@ -27,7 +27,8 @@ function SingleCreatorPageVideo(props: Props) {
 
 	return (
 		<div
-			className="flex flex-col items-center w-1/2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg cursor-pointer p-1 mb-3"
+			className="flex flex-col items-center w-1/2 rounded-lg cursor-pointer mb-3
+			bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700"
 			onClick={navigateToVideoPageCallback}
 		>
 			<div className="flex w-full">
