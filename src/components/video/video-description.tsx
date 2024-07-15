@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { useState } from "react"
-import { useDateFormatter } from "../../utils/date-formatter"
+import { useActualDateFormatter, useRelativeDateFormatter } from "../../utils/date-formatter"
 
 interface Props {
 	video: SingleVideoDataFromBackend
@@ -9,7 +9,8 @@ interface Props {
 export default function VideoDescription(props: Props) {
 	const { video } = props
 	const [isOpen, setIsOpen] = useState(false)
-	const dateFormatter = useDateFormatter()
+	const actualDateFormatter = useActualDateFormatter()
+	const relativeDateFormatter = useRelativeDateFormatter()
 
 	if (isOpen === false) {
 		return (
@@ -18,7 +19,7 @@ export default function VideoDescription(props: Props) {
 			bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-700 hover:dark:bg-zinc-600 text-sm"
 				onClick={() => setIsOpen(true)}
 			>
-				<div>{dateFormatter(video.createdAt)}</div>
+				<div>{relativeDateFormatter(video.createdAt)}</div>
 				<div>{_.truncate(video.description, { length: 300 })}</div>
 			</div>
 		)
@@ -27,7 +28,7 @@ export default function VideoDescription(props: Props) {
 	return (
 		<div className="rounded-md px-2 py-1.5 dark:text-white bg-zinc-100 dark:bg-zinc-700 text-sm">
 			<div>
-				<div>{dateFormatter(video.createdAt)}</div>
+				<div>{actualDateFormatter(video.createdAt)}</div>
 				<div>{video.description}</div>
 			</div>
 			<div className="my-2 flex justify-end">

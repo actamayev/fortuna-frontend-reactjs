@@ -30,6 +30,7 @@ export default function RegisterUsername() {
 						required
 						value = {username}
 						maxLength={100}
+						className="mb-4"
 					/>
 
 					<Button

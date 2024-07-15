@@ -21,6 +21,7 @@ export default function ConfirmPassword (props: Props) {
 				required
 				value = {credentials.passwordConfirmation || ""}
 				maxLength={100}
+				className="mb-4"
 			/>
 			<ShowOrHidePasswordButton
 				showPassword={showPassword}

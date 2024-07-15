@@ -17,6 +17,7 @@ export default function ContactInput (props: Props) {
 			required
 			value = {loginInformation.contact || ""}
 			maxLength={100}
+			className="mb-4"
 		/>
 	)
 }
