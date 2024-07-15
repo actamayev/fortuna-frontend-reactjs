@@ -1,8 +1,8 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import { useVideoContext } from "../../contexts/video-context"
+import { isNonSuccessResponse } from "../../utils/type-checks"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
-import { isErrorResponses, isNonSuccessResponse } from "../../utils/type-checks"
 
 export default function useLikeVideo(): (
 	video: SingleVideoDataFromBackend,
@@ -29,7 +29,7 @@ export default function useLikeVideo(): (
 				}
 			} else {
 				const removeLikeResponse = await fortunaApiClient.videoDataService.likeOrUnlikeVideo(video.uuid, false)
-				if (!_.isEqual(removeLikeResponse.status, 200) || isErrorResponses(removeLikeResponse.data)) {
+				if (!_.isEqual(removeLikeResponse.status, 200) || isNonSuccessResponse(removeLikeResponse.data)) {
 					throw new Error("Removal of like failed")
 				}
 			}
