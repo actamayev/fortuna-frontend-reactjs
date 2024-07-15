@@ -1,10 +1,10 @@
 import { useCallback } from "react"
+import LikeButton from "./like-button"
 import VideoDescription from "./video-description"
-import ShareVideoButton from "./like-dislike/share-video-button"
-import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
-import VideoLikeDislikeSection from "./like-dislike/video-like-dislike-section"
-import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
-import ShowUserProfileImageOrDefaultImage from "../show-user-profile-image-or-default-image"
+import ShareVideoButton from "./share-video-button"
+import { addDefiniteLeadingAt } from "../../../utils/leading-at-operations"
+import useNavigateToCreatorPage from "../../../hooks/navigate/navigate-to-creator-page"
+import ShowUserProfileImageOrDefaultImage from "../../show-user-profile-image-or-default-image"
 
 interface Props {
 	video: SingleVideoDataFromBackend
@@ -45,7 +45,7 @@ export default function SubVideoSection(props: Props) {
 						</div>
 						<div className="flex items-center">
 							<ShareVideoButton />
-							<VideoLikeDislikeSection video={video} />
+							<LikeButton video={video} />
 						</div>
 					</div>
 					<VideoDescription video={video} />
