@@ -10,6 +10,12 @@ class VideoClass {
 	public videosBeingRetrieved: string[] = []
 	public isRetrievingVideoUrl = false
 
+	public creatorVideosFilter: CreatorVideosFilter = {
+		titleIncludes: "",
+		timeframeSort: "Latest",
+		lockFilter: "All"
+	}
+
 	public areHomePageVideosRetrieved: boolean = false
 	public areHomePageVideosBeingRetrieved: boolean = false
 
@@ -244,11 +250,21 @@ class VideoClass {
 				}
 			})
 		})
+		this.clearCreatorVideosFilter()
+	})
+
+	private clearCreatorVideosFilter = action(() => {
+		this.creatorVideosFilter = {
+			titleIncludes: "",
+			timeframeSort: "Latest",
+			lockFilter: "All"
+		}
 	})
 
 	public clearVideosOnLogin = action((): void => {
 		this.videos = []
 		this.areHomePageVideosRetrieved = false
+		this.clearCreatorVideosFilter()
 	})
 
 	public logout() {

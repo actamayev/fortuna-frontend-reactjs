@@ -1,9 +1,9 @@
 import { observer } from "mobx-react"
 import ChannelDescription from "./channel-description"
 import ChannelSocialLinks from "./channel-social-links"
-import ShareChannelButton from "../share-channel-button"
+import ShareChannelButton from "../../share-channel-button"
 import ChannelBannerPicture from "./channel-banner-picture"
-import ShowUserProfileImageOrDefaultImage from "../show-user-profile-image-or-default-image"
+import ShowUserProfileImageOrDefaultImage from "../../show-user-profile-image-or-default-image"
 
 interface Props {
 	creatorData: CreatorDataHeldInClass

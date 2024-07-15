@@ -1,6 +1,6 @@
-import platformIcons from "../../utils/platform-icons"
-import HoverOutlineComponent from "../hover-outline-component"
-import useHandleClickExternalSocialLink from "../../hooks/handle-click-external-social-url"
+import platformIcons from "../../../utils/platform-icons"
+import HoverOutlineComponent from "../../hover-outline-component"
+import useHandleClickExternalSocialLink from "../../../hooks/handle-click-external-social-url"
 
 interface Props {
 	socialPlatformLinks: SocialPlatformLinks[]

@@ -47,6 +47,15 @@ declare global {
 	type NonExclusiveVideoListingStatuses = "LISTED" | "UNLISTED"
 
 	type AllVideoListingStatuses = PostedVideoListingStatuses | NonExclusiveVideoListingStatuses
+
+	type TimeFramesToSortBy = "Latest" | "Popular" | "Oldest"
+	type LockFilter = "All" | "Locked" | "Unlocked"
+
+	interface CreatorVideosFilter {
+		titleIncludes: string
+		timeframeSort: TimeFramesToSortBy
+		lockFilter: LockFilter
+	}
 }
 
 export {}
