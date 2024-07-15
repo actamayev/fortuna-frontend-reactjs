@@ -26,7 +26,7 @@ function ShareChannelButton() {
 	const copyToClipboard = useCallback(async () => {
 		try {
 			await navigator.clipboard.writeText(creatorUsernameUrl)
-			notificationsClass.setNeutralNotification("Creator URL copied to clipboard")
+			notificationsClass.setNeutralNotification("Channel link copied to clipboard")
 		} catch (error) {
 			console.error(error)
 		}

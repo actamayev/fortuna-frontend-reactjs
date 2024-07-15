@@ -30,11 +30,17 @@ function VideoUploader() {
 				setPreviewUrlNull={setSelectedPreviewUrlNull}
 				setSelectedContentNull={setSelectedContentNull}
 			>
-				<video
-					src={previewUrl || ""}
-					controls
-					className="max-w-[100%] h-auto rounded-lg"
-				/>
+				<div className="max-w-[35%] h-auto" style={{ aspectRatio: "16/9" }}>
+					<div className="relative w-full h-full rounded-xl overflow-hidden">
+						<video
+							controls
+							className="w-full h-full object-cover"
+						>
+							<source src={previewUrl || ""} type="video/mp4" />
+							Your browser does not support the video tag.
+						</video>
+					</div>
+				</div>
 			</ContentPreview>
 		</>
 	)
