@@ -17,13 +17,15 @@ function CreatorVideosSearchBox() {
 	}, [videosClass, videosClass.creatorVideosFilter.titleIncludes])
 
 	return (
-		<input
-			type="text"
-			placeholder="Title contains..."
-			value={titleIncludes}
-			onChange={handleSearch}
-			className="w-full outline-none bg-inherit"
-		/>
+		<div className="w-full bg-inherit flex items-center justify-center">
+			<input
+				type="text"
+				placeholder="Title contains..."
+				value={titleIncludes}
+				onChange={handleSearch}
+				className="outline-none bg-inherit p-2"  // Added padding
+			/>
+		</div>
 	)
 }
 
