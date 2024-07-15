@@ -1,7 +1,7 @@
 import helmetData from "../../utils/helmet-data"
 
 interface Props {
-	pageTitle: PageNames
+	pageTitle: StaticPageNames
 }
 
 export default function PageHelmet(props: Props) {

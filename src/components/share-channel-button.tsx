@@ -20,7 +20,8 @@ function ShareChannelButton() {
 			return (`${baseUrl}/c/@${personalInfoClass.username}`)
 		}
 		return window.location.href
-	}, [location.pathname, personalInfoClass])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [location.pathname, personalInfoClass?.username])
 
 	const copyToClipboard = useCallback(async () => {
 		try {

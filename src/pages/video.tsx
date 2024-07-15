@@ -8,6 +8,7 @@ import { useVideoContext } from "../contexts/video-context"
 import { addLeadingAt } from "../utils/leading-at-operations"
 import useSetSingleVideo from "../hooks/videos/set-single-video"
 import SubVideoSection from "../components/video/sub-video-section"
+import LoadingVideoPlayer from "../components/video/loading-video-player"
 import useRetrieveVideoUrlData from "../hooks/videos/retrieve-video-url-data"
 import MoreVideosMap from "../components/video/more-videos-area/more-videos-map"
 import PurchaseExclusiveAccessCard from "../components/video/purchase-exclusive-access-card"
@@ -32,7 +33,7 @@ function Video() {
 					url={`https://www.createfortuna.com/v/${videoUUID}`}
 				/>
 				<div className="dark:text-zinc-200 text-zinc-950">
-					Loading...
+					<LoadingVideoPlayer />
 				</div>
 			</>
 		)
