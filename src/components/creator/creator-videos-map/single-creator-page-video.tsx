@@ -18,8 +18,7 @@ function SingleCreatorPageVideo(props: Props) {
 
 	return (
 		<div
-			className="w-2/3 rounded-lg cursor-pointer mb-3
-		bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700"
+			className="w-2/3 rounded-lg cursor-pointer mb-3 bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700"
 			onClick={navigateToVideoPageCallback}
 		>
 			<div className="flex w-full">
