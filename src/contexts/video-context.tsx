@@ -206,7 +206,7 @@ class VideoClass {
 		this.videosBeingRetrieved.unshift(videoUUID)
 	}
 
-	public removeVideoUUIDFromRetrievingList = action((videoUUID: string): void => {
+	public removeVideoUUIDFromRetrievingList = action((videoUUID: string | undefined): void => {
 		this.videosBeingRetrieved.filter(item => item !== videoUUID)
 	})
 
