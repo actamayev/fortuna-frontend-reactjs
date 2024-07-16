@@ -6,7 +6,7 @@ interface Props {
 	videoData: VideoDataLessVideoUrl
 }
 
-function BeneathDescritionSection(props: Props) {
+function BeneathDescriptionSection(props: Props) {
 	const { videoData } = props
 
 	return (
@@ -32,4 +32,4 @@ function BeneathDescritionSection(props: Props) {
 	)
 }
 
-export default observer(BeneathDescritionSection)
+export default observer(BeneathDescriptionSection)
