@@ -1,5 +1,5 @@
-import _ from "lodash"
 import { useCallback } from "react"
+import CreatorDataRightOfImage from "./creator-data-right-of-image"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
 import ShowUserProfileImageOrDefaultImage from "../show-user-profile-image-or-default-image"
@@ -29,28 +29,7 @@ export default function SingleCreatorSearchItem(props: Props) {
 						extraClasses="w-32 h-32 rounded-full object-cover"
 					/>
 				</div>
-				<div className="flex flex-col justify-start w-7/12 px-3 my-1.5">
-					<div className="text-zinc-950 dark:text-white text-2xl font-semibold overflow-hidden text-ellipsis whitespace-nowrap">
-						{creatorData.channelName}
-					</div>
-					<div className="flex flex-row">
-						<div
-							className="text-zinc-500 dark:text-zinc-400 text-xs break-words mt-1.5
-						overflow-hidden text-ellipsis whitespace-nowrap"
-						>
-							@{creatorData.creatorUsername}&nbsp;
-						</div>
-						<div
-							className="text-zinc-500 dark:text-zinc-400 text-xs break-words mt-1.5
-						overflow-hidden text-ellipsis whitespace-nowrap"
-						>
-							• {creatorData.numberOfVideos} video{creatorData.numberOfVideos === 1 ? "" : "s"}
-						</div>
-					</div>
-					<div className="text-zinc-500 dark:text-zinc-400 text-xs mt-1 break-words">
-						{_.truncate(creatorData.channelDescription, { length: 150 })}
-					</div>
-				</div>
+				<CreatorDataRightOfImage creatorData={creatorData} />
 			</div>
 		</div>
 	)
