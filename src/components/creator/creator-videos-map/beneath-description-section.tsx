@@ -1,5 +1,7 @@
+import _ from "lodash"
+import { useMemo } from "react"
 import { observer } from "mobx-react"
-import { FaHeart, FaRegHeart } from "react-icons/fa"
+import { FaHeart, FaRegHeart, FaShoppingBag } from "react-icons/fa"
 import ShowUnlockStatus from "./show-unlock-status"
 
 interface Props {
@@ -9,13 +11,32 @@ interface Props {
 function BeneathDescriptionSection(props: Props) {
 	const { videoData } = props
 
+	const shouldShowNumberSold = useMemo(() => {
+		if (
+			videoData.isVideoExclusive === false ||
+			_.isNull(videoData.numberOfExclusivePurchasesSoFar) ||
+			videoData.numberOfExclusivePurchasesSoFar === 0
+		) return false
+		return true
+	}, [videoData])
+
 	return (
 		<div className="flex flex-col justify-start overflow-hidden w-full my-2 text-zinc-700 dark:text-zinc-300 text-xs font-semibold">
 			<div className="flex flex-row items-center">
 				<div>
 					<ShowUnlockStatus videoData={videoData} />
 				</div>
-				<div className="flex items-center mx-4">
+				{shouldShowNumberSold && (
+					<div className="flex flex-row items-center space-x-1.5 mx-4">
+						<div>
+							<FaShoppingBag className="mb-0.5" />
+						</div>
+						<div>
+							{videoData.numberOfExclusivePurchasesSoFar} Sold
+						</div>
+					</div>
+				)}
+				<div className="flex items-center ml-auto">
 					{videoData.userLikeStatus === true ? (
 						<FaHeart color="red" size={15} />
 					) : (
