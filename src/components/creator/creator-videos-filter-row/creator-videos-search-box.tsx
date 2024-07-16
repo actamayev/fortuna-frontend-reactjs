@@ -20,7 +20,7 @@ function CreatorVideosSearchBox() {
 				placeholder="Title contains..."
 				value={titleIncludes}
 				onChange={handleSearch}
-				className="outline-none bg-inherit p-2"  // Added padding
+				className="outline-none bg-inherit p-2"
 			/>
 		</div>
 	)
