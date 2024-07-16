@@ -31,13 +31,10 @@ function VideoDataRightOfSearchThumbnail(props: Props) {
 	return (
 		<div className="flex flex-col justify-start w-7/12 px-3 my-1.5">
 			<div className="flex justify-between items-center">
-				<div
-					className="flex-1 min-w-0 text-2xl font-semibold truncate
-			dark:text-zinc-200 overflow-hidden text-ellipsis whitespace-nowrap"
-				>
-					{videoName}
+				<div className="flex-1 min-w-0 text-2xl font-semibold dark:text-zinc-200 overflow-hidden">
+					{_.truncate(videoName, { length: 80 })}
 				</div>
-				<div className="text-zinc-500 dark:text-zinc-400 font-light text-xs flex-shrink-0">
+				<div className="text-zinc-500 dark:text-zinc-400 text-xs flex-shrink-0">
 					<div className="flex flex-row items-center">
 						<FaClock className="mr-2" />
 						{relativeDateFormatter(createdAt)}
@@ -61,7 +58,7 @@ function VideoDataRightOfSearchThumbnail(props: Props) {
 					{channelName}
 				</div>
 			</div>
-			<div className="text-zinc-500 dark:text-zinc-400 font-normal text-xs">
+			<div className="text-zinc-500 dark:text-zinc-400 text-xs">
 				{_.truncate(description, { length: 150 })}
 			</div>
 			<div className="mt-auto">

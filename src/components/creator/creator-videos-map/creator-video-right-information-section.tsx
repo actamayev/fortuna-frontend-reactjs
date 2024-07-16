@@ -21,14 +21,14 @@ function CreatorVideoRightInformationSection(props: Props) {
 				>
 					{videoData.videoName}
 				</div>
-				<div className="text-zinc-500 dark:text-zinc-400 font-light text-xs flex-shrink-0">
+				<div className="text-zinc-500 dark:text-zinc-400 text-xs flex-shrink-0">
 					<div className="flex flex-row items-center">
 						<FaClock className="mr-2" />
 						{relativeDateFormatter(videoData.createdAt)}
 					</div>
 				</div>
 			</div>
-			<div className="text-sm text-zinc-600 dark:text-zinc-300 font-light">
+			<div className="text-sm text-zinc-600 dark:text-zinc-300">
 				{_.truncate(videoData.description, { length: 300 })}
 			</div>
 			<div className="mt-auto">
