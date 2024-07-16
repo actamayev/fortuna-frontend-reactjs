@@ -4,7 +4,7 @@ import SortByTimeFrameAndPopularity from "./sort-by-time-frame-and-popularity"
 
 export default function CreatorVideosFilterRow() {
 	return (
-		<div className="flex flex-row text-zinc-600 dark:text-zinc-200 text-sm w-1/2 mb-2">
+		<div className="flex flex-row text-zinc-600 dark:text-zinc-200 text-sm w-1/2 mb-3">
 			<div className="border border-zinc-700 dark:border-zinc-300 p-1 mr-2 rounded-xl">
 				<div className="flex flex-row">
 					<SortByTimeFrameAndPopularity />
