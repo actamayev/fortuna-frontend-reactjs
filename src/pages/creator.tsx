@@ -22,7 +22,7 @@ function Creator() {
 		<>
 			<BasicHelmet
 				pageTitleData={`${creatorData.channelName} | Fortuna`}
-				description={`${_.truncate(creatorData.channelDescription, { length: 155})}`}
+				description={`${_.truncate(creatorData.channelDescription, { length: 155 })}`}
 				url={`https://www.createfortuna.com/c/${creatorUsername}`}
 			/>
 			<CreatorPageHeaderArea creatorData={creatorData} />

@@ -35,7 +35,7 @@ export default function useLoginSubmit (
 				return
 			}
 			setDataAfterLogin(response.data)
-			videoClass.clearVideosOnLogin()
+			videoClass.clearVideosOnLoginOrLogout()
 			navigate(whereToNavigate)
 		} catch (error: unknown) {
 			setErrorAxiosResponse(error, setError, "Unable to login")

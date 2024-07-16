@@ -28,7 +28,7 @@ export default function useGoogleAuthCallback(whereToNavigate: PageNames): (succ
 				throw Error("Unable to login")
 			}
 			setDataAfterLogin(googleCallbackResponse.data)
-			videoClass.clearVideosOnLogin()
+			videoClass.clearVideosOnLoginOrLogout()
 			if (googleCallbackResponse.data.isNewUser === true) {
 				navigate("/register-username")
 				return

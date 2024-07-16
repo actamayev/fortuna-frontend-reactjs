@@ -43,7 +43,7 @@ export default function useRegisterSubmit (
 				return
 			}
 			setDataAfterRegister(response.data)
-			videoClass.clearVideosOnLogin()
+			videoClass.clearVideosOnLoginOrLogout()
 			navigate(whereToNavigate)
 		} catch (error: unknown) {
 			setErrorAxiosResponse(error, setError, "Unable to Register")

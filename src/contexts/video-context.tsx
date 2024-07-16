@@ -232,33 +232,6 @@ class VideoClass {
 		this.creatorVideosFilter[key] = newValue
 	})
 
-	private clearVideoDataOnLogout = action((): void => {
-		this.videos.map(video => {
-			video.userLikeStatus = false
-			if (video.isVideoExclusive === false) return
-			delete video.videoUrl
-			video.isUserAbleToAccessVideo = false
-		})
-		this.creatorData.map(creator => {
-			creator.videoData.map(video => {
-				video.userLikeStatus = false
-				if (video.isVideoExclusive === false) return
-				video.isUserAbleToAccessVideo = false
-			})
-		})
-		this.videoSearchMap.forEach((searchDataArray) => {
-			searchDataArray.forEach(searchData => {
-				if ("userLikeStatus" in searchData) {
-					searchData.userLikeStatus = false
-					if (searchData.isVideoExclusive === true) {
-						searchData.isUserAbleToAccessVideo = false
-					}
-				}
-			})
-		})
-		this.clearCreatorVideosFilter()
-	})
-
 	private clearCreatorVideosFilter = action(() => {
 		this.creatorVideosFilter = {
 			titleIncludes: "",
@@ -267,19 +240,20 @@ class VideoClass {
 		}
 	})
 
-	public clearVideosOnLogin = action((): void => {
+	public clearVideosOnLoginOrLogout = action((): void => {
 		this.videos = []
+		this.creatorData = []
+		this.videoSearchMap = new Map()
 		this.areHomePageVideosRetrieved = false
 		this.clearCreatorVideosFilter()
 	})
 
 	public logout() {
-		this.clearVideoDataOnLogout()
+		this.clearVideosOnLoginOrLogout()
 		this.videosBeingRetrieved = []
 		this.isRetrievingVideoUrl = false
 
 		this.isCurrentlySearching = false
-		// Don't clear video search map on logout - no need.
 		this.isCreatorDataBeingRetrieved = false
 		this.setSearchTerm(null)
 	}
