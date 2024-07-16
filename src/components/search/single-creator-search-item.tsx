@@ -18,7 +18,7 @@ export default function SingleCreatorSearchItem(props: Props) {
 
 	return (
 		<div
-			className="grid grid-cols-12 items-start gap-4 p-4 rounded-lg cursor-pointer w-7/12
+			className="grid grid-cols-12 items-start gap-4 p-4 rounded-lg cursor-pointer w-2/3
 		bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700"
 			onClick={navigateToCreatorPageCallback}
 		>

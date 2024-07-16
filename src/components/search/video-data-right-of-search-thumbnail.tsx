@@ -44,24 +44,24 @@ function VideoDataRightOfSearchThumbnail(props: Props) {
 					</div>
 				</div>
 			</div>
-			<div className="flex items-center space-x-2 my-1">
+			<div className="flex items-center space-x-2 my-2">
 				<div className="flex-shrink-0">
 					<ShowUserProfileImageOrDefaultImage
 						profileImageUrl={creatorProfilePictureUrl}
 						onClickCreatorPicture={navigateToCreatorPageCallbackEvent}
 						onClickDefaultPicture={navigateToCreatorPageCallback}
-						extraClasses="w-4 h-4 rounded-full object-cover cursor-pointer"
+						extraClasses="w-6 h-6 rounded-full object-cover cursor-pointer"
 					/>
 				</div>
 				<div
-					className="text-base text-zinc-700 hover:text-zinc-950 dark:text-zinc-300
+					className="text-xs text-zinc-500 hover:text-zinc-950 dark:text-zinc-400
 						hover:dark:text-zinc-50 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap"
 					onClick={navigateToCreatorPageCallbackEvent}
 				>
 					{channelName}
 				</div>
 			</div>
-			<div className="text-sm text-zinc-600 dark:text-zinc-300 font-light">
+			<div className="text-zinc-500 dark:text-zinc-400 font-normal text-xs">
 				{_.truncate(description, { length: 150 })}
 			</div>
 			<div className="mt-auto">
