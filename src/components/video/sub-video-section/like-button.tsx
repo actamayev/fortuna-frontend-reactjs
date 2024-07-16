@@ -3,7 +3,9 @@ import { observer } from "mobx-react"
 import { useCallback, useState } from "react"
 import { FaHeart, FaRegHeart } from "react-icons/fa"
 import useLikeVideo from "../../../hooks/videos/like-video"
+import { useAuthContext } from "../../../contexts/auth-context"
 import HoverOutlineComponent from "../../hover-outline-component"
+import useTypedNavigate from "../../../hooks/navigate/typed-navigate"
 import HoverNotAllowedComponent from "../../hover-not-allowed-component"
 
 interface Props {
@@ -12,13 +14,19 @@ interface Props {
 
 function LikeButton(props: Props) {
 	const { video } = props
+	const authClass = useAuthContext()
 	const [isLoading, setIsLoading] = useState(false)
 	const likeVideo = useLikeVideo()
+	const navigate = useTypedNavigate()
 
 	const likeVideoCallback = useCallback(() => {
+		if (authClass.isLoggedIn === false) {
+			navigate("/register")
+			return
+		}
 		if (isLoading === true) return
 		likeVideo(video, setIsLoading)
-	}, [isLoading, likeVideo, video])
+	}, [authClass.isLoggedIn, isLoading, likeVideo, navigate, video])
 
 	if (_.isUndefined(video.videoUrl)) {
 		return (

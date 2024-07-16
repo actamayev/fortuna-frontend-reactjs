@@ -10,6 +10,12 @@ class VideoClass {
 	public videosBeingRetrieved: string[] = []
 	public isRetrievingVideoUrl = false
 
+	public creatorVideosFilter: CreatorVideosFilter = {
+		titleIncludes: "",
+		timeframeSort: "Latest",
+		lockFilter: "All"
+	}
+
 	public areHomePageVideosRetrieved: boolean = false
 	public areHomePageVideosBeingRetrieved: boolean = false
 
@@ -220,44 +226,34 @@ class VideoClass {
 		this.isCreatorDataBeingRetrieved = newState
 	})
 
-	private clearVideoDataOnLogout = action((): void => {
-		this.videos.map(video => {
-			video.userLikeStatus = false
-			if (video.isVideoExclusive === false) return
-			delete video.videoUrl
-			video.isUserAbleToAccessVideo = false
-		})
-		this.creatorData.map(creator => {
-			creator.videoData.map(video => {
-				video.userLikeStatus = false
-				if (video.isVideoExclusive === false) return
-				video.isUserAbleToAccessVideo = false
-			})
-		})
-		this.videoSearchMap.forEach((searchDataArray) => {
-			searchDataArray.forEach(searchData => {
-				if ("userLikeStatus" in searchData) {
-					searchData.userLikeStatus = false
-					if (searchData.isVideoExclusive === true) {
-						searchData.isUserAbleToAccessVideo = false
-					}
-				}
-			})
-		})
+	public updateCreatorVideosFilter = action(<K extends keyof CreatorVideosFilter>(
+		key: K, newValue: CreatorVideosFilter[K]
+	) => {
+		this.creatorVideosFilter[key] = newValue
 	})
 
-	public clearVideosOnLogin = action((): void => {
+	private clearCreatorVideosFilter = action(() => {
+		this.creatorVideosFilter = {
+			titleIncludes: "",
+			timeframeSort: "Latest",
+			lockFilter: "All"
+		}
+	})
+
+	public clearVideosOnLoginOrLogout = action((): void => {
 		this.videos = []
+		this.creatorData = []
+		this.videoSearchMap = new Map()
 		this.areHomePageVideosRetrieved = false
+		this.clearCreatorVideosFilter()
 	})
 
 	public logout() {
-		this.clearVideoDataOnLogout()
+		this.clearVideosOnLoginOrLogout()
 		this.videosBeingRetrieved = []
 		this.isRetrievingVideoUrl = false
 
 		this.isCurrentlySearching = false
-		// Don't clear video search map on logout - no need.
 		this.isCreatorDataBeingRetrieved = false
 		this.setSearchTerm(null)
 	}

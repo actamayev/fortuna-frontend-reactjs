@@ -5,7 +5,7 @@ import { FaArrowDown, FaArrowUp } from "react-icons/fa"
 import { useCreatorContext } from "../../../../contexts/creator-context"
 
 interface Props {
-	sortBy: SortByFields
+	sortBy: CreatorContentSortByFields
 }
 
 function SortContentByArrow(props: Props) {

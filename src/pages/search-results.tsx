@@ -17,7 +17,7 @@ function SearchResults() {
 		return (
 			<>
 				<BasicHelmet
-					pageTitleData={`${searchTerm} | Fortuna`}
+					pageTitleData={searchTerm}
 					description={`Searching for videos related to ${searchTerm} on Fortuna.
 					Discover exclusive content and connect with your favorite creators.`}
 					url={`https://www.createfortuna.com/s/${searchTerm}`}
@@ -41,7 +41,7 @@ function SearchResults() {
 		return (
 			<>
 				<BasicHelmet
-					pageTitleData={`${searchTerm} | Fortuna`}
+					pageTitleData={searchTerm}
 					description={`No results found for ${searchTerm} on Fortuna.
 					Try searching for different keywords to find exclusive video content.`}
 					url={`https://www.createfortuna.com/s/${searchTerm}`}
@@ -56,7 +56,7 @@ function SearchResults() {
 	return (
 		<>
 			<BasicHelmet
-				pageTitleData={`${searchTerm} | Fortuna`}
+				pageTitleData={searchTerm}
 				description={`Search results for ${searchTerm} on Fortuna. Explore exclusive videos and content from top creators.`}
 				url={`https://www.createfortuna.com/s/${searchTerm}`}
 			/>

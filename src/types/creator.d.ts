@@ -50,10 +50,10 @@ declare global {
 
 	type SocialPlatformKey = keyof typeof SocialPlatforms
 
-	type SortByFields = "Date" | "Earnings" | "Likes"
+	type CreatorContentSortByFields = "Date" | "Earnings" | "Likes"
 
 	interface MyContentFilter {
-		sortBy: SortByFields
+		sortBy: CreatorContentSortByFields
 		orderBy: "asc" | "desc"
 		titleIncludes: string
 		visibility: "all" | "listed" | "unlisted"

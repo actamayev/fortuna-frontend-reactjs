@@ -9,8 +9,7 @@ function ShareVideoButton() {
 
 	const copyToClipboard = useCallback(async () => {
 		try {
-			const currentUrl = window.location.href
-			await navigator.clipboard.writeText(currentUrl)
+			await navigator.clipboard.writeText(window.location.href)
 			notificationsClass.setNeutralNotification("Video link copied to clipboard")
 		} catch (error) {
 			console.error(error)
@@ -22,7 +21,7 @@ function ShareVideoButton() {
 			classes="flex items-center justify-center"
 			onClickAction={copyToClipboard}
 		>
-			<MdIosShare size={22} className="mx-2"/>
+			<MdIosShare size={22} className="mx-2" />
 		</HoverOutlineComponent>
 	)
 }
