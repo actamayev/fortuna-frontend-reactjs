@@ -1,5 +1,5 @@
-import _ from "lodash"
 import { useCallback } from "react"
+import CreatorDataRightOfImage from "./creator-data-right-of-image"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
 import ShowUserProfileImageOrDefaultImage from "../show-user-profile-image-or-default-image"
@@ -18,26 +18,18 @@ export default function SingleCreatorSearchItem(props: Props) {
 
 	return (
 		<div
-			className="grid grid-cols-12 items-start gap-4 p-4 rounded-lg cursor-pointer w-7/12
-		bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700"
+			className="rounded-lg cursor-pointer w-2/3 bg-zinc-100 dark:bg-zinc-800 border
+			border-zinc-200 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700"
 			onClick={navigateToCreatorPageCallback}
 		>
-			<div className="col-span-4 flex items-center justify-center">
-				<ShowUserProfileImageOrDefaultImage
-					profileImageUrl={creatorData.creatorProfilePictureUrl}
-					extraClasses="w-32 h-32 rounded-full object-cover"
-				/>
-			</div>
-			<div className="col-span-8 flex flex-col text-start">
-				<div className="text-zinc-950 dark:text-white text-2xl font-semibold overflow-hidden text-ellipsis whitespace-nowrap">
-					{creatorData.channelName}
+			<div className="flex w-full">
+				<div className="w-5/12 flex items-center justify-center my-2">
+					<ShowUserProfileImageOrDefaultImage
+						profileImageUrl={creatorData.creatorProfilePictureUrl}
+						extraClasses="w-32 h-32 rounded-full object-cover"
+					/>
 				</div>
-				<div className="text-zinc-700 dark:text-zinc-300 text-base mt-1.5 overflow-hidden text-ellipsis whitespace-nowrap">
-					@{creatorData.creatorUsername}
-				</div>
-				<div className="text-zinc-700 dark:text-zinc-300 text-base mt-1 break-words">
-					{_.truncate(creatorData.channelDescription, { length: 150 })}
-				</div>
+				<CreatorDataRightOfImage creatorData={creatorData} />
 			</div>
 		</div>
 	)

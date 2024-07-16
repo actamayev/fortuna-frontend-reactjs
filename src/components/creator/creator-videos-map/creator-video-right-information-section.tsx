@@ -13,7 +13,7 @@ function CreatorVideoRightInformationSection(props: Props) {
 	const relativeDateFormatter = useRelativeDateFormatter()
 
 	return (
-		<div className="flex flex-col justify-start w-1/2 mx-3 my-1.5">
+		<div className="flex flex-col justify-start w-7/12 px-3 py-1.5">
 			<div className="flex justify-between items-center">
 				<div
 					className="flex-1 min-w-0 text-2xl font-semibold truncate
@@ -21,15 +21,15 @@ function CreatorVideoRightInformationSection(props: Props) {
 				>
 					{videoData.videoName}
 				</div>
-				<div className="text-zinc-500 dark:text-zinc-400 font-light text-xs flex-shrink-0 ml-4">
+				<div className="text-zinc-500 dark:text-zinc-400 text-xs flex-shrink-0">
 					<div className="flex flex-row items-center">
 						<FaClock className="mr-2" />
 						{relativeDateFormatter(videoData.createdAt)}
 					</div>
 				</div>
 			</div>
-			<div className="text-sm text-zinc-600 dark:text-zinc-300 font-light">
-				{_.truncate(videoData.description, { length: 350 })}
+			<div className="text-sm text-zinc-600 dark:text-zinc-300">
+				{_.truncate(videoData.description, { length: 300 })}
 			</div>
 			<div className="mt-auto">
 				<BeneathDescriptionSection videoData={videoData} />

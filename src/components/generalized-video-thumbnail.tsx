@@ -13,6 +13,7 @@ interface Props {
 	imageStyles?: Object
 }
 
+// TODO: Figure out how to make right-clicking the image give the option to open in a new tab.
 function GeneralizedVideoThumbnail(props: Props) {
 	const { thumbnailData, showSoldOutSticker = true, imageStyles } = props
 
