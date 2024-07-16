@@ -1,5 +1,6 @@
 import { observer } from "mobx-react"
 import { FaLock, FaUnlock } from "react-icons/fa"
+import ShowUsdOrSolPrice from "../../show-usd-or-sol-price"
 import getTieredAccessPriceUsd from "../../../utils/video-access-tiers/get-tiered-access-price-usd"
 
 interface Props {
@@ -15,10 +16,10 @@ function ShowUnlockStatus(props: Props) {
 				<div><FaUnlock className="mb-0.5" /></div>
 				<div>
 					{videoData.isVideoExclusive === false && (
-						<>Non exclusive </>
+						<>Non-exclusive</>
 					)}
 					{videoData.isVideoExclusive === true && (
-						<>Unlocked </>
+						<>Unlocked</>
 					)}
 				</div>
 			</div>
@@ -32,7 +33,13 @@ function ShowUnlockStatus(props: Props) {
 				{videoData.videoListingStatus === "SOLDOUT" ? (
 					<>Sold Out</>
 				) : (
-					<>${getTieredAccessPriceUsd(videoData)} to unlock</>
+					<>
+						<ShowUsdOrSolPrice
+							usdAmount={getTieredAccessPriceUsd(videoData)}
+							roundOrFixed="round"
+						/> {" "}
+						to unlock
+					</>
 				)}
 			</div>
 		</div>
