@@ -18,12 +18,11 @@ function SingleCreatorPageVideo(props: Props) {
 
 	return (
 		<div
-			className="w-2/3 rounded-lg cursor-pointer mb-3
-		bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700"
+			className="w-2/3 rounded-lg cursor-pointer mb-3 bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700"
 			onClick={navigateToVideoPageCallback}
 		>
 			<div className="flex w-full">
-				<div className="w-1/2">
+				<div className="w-5/12">
 					<GeneralizedVideoThumbnail
 						thumbnailData={videoData}
 						imageStyles={{
