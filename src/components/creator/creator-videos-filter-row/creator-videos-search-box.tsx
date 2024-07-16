@@ -11,7 +11,7 @@ function CreatorVideosSearchBox() {
 
 	const titleIncludes = useMemo(() => {
 		return videosClass.creatorVideosFilter.titleIncludes
-	}, [videosClass])
+	}, [videosClass.creatorVideosFilter.titleIncludes])
 
 	return (
 		<div className="w-full bg-inherit flex items-center justify-center">
