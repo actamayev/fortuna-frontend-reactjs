@@ -22,7 +22,7 @@ function SingleCreatorPageVideo(props: Props) {
 			onClick={navigateToVideoPageCallback}
 		>
 			<div className="flex w-full">
-				<div className="w-1/2">
+				<div className="w-5/12">
 					<GeneralizedVideoThumbnail
 						thumbnailData={videoData}
 						imageStyles={{

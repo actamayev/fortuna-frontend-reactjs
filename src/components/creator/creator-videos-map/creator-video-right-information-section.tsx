@@ -13,7 +13,7 @@ function CreatorVideoRightInformationSection(props: Props) {
 	const relativeDateFormatter = useRelativeDateFormatter()
 
 	return (
-		<div className="flex flex-col justify-start w-1/2 px-3 my-1.5">
+		<div className="flex flex-col justify-start w-7/12 px-3 my-1.5">
 			<div className="flex justify-between items-center">
 				<div
 					className="flex-1 min-w-0 text-2xl font-semibold truncate
