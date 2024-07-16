@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import { useVideoContext } from "../../../contexts/video-context"
@@ -11,10 +10,8 @@ function CreatorVideosSearchBox() {
 	}, [videosClass])
 
 	const titleIncludes = useMemo(() => {
-		if (_.isNull(videosClass)) return ""
 		return videosClass.creatorVideosFilter.titleIncludes
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [videosClass, videosClass.creatorVideosFilter.titleIncludes])
+	}, [videosClass])
 
 	return (
 		<div className="w-full bg-inherit flex items-center justify-center">
