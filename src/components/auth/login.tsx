@@ -12,10 +12,11 @@ import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
 interface Props {
 	whereToNavigate: PageNames
 	setLoginOrRegister?: React.Dispatch<React.SetStateAction<LoginOrRegister>>
+	customStyles?: Object
 }
 
 export default function Login(props: Props) {
-	const { whereToNavigate, setLoginOrRegister } = props
+	const { whereToNavigate, setLoginOrRegister, customStyles = { width: "32%", marginTop: "20px" } } = props
 	useRedirectKnownUser()
 	const [loginInformation, setLoginInformation] = useState<LoginCredentials>({
 		contact: "",
@@ -33,7 +34,7 @@ export default function Login(props: Props) {
 
 	return (
 		<div>
-			<AuthTemplate title="Login">
+			<AuthTemplate title="Login" customStyles={customStyles}>
 				<form onSubmit={loginSubmit} className="mb-3">
 					<ContactInput
 						loginInformation={loginInformation}

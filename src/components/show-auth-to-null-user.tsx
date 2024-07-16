@@ -4,10 +4,11 @@ import Register from "./auth/register"
 
 interface Props {
 	whereToNavigate: PageNames
+	customStyles?: Object
 }
 
 export default function ShowAuthToNullUser(props: Props) {
-	const { whereToNavigate } = props
+	const { whereToNavigate, customStyles } = props
 	const [loginOrRegister, setLoginOrRegister] = useState<LoginOrRegister>("Register")
 
 	if (loginOrRegister === "Register") {
@@ -15,6 +16,7 @@ export default function ShowAuthToNullUser(props: Props) {
 			<Register
 				whereToNavigate={whereToNavigate}
 				setLoginOrRegister={setLoginOrRegister}
+				customStyles={customStyles}
 			/>
 		)
 	}
@@ -22,6 +24,7 @@ export default function ShowAuthToNullUser(props: Props) {
 		<Login
 			whereToNavigate={whereToNavigate}
 			setLoginOrRegister={setLoginOrRegister}
+			customStyles={customStyles}
 		/>
 	)
 }
