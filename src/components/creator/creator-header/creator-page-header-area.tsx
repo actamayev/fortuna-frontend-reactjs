@@ -1,9 +1,9 @@
 import { observer } from "mobx-react"
 import ChannelDescription from "./channel-description"
 import ChannelSocialLinks from "./channel-social-links"
-import ShareChannelButton from "../share-channel-button"
+import ShareChannelButton from "../../share-channel-button"
 import ChannelBannerPicture from "./channel-banner-picture"
-import ShowUserProfileImageOrDefaultImage from "../show-user-profile-image-or-default-image"
+import ShowUserProfileImageOrDefaultImage from "../../show-user-profile-image-or-default-image"
 
 interface Props {
 	creatorData: CreatorDataHeldInClass
@@ -15,7 +15,7 @@ function CreatorPageHeaderArea(props: Props) {
 	return (
 		<>
 			<ChannelBannerPicture creatorData={creatorData} />
-			<div className="flex items-start border-b border-zinc-200 dark:border-zinc-600 pb-3 mb-2">
+			<div className="flex items-start border-b border-zinc-200 dark:border-zinc-600 pb-3 mb-3">
 				<div className="flex flex-col items-center mr-2">
 					<div style={{ minWidth: "128px", maxWidth: "128px" }}>
 						<ShowUserProfileImageOrDefaultImage

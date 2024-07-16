@@ -28,7 +28,7 @@ function Video() {
 		return (
 			<>
 				<BasicHelmet
-					pageTitleData="Loading... | Fortuna"
+					pageTitleData="Loading..."
 					description="Loading exclusive video content on Fortuna. Discover and enjoy premium videos from your favorite creators."
 					url={`https://www.createfortuna.com/v/${videoUUID}`}
 				/>
@@ -41,7 +41,7 @@ function Video() {
 		return (
 			<>
 				<BasicHelmet
-					pageTitleData="Video Not Found | Fortuna"
+					pageTitleData="Video Not Found"
 					description="The requested video could not be found on Fortuna. Explore other exclusive content from top creators."
 					url={`https://www.createfortuna.com/v/${videoUUID}`}
 				/>
@@ -57,7 +57,7 @@ function Video() {
 	return (
 		<>
 			<BasicHelmet
-				pageTitleData={`${video.videoName} | Fortuna`}
+				pageTitleData={video.videoName}
 				description={_.truncate(video.description, { length: 155 })}
 				url={`https://www.createfortuna.com/v/${videoUUID}`}
 			/>

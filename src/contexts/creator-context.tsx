@@ -82,7 +82,7 @@ class CreatorClass {
 		return this.myContent.filter(content => content.videoListingStatus === "UNLISTED").length
 	}
 
-	public updateMyContentFilter = action((sortBy: SortByFields) => {
+	public updateMyContentFilter = action((sortBy: CreatorContentSortByFields) => {
 		if (this.myContentFilter.sortBy === sortBy) this.updateMyContentOrderBy()
 		else {
 			this.myContentFilter.sortBy = sortBy
