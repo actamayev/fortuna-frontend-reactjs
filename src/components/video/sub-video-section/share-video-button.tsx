@@ -4,22 +4,17 @@ import { MdIosShare } from "react-icons/md"
 import HoverOutlineComponent from "../../hover-outline-component"
 import { useNotificationsContext } from "../../../contexts/notifications-context"
 
-interface Props {
-	urlToCopy: string
-}
-
-function ShareVideoButton(props: Props) {
-	const { urlToCopy } = props
+function ShareVideoButton() {
 	const notificationsClass = useNotificationsContext()
 
 	const copyToClipboard = useCallback(async () => {
 		try {
-			await navigator.clipboard.writeText(urlToCopy)
+			await navigator.clipboard.writeText(window.location.href)
 			notificationsClass.setNeutralNotification("Video link copied to clipboard")
 		} catch (error) {
 			console.error(error)
 		}
-	}, [notificationsClass, urlToCopy])
+	}, [notificationsClass])
 
 	return (
 		<HoverOutlineComponent

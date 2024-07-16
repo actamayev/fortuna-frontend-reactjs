@@ -44,7 +44,7 @@ export default function SubVideoSection(props: Props) {
 							</span>
 						</div>
 						<div className="flex items-center">
-							<ShareVideoButton urlToCopy={window.location.href}/>
+							<ShareVideoButton />
 							<LikeButton video={video} />
 						</div>
 					</div>
