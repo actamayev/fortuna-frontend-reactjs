@@ -240,16 +240,41 @@ class VideoClass {
 		}
 	})
 
-	public clearVideosOnLoginOrLogout = action((): void => {
-		this.videos = []
-		this.creatorData = []
-		this.videoSearchMap = new Map()
+	private clearVideoDataOnLogout = action((): void => {
+		this.videos.map(video => {
+			video.userLikeStatus = false
+			if (video.isVideoExclusive === false) return
+			delete video.videoUrl
+			video.isUserAbleToAccessVideo = false
+		})
+		this.creatorData.map(creator => {
+			creator.videoData.map(video => {
+				video.userLikeStatus = false
+				if (video.isVideoExclusive === false) return
+				video.isUserAbleToAccessVideo = false
+			})
+		})
+		this.videoSearchMap.forEach((searchDataArray) => {
+			searchDataArray.forEach(searchData => {
+				if ("userLikeStatus" in searchData) {
+					searchData.userLikeStatus = false
+					if (searchData.isVideoExclusive === true) {
+						searchData.isUserAbleToAccessVideo = false
+					}
+				}
+			})
+		})
+		this.areHomePageVideosRetrieved = false
+		this.clearCreatorVideosFilter()
+	})
+
+	public clearVideosOnLogin = action((): void => {
 		this.areHomePageVideosRetrieved = false
 		this.clearCreatorVideosFilter()
 	})
 
 	public logout() {
-		this.clearVideosOnLoginOrLogout()
+		this.clearVideoDataOnLogout()
 		this.videosBeingRetrieved = []
 		this.isRetrievingVideoUrl = false
 
