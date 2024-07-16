@@ -34,10 +34,10 @@ function CreatorPageHeaderArea(props: Props) {
 					<div className="flex justify-between items-center">
 						<div className="flex flex-row">
 							<div className="text-zinc-600 dark:text-zinc-300 text-sm ml-2">
-								@{creatorData.creatorUsername}
+								@{creatorData.creatorUsername}&nbsp;
 							</div>
-							<div className="text-zinc-600 dark:text-zinc-300 text-sm ml-1">
-								• {creatorData.videoData.length} video{creatorData.videoData.length === 1 ? "" : "s"}
+							<div className="text-zinc-600 dark:text-zinc-300 text-sm">
+								• {creatorData.numberOfVideos} video{creatorData.numberOfVideos === 1 ? "" : "s"}
 							</div>
 						</div>
 						<div className="flex justify-between items-center">
