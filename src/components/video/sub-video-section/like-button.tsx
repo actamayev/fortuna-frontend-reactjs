@@ -20,7 +20,10 @@ function LikeButton(props: Props) {
 	const navigate = useTypedNavigate()
 
 	const likeVideoCallback = useCallback(() => {
-		if (authClass.isLoggedIn === false) navigate("/register")
+		if (authClass.isLoggedIn === false) {
+			navigate("/register")
+			return
+		}
 		if (isLoading === true) return
 		likeVideo(video, setIsLoading)
 	}, [authClass.isLoggedIn, isLoading, likeVideo, navigate, video])
