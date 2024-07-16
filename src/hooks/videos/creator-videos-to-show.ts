@@ -2,7 +2,7 @@ import _ from "lodash"
 import { useObserver } from "mobx-react"
 import { useVideoContext } from "../../contexts/video-context"
 
-export default function useVideosToShow(
+export default function useCreatorVideosToShow(
 	videoData: VideoDataLessVideoUrl[]
 ): VideoDataLessVideoUrl[] {
 	const videosClass = useVideoContext()
