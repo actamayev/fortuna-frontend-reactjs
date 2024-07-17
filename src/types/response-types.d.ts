@@ -32,6 +32,9 @@ declare global {
 		videoUrl: string
 		isTierSoldOut: boolean
 		isVideoSoldOut: boolean
+		purchaseDate: Date
+		priceInSol: number
+		priceInUsd: number
 	}
 
 	// Personal Info Responses:

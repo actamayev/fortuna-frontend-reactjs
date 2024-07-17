@@ -2,7 +2,7 @@ import _ from "lodash"
 import { useObserver } from "mobx-react"
 import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
 
-export default function useMyTransactionsToShow(): SolanaTransaction[] {
+export default function useMyTransactionsToShow(): SingleTransaction[] {
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
 	return useObserver(() => {

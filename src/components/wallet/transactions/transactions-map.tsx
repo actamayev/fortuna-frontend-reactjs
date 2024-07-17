@@ -16,8 +16,10 @@ function TransactionsMap() {
 	return (
 		<div className="flex flex-col w-3/4 ml-1">
 			<TransactionsHeader />
-			{myTransactionsToShow.map(transaction => (
-				<SingleTransaction key={transaction.solTransferId} transaction={transaction} />
+			{myTransactionsToShow.map((transaction, index) => (
+				<div key={index}>
+					<SingleTransaction transaction={transaction} />
+				</div>
 			))}
 		</div>
 	)

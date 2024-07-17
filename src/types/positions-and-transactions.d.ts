@@ -17,6 +17,9 @@ declare global {
 		imageUrl: string
 		uuid: string
 		videoDurationSeconds: number
+		purchaseDate: Date
+		priceInSol: number
+		priceInUsd: number
 	}
 
 	type WalletFilterRange = "Month" | "Week" | "Today"
@@ -28,6 +31,8 @@ declare global {
 		orderDateBy: AscOrDesc
 		transactionType: TransactionTypes[]
 	}
+
+	type SingleTransaction = SolanaTransaction | MyPurchasedExclusiveContent
 }
 
 export {}
