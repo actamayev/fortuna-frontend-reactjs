@@ -18,7 +18,7 @@ export default function useRetrieveMyContentUseEffect(): void {
 				!_.isEmpty(creatorClass.myContent)
 			) return
 			creatorClass.setIsRetrievingContent(true)
-			const myContentResponse = await fortunaApiClient.creatorDataService.retrieveMyContent()
+			const myContentResponse = await fortunaApiClient.creatorDataService.getMyContent()
 
 			if (
 				!_.isEqual(myContentResponse.status, 200) ||

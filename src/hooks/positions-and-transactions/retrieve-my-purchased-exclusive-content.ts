@@ -19,7 +19,7 @@ export default function useRetrieveMyPurchasedExclusiveContent(): () => Promise<
 				positionsAndTransactionsClass.isRetrievingPurchasedExclusiveContent === true
 			) return
 			positionsAndTransactionsClass.setIsRetrievingOwnership(true)
-			const myOwnershipResponse = await fortunaApiClient.positionsAndTransactionsDataService.retrieveMyPurchasedExclusiveContent()
+			const myOwnershipResponse = await fortunaApiClient.positionsAndTransactionsDataService.getMyPurchasedExclusiveContent()
 
 			if (
 				!_.isEqual(myOwnershipResponse.status, 200) ||

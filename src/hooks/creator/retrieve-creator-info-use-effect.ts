@@ -8,7 +8,7 @@ export default function useRetrieveCreatorInfoUseEffect(): void {
 	const fortunaApiClient = useApiClientContext()
 	const creatorClass = useCreatorContext()
 
-	const retrievePersonalInfo = useCallback(async () => {
+	const retrieveCreatorInfo = useCallback(async () => {
 		if (_.isNull(creatorClass)) return
 		try {
 			if (
@@ -18,7 +18,7 @@ export default function useRetrieveCreatorInfoUseEffect(): void {
 
 			creatorClass.setIsRetrievingCreatorInfo(true)
 
-			const creatorInfoResponse = await fortunaApiClient.creatorDataService.retrieveCreatorInfo()
+			const creatorInfoResponse = await fortunaApiClient.creatorDataService.getCreatorInfo()
 			if (!_.isEqual(creatorInfoResponse.status, 200) || isErrorResponse(creatorInfoResponse.data)) {
 				throw Error ("Unable to retrieve creator info")
 			}
@@ -31,6 +31,6 @@ export default function useRetrieveCreatorInfoUseEffect(): void {
 	}, [creatorClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.creatorDataService])
 
 	useEffect(() => {
-		void retrievePersonalInfo()
-	}, [retrievePersonalInfo])
+		void retrieveCreatorInfo()
+	}, [retrieveCreatorInfo])
 }

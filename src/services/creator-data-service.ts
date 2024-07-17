@@ -7,7 +7,7 @@ export default class CreatorDataService {
 	constructor(private readonly httpClient: FortunaHttpClient) {
 	}
 
-	async retrieveMyContent(): Promise<AxiosResponse<RetrieveMyContentResponse | MessageResponse | ErrorResponse>> {
+	async getMyContent(): Promise<AxiosResponse<RetrieveMyContentResponse | MessageResponse | ErrorResponse>> {
 		return await this.httpClient.http.get<RetrieveMyContentResponse | MessageResponse | ErrorResponse>(
 			`${this.pathHeader}/get-creator-content-list`
 		)
@@ -19,9 +19,9 @@ export default class CreatorDataService {
 		)
 	}
 
-	async retrieveCreatorInfo(): Promise<AxiosResponse<CreatorInfoResponse | ErrorResponse>> {
+	async getCreatorInfo(): Promise<AxiosResponse<CreatorInfoResponse | ErrorResponse>> {
 		return await this.httpClient.http.get<CreatorInfoResponse | ErrorResponse>(
-			`${this.pathHeader}/retrieve-creator-info`
+			`${this.pathHeader}/get-creator-info`
 		)
 	}
 
