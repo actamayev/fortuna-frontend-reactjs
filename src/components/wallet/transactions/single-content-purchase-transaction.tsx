@@ -39,13 +39,12 @@ function SingleContentPurchaseTransaction(props: Props) {
 					)}
 				</div>
 			</div>
-			<div className="col-span-4">
-				<div className="flex flex-row">
-					<div>
-					Purchased Exclusive Access to&nbsp;
-					</div>
+			<div className="col-span-4 overflow-hidden">
+				<div className="flex flex-row overflow-hidden text-ellipsis whitespace-nowrap">
+					<div className="flex-shrink-0">Purchased Exclusive Access to&nbsp;</div>
 					<div
-						className="cursor-pointer underline decoration-dotted hover:decoration-solid"
+						className="cursor-pointer underline decoration-dotted
+						hover:decoration-solid overflow-hidden text-ellipsis whitespace-nowrap"
 						onClick={() => navigateToVideoNewPage(transaction.uuid)}
 					>
 						{transaction.videoName}
