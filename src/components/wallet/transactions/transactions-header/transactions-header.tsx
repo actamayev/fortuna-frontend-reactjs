@@ -8,7 +8,7 @@ export default function TransactionsHeader() {
 			className="grid grid-cols-8 gap-4 py-3 border-b text-sm
 				bg-inherit border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-200"
 		>
-			<div className="col-span-1 items-center">
+			<div className="col-span-1">
 				<TransactionsDateSorter />
 			</div>
 			<div className="col-span-2">

@@ -25,7 +25,7 @@ function TransactionTypeFilter() {
 	}, [positionsAndTransactionClass, positionsAndTransactionClass?.walletFilter.transactionType])
 
 	return (
-		<div className="flex flex-row space-x-2 text-zinc-950 dark:text-zinc-200">
+		<div className="flex flex-row items-center space-x-2 text-zinc-950 dark:text-zinc-200">
 			<div>Type</div>
 			<div
 				className={colorClasses("Content Purchases")}
