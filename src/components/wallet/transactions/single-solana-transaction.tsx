@@ -15,28 +15,28 @@ function SingleSolanaTransaction(props: Props) {
 
 	return (
 		<div
-			className="grid grid-cols-7 gap-4 bg-white dark:bg-neutral-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 py-3
-				text-zinc-950 dark:text-zinc-200 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer rounded-sm"
+			className="grid grid-cols-8 gap-4 bg-white dark:bg-neutral-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 py-3
+				text-zinc-950 dark:text-zinc-200 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer rounded-sm text-sm"
 		>
 			<div className="col-span-1">
 				{actualDateFormatter(transaction.transferDateTime)}
 			</div>
-			<div className="col-span-1">
+			<div className="col-span-2">
 				{transaction.depositOrWithdrawal === "withdrawal" ? (
-					<div className="flex flex-row items-center space-x-2">
-						<BsArrowUpRightSquareFill size={25}/>
+					<div className="flex flex-row items-center space-x-3">
+						<BsArrowUpRightSquareFill size={30}/>
 						<div>Withdrawal</div>
 					</div>
 				) : (
-					<div className="flex flex-row items-center space-x-2">
-						<BsArrowDownLeftSquareFill size={25}/>
+					<div className="flex flex-row items-center space-x-3">
+						<BsArrowDownLeftSquareFill size={30}/>
 						<div>Deposit</div>
 					</div>
 				)}
 			</div>
 			<div className="col-span-1">
 				<div
-					className={`flex justify-end ${transaction.depositOrWithdrawal === "deposit" ? "text-green-600 dark:text-green-400" :
+					className={`flex justify-start ${transaction.depositOrWithdrawal === "deposit" ? "text-green-600 dark:text-green-400" :
 						"text-red-600 dark:text-red-400"}`}
 				>
 					{transaction.depositOrWithdrawal === "deposit" ? (<>+</>) : (<>-</>)}

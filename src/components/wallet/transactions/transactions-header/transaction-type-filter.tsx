@@ -28,16 +28,25 @@ function TransactionTypeFilter() {
 	}, [positionsAndTransactionClass, positionsAndTransactionClass?.walletFilter.transactionType])
 
 	return (
-		<div className="flex flex-row space-x-1 text-zinc-950 dark:text-zinc-200">
+		<div className="flex flex-row space-x-2 text-zinc-950 dark:text-zinc-200">
 			<div>Type</div>
-			<div className={colorClasses("Content Purchases")}>
-				<FaShoppingBag onClick={() => onClickAction("Content Purchases")} />
+			<div
+				className={colorClasses("Content Purchases")}
+				onClick={() => onClickAction("Content Purchases")}
+			>
+				<FaShoppingBag />
 			</div>
-			<div className={colorClasses("Withdrawals")}>
-				<BsArrowUpRightSquareFill onClick={() => onClickAction("Withdrawals")} />
+			<div
+				className={colorClasses("Withdrawals")}
+				onClick={() => onClickAction("Withdrawals")}
+			>
+				<BsArrowUpRightSquareFill />
 			</div>
-			<div className={colorClasses("Deposits")}>
-				<BsArrowDownLeftSquareFill onClick={() => onClickAction("Deposits")} />
+			<div
+				className={colorClasses("Deposits")}
+				onClick={() => onClickAction("Deposits")}
+			>
+				<BsArrowDownLeftSquareFill  />
 			</div>
 		</div>
 	)

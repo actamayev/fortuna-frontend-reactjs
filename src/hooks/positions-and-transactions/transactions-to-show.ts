@@ -8,31 +8,42 @@ export default function useMyTransactionsToShow(): SingleTransaction[] {
 	return useObserver(() => {
 		if (_.isNull(positionsAndTransactionsClass)) return []
 
-		let filteredTransactions = positionsAndTransactionsClass.mySolanaTransactions
+		const solanaTransactions = positionsAndTransactionsClass.mySolanaTransactions.map(transaction => ({
+			...transaction,
+			transactionType: transaction.depositOrWithdrawal === "deposit" ? "Deposits" : "Withdrawals",
+			title: transaction.transferFromUsername
+		}))
+
+		const purchasedContentTransactions = positionsAndTransactionsClass.myPurchasedExclusiveContent.map(content => ({
+			...content,
+			transactionType: "Content Purchases",
+			transferDateTime: content.purchaseDate,
+			title: content.videoName
+		}))
+
+		let allTransactions = [...solanaTransactions, ...purchasedContentTransactions]
 
 		// Filter by title
 		if (!_.isEmpty(positionsAndTransactionsClass.walletFilter.transactionTitleIncludes)) {
 			const lowercaseTitle = positionsAndTransactionsClass.walletFilter.transactionTitleIncludes.toLowerCase()
-			filteredTransactions = filteredTransactions.filter(transaction =>
-				(transaction.transferFromUsername.toLowerCase().includes(lowercaseTitle) ||
-                (transaction.transferToUsername && transaction.transferToUsername.toLowerCase().includes(lowercaseTitle)) ||
-				(transaction.transferToPublicKey && transaction.transferToPublicKey.toLowerCase().includes(lowercaseTitle)))
+			allTransactions = allTransactions.filter(transaction =>
+				transaction.title.toLowerCase().includes(lowercaseTitle)
 			)
 		}
 
 		// Filter by transaction type:
-		filteredTransactions = filteredTransactions.filter(transaction =>
-			positionsAndTransactionsClass.walletFilter.transactionType.includes(
-				transaction.depositOrWithdrawal === "deposit" ? "Deposits" : "Withdrawals"
-			)
+		allTransactions = allTransactions.filter(transaction =>
+			positionsAndTransactionsClass.walletFilter.transactionType.includes(transaction.transactionType as TransactionTypes)
 		)
 
-		filteredTransactions = filteredTransactions.slice().sort((a, b) =>
+		// Sort transactions
+		allTransactions = allTransactions.slice().sort((a, b) =>
 			positionsAndTransactionsClass.walletFilter.orderDateBy === "asc"
 				? new Date(a.transferDateTime).getTime() - new Date(b.transferDateTime).getTime()
 				: new Date(b.transferDateTime).getTime() - new Date(a.transferDateTime).getTime()
 		)
 
-		return _.uniqBy(filteredTransactions, "solTransferId")
+		// Remove duplicates by solTransferId
+		return _.uniqBy(allTransactions, "solTransferId")
 	})
 }
