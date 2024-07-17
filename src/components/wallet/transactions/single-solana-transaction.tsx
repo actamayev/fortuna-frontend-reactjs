@@ -1,8 +1,8 @@
 import { observer } from "mobx-react"
 import { BsArrowUpRightSquareFill, BsArrowDownLeftSquareFill } from "react-icons/bs"
 import useDefaultCurrency from "../../../hooks/memos/default-currency"
-import { useActualDateFormatter } from "../../../hooks/date-formatter"
 import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
+import { useAbbreviatedDateFormatter } from "../../../hooks/date-formatter"
 
 interface Props {
 	transaction: SolanaTransaction
@@ -11,30 +11,30 @@ interface Props {
 function SingleSolanaTransaction(props: Props) {
 	const { transaction } = props
 	const defaultCurrency = useDefaultCurrency()
-	const actualDateFormatter = useActualDateFormatter()
+	const abbreviatedDateFormatter = useAbbreviatedDateFormatter()
 
 	return (
 		<div
-			className="grid grid-cols-8 gap-4 bg-white dark:bg-neutral-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 py-3
+			className="grid grid-cols-8 gap-4 bg-white dark:bg-neutral-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 py-2.5
 				text-zinc-950 dark:text-zinc-200 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer rounded-sm text-sm"
 		>
-			<div className="col-span-1">
-				{actualDateFormatter(transaction.transferDateTime)}
+			<div className="col-span-1 flex items-center">
+				{abbreviatedDateFormatter(transaction.transferDateTime)}
 			</div>
-			<div className="col-span-2">
+			<div className="col-span-2 flex items-center">
 				{transaction.depositOrWithdrawal === "withdrawal" ? (
 					<div className="flex flex-row items-center space-x-3">
-						<BsArrowUpRightSquareFill size={30}/>
+						<BsArrowUpRightSquareFill size={30} className="flex-shrink-0"/>
 						<div>Withdrawal</div>
 					</div>
 				) : (
 					<div className="flex flex-row items-center space-x-3">
-						<BsArrowDownLeftSquareFill size={30}/>
+						<BsArrowDownLeftSquareFill size={30} className="flex-shrink-0"/>
 						<div>Deposit</div>
 					</div>
 				)}
 			</div>
-			<div className="col-span-1">
+			<div className="col-span-1 flex items-center">
 				<div
 					className={`flex justify-start ${transaction.depositOrWithdrawal === "deposit" ? "text-green-600 dark:text-green-400" :
 						"text-red-600 dark:text-red-400"}`}
@@ -47,7 +47,7 @@ function SingleSolanaTransaction(props: Props) {
 					)}
 				</div>
 			</div>
-			<div className="col-span-4">
+			<div className="col-span-4 flex items-center">
 				<span>
 					Instant transfer&nbsp;
 					{transaction.depositOrWithdrawal === "deposit" && (<>from @{transaction.transferFromUsername}</>)}

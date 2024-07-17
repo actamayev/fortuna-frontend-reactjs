@@ -16,16 +16,10 @@ export function useActualDateFormatter(): (dateInput: Date) => string {
 	}, [])
 }
 
-export function useFormatGBDate(): (dateInput: string | Date) => string {
-	return useCallback((dateInput: string | Date): string => {
-		// Ensure the input is a Date object
-		const date = typeof dateInput === "string" ? new Date(dateInput) : dateInput
-
-		const day = date.getDate()
-		const month = date.toLocaleString("default", { month: "short" })
-		const year = date.getFullYear()
-
-		return `${day} ${month} ${year}`
+export function useAbbreviatedDateFormatter(): (dateInput: Date) => string {
+	return useCallback((dateInput: Date): string => {
+		const date = dayjs(dateInput)
+		return date.format("MMM D, YYYY")
 	}, [])
 }
 
