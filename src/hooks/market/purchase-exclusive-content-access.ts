@@ -50,11 +50,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 			}
 			videoClass.addVideoUrlToVideo(videoUUID, purchaseResponse.data.videoUrl)
 
-			const exclusiveContent: MyPurchasedExclusiveContent = {
-				...video,
-				...purchaseResponse.data
-			}
-			positionsAndTransactionsClass.addExclusiveContent(exclusiveContent)
+			positionsAndTransactionsClass.addExclusiveContent({ ...video, ...purchaseResponse.data })
 			notificationClass.setSuperPositiveNotification("Successfully purchased access to video. Enjoy!")
 			videoClass.updateVideoDetailsAfterUserPurchase(
 				videoUUID,
