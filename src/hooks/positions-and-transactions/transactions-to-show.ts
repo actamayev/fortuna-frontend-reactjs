@@ -44,6 +44,6 @@ export default function useMyTransactionsToShow(): SingleTransaction[] {
 		)
 
 		// Remove duplicates by solTransferId
-		return _.uniqBy(allTransactions, "solTransferId")
+		return allTransactions
 	})
 }

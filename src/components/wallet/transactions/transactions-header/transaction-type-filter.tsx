@@ -10,9 +10,7 @@ function TransactionTypeFilter() {
 
 	const onClickAction = useCallback((transactionType: TransactionTypes) => {
 		if (_.isNull(positionsAndTransactionClass)) return
-		// console.log(positionsAndTransactionClass.walletFilter.transactionType)
 		positionsAndTransactionClass.updateTransactionTypeFilter(transactionType)
-		// console.log(positionsAndTransactionClass.walletFilter.transactionType)
 	}, [positionsAndTransactionClass])
 
 	const colorClasses = useCallback((transactionType: TransactionTypes) => {
@@ -20,7 +18,6 @@ function TransactionTypeFilter() {
 		let classes = "p-1 rounded-lg cursor-pointer \
 			bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-600 text-black dark:text-white"
 		if (positionsAndTransactionClass.walletFilter.transactionType.includes(transactionType)) {
-			console.log(transactionType)
 			classes = "p-1 rounded-lg cursor-pointer bg-black dark:bg-white text-white dark:text-black"
 		}
 		return classes
