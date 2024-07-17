@@ -1,5 +1,5 @@
 import TransactionTypeFilter from "./transaction-type-filter"
-import SortTransactionsByDate from "./transactions-date-sorter"
+import TransactionsDateSorter from "./transactions-date-sorter"
 import TransactionsDescriptionSearch from "./transactions-description-search"
 
 export default function TransactionsHeader() {
@@ -9,7 +9,7 @@ export default function TransactionsHeader() {
 				bg-inherit border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-200"
 		>
 			<div className="col-span-1 items-center">
-				<SortTransactionsByDate />
+				<TransactionsDateSorter />
 			</div>
 			<div className="col-span-2">
 				<TransactionTypeFilter />

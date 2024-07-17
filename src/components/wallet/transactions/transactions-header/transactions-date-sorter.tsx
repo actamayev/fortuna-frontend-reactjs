@@ -4,7 +4,7 @@ import { useCallback, useMemo } from "react"
 import { FaArrowDown, FaArrowUp } from "react-icons/fa"
 import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
 
-function SortTransactionsByDate() {
+function TransactionsDateSorter() {
 	const positionsAndTransactionClass = usePositionsAndTransactionsContext()
 
 	const onClickAction = useCallback(() => {
@@ -33,4 +33,4 @@ function SortTransactionsByDate() {
 	)
 }
 
-export default observer(SortTransactionsByDate)
+export default observer(TransactionsDateSorter)
