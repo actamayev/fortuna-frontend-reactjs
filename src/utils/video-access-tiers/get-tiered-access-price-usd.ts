@@ -1,6 +1,6 @@
 import _ from "lodash"
 
-export default function getTieredAccessPriceUsd(video: SingleVideoDataFromBackend): number | null {
+export default function getTieredAccessPriceUsd(video: UrlExtendedSingleVideoData): number | null {
 	try {
 		const { tierData, numberOfExclusivePurchasesSoFar } = video
 

@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useActualDateFormatter, useRelativeDateFormatter } from "../../../hooks/date-formatter"
 
 interface Props {
-	video: SingleVideoDataFromBackend
+	video: UrlExtendedSingleVideoData
 }
 
 export default function VideoDescription(props: Props) {

@@ -9,7 +9,7 @@ import useTypedNavigate from "../../../hooks/navigate/typed-navigate"
 import HoverNotAllowedComponent from "../../hover-not-allowed-component"
 
 interface Props {
-	video: SingleVideoDataFromBackend
+	video: UrlExtendedSingleVideoData
 }
 
 function LikeButton(props: Props) {

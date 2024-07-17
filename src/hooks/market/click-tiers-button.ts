@@ -5,7 +5,7 @@ import getCurrentExclusiveAccessTier from "../../utils/video-access-tiers/get-cu
 import useCheckIfUUIDExistsInExclusiveContentList from "../positions-and-transactions/check-if-uuid-exists-in-exclusive-content-list"
 
 export default function useClickTiersButton(
-	video: SingleVideoDataFromBackend | undefined
+	video: UrlExtendedSingleVideoData | undefined
 ): () => void {
 	const marketClass = useMarketContext()
 	const doesUserHaveAccessToExclusiveContent = useCheckIfUUIDExistsInExclusiveContentList(video?.uuid)

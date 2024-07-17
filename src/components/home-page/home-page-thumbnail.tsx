@@ -3,7 +3,7 @@ import GeneralizedVideoThumbnail from "../generalized-video-thumbnail"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 
 interface Props {
-	video: VideoDataLessVideoUrl
+	video: VideoDataWithUrlRetrievalStatus
 }
 
 export default function HomePageThumbnail(props: Props) {

@@ -6,7 +6,7 @@ import { useContext, useMemo, createContext } from "react"
 class VideoClass {
 	public searchTerm: string | null = null
 
-	public videos: SingleVideoDataFromBackend[] = []
+	public videos: UrlExtendedSingleVideoData[] = []
 	public videosBeingRetrieved: string[] = []
 	public isRetrievingVideoUrl = false
 
@@ -29,7 +29,7 @@ class VideoClass {
 		makeAutoObservable(this)
 	}
 
-	public findVideoFromUUID(videoUUID: string | undefined): SingleVideoDataFromBackend | undefined {
+	public findVideoFromUUID(videoUUID: string | undefined): UrlExtendedSingleVideoData | undefined {
 		if (_.isUndefined(videoUUID)) return undefined
 
 		return (
@@ -39,14 +39,14 @@ class VideoClass {
 		)
 	}
 
-	private findVideoNotInVideosArray(videoUUID: string): SingleVideoDataFromBackend | undefined {
+	private findVideoNotInVideosArray(videoUUID: string): UrlExtendedSingleVideoData | undefined {
 		return (
 			this.findVideoInSearchMapByUUID(videoUUID) ||
 			this.findVideoInCreatorDataMapByUUID(videoUUID)
 		)
 	}
 
-	private contextForVideo(videoUUID: string): SingleVideoDataFromBackend | undefined {
+	private contextForVideo(videoUUID: string): UrlExtendedSingleVideoData | undefined {
 		return this.videos.find(video => video.uuid === videoUUID)
 	}
 
@@ -71,19 +71,19 @@ class VideoClass {
 		return { ...creatorData, videoData: filteredVideoData }
 	}
 
-	private findVideoInSearchMapByUUID(videoUUID: string): SingleVideoDataFromBackend | undefined {
+	private findVideoInSearchMapByUUID(videoUUID: string): UrlExtendedSingleVideoData | undefined {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		for (const [key, searchDataArray] of this.videoSearchMap.entries()) {
 			const videoData = searchDataArray.find(
 				data => _.has(data, "uuid") && data.uuid === videoUUID
-			) as SingleVideoDataFromBackend | undefined
+			) as UrlExtendedSingleVideoData | undefined
 
 			if (!_.isUndefined(videoData)) return videoData
 		}
 		return
 	}
 
-	private findVideoInCreatorDataMapByUUID(videoUUID: string): SingleVideoDataFromBackend | undefined {
+	private findVideoInCreatorDataMapByUUID(videoUUID: string): UrlExtendedSingleVideoData | undefined {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		for (const [key, creatorDataHeld] of this.creatorData.entries()) {
 			const videoData = creatorDataHeld.videoData.find(video => video.uuid === videoUUID)
@@ -92,12 +92,12 @@ class VideoClass {
 		}
 	}
 
-	public setHomePageVideos = action((videoData: VideoDataLessVideoUrl[]): void => {
+	public setHomePageVideos = action((videoData: VideoDataWithUrlRetrievalStatus[]): void => {
 		if (_.isEmpty(videoData)) return
 		videoData.map(singleVideo => this.addVideoToVideosList(singleVideo))
 	})
 
-	public addVideoToVideosList = action((video: VideoDataLessVideoUrl): void => {
+	public addVideoToVideosList = action((video: VideoDataWithUrlRetrievalStatus): void => {
 		if (!_.isUndefined(this.contextForVideo(video.uuid))) return
 
 		if (_.isEmpty(this.videos)) {
@@ -112,10 +112,24 @@ class VideoClass {
 		this.videos.splice(index, 0, video)
 	})
 
+	public setVideoUrlRetrievealAttempted = action((videoUUID: string): void => {
+		const index = this.videos.findIndex(video => video.uuid === videoUUID)
+		if (!_.isEqual(index, -1)) {
+			this.videos[index].videoUrlRetrievalAttempted = true
+			return
+		}
+
+		const existingVideo = this.findVideoNotInVideosArray(videoUUID)
+		if (_.isUndefined(existingVideo)) return
+		existingVideo.videoUrlRetrievalAttempted = true
+		this.addVideoToVideosList(existingVideo)
+	})
+
 	public addVideoUrlToVideo = action((videoUUID: string, videoUrl: string): void => {
 		const index = this.videos.findIndex(video => video.uuid === videoUUID)
 		if (!_.isEqual(index, -1)) {
 			this.videos[index].videoUrl = videoUrl
+			this.videos[index].videoUrlRetrievalAttempted = true
 			return
 		}
 		// This logic is run when there is a video that is in the search map or the creator data, but isn't in the videos list.
@@ -124,6 +138,7 @@ class VideoClass {
 		const existingVideo = this.findVideoNotInVideosArray(videoUUID)
 		if (_.isUndefined(existingVideo)) return
 		existingVideo.videoUrl = videoUrl
+		existingVideo.videoUrlRetrievalAttempted = true
 		this.addVideoToVideosList(existingVideo)
 	})
 
@@ -132,7 +147,7 @@ class VideoClass {
 		videoSearchData.map(singleSearchData => this.addVideoSearchDataToMap(searchTerm, singleSearchData))
 	})
 
-	private addVideoSearchDataToMap = action((searchTerm: string, videoSearchData: VideoDataLessVideoUrl | CreatorData): void => {
+	private addVideoSearchDataToMap = action((searchTerm: string, videoSearchData: VideoDataWithUrlRetrievalStatus | CreatorData): void => {
 		const existingData = this.contextForSearchMap(searchTerm)
 		if (_.isUndefined(existingData)) {
 			this.videoSearchMap.set(searchTerm, [videoSearchData])
@@ -143,9 +158,13 @@ class VideoClass {
 
 	public addRetrievedCreatorData (creatorDataResponse: CreatorDataResponse): void {
 		const { creatorData, videoData } = creatorDataResponse
+		const newVideoData = videoData.map(video => ({
+			...video,
+			videoUrlRetrievalAttempted: false
+		}))
 		const newCreatorData: CreatorDataHeldInClass = {
 			...creatorData,
-			videoData
+			videoData: newVideoData
 		}
 		const existingData = this.contextForCreatorData(newCreatorData.creatorUsername)
 		if (!_.isUndefined(existingData)) return
@@ -268,7 +287,19 @@ class VideoClass {
 		this.clearCreatorVideosFilter()
 	})
 
+	private resetUrlRetrievalAttempt = action((): void => {
+		this.videos.map(video => {
+			video.videoUrlRetrievalAttempted = false
+		})
+		this.creatorData.map(creator => {
+			creator.videoData.map(video => {
+				video.videoUrlRetrievalAttempted = false
+			})
+		})
+	})
+
 	public clearVideosOnLogin = action((): void => {
+		this.resetUrlRetrievalAttempt()
 		this.areHomePageVideosRetrieved = false
 		this.clearCreatorVideosFilter()
 	})

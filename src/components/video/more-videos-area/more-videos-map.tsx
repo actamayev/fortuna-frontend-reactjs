@@ -4,7 +4,7 @@ import SingleRecommendedVideo from "./single-recommended-video"
 import { useVideoContext } from "../../../contexts/video-context"
 
 interface Props {
-	video: SingleVideoDataFromBackend
+	video: UrlExtendedSingleVideoData
 }
 
 function MoreVideosMap(props: Props) {

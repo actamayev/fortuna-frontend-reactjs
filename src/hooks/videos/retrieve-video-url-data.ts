@@ -21,7 +21,7 @@ export default function useRetrieveVideoUrlData(videoUUID: string | undefined): 
 			// If there is already a videoUrl, or if we know that the user can't access the video, there's no point to re-fetch it
 			if (
 				!_.isUndefined(video) &&
-				(!_.isUndefined(video.videoUrl) || video.isUserAbleToAccessVideo === false)
+				(!_.isUndefined(video.videoUrl) || video.videoUrlRetrievalAttempted === true)
 			) return
 
 			videoClass.setIsRetrievingVideoUrl(true)
@@ -31,7 +31,10 @@ export default function useRetrieveVideoUrlData(videoUUID: string | undefined): 
 			if (!_.isEqual(videoUrlData.status, 200) || isNonSuccessResponse(videoUrlData.data)) {
 				throw Error("Unable to get video URL")
 			}
-			if (_.isUndefined(videoUrlData.data.videoUrl)) return
+			if (_.isUndefined(videoUrlData.data.videoUrl)) {
+				videoClass.setVideoUrlRetrievealAttempted(videoUUID)
+				return
+			}
 			videoClass.addVideoUrlToVideo(videoUUID, videoUrlData.data.videoUrl)
 		} catch (error) {
 			console.error(error)
@@ -42,5 +45,5 @@ export default function useRetrieveVideoUrlData(videoUUID: string | undefined): 
 
 	useEffect(() => {
 		void retrieveVideoUrlData()
-	}, [retrieveVideoUrlData])
+	}, [retrieveVideoUrlData, fortunaApiClient.httpClient.accessToken])
 }

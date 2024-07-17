@@ -3,7 +3,7 @@ import { observer } from "mobx-react"
 import { useEffect, useRef } from "react"
 
 interface Props {
-	video: SingleVideoDataFromBackend
+	video: UrlExtendedSingleVideoData
 }
 
 function VideoPlayer(props: Props) {

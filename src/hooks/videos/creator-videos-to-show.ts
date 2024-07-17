@@ -3,8 +3,8 @@ import { useObserver } from "mobx-react"
 import { useVideoContext } from "../../contexts/video-context"
 
 export default function useCreatorVideosToShow(
-	videoData: VideoDataLessVideoUrl[]
-): VideoDataLessVideoUrl[] {
+	videoData: VideoDataWithUrlRetrievalStatus[]
+): VideoDataWithUrlRetrievalStatus[] {
 	const videosClass = useVideoContext()
 
 	return useObserver(() => {
