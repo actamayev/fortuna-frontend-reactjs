@@ -7,13 +7,13 @@ export default class PositionsAndTransactionsDataService {
 	constructor(private readonly httpClient: FortunaHttpClient) {
 	}
 
-	async retrieveTransactions(): Promise<AxiosResponse<TransactionsResponse | MessageResponse | ErrorResponse>> {
+	async getSolanaTransactions(): Promise<AxiosResponse<TransactionsResponse | MessageResponse | ErrorResponse>> {
 		return await this.httpClient.http.get<TransactionsResponse | MessageResponse | ErrorResponse>(
-			`${this.pathHeader}/get-transactions`
+			`${this.pathHeader}/get-solana-transactions`
 		)
 	}
 
-	async retrieveMyPurchasedExclusiveContent(): Promise<AxiosResponse<MyOwnershipResponse | MessageResponse | ErrorResponse>> {
+	async getMyPurchasedExclusiveContent(): Promise<AxiosResponse<MyOwnershipResponse | MessageResponse | ErrorResponse>> {
 		return await this.httpClient.http.get<MyOwnershipResponse | MessageResponse | ErrorResponse>(
 			`${this.pathHeader}/get-my-purchased-exclusive-content`
 		)

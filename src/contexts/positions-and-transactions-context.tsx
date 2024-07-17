@@ -3,7 +3,7 @@ import { createContext, useContext, useMemo } from "react"
 import { action, computed, makeAutoObservable } from "mobx"
 
 class PositionsAndTransactionsClass {
-	public myTransactions: SolanaTransaction[] = []
+	public mySolanaTransactions: SolanaTransaction[] = []
 	public transactionsTimeRange: WalletFilterRange = "Month"
 
 	public myPurchasedExclusiveContent: MyPurchasedExclusiveContent[] = []
@@ -19,7 +19,7 @@ class PositionsAndTransactionsClass {
 	}
 
 	public contextForMyTransaction(transactionId: number): SolanaTransaction | undefined {
-		return this.myTransactions.find(transaction => transaction.solTransferId === transactionId)
+		return this.mySolanaTransactions.find(transaction => transaction.solTransferId === transactionId)
 	}
 
 	public contextForMyPurchasesExclusiveContent(uuid: string): MyPurchasedExclusiveContent | undefined {
@@ -27,14 +27,14 @@ class PositionsAndTransactionsClass {
 	}
 
 	public setTransactions = action((solanaTransactions: SolanaTransaction[]): void => {
-		this.myTransactions = []
+		this.mySolanaTransactions = []
 		solanaTransactions.forEach(transaction => this.addSolanaTransaction(transaction))
 	})
 
 	public addSolanaTransaction = action((solanaTransaction: SolanaTransaction): void => {
 		const retrievedTransaction = this.contextForMyTransaction(solanaTransaction.solTransferId)
 		if (!_.isUndefined(retrievedTransaction)) return
-		this.myTransactions.unshift(solanaTransaction)
+		this.mySolanaTransactions.unshift(solanaTransaction)
 	})
 
 	private filterTransactionsByTimeRange = (): SolanaTransaction[] => {
@@ -55,7 +55,7 @@ class PositionsAndTransactionsClass {
 			timeLimit = new Date()
 		}
 
-		return this.myTransactions.filter(transaction => new Date(transaction.transferDateTime) >= timeLimit)
+		return this.mySolanaTransactions.filter(transaction => new Date(transaction.transferDateTime) >= timeLimit)
 	}
 
 	public calculateDepositsUsd = (): number => {
@@ -137,7 +137,7 @@ class PositionsAndTransactionsClass {
 	})
 
 	public logout() {
-		this.myTransactions = []
+		this.mySolanaTransactions = []
 		this.myPurchasedExclusiveContent = []
 
 		this.hasPurchasedExclusiveContentToRetrieve = true

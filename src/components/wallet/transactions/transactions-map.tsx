@@ -17,7 +17,7 @@ function TransactionsMap() {
 
 	return (
 		<div>
-			{positionsAndTransactionClass.myTransactions.map(transaction => (
+			{positionsAndTransactionClass.mySolanaTransactions.map(transaction => (
 				<SingleTransaction key={transaction.solTransferId} transaction={transaction} />
 			))}
 		</div>

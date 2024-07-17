@@ -23,7 +23,7 @@ export default class SolanaDataService {
 		)
 	}
 
-	async retrieveSolPrice(): Promise<AxiosResponse<SolPriceResponse | ErrorResponse>> {
+	async getSolPrice(): Promise<AxiosResponse<SolPriceResponse | ErrorResponse>> {
 		return await this.httpClient.http.get<SolPriceResponse | ErrorResponse>(
 			`${this.pathHeader}/get-sol-price`, { headers: { "No-Auth-Required": "true" }}
 		)
