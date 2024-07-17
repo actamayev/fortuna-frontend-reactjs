@@ -17,7 +17,7 @@ function SingleContentPurchaseTransaction(props: Props) {
 
 	return (
 		<div
-			className="grid grid-cols-8 gap-4 bg-white dark:bg-neutral-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 py-2.5
+			className="grid grid-cols-8 gap-4 bg-inherit hover:bg-zinc-100 dark:hover:bg-zinc-800 py-2.5
 				text-zinc-950 dark:text-zinc-200 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer rounded-sm text-sm"
 		>
 			<div className="col-span-1 flex items-center">

@@ -42,7 +42,7 @@ function SingleMyContent(props: Props) {
 	}, [isVideoEditingModalOpen])
 
 	return (
-		<div className="grid grid-cols-12 gap-4 bg-white dark:bg-neutral-900 py-2 border-b border-zinc-200 dark:border-zinc-800">
+		<div className="grid grid-cols-12 gap-4 bg-inherit py-2 border-b border-zinc-200 dark:border-zinc-800">
 			<div className="col-span-2 relative">
 				<MyContentThumbnail content={content} />
 			</div>
