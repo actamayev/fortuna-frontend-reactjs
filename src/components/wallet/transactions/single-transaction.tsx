@@ -48,17 +48,16 @@ function SingleTransaction(props: Props) {
 				</div>
 			</div>
 			<div className="col-span-4">
-				<div className="flex items-center">
-					<span>&nbsp;
-						{transaction.depositOrWithdrawal === "deposit" && (<>from @{transaction.transferFromUsername}</>)}
-						{transaction.depositOrWithdrawal === "withdrawal" && (
-							<>
-								to {transaction.transferToUsername && <>@</>}
-								{transaction.transferToUsername || transaction.transferToPublicKey}
-							</>
-						)}
-					</span>
-				</div>
+				<span>
+					Instant transfer&nbsp;
+					{transaction.depositOrWithdrawal === "deposit" && (<>from @{transaction.transferFromUsername}</>)}
+					{transaction.depositOrWithdrawal === "withdrawal" && (
+						<>
+							to {transaction.transferToUsername && <>@</>}
+							{transaction.transferToUsername || transaction.transferToPublicKey}
+						</>
+					)}
+				</span>
 			</div>
 		</div>
 	)
