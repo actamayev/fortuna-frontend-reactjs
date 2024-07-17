@@ -24,7 +24,11 @@ export default function useRetrieveHomePageVideos(
 				throw new Error("Failed to retrieve video")
 			}
 			videoClass.areHomePageVideosRetrieved = true
-			videoClass.setHomePageVideos(response.data.homePageVideos)
+			const videos = response.data.homePageVideos.map(video => ({
+				...video,
+				videoUrlRetrievalAttempted: false
+			}))
+			videoClass.setHomePageVideos(videos)
 		} catch (error) {
 			console.error(error)
 		} finally {

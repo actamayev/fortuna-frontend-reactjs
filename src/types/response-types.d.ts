@@ -74,10 +74,10 @@ declare global {
 	type ChannelBannerPictureUrl = { channelBannerPictureUrl: string }
 
 	// Video Responses:
-	type RetrievedVideo = { videoData: SingleVideoDataFromBackend }
-	type HomePageVideos = { homePageVideos: VideoDataLessVideoUrl[] }
+	type RetrievedVideo = { videoData: UrlExtendedSingleVideoData }
+	type HomePageVideos = { homePageVideos: VideoDataLessVideoUrlResponse[] }
 	type CreatorDataResponse = {
-		videoData: VideoDataLessVideoUrl[]
+		videoData: VideoDataLessVideoUrlResponse[]
 		creatorData: CreatorData
 	}
 	type RetrievedVideoUrl = { videoUrl: string | undefined }

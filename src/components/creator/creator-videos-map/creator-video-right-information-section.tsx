@@ -5,7 +5,7 @@ import BeneathDescriptionSection from "./beneath-description-section"
 import { useRelativeDateFormatter } from "../../../hooks/date-formatter"
 
 interface Props {
-	videoData: VideoDataLessVideoUrl
+	videoData: VideoDataWithUrlRetrievalStatus
 }
 
 function CreatorVideoRightInformationSection(props: Props) {

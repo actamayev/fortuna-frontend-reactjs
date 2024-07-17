@@ -1,5 +1,5 @@
 declare global {
-	interface VideoDataLessVideoUrl {
+	interface VideoDataLessVideoUrlResponse {
 		videoName: string
 		videoListingStatus: PostedVideoListingStatuses
 		description: string
@@ -17,13 +17,18 @@ declare global {
 		numberOfLikes: number
 		userLikeStatus: boolean
 		channelName: string
+		videoUrlRetrievalAttempted?: boolean
+	}
+
+	interface VideoDataWithUrlRetrievalStatus extends VideoDataLessVideoUrlResponse {
+		videoUrlRetrievalAttempted: boolean
 	}
 
 	interface TierDataFromDB extends TierDataToSend {
 		isTierSoldOut: boolean
 	}
 
-	interface SingleVideoDataFromBackend extends VideoDataLessVideoUrl {
+	interface UrlExtendedSingleVideoData extends VideoDataWithUrlRetrievalStatus {
 		videoUrl?: string
 	}
 
@@ -37,10 +42,10 @@ declare global {
 		channelBannerPictureUrl: string | null
 	}
 
-	type SearchData = VideoDataLessVideoUrl | CreatorData
+	type SearchData = VideoDataWithUrlRetrievalStatus | CreatorData
 
 	interface CreatorDataHeldInClass extends CreatorData {
-		videoData: VideoDataLessVideoUrl[]
+		videoData: VideoDataWithUrlRetrievalStatus[]
 	}
 
 	type PostedVideoListingStatuses = "LISTED" | "SOLDOUT"

@@ -12,12 +12,12 @@ export default function UsernameInput (props: Props) {
 
 	return (
 		<FormGroup
-			label = "Username"
-			type = "text"
-			placeholder = "abc123"
-			onChange = {(event) => setCredentials({ ...credentials, username: handleTypeUsername(event) })}
+			label="Username"
+			type="text"
+			placeholder="abc123"
+			onChange={(event) => setCredentials({ ...credentials, username: handleTypeUsername(event) })}
 			required
-			value = {credentials.username || ""}
+			value={credentials.username || ""}
 			maxLength={100}
 			className="mb-4"
 		/>

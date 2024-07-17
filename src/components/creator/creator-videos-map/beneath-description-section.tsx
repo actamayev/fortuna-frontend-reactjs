@@ -5,7 +5,7 @@ import { FaHeart, FaRegHeart, FaShoppingBag } from "react-icons/fa"
 import ShowUnlockStatus from "./show-unlock-status"
 
 interface Props {
-	videoData: VideoDataLessVideoUrl
+	videoData: VideoDataWithUrlRetrievalStatus
 }
 
 function BeneathDescriptionSection(props: Props) {

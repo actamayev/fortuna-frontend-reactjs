@@ -4,7 +4,7 @@ import useNavigateToVideoPage from "../../../hooks/navigate/navigate-to-video-pa
 import CreatorVideoRightInformationSection from "../../creator/creator-videos-map/creator-video-right-information-section"
 
 interface Props {
-	videoData: VideoDataLessVideoUrl
+	videoData: VideoDataWithUrlRetrievalStatus
 }
 
 export default function SingleRecommendedVideo(props: Props) {

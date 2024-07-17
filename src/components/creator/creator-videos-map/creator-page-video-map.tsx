@@ -3,7 +3,7 @@ import SingleCreatorPageVideo from "./single-creator-page-video"
 import useCreatorVideosToShow from "../../../hooks/videos/creator-videos-to-show"
 
 interface Props {
-	videoData: VideoDataLessVideoUrl[]
+	videoData: VideoDataWithUrlRetrievalStatus[]
 }
 
 function CreatorPageVideoMap(props: Props) {

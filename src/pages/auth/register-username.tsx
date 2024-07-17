@@ -23,22 +23,22 @@ export default function RegisterUsername() {
 			<AuthTemplate title="Register Username">
 				<form onSubmit={usernameSubmit} className="mb-3">
 					<FormGroup
-						label = "Username"
-						type = "text"
-						placeholder = "abc123"
-						onChange = {(event) => setUsername(handleTypeUsername(event))}
+						label="Username"
+						type="text"
+						placeholder="abc123"
+						onChange={(event) => setUsername(handleTypeUsername(event))}
 						required
-						value = {username}
+						value={username}
 						maxLength={100}
 						className="mb-4"
 					/>
 
 					<Button
 						title = {_.isEmpty(username) ? "Register username" : `Register ${username}`}
-						className = "mt-3 w-full font-semibold text-lg text-white"
-						colorClass = "bg-blue-600"
-						hoverClass = "hover:bg-blue-700"
-						disabled = {loading}
+						className="mt-3 w-full font-semibold text-lg text-white"
+						colorClass="bg-blue-600"
+						hoverClass="hover:bg-blue-700"
+						disabled={loading}
 					/>
 
 					<ErrorMessage error={error} />

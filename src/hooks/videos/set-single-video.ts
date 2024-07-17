@@ -28,14 +28,14 @@ export default function useSetSingleVideo(
 			setIsVideoNotFound(true)
 		} finally {
 			setIsVideoLoading(false)
-			if (!_.isUndefined(videoUUID)) videoClass.removeVideoUUIDFromRetrievingList(videoUUID)
+			videoClass.removeVideoUUIDFromRetrievingList(videoUUID)
 		}
-	}, [fortunaApiClient.videoDataService, setIsVideoLoading, setIsVideoNotFound, videoClass, videoUUID])
+	}, [fortunaApiClient.videoDataService, setIsVideoLoading, setIsVideoNotFound, videoUUID, videoClass])
 
 	useEffect(() => {
 		const video = videoClass.findVideoFromUUID(videoUUID)
 		if (!_.isUndefined(video)) return
 
 		void retrieveVideo()
-	}, [fortunaApiClient.httpClient.accessToken, retrieveVideo, videoClass, videoUUID])
+	}, [retrieveVideo, videoUUID, videoClass])
 }
