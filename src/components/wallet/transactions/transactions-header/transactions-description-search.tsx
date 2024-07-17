@@ -3,7 +3,7 @@ import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
 
-function TransactionDescriptionSearch() {
+function TransactionsDescriptionSearch() {
 	const positionsAndTransactionClass = usePositionsAndTransactionsContext()
 
 	const handleSearch = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,4 +28,4 @@ function TransactionDescriptionSearch() {
 	)
 }
 
-export default observer(TransactionDescriptionSearch)
+export default observer(TransactionsDescriptionSearch)
