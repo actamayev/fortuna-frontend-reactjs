@@ -15,21 +15,21 @@ export default function useRetrieveTransactions(): () => Promise<void> {
 				_.isNull(fortunaApiClient.httpClient.accessToken) ||
 				positionsAndTransactionsClass.hasTransactionsToRetrieve === false ||
 				positionsAndTransactionsClass.isRetrievingTransactions === true ||
-				!_.isEmpty(positionsAndTransactionsClass.myTransactions)
+				!_.isEmpty(positionsAndTransactionsClass.mySolanaTransactions)
 			) {
 				return
 			}
 			positionsAndTransactionsClass.setIsRetrievingTransactions(true)
-			const myTransactionsResponse = await fortunaApiClient.positionsAndTransactionsDataService.retrieveTransactions()
+			const mySolanaTransactionsResponse = await fortunaApiClient.positionsAndTransactionsDataService.getSolanaTransactions()
 			if (
-				!_.isEqual(myTransactionsResponse.status, 200) ||
-				isMessageResponse(myTransactionsResponse.data) ||
-				isErrorResponse(myTransactionsResponse.data)
+				!_.isEqual(mySolanaTransactionsResponse.status, 200) ||
+				isMessageResponse(mySolanaTransactionsResponse.data) ||
+				isErrorResponse(mySolanaTransactionsResponse.data)
 			) {
 				return
 			}
 
-			positionsAndTransactionsClass.setTransactions(myTransactionsResponse.data.transactions)
+			positionsAndTransactionsClass.setTransactions(mySolanaTransactionsResponse.data.transactions)
 			positionsAndTransactionsClass.setHasTransactionsToRetrieve(false)
 		} catch (error) {
 			console.error(error)
