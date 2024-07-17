@@ -81,4 +81,10 @@ export default class CreatorDataService {
 			`${this.pathHeader}/edit-video-description`, { videoDescription, videoUUID }
 		)
 	}
+
+	async featureVideo(videoIdToFeature: number, videoIdToUnfeature?: number): Promise<AxiosResponse<ErrorResponses | SuccessResponse>> {
+		return await this.httpClient.http.post<ErrorResponses | SuccessResponse>(
+			`${this.pathHeader}/feature-video`, { videoIdToFeature, videoIdToUnfeature }
+		)
+	}
 }

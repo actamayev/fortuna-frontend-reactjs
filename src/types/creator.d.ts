@@ -34,6 +34,7 @@ declare global {
 		videoId: number
 		videoListingStatus: AllVideoListingStatuses
 		imageUrl: string
+		isVideoFeatured: boolean
 		videoDurationSeconds: number
 		uuid: string
 		numberOfLikes: number
