@@ -16,7 +16,7 @@ interface Props {
 }
 
 export default function Login(props: Props) {
-	const { whereToNavigate, setLoginOrRegister, customStyles = { width: "32%", marginTop: "20px" } } = props
+	const { whereToNavigate, setLoginOrRegister, customStyles = { width: "32%" } } = props
 	useRedirectKnownUser()
 	const [loginInformation, setLoginInformation] = useState<LoginCredentials>({
 		contact: "",

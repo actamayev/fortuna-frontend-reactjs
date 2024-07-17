@@ -18,7 +18,7 @@ interface Props {
 }
 
 export default function Register(props: Props) {
-	const { whereToNavigate, setLoginOrRegister, customStyles = { width: "32%" } } = props
+	const { whereToNavigate, setLoginOrRegister, customStyles = { width: "32%" }} = props
 	useRedirectKnownUser()
 	const [registerInformation, setRegisterInformation] = useState<RegisterCredentials>({
 		email: "",
