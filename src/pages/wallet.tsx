@@ -2,7 +2,7 @@ import { observer } from "mobx-react"
 import PageHelmet from "../components/helmet/page-helmet"
 import { useAuthContext } from "../contexts/auth-context"
 import ShowAuthToNullUser from "../components/show-auth-to-null-user"
-import Transactions from "../components/wallet/transactions/transactions-map"
+import TransactionsMap from "../components/wallet/transactions/transactions-map"
 import WalletSummaryCard from "../components/wallet/wallet-summary-card/wallet-balance-card"
 
 function Wallet() {
@@ -21,7 +21,7 @@ function Wallet() {
 		<>
 			<PageHelmet pageTitle="/wallet" />
 			<WalletSummaryCard />
-			<Transactions />
+			<TransactionsMap />
 		</>
 	)
 }

@@ -54,7 +54,7 @@ declare global {
 
 	interface MyContentFilter {
 		sortBy: CreatorContentSortByFields
-		orderBy: "asc" | "desc"
+		orderBy: AscOrDesc
 		titleIncludes: string
 		visibility: "all" | "listed" | "unlisted"
 	}

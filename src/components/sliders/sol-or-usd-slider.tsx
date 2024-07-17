@@ -10,7 +10,7 @@ function SolOrUsdSlider() {
 	const setDefaultCurrency = useSetDefaultCurrency()
 
 	return (
-		<div className="text-black dark:text-white">
+		<div className="text-black dark:text-white" onClick={(e) => e.stopPropagation()}>
 			<Slider
 				id="sol-usd-slider"
 				checkedCondition={defaultCurrency === "sol"}

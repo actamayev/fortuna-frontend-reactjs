@@ -20,7 +20,7 @@ function ChangeVideoListingStatus(props: Props) {
 	}, [content.isContentExclusive])
 
 	const getStatusButtonClass = useCallback((status: AllVideoListingStatuses) => {
-		const baseClass = "cursor-pointer p-2 rounded flex items-center"
+		const baseClass = "p-2 rounded flex items-center"
 		const activeClass = "bg-zinc-300 dark:bg-zinc-900"
 		const inactiveClass = "bg-white dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-900"
 

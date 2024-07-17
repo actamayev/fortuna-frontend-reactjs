@@ -5,8 +5,8 @@ import LinkToVideo from "./link-to-video"
 import EarningsSection from "./earnings-section"
 import VideoDescription from "./video-description"
 import VideoListingStatus from "./video-listing-status"
-import { useFormatGBDate } from "../../../hooks/date-formatter"
 import MyContentThumbnail from "./thumbnail/my-content-thumbnail"
+import { useAbbreviatedDateFormatter } from "../../../hooks/date-formatter"
 import EditVideoDetailsModal from "./edit-video-details-modal/edit-video-details-modal"
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
 
 function SingleMyContent(props: Props) {
 	const { content } = props
-	const formatGBDate = useFormatGBDate()
+	const abbreviatedDateFormatter = useAbbreviatedDateFormatter()
 	const [isVideoEditingModalOpen, setIsVideoEditingModalOpen] = useState(false)
 
 	const toggleModalOpen = useCallback(() => {
@@ -42,7 +42,7 @@ function SingleMyContent(props: Props) {
 	}, [isVideoEditingModalOpen])
 
 	return (
-		<div className="grid grid-cols-12 gap-4 bg-white dark:bg-neutral-900 py-2 border-b border-zinc-200 dark:border-zinc-800">
+		<div className="grid grid-cols-12 gap-4 bg-inherit py-2 border-b border-zinc-200 dark:border-zinc-800">
 			<div className="col-span-2 relative">
 				<MyContentThumbnail content={content} />
 			</div>
@@ -62,7 +62,7 @@ function SingleMyContent(props: Props) {
 				</div>
 			</div>
 			<div className="col-span-1 text-sm text-zinc-700 dark:text-zinc-300">
-				{formatGBDate(content.createdAt)}
+				{abbreviatedDateFormatter(content.createdAt)}
 			</div>
 			<div className="col-span-1 text-sm text-zinc-600 dark:text-zinc-300">
 				<div className="flex flex-col items-start">
