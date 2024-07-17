@@ -10,12 +10,12 @@ export default function EmailInput (props: Props) {
 
 	return (
 		<FormGroup
-			label = "Email"
-			type = "contact"
-			placeholder = "abc@123.com"
-			onChange = {(event) => setRegisterInformation({ ...registerInformation, email: event.target.value })}
+			label="Email"
+			type="contact"
+			placeholder="abc@123.com"
+			onChange={(event) => setRegisterInformation({ ...registerInformation, email: event.target.value })}
 			required
-			value = {registerInformation.email || ""}
+			value={registerInformation.email || ""}
 			maxLength={100}
 			className="mb-4"
 		/>

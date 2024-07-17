@@ -5,7 +5,7 @@ import { useSolanaContext } from "../../../../contexts/solana-context"
 import getTieredAccessPriceUsd from "../../../../utils/video-access-tiers/get-tiered-access-price-usd"
 
 interface Props {
-	video: SingleVideoDataFromBackend
+	video: UrlExtendedSingleVideoData
 }
 
 function ShowRemainingWalletBalanceAfterInstantAccessPurchase(props: Props) {

@@ -7,7 +7,7 @@ import useCheckIfUUIDExistsInExclusiveContentList
 	from "../../../../hooks/positions-and-transactions/check-if-uuid-exists-in-exclusive-content-list"
 
 interface Props {
-	video: SingleVideoDataFromBackend
+	video: UrlExtendedSingleVideoData
 }
 
 function ThreeTiersInfo(props: Props) {

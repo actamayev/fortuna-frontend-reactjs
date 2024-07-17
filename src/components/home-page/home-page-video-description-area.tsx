@@ -9,7 +9,7 @@ import ShowUserProfileImageOrDefaultImage from "../show-user-profile-image-or-de
 import getTieredAccessPriceUsd from "../../utils/video-access-tiers/get-tiered-access-price-usd"
 
 interface Props {
-	video: VideoDataLessVideoUrl
+	video: VideoDataWithUrlRetrievalStatus
 	index: number
 }
 

@@ -8,7 +8,7 @@ export default function CreatorRoutes() {
 		<Routes>
 			<Route path="studio" element={<Studio />} />
 			<Route path="create-content" element={<CreateContent />} />
-			<Route path = "*" element = {<Missing />} />
+			<Route path="*" element = {<Missing />} />
 		</Routes>
 	)
 }

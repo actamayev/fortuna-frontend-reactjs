@@ -4,7 +4,7 @@ import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 import VideoDataRightOfSearchThumbnail from "./video-data-right-of-search-thumbnail"
 
 interface Props {
-	videoData: VideoDataLessVideoUrl
+	videoData: VideoDataWithUrlRetrievalStatus
 }
 
 export default function SingleVideoSearchItem(props: Props) {

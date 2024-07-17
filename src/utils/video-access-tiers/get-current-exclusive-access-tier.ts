@@ -1,6 +1,6 @@
 import _ from "lodash"
 
-export default function getCurrentExclusiveAccessTier(video: SingleVideoDataFromBackend | undefined): number | null {
+export default function getCurrentExclusiveAccessTier(video: UrlExtendedSingleVideoData | undefined): number | null {
 	try {
 		if (_.isUndefined(video)) return null
 		const { tierData, numberOfExclusivePurchasesSoFar } = video

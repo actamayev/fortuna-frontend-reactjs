@@ -4,7 +4,7 @@ import ShowUsdOrSolPrice from "../../show-usd-or-sol-price"
 import getTieredAccessPriceUsd from "../../../utils/video-access-tiers/get-tiered-access-price-usd"
 
 interface Props {
-	videoData: VideoDataLessVideoUrl
+	videoData: VideoDataWithUrlRetrievalStatus
 }
 
 function ShowUnlockStatus(props: Props) {

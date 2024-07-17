@@ -7,7 +7,7 @@ import useNavigateToCreatorPage from "../../../hooks/navigate/navigate-to-creato
 import ShowUserProfileImageOrDefaultImage from "../../show-user-profile-image-or-default-image"
 
 interface Props {
-	video: SingleVideoDataFromBackend
+	video: UrlExtendedSingleVideoData
 }
 
 export default function SubVideoSection(props: Props) {

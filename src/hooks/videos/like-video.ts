@@ -5,14 +5,14 @@ import { isNonSuccessResponse } from "../../utils/type-checks"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
 export default function useLikeVideo(): (
-	video: SingleVideoDataFromBackend,
+	video: UrlExtendedSingleVideoData,
 	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => Promise<void> {
 	const fortunaApiClient = useApiClientContext()
 	const videoClass = useVideoContext()
 
 	return useCallback(async (
-		video: SingleVideoDataFromBackend,
+		video: UrlExtendedSingleVideoData,
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 	) => {
 		try {

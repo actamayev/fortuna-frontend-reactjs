@@ -1,11 +1,10 @@
 import _ from "lodash"
+import { useMemo } from "react"
 import { observer } from "mobx-react"
-import { useCallback, useMemo } from "react"
-import Button from "../buttons/button"
+import ShowAuthToNullUser from "../show-auth-to-null-user"
 import { useAuthContext } from "../../contexts/auth-context"
 import { useVideoContext } from "../../contexts/video-context"
 import { useCreatorContext } from "../../contexts/creator-context"
-import useTypedNavigate from "../../hooks/navigate/typed-navigate"
 import PurchaseInstantAccessOptions from "./instant-access-exclusive-content/purchase-instant-access-options"
 
 interface Props {
@@ -16,7 +15,6 @@ function PurchaseExclusiveAccessCard(props: Props) {
 	const { videoUUID } = props
 	const videoClass = useVideoContext()
 	const authClass = useAuthContext()
-	const navigate = useTypedNavigate()
 	const creatorClass = useCreatorContext()
 	const video = videoClass.findVideoFromUUID(videoUUID)
 
@@ -26,24 +24,15 @@ function PurchaseExclusiveAccessCard(props: Props) {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [creatorClass, creatorClass?.myContent, videoUUID])
 
-	const navigateToRegisterCallback = useCallback(() => {
-		navigate("/register")
-	}, [navigate])
-
 	if (_.isNil(video?.numberOfExclusivePurchasesSoFar)) {
-		return (
-			<>Not exclusive</>
-		)
+		return <>Not exclusive</>
 	}
 
 	if (authClass.isLoggedIn === false) {
 		return (
-			<Button
-				title="Please create an account to unlock access"
-				onClick={navigateToRegisterCallback}
-				colorClass="bg-blue-200 dark:bg-blue-400"
-				hoverClass="hover:bg-blue-300 hover:dark:bg-blue-500"
-				className="font-semibold text-zinc-950"
+			<ShowAuthToNullUser
+				whereToNavigate={`/v/${videoUUID}`}
+				customStyles={{ width: "100%" }}
 			/>
 		)
 	}

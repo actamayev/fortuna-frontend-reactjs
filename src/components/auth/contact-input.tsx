@@ -10,12 +10,12 @@ export default function ContactInput (props: Props) {
 
 	return (
 		<FormGroup
-			label = "Username or Email"
-			type = "contact"
-			placeholder = "abc@123.com"
-			onChange = {(event) => setLoginInformation({ ...loginInformation, contact: event.target.value })}
+			label="Username or Email"
+			type="contact"
+			placeholder="abc@123.com"
+			onChange={(event) => setLoginInformation({ ...loginInformation, contact: event.target.value })}
 			required
-			value = {loginInformation.contact || ""}
+			value={loginInformation.contact || ""}
 			maxLength={100}
 			className="mb-4"
 		/>

@@ -9,7 +9,7 @@ import ShowUserProfileImageOrDefaultImage from "../show-user-profile-image-or-de
 import BeneathDescriptionSection from "../creator/creator-videos-map/beneath-description-section"
 
 interface Props {
-	videoData: VideoDataLessVideoUrl
+	videoData: VideoDataWithUrlRetrievalStatus
 }
 
 function VideoDataRightOfSearchThumbnail(props: Props) {

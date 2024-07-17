@@ -27,7 +27,7 @@ export function isValidSiteTheme(value: any): value is SiteThemes {
 	return ["light", "dark"].includes(value)
 }
 
-export function isVideoData(data: SearchData): data is VideoDataLessVideoUrl {
+export function isVideoData(data: SearchData): data is VideoDataWithUrlRetrievalStatus {
 	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-	return (data as VideoDataLessVideoUrl).uuid !== undefined
+	return (data as VideoDataWithUrlRetrievalStatus).uuid !== undefined
 }

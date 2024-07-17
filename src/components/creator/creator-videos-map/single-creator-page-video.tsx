@@ -5,7 +5,7 @@ import useNavigateToVideoPage from "../../../hooks/navigate/navigate-to-video-pa
 import CreatorVideoRightInformationSection from "./creator-video-right-information-section"
 
 interface Props {
-	videoData: VideoDataLessVideoUrl
+	videoData: VideoDataWithUrlRetrievalStatus
 }
 
 function SingleCreatorPageVideo(props: Props) {
