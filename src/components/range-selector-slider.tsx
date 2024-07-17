@@ -14,7 +14,7 @@ export default function RangeSelectorSlider(props: Props) {
 
 	return (
 		<>
-			<label className = "block text-sm font-medium text-zinc-600 dark:text-zinc-200">{title}</label>
+			<label className="block text-sm font-medium text-zinc-600 dark:text-zinc-200">{title}</label>
 			<div className={customWidth}>
 				<input
 					type="range"

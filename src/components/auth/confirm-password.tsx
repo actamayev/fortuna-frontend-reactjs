@@ -14,12 +14,12 @@ export default function ConfirmPassword (props: Props) {
 	return (
 		<div className="relative">
 			<FormGroup
-				label = "Password Confirmation"
+				label="Password Confirmation"
 				type = {showPassword ? "text" : "password"}
-				placeholder = "Confirm Password"
-				onChange = {(event) => setCredentials({ ...credentials, passwordConfirmation: event.target.value})}
+				placeholder="Confirm Password"
+				onChange={(event) => setCredentials({ ...credentials, passwordConfirmation: event.target.value})}
 				required
-				value = {credentials.passwordConfirmation || ""}
+				value={credentials.passwordConfirmation || ""}
 				maxLength={100}
 				className="mb-4"
 			/>

@@ -49,11 +49,11 @@ export default function Login(props: Props) {
 					<ErrorMessage error={error} />
 
 					<Button
-						title = "Login"
-						className = "mt-3 w-full font-semibold text-lg text-white"
-						colorClass = "bg-blue-600"
-						hoverClass = "hover:bg-blue-700"
-						disabled = {loading}
+						title="Login"
+						className="mt-3 w-full font-semibold text-lg text-white"
+						colorClass="bg-blue-600"
+						hoverClass="hover:bg-blue-700"
+						disabled={loading}
 					/>
 				</form>
 				<SubLoginInfo setLoginOrRegister={setLoginOrRegister}/>

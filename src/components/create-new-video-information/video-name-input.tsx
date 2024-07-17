@@ -22,12 +22,12 @@ function VideoNameInput() {
 	return (
 		<>
 			<FormGroup
-				label = "Video Name"
-				type = "text"
-				placeholder = "Charlie bit my finger"
-				onChange = {updateNewVideoDetails}
+				label="Video Name"
+				type="text"
+				placeholder="Charlie bit my finger"
+				onChange={updateNewVideoDetails}
 				required
-				value = {videoName}
+				value={videoName}
 				maxLength={maxLength}
 				className="mb-1"
 			/>
