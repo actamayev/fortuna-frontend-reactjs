@@ -1,8 +1,7 @@
-import _ from "lodash"
-import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { BsArrowUpRightSquareFill, BsArrowDownLeftSquareFill } from "react-icons/bs"
 import useDefaultCurrency from "../../../hooks/memos/default-currency"
+import { useActualDateFormatter } from "../../../hooks/date-formatter"
 import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
 
 interface Props {
@@ -12,51 +11,44 @@ interface Props {
 function SingleTransaction(props: Props) {
 	const { transaction } = props
 	const defaultCurrency = useDefaultCurrency()
-
-	const formattedDateTime = useMemo(() => {
-		const lastRetrieved = transaction.transferDateTime
-		if (_.isUndefined(lastRetrieved)) return "unknown"
-
-		const date = new Date(lastRetrieved)
-		const dateString = date.toLocaleDateString("en-US", {
-			year: "numeric",
-			month: "long",
-			day: "numeric"
-		})
-		const timeString = date.toLocaleTimeString("en-US", {
-			hour: "numeric",
-			minute: "numeric",
-			hour12: true
-		})
-
-		return `${dateString} at ${timeString}`
-	}, [transaction.transferDateTime])
+	const actualDateFormatter = useActualDateFormatter()
 
 	return (
 		<div
-			className="bg-zinc-100 dark:bg-zinc-800 mt-2 p-2 rounded-sm \
-				text-zinc-950 dark:text-zinc-200 flex items-center"
+			className="grid grid-cols-7 gap-4 bg-white dark:bg-neutral-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 py-2
+				text-zinc-950 dark:text-zinc-200 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer rounded-sm"
 		>
-			<div className="mr-2">
+			<div className="col-span-1">
+				{actualDateFormatter(transaction.transferDateTime)}
+			</div>
+			<div className="col-span-1">
 				{transaction.depositOrWithdrawal === "withdrawal" ? (
-					<BsArrowUpRightSquareFill size={50}/>
+					<div className="flex flex-row items-center space-x-2">
+						<BsArrowUpRightSquareFill size={25}/>
+						<div>Withdrawal</div>
+					</div>
 				) : (
-					<BsArrowDownLeftSquareFill size={50}/>
+					<div className="flex flex-row items-center space-x-2">
+						<BsArrowDownLeftSquareFill size={25}/>
+						<div>Deposit</div>
+					</div>
 				)}
 			</div>
-			<div>
+			<div className="col-span-1">
+				<div
+					className={`flex justify-end ${transaction.depositOrWithdrawal === "deposit" ? "text-green-600 dark:text-green-400" :
+						"text-red-600 dark:text-red-400"}`}
+				>
+					{transaction.depositOrWithdrawal === "deposit" ? (<>+</>) : (<>-</>)}
+					{(defaultCurrency === "usd") ? (
+						<>${numberWithCommasFixed(transaction.usdAmountTransferred, 2)}</>
+					) : (
+						<>{numberWithCommasFixed(transaction.solAmountTransferred, 4)} SOL</>
+					)}
+				</div>
+			</div>
+			<div className="col-span-4">
 				<div className="flex items-center">
-					<div
-						className={`${transaction.depositOrWithdrawal === "deposit" ? "text-green-600 dark:text-green-400" :
-							"text-red-600 dark:text-red-400"}`}
-					>
-						{transaction.depositOrWithdrawal === "deposit" ? (<>+</>) : (<>-</>)}
-						{(defaultCurrency === "usd") ? (
-							<>${numberWithCommasFixed(transaction.usdAmountTransferred, 2)}</>
-						) : (
-							<>{numberWithCommasFixed(transaction.solAmountTransferred, 4)} SOL</>
-						)}
-					</div>
 					<span>&nbsp;
 						{transaction.depositOrWithdrawal === "deposit" && (<>from @{transaction.transferFromUsername}</>)}
 						{transaction.depositOrWithdrawal === "withdrawal" && (
@@ -66,10 +58,6 @@ function SingleTransaction(props: Props) {
 							</>
 						)}
 					</span>
-				</div>
-
-				<div>
-					{formattedDateTime}
 				</div>
 			</div>
 		</div>

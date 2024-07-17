@@ -29,7 +29,7 @@ function TransactionTypeFilter() {
 
 	return (
 		<div className="flex flex-row space-x-1 text-zinc-950 dark:text-zinc-200">
-			<div>Transaction Type</div>
+			<div>Type</div>
 			<div className={colorClasses("Content Purchases")}>
 				<FaShoppingBag onClick={() => onClickAction("Content Purchases")} />
 			</div>
