@@ -37,13 +37,10 @@ export default function useMyTransactionsToShow(): SingleTransaction[] {
 		)
 
 		// Sort transactions
-		allTransactions = allTransactions.slice().sort((a, b) =>
+		return allTransactions.slice().sort((a, b) =>
 			positionsAndTransactionsClass.walletFilter.orderDateBy === "asc"
 				? new Date(a.transferDateTime).getTime() - new Date(b.transferDateTime).getTime()
 				: new Date(b.transferDateTime).getTime() - new Date(a.transferDateTime).getTime()
 		)
-
-		// Remove duplicates by solTransferId
-		return allTransactions
 	})
 }
