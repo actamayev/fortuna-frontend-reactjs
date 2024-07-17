@@ -14,10 +14,8 @@ export default function TransactionsHeader() {
 			<div className="col-span-2">
 				<TransactionTypeFilter />
 			</div>
-			<div className="col-span-1 justify-start flex">Amount</div>
-			<div className="col-span-1">
-				Description
-			</div>
+			<div className="col-span-1">Amount</div>
+			<div className="col-span-1">Description</div>
 			<div className="col-span-3">
 				<TransactionsDescriptionSearch />
 			</div>
