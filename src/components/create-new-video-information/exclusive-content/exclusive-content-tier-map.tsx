@@ -25,7 +25,7 @@ function ExclusiveContentTierMap() {
 		<div className="flex flex-wrap -mx-2">
 			{tierData.map((tier) => (
 				<div key={tier.tierNumber} className="w-1/3 px-2 my-2">
-					<div className="border border-green-600 rounded-md">
+					<div className="border border-green-600 rounded-md p-2">
 						<ExclusiveContentTier tierNumber={tier.tierNumber} />
 					</div>
 				</div>
