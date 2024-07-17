@@ -1,6 +1,6 @@
 import { observer } from "mobx-react"
 import { useState, useRef } from "react"
-import DropdownItemsContainer from "./dropdown-items-container"
+import ProfileDropdownItems from "./profile-dropdown-items"
 import { useCreatorContext } from "../../../contexts/creator-context"
 import useClickOutsideUseEffect from "../../../hooks/click-outside/click-outside-use-effect"
 import ShowUserProfileImageOrDefaultImage from "../../show-user-profile-image-or-default-image"
@@ -26,7 +26,17 @@ function HeaderDropdown () {
 						/>
 					</div>
 				</div>
-				<DropdownItemsContainer isOpen = {isOpen} />
+				{isOpen && (
+					<div
+						className="origin-top-right absolute right-0 mt-1 rounded-md bg-white ring-1 ring-zinc-950 ring-opacity-20 \
+							dark:bg-zinc-950 dark:ring-white dark:ring-opacity-20"
+						style={{ width: "170px"}}
+						aria-orientation="vertical"
+						aria-labelledby="menu-button"
+					>
+						<ProfileDropdownItems />
+					</div>
+				)}
 			</div>
 		</div>
 	)

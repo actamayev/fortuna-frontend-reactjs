@@ -31,3 +31,8 @@ export function isVideoData(data: SearchData): data is VideoDataWithUrlRetrieval
 	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 	return (data as VideoDataWithUrlRetrievalStatus).uuid !== undefined
 }
+
+export function isSolanaTransaction(data: SingleTransaction): data is SolanaTransaction {
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+	return (data as SolanaTransaction).solTransferId !== undefined
+}
