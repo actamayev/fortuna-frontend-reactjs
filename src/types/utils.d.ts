@@ -38,6 +38,8 @@ declare global {
 		"/videos"
 
 	type AtPrefixedString = string & { __brand: "AtPrefixedString" }
+
+	type AscOrDesc = "asc" | "desc"
 }
 
 export {}

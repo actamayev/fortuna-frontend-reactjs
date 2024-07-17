@@ -38,7 +38,7 @@ function SingleTransaction(props: Props) {
 				text-zinc-950 dark:text-zinc-200 flex items-center"
 		>
 			<div className="mr-2">
-				{transaction.outgoingOrIncoming === "outgoing" ? (
+				{transaction.depositOrWithdrawal === "withdrawal" ? (
 					<BsArrowUpRightSquareFill size={50}/>
 				) : (
 					<BsArrowDownLeftSquareFill size={50}/>
@@ -47,10 +47,10 @@ function SingleTransaction(props: Props) {
 			<div>
 				<div className="flex items-center">
 					<div
-						className={`${transaction.outgoingOrIncoming === "incoming" ? "text-green-600 dark:text-green-400" :
+						className={`${transaction.depositOrWithdrawal === "deposit" ? "text-green-600 dark:text-green-400" :
 							"text-red-600 dark:text-red-400"}`}
 					>
-						{transaction.outgoingOrIncoming === "incoming" ? (<>+</>) : (<>-</>)}
+						{transaction.depositOrWithdrawal === "deposit" ? (<>+</>) : (<>-</>)}
 						{(defaultCurrency === "usd") ? (
 							<>${numberWithCommasFixed(transaction.usdAmountTransferred, 2)}</>
 						) : (
@@ -58,8 +58,8 @@ function SingleTransaction(props: Props) {
 						)}
 					</div>
 					<span>&nbsp;
-						{transaction.outgoingOrIncoming === "incoming" && (<>from @{transaction.transferFromUsername}</>)}
-						{transaction.outgoingOrIncoming === "outgoing" && (
+						{transaction.depositOrWithdrawal === "deposit" && (<>from @{transaction.transferFromUsername}</>)}
+						{transaction.depositOrWithdrawal === "withdrawal" && (
 							<>
 								to {transaction.transferToUsername && <>@</>}
 								{transaction.transferToUsername || transaction.transferToPublicKey}

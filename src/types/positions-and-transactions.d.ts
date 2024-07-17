@@ -4,7 +4,7 @@ declare global {
 		solAmountTransferred: number
 		usdAmountTransferred: number
 		transferByCurrency: Currencies
-		outgoingOrIncoming: "outgoing" | "incoming"
+		depositOrWithdrawal: "deposit" | "withdrawal"
 
 		transferDateTime: Date
 		transferToUsername?: string
@@ -20,6 +20,14 @@ declare global {
 	}
 
 	type WalletFilterRange = "Month" | "Week" | "Today"
+
+	type TransactionTypes = "Withdrawals" | "Deposits" | "Content Purchases"
+
+	interface WalletFilter {
+		transactionTitleIncludes: string
+		orderDateBy: AscOrDesc
+		transactionType: TransactionTypes[]
+	}
 }
 
 export {}

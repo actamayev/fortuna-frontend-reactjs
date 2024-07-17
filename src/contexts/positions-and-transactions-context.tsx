@@ -14,6 +14,12 @@ class PositionsAndTransactionsClass {
 	public hasTransactionsToRetrieve = true
 	public isRetrievingTransactions = false
 
+	public walletFilter: WalletFilter = {
+		transactionTitleIncludes: "",
+		orderDateBy: "desc",
+		transactionType: ["Content Purchases", "Withdrawals", "Deposits"]
+	}
+
 	constructor() {
 		makeAutoObservable(this)
 	}
@@ -62,7 +68,7 @@ class PositionsAndTransactionsClass {
 		return computed(() => {
 			const transactions = this.filterTransactionsByTimeRange()
 			return transactions
-				.filter(transaction => transaction.outgoingOrIncoming === "incoming")
+				.filter(transaction => transaction.depositOrWithdrawal === "deposit")
 				.reduce((total, transaction) => total + transaction.usdAmountTransferred, 0)
 		}).get()
 	}
@@ -71,7 +77,7 @@ class PositionsAndTransactionsClass {
 		return computed(() => {
 			const transactions = this.filterTransactionsByTimeRange()
 			return transactions
-				.filter(transaction => transaction.outgoingOrIncoming === "incoming")
+				.filter(transaction => transaction.depositOrWithdrawal === "deposit")
 				.reduce((total, transaction) => total + transaction.solAmountTransferred, 0)
 		}).get()
 	}
@@ -80,7 +86,7 @@ class PositionsAndTransactionsClass {
 		return computed(() => {
 			const transactions = this.filterTransactionsByTimeRange()
 			return transactions
-				.filter(transaction => transaction.outgoingOrIncoming === "outgoing")
+				.filter(transaction => transaction.depositOrWithdrawal === "withdrawal")
 				.reduce((total, transaction) => total + transaction.usdAmountTransferred, 0)
 		}).get()
 	}
@@ -89,7 +95,7 @@ class PositionsAndTransactionsClass {
 		return computed(() => {
 			const transactions = this.filterTransactionsByTimeRange()
 			return transactions
-				.filter(transaction => transaction.outgoingOrIncoming === "outgoing")
+				.filter(transaction => transaction.depositOrWithdrawal === "withdrawal")
 				.reduce((total, transaction) => total + transaction.solAmountTransferred, 0)
 		}).get()
 	}
@@ -136,6 +142,26 @@ class PositionsAndTransactionsClass {
 		this.isRetrievingTransactions = newState
 	})
 
+	public updateCreatorVideosFilter = action(<K extends keyof WalletFilter>(
+		key: K, newValue: WalletFilter[K]
+	) => {
+		this.walletFilter[key] = newValue
+	})
+
+	public updateMyTransactionsOrderBy = action(() => {
+		if (this.walletFilter.orderDateBy === "asc") this.walletFilter.orderDateBy = "desc"
+		else this.walletFilter.orderDateBy = "asc"
+	})
+
+	public updateTransactionTypeFilter = action((transactionType: TransactionTypes) => {
+		const index = this.walletFilter.transactionType.indexOf(transactionType)
+		if (index > -1) {
+			this.walletFilter.transactionType.splice(index, 1)
+			return
+		}
+		this.walletFilter.transactionType.push(transactionType)
+	})
+
 	public logout() {
 		this.mySolanaTransactions = []
 		this.myPurchasedExclusiveContent = []
@@ -145,6 +171,12 @@ class PositionsAndTransactionsClass {
 
 		this.hasTransactionsToRetrieve = true
 		this.isRetrievingTransactions = false
+
+		this.walletFilter = {
+			transactionTitleIncludes: "",
+			orderDateBy: "desc",
+			transactionType: ["Content Purchases", "Withdrawals", "Deposits"]
+		}
 	}
 }
 
