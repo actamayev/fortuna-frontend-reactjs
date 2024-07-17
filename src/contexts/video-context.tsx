@@ -112,7 +112,7 @@ class VideoClass {
 		this.videos.splice(index, 0, video)
 	})
 
-	public setVideoUrlRetrievealAttempted = action((videoUUID: string): void => {
+	public setVideoUrlRetrievalAttempted = action((videoUUID: string): void => {
 		const index = this.videos.findIndex(video => video.uuid === videoUUID)
 		if (!_.isEqual(index, -1)) {
 			this.videos[index].videoUrlRetrievalAttempted = true
@@ -294,6 +294,13 @@ class VideoClass {
 		this.creatorData.map(creator => {
 			creator.videoData.map(video => {
 				video.videoUrlRetrievalAttempted = false
+			})
+		})
+		this.videoSearchMap.forEach((searchDataArray) => {
+			searchDataArray.forEach(searchData => {
+				if ("videoUrlRetrievalAttempted" in searchData) {
+					searchData.videoUrlRetrievalAttempted = false
+				}
 			})
 		})
 	})

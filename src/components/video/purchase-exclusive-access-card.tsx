@@ -28,7 +28,6 @@ function PurchaseExclusiveAccessCard(props: Props) {
 		return <>Not exclusive</>
 	}
 
-	// TODO: Fix the exclusive video not loading if a user logs in.
 	if (authClass.isLoggedIn === false) {
 		return (
 			<ShowAuthToNullUser

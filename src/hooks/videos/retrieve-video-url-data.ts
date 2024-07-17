@@ -32,7 +32,7 @@ export default function useRetrieveVideoUrlData(videoUUID: string | undefined): 
 				throw Error("Unable to get video URL")
 			}
 			if (_.isUndefined(videoUrlData.data.videoUrl)) {
-				videoClass.setVideoUrlRetrievealAttempted(videoUUID)
+				videoClass.setVideoUrlRetrievalAttempted(videoUUID)
 				return
 			}
 			videoClass.addVideoUrlToVideo(videoUUID, videoUrlData.data.videoUrl)
