@@ -12,21 +12,20 @@ export default function useMyTransactionsToShow(): SolanaTransaction[] {
 
 		// Filter by title
 		if (!_.isEmpty(positionsAndTransactionsClass.walletFilter.transactionTitleIncludes)) {
-			const titleIncludes = positionsAndTransactionsClass.walletFilter.transactionTitleIncludes.toLowerCase()
+			const lowercaseTitle = positionsAndTransactionsClass.walletFilter.transactionTitleIncludes.toLowerCase()
 			filteredTransactions = filteredTransactions.filter(transaction =>
-				(transaction.transferFromUsername.toLowerCase().includes(titleIncludes) ||
-                (transaction.transferToUsername && transaction.transferToUsername.toLowerCase().includes(titleIncludes)))
+				(transaction.transferFromUsername.toLowerCase().includes(lowercaseTitle) ||
+                (transaction.transferToUsername && transaction.transferToUsername.toLowerCase().includes(lowercaseTitle)) ||
+				(transaction.transferToPublicKey && transaction.transferToPublicKey.toLowerCase().includes(lowercaseTitle)))
 			)
 		}
 
 		// Filter by transaction type:
-		if (!_.isEmpty(positionsAndTransactionsClass.walletFilter.transactionType.length)) {
-			filteredTransactions = filteredTransactions.filter(transaction =>
-				positionsAndTransactionsClass.walletFilter.transactionType.includes(
-					transaction.depositOrWithdrawal === "deposit" ? "Deposits" : "Withdrawals"
-				)
+		filteredTransactions = filteredTransactions.filter(transaction =>
+			positionsAndTransactionsClass.walletFilter.transactionType.includes(
+				transaction.depositOrWithdrawal === "deposit" ? "Deposits" : "Withdrawals"
 			)
-		}
+		)
 
 		filteredTransactions = filteredTransactions.slice().sort((a, b) =>
 			positionsAndTransactionsClass.walletFilter.orderDateBy === "asc"
