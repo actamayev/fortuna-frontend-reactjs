@@ -8,7 +8,7 @@ function TransactionDescriptionSearch() {
 
 	const handleSearch = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(positionsAndTransactionClass)) return
-		positionsAndTransactionClass.updateCreatorVideosFilter("transactionTitleIncludes", event.target.value)
+		positionsAndTransactionClass.updateWalletFilter("transactionTitleIncludes", event.target.value)
 	}, [positionsAndTransactionClass])
 
 	const descriptionIncludes = useMemo(() => {

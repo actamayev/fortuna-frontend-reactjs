@@ -142,7 +142,7 @@ class PositionsAndTransactionsClass {
 		this.isRetrievingTransactions = newState
 	})
 
-	public updateCreatorVideosFilter = action(<K extends keyof WalletFilter>(
+	public updateWalletFilter = action(<K extends keyof WalletFilter>(
 		key: K, newValue: WalletFilter[K]
 	) => {
 		this.walletFilter[key] = newValue
