@@ -19,7 +19,7 @@ function Ownership() {
 	return (
 		<>
 			<PageHelmet pageTitle="/ownership" />
-			<div className="text-3xl font-semibold text-zinc-950 dark:text-zinc-200 mb-2 ml-2.5">
+			<div className="text-3xl font-semibold text-zinc-950 dark:text-zinc-200 ml-2.5">
 				Ownership
 			</div>
 			<MyPurchasedExclusiveContentMap />
