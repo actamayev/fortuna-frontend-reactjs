@@ -26,7 +26,7 @@ export default function SingleRecommendedVideo(props: Props) {
 					<GeneralizedVideoThumbnail
 						thumbnailData={videoData}
 						imageStyles={{
-							borderTopRightRadius: 0, borderBottomLeftRadius: 0
+							borderTopRightRadius: 0, borderBottomRightRadius: 0
 						}}
 					/>
 				</div>
