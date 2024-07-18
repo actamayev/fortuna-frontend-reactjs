@@ -31,7 +31,7 @@ function ShowProvidedUsdOrSolPrice(props: Props) {
 	}
 
 	return (
-		<>{numberWithCommasRounded(usdPriceToDisplay)} SOL</>
+		<>{numberWithCommasRounded(solPriceToDisplay)} SOL</>
 	)
 }
 

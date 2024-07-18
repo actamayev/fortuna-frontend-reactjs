@@ -34,7 +34,6 @@ function HomePageVideoDescriptionArea(props: Props) {
 				profileImageUrl={creatorProfilePictureUrl}
 				extraClasses="w-8 h-8 rounded-full mr-2 object-cover cursor-pointer"
 				onClickCreatorPicture={navigateToCreatorPageCallback}
-				onClickDefaultPicture={navigateToCreatorPageCallback}
 			/>
 			<div className="flex flex-col">
 				<div

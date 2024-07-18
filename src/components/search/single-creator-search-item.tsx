@@ -27,6 +27,7 @@ export default function SingleCreatorSearchItem(props: Props) {
 					<ShowUserProfileImageOrDefaultImage
 						profileImageUrl={creatorData.creatorProfilePictureUrl}
 						extraClasses="w-32 h-32 rounded-full object-cover"
+						onClickCreatorPicture={navigateToCreatorPageCallback}
 					/>
 				</div>
 				<CreatorDataRightOfImage creatorData={creatorData} />
