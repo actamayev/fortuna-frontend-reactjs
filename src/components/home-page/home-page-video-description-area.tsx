@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
-import ShowUsdOrSolPrice from "../show-usd-or-sol-price"
+import ShowUsdOrSolPrice from "../usd-or-sol/show-usd-or-sol-price"
 import ShowHomeVideoLockStatus from "./show-home-video-lock-status"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"

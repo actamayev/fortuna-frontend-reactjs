@@ -1,8 +1,8 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useSolanaContext } from "../contexts/solana-context"
-import useDefaultCurrency from "../hooks/memos/default-currency"
-import { numberWithCommasFixed, numberWithCommasRounded } from "../utils/numbers-with-commas"
+import { useSolanaContext } from "../../contexts/solana-context"
+import useDefaultCurrency from "../../hooks/memos/default-currency"
+import { numberWithCommasFixed, numberWithCommasRounded } from "../../utils/numbers-with-commas"
 
 interface Props {
 	usdAmount: number | null
