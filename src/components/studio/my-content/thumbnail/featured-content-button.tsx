@@ -10,7 +10,7 @@ interface Props {
 	videoId: number
 }
 
-function FeatureContentButton(props: Props) {
+function FeaturedContentButton(props: Props) {
 	const { videoId } = props
 	const creatorClass = useCreatorContext()
 	const featureVideo = useFeatureVideo()
@@ -55,4 +55,4 @@ function FeatureContentButton(props: Props) {
 	)
 }
 
-export default observer(FeatureContentButton)
+export default observer(FeaturedContentButton)

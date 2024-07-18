@@ -1,6 +1,6 @@
 import { observer } from "mobx-react"
 import SoldOutSticker from "../../../sold-out-sticker"
-import FeatureContentButton from "./feature-content-button"
+import FeaturedContentButton from "./featured-content-button"
 import VideoDurationSticker from "../../../video-duration-sticker"
 
 interface Props {
@@ -44,7 +44,7 @@ function ShowCurrentThumbnail(props: Props) {
 				videoListingStatus={content.videoListingStatus}
 				backgroundColor="bg-green-600"
 			/>
-			<FeatureContentButton videoId={content.videoId}/>
+			<FeaturedContentButton videoId={content.videoId}/>
 			<VideoDurationSticker videoDurationSeconds={content.videoDurationSeconds} />
 			<input
 				ref={fileInputRef}
