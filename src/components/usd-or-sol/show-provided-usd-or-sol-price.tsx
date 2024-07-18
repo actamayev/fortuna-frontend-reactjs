@@ -14,25 +14,17 @@ function ShowProvidedUsdOrSolPrice(props: Props) {
 
 	if (defaultCurrency === "usd") {
 		if (roundOrFixed === "fixed") {
-			return (
-				<>${numberWithCommasFixed(usdPriceToDisplay, 2)}</>
-			)
+			return <>${numberWithCommasFixed(usdPriceToDisplay, 2)}</>
 		}
 
-		return (
-			<>${numberWithCommasRounded(usdPriceToDisplay)}</>
-		)
+		return <>${numberWithCommasRounded(usdPriceToDisplay)}</>
 	}
 
 	if (roundOrFixed === "fixed") {
-		return (
-			<>{numberWithCommasFixed(solPriceToDisplay, 4)} SOL</>
-		)
+		return <>{numberWithCommasFixed(solPriceToDisplay, 4)} SOL</>
 	}
 
-	return (
-		<>{numberWithCommasRounded(solPriceToDisplay)} SOL</>
-	)
+	return <>{numberWithCommasRounded(solPriceToDisplay)} SOL</>
 }
 
 export default observer(ShowProvidedUsdOrSolPrice)
