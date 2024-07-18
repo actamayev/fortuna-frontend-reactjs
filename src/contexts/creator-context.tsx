@@ -105,6 +105,31 @@ class CreatorClass {
 		this.myContentFilter.titleIncludes = newTitle
 	})
 
+	get featuredContentId(): number | undefined {
+		const myFeaturedConent = this.myContent.find(content => content.isVideoFeatured === true)
+		return myFeaturedConent?.videoId
+	}
+
+	public featureVideoAndUnfeatureVideo = action((videoIdToFeature: number) => {
+		this.myContent = this.myContent.map(content => {
+			if (content.videoId === videoIdToFeature) {
+				return { ...content, isVideoFeatured: true }
+			} else if (content.videoId === this.featuredContentId) {
+				return { ...content, isVideoFeatured: false }
+			}
+			return content
+		})
+	})
+
+	public unfeatureVideo = action(() => {
+		this.myContent = this.myContent.map(content => {
+			if (content.isVideoFeatured === true) {
+				return { ...content, isVideoFeatured: false }
+			}
+			return content
+		})
+	})
+
 	public updateNewVideoDetails = action(<K extends keyof NewVideoDetails>(
 		key: K, value: NewVideoDetails[K]
 	) => {
