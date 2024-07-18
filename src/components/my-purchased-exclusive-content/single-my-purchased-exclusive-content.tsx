@@ -16,7 +16,6 @@ function SingleMyPurchasedExclusiveContent(props: Props) {
 		navigateToVideoPage(myPurchasedExclusiveContent.uuid)
 	}, [myPurchasedExclusiveContent.uuid, navigateToVideoPage])
 
-
 	return (
 		<div
 			className="m-2.5 rounded-lg cursor-pointer border border-zinc-200 dark:border-zinc-700
