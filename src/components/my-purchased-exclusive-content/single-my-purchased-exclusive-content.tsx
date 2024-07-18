@@ -1,12 +1,14 @@
 import { useCallback } from "react"
+import { observer } from "mobx-react"
 import GeneralizedVideoThumbnail from "../generalized-video-thumbnail"
 import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
+import BeneathThumbnailPurchasedExclusiveContent from "./beneath-thumbnail-purchased-exclusive-content"
 
 interface Props {
 	myPurchasedExclusiveContent: MyPurchasedExclusiveContent
 }
 
-export default function SingleMyPurchasedExclusiveContent(props: Props) {
+function SingleMyPurchasedExclusiveContent(props: Props) {
 	const { myPurchasedExclusiveContent } = props
 	const navigateToVideoPage = useNavigateToVideoPage()
 
@@ -16,25 +18,25 @@ export default function SingleMyPurchasedExclusiveContent(props: Props) {
 
 	return (
 		<div
-			className="bg-zinc-100 dark:bg-zinc-800 rounded-lg p-4 m-2 grid grid-cols-1 \
-				grid-rows-1 border border-zinc-200 dark:border-zinc-700 hover:cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700"
-			style={{ width: "288px", height: "225px" }}
+			className="m-2.5 rounded-lg cursor-pointer border border-zinc-200 dark:border-zinc-700
+			bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700"
 			onClick={navigateToVideoPageCallback}
 		>
-			<div className="flex flex-col">
-				<h2 className="text-lg font-semibold mb-2 dark:text-zinc-200 overflow-hidden text-ellipsis whitespace-nowrap">
-					{myPurchasedExclusiveContent.videoName}
-				</h2>
-				<GeneralizedVideoThumbnail
-					thumbnailData={{
-						imageUrl: myPurchasedExclusiveContent.imageUrl,
-						videoName: myPurchasedExclusiveContent.videoName,
-						videoDurationSeconds: myPurchasedExclusiveContent.videoDurationSeconds,
-						videoListingStatus: "LISTED" // Doesn't matter, just has to be supplied
-					}}
-					showSoldOutSticker={false}
-				/>
-			</div>
+			<GeneralizedVideoThumbnail
+				thumbnailData={{
+					imageUrl: myPurchasedExclusiveContent.imageUrl,
+					videoName: myPurchasedExclusiveContent.videoName,
+					videoDurationSeconds: myPurchasedExclusiveContent.videoDurationSeconds,
+					videoListingStatus: "LISTED" // Doesn't matter, just has to be supplied
+				}}
+				showSoldOutSticker={false}
+				imageStyles={{
+					borderBottomLeftRadius: 0, borderBottomRightRadius: 0
+				}}
+			/>
+			<BeneathThumbnailPurchasedExclusiveContent myPurchasedExclusiveContent={myPurchasedExclusiveContent} />
 		</div>
 	)
 }
+
+export default observer(SingleMyPurchasedExclusiveContent)

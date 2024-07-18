@@ -98,17 +98,16 @@ class VideoClass {
 	})
 
 	public addVideoToVideosList = action((video: VideoDataWithUrlRetrievalStatus): void => {
-		if (!_.isUndefined(this.contextForVideo(video.uuid))) return
+		const existingIndex = this.videos.findIndex(v => v.uuid === video.uuid)
 
-		if (_.isEmpty(this.videos)) {
-			this.videos.push(video)
+		if (existingIndex !== -1) {
+		// Replace existing video
+			this.videos[existingIndex] = video
 			return
 		}
 
-		const index = _.sortedIndexBy(this.videos, video, (vd) =>
-			-dayjs(vd.createdAt).unix()
-		)
-
+		// Insert new video into sorted list
+		const index = _.sortedIndexBy(this.videos, video, (vd) => -dayjs(vd.createdAt).unix())
 		this.videos.splice(index, 0, video)
 	})
 

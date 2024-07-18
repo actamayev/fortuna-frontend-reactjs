@@ -1,8 +1,7 @@
 import { observer } from "mobx-react"
 import { FaShoppingBag } from "react-icons/fa"
-import useDefaultCurrency from "../../../hooks/memos/default-currency"
-import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
 import { useAbbreviatedDateFormatter } from "../../../hooks/date-formatter"
+import ShowProvidedUsdOrSolPrice from "../../usd-or-sol/show-provided-usd-or-sol-price"
 import useNavigateToVideoNewPage from "../../../hooks/navigate/navigate-to-video-new-page"
 
 interface Props {
@@ -11,9 +10,8 @@ interface Props {
 
 function SingleContentPurchaseTransaction(props: Props) {
 	const { transaction } = props
-	const defaultCurrency = useDefaultCurrency()
-	const abbreviatedDateFormatter = useAbbreviatedDateFormatter()
 	const navigateToVideoNewPage = useNavigateToVideoNewPage()
+	const abbreviatedDateFormatter = useAbbreviatedDateFormatter()
 
 	return (
 		<div
@@ -30,13 +28,13 @@ function SingleContentPurchaseTransaction(props: Props) {
 				</div>
 			</div>
 			<div className="col-span-1 flex items-center">
-				<div className="flex justify-start text-red-600 dark:text-red-400">
+				<div className="flex justify-start text-zinc-950 dark:text-zinc-200">
 					-
-					{(defaultCurrency === "usd") ? (
-						<>${numberWithCommasFixed(transaction.priceInUsd, 2)}</>
-					) : (
-						<>{numberWithCommasFixed(transaction.priceInSol, 4)} SOL</>
-					)}
+					<ShowProvidedUsdOrSolPrice
+						solPriceToDisplay={transaction.priceInSol}
+						usdPriceToDisplay={transaction.priceInUsd}
+						roundOrFixed="fixed"
+					/>
 				</div>
 			</div>
 			<div className="col-span-4 flex items-center overflow-hidden">

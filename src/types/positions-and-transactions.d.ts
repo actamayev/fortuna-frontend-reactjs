@@ -20,6 +20,9 @@ declare global {
 		purchaseDate: Date
 		priceInSol: number
 		priceInUsd: number
+		channelName: string
+		creatorProfilePictureUrl: string | null
+		creatorUsername: string
 	}
 
 	type WalletFilterRange = "Month" | "Week" | "Today"

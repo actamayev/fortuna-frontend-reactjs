@@ -33,7 +33,6 @@ export default function SubVideoSection(props: Props) {
 									profileImageUrl={creatorProfilePictureUrl}
 									extraClasses="min-w-full min-h-full object-cover cursor-pointer"
 									onClickCreatorPicture={navigateToCreatorPageCallback}
-									onClickDefaultPicture={navigateToCreatorPageCallback}
 								/>
 							</div>
 							<span

@@ -1,8 +1,7 @@
 import { observer } from "mobx-react"
 import { BsArrowUpRightSquareFill, BsArrowDownLeftSquareFill } from "react-icons/bs"
-import useDefaultCurrency from "../../../hooks/memos/default-currency"
-import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
 import { useAbbreviatedDateFormatter } from "../../../hooks/date-formatter"
+import ShowProvidedUsdOrSolPrice from "../../usd-or-sol/show-provided-usd-or-sol-price"
 
 interface Props {
 	transaction: SolanaTransaction
@@ -10,7 +9,6 @@ interface Props {
 
 function SingleSolanaTransaction(props: Props) {
 	const { transaction } = props
-	const defaultCurrency = useDefaultCurrency()
 	const abbreviatedDateFormatter = useAbbreviatedDateFormatter()
 
 	return (
@@ -40,11 +38,11 @@ function SingleSolanaTransaction(props: Props) {
 						"text-red-600 dark:text-red-400"}`}
 				>
 					{transaction.depositOrWithdrawal === "deposit" ? (<>+</>) : (<>-</>)}
-					{(defaultCurrency === "usd") ? (
-						<>${numberWithCommasFixed(transaction.usdAmountTransferred, 2)}</>
-					) : (
-						<>{numberWithCommasFixed(transaction.solAmountTransferred, 4)} SOL</>
-					)}
+					<ShowProvidedUsdOrSolPrice
+						roundOrFixed="fixed"
+						solPriceToDisplay={transaction.solAmountTransferred}
+						usdPriceToDisplay={transaction.usdAmountTransferred}
+					/>
 				</div>
 			</div>
 			<div className="col-span-4 flex items-center">

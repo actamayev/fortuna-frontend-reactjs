@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import ShowUsdOrSolPrice from "../../../show-usd-or-sol-price"
 import { useSolanaContext } from "../../../../contexts/solana-context"
+import ShowUsdOrSolPrice from "../../../usd-or-sol/show-usd-or-sol-price"
 import getTieredAccessPriceUsd from "../../../../utils/video-access-tiers/get-tiered-access-price-usd"
 
 interface Props {

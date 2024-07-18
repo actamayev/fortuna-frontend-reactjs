@@ -17,6 +17,7 @@ export default function useRetrieveCreatorVideosAndDataUseEffect(creatorUsername
 				!_.isUndefined(videoClass.contextForCreatorData(removeLeadingAt(creatorUsername)))
 			) return
 			videoClass.setIsCreatorDataBeingRetrieved(true)
+			if (_.isEmpty(removeLeadingAt(creatorUsername))) return
 
 			const creatorDataResponse = await fortunaApiClient.videoDataService.getVideosByCreatorUsername(removeLeadingAt(creatorUsername))
 

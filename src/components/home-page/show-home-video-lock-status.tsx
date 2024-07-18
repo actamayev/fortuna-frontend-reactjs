@@ -1,3 +1,4 @@
+import { observer } from "mobx-react"
 import { FaLock, FaUnlock } from "react-icons/fa"
 import Tooltip from "../tooltip"
 
@@ -6,7 +7,7 @@ interface Props {
 	index: number
 }
 
-export default function ShowHomeVideoLockStatus(props: Props) {
+function ShowHomeVideoLockStatus(props: Props) {
 	const { isUserAbleToAccessVideo, index } = props
 
 	const isRightMostVideo = ((index  + 1) % 4) === 0
@@ -32,3 +33,5 @@ export default function ShowHomeVideoLockStatus(props: Props) {
 		</Tooltip>
 	)
 }
+
+export default observer(ShowHomeVideoLockStatus)
