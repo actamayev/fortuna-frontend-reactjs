@@ -1,5 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
+import { observer } from "mobx-react"
 import ShowUsdOrSolPrice from "../show-usd-or-sol-price"
 import ShowHomeVideoLockStatus from "./show-home-video-lock-status"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
@@ -13,7 +14,7 @@ interface Props {
 	index: number
 }
 
-export default function HomePageVideoDescriptionArea(props: Props) {
+function HomePageVideoDescriptionArea(props: Props) {
 	const { video, index } = props
 	const navigateToVideoPage = useNavigateToVideoPage()
 	const navigateToCreatorPage = useNavigateToCreatorPage()
@@ -68,3 +69,5 @@ export default function HomePageVideoDescriptionArea(props: Props) {
 		</div>
 	)
 }
+
+export default observer(HomePageVideoDescriptionArea)

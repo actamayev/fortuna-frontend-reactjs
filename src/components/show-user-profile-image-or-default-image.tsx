@@ -1,4 +1,5 @@
 import _ from "lodash"
+import { observer } from "mobx-react"
 import { FaUserCircle } from "react-icons/fa"
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
 	extraClasses: string
 }
 
-export default function ShowUserProfileImageOrDefaultImage(props: Props) {
+function ShowUserProfileImageOrDefaultImage(props: Props) {
 	const { profileImageUrl, onClickCreatorPicture, onClickDefaultPicture, extraClasses } = props
 
 	if (_.isNil(profileImageUrl)) {
@@ -29,3 +30,5 @@ export default function ShowUserProfileImageOrDefaultImage(props: Props) {
 		/>
 	)
 }
+
+export default observer(ShowUserProfileImageOrDefaultImage)
