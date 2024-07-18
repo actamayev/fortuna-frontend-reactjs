@@ -28,8 +28,8 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 	}, [navigateToWallet])
 
 	return (
-		<div className="px-2">
-			<div className="text-sm font-medium my-2 dark:text-zinc-200 overflow-hidden text-ellipsis whitespace-nowrap">
+		<div className="p-1.5">
+			<div className="text-sm font-medium pb-1.5 dark:text-zinc-200 overflow-hidden text-ellipsis whitespace-nowrap">
 				{myPurchasedExclusiveContent.videoName}
 			</div>
 			<div className="flex items-center">
@@ -42,15 +42,15 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 				</div>
 				<div
 					className="text-xs font-medium cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap
-						text-zinc-700 hover:text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"
+					text-zinc-700 hover:text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"
 					onClick={navigateToCreatorPageCallback}
 				>
 					{myPurchasedExclusiveContent.channelName}
 				</div>
 			</div>
-			<div
-				className="text-xs font-medium cursor-pointer text-zinc-950 dark:text-zinc-200 mt-2
-					underline decoration-dotted hover:decoration-solid overflow-hidden text-ellipsis whitespace-nowrap"
+			<span
+				className="text-xs font-medium cursor-pointer text-zinc-950 dark:text-zinc-200 pt-1.5
+				underline decoration-dotted hover:decoration-solid overflow-hidden text-ellipsis whitespace-nowrap"
 				onClick={navigateToWalletScreen}
 			>
 					Purchased {relativeDateFormatter(myPurchasedExclusiveContent.purchaseDate)} for {" "}
@@ -59,7 +59,7 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 					solPriceToDisplay={myPurchasedExclusiveContent.priceInSol}
 					usdPriceToDisplay={myPurchasedExclusiveContent.priceInUsd}
 				/>
-			</div>
+			</span>
 		</div>
 	)
 }

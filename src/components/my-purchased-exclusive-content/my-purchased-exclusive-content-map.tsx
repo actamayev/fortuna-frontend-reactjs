@@ -19,11 +19,10 @@ function MyPurchasedExclusiveContentMap() {
 
 	return (
 		<div className="grid grid-cols-4">
-			{positionsAndTransactionClass.myPurchasedExclusiveContent.map((exclusiveContent, index) => (
+			{positionsAndTransactionClass.myPurchasedExclusiveContent.map(exclusiveContent => (
 				<SingleMyPurchasedExclusiveContent
 					key={exclusiveContent.uuid}
 					myPurchasedExclusiveContent={exclusiveContent}
-					index={index}
 				/>
 			))}
 		</div>
