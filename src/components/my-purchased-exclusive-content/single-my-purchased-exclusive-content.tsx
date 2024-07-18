@@ -24,7 +24,7 @@ function SingleMyPurchasedExclusiveContent(props: Props) {
 		} else if (columnPosition === 3) {
 			return "ml-2.5 my-2.5" // Fourth column: no right margin
 		}
-		return "mx-2.5 my-2.5" // Other columns: left and right margins
+		return "m-2.5" // Other columns: left and right margins
 	}, [index])
 
 	return (
