@@ -28,7 +28,7 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 	}, [navigateToWallet])
 
 	return (
-		<div className="flex flex-col">
+		<div className="px-2">
 			<div className="text-sm font-medium my-2 dark:text-zinc-200 overflow-hidden text-ellipsis whitespace-nowrap">
 				{myPurchasedExclusiveContent.videoName}
 			</div>

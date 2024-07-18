@@ -29,7 +29,7 @@ function SingleMyPurchasedExclusiveContent(props: Props) {
 
 	return (
 		<div
-			className={`rounded-lg p-2 cursor-pointer border border-zinc-200 dark:border-zinc-700
+			className={`rounded-lg cursor-pointer border border-zinc-200 dark:border-zinc-700
 			bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 ${marginClasses}`}
 			onClick={navigateToVideoPageCallback}
 		>
@@ -41,6 +41,9 @@ function SingleMyPurchasedExclusiveContent(props: Props) {
 					videoListingStatus: "LISTED" // Doesn't matter, just has to be supplied
 				}}
 				showSoldOutSticker={false}
+				imageStyles={{
+					borderBottomLeftRadius: 0, borderBottomRightRadius: 0
+				}}
 			/>
 			<BeneathThumbnailPurchasedExclusiveContent myPurchasedExclusiveContent={myPurchasedExclusiveContent} />
 		</div>
