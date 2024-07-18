@@ -1,6 +1,6 @@
 import { observer } from "mobx-react"
 import { FaLock, FaUnlock } from "react-icons/fa"
-import ShowUsdOrSolPrice from "../../show-usd-or-sol-price"
+import ShowUsdOrSolPrice from "../../usd-or-sol/show-usd-or-sol-price"
 import getTieredAccessPriceUsd from "../../../utils/video-access-tiers/get-tiered-access-price-usd"
 
 interface Props {

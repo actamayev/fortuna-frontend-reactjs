@@ -29,7 +29,7 @@ function CreatorVideoRightInformationSection(props: Props) {
 				</div>
 			</div>
 			<div className="text-sm text-zinc-600 dark:text-zinc-300">
-				{_.truncate(videoData.description, { length: 300 })}
+				{_.truncate(videoData.description, { length: 150 })}
 			</div>
 			<div className="mt-auto">
 				<BeneathDescriptionSection videoData={videoData} />
