@@ -1,12 +1,13 @@
 import _ from "lodash"
 import { useMemo } from "react"
 import { observer, useObserver } from "mobx-react"
+import useDefaultCurrency from "../../../hooks/memos/default-currency"
 import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
-import ShowProvidedUsdOrSolPrice from "../../usd-or-sol/show-provided-usd-or-sol-price"
 import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 
 function Withdrawals() {
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
+	const defaultCurrency = useDefaultCurrency()
 
 	const transactionsTimeRange = useMemo(() => {
 		if (_.isNull(positionsAndTransactionsClass)) return "Month"
@@ -27,24 +28,24 @@ function Withdrawals() {
 	return (
 		<div className="flex flex-col">
 			<div className="text-lg font-bold">
-				<ShowProvidedUsdOrSolPrice
-					solPriceToDisplay={
-						<>
-							{_.isNull(withdrawalsSol) ?
-								(<>Loading...</>) :
-								(<>-{numberWithCommasFixed(withdrawalsSol, 4)} SOL</>)
-							}
-						</>
-					}
-					usdPriceToDisplay={
-						<>
-							{_.isNull(withdrawalsUsd) ?
-								(<>Loading...</>) :
-								(<>-${numberWithCommasFixed(withdrawalsUsd, 2)}</>)
-							}
-						</>
-					}
-				/>
+				{defaultCurrency === "sol" && (
+					<>
+						{_.isNull(withdrawalsSol) ? (
+							<>Loading...</>
+						) : (
+							<>-{numberWithCommasFixed(withdrawalsSol, 4)} SOL</>
+						)}
+					</>
+				)}
+				{defaultCurrency === "usd" && (
+					<>
+						{_.isNull(withdrawalsUsd) ? (
+							<>Loading...</>
+						) : (
+							<>-${numberWithCommasFixed(withdrawalsUsd, 2)}</>
+						)}
+					</>
+				)}
 			</div>
 			<div className="text-zinc-500 dark:text-zinc-400 text-sm">
 				Withdrawals {" "}

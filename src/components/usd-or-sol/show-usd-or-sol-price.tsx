@@ -6,7 +6,7 @@ import { numberWithCommasFixed, numberWithCommasRounded } from "../../utils/numb
 
 interface Props {
 	usdAmount: number | null
-	roundOrFixed: "round" | "fixed"
+	roundOrFixed: RoundOrFixed
 }
 
 function ShowUSDOrSolPrice(props: Props) {

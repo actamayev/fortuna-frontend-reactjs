@@ -1,6 +1,5 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
 import ShowProvidedUsdOrSolPrice from "../../usd-or-sol/show-provided-usd-or-sol-price"
 
 interface Props {
@@ -22,12 +21,9 @@ function EarningsSection(props: Props) {
 		<div>
 			Profit from video: {" "}
 			<ShowProvidedUsdOrSolPrice
-				solPriceToDisplay={
-					<>{numberWithCommasFixed(content.totalCreatorProfitInSol, 4)} SOL</>
-				}
-				usdPriceToDisplay={
-					<>${numberWithCommasFixed(content.totalCreatorProfitInUsd, 2)}</>
-				}
+				roundOrFixed="fixed"
+				solPriceToDisplay={content.totalCreatorProfitInSol}
+				usdPriceToDisplay={content.totalCreatorProfitInUsd}
 			/>
 			{!_.isNull(content.numberOfExclusivePurchasesSoFar) && (
 				<div>

@@ -1,19 +1,38 @@
 import { observer } from "mobx-react"
 import useDefaultCurrency from "../../hooks/memos/default-currency"
+import { numberWithCommasFixed, numberWithCommasRounded } from "../../utils/numbers-with-commas"
 
 interface Props {
-	solPriceToDisplay: React.ReactNode
-	usdPriceToDisplay: React.ReactNode
+	solPriceToDisplay: number
+	usdPriceToDisplay: number
+	roundOrFixed: RoundOrFixed
 }
 
-// TODO: Consider also passing in round or fixed. if round, use number with commas rounded, fix fixed
-// This should be done to not have to pass in JSX
 function ShowProvidedUsdOrSolPrice(props: Props) {
-	const { solPriceToDisplay, usdPriceToDisplay } = props
+	const { solPriceToDisplay, usdPriceToDisplay, roundOrFixed } = props
 	const defaultCurrency = useDefaultCurrency()
 
-	if (defaultCurrency === "usd") return usdPriceToDisplay
-	return solPriceToDisplay
+	if (defaultCurrency === "usd") {
+		if (roundOrFixed === "fixed") {
+			return (
+				<>${numberWithCommasFixed(usdPriceToDisplay, 2)}</>
+			)
+		}
+
+		return (
+			<>${numberWithCommasRounded(usdPriceToDisplay)}</>
+		)
+	}
+
+	if (roundOrFixed === "fixed") {
+		return (
+			<>{numberWithCommasFixed(solPriceToDisplay, 4)} SOL</>
+		)
+	}
+
+	return (
+		<>{numberWithCommasRounded(usdPriceToDisplay)} SOL</>
+	)
 }
 
 export default observer(ShowProvidedUsdOrSolPrice)

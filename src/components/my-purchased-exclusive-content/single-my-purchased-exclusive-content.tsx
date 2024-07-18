@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import useTypedNavigate from "../../hooks/navigate/typed-navigate"
@@ -83,12 +82,9 @@ function SingleMyPurchasedExclusiveContent(props: Props) {
 				>
 					Purchased {relativeDateFormatter(myPurchasedExclusiveContent.purchaseDate)} for {" "}
 					<ShowProvidedUsdOrSolPrice
-						solPriceToDisplay={
-							<>{_.round(myPurchasedExclusiveContent.priceInSol, 4)} SOL</>
-						}
-						usdPriceToDisplay={
-							<>${_.round(myPurchasedExclusiveContent.priceInUsd, 2)}</>
-						}
+						roundOrFixed="round"
+						solPriceToDisplay={myPurchasedExclusiveContent.priceInSol}
+						usdPriceToDisplay={myPurchasedExclusiveContent.priceInUsd}
 					/>
 				</div>
 			</div>

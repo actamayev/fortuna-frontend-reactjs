@@ -1,7 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../contexts/solana-context"
-import { numberWithCommasFixed } from "../../utils/numbers-with-commas"
 import ShowProvidedUsdOrSolPrice from "../usd-or-sol/show-provided-usd-or-sol-price"
 
 function WalletBalance() {
@@ -15,12 +14,9 @@ function WalletBalance() {
 				) : (
 
 					<ShowProvidedUsdOrSolPrice
-						solPriceToDisplay={
-							<>{numberWithCommasFixed(solanaClass.walletBalanceSol, 4)} SOL</>
-						}
-						usdPriceToDisplay={
-							<>${numberWithCommasFixed(solanaClass.walletBalanceUSD.get(), 2)}</>
-						}
+						roundOrFixed="fixed"
+						solPriceToDisplay={solanaClass.walletBalanceSol}
+						usdPriceToDisplay={solanaClass.walletBalanceUSD.get()}
 					/>
 				)}
 			</div>

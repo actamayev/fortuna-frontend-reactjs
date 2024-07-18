@@ -40,6 +40,8 @@ declare global {
 	type AtPrefixedString = string & { __brand: "AtPrefixedString" }
 
 	type AscOrDesc = "asc" | "desc"
+
+	type RoundOrFixed = "round" | "fixed"
 }
 
 export {}

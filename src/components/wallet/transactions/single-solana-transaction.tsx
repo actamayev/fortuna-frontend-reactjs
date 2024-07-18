@@ -1,6 +1,5 @@
 import { observer } from "mobx-react"
 import { BsArrowUpRightSquareFill, BsArrowDownLeftSquareFill } from "react-icons/bs"
-import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
 import { useAbbreviatedDateFormatter } from "../../../hooks/date-formatter"
 import ShowProvidedUsdOrSolPrice from "../../usd-or-sol/show-provided-usd-or-sol-price"
 
@@ -40,12 +39,9 @@ function SingleSolanaTransaction(props: Props) {
 				>
 					{transaction.depositOrWithdrawal === "deposit" ? (<>+</>) : (<>-</>)}
 					<ShowProvidedUsdOrSolPrice
-						solPriceToDisplay={
-							<>{numberWithCommasFixed(transaction.solAmountTransferred, 4)} SOL</>
-						}
-						usdPriceToDisplay={
-							<>${numberWithCommasFixed(transaction.usdAmountTransferred, 2)}</>
-						}
+						roundOrFixed="fixed"
+						solPriceToDisplay={transaction.solAmountTransferred}
+						usdPriceToDisplay={transaction.usdAmountTransferred}
 					/>
 				</div>
 			</div>

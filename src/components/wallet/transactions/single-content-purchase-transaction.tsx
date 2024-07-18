@@ -1,6 +1,5 @@
 import { observer } from "mobx-react"
 import { FaShoppingBag } from "react-icons/fa"
-import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
 import { useAbbreviatedDateFormatter } from "../../../hooks/date-formatter"
 import ShowProvidedUsdOrSolPrice from "../../usd-or-sol/show-provided-usd-or-sol-price"
 import useNavigateToVideoNewPage from "../../../hooks/navigate/navigate-to-video-new-page"
@@ -32,12 +31,9 @@ function SingleContentPurchaseTransaction(props: Props) {
 				<div className="flex justify-start text-zinc-950 dark:text-zinc-200">
 					-
 					<ShowProvidedUsdOrSolPrice
-						solPriceToDisplay={
-							<>{numberWithCommasFixed(transaction.priceInSol, 4)} SOL</>
-						}
-						usdPriceToDisplay={
-							<>${numberWithCommasFixed(transaction.priceInUsd, 2)}</>
-						}
+						solPriceToDisplay={transaction.priceInSol}
+						usdPriceToDisplay={transaction.priceInUsd}
+						roundOrFixed="fixed"
 					/>
 				</div>
 			</div>
