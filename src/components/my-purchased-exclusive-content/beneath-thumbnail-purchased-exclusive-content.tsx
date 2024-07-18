@@ -42,7 +42,7 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 				</div>
 				<div
 					className="text-xs font-medium cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap
-						text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"
+						text-zinc-700 hover:text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"
 					onClick={navigateToCreatorPageCallback}
 				>
 					{myPurchasedExclusiveContent.channelName}
