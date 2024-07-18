@@ -1,52 +1,31 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { HiMagnifyingGlass } from "react-icons/hi2"
-import React, { useCallback, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useLocation } from "react-router-dom"
-import useVideoSearch from "../../hooks/search/video-search"
 import { useVideoContext } from "../../contexts/video-context"
-import useTypedNavigate from "../../hooks/navigate/typed-navigate"
+import useHandleSearch from "../../hooks/search/handle-search"
+import useHandleKeyDownUseEffect from "../../hooks/search/handle-key-down-use-effect"
 import useHandleTypeUsername from "../../hooks/handle-type-validation/handle-type-username"
 
-function SearchBar() {
-	const navigate = useTypedNavigate()
+function HeaderSearchBar() {
 	const videoClass = useVideoContext()
 	const location = useLocation()
-	const videoSearch = useVideoSearch()
 	const handleTypeUsername = useHandleTypeUsername()
 	const inputRef = useRef<HTMLInputElement>(null)
 	const [isFocused, setIsFocused] = useState(false)
-
-	const handleSearch = useCallback(async (event: React.KeyboardEvent<HTMLInputElement>) => {
-		if (
-			event.key !== "Enter" ||
-			_.isNull(videoClass.searchTerm) ||
-			_.isEmpty(videoClass.searchTerm.trim())
-		) return
-		await videoSearch()
-		if (location.pathname !== (`/s/${videoClass.searchTerm}`)) {
-			navigate(`/s/${videoClass.searchTerm}`)
-		}
-	}, [location.pathname, navigate, videoClass.searchTerm, videoSearch])
-
-	useEffect(() => {
-		const handleKeyDown = (event: KeyboardEvent) => {
-			if (event.key === "/" && document.activeElement?.tagName !== "INPUT" && document.activeElement?.tagName !== "TEXTAREA") {
-				event.preventDefault()
-				inputRef.current?.focus()
-			}
-		}
-
-		document.addEventListener("keydown", handleKeyDown)
-		return () => {
-			document.removeEventListener("keydown", handleKeyDown)
-		}
-	}, [])
+	const handleSearch = useHandleSearch()
+	useHandleKeyDownUseEffect(inputRef)
 
 	useEffect(() => {
 		if (location.pathname !== "/") return
 		inputRef.current?.focus()
 	}, [location.pathname])
+
+	if (
+		location.pathname === "/login" ||
+		location.pathname === "/register" ||
+		location.pathname === "/register-username"
+	) return null
 
 	return (
 		<div className="flex justify-center items-center w-full">
@@ -59,10 +38,10 @@ function SearchBar() {
 					type="text"
 					ref={inputRef}
 					className="w-full pl-10 pr-10 p-1.5 border text-sm h-11 bg-inherit
-						placeholder-neutral-500 rounded-[3px] outline-none \
-						border-zinc-200 hover:border-zinc-400  focus:border-zinc-700 \
+						placeholder-neutral-500 rounded-[3px] outline-none
+						border-zinc-200 hover:border-zinc-400  focus:border-zinc-700
 						dark:border-zinc-800 dark:hover:border-zinc-700 dark:focus:border-zinc-300 dark:text-zinc-200"
-					placeholder="Search"
+					placeholder="Search for the videos and creators you love to love"
 					value={videoClass.searchTerm || ""}
 					onChange={e => videoClass.setSearchTerm(handleTypeUsername(e))}
 					onKeyDown={handleSearch}
@@ -80,4 +59,4 @@ function SearchBar() {
 	)
 }
 
-export default observer(SearchBar)
+export default observer(HeaderSearchBar)
