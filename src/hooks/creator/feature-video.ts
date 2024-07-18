@@ -15,12 +15,9 @@ export default function useFeatureVideo(): (
 	return useCallback(async (
 		videoIdToFeature: number
 	): Promise<void> => {
-		if (_.isNull(creatorClass)) return
-
-		const featuredContentId = creatorClass.featuredContentId
-
 		try {
-			const response = await fortunaApiClient.creatorDataService.featureVideo(videoIdToFeature, featuredContentId)
+			if (_.isNull(creatorClass)) return
+			const response = await fortunaApiClient.creatorDataService.featureVideo(videoIdToFeature, creatorClass.featuredContentId)
 
 			if (!_.isEqual(response.status, 200) || isErrorResponses(response.data)) {
 				return

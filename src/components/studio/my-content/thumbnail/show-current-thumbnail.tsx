@@ -44,7 +44,7 @@ function ShowCurrentThumbnail(props: Props) {
 				videoListingStatus={content.videoListingStatus}
 				backgroundColor="bg-green-600"
 			/>
-			<FeaturedContentButton videoId={content.videoId}/>
+			<FeaturedContentButton videoId={content.videoId} />
 			<VideoDurationSticker videoDurationSeconds={content.videoDurationSeconds} />
 			<input
 				ref={fileInputRef}
