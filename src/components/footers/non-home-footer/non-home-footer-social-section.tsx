@@ -1,11 +1,11 @@
 import XLink from "../../social-links/x-link"
-import FooterHeaderText from "./footer-header-text"
+import NonHomeFooterHeaderText from "./non-home-footer-header-text"
 import LinkedinLink from "../../social-links/linkedin-link"
 
-export default function FooterSocialSection() {
+export default function NonHomeFooterSocialSection() {
 	return (
 		<div>
-			<FooterHeaderText headerTitle="Social" />
+			<NonHomeFooterHeaderText headerTitle="Social" />
 			<div className="flex space-x-4">
 				<XLink />
 				<LinkedinLink />

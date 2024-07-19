@@ -1,20 +1,19 @@
-import FooterSocialSection from "./footer-social-section"
-import FooterSupportSection from "./footer-support-section"
-import FooterCompanySection from "./footer-company-section"
+import NonHomeFooterSocialSection from "./non-home-footer-social-section"
+import NonHomeFooterSupportSection from "./non-home-footer-support-section"
+import NonHomeFooterCompanySection from "./non-home-footer-company-section"
 
-// TODO: Make footer thinner like viewstats
 export default function NonHomeFooter() {
 	return (
-		<footer className="bg-zinc-100 dark:bg-zinc-800 w-full py-8">
+		<footer className="bg-zinc-100 dark:bg-zinc-800 w-full py-4">
 			<div className="max-w-screen-xl mx-auto px-4">
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-					<FooterCompanySection />
-					<FooterSupportSection />
-					<FooterSocialSection />
+					<NonHomeFooterCompanySection />
+					<NonHomeFooterSupportSection />
+					<NonHomeFooterSocialSection />
 				</div>
-				<hr className="flex-grow mt-4 border-zinc-300" />
-				<div className="text-center text-zinc-950 mt-8 dark:text-zinc-50 font-normal text-base">
-					<p>Fortuna Systems Inc</p>
+				<hr className="flex-grow border-zinc-300 my-4" />
+				<div className="text-center text-zinc-950 dark:text-zinc-50 font-normal text-base">
+					Fortuna Systems Inc
 				</div>
 			</div>
 		</footer>
