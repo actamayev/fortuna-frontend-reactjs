@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
-import useVideoSearch from "../hooks/search/video-search"
+import useVideoSearch from "../hooks/search/general-search"
 import { useVideoContext } from "../contexts/video-context"
 import BasicHelmet from "../components/helmet/basic-helmet"
 import SingleSearchItem from "../components/search/single-search-item"
