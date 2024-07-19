@@ -14,7 +14,6 @@ export default function NonHomeFooterCompanySection() {
 			<FooterLink
 				linkTo="/contact"
 				linkTitle="Contact Us"
-				extraClasses="mb-2"
 			/>
 		</div>
 	)

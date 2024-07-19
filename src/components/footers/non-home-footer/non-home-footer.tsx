@@ -17,7 +17,7 @@ export default function NonHomeFooter() {
 						<NonHomeFooterSocialSection />
 					</div>
 				</div>
-				<hr className="flex-grow border-zinc-300 my-4" />
+				<hr className="flex-grow border-zinc-300 my-3" />
 				<div className="text-center text-zinc-950 dark:text-zinc-50 font-normal text-base">
 					Fortuna Systems Inc
 				</div>
