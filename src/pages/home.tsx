@@ -1,7 +1,6 @@
 import PageHelmet from "../components/helmet/page-helmet"
 import HomeScreenSearchBar from "../components/search-bars/home-screen-search-bar"
 
-// TODO: Make it scroll down to the footer, shouldn't show at first
 export default function Home() {
 	// TODO: Add: Popular channels (by # of likes?)
 	// TODO: Add: recent uploads (literally the last 5 videos published)
