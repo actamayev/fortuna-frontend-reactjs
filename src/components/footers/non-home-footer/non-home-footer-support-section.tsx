@@ -6,7 +6,7 @@ export default function NonHomeFooterSupportSection() {
 		<div>
 			<NonHomeFooterHeaderText headerTitle="Support" />
 			<LinkToExternalSite
-				title="Help Center"
+				title="FAQ"
 				link="https://help.createfortuna.com/frequently-asked-questions"
 				extraClasses="mb-2"
 			/>
