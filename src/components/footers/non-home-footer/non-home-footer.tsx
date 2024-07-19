@@ -2,7 +2,8 @@ import FooterSocialSection from "./footer-social-section"
 import FooterSupportSection from "./footer-support-section"
 import FooterCompanySection from "./footer-company-section"
 
-export default function Footer() {
+// TODO: Make footer thinner like viewstats
+export default function NonHomeFooter() {
 	return (
 		<footer className="bg-zinc-100 dark:bg-zinc-800 w-full py-8">
 			<div className="max-w-screen-xl mx-auto px-4">

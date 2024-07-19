@@ -5,6 +5,7 @@ import { useVideoContext } from "../contexts/video-context"
 import useRetrieveHomePageVideos from "../hooks/videos/retrieve-home-page-videos"
 import HomeScreenSearchBar from "../components/search-bars/home-screen-search-bar"
 
+// TODO: Make it scroll down to the footer, shouldn't show at first
 function Home() {
 	const videoClass = useVideoContext()
 	const [areVideosLoading, setAreVideosLoading] = useState(false)
@@ -12,15 +13,16 @@ function Home() {
 
 	if (areVideosLoading === true) return <div className="dark:text-zinc-200">Loading...</div>
 
-	// Add: Popular channels (by # of likes?)
-	// Add: recent uploads (literally the last 5 videos published)
+	// TODO: Add: Popular channels (by # of likes?)
+	// TODO: Add: recent uploads (literally the last 5 videos published)
+	// TODO: Make the search bar wider
 	return (
 		<>
 			<PageHelmet pageTitle="/" />
 			<div className="flex justify-center items-center w-full min-h-[50vh]">
 				<div className="w-full max-w-md px-4">
 					<div className="flex flex-col items-start">
-						<div className="text-3xl font-semibold mb-4">
+						<div className="text-3xl font-semibold mb-4 text-zinc-800 dark:text-zinc-50">
 							Find creators and videos
 						</div>
 						<HomeScreenSearchBar />

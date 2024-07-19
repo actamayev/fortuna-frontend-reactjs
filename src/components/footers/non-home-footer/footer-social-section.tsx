@@ -1,6 +1,6 @@
-import XLink from "../social-links/x-link"
+import XLink from "../../social-links/x-link"
 import FooterHeaderText from "./footer-header-text"
-import LinkedinLink from "../social-links/linkedin-link"
+import LinkedinLink from "../../social-links/linkedin-link"
 
 export default function FooterSocialSection() {
 	return (

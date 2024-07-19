@@ -1,6 +1,6 @@
-import FooterLink from "./footer-link"
+import FooterLink from "../footer-link"
 import FooterHeaderText from "./footer-header-text"
-import LinkToExternalSite from "./link-to-external-site"
+import LinkToExternalSite from "../link-to-external-site"
 
 export default function FooterCompanySection() {
 	return (

@@ -1,5 +1,5 @@
 import FooterHeaderText from "./footer-header-text"
-import LinkToExternalSite from "./link-to-external-site"
+import LinkToExternalSite from "../link-to-external-site"
 
 export default function FooterSupportSection() {
 	return (
