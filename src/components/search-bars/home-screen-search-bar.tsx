@@ -35,7 +35,7 @@ function HomeScreenSearchBar() {
 					dark:placeholder-zinc-400 rounded-full outline-none
 					border-zinc-200 hover:border-zinc-400  focus:border-zinc-700
 					dark:border-zinc-800 dark:hover:border-zinc-700 dark:focus:border-zinc-300 dark:text-zinc-100"
-					placeholder="Search for the videos and creators you love to love"
+					placeholder="Search for the creators and video you love to love"
 					value={videoClass.searchTerm || ""}
 					onChange={e => videoClass.setSearchTerm(handleTypeUsername(e))}
 					onKeyDown={handleSearch}
