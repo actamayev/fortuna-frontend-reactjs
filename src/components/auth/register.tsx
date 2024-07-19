@@ -40,14 +40,14 @@ export default function Register(props: Props) {
 		<div>
 			<AuthTemplate title="Register" customStyles={customStyles}>
 				<form onSubmit={registerSubmit} className="mb-3">
-					<EmailInput
-						registerInformation={registerInformation}
-						setRegisterInformation={setRegisterInformation}
-					/>
-
 					<UsernameInput
 						credentials={registerInformation}
 						setCredentials={setRegisterInformation}
+					/>
+
+					<EmailInput
+						registerInformation={registerInformation}
+						setRegisterInformation={setRegisterInformation}
 					/>
 
 					<PasswordInput

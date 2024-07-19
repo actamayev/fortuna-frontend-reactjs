@@ -4,7 +4,7 @@ import { isErrorResponses } from "../../utils/type-checks"
 import { useVideoContext } from "../../contexts/video-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useVideoSearch(): () => Promise<void> {
+export default function useGeneralSearch(): () => Promise<void> {
 	const videoClass = useVideoContext()
 	const fortunaApiClient = useApiClientContext()
 

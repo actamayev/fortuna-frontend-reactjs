@@ -12,9 +12,9 @@ function MyPurchasedExclusiveContentMap() {
 		positionsAndTransactionClass.isRetrievingPurchasedExclusiveContent === true ||
 		positionsAndTransactionClass.hasPurchasedExclusiveContentToRetrieve === true
 	) {
-		return <div className="dark:text-zinc-200">Retrieving Ownership...</div>
+		return <div className="dark:text-zinc-200 ml-2.5">Retrieving Ownership...</div>
 	} else if (_.isEmpty(positionsAndTransactionClass.myPurchasedExclusiveContent)) {
-		return <div className="dark:text-zinc-200">No Exclusive Content</div>
+		return <div className="dark:text-zinc-200 ml-2.5">No Exclusive Content</div>
 	}
 
 	return (

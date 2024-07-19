@@ -2,7 +2,7 @@ interface Props {
 	headerTitle: string
 }
 
-export default function FooterHeaderText(props: Props) {
+export default function NonHomeFooterHeaderText(props: Props) {
 	const { headerTitle } = props
 
 	return (
