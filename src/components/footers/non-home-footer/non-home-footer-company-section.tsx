@@ -9,8 +9,13 @@ export default function NonHomeFooterCompanySection() {
 			<LinkToExternalSite
 				title="About Us"
 				link="https://help.createfortuna.com"
+				extraClasses="mb-2"
 			/>
-			<FooterLink linkTo="/contact" linkTitle="Contact Us" />
+			<FooterLink
+				linkTo="/contact"
+				linkTitle="Contact Us"
+				extraClasses="mb-2"
+			/>
 		</div>
 	)
 }

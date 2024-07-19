@@ -42,7 +42,7 @@ export default function SubVideoSection(props: Props) {
 								{channelName}
 							</span>
 						</div>
-						<div className="flex items-center">
+						<div className="flex items-center space-x-2">
 							<ShareVideoButton />
 							<LikeButton video={video} />
 						</div>

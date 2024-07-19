@@ -20,7 +20,7 @@ function Home() {
 		<>
 			<PageHelmet pageTitle="/" />
 			<div className="flex justify-center items-center w-full min-h-[50vh]">
-				<div className="w-full max-w-md px-4">
+				<div className="w-full max-w-3xl px-4">
 					<div className="flex flex-col items-center">
 						<div className="text-3xl font-semibold mb-4 text-zinc-800 dark:text-zinc-50 text-center">
 							Find creators and videos
