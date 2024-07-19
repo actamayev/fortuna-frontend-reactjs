@@ -17,6 +17,7 @@ function HeaderSearchBar() {
 	useHandleKeyDownUseEffect(inputRef)
 
 	if (
+		location.pathname === "/" ||
 		location.pathname === "/login" ||
 		location.pathname === "/register" ||
 		location.pathname === "/register-username"
