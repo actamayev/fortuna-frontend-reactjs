@@ -45,7 +45,6 @@ function HeaderSearchBar() {
 					onKeyDown={handleSearch}
 					onFocus={() => setIsFocused(true)}
 					onBlur={() => setIsFocused(false)}
-					style={{ fontWeight: "350" }}
 				/>
 				{!isFocused && (
 					<span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-500 dark:text-neutral-500">
