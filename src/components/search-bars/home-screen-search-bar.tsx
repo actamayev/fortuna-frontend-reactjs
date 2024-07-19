@@ -1,18 +1,25 @@
 import { observer } from "mobx-react"
+import { useLocation } from "react-router-dom"
 import { HiMagnifyingGlass } from "react-icons/hi2"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useVideoContext } from "../../contexts/video-context"
 import useHandleSearch from "../../hooks/search/handle-search"
 import useHandleKeyDownUseEffect from "../../hooks/search/handle-key-down-use-effect"
 import useHandleTypeUsername from "../../hooks/handle-type-validation/handle-type-username"
 
 function HomeScreenSearchBar() {
+	const location = useLocation()
 	const videoClass = useVideoContext()
 	const handleTypeUsername = useHandleTypeUsername()
 	const inputRef = useRef<HTMLInputElement>(null)
 	const [isFocused, setIsFocused] = useState(false)
 	const handleSearch = useHandleSearch()
 	useHandleKeyDownUseEffect(inputRef)
+
+	useEffect(() => {
+		if (location.pathname !== "/") return
+		inputRef.current?.focus()
+	}, [location.pathname])
 
 	return (
 		<div className="flex justify-center items-center w-full">
