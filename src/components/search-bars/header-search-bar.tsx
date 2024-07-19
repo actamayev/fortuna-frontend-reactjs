@@ -28,14 +28,17 @@ function HeaderSearchBar() {
 				className="relative"
 				style={{ width: "30%" }}
 			>
-				<HiMagnifyingGlass className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-900 dark:text-neutral-200" />
+				<HiMagnifyingGlass
+					className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-900 dark:text-neutral-200"
+					size={24}
+				/>
 				<input
 					type="text"
 					ref={inputRef}
-					className="w-full pl-10 pr-10 p-1.5 border text-sm h-11 bg-inherit
-						placeholder-neutral-500 rounded-[3px] outline-none
+					className="w-full pl-10 pr-10 border text-sm h-12 bg-inherit font-medium
+						dark:placeholder-zinc-400 rounded-full outline-none
 						border-zinc-200 hover:border-zinc-400  focus:border-zinc-700
-						dark:border-zinc-800 dark:hover:border-zinc-700 dark:focus:border-zinc-300 dark:text-zinc-200"
+						dark:border-zinc-800 dark:hover:border-zinc-700 dark:focus:border-zinc-300 dark:text-zinc-100"
 					placeholder="Search for the videos and creators you love to love"
 					value={videoClass.searchTerm || ""}
 					onChange={e => videoClass.setSearchTerm(handleTypeUsername(e))}
