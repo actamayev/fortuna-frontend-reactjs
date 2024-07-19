@@ -1,7 +1,7 @@
 import { observer } from "mobx-react"
+import { useLocation } from "react-router-dom"
 import { HiMagnifyingGlass } from "react-icons/hi2"
 import { useEffect, useRef, useState } from "react"
-import { useLocation } from "react-router-dom"
 import { useVideoContext } from "../../contexts/video-context"
 import useHandleSearch from "../../hooks/search/handle-search"
 import useHandleKeyDownUseEffect from "../../hooks/search/handle-key-down-use-effect"

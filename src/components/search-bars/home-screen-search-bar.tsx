@@ -25,7 +25,7 @@ function HomeScreenSearchBar() {
 					type="text"
 					ref={inputRef}
 					className="w-full pl-10 pr-10 border text-base h-12 bg-inherit font-medium
-					dark:placeholder-zinc-200 rounded-full outline-none
+					dark:placeholder-zinc-400 rounded-full outline-none
 					border-zinc-200 hover:border-zinc-400  focus:border-zinc-700
 					dark:border-zinc-800 dark:hover:border-zinc-700 dark:focus:border-zinc-300 dark:text-zinc-100"
 					placeholder="Search for the videos and creators you love to love"
