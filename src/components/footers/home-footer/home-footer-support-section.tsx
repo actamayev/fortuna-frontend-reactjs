@@ -6,12 +6,10 @@ export default function HomeFooterSupportSection() {
 			<LinkToExternalSite
 				title="Privacy"
 				link="https://help.createfortuna.com/legal/privacy-policy"
-				extraClasses=""
 			/>
 			<LinkToExternalSite
 				title="About Us"
 				link="https://help.createfortuna.com"
-				extraClasses=""
 			/>
 			<LinkToExternalSite
 				title="FAQ"

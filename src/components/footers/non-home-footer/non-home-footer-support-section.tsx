@@ -13,7 +13,6 @@ export default function NonHomeFooterSupportSection() {
 			<LinkToExternalSite
 				title="Privacy"
 				link="https://help.createfortuna.com/legal/privacy-policy"
-				extraClasses="mb-2"
 			/>
 		</div>
 	)

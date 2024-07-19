@@ -1,6 +1,6 @@
 import XLink from "../../social-links/x-link"
-import NonHomeFooterHeaderText from "./non-home-footer-header-text"
 import LinkedinLink from "../../social-links/linkedin-link"
+import NonHomeFooterHeaderText from "./non-home-footer-header-text"
 
 export default function NonHomeFooterSocialSection() {
 	return (
