@@ -1,8 +1,6 @@
-import { useLocation } from "react-router-dom"
+import HomeFooter from "./footer/home-footer"
 import NotificationBox from "./notification-box"
 import HeaderNav from "./site-header/header-nav"
-import HomeFooter from "./footers/home-footer/home-footer"
-import NonHomeFooter from "./footers/non-home-footer/non-home-footer"
 
 interface Props {
 	children: React.ReactNode
@@ -10,7 +8,6 @@ interface Props {
 
 export default function Layout (props: Props) {
 	const { children } = props
-	const location = useLocation()
 
 	return (
 		<div className="min-h-screen dark:bg-neutral-900 flex flex-col">
@@ -18,11 +15,7 @@ export default function Layout (props: Props) {
 			<div className="flex-1 w-full overflow-y-auto px-14 py-6 mt-14">
 				{children}
 			</div>
-			{location.pathname === "/" ? (
-				<HomeFooter />
-			) : (
-				<NonHomeFooter />
-			)}
+			<HomeFooter />
 			<NotificationBox />
 		</div>
 	)
