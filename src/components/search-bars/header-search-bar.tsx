@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom"
 import { HiMagnifyingGlass } from "react-icons/hi2"
 import { useVideoContext } from "../../contexts/video-context"
 import useHandleSearch from "../../hooks/search/handle-search"
-import useHandleKeyDownUseEffect from "../../hooks/search/handle-key-down-use-effect"
+import useHandleKeyDownUseEffect from "../../hooks/search/press-slash-focus-search"
 import useHandleTypeUsername from "../../hooks/handle-type-validation/handle-type-username"
 
 function HeaderSearchBar() {
@@ -36,7 +36,7 @@ function HeaderSearchBar() {
 				<input
 					type="text"
 					ref={inputRef}
-					className="w-full pl-10 pr-10 border text-sm h-12 bg-inherit font-medium
+					className="w-full pl-10 pr-10 border text-sm h-11 bg-inherit font-medium
 						dark:placeholder-zinc-400 rounded-full outline-none
 						border-zinc-200 hover:border-zinc-400  focus:border-zinc-700
 						dark:border-zinc-800 dark:hover:border-zinc-700 dark:focus:border-zinc-300 dark:text-zinc-100"
