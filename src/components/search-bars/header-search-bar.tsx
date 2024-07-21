@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom"
 import { HiMagnifyingGlass } from "react-icons/hi2"
 import { useVideoContext } from "../../contexts/video-context"
 import useHandleSearch from "../../hooks/search/handle-search"
-import useHandleKeyDownUseEffect from "../../hooks/search/press-slash-focus-search"
+import usePressSlashFocusSearch from "../../hooks/search/press-slash-focus-search"
 import useHandleTypeUsername from "../../hooks/handle-type-validation/handle-type-username"
 
 function HeaderSearchBar() {
@@ -14,7 +14,7 @@ function HeaderSearchBar() {
 	const inputRef = useRef<HTMLInputElement>(null)
 	const [isFocused, setIsFocused] = useState(false)
 	const handleSearch = useHandleSearch()
-	useHandleKeyDownUseEffect(inputRef)
+	usePressSlashFocusSearch(inputRef)
 
 	if (
 		location.pathname === "/" ||

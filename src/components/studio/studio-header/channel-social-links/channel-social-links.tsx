@@ -1,32 +1,15 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useState } from "react"
 import MappedActiveSocialLinks from "./mapped-active-social-links"
 import SocialLinksModal from "./social-links-modal/social-links-modal"
+import useEscapeListenerUseEffect from "../../../../hooks/listeners/escape-key-listener-use-effect"
 
 export default function ChannelSocialLinks() {
 	const [isModalOpen, setIsModalOpen] = useState(false)
+	useEscapeListenerUseEffect(isModalOpen, () => setIsModalOpen(false))
 
 	const toggleModalOpen = useCallback(() => {
 		setIsModalOpen(prev => !prev)
 	}, [])
-
-	useEffect(() => {
-		const handleKeyDown = (event: KeyboardEvent) => {
-			if (event.key === "Escape") {
-				setIsModalOpen(false)
-			}
-		}
-
-		if (isModalOpen) {
-			window.addEventListener("keydown", handleKeyDown)
-		} else {
-			window.removeEventListener("keydown", handleKeyDown)
-		}
-
-		// Clean up the event listener on component unmount
-		return () => {
-			window.removeEventListener("keydown", handleKeyDown)
-		}
-	}, [isModalOpen])
 
 	return (
 		<div className="flex">

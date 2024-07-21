@@ -1,19 +1,19 @@
-import { useEffect} from "react"
+import { useCallback, useEffect} from "react"
 
 export default function usePressSlashFocusSearch(
 	inputRef: React.RefObject<HTMLInputElement>
 ): void {
-	useEffect(() => {
-		const pressSlashFocusSearch = (event: KeyboardEvent): void => {
-			if (event.key === "/" && document.activeElement?.tagName !== "INPUT" && document.activeElement?.tagName !== "TEXTAREA") {
-				event.preventDefault()
-				inputRef.current?.focus()
-			}
+	const pressSlashFocusSearch = useCallback((event: KeyboardEvent): void => {
+		if (event.key === "/" && document.activeElement?.tagName !== "INPUT" && document.activeElement?.tagName !== "TEXTAREA") {
+			event.preventDefault()
+			inputRef.current?.focus()
 		}
+	}, [inputRef])
 
+	useEffect(() => {
 		document.addEventListener("keydown", pressSlashFocusSearch)
 		return (): void => {
 			document.removeEventListener("keydown", pressSlashFocusSearch)
 		}
-	}, [inputRef])
+	}, [pressSlashFocusSearch])
 }

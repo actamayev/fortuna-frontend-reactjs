@@ -4,6 +4,7 @@ import { useState, useCallback, useRef, useEffect } from "react"
 import { useCreatorContext } from "../../../../contexts/creator-context"
 import ChannelDescriptionTextInput from "./channel-description-text-input"
 import useAddOrEditChannelDescription from "../../../../hooks/creator/add-or-edit-channel-description"
+import useEscapeListenerUseEffect from "../../../../hooks/listeners/escape-key-listener-use-effect"
 
 function ChannelDescription() {
 	const creatorClass = useCreatorContext()
@@ -12,6 +13,7 @@ function ChannelDescription() {
 	const maxLength = 1000
 	const textAreaRef = useRef<HTMLTextAreaElement>(null)
 	const addOrEditChannelDescription = useAddOrEditChannelDescription()
+	useEscapeListenerUseEffect(isEditing, () => cancelEditAction())
 
 	useEffect(() => {
 		if (creatorClass?.channelDescription) {
@@ -47,25 +49,6 @@ function ChannelDescription() {
 		await addOrEditChannelDescription(channelDescription)
 		setIsEditing(false)
 	}, [addOrEditChannelDescription, channelDescription])
-
-	useEffect(() => {
-		const handleKeyDown = (event: KeyboardEvent) => {
-			if (event.key === "Escape") {
-				cancelEditAction()
-			}
-		}
-
-		if (isEditing) {
-			window.addEventListener("keydown", handleKeyDown)
-		} else {
-			window.removeEventListener("keydown", handleKeyDown)
-		}
-
-		// Clean up the event listener on component unmount
-		return () => {
-			window.removeEventListener("keydown", handleKeyDown)
-		}
-	}, [creatorClass?.channelDescription, isEditing, cancelEditAction])
 
 	if (isEditing === true) {
 		return (

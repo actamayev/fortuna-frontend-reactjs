@@ -6,6 +6,7 @@ import CancelEditingButton from "../../cancel-editing-button"
 import ChannelNameTextInput from "./channel-name-text-input"
 import useEditChannelName from "../../../../hooks/creator/edit-channel-name"
 import useAssignDefaultChannelName from "../../../../hooks/creator/assign-default-channel-name"
+import useEscapeListenerUseEffect from "../../../../hooks/listeners/escape-key-listener-use-effect"
 
 function ChannelName() {
 	const [channelName, setChannelName] = useState("")
@@ -14,6 +15,7 @@ function ChannelName() {
 	const inputRef = useRef<HTMLInputElement>(null)
 	const assignDefaultChannelName = useAssignDefaultChannelName()
 	const editChannelName = useEditChannelName()
+	useEscapeListenerUseEffect(isEditing, () => cancelEditAction())
 
 	useEffect(() => {
 		assignDefaultChannelName(setChannelName)
@@ -39,25 +41,6 @@ function ChannelName() {
 		else assignDefaultChannelName(setChannelName)
 		setIsEditing(false)
 	}, [editChannelName, assignDefaultChannelName, channelName, setChannelName])
-
-	useEffect(() => {
-		const handleKeyDown = (event: KeyboardEvent) => {
-			if (event.key === "Escape") {
-				cancelEditAction()
-			}
-		}
-
-		if (isEditing) {
-			window.addEventListener("keydown", handleKeyDown)
-		} else {
-			window.removeEventListener("keydown", handleKeyDown)
-		}
-
-		// Clean up the event listener on component unmount
-		return () => {
-			window.removeEventListener("keydown", handleKeyDown)
-		}
-	}, [assignDefaultChannelName, isEditing, cancelEditAction])
 
 	if (isEditing === false) {
 		return (
