@@ -1,5 +1,5 @@
 import { observer } from "mobx-react"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useState } from "react"
 import VideoName from "./video-name"
 import LinkToVideo from "./link-to-video"
 import EarningsSection from "./earnings-section"
@@ -8,6 +8,7 @@ import VideoListingStatus from "./video-listing-status"
 import MyContentThumbnail from "./thumbnail/my-content-thumbnail"
 import { useAbbreviatedDateFormatter } from "../../../hooks/date-formatter"
 import EditVideoDetailsModal from "./edit-video-details-modal/edit-video-details-modal"
+import useEscapeListenerUseEffect from "../../../hooks/listeners/escape-key-listener-use-effect"
 
 interface Props {
 	content: MyContent
@@ -17,29 +18,11 @@ function SingleMyContent(props: Props) {
 	const { content } = props
 	const abbreviatedDateFormatter = useAbbreviatedDateFormatter()
 	const [isVideoEditingModalOpen, setIsVideoEditingModalOpen] = useState(false)
+	useEscapeListenerUseEffect(isVideoEditingModalOpen, () => setIsVideoEditingModalOpen(false))
 
 	const toggleModalOpen = useCallback(() => {
 		setIsVideoEditingModalOpen(prev => !prev)
 	}, [])
-
-	useEffect(() => {
-		const handleKeyDown = (event: KeyboardEvent) => {
-			if (event.key === "Escape") {
-				setIsVideoEditingModalOpen(false)
-			}
-		}
-
-		if (isVideoEditingModalOpen) {
-			window.addEventListener("keydown", handleKeyDown)
-		} else {
-			window.removeEventListener("keydown", handleKeyDown)
-		}
-
-		// Clean up the event listener on component unmount
-		return () => {
-			window.removeEventListener("keydown", handleKeyDown)
-		}
-	}, [isVideoEditingModalOpen])
 
 	return (
 		<div className="grid grid-cols-12 gap-4 bg-inherit py-2 border-b border-zinc-200 dark:border-zinc-800">
