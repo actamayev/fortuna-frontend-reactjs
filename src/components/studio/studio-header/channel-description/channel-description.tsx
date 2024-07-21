@@ -3,8 +3,8 @@ import { observer } from "mobx-react"
 import { useState, useCallback, useRef, useEffect } from "react"
 import { useCreatorContext } from "../../../../contexts/creator-context"
 import ChannelDescriptionTextInput from "./channel-description-text-input"
-import useAddOrEditChannelDescription from "../../../../hooks/creator/add-or-edit-channel-description"
 import useEscapeListenerUseEffect from "../../../../hooks/listeners/escape-key-listener-use-effect"
+import useAddOrEditChannelDescription from "../../../../hooks/creator/add-or-edit-channel-description"
 
 function ChannelDescription() {
 	const creatorClass = useCreatorContext()
