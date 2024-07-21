@@ -20,7 +20,7 @@ function ShowFeaturedVideo(props: Props) {
 		<div className="flex flex-col items-center">
 			<div
 				className="flex justify-start font-bold dark:text-white text-3xl mb-2
-				border-t border-b border-zinc-800 dark:border-zinc-200"
+				border-y border-zinc-800 dark:border-zinc-200"
 			>
 				Featured Video
 			</div>
