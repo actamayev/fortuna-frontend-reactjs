@@ -1,6 +1,6 @@
 import LinkToExternalSite from "./link-to-external-site"
 
-export default function HomeFooterSupportSection() {
+export default function FooterSupportSection() {
 	return (
 		<div className="flex space-x-6 flex-row">
 			<LinkToExternalSite
