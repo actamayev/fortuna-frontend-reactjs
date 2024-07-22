@@ -129,7 +129,7 @@ class VideoClass {
 		this.homeScreenVideos.splice(index, 0, videoToAdd)
 	})
 
-	public setHomePageCretors = action((creatorData: CreatorData[]): void => {
+	public setHomePageCreators = action((creatorData: CreatorData[]): void => {
 		if (_.isEmpty(creatorData)) return
 		creatorData.map(singleCreator => this.addCreatorToHomePageCreatorsList(singleCreator))
 	})

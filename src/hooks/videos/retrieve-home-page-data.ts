@@ -26,7 +26,7 @@ export default function useRetrieveHomePageVideos(): void {
 				videoUrlRetrievalAttempted: false
 			}))
 			videoClass.setHomePageVideos(videos)
-			videoClass.setHomePageCretors(response.data.homePageCreatorData)
+			videoClass.setHomePageCreators(response.data.homePageCreatorData)
 		} catch (error) {
 			console.error(error)
 		} finally {

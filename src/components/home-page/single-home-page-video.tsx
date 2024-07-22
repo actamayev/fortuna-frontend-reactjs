@@ -19,7 +19,7 @@ export default function SingleHomePageVideo(props: Props) {
 	return (
 		<div
 			className="flex-none flex flex-col items-center w-full h-full rounded-lg cursor-pointer
-				hover:bg-zinc-100 dark:hover:bg-zinc-800"
+			hover:bg-zinc-100 dark:hover:bg-zinc-800"
 			onClick={navigateToVideoPageCallback}
 		>
 			<div className="flex w-full">
