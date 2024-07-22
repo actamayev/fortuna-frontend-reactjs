@@ -7,7 +7,7 @@ function HomePageVideosMap() {
 
 	return (
 		<div className="text-zinc-950 dark:text-zinc-50">
-			<div className="mt-4 mb-2">Recent Uploads</div>
+			<div className="mt-6 mb-3">Recent Uploads</div>
 			<div className="grid grid-cols-2">
 				{videosClass.homeScreenVideos.map((singleVideo, index) => (
 					<div
