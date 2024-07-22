@@ -12,7 +12,7 @@ function HomePageVideosMap() {
 				{videosClass.homeScreenVideos.map((singleVideo, index) => (
 					<div
 						key={singleVideo.uuid}
-						className={`flex flex-col items-start py-3 ${index % 2 === 0 ? "pr-3" : "pl-3"}`}
+						className={`flex flex-col items-start py-2 ${index % 2 === 0 ? "pr-2" : "pl-2"}`}
 					>
 						<SingleHomePageVideo singleHomePageVideo={singleVideo} />
 					</div>
