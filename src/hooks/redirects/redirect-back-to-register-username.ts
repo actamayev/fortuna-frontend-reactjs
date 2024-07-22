@@ -7,7 +7,6 @@ import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
 const PrivatePageNames = [
 	"/ownership",
-	// "/profile",
 	"/wallet",
 	"/creator/studio",
 	"/creator/create-content"

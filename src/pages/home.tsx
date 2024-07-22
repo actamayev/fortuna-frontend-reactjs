@@ -24,8 +24,6 @@ export default function Home() {
 		return () => window.removeEventListener("resize", handleResize)
 	}, [handleResize])
 
-	// TODO: Add: Popular channels (by # of likes?)
-	// TODO: Add: recent uploads (literally the last 5 videos published)
 	return (
 		<>
 			<PageHelmet pageTitle="/" />
