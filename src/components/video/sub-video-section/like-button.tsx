@@ -28,6 +28,8 @@ function LikeButton(props: Props) {
 		likeVideo(video, setIsLoading)
 	}, [authClass.isLoggedIn, isLoading, likeVideo, navigate, video])
 
+	// TODO: Bug. When user logs in with the next to video login, the like status doesn't update automatically
+
 	if (_.isUndefined(video.videoUrl)) {
 		return (
 			<HoverNotAllowedComponent>

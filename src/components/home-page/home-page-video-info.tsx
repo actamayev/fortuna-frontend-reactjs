@@ -3,8 +3,8 @@ import { FaClock } from "react-icons/fa"
 import { useRelativeDateFormatter } from "../../hooks/date-formatter"
 import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
 import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
+import HomePageVideoSaleAndLikeDetails from "./home-page-video-sale-and-like-details"
 import ShowUserProfileImageOrDefaultImage from "../show-user-profile-image-or-default-image"
-import BeneathDescriptionSection from "../creator/creator-videos-map/beneath-description-section"
 
 interface Props {
 	videoData: VideoDataWithUrlRetrievalStatus
@@ -55,10 +55,7 @@ export default function HomePageVideoInfo(props: Props) {
 				</div>
 			</div>
 			<div className="mt-auto">
-				<BeneathDescriptionSection
-					videoData={videoData}
-					extraStyles={{ fontSize: "10px", lineHeight: "14px" }}
-				/>
+				<HomePageVideoSaleAndLikeDetails videoData={videoData} />
 			</div>
 		</div>
 	)
