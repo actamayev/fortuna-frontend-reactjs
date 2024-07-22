@@ -6,10 +6,11 @@ import ShowUnlockStatus from "./show-unlock-status"
 
 interface Props {
 	videoData: VideoDataWithUrlRetrievalStatus
+	extraStyles?: Object
 }
 
 function BeneathDescriptionSection(props: Props) {
-	const { videoData } = props
+	const { videoData, extraStyles } = props
 
 	const shouldShowNumberSold = useMemo(() => {
 		if (
@@ -21,7 +22,10 @@ function BeneathDescriptionSection(props: Props) {
 	}, [videoData])
 
 	return (
-		<div className="flex flex-col justify-start overflow-hidden w-full my-2 text-zinc-700 dark:text-zinc-300 text-xs font-semibold">
+		<div
+			className="flex flex-col justify-start overflow-hidden w-full my-2 text-zinc-700 dark:text-zinc-300 text-xs font-semibold"
+			style={extraStyles}
+		>
 			<div className="flex flex-row items-center">
 				<div>
 					<ShowUnlockStatus videoData={videoData} />

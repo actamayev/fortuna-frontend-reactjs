@@ -1,44 +1,36 @@
-// import { useCallback } from "react"
-// import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
-// import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
-// import ShowUserProfileImageOrDefaultImage from "../show-user-profile-image-or-default-image"
+import { useCallback } from "react"
+import HomePageVideoInfo from "./home-page-video-info"
+import GeneralizedVideoThumbnail from "../generalized-video-thumbnail"
+import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
 
-// interface Props {
-// 	singleHomePageVideos: VideoDataWithUrlRetrievalStatus
-// }
+interface Props {
+	singleHomePageVideo: UrlExtendedSingleVideoData
+}
 
-// export default function SingleHomePageVideo(props: Props) {
-// 	const { singleHomePageVideos } = props
+export default function SingleHomePageVideo(props: Props) {
+	const { singleHomePageVideo } = props
 
-// 	const navigateToCreatorPage = useNavigateToCreatorPage()
+	const navigateToVideoPage = useNavigateToVideoPage()
 
-// 	const navigateToCreatorPageCallback = useCallback(() => {
-// 		navigateToCreatorPage(addDefiniteLeadingAt(singleHomePageCreator.creatorUsername))
-// 	}, [navigateToCreatorPage, singleHomePageCreator.creatorUsername])
+	const navigateToVideoPageCallback = useCallback(() => {
+		navigateToVideoPage(singleHomePageVideo.uuid)
+	}, [navigateToVideoPage, singleHomePageVideo.uuid])
 
-// 	return (
-// 		<div
-// 			className="bg-white dark:bg-zinc-800 border p-2 cursor-pointer rounded
-// 			border-zinc-200 dark:border-zinc-700 text-sm font-medium text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"
-// 			onClick={navigateToCreatorPageCallback}
-// 		>
-// 			<div className="flex items-center justify-between mb-2">
-// 				<div className="flex items-center">
-// 					<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center mr-2">
-// 						<ShowUserProfileImageOrDefaultImage
-// 							profileImageUrl={singleHomePageCreator.creatorProfilePictureUrl}
-// 							extraClasses="min-w-full min-h-full object-cover"
-// 							onClickCreatorPicture={navigateToCreatorPageCallback}
-// 						/>
-// 					</div>
-// 					<span>
-// 						{singleHomePageCreator.channelName}&nbsp;
-// 					</span>
-// 					<span>
-// 						{singleHomePageCreator.numberOfVideos} video{singleHomePageCreator.numberOfVideos > 1 ? "s" : ""}
-// 					</span>
-// 				</div>
-// 			</div>
-// 		</div>
-// 	)
-// }
+	return (
+		<div
+			className="flex-none flex flex-col items-center w-full h-full rounded-lg cursor-pointer
+				hover:bg-zinc-100 dark:hover:bg-zinc-800"
+			onClick={navigateToVideoPageCallback}
+		>
+			<div className="flex w-full">
+				<div className="w-5/12">
+					<GeneralizedVideoThumbnail
+						thumbnailData={singleHomePageVideo}
+						imageStyles={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
+					/>
+				</div>
+				<HomePageVideoInfo videoData={singleHomePageVideo} />
+			</div>
+		</div>
+	)
+}

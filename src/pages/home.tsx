@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import PageHelmet from "../components/helmet/page-helmet"
+import HomePageVideosMap from "../components/home-page/home-page-videos-map"
 import useRetrieveHomePageVideos from "../hooks/videos/retrieve-home-page-data"
 import HomePageCreatorsMap from "../components/home-page/home-page-creators-map"
 import HomeScreenSearchBar from "../components/search-bars/home-screen-search-bar"
@@ -38,6 +39,7 @@ export default function Home() {
 							<HomeScreenSearchBar />
 						</div>
 						<HomePageCreatorsMap />
+						<HomePageVideosMap />
 					</div>
 				</div>
 			</div>
