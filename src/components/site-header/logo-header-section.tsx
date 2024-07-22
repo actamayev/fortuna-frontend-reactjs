@@ -24,7 +24,7 @@ function LogoHeaderSection() {
 			</Link>
 			{!authClass.isLoggedIn && (
 				<div
-					className="ml-2.5 mt-2 p-1.5 rounded-[3px] cursor-pointer
+					className="ml-2 mt-1.5 px-1.5 py-1.5 rounded-[3px] cursor-pointer
 					bg-zinc-100 dark:bg-zinc-700 hover:bg-zinc-200 dark:text-zinc-100 dark:hover:bg-zinc-800 text-zinc-950"
 				>
 					<a
