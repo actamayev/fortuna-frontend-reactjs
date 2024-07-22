@@ -1,14 +1,13 @@
 interface Props {
 	title: string
 	link: string
-	extraClasses?: string
 }
 
 export default function LinkToExternalSite(props: Props) {
-	const { title, link, extraClasses = "" } = props
+	const { title, link } = props
 
 	return (
-		<div className={`${extraClasses} text-sm`}>
+		<div className="text-sm">
 			<a
 				href={link}
 				aria-label="Help Center"

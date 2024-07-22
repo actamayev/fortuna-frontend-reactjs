@@ -1,4 +1,4 @@
-import HomeFooter from "./footer/home-footer"
+import Footer from "./footer/footer"
 import NotificationBox from "./notification-box"
 import HeaderNav from "./site-header/header-nav"
 
@@ -15,7 +15,7 @@ export default function Layout (props: Props) {
 			<div className="flex-1 w-full overflow-y-auto px-14 py-6 mt-14">
 				{children}
 			</div>
-			<HomeFooter />
+			<Footer />
 			<NotificationBox />
 		</div>
 	)
