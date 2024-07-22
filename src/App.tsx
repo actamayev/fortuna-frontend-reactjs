@@ -6,7 +6,6 @@ import Video from "./pages/video"
 import Wallet from "./pages/wallet"
 import Creator from "./pages/creator"
 import Missing from "./pages/missing"
-// import Profile from "./pages/profile"
 import Ownership from "./pages/ownership"
 import Contact from "./pages/company/contact"
 import LoginPage from "./pages/auth/login-page"
@@ -52,23 +51,22 @@ function App() {
 
 	return (
 		<Routes>
-			<Route path="/" element = {<Home />} />
-			<Route path="/login" element = {<LoginPage />} />
-			<Route path="/register" element = {<RegisterPage />} />
-			<Route path="/register-username" element = {<RegisterUsername />} />
+			<Route path="/" element={<Home />} />
+			<Route path="/login" element={<LoginPage />} />
+			<Route path="/register" element={<RegisterPage />} />
+			<Route path="/register-username" element={<RegisterUsername />} />
 
-			<Route path="/ownership" element = {<Ownership />} />
-			<Route path="/wallet" element = {<Wallet />} />
-			<Route path="/v/:videoUUID" element = {<Video />} />
-			{/* <Route path="/profile" element = {<Profile />} /> */}
-			<Route path="/c/:creatorUsername" element = {<Creator />} />
-			<Route path="/s/:searchTerm" element = {<SearchResults />} />
+			<Route path="/ownership" element={<Ownership />} />
+			<Route path="/wallet" element={<Wallet />} />
+			<Route path="/v/:videoUUID" element={<Video />} />
+			<Route path="/c/:creatorUsername" element={<Creator />} />
+			<Route path="/s/:searchTerm" element={<SearchResults />} />
 
-			<Route path="/creator/*" element = {<CreatorRoutes />} />
+			<Route path="/creator/*" element={<CreatorRoutes />} />
 
-			<Route path="/contact" element = {<Contact />} />
+			<Route path="/contact" element={<Contact />} />
 
-			<Route path="*" element = {<Missing />} />
+			<Route path="*" element={<Missing />} />
 		</Routes>
 	)
 }

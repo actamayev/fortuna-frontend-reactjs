@@ -78,7 +78,11 @@ declare global {
 
 	// Video Responses:
 	type RetrievedVideo = { videoData: UrlExtendedSingleVideoData }
-	type HomePageVideos = { homePageVideos: VideoDataLessVideoUrlResponse[] }
+	type HomePageData = {
+		homePageVideos: VideoDataLessVideoUrlResponse[]
+		homePageCreatorData: CreatorData[]
+	}
+
 	type CreatorDataResponse = {
 		videoData: VideoDataLessVideoUrlResponse[]
 		creatorData: CreatorData

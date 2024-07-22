@@ -10,6 +10,9 @@ class VideoClass {
 	public videosBeingRetrieved: string[] = []
 	public isRetrievingVideoUrl = false
 
+	public homeScreenCreators: CreatorData[] = []
+	public homeScreenVideos: UrlExtendedSingleVideoData[] = []
+
 	public creatorVideosFilter: CreatorVideosFilter = {
 		titleIncludes: "",
 		timeframeSort: "Latest",
@@ -94,6 +97,7 @@ class VideoClass {
 
 	public setHomePageVideos = action((videoData: VideoDataWithUrlRetrievalStatus[]): void => {
 		if (_.isEmpty(videoData)) return
+		videoData.map(singleVideo => this.addVideoToHomePageVideosList(singleVideo))
 		videoData.map(singleVideo => this.addVideoToVideosList(singleVideo))
 	})
 
@@ -109,6 +113,34 @@ class VideoClass {
 		// Insert new video into sorted list
 		const index = _.sortedIndexBy(this.videos, video, (vd) => -dayjs(vd.createdAt).unix())
 		this.videos.splice(index, 0, video)
+	})
+
+	public addVideoToHomePageVideosList = action((videoToAdd: VideoDataWithUrlRetrievalStatus): void => {
+		const existingIndex = this.homeScreenVideos.findIndex(v => v.uuid === videoToAdd.uuid)
+
+		if (existingIndex !== -1) {
+		// Replace existing video
+			this.homeScreenVideos[existingIndex] = videoToAdd
+			return
+		}
+
+		// Insert new video into sorted list
+		const index = _.sortedIndexBy(this.homeScreenVideos, videoToAdd, (vd) => -dayjs(vd.createdAt).unix())
+		this.homeScreenVideos.splice(index, 0, videoToAdd)
+	})
+
+	public setHomePageCreators = action((creatorData: CreatorData[]): void => {
+		if (_.isEmpty(creatorData)) return
+		creatorData.map(singleCreator => this.addCreatorToHomePageCreatorsList(singleCreator))
+	})
+
+	public addCreatorToHomePageCreatorsList = action((creatorToAdd: CreatorData): void => {
+		const exists = this.homeScreenCreators.some(
+			creator => creator.creatorUsername === creatorToAdd.creatorUsername
+		)
+
+		if (exists) return
+		this.homeScreenCreators.push(creatorToAdd)
 	})
 
 	public setVideoUrlRetrievalAttempted = action((videoUUID: string): void => {

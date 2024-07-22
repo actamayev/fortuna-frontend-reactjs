@@ -7,7 +7,6 @@ declare global {
 		"/register" |
 		"/register-username" |
 		"/ownership" |
-		// "/profile" |
 		"/wallet" |
 
 		"/creator/studio" |
