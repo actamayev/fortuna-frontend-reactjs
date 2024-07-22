@@ -33,7 +33,7 @@ export default function SingleHomePageCreator(props: Props) {
 					</div>
 					<div className="flex-1 overflow-hidden">
 						<span className="font-medium block overflow-hidden text-ellipsis whitespace-nowrap">
-							{singleHomePageCreator.channelName}&nbsp;
+							{singleHomePageCreator.channelName}
 						</span>
 						<span
 							className="block font-light"
