@@ -8,7 +8,7 @@ function HomePageCreatorsMap() {
 	return (
 		<div className="text-zinc-950 dark:text-zinc-50">
 			Popular Creators
-			<div className="grid grid-cols-4">
+			<div className="grid grid-cols-4 gap-3">
 				{videosClass.homeScreenCreators.map(singleCreator => (
 					<SingleHomePageCreator
 						key={singleCreator.creatorUsername}

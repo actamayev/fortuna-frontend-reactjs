@@ -17,7 +17,11 @@ export default function SingleHomePageCreator(props: Props) {
 	}, [navigateToCreatorPage, singleHomePageCreator.creatorUsername])
 
 	return (
-		<div className="bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 p-2 cursor-pointer">
+		<div
+			className="bg-white dark:bg-zinc-800 border p-2 cursor-pointer rounded
+			border-zinc-200 dark:border-zinc-700 text-sm font-medium text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"
+			onClick={navigateToCreatorPageCallback}
+		>
 			<div className="flex items-center justify-between mb-2">
 				<div className="flex items-center">
 					<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center mr-2">
@@ -27,16 +31,10 @@ export default function SingleHomePageCreator(props: Props) {
 							onClickCreatorPicture={navigateToCreatorPageCallback}
 						/>
 					</div>
-					<span
-						className="text-sm font-medium text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"
-						onClick={navigateToCreatorPageCallback}
-					>
+					<span>
 						{singleHomePageCreator.channelName}&nbsp;
 					</span>
-					<span
-						className="text-sm font-medium text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"
-						onClick={navigateToCreatorPageCallback}
-					>
+					<span>
 						{singleHomePageCreator.numberOfVideos} video{singleHomePageCreator.numberOfVideos > 1 ? "s" : ""}
 					</span>
 				</div>
