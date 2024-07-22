@@ -10,6 +10,8 @@ class VideoClass {
 	public videosBeingRetrieved: string[] = []
 	public isRetrievingVideoUrl = false
 
+	public homeScreenCreators: CreatorData[] = []
+
 	public creatorVideosFilter: CreatorVideosFilter = {
 		titleIncludes: "",
 		timeframeSort: "Latest",
@@ -109,6 +111,11 @@ class VideoClass {
 		// Insert new video into sorted list
 		const index = _.sortedIndexBy(this.videos, video, (vd) => -dayjs(vd.createdAt).unix())
 		this.videos.splice(index, 0, video)
+	})
+
+	public setHomePageCretors = action((creatorData: CreatorData[]): void => {
+		if (_.isEmpty(creatorData)) return
+		creatorData.map(singleCreator => this.homeScreenCreators.push(singleCreator))
 	})
 
 	public setVideoUrlRetrievalAttempted = action((videoUUID: string): void => {

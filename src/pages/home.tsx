@@ -1,9 +1,12 @@
 import { useCallback, useEffect, useState } from "react"
 import PageHelmet from "../components/helmet/page-helmet"
+import useRetrieveHomePageVideos from "../hooks/videos/retrieve-home-page-data"
+import HomePageCreatorsMap from "../components/home-page/home-page-creators-map"
 import HomeScreenSearchBar from "../components/search-bars/home-screen-search-bar"
 
 export default function Home() {
 	const [minHeight, setMinHeight] = useState("100vh")
+	useRetrieveHomePageVideos()
 
 	const handleResize = useCallback(() => {
 		const footerHeight = document.getElementById("footer")?.offsetHeight || 0
@@ -34,6 +37,7 @@ export default function Home() {
 							</div>
 							<HomeScreenSearchBar />
 						</div>
+						<HomePageCreatorsMap />
 					</div>
 				</div>
 			</div>
