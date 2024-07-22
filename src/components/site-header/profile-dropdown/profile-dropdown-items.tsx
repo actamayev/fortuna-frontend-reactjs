@@ -40,10 +40,6 @@ function ProfileDropdownItems() {
 				<BsFillCollectionPlayFill className="mr-2" size={17} />
 				Studio
 			</Link>
-			{/* <Link to="/profile" className={classes.middle}>
-				<FaUser className="mr-2" size={17} />
-				Profile
-			</Link> */}
 			<div className="block">
 				<button
 					onClick={handleLogout}
