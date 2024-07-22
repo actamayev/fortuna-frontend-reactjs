@@ -2,13 +2,13 @@ import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { FaHeart, FaRegHeart, FaShoppingBag } from "react-icons/fa"
-import ShowUnlockStatus from "./show-unlock-status"
+import ShowUnlockStatus from "../creator/creator-videos-map/show-unlock-status"
 
 interface Props {
 	videoData: VideoDataWithUrlRetrievalStatus
 }
 
-function BeneathDescriptionSection(props: Props) {
+function HomePageVideoSaleAndLikeDetails(props: Props) {
 	const { videoData } = props
 
 	const shouldShowNumberSold = useMemo(() => {
@@ -21,13 +21,16 @@ function BeneathDescriptionSection(props: Props) {
 	}, [videoData])
 
 	return (
-		<div className="flex flex-col justify-start overflow-hidden w-full mb-1 text-zinc-700 dark:text-zinc-300 text-xs font-semibold">
+		<div
+			className="flex flex-col justify-start overflow-hidden w-full mb-1 text-zinc-700 dark:text-zinc-300 text-xs font-semibold"
+			style={{ fontSize: "10px", lineHeight: "14px" }}
+		>
 			<div className="flex flex-row items-center">
 				<div>
 					<ShowUnlockStatus videoData={videoData} />
 				</div>
 				{shouldShowNumberSold && (
-					<div className="flex flex-row items-center space-x-1.5 mx-4">
+					<div className="flex flex-row items-center space-x-1 ml-3">
 						<div>
 							<FaShoppingBag className="mb-0.5" />
 						</div>
@@ -43,7 +46,7 @@ function BeneathDescriptionSection(props: Props) {
 						<FaRegHeart size={15} />
 					)}
 					{videoData.numberOfLikes > 0 && (
-						<span className="ml-1.5">
+						<span className="ml-1">
 							{videoData.numberOfLikes}
 						</span>
 					)}
@@ -53,4 +56,4 @@ function BeneathDescriptionSection(props: Props) {
 	)
 }
 
-export default observer(BeneathDescriptionSection)
+export default observer(HomePageVideoSaleAndLikeDetails)
