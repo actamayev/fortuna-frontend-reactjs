@@ -28,7 +28,7 @@ export default function Home() {
 		<>
 			<PageHelmet pageTitle="/" />
 			<div style={{ minHeight }}>
-				<div className="flex justify-center w-full mt-32">
+				<div className="flex justify-center w-full">
 					<div className="w-full max-w-2xl">
 						<div className="flex flex-col items-center">
 							<div className="text-3xl font-semibold mb-4 text-zinc-800 dark:text-zinc-50 text-center">
