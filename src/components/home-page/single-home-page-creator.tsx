@@ -19,20 +19,20 @@ export default function SingleHomePageCreator(props: Props) {
 	return (
 		<div
 			className="bg-white dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 border p-2 cursor-pointer rounded
-			border-zinc-200 dark:border-zinc-700 text-xs text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"
+			border-zinc-200 dark:border-zinc-700 text-xs"
 			onClick={navigateToCreatorPageCallback}
 		>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center">
-					<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center mr-2">
+				<div className="flex items-center w-full">
+					<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center mr-2 flex-shrink-0">
 						<ShowUserProfileImageOrDefaultImage
 							profileImageUrl={singleHomePageCreator.creatorProfilePictureUrl}
 							extraClasses="min-w-full min-h-full object-cover"
 							onClickCreatorPicture={navigateToCreatorPageCallback}
 						/>
 					</div>
-					<div>
-						<span className="font-medium block">
+					<div className="flex-1 overflow-hidden">
+						<span className="font-medium block overflow-hidden text-ellipsis whitespace-nowrap">
 							{singleHomePageCreator.channelName}&nbsp;
 						</span>
 						<span
