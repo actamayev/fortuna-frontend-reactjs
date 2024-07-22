@@ -13,7 +13,8 @@ export default function Home() {
 		const footerHeight = document.getElementById("footer")?.offsetHeight || 0
 		const headerHeight = document.getElementById("header")?.offsetHeight || 0
 		const viewportHeight = window.innerHeight
-		const contentMinHeight = viewportHeight - headerHeight - footerHeight
+		const margin = 32 * 4 // 32 is the tailwind mt-32, multiplied by 4 to convert to pixels
+		const contentMinHeight = viewportHeight - headerHeight - footerHeight - margin
 		setMinHeight(`${contentMinHeight}px`)
 	}, [])
 
@@ -28,7 +29,7 @@ export default function Home() {
 		<>
 			<PageHelmet pageTitle="/" />
 			<div style={{ minHeight }}>
-				<div className="flex justify-center w-full">
+				<div className="flex justify-center w-full mt-32">
 					<div className="w-full max-w-2xl">
 						<div className="flex flex-col items-center">
 							<div className="text-3xl font-semibold mb-4 text-zinc-800 dark:text-zinc-50 text-center">
