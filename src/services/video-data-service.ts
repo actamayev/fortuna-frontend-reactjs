@@ -7,9 +7,9 @@ export default class VideoDataService {
 	constructor(private readonly httpClient: FortunaHttpClient) {
 	}
 
-	async getHomePageVideos(): Promise<AxiosResponse<HomePageVideos | ErrorResponse>> {
-		return await this.httpClient.http.get<HomePageVideos | ErrorResponse>(
-			`${this.pathHeader}/get-home-page-videos`, { headers: { "No-Auth-Required": "true" }}
+	async getHomePageData(): Promise<AxiosResponse<HomePageData | ErrorResponse>> {
+		return await this.httpClient.http.get<HomePageData | ErrorResponse>(
+			`${this.pathHeader}/get-home-page-data`, { headers: { "No-Auth-Required": "true" }}
 		)
 	}
 

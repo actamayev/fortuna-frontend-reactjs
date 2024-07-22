@@ -10,7 +10,7 @@ export default function useRetrieveHomePageVideos(
 	const videoClass = useVideoContext()
 	const fortunaApiClient = useApiClientContext()
 
-	const retrieveHomePageVideos = useCallback(async (): Promise<void> => {
+	const retrieveHomePageData = useCallback(async (): Promise<void> => {
 		try {
 			if (
 				videoClass.areHomePageVideosRetrieved === true ||
@@ -19,7 +19,7 @@ export default function useRetrieveHomePageVideos(
 			videoClass.areHomePageVideosRetrieved = false
 			videoClass.areHomePageVideosBeingRetrieved = true
 			setAreVideosLoading(true)
-			const response = await fortunaApiClient.videoDataService.getHomePageVideos()
+			const response = await fortunaApiClient.videoDataService.getHomePageData()
 			if (!_.isEqual(response.status, 200) || isErrorResponse(response.data)) {
 				throw new Error("Failed to retrieve video")
 			}
@@ -38,6 +38,6 @@ export default function useRetrieveHomePageVideos(
 	}, [videoClass, fortunaApiClient.videoDataService, setAreVideosLoading])
 
 	useEffect(() => {
-		void retrieveHomePageVideos()
-	}, [fortunaApiClient.httpClient.accessToken, retrieveHomePageVideos])
+		void retrieveHomePageData()
+	}, [fortunaApiClient.httpClient.accessToken, retrieveHomePageData])
 }

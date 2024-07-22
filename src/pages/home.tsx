@@ -1,24 +1,24 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import PageHelmet from "../components/helmet/page-helmet"
 import HomeScreenSearchBar from "../components/search-bars/home-screen-search-bar"
 
 export default function Home() {
-	const [minHeight, setMinHeight] = useState("0vh")
+	const [minHeight, setMinHeight] = useState("100vh")
+
+	const handleResize = useCallback(() => {
+		const footerHeight = document.getElementById("footer")?.offsetHeight || 0
+		const headerHeight = document.getElementById("header")?.offsetHeight || 0
+		const viewportHeight = window.innerHeight
+		const contentMinHeight = viewportHeight - headerHeight - footerHeight
+		setMinHeight(`${contentMinHeight}px`)
+	}, [])
 
 	useEffect(() => {
-		const handleResize = () => {
-			const footerHeight = document.getElementById("footer")?.offsetHeight || 0
-			const headerHeight = document.getElementById("header")?.offsetHeight || 0
-			const viewportHeight = window.innerHeight
-			const contentMinHeight = viewportHeight - headerHeight - footerHeight
-			setMinHeight(`${contentMinHeight}px`)
-		}
-
 		window.addEventListener("resize", handleResize)
 		handleResize()
 
 		return () => window.removeEventListener("resize", handleResize)
-	}, [])
+	}, [handleResize])
 
 	// TODO: Add: Popular channels (by # of likes?)
 	// TODO: Add: recent uploads (literally the last 5 videos published)
