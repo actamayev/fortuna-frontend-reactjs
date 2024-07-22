@@ -18,11 +18,11 @@ export default function SingleHomePageCreator(props: Props) {
 
 	return (
 		<div
-			className="bg-white dark:bg-zinc-800 border p-2 cursor-pointer rounded
-			border-zinc-200 dark:border-zinc-700 text-sm font-medium text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"
+			className="bg-white dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 border p-2 cursor-pointer rounded
+			border-zinc-200 dark:border-zinc-700 text-xs text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"
 			onClick={navigateToCreatorPageCallback}
 		>
-			<div className="flex items-center justify-between mb-2">
+			<div className="flex items-center justify-between">
 				<div className="flex items-center">
 					<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center mr-2">
 						<ShowUserProfileImageOrDefaultImage
@@ -31,12 +31,17 @@ export default function SingleHomePageCreator(props: Props) {
 							onClickCreatorPicture={navigateToCreatorPageCallback}
 						/>
 					</div>
-					<span>
-						{singleHomePageCreator.channelName}&nbsp;
-					</span>
-					<span>
-						{singleHomePageCreator.numberOfVideos} video{singleHomePageCreator.numberOfVideos > 1 ? "s" : ""}
-					</span>
+					<div>
+						<span className="font-medium block">
+							{singleHomePageCreator.channelName}&nbsp;
+						</span>
+						<span
+							className="block font-light"
+							style={{ fontSize: "10px", lineHeight: "14px" }}
+						>
+							{singleHomePageCreator.numberOfVideos} video{singleHomePageCreator.numberOfVideos > 1 ? "s" : ""}
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>

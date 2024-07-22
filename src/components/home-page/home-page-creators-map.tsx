@@ -7,7 +7,9 @@ function HomePageCreatorsMap() {
 
 	return (
 		<div className="text-zinc-950 dark:text-zinc-50">
-			Popular Creators
+			<div className="mt-4 mb-2">
+				Popular Creators
+			</div>
 			<div className="grid grid-cols-4 gap-3">
 				{videosClass.homeScreenCreators.map(singleCreator => (
 					<SingleHomePageCreator

@@ -115,7 +115,16 @@ class VideoClass {
 
 	public setHomePageCretors = action((creatorData: CreatorData[]): void => {
 		if (_.isEmpty(creatorData)) return
-		creatorData.map(singleCreator => this.homeScreenCreators.push(singleCreator))
+		creatorData.map(singleCreator => this.addCreatorToHomePageCreatorsList(singleCreator))
+	})
+
+	public addCreatorToHomePageCreatorsList = action((creatorToAdd: CreatorData): void => {
+		const exists = this.homeScreenCreators.some(
+			creator => creator.creatorUsername === creatorToAdd.creatorUsername
+		)
+
+		if (exists) return
+		this.homeScreenCreators.push(creatorToAdd)
 	})
 
 	public setVideoUrlRetrievalAttempted = action((videoUUID: string): void => {
