@@ -20,6 +20,12 @@ class PositionsAndTransactionsClass {
 		transactionType: ["Content Purchases", "Withdrawals", "Deposits"]
 	}
 
+	public ownershipFilter: OwnershipFilter = {
+		sortBy: "Date Purchased",
+		orderBy: "desc",
+		ownershipTitleIncludes: ""
+	}
+
 	constructor() {
 		makeAutoObservable(this)
 	}
@@ -162,6 +168,23 @@ class PositionsAndTransactionsClass {
 		this.walletFilter.transactionType.push(transactionType)
 	})
 
+	public updateOwnershipFilter = action((sortBy: OwnershipSortBy) => {
+		if (this.ownershipFilter.sortBy === sortBy) this.updateMyOwnershipOrderBy()
+		else {
+			this.ownershipFilter.sortBy = sortBy
+			this.ownershipFilter.orderBy = "desc"
+		}
+	})
+
+	private updateMyOwnershipOrderBy = action(() => {
+		if (this.ownershipFilter.orderBy === "asc") this.ownershipFilter.orderBy = "desc"
+		else this.ownershipFilter.orderBy = "asc"
+	})
+
+	public updateOwnershipFilterTitle = action((newTitle: string) => {
+		this.ownershipFilter.ownershipTitleIncludes = newTitle
+	})
+
 	public logout() {
 		this.mySolanaTransactions = []
 		this.myPurchasedExclusiveContent = []
@@ -176,6 +199,12 @@ class PositionsAndTransactionsClass {
 			transactionTitleIncludes: "",
 			orderDateBy: "desc",
 			transactionType: ["Content Purchases", "Withdrawals", "Deposits"]
+		}
+
+		this.ownershipFilter = {
+			sortBy: "Date Purchased",
+			orderBy: "desc",
+			ownershipTitleIncludes: ""
 		}
 	}
 }

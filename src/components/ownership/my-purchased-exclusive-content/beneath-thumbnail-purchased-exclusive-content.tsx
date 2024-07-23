@@ -1,11 +1,11 @@
 import { useCallback } from "react"
 import { observer } from "mobx-react"
-import useTypedNavigate from "../../hooks/navigate/typed-navigate"
-import { useRelativeDateFormatter } from "../../hooks/date-formatter"
-import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
-import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
-import ShowProvidedUsdOrSolPrice from "../usd-or-sol/show-provided-usd-or-sol-price"
-import ShowUserProfileImageOrDefaultImage from "../show-user-profile-image-or-default-image"
+import useTypedNavigate from "../../../hooks/navigate/typed-navigate"
+import { useRelativeDateFormatter } from "../../../hooks/date-formatter"
+import { addDefiniteLeadingAt } from "../../../utils/leading-at-operations"
+import useNavigateToCreatorPage from "../../../hooks/navigate/navigate-to-creator-page"
+import ShowProvidedUsdOrSolPrice from "../../usd-or-sol/show-provided-usd-or-sol-price"
+import ShowUserProfileImageOrDefaultImage from "../../show-user-profile-image-or-default-image"
 
 interface Props {
 	myPurchasedExclusiveContent: MyPurchasedExclusiveContent
@@ -53,7 +53,7 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 				underline decoration-dotted hover:decoration-solid overflow-hidden text-ellipsis whitespace-nowrap"
 				onClick={navigateToWalletScreen}
 			>
-					Purchased {relativeDateFormatter(myPurchasedExclusiveContent.purchaseDate)} for {" "}
+				Purchased {relativeDateFormatter(myPurchasedExclusiveContent.purchaseDate)} for {" "}
 				<ShowProvidedUsdOrSolPrice
 					roundOrFixed="round"
 					solPriceToDisplay={myPurchasedExclusiveContent.priceInSol}

@@ -36,6 +36,14 @@ declare global {
 	}
 
 	type SingleTransaction = SolanaTransaction | MyPurchasedExclusiveContent
+
+	type OwnershipSortBy = "Date Purchased" | "Amount Paid"
+
+	interface OwnershipFilter {
+		sortBy: OwnershipSortBy
+		orderBy: AscOrDesc
+		ownershipTitleIncludes: string
+	}
 }
 
 export {}
