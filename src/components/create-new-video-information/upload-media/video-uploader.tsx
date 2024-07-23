@@ -47,13 +47,13 @@ function VideoUploader() {
 
 	return (
 		<div className="w-1/2 h-auto" style={{ aspectRatio: "16/9" }}>
-			<label
-				className="relative w-full h-full rounded-xl text-zinc-950 dark:text-zinc-200
-                overflow-hidden cursor-pointer bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center"
+			<div
+				className="relative w-full h-full rounded-xl text-zinc-950 dark:text-zinc-200 flex items-center justify-center
+				overflow-hidden bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-700 hover:dark:bg-zinc-600 cursor-pointer"
+				onClick={() => !previewUrl && fileInputRef.current?.click()}
 			>
 				{!previewUrl ? (
 					<>
-						<span>Click to upload video</span>
 						<input
 							ref={fileInputRef}
 							type="file"
@@ -62,12 +62,13 @@ function VideoUploader() {
 							onChange={handleVideoChange}
 							max={1}
 						/>
+						<span>Click to upload video</span>
 					</>
 				) : (
-					<div className="relative w-full h-auto">
+					<>
 						<video
 							controls
-							className="w-full h-full object-cover"
+							className="w-full h-full object-cover cursor-default"
 							src={previewUrl}
 						/>
 						<div className="absolute top-2 right-2 font-semibold px-2 py-1 rounded">
@@ -79,9 +80,9 @@ function VideoUploader() {
 								className="text-zinc-50 font-semibold w-8 h-8 flex items-center justify-center"
 							/>
 						</div>
-					</div>
+					</>
 				)}
-			</label>
+			</div>
 		</div>
 	)
 }
