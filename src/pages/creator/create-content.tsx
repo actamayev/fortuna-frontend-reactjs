@@ -29,11 +29,13 @@ function CreateContent() {
 			<PageHelmet pageTitle="/creator/create-content" />
 			<CreateNewVideoTemplate>
 
-				<div className="mb-2">
-					<VideoUploader />
-				</div>
-				<div className="mb-2">
-					<ImageUploader />
+				<div className="flex flex-row space-x-4">
+					<div className="mb-2">
+						<VideoUploader />
+					</div>
+					<div className="mb-2">
+						<ImageUploader />
+					</div>
 				</div>
 				<VideoNameInput />
 

@@ -18,13 +18,12 @@ export default function SingleHomePageCreator(props: Props) {
 
 	return (
 		<div
-			className="bg-white dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 border p-2 cursor-pointer rounded
-			border-zinc-200 dark:border-zinc-700 text-xs"
+			className="bg-inherit hover:bg-zinc-100 dark:hover:bg-zinc-800 p-2 cursor-pointer rounded-lg text-xs"
 			onClick={navigateToCreatorPageCallback}
 		>
 			<div className="flex items-center justify-between">
 				<div className="flex items-center w-full">
-					<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center mr-2 flex-shrink-0">
+					<div className="w-16 h-16 rounded-full overflow-hidden flex justify-center items-center mr-2 flex-shrink-0">
 						<ShowUserProfileImageOrDefaultImage
 							profileImageUrl={singleHomePageCreator.creatorProfilePictureUrl}
 							extraClasses="min-w-full min-h-full object-cover"
