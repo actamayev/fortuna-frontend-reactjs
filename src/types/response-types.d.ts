@@ -35,6 +35,8 @@ declare global {
 		purchaseDate: Date
 		priceInSol: number
 		priceInUsd: number
+		newWalletBalanceSol: number
+		newWalletBalanceUsd: number
 	}
 
 	// Personal Info Responses:
