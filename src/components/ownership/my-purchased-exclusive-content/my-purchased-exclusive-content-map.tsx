@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import SingleMyPurchasedExclusiveContent from "./single-my-purchased-exclusive-content"
-import { usePositionsAndTransactionsContext } from "../../contexts/positions-and-transactions-context"
+import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 
 function MyPurchasedExclusiveContentMap() {
 	const positionsAndTransactionClass = usePositionsAndTransactionsContext()

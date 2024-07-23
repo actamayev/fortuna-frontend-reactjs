@@ -1,7 +1,7 @@
 import { useCallback } from "react"
 import { observer } from "mobx-react"
-import GeneralizedVideoThumbnail from "../generalized-video-thumbnail"
-import useNavigateToVideoPage from "../../hooks/navigate/navigate-to-video-page"
+import GeneralizedVideoThumbnail from "../../generalized-video-thumbnail"
+import useNavigateToVideoPage from "../../../hooks/navigate/navigate-to-video-page"
 import BeneathThumbnailPurchasedExclusiveContent from "./beneath-thumbnail-purchased-exclusive-content"
 
 interface Props {

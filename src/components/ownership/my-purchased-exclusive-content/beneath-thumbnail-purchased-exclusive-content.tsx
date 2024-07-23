@@ -1,11 +1,11 @@
 import { useCallback } from "react"
 import { observer } from "mobx-react"
-import useTypedNavigate from "../../hooks/navigate/typed-navigate"
-import { useRelativeDateFormatter } from "../../hooks/date-formatter"
-import { addDefiniteLeadingAt } from "../../utils/leading-at-operations"
-import useNavigateToCreatorPage from "../../hooks/navigate/navigate-to-creator-page"
-import ShowProvidedUsdOrSolPrice from "../usd-or-sol/show-provided-usd-or-sol-price"
-import ShowUserProfileImageOrDefaultImage from "../show-user-profile-image-or-default-image"
+import useTypedNavigate from "../../../hooks/navigate/typed-navigate"
+import { useRelativeDateFormatter } from "../../../hooks/date-formatter"
+import { addDefiniteLeadingAt } from "../../../utils/leading-at-operations"
+import useNavigateToCreatorPage from "../../../hooks/navigate/navigate-to-creator-page"
+import ShowProvidedUsdOrSolPrice from "../../usd-or-sol/show-provided-usd-or-sol-price"
+import ShowUserProfileImageOrDefaultImage from "../../show-user-profile-image-or-default-image"
 
 interface Props {
 	myPurchasedExclusiveContent: MyPurchasedExclusiveContent
