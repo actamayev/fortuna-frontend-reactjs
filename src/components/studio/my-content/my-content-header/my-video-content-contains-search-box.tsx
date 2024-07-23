@@ -8,7 +8,7 @@ function MyVideoContainsSearchBox() {
 
 	const handleSearch = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(creatorClass)) return
-		creatorClass.updateMyContentTitle(event.target.value)
+		creatorClass.updateMyContentFilterTitle(event.target.value)
 	}, [creatorClass])
 
 	const titleIncludes = useMemo(() => {

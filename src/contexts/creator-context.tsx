@@ -101,7 +101,7 @@ class CreatorClass {
 		else this.myContentFilter.visibility = "all"
 	})
 
-	public updateMyContentTitle = action((newTitle: string) => {
+	public updateMyContentFilterTitle = action((newTitle: string) => {
 		this.myContentFilter.titleIncludes = newTitle
 	})
 
