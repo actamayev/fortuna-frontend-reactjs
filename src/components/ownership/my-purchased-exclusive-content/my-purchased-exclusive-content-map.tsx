@@ -20,7 +20,7 @@ function MyPurchasedExclusiveContentMap() {
 	}
 
 	return (
-		<div className="grid grid-cols-4">
+		<div className="grid grid-cols-6">
 			{myOwnershipToShow.map(exclusiveContent => (
 				<SingleMyPurchasedExclusiveContent
 					key={exclusiveContent.uuid}
