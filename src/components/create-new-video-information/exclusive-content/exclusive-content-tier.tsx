@@ -1,12 +1,12 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
+import FormGroup from "../../form-group"
 import ChooseTierLimit from "./choose-tier-limit"
 import DeleteTierButton from "./delete-tier-button"
 import ShowTierDiscount from "./show-tier-discount"
-import RangeSelectorSlider from "../../range-selector-slider"
 import { useCreatorContext } from "../../../contexts/creator-context"
-import useIsNewVideoLoading from "../../../hooks/creator/create-video/is-new-video-loading"
+import { handleBoundedNumberInput } from "../../../utils/handle-number-input"
 
 interface Props {
 	tierNumber: number
@@ -15,7 +15,6 @@ interface Props {
 function ExclusiveContentTier(props: Props) {
 	const { tierNumber } = props
 	const creatorClass = useCreatorContext()
-	const isNewVideoLoading = useIsNewVideoLoading()
 
 	const tierAccessPriceUsd = useMemo(() => {
 		if (_.isNull(creatorClass)) return 0
@@ -31,7 +30,11 @@ function ExclusiveContentTier(props: Props) {
 
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(creatorClass)) return
-		creatorClass.updateNewVideoTierDetails("tierAccessPriceUsd", tierNumber, Number(event.target.value))
+		creatorClass.updateNewVideoTierDetails(
+			"tierAccessPriceUsd",
+			tierNumber,
+			handleBoundedNumberInput(event, 0, 100)
+		)
 	}, [creatorClass, tierNumber])
 
 	return (
@@ -42,24 +45,17 @@ function ExclusiveContentTier(props: Props) {
 					<DeleteTierButton tierNumber={tierNumber} />
 				</div>
 			</div>
-			<RangeSelectorSlider
-				title="Price to access content ($)"
-				value={tierAccessPriceUsd}
+			<FormGroup
+				label="Price to access content ($)"
+				type="number"
+				placeholder="##"
 				onChange={updateNewVideoDetails}
-				min={0}
-				max={50}
-				step={0.05}
-				disabled={isNewVideoLoading}
-				customWidth="w-5/6"
+				value={tierAccessPriceUsd.toString() || ""}
+				minValue={0}
+				className="w-5/6 mb-4"
 			/>
-			<div>
-				{tierAccessPriceUsd === 0 ? (
-					<>FREE</>
-				) : (
-					<>${_.round(tierAccessPriceUsd, 2)}</>
-				)}
-				<ShowTierDiscount tierNumber={tierNumber} />
-			</div>
+
+			<ShowTierDiscount tierNumber={tierNumber} />
 			<ChooseTierLimit
 				tierNumber={tierNumber}
 				infiniteAllowed={!areThereMoreTiers}
