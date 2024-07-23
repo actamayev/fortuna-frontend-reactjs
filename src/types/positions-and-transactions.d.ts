@@ -4,7 +4,9 @@ declare global {
 		solAmountTransferred: number
 		usdAmountTransferred: number
 		transferByCurrency: Currencies
-		depositOrWithdrawal: "deposit" | "withdrawal"
+		depositOrWithdrawal: DepositOrWithDrawal
+
+		transactionSignature: string
 
 		transferDateTime: Date
 		transferToUsername?: string

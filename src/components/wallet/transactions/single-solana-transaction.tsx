@@ -1,72 +1,65 @@
+import _ from "lodash"
+import { useCallback } from "react"
 import { observer } from "mobx-react"
-import { BsArrowUpRightSquareFill, BsArrowDownLeftSquareFill } from "react-icons/bs"
+import TransactionTypeTemplate from "../transaction-type-template"
+import NewWalletBalanceTemplate from "../new-wallet-balance-template"
 import { useAbbreviatedDateFormatter } from "../../../hooks/date-formatter"
+import TransactionDescriptionTemplate from "../transaction-description-template"
 import ShowProvidedUsdOrSolPrice from "../../usd-or-sol/show-provided-usd-or-sol-price"
+import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 
 interface Props {
-	transaction: SolanaTransaction
+	solanaTransaction: SolanaTransaction
 }
 
 function SingleSolanaTransaction(props: Props) {
-	const { transaction } = props
+	const { solanaTransaction } = props
+	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const abbreviatedDateFormatter = useAbbreviatedDateFormatter()
+
+	const setTransactionIdToFocusOn = useCallback(() => {
+		if (
+			_.isNull(positionsAndTransactionsClass) ||
+			positionsAndTransactionsClass.transactionIdToFocusOn === solanaTransaction.solTransferId
+		) return
+		positionsAndTransactionsClass.updateTransactionToFocusOn(solanaTransaction.solTransferId)
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [positionsAndTransactionsClass?.transactionIdToFocusOn, solanaTransaction.solTransferId])
 
 	return (
 		<div
 			className="grid grid-cols-8 gap-4 bg-inherit hover:bg-zinc-100 dark:hover:bg-zinc-800 py-2.5
 				text-zinc-950 dark:text-zinc-200 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer rounded-sm text-sm"
+			onClick={setTransactionIdToFocusOn}
 		>
 			<div className="col-span-1 flex items-center">
-				{abbreviatedDateFormatter(transaction.transferDateTime)}
+				{abbreviatedDateFormatter(solanaTransaction.transferDateTime)}
 			</div>
 			<div className="col-span-2 flex items-center">
-				{transaction.depositOrWithdrawal === "withdrawal" ? (
-					<div className="flex flex-row items-center space-x-3">
-						<BsArrowUpRightSquareFill size={30} className="flex-shrink-0 text-zinc-950 dark:text-zinc-200"/>
-						<div>Withdrawal</div>
-					</div>
-				) : (
-					<div className="flex flex-row items-center space-x-3 text-green-600 dark:text-green-400">
-						<BsArrowDownLeftSquareFill size={30} className="flex-shrink-0"/>
-						<div>Deposit</div>
-					</div>
-				)}
+				<TransactionTypeTemplate depositOrWithdrawal={solanaTransaction.depositOrWithdrawal} />
 			</div>
 			<div className="col-span-1 flex items-center">
 				<div
-					className={`flex justify-start ${transaction.depositOrWithdrawal === "deposit" ? "text-green-600 dark:text-green-400" :
+					className={`flex justify-start ${solanaTransaction.depositOrWithdrawal === "deposit" ?
+						"text-green-600 dark:text-green-400" :
 						"text-zinc-950 dark:text-zinc-200"}`}
 				>
-					{transaction.depositOrWithdrawal === "deposit" ? (<>+</>) : (<>-</>)}
+					{solanaTransaction.depositOrWithdrawal === "deposit" ? (<>+</>) : (<>-</>)}
 					<ShowProvidedUsdOrSolPrice
 						roundOrFixed="fixed"
-						solPriceToDisplay={transaction.solAmountTransferred}
-						usdPriceToDisplay={transaction.usdAmountTransferred}
+						solPriceToDisplay={solanaTransaction.solAmountTransferred}
+						usdPriceToDisplay={solanaTransaction.usdAmountTransferred}
 					/>
 				</div>
 			</div>
 			<div className="col-span-3 flex items-center">
-				<span>
-					Instant transfer&nbsp;
-					{transaction.depositOrWithdrawal === "deposit" && (<>from @{transaction.transferFromUsername}</>)}
-					{transaction.depositOrWithdrawal === "withdrawal" && (
-						<>
-							to {transaction.transferToUsername && <>@</>}
-							{transaction.transferToUsername || transaction.transferToPublicKey}
-						</>
-					)}
-				</span>
+				<TransactionDescriptionTemplate solanaTransaction={solanaTransaction} />
 			</div>
 			<div className="col-span-1 flex justify-end">
-				{(!transaction.newWalletBalanceSol || !transaction.newWalletBalanceUsd) ? (
-					<>--</>
-				) : (
-					<ShowProvidedUsdOrSolPrice
-						solPriceToDisplay={transaction.newWalletBalanceSol}
-						usdPriceToDisplay={transaction.newWalletBalanceUsd}
-						roundOrFixed="fixed"
-					/>
-				)}
+				<NewWalletBalanceTemplate
+					newWalletBalanceSol={solanaTransaction.newWalletBalanceSol}
+					newWalletBalanceUsd={solanaTransaction.newWalletBalanceUsd}
+				/>
 			</div>
 		</div>
 	)

@@ -1,25 +1,39 @@
+import _ from "lodash"
+import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { FaShoppingBag } from "react-icons/fa"
 import { useAbbreviatedDateFormatter } from "../../../hooks/date-formatter"
 import ShowProvidedUsdOrSolPrice from "../../usd-or-sol/show-provided-usd-or-sol-price"
 import useNavigateToVideoNewPage from "../../../hooks/navigate/navigate-to-video-new-page"
+import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 
 interface Props {
-	transaction: MyPurchasedExclusiveContent
+	exclusiveContentPurchase: MyPurchasedExclusiveContent
 }
 
 function SingleContentPurchaseTransaction(props: Props) {
-	const { transaction } = props
+	const { exclusiveContentPurchase } = props
 	const navigateToVideoNewPage = useNavigateToVideoNewPage()
 	const abbreviatedDateFormatter = useAbbreviatedDateFormatter()
+	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
+
+	const setTransactionIdToFocusOn = useCallback(() => {
+		if (
+			_.isNull(positionsAndTransactionsClass) ||
+			positionsAndTransactionsClass.transactionIdToFocusOn === exclusiveContentPurchase.uuid
+		) return
+		positionsAndTransactionsClass.updateTransactionToFocusOn(exclusiveContentPurchase.uuid)
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [exclusiveContentPurchase.uuid, positionsAndTransactionsClass?.transactionIdToFocusOn])
 
 	return (
 		<div
 			className="grid grid-cols-8 gap-4 bg-inherit hover:bg-zinc-100 dark:hover:bg-zinc-800 py-2.5
 				text-zinc-950 dark:text-zinc-200 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer rounded-sm text-sm"
+			onClick={setTransactionIdToFocusOn}
 		>
 			<div className="col-span-1 flex items-center">
-				{abbreviatedDateFormatter(transaction.purchaseDate)}
+				{abbreviatedDateFormatter(exclusiveContentPurchase.purchaseDate)}
 			</div>
 			<div className="col-span-2 flex items-center">
 				<div className="flex flex-row items-center space-x-3 text-blue-600 dark:text-blue-400">
@@ -31,8 +45,8 @@ function SingleContentPurchaseTransaction(props: Props) {
 				<div className="flex justify-start text-blue-600 dark:text-blue-400">
 					-
 					<ShowProvidedUsdOrSolPrice
-						solPriceToDisplay={transaction.priceInSol}
-						usdPriceToDisplay={transaction.priceInUsd}
+						solPriceToDisplay={exclusiveContentPurchase.priceInSol}
+						usdPriceToDisplay={exclusiveContentPurchase.priceInUsd}
 						roundOrFixed="fixed"
 					/>
 				</div>
@@ -43,19 +57,19 @@ function SingleContentPurchaseTransaction(props: Props) {
 					<div
 						className="cursor-pointer underline decoration-dotted
 						hover:decoration-solid overflow-hidden text-ellipsis whitespace-nowrap"
-						onClick={() => navigateToVideoNewPage(transaction.uuid)}
+						onClick={() => navigateToVideoNewPage(exclusiveContentPurchase.uuid)}
 					>
-						{transaction.videoName}
+						{exclusiveContentPurchase.videoName}
 					</div>
 				</div>
 			</div>
 			<div className="col-span-1 flex justify-end">
-				{(!transaction.newWalletBalanceSol || !transaction.newWalletBalanceUsd) ? (
+				{(!exclusiveContentPurchase.newWalletBalanceSol || !exclusiveContentPurchase.newWalletBalanceUsd) ? (
 					<>--</>
 				) : (
 					<ShowProvidedUsdOrSolPrice
-						solPriceToDisplay={transaction.newWalletBalanceSol}
-						usdPriceToDisplay={transaction.newWalletBalanceUsd}
+						solPriceToDisplay={exclusiveContentPurchase.newWalletBalanceSol}
+						usdPriceToDisplay={exclusiveContentPurchase.newWalletBalanceUsd}
 						roundOrFixed="fixed"
 					/>
 				)}

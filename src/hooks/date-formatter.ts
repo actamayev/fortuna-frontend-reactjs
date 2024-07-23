@@ -16,6 +16,14 @@ export function useActualDateFormatter(): (dateInput: Date) => string {
 	}, [])
 }
 
+export function useDateTimeFormatter(): (dateInput: Date) => string {
+	return useCallback((dateInput: Date): string => {
+		const date = dayjs(dateInput)
+
+		return date.format("MMMM D, YYYY h:mm A")
+	}, [])
+}
+
 export function useAbbreviatedDateFormatter(): (dateInput: Date) => string {
 	return useCallback((dateInput: Date): string => {
 		const date = dayjs(dateInput)

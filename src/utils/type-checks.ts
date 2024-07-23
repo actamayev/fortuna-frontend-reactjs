@@ -36,3 +36,7 @@ export function isSolanaTransaction(data: SingleTransaction): data is SolanaTran
 	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 	return (data as SolanaTransaction).solTransferId !== undefined
 }
+
+export function isNumber (value: any): value is number {
+	return typeof value === "number"
+}
