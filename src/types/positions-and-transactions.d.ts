@@ -10,6 +10,9 @@ declare global {
 		transferToUsername?: string
 		transferToPublicKey?: string
 		transferFromUsername: string
+
+		newWalletBalanceSol: number | null
+		newWalletBalanceUsd: number | null
 	}
 
 	interface MyPurchasedExclusiveContent {
@@ -23,6 +26,9 @@ declare global {
 		channelName: string
 		creatorProfilePictureUrl: string | null
 		creatorUsername: string
+
+		newWalletBalanceSol: number | null
+		newWalletBalanceUsd: number | null
 	}
 
 	type WalletFilterRange = "Month" | "Week" | "Today"

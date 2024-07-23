@@ -37,7 +37,7 @@ function SingleContentPurchaseTransaction(props: Props) {
 					/>
 				</div>
 			</div>
-			<div className="col-span-4 flex items-center overflow-hidden">
+			<div className="col-span-3 flex items-center overflow-hidden">
 				<div className="flex flex-row overflow-hidden text-ellipsis whitespace-nowrap">
 					<div className="flex-shrink-0">Purchased Exclusive Access to&nbsp;</div>
 					<div
@@ -48,6 +48,17 @@ function SingleContentPurchaseTransaction(props: Props) {
 						{transaction.videoName}
 					</div>
 				</div>
+			</div>
+			<div className="col-span-1 flex justify-end">
+				{(transaction.newWalletBalanceSol && transaction.newWalletBalanceUsd) ? (
+					<ShowProvidedUsdOrSolPrice
+						solPriceToDisplay={transaction.newWalletBalanceSol}
+						usdPriceToDisplay={transaction.newWalletBalanceUsd}
+						roundOrFixed="fixed"
+					/>
+				) : (
+					<>--</>
+				)}
 			</div>
 		</div>
 	)

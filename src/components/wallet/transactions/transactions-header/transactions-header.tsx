@@ -16,9 +16,10 @@ export default function TransactionsHeader() {
 			</div>
 			<div className="col-span-1">Amount</div>
 			<div className="col-span-1">Description</div>
-			<div className="col-span-3">
+			<div className="col-span-2">
 				<TransactionsDescriptionSearch />
 			</div>
+			<div className="col-span-1 flex justify-end">Balance</div>
 		</div>
 	)
 }

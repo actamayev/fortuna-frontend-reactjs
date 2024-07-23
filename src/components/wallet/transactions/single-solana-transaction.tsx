@@ -45,7 +45,7 @@ function SingleSolanaTransaction(props: Props) {
 					/>
 				</div>
 			</div>
-			<div className="col-span-4 flex items-center">
+			<div className="col-span-3 flex items-center">
 				<span>
 					Instant transfer&nbsp;
 					{transaction.depositOrWithdrawal === "deposit" && (<>from @{transaction.transferFromUsername}</>)}
@@ -56,6 +56,17 @@ function SingleSolanaTransaction(props: Props) {
 						</>
 					)}
 				</span>
+			</div>
+			<div className="col-span-1 flex justify-end">
+				{(transaction.newWalletBalanceSol && transaction.newWalletBalanceUsd) ? (
+					<ShowProvidedUsdOrSolPrice
+						solPriceToDisplay={transaction.newWalletBalanceSol}
+						usdPriceToDisplay={transaction.newWalletBalanceUsd}
+						roundOrFixed="fixed"
+					/>
+				) : (
+					<>--</>
+				)}
 			</div>
 		</div>
 	)
