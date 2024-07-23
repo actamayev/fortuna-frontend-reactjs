@@ -58,14 +58,14 @@ function SingleSolanaTransaction(props: Props) {
 				</span>
 			</div>
 			<div className="col-span-1 flex justify-end">
-				{(transaction.newWalletBalanceSol && transaction.newWalletBalanceUsd) ? (
+				{(!transaction.newWalletBalanceSol || !transaction.newWalletBalanceUsd) ? (
+					<>--</>
+				) : (
 					<ShowProvidedUsdOrSolPrice
 						solPriceToDisplay={transaction.newWalletBalanceSol}
 						usdPriceToDisplay={transaction.newWalletBalanceUsd}
 						roundOrFixed="fixed"
 					/>
-				) : (
-					<>--</>
 				)}
 			</div>
 		</div>
