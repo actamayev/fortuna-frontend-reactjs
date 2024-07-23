@@ -10,13 +10,13 @@ function TransferAmountSection() {
 
 	return (
 		<div>
-			Sending {" "}
+			Sending&nbsp;
 			<ShowProvidedUsdOrSolPrice
 				roundOrFixed="round"
 				solPriceToDisplay={solanaClass.moneyTransferDetails.transferAmount}
 				usdPriceToDisplay={solanaClass.moneyTransferDetails.transferAmount}
-			/>
-			to
+			/>{" "}
+			to&nbsp;
 			<span className="font-semibold break-all">
 				{solanaClass.moneyTransferDetails.transferOption === "username" && solanaClass.moneyTransferDetails.username}
 				{solanaClass.moneyTransferDetails.transferOption === "publicKey" && solanaClass.moneyTransferDetails.publicKey}

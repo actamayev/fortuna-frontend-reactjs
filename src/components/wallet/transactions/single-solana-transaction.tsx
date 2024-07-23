@@ -22,11 +22,11 @@ function SingleSolanaTransaction(props: Props) {
 			<div className="col-span-2 flex items-center">
 				{transaction.depositOrWithdrawal === "withdrawal" ? (
 					<div className="flex flex-row items-center space-x-3">
-						<BsArrowUpRightSquareFill size={30} className="flex-shrink-0"/>
+						<BsArrowUpRightSquareFill size={30} className="flex-shrink-0 text-zinc-950 dark:text-zinc-200"/>
 						<div>Withdrawal</div>
 					</div>
 				) : (
-					<div className="flex flex-row items-center space-x-3">
+					<div className="flex flex-row items-center space-x-3 text-green-600 dark:text-green-400">
 						<BsArrowDownLeftSquareFill size={30} className="flex-shrink-0"/>
 						<div>Deposit</div>
 					</div>
@@ -35,7 +35,7 @@ function SingleSolanaTransaction(props: Props) {
 			<div className="col-span-1 flex items-center">
 				<div
 					className={`flex justify-start ${transaction.depositOrWithdrawal === "deposit" ? "text-green-600 dark:text-green-400" :
-						"text-red-600 dark:text-red-400"}`}
+						"text-zinc-950 dark:text-zinc-200"}`}
 				>
 					{transaction.depositOrWithdrawal === "deposit" ? (<>+</>) : (<>-</>)}
 					<ShowProvidedUsdOrSolPrice

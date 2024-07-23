@@ -22,13 +22,13 @@ function SingleContentPurchaseTransaction(props: Props) {
 				{abbreviatedDateFormatter(transaction.purchaseDate)}
 			</div>
 			<div className="col-span-2 flex items-center">
-				<div className="flex flex-row items-center space-x-3">
+				<div className="flex flex-row items-center space-x-3 text-blue-600 dark:text-blue-400">
 					<FaShoppingBag size={30} className="flex-shrink-0"/>
 					<div>Content Purchase</div>
 				</div>
 			</div>
 			<div className="col-span-1 flex items-center">
-				<div className="flex justify-start text-zinc-950 dark:text-zinc-200">
+				<div className="flex justify-start text-blue-600 dark:text-blue-400">
 					-
 					<ShowProvidedUsdOrSolPrice
 						solPriceToDisplay={transaction.priceInSol}
