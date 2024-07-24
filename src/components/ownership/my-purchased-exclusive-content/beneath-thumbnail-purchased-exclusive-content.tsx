@@ -59,7 +59,7 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 				underline decoration-dotted hover:decoration-solid overflow-hidden text-ellipsis whitespace-nowrap"
 				onClick={navigateToWalletScreen}
 			>
-				Purchased {relativeDateFormatter(myPurchasedExclusiveContent.purchaseDate)} for {" "}
+				Purchased {relativeDateFormatter(myPurchasedExclusiveContent.purchaseDate)} for&nbsp;
 				<ShowProvidedUsdOrSolPrice
 					roundOrFixed="round"
 					solPriceToDisplay={myPurchasedExclusiveContent.priceInSol}

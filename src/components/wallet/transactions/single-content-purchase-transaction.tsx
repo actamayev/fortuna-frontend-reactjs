@@ -77,11 +77,13 @@ function SingleContentPurchaseTransaction(props: Props) {
 				{(!exclusiveContentPurchase.newWalletBalanceSol || !exclusiveContentPurchase.newWalletBalanceUsd) ? (
 					<>--</>
 				) : (
-					<ShowProvidedUsdOrSolPrice
-						solPriceToDisplay={exclusiveContentPurchase.newWalletBalanceSol}
-						usdPriceToDisplay={exclusiveContentPurchase.newWalletBalanceUsd}
-						roundOrFixed="fixed"
-					/>
+					<div>
+						<ShowProvidedUsdOrSolPrice
+							solPriceToDisplay={exclusiveContentPurchase.newWalletBalanceSol}
+							usdPriceToDisplay={exclusiveContentPurchase.newWalletBalanceUsd}
+							roundOrFixed="fixed"
+						/>
+					</div>
 				)}
 			</div>
 		</div>

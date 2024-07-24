@@ -37,7 +37,7 @@ function ShowUnlockStatus(props: Props) {
 						<ShowUsdOrSolPrice
 							usdAmount={getTieredAccessPriceUsd(videoData)}
 							roundOrFixed="round"
-						/> {" "}
+						/>&nbsp;
 						to unlock
 					</>
 				)}

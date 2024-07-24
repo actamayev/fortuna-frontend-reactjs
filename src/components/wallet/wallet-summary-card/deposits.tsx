@@ -64,8 +64,8 @@ function Deposits() {
 				)}
 			</div>
 			<div className="text-zinc-500 dark:text-zinc-400 text-sm">
-				Deposits {" "}
-				{transactionsTimeRange !== "Today" && (<>this {" "}</>)}
+				Deposits&nbsp;
+				{transactionsTimeRange !== "Today" && (<>this&nbsp;</>)}
 				<span
 					className="cursor-pointer underline decoration-dotted"
 					onClick={positionsAndTransactionsClass?.handleTimeRangeClick}

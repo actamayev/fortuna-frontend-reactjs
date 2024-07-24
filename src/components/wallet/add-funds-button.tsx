@@ -9,7 +9,7 @@ export default function AddFundsButton() {
 				<div>
 					<p>1. Copy your Public Key (left)</p>
 					<p>
-						2. Go to {" "}
+						2. Go to&nbsp;
 						<a
 							href="https://faucet.solana.com/"
 							target="_blank"

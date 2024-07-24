@@ -32,21 +32,20 @@ function ShowTransactionSignature(props: Props) {
 	}, [explorerUrl])
 
 	return (
-		<div className="font-semibold flex items-center">
-			<div className="flex items-center dark:text-zinc-200">
-				<span className="mr-2">Transaction Signature:</span>
-				<div
-					className="cursor-pointer flex-shrink"
-					onClick={copyToClipboard}
-				>
-					{_.truncate(transactionSignature, { length: 13 })}
+		<div className="flex items-center">
+			<div className="flex items-center dark:text-zinc-200 justify-between w-full">
+				<div className="flex items-center">
+					<span className="font-semibold">Transaction Signature:&nbsp;</span>
+					<div className="cursor-pointer flex-shrink" onClick={copyToClipboard}>
+						{_.truncate(transactionSignature, { length: 15 })}
+					</div>
 				</div>
 				<div
 					className="cursor-pointer ml-2 p-1 rounded-full border
 					border-black dark:border-white hover:bg-zinc-200 hover:dark:bg-zinc-600"
 					onClick={goToSolanaPage}
 				>
-					<SiSolana  />
+					<SiSolana />
 				</div>
 			</div>
 		</div>

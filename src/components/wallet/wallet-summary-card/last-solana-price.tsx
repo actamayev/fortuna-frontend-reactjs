@@ -39,7 +39,7 @@ function LastSolanaPrice() {
 				)}
 			</div>
 			<div className="text-zinc-500 dark:text-zinc-400 text-sm">
-				Last Solana price {" "} (
+				Last Solana price&nbsp;(
 				<a
 					href="https://www.coingecko.com/en/coins/solana"
 					target="_blank"

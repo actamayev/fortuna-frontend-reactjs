@@ -19,7 +19,7 @@ function EarningsSection(props: Props) {
 
 	return (
 		<div>
-			Profit from video: {" "}
+			Profit from video:&nbsp;
 			<ShowProvidedUsdOrSolPrice
 				roundOrFixed="fixed"
 				solPriceToDisplay={content.totalCreatorProfitInSol}

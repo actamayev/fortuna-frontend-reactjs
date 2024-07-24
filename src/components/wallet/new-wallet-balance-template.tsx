@@ -14,10 +14,12 @@ export default function NewWalletBalanceTemplate(props: Props) {
 	}
 
 	return (
-		<ShowProvidedUsdOrSolPrice
-			solPriceToDisplay={newWalletBalanceSol}
-			usdPriceToDisplay={newWalletBalanceUsd}
-			roundOrFixed="fixed"
-		/>
+		<div>
+			<ShowProvidedUsdOrSolPrice
+				solPriceToDisplay={newWalletBalanceSol}
+				usdPriceToDisplay={newWalletBalanceUsd}
+				roundOrFixed="fixed"
+			/>
+		</div>
 	)
 }

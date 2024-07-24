@@ -18,7 +18,7 @@ function ShowNumberVideos() {
 			• {numberVideos} video{numberVideos === 1 ? "" : "s"}
 			{numberOfUnlistedVideos > 0 && (
 				<>
-					{" "} ({numberVideos - numberOfUnlistedVideos} listed, {numberOfUnlistedVideos} unlisted)
+					&nbsp;({numberVideos - numberOfUnlistedVideos} listed, {numberOfUnlistedVideos} unlisted)
 				</>
 			)}
 		</div>
