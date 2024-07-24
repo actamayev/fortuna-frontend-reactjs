@@ -2,16 +2,12 @@ import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { isSolanaTransaction } from "../../../../utils/type-checks"
+import TransactionSummaryHeader from "./transaction-summary-header"
 import ShowSolanaTransactionDetailsSummaryCard from "./show-solana-transaction-details-summary-card"
 import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
 import ShowExclusiveContentAccessDetailsSummaryCard from "./show-exclusive-content-access-details-summary-card"
 
-interface Props {
-	myTransactionsToShow: SingleTransaction[]
-}
-
-function TransactionSummaryCard(props: Props) {
-	const { myTransactionsToShow } = props // use this to move left/right in myTransactionsToShow
+function TransactionSummaryCard() {
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
 	const transaction = useMemo(() => {
@@ -30,9 +26,7 @@ function TransactionSummaryCard(props: Props) {
 
 	return (
 		<div className="bg-zinc-100 dark:bg-zinc-800 text-zinc-950 dark:text-zinc-200 p-2 rounded">
-			<div className="flex justify-center text-lg font-bold">
-				Transaction Summary
-			</div>
+			<TransactionSummaryHeader transaction={transaction}/>
 			<div className="border-b border-zinc-300 dark:border-zinc-700 my-1"></div>
 			{isSolanaTransaction(transaction) ? (
 				<ShowSolanaTransactionDetailsSummaryCard solanaTransaction={transaction} />

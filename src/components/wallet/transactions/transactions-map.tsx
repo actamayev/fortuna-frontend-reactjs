@@ -25,7 +25,7 @@ function TransactionsMap() {
 				))}
 			</div>
 			<div className="w-1/4 ml-4">
-				<TransactionSummaryCard myTransactionsToShow={myTransactionsToShow} />
+				<TransactionSummaryCard />
 			</div>
 		</div>
 	)
