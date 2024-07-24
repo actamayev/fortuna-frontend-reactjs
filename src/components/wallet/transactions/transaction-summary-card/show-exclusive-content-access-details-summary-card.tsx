@@ -1,6 +1,6 @@
 import { observer } from "mobx-react"
-import TransactionSignature from "./transaction-signature"
 import SuccessStatusMessage from "./success-status-message"
+import ShowTransactionSignature from "./show-transaction-signature"
 import { useDateTimeFormatter } from "../../../../hooks/date-formatter"
 import ShowProvidedUsdOrSolPrice from "../../../usd-or-sol/show-provided-usd-or-sol-price"
 import useNavigateToVideoNewPage from "../../../../hooks/navigate/navigate-to-video-new-page"
@@ -28,15 +28,16 @@ function ShowExclusiveContentAccessDetailsSummaryCard(props: Props) {
 				</div>
 			</div>
 			<div className="flex flex-row overflow-hidden text-ellipsis whitespace-nowrap">
-				<TransactionSummaryCardCategoryHeader categoryName="Description" />
-				<div className="flex flex-row">
-					<div className="flex-shrink-0">Purchased Exclusive Access to&nbsp;</div>
-					<div
-						className="cursor-pointer underline decoration-dotted
-						hover:decoration-solid"
-						onClick={() => navigateToVideoNewPage(exclusiveContentPurchase.uuid)}
-					>
-						{exclusiveContentPurchase.videoName}
+				<div className="flex flex-col">
+					<TransactionSummaryCardCategoryHeader categoryName="Description" />
+					<div className="flex flex-wrap">
+						<div className="flex-shrink-0">Purchased Exclusive Access to&nbsp;</div>
+						<div
+							className="cursor-pointer underline decoration-dotted hover:decoration-solid"
+							onClick={() => navigateToVideoNewPage(exclusiveContentPurchase.uuid)}
+						>
+							{exclusiveContentPurchase.videoName}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -61,7 +62,7 @@ function ShowExclusiveContentAccessDetailsSummaryCard(props: Props) {
 				/>
 			</div>
 			<div className="border-b border-zinc-300 dark:border-zinc-700"></div>
-			<div><TransactionSignature transactionSignature={"abc"} /></div>
+			<div><ShowTransactionSignature transactionSignature={"abc"} /></div>
 			<div><SuccessStatusMessage /></div>
 			<div className="flex flex-row">
 				<TransactionSummaryCardCategoryHeader categoryName="Transaction Fee" />

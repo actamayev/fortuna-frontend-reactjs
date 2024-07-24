@@ -1,6 +1,6 @@
 import { observer } from "mobx-react"
-import TransactionSignature from "./transaction-signature"
 import SuccessStatusMessage from "./success-status-message"
+import ShowTransactionSignature from "./show-transaction-signature"
 import TransactionTypeTemplate from "../../transaction-type-template"
 import { useDateTimeFormatter } from "../../../../hooks/date-formatter"
 import NewWalletBalanceTemplate from "../../new-wallet-balance-template"
@@ -53,7 +53,7 @@ function ShowSolanaTransactionDetailsSummaryCard(props: Props) {
 			</div>
 			<div className="border-b border-zinc-300 dark:border-zinc-700"></div>
 			<div>
-				<TransactionSignature transactionSignature={solanaTransaction.transactionSignature} />
+				<ShowTransactionSignature transactionSignature={solanaTransaction.transactionSignature} />
 			</div>
 			<div><SuccessStatusMessage /></div>
 			<div>
