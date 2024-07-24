@@ -3,6 +3,7 @@ import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { useCreatorContext } from "../../../contexts/creator-context"
 import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
+import { SuperMoneyStyleDollars } from "../../usd-or-sol/super-money-style"
 
 interface Props {
 	tierNumber: number
@@ -26,13 +27,15 @@ function MaxProfitByTier(props: Props) {
 
 	if (_.isNull(purchasesInThisTier) || tierAccessPriceUsd === 0) return null
 
+	const { dollars, cents } = numberWithCommasFixed((purchasesInThisTier * tierAccessPriceUsd), 2)
+
 	return (
 		<div>
 			Max Profit From Tier {tierNumber}:
-			${numberWithCommasFixed((purchasesInThisTier * tierAccessPriceUsd), 2)} {" "}
-			({purchasesInThisTier} {" "}
-			purchase{purchasesInThisTier > 1 ? "s" : ""} {" "}
-			X {" "} ${tierAccessPriceUsd})
+			<SuperMoneyStyleDollars dollars={dollars} cents={cents} />
+			&nbsp;({purchasesInThisTier}&nbsp;
+			purchase{purchasesInThisTier > 1 ? "s" : ""}&nbsp;
+			X&nbsp; ${tierAccessPriceUsd})
 		</div>
 	)
 }

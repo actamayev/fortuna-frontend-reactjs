@@ -3,6 +3,7 @@ import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../contexts/solana-context"
 import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
+import { SuperMoneyStyleDollars } from "../../usd-or-sol/super-money-style"
 
 function LastSolanaPrice() {
 	const solanaClass = useSolanaContext()
@@ -16,7 +17,14 @@ function LastSolanaPrice() {
 		}) : "unknown"
 	}, [solanaClass?.solPriceDetails?.lastRetrievedTime])
 
+	const solPriceUsd = useMemo(() => {
+		if (_.isNil(solanaClass?.solPriceDetails)) return { dollars: "0", cents: "0" }
+		return numberWithCommasFixed(solanaClass.solPriceDetails.solPriceInUSD, 2)
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [solanaClass?.solPriceDetails?.solPriceInUSD])
+
 	if (_.isNull(solanaClass)) return null
+
 
 	return (
 		<div>
@@ -24,7 +32,10 @@ function LastSolanaPrice() {
 				{_.isUndefined(solanaClass.solPriceDetails?.solPriceInUSD) ? (
 					<>Loading...</>
 				) : (
-					<>${numberWithCommasFixed(solanaClass.solPriceDetails.solPriceInUSD, 2)}</>
+					<SuperMoneyStyleDollars
+						dollars={solPriceUsd.dollars}
+						cents={solPriceUsd.cents}
+					/>
 				)}
 			</div>
 			<div className="text-zinc-500 dark:text-zinc-400 text-sm">

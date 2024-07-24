@@ -4,6 +4,7 @@ import RangeSelectorSlider from "../../../range-selector-slider"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import useDefaultCurrency from "../../../../hooks/memos/default-currency"
 import { numberWithCommasFixed } from "../../../../utils/numbers-with-commas"
+import { SuperMoneyStyleDollars, SuperMoneyStyleSol } from "../../../usd-or-sol/super-money-style"
 
 // eslint-disable-next-line complexity
 function SelectTransferAmount() {
@@ -38,6 +39,8 @@ function SelectTransferAmount() {
 	if (solanaClass.isPublicKeySearchLoading === true) return null
 
 	if (defaultCurrency === "sol") {
+		const { dollars, cents } = numberWithCommasFixed(solanaClass.moneyTransferDetails.transferAmount, 4)
+
 		return (
 			<div className="flex flex-col space-y-4">
 				<RangeSelectorSlider
@@ -50,10 +53,15 @@ function SelectTransferAmount() {
 					max={solanaClass.walletBalanceSol || 0}
 					step={0.0001}
 				/>
-				{numberWithCommasFixed(solanaClass.moneyTransferDetails.transferAmount, 4)} SOL
+				<SuperMoneyStyleSol
+					dollars={dollars}
+					cents={cents}
+				/>
 			</div>
 		)
 	}
+
+	const { dollars, cents } = numberWithCommasFixed(solanaClass.moneyTransferDetails.transferAmount, 2)
 
 	return (
 		<div className="flex flex-col space-y-4">
@@ -67,7 +75,10 @@ function SelectTransferAmount() {
 				max={solanaClass.walletBalanceUSD.get()}
 				step={0.01}
 			/>
-			${numberWithCommasFixed(solanaClass.moneyTransferDetails.transferAmount, 2)}
+			<SuperMoneyStyleDollars
+				dollars={dollars}
+				cents={cents}
+			/>
 		</div>
 	)
 }
