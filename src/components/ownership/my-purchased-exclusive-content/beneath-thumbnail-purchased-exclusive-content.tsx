@@ -1,3 +1,4 @@
+import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import useTypedNavigate from "../../../hooks/navigate/typed-navigate"
@@ -6,6 +7,7 @@ import { addDefiniteLeadingAt } from "../../../utils/leading-at-operations"
 import useNavigateToCreatorPage from "../../../hooks/navigate/navigate-to-creator-page"
 import ShowProvidedUsdOrSolPrice from "../../usd-or-sol/show-provided-usd-or-sol-price"
 import ShowUserProfileImageOrDefaultImage from "../../show-user-profile-image-or-default-image"
+import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 
 interface Props {
 	myPurchasedExclusiveContent: MyPurchasedExclusiveContent
@@ -16,6 +18,7 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 	const navigateToCreatorPage = useNavigateToCreatorPage()
 	const relativeDateFormatter = useRelativeDateFormatter()
 	const navigateToWallet = useTypedNavigate()
+	const positionsAndTransactionClass = usePositionsAndTransactionsContext()
 
 	const navigateToCreatorPageCallback = useCallback((e: React.MouseEvent<HTMLElement, MouseEvent>) => {
 		e.stopPropagation() // Prevents the video click event when clicking the image
@@ -24,8 +27,11 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 
 	const navigateToWalletScreen = useCallback((e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
 		e.stopPropagation() // Prevents the video click event when clicking the image
+		if (!_.isNull(positionsAndTransactionClass)) {
+			positionsAndTransactionClass.updateTransactionToFocusOn(myPurchasedExclusiveContent.uuid)
+		}
 		navigateToWallet("/wallet")
-	}, [navigateToWallet])
+	}, [myPurchasedExclusiveContent.uuid, navigateToWallet, positionsAndTransactionClass])
 
 	return (
 		<div className="p-1.5">
