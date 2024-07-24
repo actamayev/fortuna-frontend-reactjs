@@ -1,9 +1,11 @@
 import { observer } from "mobx-react"
 import { FaShoppingBag } from "react-icons/fa"
 import TransactionSignature from "./transaction-signature"
+import SuccessStatusMessage from "./success-status-message"
 import { useDateTimeFormatter } from "../../../../hooks/date-formatter"
 import ShowProvidedUsdOrSolPrice from "../../../usd-or-sol/show-provided-usd-or-sol-price"
 import useNavigateToVideoNewPage from "../../../../hooks/navigate/navigate-to-video-new-page"
+import TransactionSummaryCardCategoryHeader from "./transaction-summary-card-category-header"
 
 interface Props {
 	exclusiveContentPurchase: MyPurchasedExclusiveContent
@@ -16,31 +18,32 @@ function ShowExclusiveContentAccessDetailsSummaryCard(props: Props) {
 
 	return (
 		<div className="flex flex-col space-y-2">
-			<div>
-				Transaction Date: {dateTimeFormatter(exclusiveContentPurchase.purchaseDate)}
+			<div className="flex flex-row">
+				<TransactionSummaryCardCategoryHeader categoryName="Transaction Date" />
+				{dateTimeFormatter(exclusiveContentPurchase.purchaseDate)}
 			</div>
-			<div>
-				Transaction Type:&nbsp;
-				<div className="flex flex-row items-center space-x-3 text-blue-600 dark:text-blue-400">
-					<FaShoppingBag size={30} className="flex-shrink-0"/>
+			<div className="flex flex-row">
+				<TransactionSummaryCardCategoryHeader categoryName="Transaction Type" />
+				<div className="flex flex-row items-center ml-1 space-x-1 text-blue-600 dark:text-blue-400">
+					<FaShoppingBag size={20} className="flex-shrink-0"/>
 					<div>Content Purchase</div>
 				</div>
 			</div>
-			<div>
-				Description:
-				<div className="flex flex-row overflow-hidden text-ellipsis whitespace-nowrap">
+			<div className="flex flex-row overflow-hidden text-ellipsis whitespace-nowrap">
+				<TransactionSummaryCardCategoryHeader categoryName="Description" />
+				<div className="flex flex-row">
 					<div className="flex-shrink-0">Purchased Exclusive Access to&nbsp;</div>
 					<div
 						className="cursor-pointer underline decoration-dotted
-						hover:decoration-solid overflow-hidden text-ellipsis whitespace-nowrap"
+						hover:decoration-solid"
 						onClick={() => navigateToVideoNewPage(exclusiveContentPurchase.uuid)}
 					>
 						{exclusiveContentPurchase.videoName}
 					</div>
 				</div>
 			</div>
-			<div>
-				New Balance:
+			<div className="flex flex-row">
+				<TransactionSummaryCardCategoryHeader categoryName="New Balance" />
 				{(!exclusiveContentPurchase.newWalletBalanceSol || !exclusiveContentPurchase.newWalletBalanceUsd) ? (
 					<>--</>
 				) : (
@@ -51,25 +54,19 @@ function ShowExclusiveContentAccessDetailsSummaryCard(props: Props) {
 					/>
 				)}
 			</div>
-			<div>
-				Amount: -
-				<ShowProvidedUsdOrSolPrice
+			<div className="flex flex-row">
+				<TransactionSummaryCardCategoryHeader categoryName="Amount" />
+				-<ShowProvidedUsdOrSolPrice
 					solPriceToDisplay={exclusiveContentPurchase.priceInSol}
 					usdPriceToDisplay={exclusiveContentPurchase.priceInUsd}
 					roundOrFixed="fixed"
 				/>
 			</div>
-			<div>
-				<TransactionSignature transactionSignature={"abc"} />
-			</div>
-			<div>
-				Status:
-				<div className="text-green-600 dark:text-green-400">
-					Complete
-				</div>
-			</div>
-			<div>
-				Transaction Fee: 0 (no transaction fees when making content purchases)
+			<div><TransactionSignature transactionSignature={"abc"} /></div>
+			<div><SuccessStatusMessage /></div>
+			<div className="flex flex-row">
+				<TransactionSummaryCardCategoryHeader categoryName="Transaction Fee" />
+				0 (no transaction fees when making content purchases)
 			</div>
 		</div>
 	)

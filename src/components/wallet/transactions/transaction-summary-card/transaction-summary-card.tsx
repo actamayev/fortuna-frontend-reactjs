@@ -29,8 +29,10 @@ function TransactionSummaryCard(props: Props) {
 	if (_.isNil(transaction)) return null
 
 	return (
-		<div className="bg-zinc-100 dark:bg-zinc-800 text-zinc-950 dark:text-zinc-200">
-			<div>Transaction Summary</div>
+		<div className="bg-zinc-100 dark:bg-zinc-800 text-zinc-950 dark:text-zinc-200 p-2 rounded">
+			<div className="flex justify-center text-lg font-bold underline">
+				Transaction Summary
+			</div>
 			{isSolanaTransaction(transaction) ? (
 				<ShowSolanaTransactionDetailsSummaryCard solanaTransaction={transaction} />
 			) : (

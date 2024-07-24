@@ -1,6 +1,6 @@
 import _ from "lodash"
-import { useCallback } from "react"
 import { observer } from "mobx-react"
+import { useCallback, useMemo } from "react"
 import { FaShoppingBag } from "react-icons/fa"
 import { useAbbreviatedDateFormatter } from "../../../hooks/date-formatter"
 import ShowProvidedUsdOrSolPrice from "../../usd-or-sol/show-provided-usd-or-sol-price"
@@ -26,10 +26,20 @@ function SingleContentPurchaseTransaction(props: Props) {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [exclusiveContentPurchase.uuid, positionsAndTransactionsClass?.transactionIdToFocusOn])
 
+	const isCurrentTransactionFocusedOn = useMemo(() => {
+		if (_.isNull(positionsAndTransactionsClass)) return false
+		return positionsAndTransactionsClass.transactionIdToFocusOn === exclusiveContentPurchase.uuid
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [positionsAndTransactionsClass?.transactionIdToFocusOn, exclusiveContentPurchase.uuid])
+
+
 	return (
 		<div
-			className="grid grid-cols-8 gap-4 bg-inherit hover:bg-zinc-100 dark:hover:bg-zinc-800 py-2.5
-				text-zinc-950 dark:text-zinc-200 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer rounded-sm text-sm"
+			className={`grid grid-cols-8 gap-4 py-2.5
+			text-zinc-950 dark:text-zinc-200 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer text-sm
+			${isCurrentTransactionFocusedOn ?
+			"bg-zinc-200 dark:bg-zinc-700 hover:bg-zinc-300 dark:hover:bg-zinc-600" : "bg-inherit hover:bg-zinc-100 dark:hover:bg-zinc-800"}
+			`}
 			onClick={setTransactionIdToFocusOn}
 		>
 			<div className="col-span-1 flex items-center">

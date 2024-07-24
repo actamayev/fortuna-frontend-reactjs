@@ -1,6 +1,6 @@
 import _ from "lodash"
-import { useCallback } from "react"
 import { observer } from "mobx-react"
+import { useCallback, useMemo } from "react"
 import TransactionTypeTemplate from "../transaction-type-template"
 import NewWalletBalanceTemplate from "../new-wallet-balance-template"
 import { useAbbreviatedDateFormatter } from "../../../hooks/date-formatter"
@@ -26,17 +26,30 @@ function SingleSolanaTransaction(props: Props) {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [positionsAndTransactionsClass?.transactionIdToFocusOn, solanaTransaction.solTransferId])
 
+	const isCurrentTransactionFocusedOn = useMemo(() => {
+		if (_.isNull(positionsAndTransactionsClass)) return false
+		return positionsAndTransactionsClass.transactionIdToFocusOn === solanaTransaction.solTransferId
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [positionsAndTransactionsClass?.transactionIdToFocusOn, solanaTransaction.solTransferId])
+
 	return (
 		<div
-			className="grid grid-cols-8 gap-4 bg-inherit hover:bg-zinc-100 dark:hover:bg-zinc-800 py-2.5
-				text-zinc-950 dark:text-zinc-200 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer rounded-sm text-sm"
+			className={`grid grid-cols-8 gap-4 py-2.5
+				text-zinc-950 dark:text-zinc-200 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer text-sm
+				${isCurrentTransactionFocusedOn ?
+			"bg-zinc-200 dark:bg-zinc-700" : "bg-inherit hover:bg-zinc-100 dark:hover:bg-zinc-800"}
+				`}
 			onClick={setTransactionIdToFocusOn}
 		>
 			<div className="col-span-1 flex items-center">
 				{abbreviatedDateFormatter(solanaTransaction.transferDateTime)}
 			</div>
 			<div className="col-span-2 flex items-center">
-				<TransactionTypeTemplate depositOrWithdrawal={solanaTransaction.depositOrWithdrawal} />
+				<TransactionTypeTemplate
+					depositOrWithdrawal={solanaTransaction.depositOrWithdrawal}
+					iconSize={30}
+					extraClasses="space-x-3"
+				/>
 			</div>
 			<div className="col-span-1 flex items-center">
 				<div
