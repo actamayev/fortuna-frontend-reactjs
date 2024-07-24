@@ -51,6 +51,7 @@ function ShowSolanaTransactionDetailsSummaryCard(props: Props) {
 					usdPriceToDisplay={solanaTransaction.usdAmountTransferred}
 				/>
 			</div>
+			<div className="border-b border-zinc-300 dark:border-zinc-700"></div>
 			<div>
 				<TransactionSignature transactionSignature={solanaTransaction.transactionSignature} />
 			</div>

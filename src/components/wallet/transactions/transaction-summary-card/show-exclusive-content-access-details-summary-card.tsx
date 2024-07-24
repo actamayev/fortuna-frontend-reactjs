@@ -62,6 +62,7 @@ function ShowExclusiveContentAccessDetailsSummaryCard(props: Props) {
 					roundOrFixed="fixed"
 				/>
 			</div>
+			<div className="border-b border-zinc-300 dark:border-zinc-700"></div>
 			<div><TransactionSignature transactionSignature={"abc"} /></div>
 			<div><SuccessStatusMessage /></div>
 			<div className="flex flex-row">

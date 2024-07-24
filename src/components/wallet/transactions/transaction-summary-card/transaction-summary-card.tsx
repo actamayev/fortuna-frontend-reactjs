@@ -30,9 +30,10 @@ function TransactionSummaryCard(props: Props) {
 
 	return (
 		<div className="bg-zinc-100 dark:bg-zinc-800 text-zinc-950 dark:text-zinc-200 p-2 rounded">
-			<div className="flex justify-center text-lg font-bold underline">
+			<div className="flex justify-center text-lg font-bold">
 				Transaction Summary
 			</div>
+			<div className="border-b border-zinc-300 dark:border-zinc-700 my-1"></div>
 			{isSolanaTransaction(transaction) ? (
 				<ShowSolanaTransactionDetailsSummaryCard solanaTransaction={transaction} />
 			) : (
