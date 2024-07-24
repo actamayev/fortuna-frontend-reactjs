@@ -1,5 +1,4 @@
 import { observer } from "mobx-react"
-import { FaShoppingBag } from "react-icons/fa"
 import TransactionSignature from "./transaction-signature"
 import SuccessStatusMessage from "./success-status-message"
 import { useDateTimeFormatter } from "../../../../hooks/date-formatter"
@@ -25,7 +24,6 @@ function ShowExclusiveContentAccessDetailsSummaryCard(props: Props) {
 			<div className="flex flex-row">
 				<TransactionSummaryCardCategoryHeader categoryName="Transaction Type" />
 				<div className="flex flex-row items-center ml-1 space-x-1 text-blue-600 dark:text-blue-400">
-					<FaShoppingBag size={20} className="flex-shrink-0"/>
 					<div>Content Purchase</div>
 				</div>
 			</div>

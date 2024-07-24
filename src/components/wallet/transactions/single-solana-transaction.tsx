@@ -49,6 +49,7 @@ function SingleSolanaTransaction(props: Props) {
 					depositOrWithdrawal={solanaTransaction.depositOrWithdrawal}
 					iconSize={30}
 					extraClasses="space-x-3"
+					showIcon={true}
 				/>
 			</div>
 			<div className="col-span-1 flex items-center">
