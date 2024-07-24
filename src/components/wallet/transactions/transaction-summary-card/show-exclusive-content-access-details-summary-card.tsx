@@ -15,7 +15,7 @@ function ShowExclusiveContentAccessDetailsSummaryCard(props: Props) {
 	const navigateToVideoNewPage = useNavigateToVideoNewPage()
 
 	return (
-		<div className="flex flex-row">
+		<div className="flex flex-col space-y-2">
 			<div>
 				Transaction Date: {dateTimeFormatter(exclusiveContentPurchase.purchaseDate)}
 			</div>

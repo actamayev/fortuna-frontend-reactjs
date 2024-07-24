@@ -30,11 +30,9 @@ function ExclusiveContentTier(props: Props) {
 
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (_.isNull(creatorClass)) return
-		creatorClass.updateNewVideoTierDetails(
-			"tierAccessPriceUsd",
-			tierNumber,
-			handleBoundedNumberInput(event, 0, 100)
-		)
+
+		const value = handleBoundedNumberInput(event, 0, 100)
+		creatorClass.updateNewVideoTierDetails("tierAccessPriceUsd", tierNumber, value)
 	}, [creatorClass, tierNumber])
 
 	return (
@@ -52,6 +50,8 @@ function ExclusiveContentTier(props: Props) {
 				onChange={updateNewVideoDetails}
 				value={tierAccessPriceUsd.toString() || ""}
 				minValue={0}
+				step={0.01}
+				pattern="^\d*(\.\d{0,2})?$" // Pattern to restrict input to 2 decimal places
 				className="w-5/6 mb-4"
 			/>
 
