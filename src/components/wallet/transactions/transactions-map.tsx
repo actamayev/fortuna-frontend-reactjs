@@ -16,7 +16,10 @@ function TransactionsMap() {
 
 	return (
 		<div className="flex w-full">
-			<div className="flex flex-col w-3/4 ml-1">
+			<div
+				className="flex flex-col ml-1"
+				style={{ width: "70%" }}
+			>
 				<TransactionsHeader />
 				{myTransactionsToShow.map((transaction, index) => (
 					<div key={index}>
@@ -24,7 +27,10 @@ function TransactionsMap() {
 					</div>
 				))}
 			</div>
-			<div className="w-1/4 ml-4">
+			<div
+				className="ml-3"
+				style={{ width: "30%" }}
+			>
 				<TransactionSummaryCard />
 			</div>
 		</div>

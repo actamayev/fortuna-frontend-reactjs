@@ -17,7 +17,7 @@ function ShowSolanaTransactionDetailsSummaryCard(props: Props) {
 	const dateTimeFormatter = useDateTimeFormatter()
 
 	return (
-		<div className="flex flex-col space-y-2 text-sm">
+		<div className="flex flex-col space-y-2 text-base">
 			<div className="flex flex-row">
 				<TransactionSummaryCardCategoryHeader categoryName="Transaction Date" />
 				{dateTimeFormatter(solanaTransaction.transferDateTime)}
