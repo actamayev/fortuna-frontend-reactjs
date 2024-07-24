@@ -1,7 +1,9 @@
 import _ from "lodash"
+import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../contexts/solana-context"
 import useDefaultCurrency from "../../hooks/memos/default-currency"
+import { SuperMoneyStyleDollars, SuperMoneyStyleSol } from "./super-money-style"
 import { numberWithCommasFixed, numberWithCommasRounded } from "../../utils/numbers-with-commas"
 
 interface Props {
@@ -14,14 +16,18 @@ function ShowUSDOrSolPrice(props: Props) {
 	const solanaClass = useSolanaContext()
 	const defaultCurrency = useDefaultCurrency()
 
+	const formatPrice = useCallback((price: number, digits: number) => {
+		return roundOrFixed === "fixed" ? numberWithCommasFixed(price, digits) : numberWithCommasRounded(price)
+	}, [roundOrFixed])
+
 	if (_.isNull(usdAmount)) return null
 
 	if (defaultCurrency === "usd") {
-		if (roundOrFixed === "fixed") {
-			return <>${numberWithCommasFixed(usdAmount, 2)}</>
-		}
+		const { dollars, cents } = formatPrice(usdAmount, 2)
 
-		return <>${numberWithCommasRounded(usdAmount)}</>
+		return (
+			<SuperMoneyStyleDollars dollars={dollars} cents={cents} />
+		)
 	}
 
 	if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null
@@ -29,11 +35,12 @@ function ShowUSDOrSolPrice(props: Props) {
 	if (_.isUndefined(solPriceInUSD)) return null
 	const listingPriceToAccessSol = usdAmount / solPriceInUSD
 
-	if (roundOrFixed === "fixed") {
-		return <>{numberWithCommasFixed(listingPriceToAccessSol, 4)} SOL</>
-	}
+	const { dollars, cents } = formatPrice(listingPriceToAccessSol, 4)
 
-	return <>{numberWithCommasRounded(listingPriceToAccessSol)} SOL</>
+	return (
+		<SuperMoneyStyleSol dollars={dollars} cents={cents} />
+	)
+
 }
 
 export default observer(ShowUSDOrSolPrice)
