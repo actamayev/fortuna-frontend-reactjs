@@ -54,7 +54,7 @@ function TransactionSummaryHeader(props: Props) {
 	}, [positionsAndTransactionsClass, myTransactionsToShow, transaction])
 
 	return (
-		<div className="flex justify-between items-center text-lg font-bold mb-2">
+		<div className="flex justify-between items-center text-lg font-semibold mb-2">
 			<div className="flex-grow-0">
 				<BackButton
 					onClick={backShiftTransactionFocus}

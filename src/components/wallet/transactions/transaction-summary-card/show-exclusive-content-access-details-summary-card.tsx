@@ -16,7 +16,7 @@ function ShowExclusiveContentAccessDetailsSummaryCard(props: Props) {
 	const navigateToVideoNewPage = useNavigateToVideoNewPage()
 
 	return (
-		<div className="flex flex-col space-y-2">
+		<div className="flex flex-col space-y-2 text-sm">
 			<div className="flex flex-row">
 				<TransactionSummaryCardCategoryHeader categoryName="Transaction Date" />
 				{dateTimeFormatter(exclusiveContentPurchase.purchaseDate)}
@@ -66,7 +66,11 @@ function ShowExclusiveContentAccessDetailsSummaryCard(props: Props) {
 			<div><SuccessStatusMessage /></div>
 			<div className="flex flex-row">
 				<TransactionSummaryCardCategoryHeader categoryName="Transaction Fee" />
-				0 (no transaction fees when making content purchases)
+				<ShowProvidedUsdOrSolPrice
+					usdPriceToDisplay={0}
+					solPriceToDisplay={0}
+					roundOrFixed="fixed"
+				/>&nbsp;(no fees for content purchases)
 			</div>
 		</div>
 	)
