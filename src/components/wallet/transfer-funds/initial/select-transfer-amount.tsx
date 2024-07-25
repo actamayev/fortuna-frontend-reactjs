@@ -1,4 +1,5 @@
 import _ from "lodash"
+import { useCallback } from "react"
 import { observer } from "mobx-react"
 import RangeSelectorSlider from "../../../range-selector-slider"
 import { useSolanaContext } from "../../../../contexts/solana-context"
@@ -10,6 +11,11 @@ import { SuperMoneyStyleDollars, SuperMoneyStyleSol } from "../../../usd-or-sol/
 function SelectTransferAmount() {
 	const solanaClass = useSolanaContext()
 	const defaultCurrency = useDefaultCurrency()
+
+	const updateMoneyTransferDetails = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+		if (_.isNull(solanaClass)) return
+		solanaClass.updateMoneyTransferDetails("transferAmount", Number(e.target.value))
+	}, [solanaClass])
 
 	if (_.isNull(solanaClass)) return null
 
@@ -46,17 +52,12 @@ function SelectTransferAmount() {
 				<RangeSelectorSlider
 					title=""
 					value={solanaClass.moneyTransferDetails.transferAmount}
-					onChange={(e) => {
-						solanaClass.updateMoneyTransferDetails("transferAmount", Number(e.target.value))
-					}}
+					onChange={updateMoneyTransferDetails}
 					min={0}
 					max={solanaClass.walletBalanceSol || 0}
 					step={0.0001}
 				/>
-				<SuperMoneyStyleSol
-					dollars={dollars}
-					cents={cents}
-				/>
+				<SuperMoneyStyleSol dollars={dollars} cents={cents} />
 			</div>
 		)
 	}
@@ -68,17 +69,12 @@ function SelectTransferAmount() {
 			<RangeSelectorSlider
 				title=""
 				value={solanaClass.moneyTransferDetails.transferAmount}
-				onChange={(e) => {
-					solanaClass.updateMoneyTransferDetails("transferAmount", Number(e.target.value))
-				}}
+				onChange={updateMoneyTransferDetails}
 				min={0}
 				max={solanaClass.walletBalanceUSD.get()}
 				step={0.01}
 			/>
-			<SuperMoneyStyleDollars
-				dollars={dollars}
-				cents={cents}
-			/>
+			<SuperMoneyStyleDollars dollars={dollars} cents={cents} />
 		</div>
 	)
 }
