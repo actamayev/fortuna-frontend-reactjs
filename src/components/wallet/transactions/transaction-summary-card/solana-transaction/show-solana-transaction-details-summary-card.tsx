@@ -5,9 +5,9 @@ import TransactionTypeTemplate from "../../../transaction-type-template"
 import ShowTransactionSignature from "./../transaction-signature-section"
 import { useDateTimeFormatter } from "../../../../../hooks/date-formatter"
 import NewWalletBalanceTemplate from "../../../new-wallet-balance-template"
-import TransactionSummaryCardDescription from "./../solana-transaction/transaction-summary-card-description"
 import ShowProvidedUsdOrSolPrice from "../../../../usd-or-sol/show-provided-usd-or-sol-price"
 import TransactionSummaryCardCategoryHeader from "./../transaction-summary-card-category-header"
+import TransactionSummaryCardDescription from "./../solana-transaction/transaction-summary-card-description"
 
 interface Props {
 	solanaTransaction: SolanaTransaction

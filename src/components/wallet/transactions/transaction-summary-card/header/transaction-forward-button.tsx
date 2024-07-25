@@ -11,7 +11,6 @@ interface Props {
 
 export default function TransactionForwardButton(props: Props) {
 	const { transaction } = props
-
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const myTransactionsToShow = useMyTransactionsToShow()
 
