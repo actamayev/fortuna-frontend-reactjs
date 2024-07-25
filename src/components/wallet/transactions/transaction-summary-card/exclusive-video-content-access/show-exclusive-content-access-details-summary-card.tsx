@@ -2,6 +2,7 @@ import { observer } from "mobx-react"
 import SuccessStatusMessage from "../success-status-message"
 import { useDateTimeFormatter } from "../../../../../hooks/date-formatter"
 import TransactionSignatureSection from "../transaction-signature-section"
+import NewWalletBalanceTemplate from "../../../new-wallet-balance-template"
 import ShowProvidedUsdOrSolPrice from "../../../../usd-or-sol/show-provided-usd-or-sol-price"
 import useNavigateToVideoNewPage from "../../../../../hooks/navigate/navigate-to-video-new-page"
 import TransactionSummaryCardCategoryHeader from "../transaction-summary-card-category-header"
@@ -43,15 +44,10 @@ function ShowExclusiveContentAccessDetailsSummaryCard(props: Props) {
 			</div>
 			<div className="flex flex-row">
 				<TransactionSummaryCardCategoryHeader categoryName="New Balance" />
-				{(!exclusiveContentPurchase.newWalletBalanceSol || !exclusiveContentPurchase.newWalletBalanceUsd) ? (
-					<>--</>
-				) : (
-					<ShowProvidedUsdOrSolPrice
-						solPriceToDisplay={exclusiveContentPurchase.newWalletBalanceSol}
-						usdPriceToDisplay={exclusiveContentPurchase.newWalletBalanceUsd}
-						roundOrFixed="fixed"
-					/>
-				)}
+				<NewWalletBalanceTemplate
+					newWalletBalanceSol={exclusiveContentPurchase.newWalletBalanceSol}
+					newWalletBalanceUsd={exclusiveContentPurchase.newWalletBalanceUsd}
+				/>
 			</div>
 			<div className="flex flex-row">
 				<TransactionSummaryCardCategoryHeader categoryName="Amount" />

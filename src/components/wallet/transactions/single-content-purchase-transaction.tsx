@@ -2,6 +2,7 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import { FaShoppingBag } from "react-icons/fa"
+import NewWalletBalanceTemplate from "../new-wallet-balance-template"
 import { useAbbreviatedDateFormatter } from "../../../hooks/date-formatter"
 import ShowProvidedUsdOrSolPrice from "../../usd-or-sol/show-provided-usd-or-sol-price"
 import useNavigateToVideoNewPage from "../../../hooks/navigate/navigate-to-video-new-page"
@@ -70,17 +71,10 @@ function SingleContentPurchaseTransaction(props: Props) {
 				</div>
 			</div>
 			<div className="col-span-1 flex justify-end">
-				{(!exclusiveContentPurchase.newWalletBalanceSol || !exclusiveContentPurchase.newWalletBalanceUsd) ? (
-					<>--</>
-				) : (
-					<div>
-						<ShowProvidedUsdOrSolPrice
-							solPriceToDisplay={exclusiveContentPurchase.newWalletBalanceSol}
-							usdPriceToDisplay={exclusiveContentPurchase.newWalletBalanceUsd}
-							roundOrFixed="fixed"
-						/>
-					</div>
-				)}
+				<NewWalletBalanceTemplate
+					newWalletBalanceSol={exclusiveContentPurchase.newWalletBalanceSol}
+					newWalletBalanceUsd={exclusiveContentPurchase.newWalletBalanceUsd}
+				/>
 			</div>
 		</div>
 	)
