@@ -20,6 +20,8 @@ class PositionsAndTransactionsClass {
 		transactionType: ["Content Purchases", "Withdrawals", "Deposits"]
 	}
 
+	public transactionIdToFocusOn: number | string | null = null // This is either a solanaTransferId, or videoUUID
+
 	public ownershipFilter: OwnershipFilter = {
 		sortBy: "Date Purchased",
 		orderBy: "desc",
@@ -168,6 +170,14 @@ class PositionsAndTransactionsClass {
 		this.walletFilter.transactionType.push(transactionType)
 	})
 
+	public updateTransactionToFocusOn = action((newTransactionIdToFocusOn: string | number) => {
+		if (this.transactionIdToFocusOn === newTransactionIdToFocusOn) {
+			this.transactionIdToFocusOn = null
+		} else {
+			this.transactionIdToFocusOn = newTransactionIdToFocusOn
+		}
+	})
+
 	public updateOwnershipFilter = action((sortBy: OwnershipSortBy) => {
 		if (this.ownershipFilter.sortBy === sortBy) this.updateMyOwnershipOrderBy()
 		else {
@@ -200,6 +210,8 @@ class PositionsAndTransactionsClass {
 			orderDateBy: "desc",
 			transactionType: ["Content Purchases", "Withdrawals", "Deposits"]
 		}
+
+		this.transactionIdToFocusOn = null
 
 		this.ownershipFilter = {
 			sortBy: "Date Purchased",

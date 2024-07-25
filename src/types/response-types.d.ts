@@ -37,6 +37,7 @@ declare global {
 		priceInUsd: number
 		newWalletBalanceSol: number
 		newWalletBalanceUsd: number
+		videoAccessPurchaseTransactionSignature: string
 	}
 
 	// Personal Info Responses:

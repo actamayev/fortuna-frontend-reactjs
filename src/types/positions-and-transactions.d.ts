@@ -4,7 +4,9 @@ declare global {
 		solAmountTransferred: number
 		usdAmountTransferred: number
 		transferByCurrency: Currencies
-		depositOrWithdrawal: "deposit" | "withdrawal"
+		depositOrWithdrawal: DepositOrWithDrawal
+
+		transactionSignature: string
 
 		transferDateTime: Date
 		transferToUsername?: string
@@ -13,6 +15,9 @@ declare global {
 
 		newWalletBalanceSol: number | null
 		newWalletBalanceUsd: number | null
+
+		withdrawalFeeUsd?: number
+		withdrawalFeeSol?: number
 	}
 
 	interface MyPurchasedExclusiveContent {
@@ -29,6 +34,8 @@ declare global {
 
 		newWalletBalanceSol: number | null
 		newWalletBalanceUsd: number | null
+
+		videoAccessPurchaseTransactionSignature: string
 	}
 
 	type WalletFilterRange = "Month" | "Week" | "Today"

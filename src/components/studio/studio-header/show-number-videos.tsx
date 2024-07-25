@@ -14,11 +14,11 @@ function ShowNumberVideos() {
 	}, [creatorClass?.numberOfUnlistedVideos])
 
 	return (
-		<div className="text-zinc-600 dark:text-zinc-300 text-sm ml-1">
-			• {numberVideos} video{numberVideos === 1 ? "" : "s"}
+		<div className="text-zinc-600 dark:text-zinc-300 text-sm">
+			&nbsp;• {numberVideos} video{numberVideos === 1 ? "" : "s"}
 			{numberOfUnlistedVideos > 0 && (
 				<>
-					{" "} ({numberVideos - numberOfUnlistedVideos} listed, {numberOfUnlistedVideos} unlisted)
+					&nbsp;({numberVideos - numberOfUnlistedVideos} listed, {numberOfUnlistedVideos} unlisted)
 				</>
 			)}
 		</div>

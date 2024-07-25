@@ -1,4 +1,4 @@
-import { IoCaretBackOutline } from "react-icons/io5"
+import { IoCaretForwardOutline } from "react-icons/io5"
 import Button from "./button"
 
 interface Props {
@@ -6,12 +6,12 @@ interface Props {
 	disabled?: boolean
 }
 
-export default function BackButton(props: Props) {
+export default function ForwardButton(props: Props) {
 	const { onClick, disabled } = props
 
 	return (
 		<Button
-			titleIcon={<IoCaretBackOutline />}
+			titleIcon={<IoCaretForwardOutline />}
 			colorClass="bg-blue-200 dark:bg-blue-400"
 			hoverClass="hover:bg-blue-300 dark:hover:bg-blue-500"
 			onClick={onClick}

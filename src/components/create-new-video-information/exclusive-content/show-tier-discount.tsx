@@ -31,7 +31,7 @@ function ShowTierDiscount(props: Props) {
 
 	return (
 		<>
-			{" "} ({impliedTierDiscount.toFixed(2)}% discount relative to tier {tierNumber + 1})
+			&nbsp;({impliedTierDiscount.toFixed(2)}% discount relative to tier {tierNumber + 1})
 		</>
 	)
 }

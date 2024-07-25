@@ -18,8 +18,7 @@ function SingleMyPurchasedExclusiveContent(props: Props) {
 
 	return (
 		<div
-			className="m-2.5 rounded-lg cursor-pointer border border-zinc-200 dark:border-zinc-700
-			bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700"
+			className="m-2.5 rounded-lg cursor-pointer bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700"
 			onClick={navigateToVideoPageCallback}
 		>
 			<GeneralizedVideoThumbnail

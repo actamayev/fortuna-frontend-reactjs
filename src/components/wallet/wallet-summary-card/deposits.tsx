@@ -3,6 +3,7 @@ import { useMemo } from "react"
 import { observer, useObserver } from "mobx-react"
 import useDefaultCurrency from "../../../hooks/memos/default-currency"
 import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
+import { SuperMoneyStyleDollars, SuperMoneyStyleSol } from "../../usd-or-sol/super-money-style"
 import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 
 function Deposits() {
@@ -25,6 +26,9 @@ function Deposits() {
 		return positionsAndTransactionsClass.calculateDepositsUsd()
 	})
 
+	const solDepositsObject = numberWithCommasFixed(depositsSol, 4)
+	const usdDepositsObject = numberWithCommasFixed(depositsUsd, 2)
+
 	return (
 		<div className="flex flex-col">
 			<div className="text-lg font-bold">
@@ -33,7 +37,13 @@ function Deposits() {
 						{_.isNull(depositsSol) ? (
 							<>Loading...</>
 						) : (
-							<>+{numberWithCommasFixed(depositsSol, 4)} SOL</>
+							<>
+								+
+								<SuperMoneyStyleSol
+									dollars={solDepositsObject.dollars}
+									cents={solDepositsObject.cents}
+								/>
+							</>
 						)}
 					</>
 				)}
@@ -42,14 +52,20 @@ function Deposits() {
 						{_.isNull(depositsUsd) ? (
 							<>Loading...</>
 						) : (
-							<>+${numberWithCommasFixed(depositsUsd, 2)}</>
+							<>
+								+
+								<SuperMoneyStyleDollars
+									dollars={usdDepositsObject.dollars}
+									cents={usdDepositsObject.cents}
+								/>
+							</>
 						)}
 					</>
 				)}
 			</div>
 			<div className="text-zinc-500 dark:text-zinc-400 text-sm">
-				Deposits {" "}
-				{transactionsTimeRange !== "Today" && (<>this {" "}</>)}
+				Deposits&nbsp;
+				{transactionsTimeRange !== "Today" && (<>this&nbsp;</>)}
 				<span
 					className="cursor-pointer underline decoration-dotted"
 					onClick={positionsAndTransactionsClass?.handleTimeRangeClick}

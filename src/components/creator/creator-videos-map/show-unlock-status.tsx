@@ -12,7 +12,7 @@ function ShowUnlockStatus(props: Props) {
 
 	if (videoData.isUserAbleToAccessVideo === true) {
 		return (
-			<div className="flex flex-row items-center space-x-2">
+			<div className="flex flex-row items-center space-x-1">
 				<div><FaUnlock className="mb-0.5" /></div>
 				<div>
 					{videoData.isVideoExclusive === false && (
@@ -27,7 +27,7 @@ function ShowUnlockStatus(props: Props) {
 	}
 
 	return (
-		<div className="flex flex-row items-center space-x-1.5">
+		<div className="flex flex-row items-center space-x-1">
 			<div><FaLock className="mb-0.5"/></div>
 			<div>
 				{videoData.videoListingStatus === "SOLDOUT" ? (
@@ -37,8 +37,8 @@ function ShowUnlockStatus(props: Props) {
 						<ShowUsdOrSolPrice
 							usdAmount={getTieredAccessPriceUsd(videoData)}
 							roundOrFixed="round"
-						/> {" "}
-						to unlock
+						/>
+						&nbsp;to unlock
 					</>
 				)}
 			</div>
