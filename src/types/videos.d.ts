@@ -63,6 +63,8 @@ declare global {
 		timeframeSort: TimeFramesToSortBy
 		lockFilter: LockFilter
 	}
+
+	type HomeScreenVideosToShowCategory = "Recent Uploads" | "Most Popular"
 }
 
 export {}
