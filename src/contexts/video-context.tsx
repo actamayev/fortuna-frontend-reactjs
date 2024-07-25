@@ -376,6 +376,7 @@ class VideoClass {
 		this.isCurrentlySearching = false
 		this.isCreatorDataBeingRetrieved = false
 		this.setSearchTerm(null)
+		this.homeScreenVideosToShowCategory = "Most Popular"
 	}
 }
 
