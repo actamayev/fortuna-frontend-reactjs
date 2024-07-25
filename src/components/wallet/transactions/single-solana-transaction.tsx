@@ -66,7 +66,7 @@ function SingleSolanaTransaction(props: Props) {
 			<div className="col-span-3 flex items-center">
 				<TransactionDescriptionTemplate solanaTransaction={solanaTransaction} />
 			</div>
-			<div className="col-span-1 flex justify-end">
+			<div className="col-span-1 flex justify-end items-center">
 				<NewWalletBalanceTemplate
 					newWalletBalanceSol={solanaTransaction.newWalletBalanceSol}
 					newWalletBalanceUsd={solanaTransaction.newWalletBalanceUsd}

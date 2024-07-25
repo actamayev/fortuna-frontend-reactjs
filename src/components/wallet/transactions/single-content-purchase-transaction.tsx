@@ -70,7 +70,7 @@ function SingleContentPurchaseTransaction(props: Props) {
 					</div>
 				</div>
 			</div>
-			<div className="col-span-1 flex justify-end">
+			<div className="col-span-1 flex justify-end items-center">
 				<NewWalletBalanceTemplate
 					newWalletBalanceSol={exclusiveContentPurchase.newWalletBalanceSol}
 					newWalletBalanceUsd={exclusiveContentPurchase.newWalletBalanceUsd}
