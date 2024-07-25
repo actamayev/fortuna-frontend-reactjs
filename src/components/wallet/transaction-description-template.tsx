@@ -6,15 +6,19 @@ export default function TransactionDescriptionTemplate(props: Props) {
 	const { solanaTransaction } = props
 
 	return (
-		<span>
+		<div className="flex flex-row overflow-hidden text-ellipsis whitespace-nowrap">
 			Instant transfer&nbsp;
-			{solanaTransaction.depositOrWithdrawal === "deposit" && (<>from @{solanaTransaction.transferFromUsername}</>)}
-			{solanaTransaction.depositOrWithdrawal === "withdrawal" && (
-				<>
-							to {solanaTransaction.transferToUsername && <>@</>}
-					{solanaTransaction.transferToUsername || solanaTransaction.transferToPublicKey}
-				</>
+			{solanaTransaction.depositOrWithdrawal === "deposit" && (
+				<div className="overflow-hidden text-ellipsis whitespace-nowrap">
+					from @{solanaTransaction.transferFromUsername}
+				</div>
 			)}
-		</span>
+			{solanaTransaction.depositOrWithdrawal === "withdrawal" && (
+				<div className="overflow-hidden text-ellipsis whitespace-nowrap">
+					to {solanaTransaction.transferToUsername && <>@</>}
+					{solanaTransaction.transferToUsername || solanaTransaction.transferToPublicKey}
+				</div>
+			)}
+		</div>
 	)
 }

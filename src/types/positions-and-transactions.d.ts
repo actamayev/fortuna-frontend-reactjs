@@ -15,6 +15,9 @@ declare global {
 
 		newWalletBalanceSol: number | null
 		newWalletBalanceUsd: number | null
+
+		withdrawalFeeUsd?: number
+		withdrawalFeeSol?: number
 	}
 
 	interface MyPurchasedExclusiveContent {

@@ -1,4 +1,5 @@
 import { observer } from "mobx-react"
+import ShowTransactionFee from "./show-transaction-fee"
 import SuccessStatusMessage from "./success-status-message"
 import TransactionTypeTemplate from "../../transaction-type-template"
 import ShowTransactionSignature from "./transaction-signature-section"
@@ -56,11 +57,7 @@ function ShowSolanaTransactionDetailsSummaryCard(props: Props) {
 			<div><SuccessStatusMessage /></div>
 			<div className="flex flex-row">
 				<TransactionSummaryCardCategoryHeader categoryName="Transaction Fee" />
-				<ShowProvidedUsdOrSolPrice
-					usdPriceToDisplay={0}
-					solPriceToDisplay={0}
-					roundOrFixed="fixed"
-				/>&nbsp;(internal transfer)
+				<ShowTransactionFee solanaTransaction={solanaTransaction}/>
 			</div>
 		</div>
 	)
