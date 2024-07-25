@@ -35,13 +35,13 @@ function MaxProfitFromVideo() {
 			)}
 			{creatorClass.newVideoFortunaFee && (
 				<div>
-					Fortuna Fee (2.5%):
+					Fortuna Fee (2.5%):&nbsp;
 					<SuperMoneyStyleDollars dollars={forunaFee.dollars} cents={forunaFee.cents}/>
 				</div>
 			)}
 			{creatorClass.profitAfterFee && (
 				<div>
-					Max Profit:
+					Max Profit:&nbsp;
 					<SuperMoneyStyleDollars dollars={profitAfterFee.dollars} cents={profitAfterFee.cents}/>
 				</div>
 			)}

@@ -31,11 +31,8 @@ function MaxProfitByTier(props: Props) {
 
 	return (
 		<div>
-			Max Profit From Tier {tierNumber}:
-			<SuperMoneyStyleDollars dollars={dollars} cents={cents} />
-			&nbsp;({purchasesInThisTier}&nbsp;
-			purchase{purchasesInThisTier > 1 ? "s" : ""}&nbsp;
-			X&nbsp; ${tierAccessPriceUsd})
+			Max Profit From Tier {tierNumber}: <SuperMoneyStyleDollars dollars={dollars} cents={cents} />
+			&nbsp;({purchasesInThisTier} {purchasesInThisTier > 1 ? "purchases" : "purchase"} X ${tierAccessPriceUsd})
 		</div>
 	)
 }
