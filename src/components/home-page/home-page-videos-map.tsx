@@ -1,7 +1,6 @@
 import { useMemo } from "react"
 import { observer } from "mobx-react"
 import SingleHomePageVideo from "./single-home-page-video"
-import FilterHomePageVideos from "./filter-home-page-videos"
 import { useVideoContext } from "../../contexts/video-context"
 
 function HomePageVideosMap() {
@@ -16,9 +15,6 @@ function HomePageVideosMap() {
 
 	return (
 		<div className="text-zinc-950 dark:text-zinc-50">
-			<div className="mt-6 mb-3">
-				<FilterHomePageVideos />
-			</div>
 			<div className="grid grid-cols-2">
 				{videosToShow.map((singleVideo, index) => (
 					<div

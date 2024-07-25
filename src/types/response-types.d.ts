@@ -87,6 +87,8 @@ declare global {
 		homePageCreatorData: CreatorData[]
 	}
 
+	type RecentlyUploadedVideos = { recentlyPostedVideos: VideoDataLessVideoUrlResponse[] }
+
 	type CreatorDataResponse = {
 		videoData: VideoDataLessVideoUrlResponse[]
 		creatorData: CreatorData

@@ -2,9 +2,11 @@ import { useCallback } from "react"
 import { observer } from "mobx-react"
 import Button from "../buttons/button"
 import { useVideoContext } from "../../contexts/video-context"
+import useTypedNavigate from "../../hooks/navigate/typed-navigate"
 
 function FilterHomePageVideos() {
 	const videosClass = useVideoContext()
+	const navigate = useTypedNavigate()
 
 	const handleUpdateFilter = useCallback((newCategory: HomeScreenVideosToShowCategory) => {
 		videosClass.updateHomeScreenVideosToShowCategory(newCategory)
@@ -18,10 +20,14 @@ function FilterHomePageVideos() {
 		return classes
 	}, [videosClass.homeScreenVideosToShowCategory])
 
+	const navigateToRecentUploadsPage = useCallback(() => {
+		navigate("/recent-uploads")
+	}, [navigate])
+
 	return (
-		<div className="flex flex-row text-zinc-600 dark:text-zinc-200 text-sm">
-			<div className="border border-zinc-700 dark:border-zinc-300 p-1 mr-2 rounded-xl">
-				<div className="flex flex-row space-x-2 font-semibold">
+		<div className="flex flex-row items-center text-zinc-600 dark:text-zinc-200 text-sm font-semibold">
+			<div className="border border-zinc-700 dark:border-zinc-300 p-1 mr-2 rounded-xl flex-shrink-0">
+				<div className="flex flex-row space-x-2">
 					<Button
 						title="Most Popular"
 						colorClass={colorClasses("Most Popular")}
@@ -35,6 +41,16 @@ function FilterHomePageVideos() {
 						onClick={() => handleUpdateFilter("Recent Uploads")}
 					/>
 				</div>
+			</div>
+			<div className="flex-grow"></div>
+			<div className="ml-auto items-center">
+				<Button
+					title="See all recent uploads"
+					colorClass="bg-zinc-200 dark:bg-zinc-800"
+					hoverClass="hover:bg-zinc-300 dark:hover:bg-zinc-700"
+					className="rounded-lg border-none text-zinc-950 dark:text-zinc-50"
+					onClick={navigateToRecentUploadsPage}
+				/>
 			</div>
 		</div>
 	)

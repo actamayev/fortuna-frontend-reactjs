@@ -9,6 +9,7 @@ import Missing from "./pages/missing"
 import Ownership from "./pages/ownership"
 import Contact from "./pages/company/contact"
 import LoginPage from "./pages/auth/login-page"
+import RecentUploads from "./pages/recent-uploads"
 import SearchResults from "./pages/search-results"
 import RegisterPage from "./pages/auth/register-page"
 import RegisterUsername from "./pages/auth/register-username"
@@ -58,6 +59,8 @@ function App() {
 
 			<Route path="/ownership" element={<Ownership />} />
 			<Route path="/wallet" element={<Wallet />} />
+
+			<Route path="/recent-uploads" element={<RecentUploads />} />
 			<Route path="/v/:videoUUID" element={<Video />} />
 			<Route path="/c/:creatorUsername" element={<Creator />} />
 			<Route path="/s/:searchTerm" element={<SearchResults />} />

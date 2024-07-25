@@ -8,6 +8,7 @@ declare global {
 		"/register-username" |
 		"/ownership" |
 		"/wallet" |
+		"/recent-uploads" |
 
 		"/creator/studio" |
 		"/creator/create-content" |
