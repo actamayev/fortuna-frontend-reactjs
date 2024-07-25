@@ -4,8 +4,8 @@ import { useDateTimeFormatter } from "../../../../../hooks/date-formatter"
 import TransactionSignatureSection from "../transaction-signature-section"
 import NewWalletBalanceTemplate from "../../../new-wallet-balance-template"
 import ShowProvidedUsdOrSolPrice from "../../../../usd-or-sol/show-provided-usd-or-sol-price"
-import useNavigateToVideoNewPage from "../../../../../hooks/navigate/navigate-to-video-new-page"
 import TransactionSummaryCardCategoryHeader from "../transaction-summary-card-category-header"
+import ExclusiveVideoContentAccessDescription from "./exclusive-video-content-access-description"
 
 interface Props {
 	exclusiveContentPurchase: MyPurchasedExclusiveContent
@@ -14,7 +14,6 @@ interface Props {
 function ShowExclusiveContentAccessDetailsSummaryCard(props: Props) {
 	const { exclusiveContentPurchase } = props
 	const dateTimeFormatter = useDateTimeFormatter()
-	const navigateToVideoNewPage = useNavigateToVideoNewPage()
 
 	return (
 		<div className="flex flex-col space-y-2 text-base">
@@ -29,18 +28,7 @@ function ShowExclusiveContentAccessDetailsSummaryCard(props: Props) {
 				</div>
 			</div>
 			<div className="flex flex-row overflow-hidden text-ellipsis whitespace-nowrap">
-				<div className="flex flex-col">
-					<TransactionSummaryCardCategoryHeader categoryName="Description" />
-					<div className="flex flex-wrap">
-						<div className="flex-shrink-0">Purchased Exclusive Access to&nbsp;</div>
-						<div
-							className="cursor-pointer underline decoration-dotted hover:decoration-solid"
-							onClick={() => navigateToVideoNewPage(exclusiveContentPurchase.uuid)}
-						>
-							{exclusiveContentPurchase.videoName}
-						</div>
-					</div>
-				</div>
+				<ExclusiveVideoContentAccessDescription exclusiveContentPurchase={exclusiveContentPurchase} />
 			</div>
 			<div className="flex flex-row">
 				<TransactionSummaryCardCategoryHeader categoryName="New Balance" />
