@@ -14,7 +14,7 @@ export default function TransactionSummaryCardDescription(props: Props) {
 		try {
 			if (_.isUndefined(solanaTransaction.transferToPublicKey)) return
 			await navigator.clipboard.writeText(solanaTransaction.transferToPublicKey)
-			notificationsClass.setNeutralNotification("Transaction Signature copied to clipboard")
+			notificationsClass.setNeutralNotification("Public Key copied to clipboard")
 		} catch (error) {
 			console.error("Failed to copy text: ", error)
 		}
@@ -22,15 +22,15 @@ export default function TransactionSummaryCardDescription(props: Props) {
 
 	return (
 		<div className="flex flex-row overflow-hidden text-ellipsis whitespace-nowrap">
-		Instant transfer&nbsp;
+			Instant transfer&nbsp;
 			{solanaTransaction.depositOrWithdrawal === "deposit" && (
 				<span className="overflow-hidden text-ellipsis whitespace-nowrap">
-			from @{solanaTransaction.transferFromUsername}
+					from @{solanaTransaction.transferFromUsername}
 				</span>
 			)}
 			{solanaTransaction.depositOrWithdrawal === "withdrawal" && (
 				<span className="overflow-hidden text-ellipsis whitespace-nowrap">
-			to&nbsp;
+					to&nbsp;
 					{solanaTransaction.transferToUsername && <>@{solanaTransaction.transferToUsername}</>}
 					{solanaTransaction.transferToPublicKey && (
 						<span className="cursor-pointer overflow-hidden text-ellipsis" onClick={copyToClipboard}>
