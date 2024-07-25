@@ -18,10 +18,7 @@ function SingleContentPurchaseTransaction(props: Props) {
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
 	const setTransactionIdToFocusOn = useCallback(() => {
-		if (
-			_.isNull(positionsAndTransactionsClass) ||
-			positionsAndTransactionsClass.transactionIdToFocusOn === exclusiveContentPurchase.uuid
-		) return
+		if (_.isNull(positionsAndTransactionsClass)) return
 		positionsAndTransactionsClass.updateTransactionToFocusOn(exclusiveContentPurchase.uuid)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [exclusiveContentPurchase.uuid, positionsAndTransactionsClass?.transactionIdToFocusOn])

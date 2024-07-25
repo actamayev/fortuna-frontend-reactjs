@@ -5,7 +5,7 @@ import TransactionTypeTemplate from "../../transaction-type-template"
 import ShowTransactionSignature from "./transaction-signature-section"
 import { useDateTimeFormatter } from "../../../../hooks/date-formatter"
 import NewWalletBalanceTemplate from "../../new-wallet-balance-template"
-import TransactionDescriptionTemplate from "../../transaction-description-template"
+import TransactionSummaryCardDescription from "./transaction-summary-card-description"
 import ShowProvidedUsdOrSolPrice from "../../../usd-or-sol/show-provided-usd-or-sol-price"
 import TransactionSummaryCardCategoryHeader from "./transaction-summary-card-category-header"
 
@@ -32,7 +32,7 @@ function ShowSolanaTransactionDetailsSummaryCard(props: Props) {
 			</div>
 			<div className="flex flex-row overflow-hidden text-ellipsis whitespace-nowrap">
 				<TransactionSummaryCardCategoryHeader categoryName="Description" />
-				<TransactionDescriptionTemplate solanaTransaction={solanaTransaction} />
+				<TransactionSummaryCardDescription solanaTransaction={solanaTransaction} />
 			</div>
 			<div className="flex flex-row">
 				<TransactionSummaryCardCategoryHeader categoryName="New Balance" />

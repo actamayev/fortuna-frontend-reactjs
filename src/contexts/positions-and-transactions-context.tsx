@@ -171,7 +171,11 @@ class PositionsAndTransactionsClass {
 	})
 
 	public updateTransactionToFocusOn = action((newTransactionIdToFocusOn: string | number) => {
-		this.transactionIdToFocusOn = newTransactionIdToFocusOn
+		if (this.transactionIdToFocusOn === newTransactionIdToFocusOn) {
+			this.transactionIdToFocusOn = null
+		} else {
+			this.transactionIdToFocusOn = newTransactionIdToFocusOn
+		}
 	})
 
 	public updateOwnershipFilter = action((sortBy: OwnershipSortBy) => {

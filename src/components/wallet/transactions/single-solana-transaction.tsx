@@ -18,10 +18,7 @@ function SingleSolanaTransaction(props: Props) {
 	const abbreviatedDateFormatter = useAbbreviatedDateFormatter()
 
 	const setTransactionIdToFocusOn = useCallback(() => {
-		if (
-			_.isNull(positionsAndTransactionsClass) ||
-			positionsAndTransactionsClass.transactionIdToFocusOn === solanaTransaction.solTransferId
-		) return
+		if (_.isNull(positionsAndTransactionsClass)) return
 		positionsAndTransactionsClass.updateTransactionToFocusOn(solanaTransaction.solTransferId)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [positionsAndTransactionsClass?.transactionIdToFocusOn, solanaTransaction.solTransferId])
