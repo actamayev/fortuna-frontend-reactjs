@@ -1,6 +1,6 @@
 import _ from "lodash"
-import { useCallback } from "react"
 import { observer } from "mobx-react"
+import { useCallback, useState } from "react"
 import useTypedNavigate from "../../../hooks/navigate/typed-navigate"
 import { useRelativeDateFormatter } from "../../../hooks/date-formatter"
 import { addDefiniteLeadingAt } from "../../../utils/leading-at-operations"
@@ -15,6 +15,8 @@ interface Props {
 
 function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 	const { myPurchasedExclusiveContent } = props
+	const [isHovered, setIsHovered] = useState(false)
+
 	const navigateToCreatorPage = useNavigateToCreatorPage()
 	const relativeDateFormatter = useRelativeDateFormatter()
 	const navigateToWallet = useTypedNavigate()
@@ -32,6 +34,9 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 		}
 		navigateToWallet("/wallet")
 	}, [myPurchasedExclusiveContent.uuid, navigateToWallet, positionsAndTransactionClass])
+
+	const handleMouseEnter = useCallback(() => setIsHovered(true), [])
+	const handleMouseLeave = useCallback(() => setIsHovered(false), [])
 
 	return (
 		<div className="p-1.5">
@@ -55,15 +60,18 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 				</div>
 			</div>
 			<span
-				className="text-xs font-medium cursor-pointer text-zinc-950 dark:text-zinc-200 pt-1.5
-				underline decoration-dotted hover:decoration-solid overflow-hidden text-ellipsis whitespace-nowrap"
+				className={`text-xs font-medium cursor-pointer text-zinc-950 dark:text-zinc-200 pt-1.5 underline decoration-dotted
+					${isHovered ? "hover:decoration-solid" : ""} overflow-hidden text-ellipsis whitespace-nowrap`}
 				onClick={navigateToWalletScreen}
+				onMouseEnter={handleMouseEnter}
+				onMouseLeave={handleMouseLeave}
 			>
 				Purchased {relativeDateFormatter(myPurchasedExclusiveContent.purchaseDate)} for&nbsp;
 				<ShowProvidedUsdOrSolPrice
 					roundOrFixed="round"
 					solPriceToDisplay={myPurchasedExclusiveContent.priceInSol}
 					usdPriceToDisplay={myPurchasedExclusiveContent.priceInUsd}
+					extraStyles={isHovered ? "underline decoration-solid" : "underline decoration-dotted"}
 				/>
 			</span>
 		</div>

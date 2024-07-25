@@ -1,13 +1,14 @@
 interface Props {
 	dollars: string
 	cents: string
+	extraStyles?: string
 }
 
 export function SuperMoneyStyleDollars(props: Props) {
-	const { dollars, cents } = props
+	const { dollars, cents, extraStyles } = props
 
 	return (
-		<span className="inline-flex items-baseline">
+		<span className={`inline-flex items-baseline ${extraStyles}`}>
 			${dollars}
 			<span className="self-center mt-[-0.25em]" style={{ fontSize: "0.8em" }}>
 				.{cents}
@@ -17,10 +18,10 @@ export function SuperMoneyStyleDollars(props: Props) {
 }
 
 export function SuperMoneyStyleSol(props: Props) {
-	const { dollars, cents } = props
+	const { dollars, cents, extraStyles } = props
 
 	return (
-		<span className="inline-flex items-baseline">
+		<span className={`inline-flex items-baseline ${extraStyles}`}>
 			{dollars}
 			<span className="self-center mt-[-0.25em]" style={{ fontSize: "0.8em" }}>
 				.{cents}
