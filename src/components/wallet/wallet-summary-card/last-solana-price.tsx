@@ -25,7 +25,6 @@ function LastSolanaPrice() {
 
 	if (_.isNull(solanaClass)) return null
 
-
 	return (
 		<div>
 			<div className="text-lg font-bold">

@@ -3,8 +3,8 @@ import { useMemo } from "react"
 import { observer, useObserver } from "mobx-react"
 import useDefaultCurrency from "../../../hooks/memos/default-currency"
 import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
-import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 import { SuperMoneyStyleDollars, SuperMoneyStyleSol } from "../../usd-or-sol/super-money-style"
+import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 
 function Withdrawals() {
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
