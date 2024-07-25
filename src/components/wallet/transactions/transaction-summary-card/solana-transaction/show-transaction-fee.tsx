@@ -1,5 +1,5 @@
 import _ from "lodash"
-import ShowProvidedUsdOrSolPrice from "../../../usd-or-sol/show-provided-usd-or-sol-price"
+import ShowProvidedUsdOrSolPrice from "../../../../usd-or-sol/show-provided-usd-or-sol-price"
 
 interface Props {
 	solanaTransaction: SolanaTransaction
@@ -28,6 +28,8 @@ export default function ShowTransactionFee(props: Props) {
 		<ShowProvidedUsdOrSolPrice
 			usdPriceToDisplay={solanaTransaction.withdrawalFeeUsd}
 			solPriceToDisplay={solanaTransaction.withdrawalFeeSol}
+			solPriceRoundTo={6}
+			usdPriceRoundTo={5}
 			roundOrFixed="fixed"
 		/>
 	)

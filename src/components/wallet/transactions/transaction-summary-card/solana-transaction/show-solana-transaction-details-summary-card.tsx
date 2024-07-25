@@ -1,13 +1,13 @@
 import { observer } from "mobx-react"
 import ShowTransactionFee from "./show-transaction-fee"
-import SuccessStatusMessage from "./success-status-message"
-import TransactionTypeTemplate from "../../transaction-type-template"
-import ShowTransactionSignature from "./transaction-signature-section"
-import { useDateTimeFormatter } from "../../../../hooks/date-formatter"
-import NewWalletBalanceTemplate from "../../new-wallet-balance-template"
-import TransactionSummaryCardDescription from "./transaction-summary-card-description"
-import ShowProvidedUsdOrSolPrice from "../../../usd-or-sol/show-provided-usd-or-sol-price"
-import TransactionSummaryCardCategoryHeader from "./transaction-summary-card-category-header"
+import SuccessStatusMessage from "./../success-status-message"
+import TransactionTypeTemplate from "../../../transaction-type-template"
+import ShowTransactionSignature from "./../transaction-signature-section"
+import { useDateTimeFormatter } from "../../../../../hooks/date-formatter"
+import NewWalletBalanceTemplate from "../../../new-wallet-balance-template"
+import TransactionSummaryCardDescription from "./../solana-transaction/transaction-summary-card-description"
+import ShowProvidedUsdOrSolPrice from "../../../../usd-or-sol/show-provided-usd-or-sol-price"
+import TransactionSummaryCardCategoryHeader from "./../transaction-summary-card-category-header"
 
 interface Props {
 	solanaTransaction: SolanaTransaction

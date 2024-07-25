@@ -8,10 +8,12 @@ interface Props {
 	solPriceToDisplay: number
 	usdPriceToDisplay: number
 	roundOrFixed: RoundOrFixed
+	solPriceRoundTo?: number
+	usdPriceRoundTo?: number
 }
 
 function ShowProvidedUsdOrSolPrice(props: Props) {
-	const { solPriceToDisplay, usdPriceToDisplay, roundOrFixed } = props
+	const { solPriceToDisplay, usdPriceToDisplay, roundOrFixed, solPriceRoundTo = 4, usdPriceRoundTo = 2 } = props
 	const defaultCurrency = useDefaultCurrency()
 
 	const formatPrice = useCallback((price: number, digits: number) => {
@@ -19,13 +21,13 @@ function ShowProvidedUsdOrSolPrice(props: Props) {
 	}, [roundOrFixed])
 
 	if (defaultCurrency === "usd") {
-		const { dollars, cents } = formatPrice(usdPriceToDisplay, 2)
+		const { dollars, cents } = formatPrice(usdPriceToDisplay, usdPriceRoundTo)
 		return (
 			<SuperMoneyStyleDollars dollars={dollars} cents={cents} />
 		)
 	}
 
-	const { dollars, cents } = formatPrice(solPriceToDisplay, 4)
+	const { dollars, cents } = formatPrice(solPriceToDisplay, solPriceRoundTo)
 	return (
 		<SuperMoneyStyleSol dollars={dollars} cents={cents} />
 	)

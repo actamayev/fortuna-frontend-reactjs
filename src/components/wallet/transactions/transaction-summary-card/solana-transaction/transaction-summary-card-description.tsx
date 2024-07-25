@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import { useNotificationsContext } from "../../../../contexts/notifications-context"
+import { useNotificationsContext } from "../../../../../contexts/notifications-context"
 
 interface Props {
 	solanaTransaction: SolanaTransaction

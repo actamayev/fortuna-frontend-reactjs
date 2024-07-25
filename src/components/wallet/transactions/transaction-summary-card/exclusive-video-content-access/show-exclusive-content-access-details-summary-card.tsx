@@ -1,10 +1,10 @@
 import { observer } from "mobx-react"
-import SuccessStatusMessage from "./success-status-message"
-import { useDateTimeFormatter } from "../../../../hooks/date-formatter"
-import TransactionSignatureSection from "./transaction-signature-section"
-import ShowProvidedUsdOrSolPrice from "../../../usd-or-sol/show-provided-usd-or-sol-price"
-import useNavigateToVideoNewPage from "../../../../hooks/navigate/navigate-to-video-new-page"
-import TransactionSummaryCardCategoryHeader from "./transaction-summary-card-category-header"
+import SuccessStatusMessage from "../success-status-message"
+import { useDateTimeFormatter } from "../../../../../hooks/date-formatter"
+import TransactionSignatureSection from "../transaction-signature-section"
+import ShowProvidedUsdOrSolPrice from "../../../../usd-or-sol/show-provided-usd-or-sol-price"
+import useNavigateToVideoNewPage from "../../../../../hooks/navigate/navigate-to-video-new-page"
+import TransactionSummaryCardCategoryHeader from "../transaction-summary-card-category-header"
 
 interface Props {
 	exclusiveContentPurchase: MyPurchasedExclusiveContent

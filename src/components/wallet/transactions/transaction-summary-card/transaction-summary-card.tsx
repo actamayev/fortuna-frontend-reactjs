@@ -2,10 +2,11 @@ import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { isSolanaTransaction } from "../../../../utils/type-checks"
-import TransactionSummaryHeader from "./transaction-summary-header"
-import ShowSolanaTransactionDetailsSummaryCard from "./show-solana-transaction-details-summary-card"
+import TransactionSummaryHeader from "./header/transaction-summary-header"
+import ShowExclusiveContentAccessDetailsSummaryCard
+	from "./exclusive-video-content-access/show-exclusive-content-access-details-summary-card"
 import { usePositionsAndTransactionsContext } from "../../../../contexts/positions-and-transactions-context"
-import ShowExclusiveContentAccessDetailsSummaryCard from "./show-exclusive-content-access-details-summary-card"
+import ShowSolanaTransactionDetailsSummaryCard from "./solana-transaction/show-solana-transaction-details-summary-card"
 
 function TransactionSummaryCard() {
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
