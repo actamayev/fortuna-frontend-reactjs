@@ -11,7 +11,10 @@ class VideoClass {
 	public isRetrievingVideoUrl = false
 
 	public homeScreenCreators: CreatorData[] = []
-	public homeScreenVideos: UrlExtendedSingleVideoData[] = []
+	public recentlyPostedHomeScreenVideos: UrlExtendedSingleVideoData[] = []
+	public mostPopularHomeScreenVideos: UrlExtendedSingleVideoData[] = []
+
+	public homeScreenVideosToShowCategory: HomeScreenVideosToShowCategory = "Most Popular"
 
 	public creatorVideosFilter: CreatorVideosFilter = {
 		titleIncludes: "",
@@ -95,9 +98,15 @@ class VideoClass {
 		}
 	}
 
-	public setHomePageVideos = action((videoData: VideoDataWithUrlRetrievalStatus[]): void => {
+	public setRecentlyPostedHomePageVideos = action((videoData: VideoDataWithUrlRetrievalStatus[]): void => {
 		if (_.isEmpty(videoData)) return
-		videoData.map(singleVideo => this.addVideoToHomePageVideosList(singleVideo))
+		videoData.map(singleVideo => this.addVideoToRecentlyPostedHomePageVideosList(singleVideo))
+		videoData.map(singleVideo => this.addVideoToVideosList(singleVideo))
+	})
+
+	public setMostPopularHomePageVideos = action((videoData: VideoDataWithUrlRetrievalStatus[]): void => {
+		if (_.isEmpty(videoData)) return
+		videoData.map(singleVideo => this.addVideoToMostPopularHomePageVideosList(singleVideo))
 		videoData.map(singleVideo => this.addVideoToVideosList(singleVideo))
 	})
 
@@ -115,18 +124,35 @@ class VideoClass {
 		this.videos.splice(index, 0, video)
 	})
 
-	public addVideoToHomePageVideosList = action((videoToAdd: VideoDataWithUrlRetrievalStatus): void => {
-		const existingIndex = this.homeScreenVideos.findIndex(v => v.uuid === videoToAdd.uuid)
+	public addVideoToRecentlyPostedHomePageVideosList = action((videoToAdd: VideoDataWithUrlRetrievalStatus): void => {
+		const existingIndex = this.recentlyPostedHomeScreenVideos.findIndex(v => v.uuid === videoToAdd.uuid)
 
 		if (existingIndex !== -1) {
 		// Replace existing video
-			this.homeScreenVideos[existingIndex] = videoToAdd
+			this.recentlyPostedHomeScreenVideos[existingIndex] = videoToAdd
 			return
 		}
 
 		// Insert new video into sorted list
-		const index = _.sortedIndexBy(this.homeScreenVideos, videoToAdd, (vd) => -dayjs(vd.createdAt).unix())
-		this.homeScreenVideos.splice(index, 0, videoToAdd)
+		const index = _.sortedIndexBy(this.recentlyPostedHomeScreenVideos, videoToAdd, (vd) => -dayjs(vd.createdAt).unix())
+		this.recentlyPostedHomeScreenVideos.splice(index, 0, videoToAdd)
+	})
+
+	public addVideoToMostPopularHomePageVideosList = action((videoToAdd: VideoDataWithUrlRetrievalStatus): void => {
+		const existingIndex = this.mostPopularHomeScreenVideos.findIndex(v => v.uuid === videoToAdd.uuid)
+
+		if (existingIndex !== -1) {
+			// Replace existing video
+			this.mostPopularHomeScreenVideos[existingIndex] = videoToAdd
+		} else {
+			// Insert new video into sorted list by number of likes
+			const index = _.sortedIndexBy(this.mostPopularHomeScreenVideos, videoToAdd, (vd) => -vd.numberOfLikes)
+			this.mostPopularHomeScreenVideos.splice(index, 0, videoToAdd)
+		}
+	})
+
+	public updateHomeScreenVideosToShowCategory = action((newCategory: HomeScreenVideosToShowCategory): void => {
+		this.homeScreenVideosToShowCategory = newCategory
 	})
 
 	public setHomePageCreators = action((creatorData: CreatorData[]): void => {
@@ -350,6 +376,7 @@ class VideoClass {
 		this.isCurrentlySearching = false
 		this.isCreatorDataBeingRetrieved = false
 		this.setSearchTerm(null)
+		this.homeScreenVideosToShowCategory = "Most Popular"
 	}
 }
 
