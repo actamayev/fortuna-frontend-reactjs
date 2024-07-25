@@ -14,7 +14,7 @@ const helmetData: HelmetData = {
 			needsFortunaSuffix={false}
 		/>
 	),
-	"/recent-upploads": (
+	"/recent-uploads": (
 		<BasicHelmet
 			pageTitleData="Recent Uploads"
 			description="View Recently Uploaded Content."
