@@ -23,8 +23,9 @@ export function SuperMoneyStyleSol(props: Props) {
 		<span className="inline-flex items-baseline">
 			{dollars}
 			<span className="self-center mt-[-0.25em]" style={{ fontSize: "0.8em" }}>
-				.{cents} SOL
+				.{cents}
 			</span>
+			&nbsp;SOL
 		</span>
 	)
 }

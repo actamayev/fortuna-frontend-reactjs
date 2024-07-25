@@ -1,7 +1,7 @@
 import { observer } from "mobx-react"
 import SuccessStatusMessage from "./success-status-message"
-import ShowTransactionSignature from "./show-transaction-signature"
 import { useDateTimeFormatter } from "../../../../hooks/date-formatter"
+import TransactionSignatureSection from "./transaction-signature-section"
 import ShowProvidedUsdOrSolPrice from "../../../usd-or-sol/show-provided-usd-or-sol-price"
 import useNavigateToVideoNewPage from "../../../../hooks/navigate/navigate-to-video-new-page"
 import TransactionSummaryCardCategoryHeader from "./transaction-summary-card-category-header"
@@ -62,7 +62,9 @@ function ShowExclusiveContentAccessDetailsSummaryCard(props: Props) {
 				/>
 			</div>
 			<div className="border-b border-zinc-300 dark:border-zinc-700"></div>
-			<div><ShowTransactionSignature transactionSignature={"abc"} /></div>
+			<div>
+				<TransactionSignatureSection transactionSignature={exclusiveContentPurchase.videoAccessPurchaseTransactionSignature} />
+			</div>
 			<div><SuccessStatusMessage /></div>
 			<div className="flex flex-row">
 				<TransactionSummaryCardCategoryHeader categoryName="Transaction Fee" />

@@ -8,7 +8,6 @@ interface Props {
 	transactionSignature: string
 }
 
-// TODO: Will need to show two transaction signatures for the exclsuive content purchases
 function ShowTransactionSignature(props: Props) {
 	const { transactionSignature } = props
 

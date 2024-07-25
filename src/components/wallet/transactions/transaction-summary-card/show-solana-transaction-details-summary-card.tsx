@@ -1,7 +1,7 @@
 import { observer } from "mobx-react"
 import SuccessStatusMessage from "./success-status-message"
-import ShowTransactionSignature from "./show-transaction-signature"
 import TransactionTypeTemplate from "../../transaction-type-template"
+import ShowTransactionSignature from "./transaction-signature-section"
 import { useDateTimeFormatter } from "../../../../hooks/date-formatter"
 import NewWalletBalanceTemplate from "../../new-wallet-balance-template"
 import TransactionDescriptionTemplate from "../../transaction-description-template"

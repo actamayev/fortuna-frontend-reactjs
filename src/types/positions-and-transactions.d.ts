@@ -31,6 +31,8 @@ declare global {
 
 		newWalletBalanceSol: number | null
 		newWalletBalanceUsd: number | null
+
+		videoAccessPurchaseTransactionSignature: string
 	}
 
 	type WalletFilterRange = "Month" | "Week" | "Today"
