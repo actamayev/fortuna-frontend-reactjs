@@ -10,7 +10,7 @@ export default function SingleTransaction(props: Props) {
 	const { transaction } = props
 
 	if (isSolanaTransaction(transaction)) {
-		return <SingleSolanaTransaction transaction={transaction} />
+		return <SingleSolanaTransaction solanaTransaction={transaction} />
 	}
-	return <SingleContentPurchaseTransaction transaction={transaction} />
+	return <SingleContentPurchaseTransaction exclusiveContentPurchase={transaction} />
 }

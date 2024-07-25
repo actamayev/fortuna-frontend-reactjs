@@ -41,6 +41,8 @@ declare global {
 	type AscOrDesc = "asc" | "desc"
 
 	type RoundOrFixed = "round" | "fixed"
+
+	type DepositOrWithDrawal = "deposit" | "withdrawal"
 }
 
 export {}
