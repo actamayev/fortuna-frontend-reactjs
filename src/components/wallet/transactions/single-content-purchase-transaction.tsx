@@ -29,7 +29,6 @@ function SingleContentPurchaseTransaction(props: Props) {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [positionsAndTransactionsClass?.transactionIdToFocusOn, exclusiveContentPurchase.uuid])
 
-
 	return (
 		<div
 			className={`grid grid-cols-8 gap-4 py-2.5
