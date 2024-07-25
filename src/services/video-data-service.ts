@@ -13,6 +13,12 @@ export default class VideoDataService {
 		)
 	}
 
+	async getRecentlyUploadedVideos(): Promise<AxiosResponse<RecentlyUploadedVideos | ErrorResponse>> {
+		return await this.httpClient.http.get<RecentlyUploadedVideos | ErrorResponse>(
+			`${this.pathHeader}/get-recently-uploaded-videos`, { headers: { "No-Auth-Required": "true" }}
+		)
+	}
+
 	async getVideoById(videoUUID: string): Promise<AxiosResponse<RetrievedVideo | NonSuccessResponse>> {
 		return await this.httpClient.http.get<RetrievedVideo | NonSuccessResponse>(
 			`${this.pathHeader}/get-video/${videoUUID}`, { headers: { "No-Auth-Required": "true" }}
