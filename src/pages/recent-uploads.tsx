@@ -16,8 +16,11 @@ function RecentUploads() {
 
 	return (
 		<>
-			<PageHelmet pageTitle="/" />
-			<div className="grid grid-cols-4 gap-4">
+			<PageHelmet pageTitle="/recent-uploads" />
+			<div className="text-3xl font-semibold text-zinc-950 dark:text-zinc-200 mb-2">
+				Recent Uploads
+			</div>
+			<div className="grid grid-cols-5 gap-3">
 				{videoClass.videos.map((video, index) => (
 					<SingleRecentUploadsCard
 						key={video.uuid}

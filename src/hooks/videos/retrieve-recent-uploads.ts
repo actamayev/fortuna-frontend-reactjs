@@ -13,17 +13,17 @@ export default function useRetrieveRecentUploads(
 	const retrieveRecentUploads = useCallback(async (): Promise<void> => {
 		try {
 			if (
-				videoClass.areHomePageVideosRetrieved === true ||
-				videoClass.areHomePageVideosBeingRetrieved === true
+				videoClass.areRecentlyUploadedVideosRetrieved === true ||
+				videoClass.areRecentlyUploadedBeingRetrieved === true
 			) return
-			videoClass.areHomePageVideosRetrieved = false
-			videoClass.areHomePageVideosBeingRetrieved = true
+			videoClass.areRecentlyUploadedVideosRetrieved = false
+			videoClass.areRecentlyUploadedBeingRetrieved = true
 			setAreVideosLoading(true)
 			const response = await fortunaApiClient.videoDataService.getRecentlyUploadedVideos()
 			if (!_.isEqual(response.status, 200) || isErrorResponse(response.data)) {
 				throw new Error("Failed to retrieve video")
 			}
-			videoClass.areHomePageVideosRetrieved = true
+			videoClass.areRecentlyUploadedVideosRetrieved = true
 			const videos = response.data.recentlyPostedVideos.map(video => ({
 				...video,
 				videoUrlRetrievalAttempted: false
@@ -33,7 +33,7 @@ export default function useRetrieveRecentUploads(
 			console.error(error)
 		} finally {
 			setAreVideosLoading(false)
-			videoClass.areHomePageVideosBeingRetrieved = false
+			videoClass.areRecentlyUploadedBeingRetrieved = false
 		}
 	}, [videoClass, fortunaApiClient.videoDataService, setAreVideosLoading])
 

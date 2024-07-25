@@ -29,36 +29,48 @@ function HomePageVideoDescriptionArea(props: Props) {
 	}, [navigateToVideoPage, uuid])
 
 	return (
-		<div className="flex items-center pt-1 dark:text-zinc-200 rounded-lg mx-1">
-			<ShowUserProfileImageOrDefaultImage
-				profileImageUrl={creatorProfilePictureUrl}
-				extraClasses="w-8 h-8 rounded-full mr-2 object-cover cursor-pointer"
-				onClickCreatorPicture={navigateToCreatorPageCallback}
-			/>
+		<div className="flex items-center dark:text-zinc-200 rounded-lg mx-1">
+			<div className="flex-shrink-0">
+				<ShowUserProfileImageOrDefaultImage
+					profileImageUrl={creatorProfilePictureUrl}
+					extraClasses="w-6 h-6 rounded-full mr-2 object-cover cursor-pointer"
+					onClickCreatorPicture={navigateToCreatorPageCallback}
+				/>
+			</div>
 			<div className="flex flex-col">
 				<div
-					className="text-md font-semibold cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap"
+					className="text-xs font-semibold cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap"
 					style={{ maxWidth: "fit-content" }}
 					onClick={navigateToVideoPageCallback}
 				>
-					{_.truncate(videoName, { length: 29 })}
+					{_.truncate(videoName, { length: 30 })}
 				</div>
 				<div
-					className="text-xs text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-100 cursor-pointer"
-					style={{ maxWidth: "fit-content" }}
+					className="text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-100 cursor-pointer"
+					style={{
+						maxWidth: "fit-content",
+						fontSize: "10px",
+						lineHeight: "14px"
+					}}
 					onClick={navigateToCreatorPageCallback}
 				>
-					{_.truncate(channelName, { length: 40 })}
+					{_.truncate(channelName, { length: 23 })}
 				</div>
 			</div>
-			<div className="ml-auto flex flex-col items-end space-y-1">
-				<div className="text-xs mt-1">
+			<div className="ml-auto flex flex-col items-end">
+				<div
+					className="mt-1"
+					style={{
+						fontSize: "10px",
+						lineHeight: "14px"
+					}}
+				>
 					<ShowUsdOrSolPrice
 						usdAmount={getTieredAccessPriceUsd(video)}
 						roundOrFixed="round"
 					/>
 				</div>
-				<div className="flex items-center space-x-1">
+				<div className="flex items-center">
 					<ShowRecentUploadsLockStatus
 						isUserAbleToAccessVideo={video.isUserAbleToAccessVideo}
 						index={index}

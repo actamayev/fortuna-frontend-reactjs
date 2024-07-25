@@ -10,7 +10,7 @@ interface Props {
 function ShowRecentUploadsLockStatus(props: Props) {
 	const { isUserAbleToAccessVideo, index } = props
 
-	const isRightMostVideo = ((index  + 1) % 4) === 0
+	const isRightMostVideo = ((index  + 1) % 5) === 0
 	if (isUserAbleToAccessVideo === true) {
 		return (
 			<Tooltip
@@ -18,7 +18,16 @@ function ShowRecentUploadsLockStatus(props: Props) {
 				width="215px"
 				messageStart={isRightMostVideo ? "left" : "center"}
 			>
-				<FaUnlock />
+				<div
+					className="flex flex-row items-center space-x-1"
+					style={{
+						fontSize: "10px",
+						lineHeight: "14px"
+					}}
+				>
+					<div>Unlocked</div>
+					<FaUnlock />
+				</div>
 			</Tooltip>
 		)
 	}
@@ -29,7 +38,16 @@ function ShowRecentUploadsLockStatus(props: Props) {
 			width="250px"
 			messageStart={isRightMostVideo ? "left" : "center"}
 		>
-			<FaLock />
+			<div
+				className="flex flex-row items-center space-x-1"
+				style={{
+					fontSize: "10px",
+					lineHeight: "14px"
+				}}
+			>
+				<div>Locked</div>
+				<FaLock size={12}/>
+			</div>
 		</Tooltip>
 	)
 }

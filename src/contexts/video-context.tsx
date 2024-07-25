@@ -25,6 +25,9 @@ class VideoClass {
 	public areHomePageVideosRetrieved: boolean = false
 	public areHomePageVideosBeingRetrieved: boolean = false
 
+	public areRecentlyUploadedVideosRetrieved: boolean = false
+	public areRecentlyUploadedBeingRetrieved: boolean = false
+
 	private videoSearchMap: Map<string, SearchData[]> = new Map() // This maps the search term to SearchData.
 	public isCurrentlySearching: boolean = false
 
@@ -346,6 +349,7 @@ class VideoClass {
 			})
 		})
 		this.areHomePageVideosRetrieved = false
+		this.areRecentlyUploadedVideosRetrieved = false
 		this.clearCreatorVideosFilter()
 	})
 
@@ -370,6 +374,7 @@ class VideoClass {
 	public clearVideosOnLogin = action((): void => {
 		this.resetUrlRetrievalAttempt()
 		this.areHomePageVideosRetrieved = false
+		this.areRecentlyUploadedVideosRetrieved = false
 		this.clearCreatorVideosFilter()
 	})
 

@@ -14,6 +14,13 @@ const helmetData: HelmetData = {
 			needsFortunaSuffix={false}
 		/>
 	),
+	"/recent-upploads": (
+		<BasicHelmet
+			pageTitleData="Recent Uploads"
+			description="View Recently Uploaded Content."
+			url="https://www.createfortuna.com/recent-uploads"
+		/>
+	),
 	"/login": (
 		<BasicHelmet
 			pageTitleData="Login"
