@@ -70,7 +70,7 @@ function HomePageVideoDescriptionArea(props: Props) {
 						roundOrFixed="round"
 					/>
 				</div>
-				<div className="flex items-center">
+				<div className="flex items-center text-zinc-800 dark:text-zinc-200">
 					<ShowRecentUploadsLockStatus
 						isUserAbleToAccessVideo={video.isUserAbleToAccessVideo}
 						index={index}
