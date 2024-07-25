@@ -1,6 +1,6 @@
 import { observer } from "mobx-react"
-import useNavigateToVideoNewPage from "../../../../../hooks/navigate/navigate-to-video-new-page"
 import TransactionSummaryCardCategoryHeader from "../transaction-summary-card-category-header"
+import useNavigateToVideoNewPage from "../../../../../hooks/navigate/navigate-to-video-new-page"
 
 interface Props {
 	exclusiveContentPurchase: MyPurchasedExclusiveContent
