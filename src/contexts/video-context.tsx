@@ -110,6 +110,11 @@ class VideoClass {
 		videoData.map(singleVideo => this.addVideoToVideosList(singleVideo))
 	})
 
+	public setRecentlyUploadedVideos = action((videoData: VideoDataWithUrlRetrievalStatus[]): void => {
+		if (_.isEmpty(videoData)) return
+		videoData.map(singleVideo => this.addVideoToVideosList(singleVideo))
+	})
+
 	public addVideoToVideosList = action((video: VideoDataWithUrlRetrievalStatus): void => {
 		const existingIndex = this.videos.findIndex(v => v.uuid === video.uuid)
 
