@@ -56,7 +56,8 @@ function ShowExclusiveContentAccessDetailsSummaryCard(props: Props) {
 					usdPriceToDisplay={0}
 					solPriceToDisplay={0}
 					roundOrFixed="fixed"
-				/>&nbsp;(no associated fees)
+				/>
+				&nbsp;(no associated fees)
 			</div>
 		</div>
 	)

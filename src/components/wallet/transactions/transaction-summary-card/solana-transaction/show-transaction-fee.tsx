@@ -19,7 +19,8 @@ export default function ShowTransactionFee(props: Props) {
 					usdPriceToDisplay={0}
 					solPriceToDisplay={0}
 					roundOrFixed="fixed"
-				/>&nbsp;(internal transfer)
+				/>
+				&nbsp;(internal transfer)
 			</>
 		)
 	}

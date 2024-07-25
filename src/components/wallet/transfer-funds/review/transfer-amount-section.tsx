@@ -15,8 +15,8 @@ function TransferAmountSection() {
 				roundOrFixed="round"
 				solPriceToDisplay={solanaClass.moneyTransferDetails.transferAmount}
 				usdPriceToDisplay={solanaClass.moneyTransferDetails.transferAmount}
-			/>&nbsp;
-			to&nbsp;
+			/>
+			&nbsp;to&nbsp;
 			<span className="font-semibold break-all">
 				{solanaClass.moneyTransferDetails.transferOption === "username" && solanaClass.moneyTransferDetails.username}
 				{solanaClass.moneyTransferDetails.transferOption === "publicKey" && solanaClass.moneyTransferDetails.publicKey}
