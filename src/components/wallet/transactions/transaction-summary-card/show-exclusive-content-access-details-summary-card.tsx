@@ -23,7 +23,7 @@ function ShowExclusiveContentAccessDetailsSummaryCard(props: Props) {
 			</div>
 			<div className="flex flex-row">
 				<TransactionSummaryCardCategoryHeader categoryName="Transaction Type" />
-				<div className="flex flex-row items-center ml-1 space-x-1 text-blue-600 dark:text-blue-400">
+				<div className="flex flex-row items-center text-blue-600 dark:text-blue-400">
 					<div>Content Purchase</div>
 				</div>
 			</div>

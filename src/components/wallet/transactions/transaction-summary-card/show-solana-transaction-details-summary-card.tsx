@@ -24,11 +24,9 @@ function ShowSolanaTransactionDetailsSummaryCard(props: Props) {
 			</div>
 			<div className="flex flex-row">
 				<TransactionSummaryCardCategoryHeader categoryName="Transaction Type" />
-
 				<TransactionTypeTemplate
 					depositOrWithdrawal={solanaTransaction.depositOrWithdrawal}
 					iconSize={20}
-					extraClasses="ml-1 space-x-1.5"
 				/>
 			</div>
 			<div className="flex flex-row overflow-hidden text-ellipsis whitespace-nowrap">
