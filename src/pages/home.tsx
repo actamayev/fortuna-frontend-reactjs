@@ -39,9 +39,7 @@ export default function Home() {
 							<HomeScreenSearchBar />
 						</div>
 						<HomePageCreatorsMap />
-						<div className="mt-6 mb-3">
-							<FilterHomePageVideos />
-						</div>
+						<FilterHomePageVideos />
 						<HomePageVideosMap />
 					</div>
 				</div>
