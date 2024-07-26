@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useCallback, useState } from "react"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
+import { useCallback, useMemo, useState } from "react"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { useNotificationsContext } from "../../contexts/notifications-context"
 
@@ -10,22 +10,26 @@ function ShowMyPublicKey() {
 	const [showPublicKey, setShowPublicKey] = useState(false)
 	const notificationsClass = useNotificationsContext()
 
-	const copyToClipboard = useCallback(async () => {
-		if (_.isNull(solanaClass.walletPublicKey)) return
+	const walletPublicKey = useMemo(() => {
+		return solanaClass.walletPublicKey
+	}, [solanaClass.walletPublicKey])
 
+	const copyToClipboard = useCallback(async () => {
 		try {
-			await navigator.clipboard.writeText(solanaClass.walletPublicKey.toString())
+			if (_.isNull(walletPublicKey)) return
+			await navigator.clipboard.writeText(walletPublicKey.toString())
 			notificationsClass.setNeutralNotification("Public Key copied to clipboard")
 		} catch (error) {
 			console.error("Failed to copy text: ", error)
 		}
-	}, [notificationsClass, solanaClass.walletPublicKey])
+	}, [notificationsClass, walletPublicKey])
 
 	const setShowPublicKeyCallback = useCallback((): void => {
 		setShowPublicKey(prevState => !prevState)
 	}, [])
 
-	if (_.isNull(solanaClass.walletPublicKey) || showPublicKey === false) {
+
+	if (_.isNull(walletPublicKey) || showPublicKey === false) {
 		return (
 			<div className="font-semibold flex items-center">
 				<div
@@ -50,7 +54,7 @@ function ShowMyPublicKey() {
 			<div className="flex items-center dark:text-zinc-200">
 				<span className="mr-2">My Public Key:</span>
 				<div className="cursor-pointer flex-shrink-0" onClick={copyToClipboard}>
-					{solanaClass.walletPublicKey.toString()}
+					{walletPublicKey.toString()}
 				</div>
 			</div>
 		</div>
