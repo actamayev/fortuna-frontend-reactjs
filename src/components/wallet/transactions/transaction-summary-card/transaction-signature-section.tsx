@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { SiSolana } from "react-icons/si"
 import { useCallback, useMemo } from "react"
@@ -32,10 +31,13 @@ function ShowTransactionSignature(props: Props) {
 	return (
 		<div className="flex items-center">
 			<div className="flex items-center dark:text-zinc-200 justify-between w-full">
-				<div className="flex items-center">
+				<div className="flex items-center overflow-hidden text-ellipsis whitespace-nowrap">
 					<span className="font-semibold">Transaction Signature:&nbsp;</span>
-					<div className="cursor-pointer flex-shrink" onClick={copyToClipboard}>
-						{_.truncate(transactionSignature, { length: 15 })}
+					<div
+						className="cursor-pointer flex-shrink overflow-hidden text-ellipsis whitespace-nowrap"
+						onClick={copyToClipboard}
+					>
+						{transactionSignature}
 					</div>
 				</div>
 				<div
