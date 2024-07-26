@@ -1,5 +1,5 @@
 import { observer } from "mobx-react"
-import { useState, useRef, useCallback } from "react"
+import { useState, useRef, useCallback, useMemo } from "react"
 import ProfileDropdownItems from "./profile-dropdown-items"
 import { useCreatorContext } from "../../../contexts/creator-context"
 import useClickOutsideUseEffect from "../../../hooks/click-outside/click-outside-use-effect"
@@ -15,6 +15,10 @@ function HeaderDropdown () {
 		setIsOpen(prevState => !prevState)
 	}, [])
 
+	const profilePictureUrl = useMemo(() => {
+		return creatorClass.profilePictureUrl
+	}, [creatorClass.profilePictureUrl])
+
 	return (
 		<div className="flex items-center">
 			<div className="relative inline-block" ref={dropdownRef}>
@@ -25,7 +29,7 @@ function HeaderDropdown () {
 				>
 					<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center text-zinc-950 dark:text-zinc-100">
 						<ShowUserProfileImageOrDefaultImage
-							profileImageUrl={creatorClass.profilePictureUrl}
+							profileImageUrl={profilePictureUrl}
 							extraClasses="min-w-full min-h-full object-cover"
 							onClickCreatorPicture={isOpenCallback}
 						/>
