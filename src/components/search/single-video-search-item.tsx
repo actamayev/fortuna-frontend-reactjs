@@ -18,7 +18,7 @@ export default function SingleVideoSearchItem(props: Props) {
 	return (
 		<div
 			className="rounded-lg cursor-pointer w-2/3
-			bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-700"
+			bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700"
 			onClick={navigateToVideoPageCallback}
 		>
 			<div className="flex w-full">

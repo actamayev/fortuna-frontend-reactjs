@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import ShowUsdOrSolPrice from "../usd-or-sol/show-usd-or-sol-price"
@@ -29,7 +28,7 @@ function HomePageVideoDescriptionArea(props: Props) {
 	}, [navigateToVideoPage, uuid])
 
 	return (
-		<div className="flex items-center dark:text-zinc-200 rounded-lg mx-1">
+		<div className="flex items-center dark:text-zinc-200 rounded-lg mx-1 overflow-hidden text-ellipsis whitespace-nowrap">
 			<div className="flex-shrink-0">
 				<ShowUserProfileImageOrDefaultImage
 					profileImageUrl={creatorProfilePictureUrl}
@@ -37,16 +36,17 @@ function HomePageVideoDescriptionArea(props: Props) {
 					onClickCreatorPicture={navigateToCreatorPageCallback}
 				/>
 			</div>
-			<div className="flex flex-col">
+			<div className="flex flex-col overflow-hidden text-ellipsis whitespace-nowrap">
 				<div
 					className="text-xs font-semibold cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap"
 					style={{ maxWidth: "fit-content" }}
 					onClick={navigateToVideoPageCallback}
 				>
-					{_.truncate(videoName, { length: 30 })}
+					{videoName}
 				</div>
 				<div
-					className="text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-100 cursor-pointer"
+					className="text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-100 cursor-pointer
+					overflow-hidden text-ellipsis whitespace-nowrap"
 					style={{
 						maxWidth: "fit-content",
 						fontSize: "10px",
@@ -54,7 +54,7 @@ function HomePageVideoDescriptionArea(props: Props) {
 					}}
 					onClick={navigateToCreatorPageCallback}
 				>
-					{_.truncate(channelName, { length: 23 })}
+					{channelName}
 				</div>
 			</div>
 			<div className="ml-auto flex flex-col items-end">

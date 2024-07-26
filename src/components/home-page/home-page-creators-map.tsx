@@ -6,17 +6,20 @@ function HomePageCreatorsMap() {
 	const videosClass = useVideoContext()
 
 	return (
-		<div className="text-zinc-950 dark:text-zinc-50 w-full">
-			<div className="mt-6 mb-3">Popular Creators</div>
-			<div className="grid grid-cols-4 gap-2">
-				{videosClass.homeScreenCreators.map(singleCreator => (
-					<SingleHomePageCreator
-						key={singleCreator.creatorUsername}
-						singleHomePageCreator={singleCreator}
-					/>
-				))}
+		<>
+			<div className="text-zinc-950 dark:text-zinc-50 w-full">
+				<div className="mt-6 mb-3">Popular Creators</div>
+				<div className="grid grid-cols-4 gap-2">
+					{videosClass.homeScreenCreators.map(singleCreator => (
+						<SingleHomePageCreator
+							key={singleCreator.creatorUsername}
+							singleHomePageCreator={singleCreator}
+						/>
+					))}
+				</div>
 			</div>
-		</div>
+			<div className="border-b my-3"/>
+		</>
 	)
 }
 

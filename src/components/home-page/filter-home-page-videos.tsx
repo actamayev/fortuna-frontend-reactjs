@@ -25,22 +25,20 @@ function FilterHomePageVideos() {
 	}, [navigate])
 
 	return (
-		<div className="flex flex-row items-center text-zinc-600 dark:text-zinc-200 text-sm font-semibold">
-			<div className="border border-zinc-700 dark:border-zinc-300 p-1 mr-2 rounded-xl flex-shrink-0">
-				<div className="flex flex-row space-x-2">
-					<Button
-						title="Most Popular"
-						colorClass={colorClasses("Most Popular")}
-						hoverClass=""
-						onClick={() => handleUpdateFilter("Most Popular")}
-					/>
-					<Button
-						title="Recent Uploads"
-						colorClass={colorClasses("Recent Uploads")}
-						hoverClass=""
-						onClick={() => handleUpdateFilter("Recent Uploads")}
-					/>
-				</div>
+		<div className="flex flex-row items-center text-zinc-600 dark:text-zinc-200 text-sm font-semibold my-3">
+			<div className="flex flex-row space-x-2">
+				<Button
+					title="Most Popular"
+					colorClass={colorClasses("Most Popular")}
+					hoverClass=""
+					onClick={() => handleUpdateFilter("Most Popular")}
+				/>
+				<Button
+					title="Recent Uploads"
+					colorClass={colorClasses("Recent Uploads")}
+					hoverClass=""
+					onClick={() => handleUpdateFilter("Recent Uploads")}
+				/>
 			</div>
 			<div className="flex-grow"></div>
 			<div className="ml-auto items-center">
