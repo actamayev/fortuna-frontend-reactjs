@@ -9,7 +9,7 @@ function TransactionsDescriptionSearch() {
 		positionsAndTransactionClass.updateWalletFilter("transactionTitleIncludes", event.target.value)
 	}, [positionsAndTransactionClass])
 
-	const descriptionIncludes = useMemo(() => {
+	const transactionTitleIncludes = useMemo(() => {
 		return positionsAndTransactionClass.walletFilter.transactionTitleIncludes
 	}, [positionsAndTransactionClass.walletFilter.transactionTitleIncludes])
 
@@ -17,7 +17,7 @@ function TransactionsDescriptionSearch() {
 		<input
 			type="text"
 			placeholder="Description contains..."
-			value={descriptionIncludes}
+			value={transactionTitleIncludes}
 			onChange={handleSearch}
 			className="w-full outline-none bg-inherit"
 		/>
