@@ -17,13 +17,15 @@ function SingleContentPurchaseTransaction(props: Props) {
 	const abbreviatedDateFormatter = useAbbreviatedDateFormatter()
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
+	const { purchaseDate, priceInSol, priceInUsd, uuid, newWalletBalanceSol, newWalletBalanceUsd, videoName } = exclusiveContentPurchase
+
 	const setTransactionIdToFocusOn = useCallback(() => {
-		positionsAndTransactionsClass.updateTransactionToFocusOn(exclusiveContentPurchase.uuid)
-	}, [exclusiveContentPurchase.uuid, positionsAndTransactionsClass])
+		positionsAndTransactionsClass.updateTransactionToFocusOn(uuid)
+	}, [uuid, positionsAndTransactionsClass])
 
 	const isCurrentTransactionFocusedOn = useMemo(() => {
-		return positionsAndTransactionsClass.transactionIdToFocusOn === exclusiveContentPurchase.uuid
-	}, [positionsAndTransactionsClass.transactionIdToFocusOn, exclusiveContentPurchase.uuid])
+		return positionsAndTransactionsClass.transactionIdToFocusOn === uuid
+	}, [positionsAndTransactionsClass.transactionIdToFocusOn, uuid])
 
 	return (
 		<div
@@ -35,7 +37,7 @@ function SingleContentPurchaseTransaction(props: Props) {
 			onClick={setTransactionIdToFocusOn}
 		>
 			<div className="col-span-1 flex items-center">
-				{abbreviatedDateFormatter(exclusiveContentPurchase.purchaseDate)}
+				{abbreviatedDateFormatter(purchaseDate)}
 			</div>
 			<div className="col-span-2 flex items-center">
 				<div className="flex flex-row items-center space-x-3 text-blue-600 dark:text-blue-400">
@@ -47,8 +49,8 @@ function SingleContentPurchaseTransaction(props: Props) {
 				<div className="flex justify-start text-blue-600 dark:text-blue-400">
 					-
 					<ShowProvidedUsdOrSolPrice
-						solPriceToDisplay={exclusiveContentPurchase.priceInSol}
-						usdPriceToDisplay={exclusiveContentPurchase.priceInUsd}
+						solPriceToDisplay={priceInSol}
+						usdPriceToDisplay={priceInUsd}
 						roundOrFixed="fixed"
 					/>
 				</div>
@@ -59,16 +61,16 @@ function SingleContentPurchaseTransaction(props: Props) {
 					<div
 						className="cursor-pointer underline decoration-dotted
 						hover:decoration-solid overflow-hidden text-ellipsis whitespace-nowrap"
-						onClick={() => navigateToVideoNewPage(exclusiveContentPurchase.uuid)}
+						onClick={() => navigateToVideoNewPage(uuid)}
 					>
-						{exclusiveContentPurchase.videoName}
+						{videoName}
 					</div>
 				</div>
 			</div>
 			<div className="col-span-1 flex justify-end items-center">
 				<NewWalletBalanceTemplate
-					newWalletBalanceSol={exclusiveContentPurchase.newWalletBalanceSol}
-					newWalletBalanceUsd={exclusiveContentPurchase.newWalletBalanceUsd}
+					newWalletBalanceSol={newWalletBalanceSol}
+					newWalletBalanceUsd={newWalletBalanceUsd}
 				/>
 			</div>
 		</div>
