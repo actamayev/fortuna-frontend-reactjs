@@ -19,10 +19,6 @@ export default function useRemoveSocialLink(): (
 		setTempSocialLinks: React.Dispatch<React.SetStateAction<SocialPlatformLinks[]>>
 	): Promise<void> => {
 		try {
-			setTempSocialLinks(prevLinks =>
-				prevLinks.filter(link => link.socialPlatform !== socialPlatform)
-			)
-
 			if (creatorClass.socialPlatformLinks.some(link => link.socialPlatform === socialPlatform) === false) {
 				return
 			}
@@ -33,6 +29,9 @@ export default function useRemoveSocialLink(): (
 				return
 			}
 
+			setTempSocialLinks(prevLinks =>
+				prevLinks.filter(link => link.socialPlatform !== socialPlatform)
+			)
 			creatorClass.removeSocialPlatformLink(socialPlatform)
 			notificationsClass.setPositiveNotification(`Removed ${convertSocialLinkToProperCasing(socialPlatform)}`)
 		} catch (error) {
