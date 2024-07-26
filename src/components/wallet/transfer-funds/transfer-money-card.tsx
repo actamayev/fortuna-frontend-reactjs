@@ -1,5 +1,5 @@
-import { useRef } from "react"
 import { observer } from "mobx-react"
+import { useMemo, useRef } from "react"
 import ReviewTransferInfo from "./review/review-transfer-info"
 import InitialTransferInfo from "./initial/initial-transfer-info"
 import { useSolanaContext } from "../../../contexts/solana-context"
@@ -10,7 +10,15 @@ function TransferMoneyCard() {
 	const dropdownRef = useRef<HTMLDivElement>(null)
 	useClickOutsideUseEffect(dropdownRef, solanaClass.setIsMoneyTransferButtonPressed)
 
-	if (solanaClass.isMoneyTransferButtonPressed === false) return null
+	const isMoneyTransferButtonPressed = useMemo(() => {
+		return solanaClass.isMoneyTransferButtonPressed
+	}, [solanaClass.isMoneyTransferButtonPressed])
+
+	const transferStage = useMemo(() => {
+		return solanaClass.moneyTransferDetails.transferStage
+	}, [solanaClass.moneyTransferDetails.transferStage])
+
+	if (isMoneyTransferButtonPressed === false) return null
 
 	return (
 		<div
@@ -19,8 +27,8 @@ function TransferMoneyCard() {
 			style={{ maxHeight: "calc(100vh - 40px)", overflowY: "auto", width: "350px" }}
 			ref={dropdownRef}
 		>
-			{solanaClass.moneyTransferDetails.transferStage === "initial" && <InitialTransferInfo />}
-			{solanaClass.moneyTransferDetails.transferStage === "review" && <ReviewTransferInfo />}
+			{transferStage === "initial" && <InitialTransferInfo />}
+			{transferStage === "review" && <ReviewTransferInfo />}
 		</div>
 	)
 }

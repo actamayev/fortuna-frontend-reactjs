@@ -9,9 +9,9 @@ import useConfirmSufficientMoneyToTransfer
 
 function ConfirmTransferButton() {
 	const solanaClass = useSolanaContext()
-	const transferSol = useTransferFunds()
 	const [isLoading, setIsLoading] = useState(false)
 	const [doesUserHaveSufficientFunds, setDoesUserHaveSufficientFunds] = useState(false)
+	const transferSol = useTransferFunds()
 	const confirmSufficientMoneyToTransfer = useConfirmSufficientMoneyToTransfer()
 
 	useEffect(() => {
