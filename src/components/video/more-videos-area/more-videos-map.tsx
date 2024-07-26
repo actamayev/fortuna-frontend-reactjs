@@ -16,14 +16,16 @@ function MoreVideosMap(props: Props) {
 
 	return (
 		<div>
-			<div className="flex text-xl font-medium my-2">
+			<div className="flex justify-center text-2xl font-medium my-2">
 				More from {video.channelName}
 			</div>
 			<div className="grid grid-cols-2">
 				{creatorData.videoData.map((videoData, index) => (
 					<div
 						key={videoData.uuid}
-						className={`flex flex-col items-start py-3 ${index % 2 === 0 ? "pr-3" : "pl-3"}`}
+						className={`flex flex-col items-start
+							${(index === 0 || index === 1) ? "" : "pt-6"}
+							${index % 2 === 0 ? "pr-3" : "pl-3"}`}
 					>
 						<SingleRecommendedVideo videoData={videoData} />
 					</div>

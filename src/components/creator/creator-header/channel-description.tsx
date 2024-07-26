@@ -22,7 +22,7 @@ function ChannelDescription(props: Props) {
 				className="dark:text-white text-sm w-full block"
 				style={{
 					wordBreak: "break-word",
-					overflowWrap: "break-word",
+					overflowWrap: "break-word"
 				}}
 			>
 				{isExpanded ? (

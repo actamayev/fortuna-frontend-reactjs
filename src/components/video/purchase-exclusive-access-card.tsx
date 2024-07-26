@@ -46,7 +46,7 @@ function PurchaseExclusiveAccessCard(props: Props) {
 	}
 
 	return (
-		<div className="bg-zinc-100 dark:bg-zinc-800 rounded-lg p-3 h-full border border-zinc-200 dark:border-zinc-700">
+		<div className="bg-zinc-100 dark:bg-zinc-800 rounded-lg p-3 h-full">
 			<PurchaseInstantAccessOptions />
 		</div>
 	)

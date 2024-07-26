@@ -26,7 +26,7 @@ function CreatorPageHeaderArea(props: Props) {
 				</div>
 				<div className="flex flex-col w-full">
 					<div className="flex justify-between items-center">
-						<span className="text-zinc-950 dark:text-zinc-50 text-3xl font-semibold p-2">
+						<span className="text-zinc-950 dark:text-zinc-50 text-xl font-semibold p-1.5">
 							{creatorData.channelName}
 						</span>
 						<ChannelSocialLinks socialPlatformLinks={creatorData.socialPlatformLinks} />

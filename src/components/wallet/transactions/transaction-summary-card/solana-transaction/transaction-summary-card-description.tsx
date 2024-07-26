@@ -33,8 +33,11 @@ export default function TransactionSummaryCardDescription(props: Props) {
 					to&nbsp;
 					{solanaTransaction.transferToUsername && <>@{solanaTransaction.transferToUsername}</>}
 					{solanaTransaction.transferToPublicKey && (
-						<span className="cursor-pointer overflow-hidden text-ellipsis" onClick={copyToClipboard}>
-							{_.truncate(solanaTransaction.transferToPublicKey, { length: 15 })}
+						<span
+							className="cursor-pointer overflow-hidden text-ellipsis"
+							onClick={copyToClipboard}
+						>
+							{solanaTransaction.transferToPublicKey}
 						</span>
 					)}
 				</span>
