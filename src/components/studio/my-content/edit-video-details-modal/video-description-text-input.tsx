@@ -13,11 +13,11 @@ interface Props {
 function VideoDescriptionTextInput(props: Props) {
 	const { videoUUID } = props
 	const maxLength = 5000
+	const creatorClass = useCreatorContext()
 	const textAreaRef = useRef<HTMLTextAreaElement>(null)
 	const [videoDescription, setVideoDescription] = useState("")
 	const editVideoDescription = useEditVideoDescription()
 	const assignDefaultVideoDescription = useAssignDefaultVideoDescription()
-	const creatorClass = useCreatorContext()
 
 	useEffect(() => {
 		assignDefaultVideoDescription(videoUUID, setVideoDescription)
