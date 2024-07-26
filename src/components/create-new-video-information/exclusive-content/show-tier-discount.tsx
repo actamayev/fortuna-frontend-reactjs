@@ -21,11 +21,15 @@ function ShowTierDiscount(props: Props) {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [creatorClass.newVideoDetails.tierData[tierNumber]?.tierAccessPriceUsd, tierNumber])
 
-	if (_.isNull(previousTierAccessPriceUsd)) return null
+	const impliedTierDiscount = useMemo(() => {
+		if (_.isNull(previousTierAccessPriceUsd)) return -1
+		return  100 * (previousTierAccessPriceUsd - tierAccessPriceUsd) / (previousTierAccessPriceUsd)
+	}, [previousTierAccessPriceUsd, tierAccessPriceUsd])
 
-	const impliedTierDiscount = 100 * (previousTierAccessPriceUsd - tierAccessPriceUsd) / (previousTierAccessPriceUsd)
-
-	if (impliedTierDiscount <= 0) return null
+	if (
+		_.isNull(previousTierAccessPriceUsd) ||
+		impliedTierDiscount <= 0
+	) return null
 
 	return (
 		<>
