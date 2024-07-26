@@ -1,4 +1,5 @@
 import _ from "lodash"
+import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { useLocation } from "react-router-dom"
 import NullUserNavLink from "../null-user-nav-link"
@@ -11,13 +12,19 @@ function LoginLogoutHeaderItem() {
 	const location = useLocation()
 	const personalInfoClass = usePersonalInfoContext()
 
+	const username = useMemo(() => {
+		return personalInfoClass.username
+	}, [personalInfoClass.username])
+
 	if (authClass.isLoggedIn === false) {
 		if (location.pathname === "/register" || location.pathname === "/login") {
 			return null
 		}
 		return <NullUserNavLink />
 	}
-	if (_.isNull(personalInfoClass.username)) return null
+
+	if (_.isNull(username)) return null
+
 	return <HeaderDropdown />
 }
 

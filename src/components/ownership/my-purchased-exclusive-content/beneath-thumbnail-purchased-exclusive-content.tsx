@@ -16,6 +16,9 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 	const { myPurchasedExclusiveContent } = props
 	const [isHovered, setIsHovered] = useState(false)
 
+	const { creatorUsername, videoName, creatorProfilePictureUrl, uuid,
+		channelName, purchaseDate, priceInSol, priceInUsd } = myPurchasedExclusiveContent
+
 	const navigateToCreatorPage = useNavigateToCreatorPage()
 	const relativeDateFormatter = useRelativeDateFormatter()
 	const navigateToWallet = useTypedNavigate()
@@ -23,14 +26,14 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 
 	const navigateToCreatorPageCallback = useCallback((e: React.MouseEvent<HTMLElement, MouseEvent>) => {
 		e.stopPropagation() // Prevents the video click event when clicking the image
-		navigateToCreatorPage(addDefiniteLeadingAt(myPurchasedExclusiveContent.creatorUsername))
-	}, [myPurchasedExclusiveContent.creatorUsername, navigateToCreatorPage])
+		navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))
+	}, [creatorUsername, navigateToCreatorPage])
 
 	const navigateToWalletScreen = useCallback((e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
 		e.stopPropagation() // Prevents the video click event when clicking the image
-		positionsAndTransactionClass.updateTransactionToFocusOn(myPurchasedExclusiveContent.uuid)
+		positionsAndTransactionClass.updateTransactionToFocusOn(uuid)
 		navigateToWallet("/wallet")
-	}, [myPurchasedExclusiveContent.uuid, navigateToWallet, positionsAndTransactionClass])
+	}, [uuid, navigateToWallet, positionsAndTransactionClass])
 
 	const handleMouseEnter = useCallback(() => setIsHovered(true), [])
 	const handleMouseLeave = useCallback(() => setIsHovered(false), [])
@@ -38,12 +41,12 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 	return (
 		<div className="p-1.5">
 			<div className="text-sm font-medium pb-1.5 dark:text-zinc-200 overflow-hidden text-ellipsis whitespace-nowrap">
-				{myPurchasedExclusiveContent.videoName}
+				{videoName}
 			</div>
 			<div className="flex items-center space-x-1">
 				<div className="flex-shrink-0">
 					<ShowUserProfileImageOrDefaultImage
-						profileImageUrl={myPurchasedExclusiveContent.creatorProfilePictureUrl}
+						profileImageUrl={creatorProfilePictureUrl}
 						extraClasses="w-6 h-6 rounded-full object-cover cursor-pointer"
 						onClickCreatorPicture={navigateToCreatorPageCallback}
 					/>
@@ -53,7 +56,7 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 					text-zinc-700 hover:text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"
 					onClick={navigateToCreatorPageCallback}
 				>
-					{myPurchasedExclusiveContent.channelName}
+					{channelName}
 				</div>
 			</div>
 			<div
@@ -63,11 +66,11 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 				onMouseEnter={handleMouseEnter}
 				onMouseLeave={handleMouseLeave}
 			>
-				Purchased {relativeDateFormatter(myPurchasedExclusiveContent.purchaseDate)} for&nbsp;
+				Purchased {relativeDateFormatter(purchaseDate)} for&nbsp;
 				<ShowProvidedUsdOrSolPrice
 					roundOrFixed="round"
-					solPriceToDisplay={myPurchasedExclusiveContent.priceInSol}
-					usdPriceToDisplay={myPurchasedExclusiveContent.priceInUsd}
+					solPriceToDisplay={priceInSol}
+					usdPriceToDisplay={priceInUsd}
 					extraStyles={isHovered ? "underline decoration-solid" : "underline decoration-dotted"}
 				/>
 			</div>

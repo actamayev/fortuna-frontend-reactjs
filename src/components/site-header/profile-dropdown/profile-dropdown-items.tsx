@@ -1,6 +1,6 @@
-import { useState } from "react"
 import { observer } from "mobx-react"
 import { Link } from "react-router-dom"
+import { useMemo, useState } from "react"
 import { IoWallet } from "react-icons/io5"
 import { FaShoppingBag } from "react-icons/fa"
 import { RiLogoutBoxRLine } from "react-icons/ri"
@@ -22,10 +22,14 @@ function ProfileDropdownItems() {
 	const handleLogout = useHandleLogout(setLogoutDisabled)
 	const classes = useDropdownItemClasses()
 
+	const username = useMemo(() => {
+		return personalInfoClass.username
+	}, [personalInfoClass.username])
+
 	return (
 		<div className="text-base text-zinc-950 dark:text-zinc-200">
 			<div className="px-4 py-2 border-b border-zinc-100 dark:border-zinc-700 font-medium">
-				@{personalInfoClass.username || ""}
+				@{username || ""}
 			</div>
 
 			<Link to="/ownership" className={classes.middle}>
