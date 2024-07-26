@@ -1,11 +1,21 @@
+import { useMemo } from "react"
 import { observer } from "mobx-react"
 import MaxProfitByTier from "./max-profit-by-tier"
 import { useCreatorContext } from "../../../contexts/creator-context"
-import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
 import { SuperMoneyStyleDollars } from "../../usd-or-sol/super-money-style"
+import { useNumberWithCommasFixed } from "../../../hooks/numbers/numbers-with-commas"
 
 function MaxProfitFromVideo() {
 	const creatorClass = useCreatorContext()
+	const numberWithCommasFixed = useNumberWithCommasFixed()
+
+	const fortunaFee = useMemo(() => {
+		return numberWithCommasFixed(creatorClass.newVideoFortunaFee, 2)
+	}, [creatorClass.newVideoFortunaFee, numberWithCommasFixed])
+
+	const profitAfterFee = useMemo(() => {
+		return numberWithCommasFixed(creatorClass.profitAfterFee, 2)
+	}, [creatorClass.profitAfterFee, numberWithCommasFixed])
 
 	if (creatorClass.newVideoDetails.isContentExclusive === false) return null
 
@@ -14,9 +24,6 @@ function MaxProfitFromVideo() {
 			<div>Max Profit: $∞ (no limit of buyers)</div>
 		)
 	}
-
-	const forunaFee = numberWithCommasFixed(creatorClass.newVideoFortunaFee, 2)
-	const profitAfterFee = numberWithCommasFixed(creatorClass.profitAfterFee, 2)
 
 	return (
 		<div>
@@ -32,7 +39,7 @@ function MaxProfitFromVideo() {
 			{creatorClass.newVideoFortunaFee && (
 				<div>
 					Fortuna Fee (2.5%):&nbsp;
-					<SuperMoneyStyleDollars dollars={forunaFee.dollars} cents={forunaFee.cents}/>
+					<SuperMoneyStyleDollars dollars={fortunaFee.dollars} cents={fortunaFee.cents}/>
 				</div>
 			)}
 			{creatorClass.profitAfterFee && (

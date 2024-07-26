@@ -4,7 +4,7 @@ import { observer } from "mobx-react"
 import { useSolanaContext } from "../../contexts/solana-context"
 import useDefaultCurrency from "../../hooks/memos/default-currency"
 import { SuperMoneyStyleDollars, SuperMoneyStyleSol } from "./super-money-style"
-import { numberWithCommasFixed, numberWithCommasRounded } from "../../utils/numbers-with-commas"
+import { useNumberWithCommasFixed, useNumberWithCommasRounded } from "../../hooks/numbers/numbers-with-commas"
 
 interface Props {
 	usdAmount: number | null
@@ -15,10 +15,12 @@ function ShowUSDOrSolPrice(props: Props) {
 	const { usdAmount, roundOrFixed } = props
 	const solanaClass = useSolanaContext()
 	const defaultCurrency = useDefaultCurrency()
+	const numberWithCommasFixed = useNumberWithCommasFixed()
+	const numberWithCommasRounded = useNumberWithCommasRounded()
 
 	const formatPrice = useCallback((price: number, digits: number) => {
 		return roundOrFixed === "fixed" ? numberWithCommasFixed(price, digits) : numberWithCommasRounded(price)
-	}, [roundOrFixed])
+	}, [numberWithCommasFixed, numberWithCommasRounded, roundOrFixed])
 
 	if (_.isNull(usdAmount)) return null
 

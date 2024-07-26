@@ -1,24 +1,29 @@
 import { useMemo } from "react"
 import { observer, useObserver } from "mobx-react"
 import useDefaultCurrency from "../../../hooks/memos/default-currency"
-import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
+import { useNumberWithCommasFixed } from "../../../hooks/numbers/numbers-with-commas"
 import { SuperMoneyStyleDollars, SuperMoneyStyleSol } from "../../usd-or-sol/super-money-style"
 import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 
 function Deposits() {
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const defaultCurrency = useDefaultCurrency()
+	const numberWithCommasFixed = useNumberWithCommasFixed()
 
 	const transactionsTimeRange = useMemo(() => {
 		return positionsAndTransactionsClass.transactionsTimeRange
 	}, [positionsAndTransactionsClass.transactionsTimeRange])
 
 	const depositsSol = useObserver(() => positionsAndTransactionsClass.calculateDepositsSol())
-
 	const depositsUsd = useObserver(() => positionsAndTransactionsClass.calculateDepositsUsd())
 
-	const solDepositsObject = numberWithCommasFixed(depositsSol, 4)
-	const usdDepositsObject = numberWithCommasFixed(depositsUsd, 2)
+	const solDepositsObject = useMemo(() => {
+		return numberWithCommasFixed(depositsSol, 2)
+	}, [depositsSol, numberWithCommasFixed])
+
+	const usdDepositsObject = useMemo(() => {
+		return numberWithCommasFixed(depositsUsd, 2)
+	}, [depositsUsd, numberWithCommasFixed])
 
 	return (
 		<div className="flex flex-col">

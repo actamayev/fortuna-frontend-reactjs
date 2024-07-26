@@ -1,9 +1,8 @@
-import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { useCreatorContext } from "../../../contexts/creator-context"
-import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
 import { SuperMoneyStyleDollars } from "../../usd-or-sol/super-money-style"
+import { useNumberWithCommasFixed } from "../../../hooks/numbers/numbers-with-commas"
 
 interface Props {
 	tierNumber: number
@@ -12,9 +11,10 @@ interface Props {
 function MaxProfitByTier(props: Props) {
 	const { tierNumber } = props
 	const creatorClass = useCreatorContext()
+	const numberWithCommasFixed = useNumberWithCommasFixed()
 
 	const purchasesInThisTier = useMemo(() => {
-		return creatorClass.newVideoDetails.tierData[tierNumber - 1]?.purchasesInThisTier
+		return creatorClass.newVideoDetails.tierData[tierNumber - 1]?.purchasesInThisTier || -1
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [tierNumber, creatorClass.newVideoDetails.tierData[tierNumber - 1]?.purchasesInThisTier])
 
@@ -23,9 +23,9 @@ function MaxProfitByTier(props: Props) {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [tierNumber, creatorClass.newVideoDetails.tierData[tierNumber - 1]?.tierAccessPriceUsd])
 
-	if (_.isNull(purchasesInThisTier) || tierAccessPriceUsd === 0) return null
-
 	const { dollars, cents } = numberWithCommasFixed((purchasesInThisTier * tierAccessPriceUsd), 2)
+
+	if ((purchasesInThisTier <= 0 ) || tierAccessPriceUsd === 0) return null
 
 	return (
 		<div>
