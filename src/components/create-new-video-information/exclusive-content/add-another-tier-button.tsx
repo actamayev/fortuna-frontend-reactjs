@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import { FaPlusCircle } from "react-icons/fa"
@@ -20,7 +19,7 @@ function AddAnotherTierButton() {
 		return creatorClass.newVideoDetails.isContentExclusive
 	}, [creatorClass.newVideoDetails.isContentExclusive])
 
-	if (_.isNull(numberOfTiers) || numberOfTiers === 3 || isContentExclusive === false) return null
+	if (numberOfTiers === 3 || isContentExclusive === false) return null
 
 	return (
 		<Button

@@ -8,8 +8,7 @@
 
 // 	const email = useMemo(() => {
 // 		return personalInfoClass.email
-// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-// 	}, [personalInfoClass, personalInfoClass?.email])
+// 	}, [personalInfoClass.email])
 
 // 	return (
 // 		<div>

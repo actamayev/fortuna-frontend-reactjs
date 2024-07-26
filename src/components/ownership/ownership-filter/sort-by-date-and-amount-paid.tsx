@@ -1,6 +1,6 @@
+import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import { FaArrowUp, FaArrowDown } from "react-icons/fa"
-import { observer } from "mobx-react"
 import Button from "../../buttons/button"
 import { usePositionsAndTransactionsContext } from "../../../contexts/positions-and-transactions-context"
 
@@ -17,7 +17,7 @@ function SortByDateAndAmountPaid() {
 			classes = "bg-black dark:bg-white text-white dark:text-black rounded-lg"
 		}
 		return classes
-	}, [positionsAndTransactionsClass])
+	}, [positionsAndTransactionsClass.ownershipFilter.sortBy])
 
 	const currentOwnershipFilter = useMemo(() => {
 		return positionsAndTransactionsClass.ownershipFilter

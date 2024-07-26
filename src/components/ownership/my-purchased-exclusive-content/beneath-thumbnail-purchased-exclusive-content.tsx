@@ -40,11 +40,11 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 			<div className="text-sm font-medium pb-1.5 dark:text-zinc-200 overflow-hidden text-ellipsis whitespace-nowrap">
 				{myPurchasedExclusiveContent.videoName}
 			</div>
-			<div className="flex items-center">
-				<div className="w-6 h-6 rounded-full overflow-hidden flex justify-center items-center mr-1.5">
+			<div className="flex items-center space-x-1">
+				<div className="flex-shrink-0">
 					<ShowUserProfileImageOrDefaultImage
 						profileImageUrl={myPurchasedExclusiveContent.creatorProfilePictureUrl}
-						extraClasses="min-w-full min-h-full object-cover cursor-pointer"
+						extraClasses="w-6 h-6 rounded-full object-cover cursor-pointer"
 						onClickCreatorPicture={navigateToCreatorPageCallback}
 					/>
 				</div>
@@ -56,7 +56,7 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 					{myPurchasedExclusiveContent.channelName}
 				</div>
 			</div>
-			<span
+			<div
 				className={`text-xs font-medium cursor-pointer text-zinc-950 dark:text-zinc-200 pt-1.5 underline decoration-dotted
 					${isHovered ? "hover:decoration-solid" : ""} overflow-hidden text-ellipsis whitespace-nowrap`}
 				onClick={navigateToWalletScreen}
@@ -70,7 +70,7 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 					usdPriceToDisplay={myPurchasedExclusiveContent.priceInUsd}
 					extraStyles={isHovered ? "underline decoration-solid" : "underline decoration-dotted"}
 				/>
-			</span>
+			</div>
 		</div>
 	)
 }
