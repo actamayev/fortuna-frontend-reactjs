@@ -1,7 +1,7 @@
 import _ from "lodash"
-import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
+import { useCallback, useMemo } from "react"
 import BackButton from "../../../buttons/back-button"
 import { useVideoContext } from "../../../../contexts/video-context"
 import { useMarketContext } from "../../../../contexts/market-context"
@@ -22,10 +22,14 @@ function ReviewInstantAccessInfo() {
 		marketClass.setInstantAccessToExclusiveContentStage("initial")
 	} ,[marketClass])
 
+	const instantAccessToExclusiveContentStage = useMemo(() => {
+		return marketClass.instantAccessToExclusiveContentStage
+	}, [marketClass.instantAccessToExclusiveContentStage])
+
 	if (
 		_.isUndefined(video) ||
 		video.isVideoExclusive === false ||
-		marketClass.instantAccessToExclusiveContentStage !== "review"
+		instantAccessToExclusiveContentStage !== "review"
 	) return null
 
 	return (
