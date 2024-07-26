@@ -1,3 +1,4 @@
+import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
 import MaxProfitByTier from "./max-profit-by-tier"
@@ -10,6 +11,7 @@ function MaxProfitFromVideo() {
 	const numberWithCommasFixed = useNumberWithCommasFixed()
 
 	const fortunaFee = useMemo(() => {
+		if (_.isNull(creatorClass.newVideoFortunaFee)) return null
 		return numberWithCommasFixed(creatorClass.newVideoFortunaFee, 2)
 	}, [creatorClass.newVideoFortunaFee, numberWithCommasFixed])
 
@@ -17,9 +19,21 @@ function MaxProfitFromVideo() {
 		return numberWithCommasFixed(creatorClass.profitAfterFee, 2)
 	}, [creatorClass.profitAfterFee, numberWithCommasFixed])
 
-	if (creatorClass.newVideoDetails.isContentExclusive === false) return null
+	const isContentExclusive = useMemo(() => {
+		return creatorClass.newVideoDetails.isContentExclusive
+	}, [creatorClass.newVideoDetails.isContentExclusive])
 
-	if (creatorClass.doesNewVideoLimitNumberBuyers === false) {
+	const doesNewVideoLimitNumberBuyers = useMemo(() => {
+		return creatorClass.doesNewVideoLimitNumberBuyers
+	}, [creatorClass.doesNewVideoLimitNumberBuyers])
+
+	const tierDataLength = useMemo(() => {
+		return creatorClass.newVideoDetails.tierData.length
+	}, [creatorClass.newVideoDetails.tierData.length])
+
+	if (isContentExclusive === false) return null
+
+	if (doesNewVideoLimitNumberBuyers === false) {
 		return (
 			<div>Max Profit: $∞ (no limit of buyers)</div>
 		)
@@ -27,16 +41,16 @@ function MaxProfitFromVideo() {
 
 	return (
 		<div>
-			{creatorClass.newVideoDetails.tierData.length >= 1 && (
+			{tierDataLength >= 1 && (
 				<MaxProfitByTier tierNumber={1} />
 			)}
-			{creatorClass.newVideoDetails.tierData.length >= 2 && (
+			{tierDataLength >= 2 && (
 				<MaxProfitByTier tierNumber={2} />
 			)}
-			{creatorClass.newVideoDetails.tierData.length >= 3 && (
+			{tierDataLength >= 3 && (
 				<MaxProfitByTier tierNumber={3} />
 			)}
-			{creatorClass.newVideoFortunaFee && (
+			{fortunaFee && (
 				<div>
 					Fortuna Fee (2.5%):&nbsp;
 					<SuperMoneyStyleDollars dollars={fortunaFee.dollars} cents={fortunaFee.cents}/>
