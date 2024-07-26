@@ -9,7 +9,7 @@ function MappedActiveSocialLinks() {
 
 	return (
 		<div className="flex text-black dark:text-white">
-			{(_.isNil(creatorClass?.nonEmptySocialPlatformLinks) || _.isEmpty(creatorClass.nonEmptySocialPlatformLinks)) ? (
+			{(_.isEmpty(creatorClass.nonEmptySocialPlatformLinks)) ? (
 				<FaPlusCircle size={24} />
 			) : (
 				<>

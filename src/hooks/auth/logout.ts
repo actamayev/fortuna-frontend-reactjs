@@ -23,12 +23,12 @@ export default function useLogout(): () => void {
 	const navigate = useTypedNavigate()
 
 	return useCallback((): void => {
-		personalInfoClass?.logout()
-		solanaClass?.logout()
-		creatorClass?.logout()
-		positionsAndTransactionsClass?.logout()
+		personalInfoClass.logout()
+		solanaClass.logout()
+		creatorClass.logout()
+		positionsAndTransactionsClass.logout()
 		videoClass.logout()
-		marketClass?.logout()
+		marketClass.logout()
 		notificationsClass.logout()
 		authClass.logout()
 		fortunaApiClient.logout()

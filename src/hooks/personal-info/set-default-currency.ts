@@ -18,7 +18,6 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 
 	return useCallback(async () => {
 		try {
-			if (_.isNull(personalInfoClass)) return
 			const newCurrency = personalInfoClass.defaultCurrency === "usd" ? "sol" : "usd"
 			personalInfoClass.setDefaultCurrency(newCurrency)
 			updateMoneyTransferDetailsNewDefaultCurrency(newCurrency)
@@ -26,7 +25,6 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 			// If the last sol price was retrieved more than 30 seconds ago, retrieve it from the backend again.
 			const currentTime = new Date()
 			if (
-				!_.isNull(solanaClass) &&
 				!_.isNull(solanaClass.solPriceDetails) &&
 				new Date(solanaClass.solPriceDetails.lastRetrievedTime).getTime() + 30000 < currentTime.getTime()
 			) {

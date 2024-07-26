@@ -6,8 +6,8 @@ function ShowMyUsername() {
 	const personalInfoClass = usePersonalInfoContext()
 
 	const username = useMemo(() => {
-		return personalInfoClass?.username || ""
-	}, [personalInfoClass?.username])
+		return personalInfoClass.username || ""
+	}, [personalInfoClass.username])
 
 	return (
 		<div className="text-zinc-600 dark:text-zinc-300 text-sm ml-2">

@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { FaEye } from "react-icons/fa"
 import { useCallback, useMemo } from "react"
@@ -14,12 +13,10 @@ function ViewChannelAsFan() {
 		const { protocol, hostname, port } = window.location
 		const baseUrl = `${protocol}//${hostname}${port ? `:${port}` : ""}`
 		if (location.pathname === "/creator/studio") {
-			if (_.isNull(personalInfoClass)) return ""
-			return (`${baseUrl}/c/@${personalInfoClass.username}`)
+			return (`${baseUrl}/c/@${personalInfoClass.username || ""}`)
 		}
 		return window.location.href
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [location.pathname, personalInfoClass?.username])
+	}, [location.pathname, personalInfoClass.username])
 
 	const openNewCreatorTab = useCallback(() => {
 		window.open(creatorUsernameUrl, "_blank", "noopener,noreferrer")

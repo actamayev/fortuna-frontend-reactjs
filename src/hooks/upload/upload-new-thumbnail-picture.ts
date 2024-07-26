@@ -22,7 +22,7 @@ export default function useUploadNewThumnailPicture(): (
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 	) => {
 		try {
-			if (_.isNull(selectedImage) || _.isNull(creatorClass)) return
+			if (_.isNull(selectedImage)) return
 			setIsLoading(true)
 			const uploadProfilePictureResponse = await fortunaApiClient.uploadDataService.uploadNewThumbnailPicture(
 				selectedImage,

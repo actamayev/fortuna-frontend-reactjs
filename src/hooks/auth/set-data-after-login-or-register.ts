@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useCallback } from "react"
 import { PublicKey } from "@solana/web3.js"
 import { useAuthContext } from "../../contexts/auth-context"
@@ -13,7 +12,6 @@ export default function useSetDataAfterLoginOrRegister(): (authData: LoginOrRegi
 	return useCallback((authData: LoginOrRegisterSuccess): void => {
 		fortunaApiClient.httpClient.accessToken = authData.accessToken
 		authClass.setAccessToken(authData.accessToken, true)
-		if (_.isNull(solanaClass)) return
 		solanaClass.walletPublicKey = new PublicKey(authData.publicKey)
 	}, [authClass, fortunaApiClient.httpClient, solanaClass])
 }

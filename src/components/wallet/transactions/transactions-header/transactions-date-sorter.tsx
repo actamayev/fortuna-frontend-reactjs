@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import { FaArrowDown, FaArrowUp } from "react-icons/fa"
@@ -8,15 +7,12 @@ function TransactionsDateSorter() {
 	const positionsAndTransactionClass = usePositionsAndTransactionsContext()
 
 	const onClickAction = useCallback(() => {
-		if (_.isNull(positionsAndTransactionClass)) return
 		positionsAndTransactionClass.updateMyTransactionsOrderBy()
 	}, [positionsAndTransactionClass])
 
 	const pointingUpOrDown = useMemo(() => {
-		if (_.isNull(positionsAndTransactionClass)) return "desc"
 		return positionsAndTransactionClass.walletFilter.orderDateBy
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [positionsAndTransactionClass, positionsAndTransactionClass?.walletFilter.orderDateBy])
+	}, [positionsAndTransactionClass.walletFilter.orderDateBy])
 
 	return (
 		<div

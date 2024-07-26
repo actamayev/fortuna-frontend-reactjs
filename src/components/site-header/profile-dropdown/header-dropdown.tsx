@@ -25,7 +25,7 @@ function HeaderDropdown () {
 				>
 					<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center text-zinc-950 dark:text-zinc-100">
 						<ShowUserProfileImageOrDefaultImage
-							profileImageUrl={creatorClass?.profilePictureUrl}
+							profileImageUrl={creatorClass.profilePictureUrl}
 							extraClasses="min-w-full min-h-full object-cover"
 							onClickCreatorPicture={isOpenCallback}
 						/>

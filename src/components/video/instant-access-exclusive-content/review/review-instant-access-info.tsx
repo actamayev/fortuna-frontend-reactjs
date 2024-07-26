@@ -19,14 +19,13 @@ function ReviewInstantAccessInfo() {
 	const video = videoClass.findVideoFromUUID(videoUUID)
 
 	const setInstantAccessToExclusiveContentStage = useCallback(() => {
-		if (_.isNull(marketClass)) return
 		marketClass.setInstantAccessToExclusiveContentStage("initial")
 	} ,[marketClass])
 
 	if (
 		_.isUndefined(video) ||
 		video.isVideoExclusive === false ||
-		marketClass?.instantAccessToExclusiveContentStage !== "review"
+		marketClass.instantAccessToExclusiveContentStage !== "review"
 	) return null
 
 	return (

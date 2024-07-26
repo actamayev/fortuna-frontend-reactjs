@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import SingleMyContent from "./single-my-content"
 import MyContentHeader from "./my-content-header/my-content-header"
@@ -8,8 +7,6 @@ import useMyContentToShow from "../../../hooks/creator/my-content-to-show"
 function MyContentMap() {
 	const creatorClass = useCreatorContext()
 	const myContentToShow = useMyContentToShow()
-
-	if (_.isNull(creatorClass)) return null
 
 	if (creatorClass.isRetrievingContent === true || creatorClass.hasContentToRetrieve === true) {
 		return <div className="dark:text-zinc-200">Retrieving Content...</div>

@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useRef } from "react"
 import { observer } from "mobx-react"
 import ReviewTransferInfo from "./review/review-transfer-info"
@@ -9,9 +8,9 @@ import useClickOutsideUseEffect from "../../../hooks/click-outside/click-outside
 function TransferMoneyCard() {
 	const solanaClass = useSolanaContext()
 	const dropdownRef = useRef<HTMLDivElement>(null)
-	useClickOutsideUseEffect(dropdownRef, solanaClass?.setIsMoneyTransferButtonPressed)
+	useClickOutsideUseEffect(dropdownRef, solanaClass.setIsMoneyTransferButtonPressed)
 
-	if (_.isNull(solanaClass) || solanaClass.isMoneyTransferButtonPressed === false) return null
+	if (solanaClass.isMoneyTransferButtonPressed === false) return null
 
 	return (
 		<div

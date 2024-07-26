@@ -8,8 +8,6 @@ function MyPurchasedExclusiveContentMap() {
 	const positionsAndTransactionClass = usePositionsAndTransactionsContext()
 	const myOwnershipToShow = useMyOwnershipToShow()
 
-	if (_.isNull(positionsAndTransactionClass)) return null
-
 	if (
 		positionsAndTransactionClass.isRetrievingPurchasedExclusiveContent === true ||
 		positionsAndTransactionClass.hasPurchasedExclusiveContentToRetrieve === true

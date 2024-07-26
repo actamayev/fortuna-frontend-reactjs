@@ -108,7 +108,7 @@ class SolanaClass {
 	}
 }
 
-const SolanaContext = createContext<SolanaClass | null>(null)
+const SolanaContext = createContext(new SolanaClass())
 
 export default function SolanaProvider ({ children }: { children: React.ReactNode }) {
 	const solanaClass = useMemo(() => new SolanaClass(), [])

@@ -56,7 +56,7 @@ class PersonalInfoClass {
 	}
 }
 
-const PersonalInfoContext = createContext<PersonalInfoClass | null>(null)
+const PersonalInfoContext = createContext(new PersonalInfoClass())
 
 export default function PersonalInfoProvider ({ children }: { children: React.ReactNode }) {
 	const value = useMemo(() => new PersonalInfoClass(), [])

@@ -12,7 +12,6 @@ function ShowRemainingWalletBalanceAfterInstantAccessPurchase(props: Props) {
 	const { video } = props
 	const solanaClass = useSolanaContext()
 
-	if (_.isNull(solanaClass)) return null
 	const tierAccessPriceUsd = getTieredAccessPriceUsd(video)
 	if (_.isNull(tierAccessPriceUsd)) return null
 

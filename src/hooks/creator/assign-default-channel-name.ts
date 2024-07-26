@@ -12,13 +12,13 @@ export default function useAssignDefaultChannelName(): (
 		setChannelName: (value: React.SetStateAction<string>) => void
 	): void => {
 		try {
-			if (creatorClass?.channelName) {
+			if (creatorClass.channelName) {
 				setChannelName(creatorClass.channelName)
-			} else if (personalInfoClass?.username) {
+			} else if (personalInfoClass.username) {
 				setChannelName(personalInfoClass.username)
 			}
 		} catch (error) {
 			console.error(error)
 		}
-	}, [creatorClass?.channelName, personalInfoClass?.username])
+	}, [creatorClass.channelName, personalInfoClass.username])
 }

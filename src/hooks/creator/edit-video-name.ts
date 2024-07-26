@@ -19,7 +19,7 @@ export default function useEditVideoName(): (
 		videoName: string,
 		setVideoName: React.Dispatch<React.SetStateAction<string>>
 	): Promise<void> => {
-		if (_.isNull(creatorClass) || videoName.length > 100) return
+		if (videoName.length > 100) return
 
 		const existingVideo = creatorClass.contextForMyContent(videoUUID)
 		if (_.isUndefined(existingVideo) || existingVideo.videoName === videoName) return

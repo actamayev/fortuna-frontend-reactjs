@@ -17,7 +17,6 @@ export default function useAddOrEditChannelDescription(): (
 	): Promise<void> => {
 		try {
 			if (
-				_.isNull(creatorClass) ||
 				channelDescription.length > 1000 ||
 				creatorClass.channelDescription === channelDescription
 			) return

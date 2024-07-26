@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
@@ -10,17 +8,14 @@ function UsernameSearchInput() {
 	const handleTypeUsername = useHandleTypeUsername()
 
 	const transferSolUsername = useMemo(() => {
-		if (_.isNull(solanaClass)) return ""
 		return solanaClass.moneyTransferDetails.username
-	}, [solanaClass, solanaClass?.moneyTransferDetails.username])
+	}, [solanaClass.moneyTransferDetails.username])
 
 	const isUsernameSelected = useMemo(() => {
-		if (_.isNull(solanaClass)) return false
 		return solanaClass.moneyTransferDetails.isUsernameSelected
-	}, [solanaClass, solanaClass?.moneyTransferDetails.isUsernameSelected])
+	}, [solanaClass.moneyTransferDetails.isUsernameSelected])
 
 	const updateMoneyTransferDetails = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-		if (_.isNull(solanaClass)) return
 		solanaClass.updateMoneyTransferDetails("username", handleTypeUsername(e))
 		solanaClass.updateMoneyTransferDetails("isUsernameSelected", false)
 	}, [solanaClass, handleTypeUsername])

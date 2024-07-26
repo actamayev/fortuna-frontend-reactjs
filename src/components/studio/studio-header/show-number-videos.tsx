@@ -6,12 +6,12 @@ function ShowNumberVideos() {
 	const creatorClass = useCreatorContext()
 
 	const numberVideos = useMemo(() => {
-		return creatorClass?.myContent.length || 0
-	}, [creatorClass?.myContent])
+		return creatorClass.myContent.length || 0
+	}, [creatorClass.myContent])
 
 	const numberOfUnlistedVideos = useMemo(() => {
-		return creatorClass?.numberOfUnlistedVideos || 0
-	}, [creatorClass?.numberOfUnlistedVideos])
+		return creatorClass.numberOfUnlistedVideos || 0
+	}, [creatorClass.numberOfUnlistedVideos])
 
 	return (
 		<div className="text-zinc-600 dark:text-zinc-300 text-sm">

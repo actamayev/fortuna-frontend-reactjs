@@ -1,12 +1,9 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import ShowProvidedUsdOrSolPrice from "../../../usd-or-sol/show-provided-usd-or-sol-price"
 
 function TransferAmountSection() {
 	const solanaClass = useSolanaContext()
-
-	if (_.isNull(solanaClass)) return null
 
 	return (
 		<div>

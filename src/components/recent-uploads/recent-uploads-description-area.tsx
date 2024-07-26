@@ -28,7 +28,7 @@ function HomePageVideoDescriptionArea(props: Props) {
 	}, [navigateToVideoPage, uuid])
 
 	return (
-		<div className="flex items-center dark:text-zinc-200 rounded-lg mx-1">
+		<div className="flex items-center dark:text-zinc-200 rounded-lg mx-0.5">
 			<div className="flex-shrink-0">
 				<ShowUserProfileImageOrDefaultImage
 					profileImageUrl={creatorProfilePictureUrl}

@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useCallback, useEffect } from "react"
 import BackButton from "../../../../buttons/back-button"
 import { isSolanaTransaction } from "../../../../../utils/type-checks"
@@ -15,7 +14,6 @@ export default function TransactionBackButton(props: Props) {
 	const myTransactionsToShow = useMyTransactionsToShow()
 
 	const backShiftTransactionFocus = useCallback(() => {
-		if (_.isNull(positionsAndTransactionsClass)) return
 		const currentIndex = myTransactionsToShow.findIndex(t => {
 			if (isSolanaTransaction(t)) {
 				return t.solTransferId === (transaction as SolanaTransaction).solTransferId

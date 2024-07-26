@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import TransactionTypeTemplate from "../transaction-type-template"
@@ -18,16 +17,12 @@ function SingleSolanaTransaction(props: Props) {
 	const abbreviatedDateFormatter = useAbbreviatedDateFormatter()
 
 	const setTransactionIdToFocusOn = useCallback(() => {
-		if (_.isNull(positionsAndTransactionsClass)) return
 		positionsAndTransactionsClass.updateTransactionToFocusOn(solanaTransaction.solTransferId)
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [positionsAndTransactionsClass?.transactionIdToFocusOn, solanaTransaction.solTransferId])
+	}, [positionsAndTransactionsClass, solanaTransaction.solTransferId])
 
 	const isCurrentTransactionFocusedOn = useMemo(() => {
-		if (_.isNull(positionsAndTransactionsClass)) return false
 		return positionsAndTransactionsClass.transactionIdToFocusOn === solanaTransaction.solTransferId
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [positionsAndTransactionsClass?.transactionIdToFocusOn, solanaTransaction.solTransferId])
+	}, [positionsAndTransactionsClass.transactionIdToFocusOn, solanaTransaction.solTransferId])
 
 	return (
 		<div
@@ -76,4 +71,4 @@ function SingleSolanaTransaction(props: Props) {
 	)
 }
 
-export default observer(SingleSolanaTransaction)  // Keep this an observer (the defaultCurrency is a memo)
+export default observer(SingleSolanaTransaction)

@@ -13,11 +13,8 @@ function SelectTransferAmount() {
 	const defaultCurrency = useDefaultCurrency()
 
 	const updateMoneyTransferDetails = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-		if (_.isNull(solanaClass)) return
 		solanaClass.updateMoneyTransferDetails("transferAmount", Number(e.target.value))
 	}, [solanaClass])
-
-	if (_.isNull(solanaClass)) return null
 
 	if (
 		solanaClass.moneyTransferDetails.transferOption === "username" &&

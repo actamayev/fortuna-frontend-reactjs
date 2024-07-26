@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import FormGroup from "../form-group"
@@ -9,13 +8,10 @@ function VideoNameInput() {
 	const maxLength = 100
 
 	const videoName = useMemo(() => {
-		if (_.isNull(creatorClass)) return ""
 		return creatorClass.newVideoDetails.videoName
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.newVideoDetails.videoName])
+	}, [creatorClass.newVideoDetails.videoName])
 
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-		if (_.isNull(creatorClass)) return
 		creatorClass.updateNewVideoDetails("videoName", event.target.value)
 	}, [creatorClass])
 

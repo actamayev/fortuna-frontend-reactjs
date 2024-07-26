@@ -11,7 +11,7 @@ export default function useRedirectKnownUser (): void  {
 
 	useEffect(() => {
 		// if the user is logged in and has a username, go to ownership
-		if (authClass.isLoggedIn === false || _.isNil(personalInfoClass?.username)) return
+		if (authClass.isLoggedIn === false || _.isNull(personalInfoClass.username)) return
 		navigate("/ownership")
-	}, [authClass.isLoggedIn, navigate, personalInfoClass?.username])
+	}, [authClass.isLoggedIn, navigate, personalInfoClass.username])
 }

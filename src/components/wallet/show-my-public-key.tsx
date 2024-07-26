@@ -11,7 +11,7 @@ function ShowMyPublicKey() {
 	const notificationsClass = useNotificationsContext()
 
 	const copyToClipboard = useCallback(async () => {
-		if (_.isNull(solanaClass) || _.isNull(solanaClass.walletPublicKey)) return
+		if (_.isNull(solanaClass.walletPublicKey)) return
 
 		try {
 			await navigator.clipboard.writeText(solanaClass.walletPublicKey.toString())
@@ -19,13 +19,13 @@ function ShowMyPublicKey() {
 		} catch (error) {
 			console.error("Failed to copy text: ", error)
 		}
-	}, [notificationsClass, solanaClass])
+	}, [notificationsClass, solanaClass.walletPublicKey])
 
 	const setShowPublicKeyCallback = useCallback((): void => {
 		setShowPublicKey(prevState => !prevState)
 	}, [])
 
-	if (_.isNull(solanaClass?.walletPublicKey) || showPublicKey === false) {
+	if (_.isNull(solanaClass.walletPublicKey) || showPublicKey === false) {
 		return (
 			<div className="font-semibold flex items-center">
 				<div

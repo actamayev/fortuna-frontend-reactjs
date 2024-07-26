@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useCallback, useEffect } from "react"
 import ForwardButton from "../../../../buttons/forward-button"
 import { isSolanaTransaction } from "../../../../../utils/type-checks"
@@ -15,7 +14,6 @@ export default function TransactionForwardButton(props: Props) {
 	const myTransactionsToShow = useMyTransactionsToShow()
 
 	const forwardShiftTransactionFocus = useCallback(() => {
-		if (_.isNull(positionsAndTransactionsClass)) return
 		const currentIndex = myTransactionsToShow.findIndex(t => {
 			if (isSolanaTransaction(t)) {
 				return t.solTransferId === (transaction as SolanaTransaction).solTransferId

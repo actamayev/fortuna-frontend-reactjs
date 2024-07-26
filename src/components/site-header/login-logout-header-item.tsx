@@ -17,7 +17,7 @@ function LoginLogoutHeaderItem() {
 		}
 		return <NullUserNavLink />
 	}
-	if (_.isNil(personalInfoClass?.username)) return null
+	if (_.isNull(personalInfoClass.username)) return null
 	return <HeaderDropdown />
 }
 

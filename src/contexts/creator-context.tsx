@@ -350,7 +350,7 @@ class CreatorClass {
 	}
 }
 
-const CreatorContext = createContext<CreatorClass | null>(null)
+const CreatorContext = createContext(new CreatorClass())
 
 export default function CreatorProvider ({ children }: { children: React.ReactNode }) {
 	const creatorClass = useMemo(() => new CreatorClass(), [])

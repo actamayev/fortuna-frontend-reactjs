@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import Button from "../../../buttons/button"
@@ -10,7 +9,6 @@ function ReviewTransferButton() {
 	const isReviewTransferButtonDisabled = useIsReviewTransferButtonDisabled()
 
 	const updateMoneyTransferDetails = useCallback(() => {
-		if (_.isNull(solanaClass)) return
 		solanaClass.updateMoneyTransferDetails("transferStage", "review")
 	}, [solanaClass])
 

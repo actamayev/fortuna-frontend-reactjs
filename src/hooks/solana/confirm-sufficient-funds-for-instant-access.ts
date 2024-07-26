@@ -13,7 +13,7 @@ export default function useConfirmSufficientFundsForInstantAccess(): (
 	return useCallback((videoUUID: string | undefined): boolean => {
 		try {
 			const video = videoClass.findVideoFromUUID(videoUUID)
-			if (_.isNull(solanaClass) || _.isUndefined(video)) return false
+			if (_.isUndefined(video)) return false
 
 			const videoAccessPriceUsd = getTieredAccessPriceUsd(video)
 			if (_.isNull(videoAccessPriceUsd)) return false

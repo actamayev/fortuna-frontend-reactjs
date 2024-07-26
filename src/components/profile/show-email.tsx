@@ -7,7 +7,6 @@
 // 	const personalInfoClass = usePersonalInfoContext()
 
 // 	const email = useMemo(() => {
-// 		if (_.isNull(personalInfoClass)) return ""
 // 		return personalInfoClass.email
 // 	// eslint-disable-next-line react-hooks/exhaustive-deps
 // 	}, [personalInfoClass, personalInfoClass?.email])

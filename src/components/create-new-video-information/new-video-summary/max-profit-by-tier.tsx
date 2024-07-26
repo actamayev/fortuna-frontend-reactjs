@@ -14,16 +14,14 @@ function MaxProfitByTier(props: Props) {
 	const creatorClass = useCreatorContext()
 
 	const purchasesInThisTier = useMemo(() => {
-		if (_.isNull(creatorClass)) return null
 		return creatorClass.newVideoDetails.tierData[tierNumber - 1]?.purchasesInThisTier
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, tierNumber, creatorClass?.newVideoDetails.tierData[tierNumber - 1]?.purchasesInThisTier])
+	}, [tierNumber, creatorClass.newVideoDetails.tierData[tierNumber - 1]?.purchasesInThisTier])
 
 	const tierAccessPriceUsd = useMemo(() => {
-		if (_.isNull(creatorClass)) return 0
-		return creatorClass.newVideoDetails.tierData[tierNumber - 1]?.tierAccessPriceUsd
+		return creatorClass.newVideoDetails.tierData[tierNumber - 1]?.tierAccessPriceUsd || 0
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, tierNumber, creatorClass?.newVideoDetails.tierData[tierNumber - 1]?.tierAccessPriceUsd])
+	}, [tierNumber, creatorClass.newVideoDetails.tierData[tierNumber - 1]?.tierAccessPriceUsd])
 
 	if (_.isNull(purchasesInThisTier) || tierAccessPriceUsd === 0) return null
 

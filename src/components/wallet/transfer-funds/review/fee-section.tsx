@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import useDefaultCurrency from "../../../../hooks/memos/default-currency"
@@ -6,8 +5,6 @@ import useDefaultCurrency from "../../../../hooks/memos/default-currency"
 function FeeSection() {
 	const solanaClass = useSolanaContext()
 	const defaultCurrency = useDefaultCurrency()
-
-	if (_.isNull(solanaClass)) return null
 
 	if (
 		solanaClass.moneyTransferDetails.transferOption === "publicKey" &&

@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useEffect, useMemo, useRef } from "react"
 import { useCreatorContext } from "../../contexts/creator-context"
@@ -9,10 +8,8 @@ function VideoDescriptionInput() {
 	const textAreaRef = useRef<HTMLTextAreaElement>(null)
 
 	const description = useMemo(() => {
-		if (_.isNull(creatorClass)) return ""
 		return creatorClass.newVideoDetails.description
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.newVideoDetails.description])
+	}, [creatorClass.newVideoDetails.description])
 
 	useEffect(() => {
 		if (!textAreaRef.current) return
@@ -21,7 +18,6 @@ function VideoDescriptionInput() {
 	}, [description])
 
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
-		if (_.isNull(creatorClass)) return
 		creatorClass.updateNewVideoDetails("description", event.target.value)
 	}, [creatorClass])
 

@@ -25,7 +25,7 @@ function ProfileDropdownItems() {
 	return (
 		<div className="text-base text-zinc-950 dark:text-zinc-200">
 			<div className="px-4 py-2 border-b border-zinc-100 dark:border-zinc-700 font-medium">
-				@{personalInfoClass?.username || ""}
+				@{personalInfoClass.username || ""}
 			</div>
 
 			<Link to="/ownership" className={classes.middle}>

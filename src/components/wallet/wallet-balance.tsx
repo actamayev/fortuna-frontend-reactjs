@@ -9,7 +9,7 @@ function WalletBalance() {
 	return (
 		<div>
 			<div className="text-2xl font-bold">
-				{_.isNil(solanaClass?.walletBalanceSol) ? (
+				{_.isNull(solanaClass.walletBalanceSol) ? (
 					<> Loading...</>
 				) : (
 

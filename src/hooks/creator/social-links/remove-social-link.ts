@@ -23,10 +23,9 @@ export default function useRemoveSocialLink(): (
 				prevLinks.filter(link => link.socialPlatform !== socialPlatform)
 			)
 
-			if (
-				_.isNull(creatorClass) ||
-				creatorClass.socialPlatformLinks.some(link => link.socialPlatform === socialPlatform) === false
-			) return
+			if (creatorClass.socialPlatformLinks.some(link => link.socialPlatform === socialPlatform) === false) {
+				return
+			}
 
 			const response = await fortunaApiClient.creatorDataService.removeSocialPlatformLink(socialPlatform)
 

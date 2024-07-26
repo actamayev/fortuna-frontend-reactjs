@@ -19,10 +19,10 @@ function PurchaseExclusiveAccessCard(props: Props) {
 	const video = videoClass.findVideoFromUUID(videoUUID)
 
 	const wasVideoCreatedByUser = useMemo(() => {
-		if (_.isNull(creatorClass) || _.isUndefined(videoUUID)) return true
+		if (_.isUndefined(videoUUID)) return true
 		return creatorClass.checkIfUuidExistsInContentList(videoUUID)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.myContent, videoUUID])
+	}, [creatorClass.myContent, videoUUID])
 
 	if (_.isNil(video?.numberOfExclusivePurchasesSoFar)) {
 		return <>Not exclusive</>

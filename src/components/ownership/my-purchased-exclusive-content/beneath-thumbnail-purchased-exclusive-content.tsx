@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useState } from "react"
 import useTypedNavigate from "../../../hooks/navigate/typed-navigate"
@@ -29,9 +28,7 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 
 	const navigateToWalletScreen = useCallback((e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
 		e.stopPropagation() // Prevents the video click event when clicking the image
-		if (!_.isNull(positionsAndTransactionClass)) {
-			positionsAndTransactionClass.updateTransactionToFocusOn(myPurchasedExclusiveContent.uuid)
-		}
+		positionsAndTransactionClass.updateTransactionToFocusOn(myPurchasedExclusiveContent.uuid)
 		navigateToWallet("/wallet")
 	}, [myPurchasedExclusiveContent.uuid, navigateToWallet, positionsAndTransactionClass])
 

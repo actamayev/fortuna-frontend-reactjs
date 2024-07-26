@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import FormGroup from "../../form-group"
@@ -17,20 +16,16 @@ function ExclusiveContentTier(props: Props) {
 	const creatorClass = useCreatorContext()
 
 	const tierAccessPriceUsd = useMemo(() => {
-		if (_.isNull(creatorClass)) return 0
 		return creatorClass.newVideoDetails.tierData[tierNumber - 1].tierAccessPriceUsd || 0
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.newVideoDetails.tierData[tierNumber - 1]?.tierAccessPriceUsd, tierNumber])
+	}, [creatorClass.newVideoDetails.tierData[tierNumber - 1]?.tierAccessPriceUsd, tierNumber])
 
 	const areThereMoreTiers = useMemo(() => {
-		if (_.isNull(creatorClass)) return false
 		return creatorClass.areThereMoreTiers(tierNumber)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, tierNumber, creatorClass?.newVideoDetails.tierData.length])
+	}, [tierNumber, creatorClass.newVideoDetails.tierData.length])
 
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-		if (_.isNull(creatorClass)) return
-
 		const value = handleBoundedNumberInput(event, 0, 100)
 		creatorClass.updateNewVideoTierDetails("tierAccessPriceUsd", tierNumber, value)
 	}, [creatorClass, tierNumber])

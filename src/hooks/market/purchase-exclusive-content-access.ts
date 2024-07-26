@@ -32,12 +32,7 @@ export default function usePurchaseExclusiveContentAccess(): (
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 	): Promise<void> => {
 		try {
-			if (
-				_.isNull(marketClass) ||
-				_.isNull(solanaClass) ||
-				_.isNull(fortunaApiClient.httpClient.accessToken) ||
-				_.isNull(positionsAndTransactionsClass)
-			) return
+			if (_.isNull(fortunaApiClient.httpClient.accessToken)) return
 
 			const doesUserHaveSufficientFunds = confirmSufficientFundsForInstantAccess(videoUUID)
 			if (doesUserHaveSufficientFunds === false) return

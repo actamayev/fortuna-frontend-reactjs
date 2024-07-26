@@ -12,8 +12,6 @@ export default function useUpdateVideoListingStatus(): (videoUUID: string) => Pr
 
 	return useCallback(async (videoUUID: string): Promise<void> => {
 		try {
-			if (_.isNull(creatorClass)) return
-
 			const response = await fortunaApiClient.creatorDataService.updateVideoListingStatus(videoUUID)
 
 			if (!_.isEqual(response.status, 200) || isNonSuccessResponse(response.data)) {

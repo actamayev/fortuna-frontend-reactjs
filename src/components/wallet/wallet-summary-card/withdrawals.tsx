@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useMemo } from "react"
 import { observer, useObserver } from "mobx-react"
 import useDefaultCurrency from "../../../hooks/memos/default-currency"
@@ -11,20 +10,12 @@ function Withdrawals() {
 	const defaultCurrency = useDefaultCurrency()
 
 	const transactionsTimeRange = useMemo(() => {
-		if (_.isNull(positionsAndTransactionsClass)) return "Month"
 		return positionsAndTransactionsClass.transactionsTimeRange
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [positionsAndTransactionsClass, positionsAndTransactionsClass?.transactionsTimeRange])
+	}, [positionsAndTransactionsClass.transactionsTimeRange])
 
-	const withdrawalsUsd = useObserver(() => {
-		if (_.isNull(positionsAndTransactionsClass)) return null
-		return positionsAndTransactionsClass.calculateWithdrawalsUsd()
-	})
+	const withdrawalsUsd = useObserver(() => positionsAndTransactionsClass.calculateWithdrawalsUsd())
 
-	const withdrawalsSol = useObserver(() => {
-		if (_.isNull(positionsAndTransactionsClass)) return null
-		return positionsAndTransactionsClass.calculateWithdrawalsSol()
-	})
+	const withdrawalsSol = useObserver(() => positionsAndTransactionsClass.calculateWithdrawalsSol())
 
 	const solWithdrawalsObject = numberWithCommasFixed(withdrawalsSol, 4)
 	const usdWithdrawalsObject = numberWithCommasFixed(withdrawalsUsd, 2)
@@ -34,32 +25,20 @@ function Withdrawals() {
 			<div className="text-lg font-bold">
 				{defaultCurrency === "sol" && (
 					<>
-						{_.isNull(withdrawalsSol) ? (
-							<>Loading...</>
-						) : (
-							<>
-								-
-								<SuperMoneyStyleSol
-									dollars={solWithdrawalsObject.dollars}
-									cents={solWithdrawalsObject.cents}
-								/>
-							</>
-						)}
+						-
+						<SuperMoneyStyleSol
+							dollars={solWithdrawalsObject.dollars}
+							cents={solWithdrawalsObject.cents}
+						/>
 					</>
 				)}
 				{defaultCurrency === "usd" && (
 					<>
-						{_.isNull(withdrawalsUsd) ? (
-							<>Loading...</>
-						) : (
-							<>
-								-
-								<SuperMoneyStyleDollars
-									dollars={usdWithdrawalsObject.dollars}
-									cents={usdWithdrawalsObject.cents}
-								/>
-							</>
-						)}
+						-
+						<SuperMoneyStyleDollars
+							dollars={usdWithdrawalsObject.dollars}
+							cents={usdWithdrawalsObject.cents}
+						/>
 					</>
 				)}
 			</div>
@@ -68,7 +47,7 @@ function Withdrawals() {
 				{transactionsTimeRange !== "Today" && (<>this&nbsp;</>)}
 				<span
 					className="cursor-pointer underline decoration-dotted"
-					onClick={positionsAndTransactionsClass?.handleTimeRangeClick}
+					onClick={positionsAndTransactionsClass.handleTimeRangeClick}
 				>
 					{transactionsTimeRange.toLowerCase()}
 				</span>

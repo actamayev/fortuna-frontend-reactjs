@@ -30,7 +30,7 @@ function ShowUSDOrSolPrice(props: Props) {
 		)
 	}
 
-	if (_.isNull(solanaClass) || _.isNull(solanaClass.solPriceDetails)) return null
+	if (_.isNull(solanaClass.solPriceDetails)) return null
 	const { solPriceInUSD } = solanaClass.solPriceDetails
 	if (_.isUndefined(solPriceInUSD)) return null
 	const listingPriceToAccessSol = usdAmount / solPriceInUSD

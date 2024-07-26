@@ -10,7 +10,6 @@ export default function usePublicKeySearch(): () => Promise<void> {
 	const fortunaApiClient = useApiClientContext()
 
 	return useCallback(async () => {
-		if (_.isNull(solanaClass)) return
 		try {
 			if (!_.isEqual(solanaClass.moneyTransferDetails.publicKey.length, 44)) return
 			solanaClass.setIsPublicKeySearchLoading(true)
@@ -38,5 +37,5 @@ export default function usePublicKeySearch(): () => Promise<void> {
 			solanaClass.setIsPublicKeySearchLoading(false)
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [solanaClass, solanaClass?.moneyTransferDetails.publicKey, fortunaApiClient.searchDataService])
+	}, [solanaClass, solanaClass.moneyTransferDetails.publicKey, fortunaApiClient.searchDataService])
 }

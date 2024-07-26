@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import MaxProfitByTier from "./max-profit-by-tier"
 import { useCreatorContext } from "../../../contexts/creator-context"
@@ -8,10 +7,7 @@ import { SuperMoneyStyleDollars } from "../../usd-or-sol/super-money-style"
 function MaxProfitFromVideo() {
 	const creatorClass = useCreatorContext()
 
-	if (
-		_.isNull(creatorClass) ||
-		creatorClass.newVideoDetails.isContentExclusive === false
-	) return null
+	if (creatorClass.newVideoDetails.isContentExclusive === false) return null
 
 	if (creatorClass.doesNewVideoLimitNumberBuyers === false) {
 		return (

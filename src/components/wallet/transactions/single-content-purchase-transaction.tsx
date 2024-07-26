@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import { FaShoppingBag } from "react-icons/fa"
@@ -19,16 +18,12 @@ function SingleContentPurchaseTransaction(props: Props) {
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
 	const setTransactionIdToFocusOn = useCallback(() => {
-		if (_.isNull(positionsAndTransactionsClass)) return
 		positionsAndTransactionsClass.updateTransactionToFocusOn(exclusiveContentPurchase.uuid)
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [exclusiveContentPurchase.uuid, positionsAndTransactionsClass?.transactionIdToFocusOn])
+	}, [exclusiveContentPurchase.uuid, positionsAndTransactionsClass])
 
 	const isCurrentTransactionFocusedOn = useMemo(() => {
-		if (_.isNull(positionsAndTransactionsClass)) return false
 		return positionsAndTransactionsClass.transactionIdToFocusOn === exclusiveContentPurchase.uuid
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [positionsAndTransactionsClass?.transactionIdToFocusOn, exclusiveContentPurchase.uuid])
+	}, [positionsAndTransactionsClass.transactionIdToFocusOn, exclusiveContentPurchase.uuid])
 
 	return (
 		<div
@@ -80,4 +75,4 @@ function SingleContentPurchaseTransaction(props: Props) {
 	)
 }
 
-export default observer(SingleContentPurchaseTransaction)  // Keep this an observer (the defaultCurrency is a memo)
+export default observer(SingleContentPurchaseTransaction)

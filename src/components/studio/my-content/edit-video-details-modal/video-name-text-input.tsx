@@ -62,7 +62,7 @@ function VideoNameTextInput(props: Props) {
 					{videoName.length}/{maxLength}
 				</span>
 			</div>
-			{(!_.isEmpty(videoName) && (videoName !== creatorClass?.contextForMyContent(videoUUID)?.videoName)) && (
+			{(!_.isEmpty(videoName) && (videoName !== creatorClass.contextForMyContent(videoUUID)?.videoName)) && (
 				<SaveButton
 					handleSaveButton={handleSaveVideoName}
 					extraClasses="mt-0.5 ml-2"

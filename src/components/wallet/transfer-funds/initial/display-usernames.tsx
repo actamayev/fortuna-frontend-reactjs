@@ -15,7 +15,6 @@ function DisplayUsernames() {
 		void usernameSearch(setIsLoading, setUsernameSearchResults)
 	}, [usernameSearch])
 
-	if (_.isNull(solanaClass)) return null
 	if (isLoading === true) return <>Loading...</>
 	if (solanaClass.moneyTransferDetails.isUsernameSelected === true) return null
 

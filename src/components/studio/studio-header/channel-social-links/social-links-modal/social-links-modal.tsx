@@ -20,10 +20,8 @@ function SocialLinksModal(props: Props) {
 	useClickOutsideModalUseEffect(mouseDownTarget, modalRef, toggleModalOpen)
 
 	useEffect(() => {
-		if (creatorClass?.socialPlatformLinks) {
-			setTempSocialLinks(creatorClass.socialPlatformLinks)
-		}
-	}, [creatorClass?.socialPlatformLinks])
+		setTempSocialLinks(creatorClass.socialPlatformLinks)
+	}, [creatorClass.socialPlatformLinks])
 
 	return (
 		<div className="fixed inset-0 flex items-start justify-center z-50 bg-black bg-opacity-50 pt-28 text-zinc-800 dark:text-zinc-50">

@@ -6,8 +6,6 @@ export default function useMyOwnershipToShow(): MyPurchasedExclusiveContent[] {
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
 	return useObserver(() => {
-		if (_.isNull(positionsAndTransactionsClass)) return []
-
 		let filteredOwnership = positionsAndTransactionsClass.myPurchasedExclusiveContent
 
 		if (!_.isEmpty(positionsAndTransactionsClass.ownershipFilter.ownershipTitleIncludes)) {

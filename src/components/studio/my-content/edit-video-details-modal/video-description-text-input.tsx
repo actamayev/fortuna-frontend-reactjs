@@ -70,7 +70,7 @@ function VideoDescriptionTextInput(props: Props) {
 					{videoDescription.length}/{maxLength}
 				</span>
 			</div>
-			{(!_.isEmpty(videoDescription) && (videoDescription !== creatorClass?.contextForMyContent(videoUUID)?.description)) && (
+			{(!_.isEmpty(videoDescription) && (videoDescription !== creatorClass.contextForMyContent(videoUUID)?.description)) && (
 				<SaveButton
 					handleSaveButton={handleSaveVideoDescription}
 					extraClasses="mt-1 ml-2"

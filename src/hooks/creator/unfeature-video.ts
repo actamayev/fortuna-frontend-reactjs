@@ -12,7 +12,6 @@ export default function useUnfeatureVideo(): () => Promise<void> {
 
 	return useCallback(async (): Promise<void> => {
 		try {
-			if (_.isNull(creatorClass)) return
 			const featuredContentVideoId = creatorClass.featuredContentId
 			if (_.isUndefined(featuredContentVideoId)) return
 

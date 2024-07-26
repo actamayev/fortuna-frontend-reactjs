@@ -30,7 +30,7 @@ function ShowCurrentChannelBannerPicture(props: Props) {
 
 	return (
 		<div className="relative inline-block w-full">
-			{(creatorClass?.channelBannerUrl && isDeletingCurrentPicture === false) ? (
+			{(creatorClass.channelBannerUrl && isDeletingCurrentPicture === false) ? (
 				<>
 					<img
 						src={creatorClass.channelBannerUrl}
@@ -58,7 +58,7 @@ function ShowCurrentChannelBannerPicture(props: Props) {
 						onMouseEnter={handleMouseEnter}
 						onMouseLeave={handleMouseLeave}
 					/>
-					{!_.isNil(creatorClass?.channelBannerUrl) && (
+					{!_.isNull(creatorClass.channelBannerUrl) && (
 						<>
 							<div
 								className="absolute top-2 right-2 bg-red-500 dark:bg-red-600 p-1 rounded-full \

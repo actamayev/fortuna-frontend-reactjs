@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import { FaArrowDown, FaArrowUp } from "react-icons/fa"
@@ -13,21 +12,16 @@ function SortContentByArrow(props: Props) {
 	const creatorClass = useCreatorContext()
 
 	const onClickAction = useCallback(() => {
-		if (_.isNull(creatorClass)) return
 		creatorClass.updateMyContentFilter(sortBy)
 	}, [creatorClass, sortBy])
 
 	const pointingUpOrDown = useMemo(() => {
-		if (_.isNull(creatorClass)) return "desc"
 		return creatorClass.myContentFilter.orderBy
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.myContentFilter.orderBy])
+	}, [creatorClass.myContentFilter.orderBy])
 
 	const filterSortBy = useMemo(() => {
-		if (_.isNull(creatorClass)) return ""
 		return creatorClass.myContentFilter.sortBy
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.myContentFilter.sortBy])
+	}, [creatorClass.myContentFilter.sortBy])
 
 	return (
 		<div

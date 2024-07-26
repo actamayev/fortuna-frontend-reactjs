@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useMemo } from "react"
 import { observer, useObserver } from "mobx-react"
 import useDefaultCurrency from "../../../hooks/memos/default-currency"
@@ -11,20 +10,12 @@ function Deposits() {
 	const defaultCurrency = useDefaultCurrency()
 
 	const transactionsTimeRange = useMemo(() => {
-		if (_.isNull(positionsAndTransactionsClass)) return "Month"
 		return positionsAndTransactionsClass.transactionsTimeRange
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [positionsAndTransactionsClass, positionsAndTransactionsClass?.transactionsTimeRange])
+	}, [positionsAndTransactionsClass.transactionsTimeRange])
 
-	const depositsSol = useObserver(() => {
-		if (_.isNull(positionsAndTransactionsClass)) return null
-		return positionsAndTransactionsClass.calculateDepositsSol()
-	})
+	const depositsSol = useObserver(() => positionsAndTransactionsClass.calculateDepositsSol())
 
-	const depositsUsd = useObserver(() => {
-		if (_.isNull(positionsAndTransactionsClass)) return null
-		return positionsAndTransactionsClass.calculateDepositsUsd()
-	})
+	const depositsUsd = useObserver(() => positionsAndTransactionsClass.calculateDepositsUsd())
 
 	const solDepositsObject = numberWithCommasFixed(depositsSol, 4)
 	const usdDepositsObject = numberWithCommasFixed(depositsUsd, 2)
@@ -34,32 +25,20 @@ function Deposits() {
 			<div className="text-lg font-bold">
 				{defaultCurrency === "sol" && (
 					<>
-						{_.isNull(depositsSol) ? (
-							<>Loading...</>
-						) : (
-							<>
-								+
-								<SuperMoneyStyleSol
-									dollars={solDepositsObject.dollars}
-									cents={solDepositsObject.cents}
-								/>
-							</>
-						)}
+						+
+						<SuperMoneyStyleSol
+							dollars={solDepositsObject.dollars}
+							cents={solDepositsObject.cents}
+						/>
 					</>
 				)}
 				{defaultCurrency === "usd" && (
 					<>
-						{_.isNull(depositsUsd) ? (
-							<>Loading...</>
-						) : (
-							<>
-								+
-								<SuperMoneyStyleDollars
-									dollars={usdDepositsObject.dollars}
-									cents={usdDepositsObject.cents}
-								/>
-							</>
-						)}
+						+
+						<SuperMoneyStyleDollars
+							dollars={usdDepositsObject.dollars}
+							cents={usdDepositsObject.cents}
+						/>
 					</>
 				)}
 			</div>
@@ -68,7 +47,7 @@ function Deposits() {
 				{transactionsTimeRange !== "Today" && (<>this&nbsp;</>)}
 				<span
 					className="cursor-pointer underline decoration-dotted"
-					onClick={positionsAndTransactionsClass?.handleTimeRangeClick}
+					onClick={positionsAndTransactionsClass.handleTimeRangeClick}
 				>
 					{transactionsTimeRange.toLowerCase()}
 				</span>
