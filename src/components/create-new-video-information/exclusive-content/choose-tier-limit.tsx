@@ -22,12 +22,14 @@ function ChooseTierLimit(props: Props) {
 	}, [creatorClass.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked, tierNumber])
 
 	const checkBuyerLimit = useCallback(() => {
-		if (isPurchaseTierChecked === true) {
+		// Don't change this to isPurchaseTierChecked or else clicking directly on the slider knob stops working
+		if (creatorClass.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked === true) {
 			creatorClass.updateNewVideoTierDetails("purchasesInThisTier", tierNumber, null)
 		} else {
 			creatorClass.updateNewVideoTierDetails("isPurchaseTierChecked", tierNumber, true)
 		}
-	}, [creatorClass, isPurchaseTierChecked, tierNumber])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [creatorClass.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked, tierNumber])
 
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (event.target.value === "") {
