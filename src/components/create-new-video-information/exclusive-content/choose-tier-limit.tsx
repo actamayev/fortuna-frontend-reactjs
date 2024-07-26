@@ -16,14 +16,18 @@ function ChooseTierLimit(props: Props) {
 	const creatorClass = useCreatorContext()
 	const isNewVideoLoading = useIsNewVideoLoading()
 
+	const isPurchaseTierChecked = useMemo(() => {
+		return creatorClass.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [creatorClass.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked, tierNumber])
+
 	const checkBuyerLimit = useCallback(() => {
-		if (creatorClass.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked === true) {
+		if (isPurchaseTierChecked === true) {
 			creatorClass.updateNewVideoTierDetails("purchasesInThisTier", tierNumber, null)
 		} else {
 			creatorClass.updateNewVideoTierDetails("isPurchaseTierChecked", tierNumber, true)
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked, tierNumber])
+	}, [creatorClass, isPurchaseTierChecked, tierNumber])
 
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		if (event.target.value === "") {
@@ -59,13 +63,13 @@ function ChooseTierLimit(props: Props) {
 					Limit number of buyers at this tier
 				</span>
 				<Slider
-					checkedCondition={creatorClass.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked === true}
+					checkedCondition={isPurchaseTierChecked === true}
 					onChangeCheckedCondition={checkBuyerLimit}
 					disabledCondition={isNewVideoLoading}
 					colorChangeOnToggle={true}
 				/>
 			</div>
-			{creatorClass.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked && (
+			{isPurchaseTierChecked && (
 				<FormGroup
 					label="Participant limit at this tier"
 					type="number"
