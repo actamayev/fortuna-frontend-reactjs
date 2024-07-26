@@ -1,4 +1,5 @@
 import _ from "lodash"
+import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../contexts/solana-context"
 import ShowProvidedUsdOrSolPrice from "../usd-or-sol/show-provided-usd-or-sol-price"
@@ -6,16 +7,19 @@ import ShowProvidedUsdOrSolPrice from "../usd-or-sol/show-provided-usd-or-sol-pr
 function WalletBalance() {
 	const solanaClass = useSolanaContext()
 
+	const walletBalanceSol = useMemo(() => {
+		return solanaClass.walletBalanceSol
+	}, [solanaClass.walletBalanceSol])
+
 	return (
 		<div>
 			<div className="text-2xl font-bold">
-				{_.isNull(solanaClass.walletBalanceSol) ? (
+				{_.isNull(walletBalanceSol) ? (
 					<> Loading...</>
 				) : (
-
 					<ShowProvidedUsdOrSolPrice
 						roundOrFixed="fixed"
-						solPriceToDisplay={solanaClass.walletBalanceSol}
+						solPriceToDisplay={walletBalanceSol}
 						usdPriceToDisplay={solanaClass.walletBalanceUSD.get()}
 					/>
 				)}
