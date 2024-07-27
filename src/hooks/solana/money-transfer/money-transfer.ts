@@ -18,15 +18,9 @@ export default function useTransferFunds(): (
 	const retrieveSolPrice = useRetrieveSolPrice()
 	const notificationsClass = useNotificationsContext()
 
-	// eslint-disable-next-line complexity
 	return useCallback(async (setIsLoading: React.Dispatch<React.SetStateAction<boolean>>): Promise<void> => {
 		try {
-			if (
-				_.isNull(solanaClass) ||
-				_.isNull(fortunaApiClient.httpClient.accessToken) ||
-				_.isNull(personalInfoClass) ||
-				_.isNull(positionsAndTransactionsClass)
-			) return
+			if (_.isNull(fortunaApiClient.httpClient.accessToken)) return
 			setIsLoading(true)
 			let sendingTo
 			if (solanaClass.moneyTransferDetails.transferOption === "publicKey") {

@@ -4,20 +4,18 @@ import { observer } from "mobx-react"
 import RangeSelectorSlider from "../../../range-selector-slider"
 import { useSolanaContext } from "../../../../contexts/solana-context"
 import useDefaultCurrency from "../../../../hooks/memos/default-currency"
-import { numberWithCommasFixed } from "../../../../utils/numbers-with-commas"
+import { useNumberWithCommasFixed } from "../../../../hooks/numbers/numbers-with-commas"
 import { SuperMoneyStyleDollars, SuperMoneyStyleSol } from "../../../usd-or-sol/super-money-style"
 
 // eslint-disable-next-line complexity
 function SelectTransferAmount() {
 	const solanaClass = useSolanaContext()
 	const defaultCurrency = useDefaultCurrency()
+	const numberWithCommasFixed = useNumberWithCommasFixed()
 
 	const updateMoneyTransferDetails = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-		if (_.isNull(solanaClass)) return
 		solanaClass.updateMoneyTransferDetails("transferAmount", Number(e.target.value))
 	}, [solanaClass])
-
-	if (_.isNull(solanaClass)) return null
 
 	if (
 		solanaClass.moneyTransferDetails.transferOption === "username" &&

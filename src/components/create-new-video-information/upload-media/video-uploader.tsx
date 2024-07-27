@@ -12,12 +12,10 @@ function VideoUploader() {
 
 	const removeContent = useCallback(() => {
 		setPreviewUrl(null)
-		if (_.isNull(creatorClass)) return
 		creatorClass.updateNewVideoDetails("selectedVideo", null)
 	}, [creatorClass])
 
 	const handleVideoChange = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-		if (_.isNull(creatorClass)) return
 		const files = e.target.files
 
 		if (_.isNull(files) || _.isEmpty(files)) {

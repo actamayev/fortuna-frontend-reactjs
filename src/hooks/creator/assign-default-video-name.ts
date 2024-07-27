@@ -13,7 +13,6 @@ export default function useAssignDefaultVideoName(): (
 		setVideoName: (value: React.SetStateAction<string>) => void
 	): void => {
 		try {
-			if (_.isNull(creatorClass)) return
 			const content = creatorClass.contextForMyContent(videoUUID)
 			if (_.isUndefined(content)) return
 			setVideoName(content.videoName)

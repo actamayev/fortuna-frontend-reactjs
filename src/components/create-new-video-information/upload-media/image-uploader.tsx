@@ -12,12 +12,10 @@ function ImageUploader() {
 
 	const removeContent = useCallback(() => {
 		setPreviewUrl(null)
-		if (_.isNull(creatorClass)) return
 		creatorClass.updateNewVideoDetails("selectedImage", null)
 	}, [creatorClass])
 
 	const handleImageChange = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-		if (_.isNull(creatorClass)) return
 		const files = e.target.files
 
 		if (_.isNull(files) || _.isEmpty(files)) {

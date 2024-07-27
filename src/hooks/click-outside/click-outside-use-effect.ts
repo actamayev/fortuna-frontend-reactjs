@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom"
 
 export default function useClickOutsideUseEffect(
 	dropdownRef: React.RefObject<HTMLDivElement>,
-	setIsOpen?: (newState: boolean) => void
+	setIsOpen: (newState: boolean) => void
 ): void {
 	const location = useLocation()
 
@@ -15,8 +15,7 @@ export default function useClickOutsideUseEffect(
 			dropdownRef.current &&
             !dropdownRef.current.contains(event.target as Node) &&
 			(!themeToggler || !themeToggler.contains(event.target as Node)) &&
-			(!solUsdSlider || !solUsdSlider.contains(event.target as Node)) &&
-            !_.isUndefined(setIsOpen)
+			(!solUsdSlider || !solUsdSlider.contains(event.target as Node))
 		) {
 			setIsOpen(false)
 		}

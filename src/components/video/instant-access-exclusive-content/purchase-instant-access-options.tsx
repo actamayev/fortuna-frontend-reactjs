@@ -1,4 +1,4 @@
-import _ from "lodash"
+import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { useMarketContext } from "../../../contexts/market-context"
 import ReviewInstantAccessInfo from "./review/review-instant-access-info"
@@ -7,9 +7,11 @@ import InitialInstantAccessInfo from "./initial/initial-instant-access-info"
 function PurchaseInstantAccessOptions() {
 	const marketClass = useMarketContext()
 
-	if (_.isNull(marketClass)) return null
+	const instantAccessToExclusiveContentStage = useMemo(() => {
+		return marketClass.instantAccessToExclusiveContentStage
+	}, [marketClass.instantAccessToExclusiveContentStage])
 
-	if (marketClass.instantAccessToExclusiveContentStage === "initial") {
+	if (instantAccessToExclusiveContentStage === "initial") {
 		return <InitialInstantAccessInfo />
 	}
 	return <ReviewInstantAccessInfo />

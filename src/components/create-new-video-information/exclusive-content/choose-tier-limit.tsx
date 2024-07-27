@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import FormGroup from "../../form-group"
@@ -17,18 +16,22 @@ function ChooseTierLimit(props: Props) {
 	const creatorClass = useCreatorContext()
 	const isNewVideoLoading = useIsNewVideoLoading()
 
+	const isPurchaseTierChecked = useMemo(() => {
+		return creatorClass.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [creatorClass.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked, tierNumber])
+
 	const checkBuyerLimit = useCallback(() => {
-		if (_.isNull(creatorClass)) return
+		// Don't change this to isPurchaseTierChecked or else clicking directly on the slider knob stops working
 		if (creatorClass.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked === true) {
 			creatorClass.updateNewVideoTierDetails("purchasesInThisTier", tierNumber, null)
 		} else {
 			creatorClass.updateNewVideoTierDetails("isPurchaseTierChecked", tierNumber, true)
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked, tierNumber])
+	}, [creatorClass.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked, tierNumber])
 
 	const updateNewVideoDetails = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-		if (_.isNull(creatorClass)) return
 		if (event.target.value === "") {
 			creatorClass.updateNewVideoTierDetails("purchasesInThisTier", tierNumber, null)
 			return
@@ -37,12 +40,9 @@ function ChooseTierLimit(props: Props) {
 	}, [creatorClass, tierNumber])
 
 	const purchasesInThisTier = useMemo(() => {
-		if (_.isNull(creatorClass)) return undefined
 		return creatorClass.newVideoDetails.tierData[tierNumber - 1].purchasesInThisTier
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.newVideoDetails.tierData[tierNumber - 1].purchasesInThisTier, tierNumber])
-
-	if (_.isUndefined(purchasesInThisTier)) return null
+	}, [creatorClass.newVideoDetails.tierData[tierNumber - 1].purchasesInThisTier, tierNumber])
 
 	if (infiniteAllowed === false) {
 		return (
@@ -65,13 +65,13 @@ function ChooseTierLimit(props: Props) {
 					Limit number of buyers at this tier
 				</span>
 				<Slider
-					checkedCondition={creatorClass?.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked === true}
+					checkedCondition={isPurchaseTierChecked === true}
 					onChangeCheckedCondition={checkBuyerLimit}
 					disabledCondition={isNewVideoLoading}
 					colorChangeOnToggle={true}
 				/>
 			</div>
-			{creatorClass?.newVideoDetails.tierData[tierNumber - 1].isPurchaseTierChecked && (
+			{isPurchaseTierChecked && (
 				<FormGroup
 					label="Participant limit at this tier"
 					type="number"

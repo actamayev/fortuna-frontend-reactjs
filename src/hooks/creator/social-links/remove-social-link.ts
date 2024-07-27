@@ -19,14 +19,9 @@ export default function useRemoveSocialLink(): (
 		setTempSocialLinks: React.Dispatch<React.SetStateAction<SocialPlatformLinks[]>>
 	): Promise<void> => {
 		try {
-			setTempSocialLinks(prevLinks =>
-				prevLinks.filter(link => link.socialPlatform !== socialPlatform)
-			)
-
-			if (
-				_.isNull(creatorClass) ||
-				creatorClass.socialPlatformLinks.some(link => link.socialPlatform === socialPlatform) === false
-			) return
+			if (creatorClass.socialPlatformLinks.some(link => link.socialPlatform === socialPlatform) === false) {
+				return
+			}
 
 			const response = await fortunaApiClient.creatorDataService.removeSocialPlatformLink(socialPlatform)
 
@@ -34,6 +29,9 @@ export default function useRemoveSocialLink(): (
 				return
 			}
 
+			setTempSocialLinks(prevLinks =>
+				prevLinks.filter(link => link.socialPlatform !== socialPlatform)
+			)
 			creatorClass.removeSocialPlatformLink(socialPlatform)
 			notificationsClass.setPositiveNotification(`Removed ${convertSocialLinkToProperCasing(socialPlatform)}`)
 		} catch (error) {

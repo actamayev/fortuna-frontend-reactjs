@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useEffect } from "react"
 import { useLocation } from "react-router-dom"
 import { useMarketContext } from "../../contexts/market-context"
@@ -8,7 +7,6 @@ export default function useResetInstantAccessStageOnLocationChangeUseEffect(): v
 	const location = useLocation()
 
 	useEffect(() => {
-		if (_.isNull(marketClass)) return
 		marketClass.resetInstantAccessToExclusiveContentStage()
 	}, [location, marketClass])
 }

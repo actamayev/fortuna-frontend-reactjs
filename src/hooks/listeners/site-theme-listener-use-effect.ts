@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useCallback, useEffect } from "react"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
@@ -7,7 +6,6 @@ export default function useSiteThemeListenerUseEffect(): void {
 
 	const handleStorageChange = useCallback((event: StorageEvent): void => {
 		if (
-			_.isNull(personalInfoClass) ||
 			event.key !== "defaultSiteTheme" ||
 			(event.newValue !== "light" && event.newValue !== "dark")
 		) return

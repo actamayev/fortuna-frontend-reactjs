@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useEffect, useMemo, useState } from "react"
@@ -10,23 +9,23 @@ import useConfirmSufficientMoneyToTransfer
 
 function ConfirmTransferButton() {
 	const solanaClass = useSolanaContext()
-	const transferSol = useTransferFunds()
 	const [isLoading, setIsLoading] = useState(false)
 	const [doesUserHaveSufficientFunds, setDoesUserHaveSufficientFunds] = useState(false)
+	const transferSol = useTransferFunds()
 	const confirmSufficientMoneyToTransfer = useConfirmSufficientMoneyToTransfer()
 
 	useEffect(() => {
 		confirmSufficientMoneyToTransfer(setDoesUserHaveSufficientFunds)
-	}, [solanaClass?.moneyTransferDetails.transferStage])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [solanaClass.moneyTransferDetails.transferStage])
 
 	const isTransferAmountZero = useMemo(() => {
-		if (_.isNull(solanaClass)) return true
 		return _.isEqual(solanaClass.moneyTransferDetails.transferAmount, 0)
-	}, [solanaClass, solanaClass?.moneyTransferDetails.transferAmount])
+	}, [solanaClass.moneyTransferDetails.transferAmount])
 
 	const transferSolCallback = useCallback(async () => {
 		await transferSol(setIsLoading)
-	}, [])
+	}, [transferSol])
 
 	return (
 		<>

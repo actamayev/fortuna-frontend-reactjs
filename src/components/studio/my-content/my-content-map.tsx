@@ -1,4 +1,4 @@
-import _ from "lodash"
+import { useMemo } from "react"
 import { observer } from "mobx-react"
 import SingleMyContent from "./single-my-content"
 import MyContentHeader from "./my-content-header/my-content-header"
@@ -9,9 +9,15 @@ function MyContentMap() {
 	const creatorClass = useCreatorContext()
 	const myContentToShow = useMyContentToShow()
 
-	if (_.isNull(creatorClass)) return null
+	const isRetrievingContent = useMemo(() => {
+		return creatorClass.isRetrievingContent
+	}, [creatorClass.isRetrievingContent])
 
-	if (creatorClass.isRetrievingContent === true || creatorClass.hasContentToRetrieve === true) {
+	const hasContentToRetrieve = useMemo(() => {
+		return creatorClass.hasContentToRetrieve
+	}, [creatorClass.hasContentToRetrieve])
+
+	if (isRetrievingContent === true || hasContentToRetrieve === true) {
 		return <div className="dark:text-zinc-200">Retrieving Content...</div>
 	}
 

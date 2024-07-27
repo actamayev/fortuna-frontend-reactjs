@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { FaArrowAltCircleUp } from "react-icons/fa"
@@ -10,7 +9,6 @@ function MoneyTransferButton() {
 	const solanaClass = useSolanaContext()
 
 	const setIsMoneyTransferButtonPressed = useCallback(() => {
-		if (_.isNull(solanaClass)) return
 		solanaClass.setIsMoneyTransferButtonPressed(!solanaClass.isMoneyTransferButtonPressed)
 	}, [solanaClass])
 

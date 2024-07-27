@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
@@ -8,15 +7,12 @@ function VisbilityHeader() {
 	const creatorClass = useCreatorContext()
 
 	const onClickAction = useCallback(() => {
-		if (_.isNull(creatorClass)) return
 		creatorClass.updateVisibilityFilter()
 	}, [creatorClass])
 
 	const currentVisbilityFilter = useMemo(() => {
-		if (_.isNull(creatorClass)) return "all"
 		return creatorClass.myContentFilter.visibility
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.myContentFilter.visibility])
+	}, [creatorClass.myContentFilter.visibility])
 
 	return (
 		<div

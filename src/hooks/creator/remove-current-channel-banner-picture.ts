@@ -15,7 +15,6 @@ export default function useRemoveCurrentChannelBannerPicture(): (
 	return useCallback(async (
 		setIsDeletingCurrentPicture: React.Dispatch<React.SetStateAction<boolean>>
 	): Promise<void> => {
-		if (_.isNull(creatorClass)) return
 		const { channelBannerUrl } = creatorClass
 		try {
 			creatorClass.setChannelBannerUrl(null)

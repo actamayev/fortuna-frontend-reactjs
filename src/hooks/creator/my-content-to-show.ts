@@ -6,8 +6,6 @@ export default function useMyContentToShow(): MyContent[] {
 	const creatorClass = useCreatorContext()
 
 	return useObserver(() => {
-		if (_.isNull(creatorClass)) return []
-
 		let filteredContent = creatorClass.myContent
 
 		// Filter by title

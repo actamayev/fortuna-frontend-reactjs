@@ -1,4 +1,5 @@
 import _ from "lodash"
+import { useMemo } from "react"
 import { observer } from "mobx-react"
 import SingleMyPurchasedExclusiveContent from "./single-my-purchased-exclusive-content"
 import useMyOwnershipToShow from "../../../hooks/positions-and-transactions/my-ownership-to-show"
@@ -8,11 +9,17 @@ function MyPurchasedExclusiveContentMap() {
 	const positionsAndTransactionClass = usePositionsAndTransactionsContext()
 	const myOwnershipToShow = useMyOwnershipToShow()
 
-	if (_.isNull(positionsAndTransactionClass)) return null
+	const isRetrievingPurchasedExclusiveContent = useMemo(() => {
+		return positionsAndTransactionClass.isRetrievingPurchasedExclusiveContent
+	}, [positionsAndTransactionClass.isRetrievingPurchasedExclusiveContent])
+
+	const hasPurchasedExclusiveContentToRetrieve = useMemo(() => {
+		return positionsAndTransactionClass.hasPurchasedExclusiveContentToRetrieve
+	}, [positionsAndTransactionClass.hasPurchasedExclusiveContentToRetrieve])
 
 	if (
-		positionsAndTransactionClass.isRetrievingPurchasedExclusiveContent === true ||
-		positionsAndTransactionClass.hasPurchasedExclusiveContentToRetrieve === true
+		isRetrievingPurchasedExclusiveContent === true ||
+		hasPurchasedExclusiveContentToRetrieve === true
 	) {
 		return <div className="dark:text-zinc-200 ml-2.5">Retrieving Ownership...</div>
 	} else if (_.isEmpty(myOwnershipToShow)) {

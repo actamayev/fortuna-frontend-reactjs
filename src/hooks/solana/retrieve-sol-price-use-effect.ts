@@ -8,11 +8,10 @@ export default function useRetrieveSolPriceUseEffect(): void {
 	const retrieveSolPrice = useRetrieveSolPrice()
 
 	useEffect(() => {
-		if (_.isNull(solanaClass)) return
 		const currentTime = new Date()
 		if (
 			_.isNull(solanaClass.solPriceDetails) ||
 			new Date(solanaClass.solPriceDetails.lastRetrievedTime).getTime() + 30000 < currentTime.getTime()
 		) void retrieveSolPrice()
-	}, [retrieveSolPrice, solanaClass, solanaClass?.walletBalanceSol])
+	}, [retrieveSolPrice, solanaClass, solanaClass.walletBalanceSol, solanaClass.solPriceDetails])
 }

@@ -11,10 +11,9 @@ export default function useRetrieveMyPurchasedExclusiveContent(): () => Promise<
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
 	return useCallback(async () => {
-		if (_.isNull(positionsAndTransactionsClass)) return
 		try {
 			if (
-				_.isNil(personalInfoClass?.username) ||
+				_.isNull(personalInfoClass.username) ||
 				positionsAndTransactionsClass.hasPurchasedExclusiveContentToRetrieve === false ||
 				positionsAndTransactionsClass.isRetrievingPurchasedExclusiveContent === true
 			) return
@@ -34,5 +33,5 @@ export default function useRetrieveMyPurchasedExclusiveContent(): () => Promise<
 		} finally {
 			positionsAndTransactionsClass.setIsRetrievingOwnership(false)
 		}
-	}, [positionsAndTransactionsClass, personalInfoClass?.username, fortunaApiClient.positionsAndTransactionsDataService])
+	}, [positionsAndTransactionsClass, personalInfoClass.username, fortunaApiClient.positionsAndTransactionsDataService])
 }

@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { FaTrash } from "react-icons/fa"
@@ -14,7 +13,6 @@ function DeleteTierButton(props: Props) {
 	const creatorClass = useCreatorContext()
 
 	const deleteTier = useCallback(() => {
-		if (_.isNull(creatorClass)) return
 		creatorClass.deleteTier(tierNumber)
 	}, [creatorClass, tierNumber])
 

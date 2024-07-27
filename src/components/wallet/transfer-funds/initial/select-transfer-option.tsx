@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
@@ -7,13 +6,10 @@ function SelectTransferOption() {
 	const solanaClass = useSolanaContext()
 
 	const transferOption = useMemo(() => {
-		if (_.isNull(solanaClass)) return ""
 		return solanaClass.moneyTransferDetails.transferOption
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [solanaClass, solanaClass?.moneyTransferDetails.transferOption])
+	}, [solanaClass.moneyTransferDetails.transferOption])
 
 	const updateMoneyTransferDetails = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-		if (_.isNull(solanaClass)) return
 		solanaClass.updateMoneyTransferDetails("transferOption", e.target.value as TransferOption)
 	}, [solanaClass])
 

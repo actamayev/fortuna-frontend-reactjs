@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
@@ -12,7 +11,6 @@ function SingleUsernameSearch(props: Props) {
 	const solanaClass = useSolanaContext()
 
 	const selectUsername = useCallback(() => {
-		if (_.isNull(solanaClass)) return
 		solanaClass.updateMoneyTransferDetails("isUsernameSelected", true)
 		solanaClass.updateMoneyTransferDetails("username", searchResultsUsername)
 	}, [solanaClass, searchResultsUsername])

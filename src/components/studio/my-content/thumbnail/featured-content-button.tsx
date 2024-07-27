@@ -17,10 +17,8 @@ function FeaturedContentButton(props: Props) {
 	const unfeatureVideo = useUnfeatureVideo()
 
 	const isContentFeatured = useMemo(() => {
-		if (_.isNull(creatorClass)) return false
 		return _.isEqual(creatorClass.featuredContentId, videoId)
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.featuredContentId, creatorClass?.myContent])
+	}, [creatorClass.featuredContentId, videoId])
 
 	const featureVideoCallback = useCallback(async () => {
 		if (isContentFeatured === true) {

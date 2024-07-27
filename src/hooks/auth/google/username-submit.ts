@@ -21,7 +21,6 @@ export default function useUsernameSubmit (
 		e.preventDefault()
 		setError("")
 		try {
-			if (_.isNull(personalInfoClass)) return
 			setLoading(true)
 			const response = await fortunaApiClient.authDataService.registerUsername(username)
 			if (!_.isEqual(response.status, 200) || isNonSuccessResponse(response.data)) {

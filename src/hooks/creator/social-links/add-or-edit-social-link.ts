@@ -18,7 +18,6 @@ export default function useAddOrEditSocialLink(): (
 		socialLink: string,
 		socialPlatform: SocialPlatformKey,
 	): Promise<void> => {
-		if (_.isNull(creatorClass)) return
 		try {
 			if (_.isEmpty(socialLink.trim())) return
 

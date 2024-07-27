@@ -18,7 +18,7 @@ export default function useUploadChannelBannerPicture(): (
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 	) => {
 		try {
-			if (_.isNull(selectedImage) || _.isNull(creatorClass)) return
+			if (_.isNull(selectedImage)) return
 			setIsLoading(true)
 			const uploadChannelBannerPictureResponse = await fortunaApiClient.uploadDataService.uploadChannelBannerPicture(selectedImage)
 			if (

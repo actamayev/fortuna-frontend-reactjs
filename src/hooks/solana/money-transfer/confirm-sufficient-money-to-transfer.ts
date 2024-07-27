@@ -15,11 +15,7 @@ export default function useConfirmSufficientMoneyToTransfer(): (
 		setDoesUserHaveSufficientFunds: React.Dispatch<React.SetStateAction<boolean>>
 	): void => {
 		try {
-			if (
-				_.isNull(solanaClass) ||
-				_.isNull(solanaClass.walletBalanceSol) ||
-				_.isNull(personalInfoClass)
-			) return
+			if (_.isNull(solanaClass.walletBalanceSol)) return
 			setDoesUserHaveSufficientFunds(false)
 			const myWalletBalanceSol = solanaClass.walletBalanceSol
 
@@ -61,5 +57,5 @@ export default function useConfirmSufficientMoneyToTransfer(): (
 			console.error(error)
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [personalInfoClass, solanaClass, solanaClass?.walletBalanceSol])
+	}, [personalInfoClass, solanaClass, solanaClass.walletBalanceSol])
 }

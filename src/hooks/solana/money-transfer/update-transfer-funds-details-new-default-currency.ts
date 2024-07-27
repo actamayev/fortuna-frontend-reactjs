@@ -9,7 +9,7 @@ export default function useUpdateTransferFundsDetiailsNewDefaultCurrency() : (
 
 	return useCallback((newDefaultCurrency: Currencies) => {
 		try {
-			if (_.isNull(solanaClass) || _.isUndefined(solanaClass.solPriceDetails?.solPriceInUSD)) return
+			if (_.isUndefined(solanaClass.solPriceDetails?.solPriceInUSD)) return
 			if (newDefaultCurrency === "sol") {
 				solanaClass.updateMoneyTransferDetails(
 					"transferAmount",
@@ -25,5 +25,5 @@ export default function useUpdateTransferFundsDetiailsNewDefaultCurrency() : (
 			console.error(error)
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [solanaClass, solanaClass?.solPriceDetails?.solPriceInUSD])
+	}, [solanaClass, solanaClass.solPriceDetails?.solPriceInUSD])
 }

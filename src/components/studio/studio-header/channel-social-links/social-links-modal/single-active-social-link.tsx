@@ -37,7 +37,6 @@ function SingleActiveSocialLink(props: Props) {
 					: prevLink
 			)
 		)
-		if (_.isNull(creatorClass)) return
 		creatorClass.addSocialPlatformLink({ socialLink: value, socialPlatform })
 		debouncedAddOrEditSocialLink(value, socialPlatform)
 	}, [creatorClass, debouncedAddOrEditSocialLink, setTempSocialLinks])

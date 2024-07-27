@@ -6,7 +6,6 @@ export default function useIsReviewTransferButtonDisabled(): boolean {
 	const solanaClass = useSolanaContext()
 
 	return useObserver(() => {
-		if (_.isNull(solanaClass)) return true
 		if (_.isEqual(solanaClass.moneyTransferDetails.transferAmount, 0)) return true
 		if (
 			solanaClass.moneyTransferDetails.transferOption === "username" &&

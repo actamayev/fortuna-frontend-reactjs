@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useCallback, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import { FaSave, FaTimesCircle, FaTrash } from "react-icons/fa"
 import { useCreatorContext } from "../../../../contexts/creator-context"
 import useRemoveCurrentChannelBannerPicture from "../../../../hooks/creator/remove-current-channel-banner-picture"
@@ -28,12 +28,16 @@ function ShowCurrentChannelBannerPicture(props: Props) {
 		setIsDeletingCurrentPicture(prevState => !prevState)
 	}, [])
 
+	const channelBannerUrl = useMemo(() => {
+		return creatorClass.channelBannerUrl
+	}, [creatorClass.channelBannerUrl])
+
 	return (
 		<div className="relative inline-block w-full">
-			{(creatorClass?.channelBannerUrl && isDeletingCurrentPicture === false) ? (
+			{(channelBannerUrl && isDeletingCurrentPicture === false) ? (
 				<>
 					<img
-						src={creatorClass.channelBannerUrl}
+						src={channelBannerUrl}
 						className="object-cover cursor-pointer w-full h-44 rounded"
 						style={imageStyle}
 						onClick={editPictureCallback}
@@ -58,7 +62,7 @@ function ShowCurrentChannelBannerPicture(props: Props) {
 						onMouseEnter={handleMouseEnter}
 						onMouseLeave={handleMouseLeave}
 					/>
-					{!_.isNil(creatorClass?.channelBannerUrl) && (
+					{!_.isNull(channelBannerUrl) && (
 						<>
 							<div
 								className="absolute top-2 right-2 bg-red-500 dark:bg-red-600 p-1 rounded-full \

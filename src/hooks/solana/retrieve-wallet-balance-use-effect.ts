@@ -8,7 +8,7 @@ export default function useRetrieveWalletBalanceUseEffect(): void {
 	const retrieveWalletBalance = useRetrieveWalletBalance()
 
 	useEffect(() => {
-		if (!_.isNil(solanaClass?.walletBalanceSol)) return
+		if (!_.isNull(solanaClass.walletBalanceSol)) return
 		void retrieveWalletBalance()
-	}, [retrieveWalletBalance, solanaClass?.walletBalanceSol])
+	}, [retrieveWalletBalance, solanaClass.walletBalanceSol])
 }

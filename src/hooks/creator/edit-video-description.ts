@@ -19,7 +19,7 @@ export default function useEditVideoDescription(): (
 		videoDescription: string,
 		setVideoDescription: React.Dispatch<React.SetStateAction<string>>
 	): Promise<void> => {
-		if (_.isNull(creatorClass) || videoDescription.length > 5000) return
+		if (videoDescription.length > 5000) return
 
 		const existingVideo = creatorClass.contextForMyContent(videoUUID)
 		if (_.isUndefined(existingVideo) || existingVideo.description === videoDescription) return

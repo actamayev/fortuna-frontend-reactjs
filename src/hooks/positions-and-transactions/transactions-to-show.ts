@@ -6,8 +6,6 @@ export default function useMyTransactionsToShow(): SingleTransaction[] {
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
 	return useObserver(() => {
-		if (_.isNull(positionsAndTransactionsClass)) return []
-
 		const solanaTransactions = positionsAndTransactionsClass.mySolanaTransactions.map(transaction => ({
 			...transaction,
 			transactionType: transaction.depositOrWithdrawal === "deposit" ? "Deposits" : "Withdrawals",

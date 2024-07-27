@@ -9,11 +9,10 @@ export default function useRetrieveWalletBalance(): () => Promise<void> {
 	const personalInfoClass = usePersonalInfoContext()
 
 	return useCallback(async () => {
-		if (_.isNull(solanaClass)) return
 		try {
 			if (
 				_.isNull(solanaClass.walletPublicKey) ||
-				_.isNil(personalInfoClass?.username) ||
+				_.isNull(personalInfoClass.username) ||
 				solanaClass.isRetrievingWalletDetails === true
 			) return
 
@@ -29,5 +28,5 @@ export default function useRetrieveWalletBalance(): () => Promise<void> {
 		} finally {
 			solanaClass.setIsRetrievingWalletDetails(false)
 		}
-	}, [solanaClass, personalInfoClass?.username])
+	}, [solanaClass, personalInfoClass.username])
 }

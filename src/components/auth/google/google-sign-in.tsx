@@ -1,6 +1,6 @@
 import { observer } from "mobx-react"
 import { GoogleLogin } from "@react-oauth/google"
-import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
+import useDefaultSiteTheme from "../../../hooks/memos/default-site-theme"
 import useGoogleAuthCallback from "../../../hooks/auth/google/google-auth-callback"
 
 interface Props {
@@ -9,8 +9,8 @@ interface Props {
 
 function GoogleSignIn(props: Props) {
 	const { whereToNavigate } = props
-	const personalInfoClass = usePersonalInfoContext()
 	const googleAuthCallback = useGoogleAuthCallback(whereToNavigate)
+	const defaultSiteTheme = useDefaultSiteTheme()
 
 	return (
 		<div className="flex justify-center">
@@ -19,7 +19,7 @@ function GoogleSignIn(props: Props) {
 				onError={() => console.error("Login Failed")}
 				shape="rectangular"
 				width={200}
-				theme={personalInfoClass?.defaultSiteTheme === "dark" ? "outline" : "filled_black"}
+				theme={defaultSiteTheme === "dark" ? "outline" : "filled_black"}
 				text="continue_with"
 				logo_alignment="center"
 			/>

@@ -8,9 +8,7 @@ export default function useRetrieveMyContentUseEffect(): void {
 	const creatorClass = useCreatorContext()
 	const fortunaApiClient = useApiClientContext()
 
-	// eslint-disable-next-line complexity
 	const retrieveMyContent = useCallback(async () => {
-		if (_.isNull(creatorClass)) return
 		try {
 			if (
 				creatorClass.hasContentToRetrieve === false ||

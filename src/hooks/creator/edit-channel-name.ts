@@ -15,11 +15,10 @@ export default function useEditChannelName(): (channelName: string) => Promise<v
 	return useCallback(async (channelName: string): Promise<void> => {
 		try {
 			if (
-				_.isNull(creatorClass) ||
 				channelName.length > 60 ||
 				creatorClass.channelName === channelName ||
 				(_.isEmpty(creatorClass.channelName) && (
-					personalInfoClass?.username && personalInfoClass.username === channelName
+					personalInfoClass.username && personalInfoClass.username === channelName
 				))
 			) return
 
@@ -35,5 +34,6 @@ export default function useEditChannelName(): (channelName: string) => Promise<v
 			console.error(error)
 			notificationsClass.setNegativeNotification("Unable to edit channel name at this time. Please reload page and try again.")
 		}
-	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass, personalInfoClass?.username])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [creatorClass, creatorClass.channelName, fortunaApiClient.creatorDataService, notificationsClass, personalInfoClass.username])
 }
