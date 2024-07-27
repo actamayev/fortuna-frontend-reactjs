@@ -1,4 +1,4 @@
-import _ from "lodash"
+import { useMemo } from "react"
 import { observer } from "mobx-react"
 import Tooltip from "../../tooltip"
 import MaxProfitFromVideo from "./max-profit-from-video"
@@ -7,7 +7,11 @@ import { useCreatorContext } from "../../../contexts/creator-context"
 function NewVideoMonetizationSummary() {
 	const creatorClass = useCreatorContext()
 
-	if (_.isNull(creatorClass) || creatorClass.newVideoDetails.isContentExclusive === false) return null
+	const isContentExclusive = useMemo(() => {
+		return creatorClass.newVideoDetails.isContentExclusive
+	}, [creatorClass.newVideoDetails.isContentExclusive])
+
+	if (isContentExclusive === false) return null
 
 	return (
 		<div className="bg-white dark:bg-zinc-800 border rounded-lg w-full p-2">

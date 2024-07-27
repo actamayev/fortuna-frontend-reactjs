@@ -9,7 +9,6 @@ export default function useRetrieveSolPrice (): () => Promise<void> {
 	const solanaClass = useSolanaContext()
 
 	return useCallback(async () => {
-		if (_.isNull(solanaClass)) return
 		try {
 			if (solanaClass.isRetrievingSolPriceDetails === true) return
 			solanaClass.setIsRetrievingSolPriceDetails(true)

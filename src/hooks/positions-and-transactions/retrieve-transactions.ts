@@ -9,7 +9,6 @@ export default function useRetrieveTransactions(): () => Promise<void> {
 	const fortunaApiClient = useApiClientContext()
 
 	return useCallback(async () => {
-		if (_.isNull(positionsAndTransactionsClass)) return
 		try {
 			if (
 				_.isNull(fortunaApiClient.httpClient.accessToken) ||

@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import { FaShoppingBag } from "react-icons/fa"
@@ -9,20 +8,17 @@ function TransactionTypeFilter() {
 	const positionsAndTransactionClass = usePositionsAndTransactionsContext()
 
 	const onClickAction = useCallback((transactionType: TransactionTypes) => {
-		if (_.isNull(positionsAndTransactionClass)) return
 		positionsAndTransactionClass.updateTransactionTypeFilter(transactionType)
 	}, [positionsAndTransactionClass])
 
 	const colorClasses = useCallback((transactionType: TransactionTypes) => {
-		if (_.isNull(positionsAndTransactionClass)) return
 		let classes = "p-1 rounded-lg cursor-pointer \
 			bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-600 text-black dark:text-white"
 		if (positionsAndTransactionClass.walletFilter.transactionType.includes(transactionType)) {
 			classes = "p-1 rounded-lg cursor-pointer bg-black dark:bg-white text-white dark:text-black"
 		}
 		return classes
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [positionsAndTransactionClass, positionsAndTransactionClass?.walletFilter.transactionType])
+	}, [positionsAndTransactionClass.walletFilter.transactionType])
 
 	return (
 		<div className="flex flex-row items-center space-x-2 text-zinc-950 dark:text-zinc-200">

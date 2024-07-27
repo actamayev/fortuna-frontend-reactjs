@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useCallback } from "react"
 import { observer } from "mobx-react"
 import FeeSection from "./fee-section"
@@ -11,7 +10,6 @@ function ReviewTransferInfo() {
 	const solanaClass = useSolanaContext()
 
 	const updateMoneyTransferDetails = useCallback(() => {
-		if (_.isNull(solanaClass)) return
 		solanaClass.updateMoneyTransferDetails("transferStage", "initial")
 	}, [solanaClass])
 

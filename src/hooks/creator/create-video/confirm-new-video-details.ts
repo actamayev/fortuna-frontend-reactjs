@@ -6,7 +6,6 @@ export default function useConfirmNewVideoDetails(): boolean {
 	const creatorClass = useCreatorContext()
 
 	if (
-		_.isNull(creatorClass) ||
 		_.isEmpty(creatorClass.newVideoDetails.videoName) ||
 		_.isEmpty(creatorClass.newVideoDetails.description)
 	) return false

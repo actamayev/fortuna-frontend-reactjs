@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo, useState } from "react"
@@ -19,17 +18,15 @@ function UploadNewVideoButton() {
 	const isNewVideoLoading = useIsNewVideoLoading()
 
 	const isImageAndVideoReadyToSubmit = useMemo(() => {
-		if (_.isNull(creatorClass)) return false
 		return !_.isNull(creatorClass.newVideoDetails.selectedImage) && !_.isNull(creatorClass.newVideoDetails.selectedVideo)
-	}, [creatorClass, creatorClass?.newVideoDetails.selectedImage, creatorClass?.newVideoDetails.selectedVideo])
+	}, [creatorClass.newVideoDetails.selectedImage, creatorClass.newVideoDetails.selectedVideo])
 
 	const buttonTitle = useMemo(() => {
-		if (_.isNull(creatorClass)) return ""
 		if (isImageAndVideoReadyToSubmit === false) return "Please upload a video and thumbnail"
 		if (confirmNewVideoDetails === false) return "Please finish filling out the fields"
 		if (creatorClass.isNewVideoLoading === true) return "Loading..."
 		return "Submit"
-	}, [isImageAndVideoReadyToSubmit, creatorClass, creatorClass?.isNewVideoLoading, confirmNewVideoDetails])
+	}, [isImageAndVideoReadyToSubmit, creatorClass.isNewVideoLoading, confirmNewVideoDetails])
 
 	const onClickButtonCallback = useCallback(async () => {
 		await createVideoOnclick(setError, setStatus)

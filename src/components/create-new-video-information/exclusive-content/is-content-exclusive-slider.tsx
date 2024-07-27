@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import Slider from "../../sliders/slider"
@@ -11,13 +10,10 @@ function IsContentExclusiveSlider() {
 	const isNewVideoLoading = useIsNewVideoLoading()
 
 	const isContentExclusive = useMemo(() => {
-		if (_.isNull(creatorClass)) return false
 		return creatorClass.newVideoDetails.isContentExclusive
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.newVideoDetails.isContentExclusive])
+	}, [creatorClass.newVideoDetails.isContentExclusive])
 
 	const updateNewVideoDetails = useCallback(() => {
-		if (_.isNull(creatorClass)) return
 		creatorClass.updateNewVideoDetails("isContentExclusive", !creatorClass.newVideoDetails.isContentExclusive)
 	}, [creatorClass])
 

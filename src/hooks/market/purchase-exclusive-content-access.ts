@@ -25,19 +25,13 @@ export default function usePurchaseExclusiveContentAccess(): (
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const confirmSufficientFundsForInstantAccess = useConfirmSufficientFundsForInstantAccess()
 
-	// eslint-disable-next-line complexity
 	return useCallback(async (
 		videoUUID: string,
 		tierNumber: number,
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 	): Promise<void> => {
 		try {
-			if (
-				_.isNull(marketClass) ||
-				_.isNull(solanaClass) ||
-				_.isNull(fortunaApiClient.httpClient.accessToken) ||
-				_.isNull(positionsAndTransactionsClass)
-			) return
+			if (_.isNull(fortunaApiClient.httpClient.accessToken)) return
 
 			const doesUserHaveSufficientFunds = confirmSufficientFundsForInstantAccess(videoUUID)
 			if (doesUserHaveSufficientFunds === false) return

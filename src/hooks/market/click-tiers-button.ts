@@ -13,7 +13,6 @@ export default function useClickTiersButton(
 
 	return useObserver(() => {
 		if (
-			_.isNull(marketClass) ||
 			doesUserHaveAccessToExclusiveContent === true ||
 			_.isNull(currentExclusiveAccessTier) ||
 			_.isUndefined(video)

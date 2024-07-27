@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
 import ExclusiveContentTier from "./exclusive-content-tier"
@@ -8,16 +7,12 @@ function ExclusiveContentTierMap() {
 	const creatorClass = useCreatorContext()
 
 	const isContentExclusive = useMemo(() => {
-		if (_.isNull(creatorClass)) return false
 		return creatorClass.newVideoDetails.isContentExclusive
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.newVideoDetails.isContentExclusive])
+	}, [creatorClass.newVideoDetails.isContentExclusive])
 
 	const tierData = useMemo(() => {
-		if (_.isNull(creatorClass)) return []
 		return creatorClass.newVideoDetails.tierData
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.newVideoDetails.tierData])
+	}, [creatorClass.newVideoDetails.tierData])
 
 	if (isContentExclusive === false) return null
 

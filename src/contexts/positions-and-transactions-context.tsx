@@ -221,7 +221,7 @@ class PositionsAndTransactionsClass {
 	}
 }
 
-const PositionsAndTransactionsContext = createContext<PositionsAndTransactionsClass | null>(null)
+const PositionsAndTransactionsContext = createContext(new PositionsAndTransactionsClass())
 
 export default function PositionsAndTransactionsProvider ({ children }: { children: React.ReactNode }) {
 	const positionsAndTransactionsClass = useMemo(() => new PositionsAndTransactionsClass(), [])

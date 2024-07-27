@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useState } from "react"
 import useTypedNavigate from "../../../hooks/navigate/typed-navigate"
@@ -17,6 +16,9 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 	const { myPurchasedExclusiveContent } = props
 	const [isHovered, setIsHovered] = useState(false)
 
+	const { creatorUsername, videoName, creatorProfilePictureUrl, uuid,
+		channelName, purchaseDate, priceInSol, priceInUsd } = myPurchasedExclusiveContent
+
 	const navigateToCreatorPage = useNavigateToCreatorPage()
 	const relativeDateFormatter = useRelativeDateFormatter()
 	const navigateToWallet = useTypedNavigate()
@@ -24,16 +26,14 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 
 	const navigateToCreatorPageCallback = useCallback((e: React.MouseEvent<HTMLElement, MouseEvent>) => {
 		e.stopPropagation() // Prevents the video click event when clicking the image
-		navigateToCreatorPage(addDefiniteLeadingAt(myPurchasedExclusiveContent.creatorUsername))
-	}, [myPurchasedExclusiveContent.creatorUsername, navigateToCreatorPage])
+		navigateToCreatorPage(addDefiniteLeadingAt(creatorUsername))
+	}, [creatorUsername, navigateToCreatorPage])
 
 	const navigateToWalletScreen = useCallback((e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
 		e.stopPropagation() // Prevents the video click event when clicking the image
-		if (!_.isNull(positionsAndTransactionClass)) {
-			positionsAndTransactionClass.updateTransactionToFocusOn(myPurchasedExclusiveContent.uuid)
-		}
+		positionsAndTransactionClass.updateTransactionToFocusOn(uuid)
 		navigateToWallet("/wallet")
-	}, [myPurchasedExclusiveContent.uuid, navigateToWallet, positionsAndTransactionClass])
+	}, [uuid, navigateToWallet, positionsAndTransactionClass])
 
 	const handleMouseEnter = useCallback(() => setIsHovered(true), [])
 	const handleMouseLeave = useCallback(() => setIsHovered(false), [])
@@ -41,13 +41,13 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 	return (
 		<div className="p-1.5">
 			<div className="text-sm font-medium pb-1.5 dark:text-zinc-200 overflow-hidden text-ellipsis whitespace-nowrap">
-				{myPurchasedExclusiveContent.videoName}
+				{videoName}
 			</div>
-			<div className="flex items-center">
-				<div className="w-6 h-6 rounded-full overflow-hidden flex justify-center items-center mr-1.5">
+			<div className="flex items-center space-x-1">
+				<div className="flex-shrink-0">
 					<ShowUserProfileImageOrDefaultImage
-						profileImageUrl={myPurchasedExclusiveContent.creatorProfilePictureUrl}
-						extraClasses="min-w-full min-h-full object-cover cursor-pointer"
+						profileImageUrl={creatorProfilePictureUrl}
+						extraClasses="w-6 h-6 rounded-full object-cover cursor-pointer"
 						onClickCreatorPicture={navigateToCreatorPageCallback}
 					/>
 				</div>
@@ -56,24 +56,24 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 					text-zinc-700 hover:text-zinc-950 dark:text-zinc-200 hover:dark:text-zinc-50"
 					onClick={navigateToCreatorPageCallback}
 				>
-					{myPurchasedExclusiveContent.channelName}
+					{channelName}
 				</div>
 			</div>
-			<span
+			<div
 				className={`text-xs font-medium cursor-pointer text-zinc-950 dark:text-zinc-200 pt-1.5 underline decoration-dotted
 					${isHovered ? "hover:decoration-solid" : ""} overflow-hidden text-ellipsis whitespace-nowrap`}
 				onClick={navigateToWalletScreen}
 				onMouseEnter={handleMouseEnter}
 				onMouseLeave={handleMouseLeave}
 			>
-				Purchased {relativeDateFormatter(myPurchasedExclusiveContent.purchaseDate)} for&nbsp;
+				Purchased {relativeDateFormatter(purchaseDate)} for&nbsp;
 				<ShowProvidedUsdOrSolPrice
 					roundOrFixed="round"
-					solPriceToDisplay={myPurchasedExclusiveContent.priceInSol}
-					usdPriceToDisplay={myPurchasedExclusiveContent.priceInUsd}
+					solPriceToDisplay={priceInSol}
+					usdPriceToDisplay={priceInUsd}
 					extraStyles={isHovered ? "underline decoration-solid" : "underline decoration-dotted"}
 				/>
-			</span>
+			</div>
 		</div>
 	)
 }

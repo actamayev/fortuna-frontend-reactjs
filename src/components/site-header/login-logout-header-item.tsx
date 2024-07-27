@@ -1,15 +1,12 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useLocation } from "react-router-dom"
 import NullUserNavLink from "../null-user-nav-link"
 import { useAuthContext } from "../../contexts/auth-context"
 import HeaderDropdown from "./profile-dropdown/header-dropdown"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
 function LoginLogoutHeaderItem() {
 	const authClass = useAuthContext()
 	const location = useLocation()
-	const personalInfoClass = usePersonalInfoContext()
 
 	if (authClass.isLoggedIn === false) {
 		if (location.pathname === "/register" || location.pathname === "/login") {
@@ -17,7 +14,7 @@ function LoginLogoutHeaderItem() {
 		}
 		return <NullUserNavLink />
 	}
-	if (_.isNil(personalInfoClass?.username)) return null
+
 	return <HeaderDropdown />
 }
 

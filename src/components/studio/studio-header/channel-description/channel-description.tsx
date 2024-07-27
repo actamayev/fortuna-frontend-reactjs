@@ -16,10 +16,10 @@ function ChannelDescription() {
 	useEscapeListenerUseEffect(isEditing, () => cancelEditAction())
 
 	useEffect(() => {
-		if (creatorClass?.channelDescription) {
+		if (creatorClass.channelDescription) {
 			setChannelDescription(creatorClass.channelDescription)
 		}
-	}, [creatorClass?.channelDescription])
+	}, [creatorClass.channelDescription])
 
 	useEffect(() => {
 		if (isEditing && textAreaRef.current) {
@@ -32,7 +32,7 @@ function ChannelDescription() {
 		if (!textAreaRef.current) return
 		textAreaRef.current.style.height = "auto"
 		textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`
-	}, [channelDescription, creatorClass?.channelDescription, isEditing])
+	}, [channelDescription, creatorClass.channelDescription, isEditing])
 
 	const toggleEditMode = useCallback(() => {
 		setIsEditing(prev => !prev)
@@ -40,10 +40,10 @@ function ChannelDescription() {
 
 	const cancelEditAction = useCallback(() => {
 		setIsEditing(false)
-		if (!_.isNil(creatorClass?.channelDescription)) {
+		if (!_.isNull(creatorClass.channelDescription)) {
 			setChannelDescription(creatorClass.channelDescription)
 		}
-	}, [creatorClass?.channelDescription])
+	}, [creatorClass.channelDescription])
 
 	const handleSaveChannelDescription = useCallback(async () => {
 		await addOrEditChannelDescription(channelDescription)

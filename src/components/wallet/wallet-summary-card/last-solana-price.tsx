@@ -2,28 +2,27 @@ import _ from "lodash"
 import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { useSolanaContext } from "../../../contexts/solana-context"
-import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
 import { SuperMoneyStyleDollars } from "../../usd-or-sol/super-money-style"
+import { useNumberWithCommasFixed } from "../../../hooks/numbers/numbers-with-commas"
 
 function LastSolanaPrice() {
 	const solanaClass = useSolanaContext()
+	const numberWithCommasFixed = useNumberWithCommasFixed()
 
 	const formattedTime = useMemo(() => {
-		const lastRetrieved = solanaClass?.solPriceDetails?.lastRetrievedTime
+		const lastRetrieved = solanaClass.solPriceDetails?.lastRetrievedTime
 		return lastRetrieved ? new Date(lastRetrieved).toLocaleTimeString("en-US", {
 			hour: "numeric",
 			minute: "numeric",
 			hour12: true // Use AM/PM
 		}) : "unknown"
-	}, [solanaClass?.solPriceDetails?.lastRetrievedTime])
+	}, [solanaClass.solPriceDetails?.lastRetrievedTime])
 
 	const solPriceUsd = useMemo(() => {
-		if (_.isNil(solanaClass?.solPriceDetails)) return { dollars: "0", cents: "0" }
+		if (_.isNull(solanaClass.solPriceDetails)) return { dollars: "0", cents: "0" }
 		return numberWithCommasFixed(solanaClass.solPriceDetails.solPriceInUSD, 2)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [solanaClass?.solPriceDetails?.solPriceInUSD])
-
-	if (_.isNull(solanaClass)) return null
+	}, [solanaClass.solPriceDetails, solanaClass.solPriceDetails?.solPriceInUSD, numberWithCommasFixed])
 
 	return (
 		<div>

@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useEffect, useMemo } from "react"
 import { useSolanaContext } from "../../../../contexts/solana-context"
@@ -16,17 +14,14 @@ function PublicKeySearch() {
 	}, [publicKeySearch])
 
 	const publicKey = useMemo(() => {
-		if (_.isNull(solanaClass)) return ""
 		return solanaClass.moneyTransferDetails.publicKey
-	}, [solanaClass, solanaClass?.moneyTransferDetails.publicKey])
+	}, [solanaClass.moneyTransferDetails.publicKey])
 
 	const isPublicKeySearchLoading = useMemo(() => {
-		if (_.isNull(solanaClass)) return false
 		return solanaClass.isPublicKeySearchLoading
-	}, [solanaClass, solanaClass?.isPublicKeySearchLoading])
+	}, [solanaClass.isPublicKeySearchLoading])
 
 	const updateMoneyTransferDetails = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-		if (_.isNull(solanaClass)) return false
 		solanaClass.updateMoneyTransferDetails("publicKey", handleTypePublicKey(e))
 	}, [handleTypePublicKey, solanaClass])
 

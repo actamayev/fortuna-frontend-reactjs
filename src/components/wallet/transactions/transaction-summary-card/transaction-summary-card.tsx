@@ -12,18 +12,17 @@ function TransactionSummaryCard() {
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 
 	const transaction = useMemo(() => {
-		if (_.isNull(positionsAndTransactionsClass)) return null
 		const newTransactionIdToFocusOn = positionsAndTransactionsClass.transactionIdToFocusOn
-		if (_.isNull(newTransactionIdToFocusOn)) return null
+		if (_.isNull(newTransactionIdToFocusOn)) return undefined
 		if (_.isNumber(newTransactionIdToFocusOn)) {
 			return positionsAndTransactionsClass.contextForMyTransaction(newTransactionIdToFocusOn)
 		} else {
 			return positionsAndTransactionsClass.contextForMyPurchasesExclusiveContent(newTransactionIdToFocusOn)
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [positionsAndTransactionsClass?.transactionIdToFocusOn])
+	}, [positionsAndTransactionsClass.transactionIdToFocusOn])
 
-	if (_.isNil(transaction)) return null
+	if (_.isUndefined(transaction)) return null
 
 	return (
 		<div className="bg-zinc-100 dark:bg-zinc-800 text-zinc-950 dark:text-zinc-200 p-2 rounded">

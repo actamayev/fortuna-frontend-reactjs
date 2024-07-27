@@ -1,4 +1,3 @@
-import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo } from "react"
 import TransactionTypeTemplate from "../transaction-type-template"
@@ -17,17 +16,16 @@ function SingleSolanaTransaction(props: Props) {
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const abbreviatedDateFormatter = useAbbreviatedDateFormatter()
 
+	const { solTransferId, transferDateTime, depositOrWithdrawal,
+		solAmountTransferred, usdAmountTransferred, newWalletBalanceSol, newWalletBalanceUsd} = solanaTransaction
+
 	const setTransactionIdToFocusOn = useCallback(() => {
-		if (_.isNull(positionsAndTransactionsClass)) return
-		positionsAndTransactionsClass.updateTransactionToFocusOn(solanaTransaction.solTransferId)
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [positionsAndTransactionsClass?.transactionIdToFocusOn, solanaTransaction.solTransferId])
+		positionsAndTransactionsClass.updateTransactionToFocusOn(solTransferId)
+	}, [positionsAndTransactionsClass, solTransferId])
 
 	const isCurrentTransactionFocusedOn = useMemo(() => {
-		if (_.isNull(positionsAndTransactionsClass)) return false
-		return positionsAndTransactionsClass.transactionIdToFocusOn === solanaTransaction.solTransferId
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [positionsAndTransactionsClass?.transactionIdToFocusOn, solanaTransaction.solTransferId])
+		return positionsAndTransactionsClass.transactionIdToFocusOn === solTransferId
+	}, [positionsAndTransactionsClass.transactionIdToFocusOn, solTransferId])
 
 	return (
 		<div
@@ -39,11 +37,11 @@ function SingleSolanaTransaction(props: Props) {
 			onClick={setTransactionIdToFocusOn}
 		>
 			<div className="col-span-1 flex items-center">
-				{abbreviatedDateFormatter(solanaTransaction.transferDateTime)}
+				{abbreviatedDateFormatter(transferDateTime)}
 			</div>
 			<div className="col-span-2 flex items-center">
 				<TransactionTypeTemplate
-					depositOrWithdrawal={solanaTransaction.depositOrWithdrawal}
+					depositOrWithdrawal={depositOrWithdrawal}
 					iconSize={30}
 					extraClasses="space-x-3"
 					showIcon={true}
@@ -51,15 +49,15 @@ function SingleSolanaTransaction(props: Props) {
 			</div>
 			<div className="col-span-1 flex items-center">
 				<div
-					className={`flex justify-start ${solanaTransaction.depositOrWithdrawal === "deposit" ?
+					className={`flex justify-start ${depositOrWithdrawal === "deposit" ?
 						"text-green-600 dark:text-green-400" :
 						"text-zinc-950 dark:text-zinc-200"}`}
 				>
-					{solanaTransaction.depositOrWithdrawal === "deposit" ? (<>+</>) : (<>-</>)}
+					{depositOrWithdrawal === "deposit" ? (<>+</>) : (<>-</>)}
 					<ShowProvidedUsdOrSolPrice
 						roundOrFixed="fixed"
-						solPriceToDisplay={solanaTransaction.solAmountTransferred}
-						usdPriceToDisplay={solanaTransaction.usdAmountTransferred}
+						solPriceToDisplay={solAmountTransferred}
+						usdPriceToDisplay={usdAmountTransferred}
 					/>
 				</div>
 			</div>
@@ -68,12 +66,12 @@ function SingleSolanaTransaction(props: Props) {
 			</div>
 			<div className="col-span-1 flex justify-end items-center">
 				<NewWalletBalanceTemplate
-					newWalletBalanceSol={solanaTransaction.newWalletBalanceSol}
-					newWalletBalanceUsd={solanaTransaction.newWalletBalanceUsd}
+					newWalletBalanceSol={newWalletBalanceSol}
+					newWalletBalanceUsd={newWalletBalanceUsd}
 				/>
 			</div>
 		</div>
 	)
 }
 
-export default observer(SingleSolanaTransaction)  // Keep this an observer (the defaultCurrency is a memo)
+export default observer(SingleSolanaTransaction)

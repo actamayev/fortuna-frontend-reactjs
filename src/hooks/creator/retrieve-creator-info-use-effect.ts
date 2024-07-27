@@ -9,7 +9,6 @@ export default function useRetrieveCreatorInfoUseEffect(): void {
 	const creatorClass = useCreatorContext()
 
 	const retrieveCreatorInfo = useCallback(async () => {
-		if (_.isNull(creatorClass)) return
 		try {
 			if (
 				creatorClass.isRetrievingCreatorInfo === true ||
@@ -28,7 +27,8 @@ export default function useRetrieveCreatorInfoUseEffect(): void {
 		} finally {
 			creatorClass.setIsRetrievingCreatorInfo(false)
 		}
-	}, [creatorClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.creatorDataService])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [creatorClass, creatorClass.isRetrievingCreatorInfo, fortunaApiClient.httpClient.accessToken, fortunaApiClient.creatorDataService])
 
 	useEffect(() => {
 		void retrieveCreatorInfo()

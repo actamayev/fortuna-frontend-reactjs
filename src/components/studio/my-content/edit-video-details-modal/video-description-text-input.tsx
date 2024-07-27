@@ -13,11 +13,11 @@ interface Props {
 function VideoDescriptionTextInput(props: Props) {
 	const { videoUUID } = props
 	const maxLength = 5000
+	const creatorClass = useCreatorContext()
 	const textAreaRef = useRef<HTMLTextAreaElement>(null)
 	const [videoDescription, setVideoDescription] = useState("")
 	const editVideoDescription = useEditVideoDescription()
 	const assignDefaultVideoDescription = useAssignDefaultVideoDescription()
-	const creatorClass = useCreatorContext()
 
 	useEffect(() => {
 		assignDefaultVideoDescription(videoUUID, setVideoDescription)
@@ -70,7 +70,7 @@ function VideoDescriptionTextInput(props: Props) {
 					{videoDescription.length}/{maxLength}
 				</span>
 			</div>
-			{(!_.isEmpty(videoDescription) && (videoDescription !== creatorClass?.contextForMyContent(videoUUID)?.description)) && (
+			{(!_.isEmpty(videoDescription) && (videoDescription !== creatorClass.contextForMyContent(videoUUID)?.description)) && (
 				<SaveButton
 					handleSaveButton={handleSaveVideoDescription}
 					extraClasses="mt-1 ml-2"

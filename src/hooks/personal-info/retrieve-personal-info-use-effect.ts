@@ -14,8 +14,6 @@ export default function useRetrievePersonalInfoUseEffect(): void {
 	const retrievePersonalInfo = useCallback(async () => {
 		try {
 			if (
-				_.isNull(personalInfoClass) ||
-				_.isNull(solanaClass) ||
 				personalInfoClass.isRetrievingPersonalInfo === true ||
 				_.isNull(fortunaApiClient.httpClient.accessToken)
 			) return
@@ -31,7 +29,7 @@ export default function useRetrievePersonalInfoUseEffect(): void {
 		} catch (error) {
 			console.error(error)
 		} finally {
-			if (!_.isNull(personalInfoClass)) personalInfoClass.setIsRetrievingPersonalDetails(false)
+			personalInfoClass.setIsRetrievingPersonalDetails(false)
 		}
 	}, [personalInfoClass, solanaClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService])
 

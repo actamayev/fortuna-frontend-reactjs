@@ -1,42 +1,59 @@
 import _ from "lodash"
+import { useMemo } from "react"
 import { observer } from "mobx-react"
 import MaxProfitByTier from "./max-profit-by-tier"
 import { useCreatorContext } from "../../../contexts/creator-context"
-import { numberWithCommasFixed } from "../../../utils/numbers-with-commas"
 import { SuperMoneyStyleDollars } from "../../usd-or-sol/super-money-style"
+import { useNumberWithCommasFixed } from "../../../hooks/numbers/numbers-with-commas"
 
 function MaxProfitFromVideo() {
 	const creatorClass = useCreatorContext()
+	const numberWithCommasFixed = useNumberWithCommasFixed()
 
-	if (
-		_.isNull(creatorClass) ||
-		creatorClass.newVideoDetails.isContentExclusive === false
-	) return null
+	const fortunaFee = useMemo(() => {
+		if (_.isNull(creatorClass.newVideoFortunaFee)) return null
+		return numberWithCommasFixed(creatorClass.newVideoFortunaFee, 2)
+	}, [creatorClass.newVideoFortunaFee, numberWithCommasFixed])
 
-	if (creatorClass.doesNewVideoLimitNumberBuyers === false) {
+	const profitAfterFee = useMemo(() => {
+		return numberWithCommasFixed(creatorClass.profitAfterFee, 2)
+	}, [creatorClass.profitAfterFee, numberWithCommasFixed])
+
+	const isContentExclusive = useMemo(() => {
+		return creatorClass.newVideoDetails.isContentExclusive
+	}, [creatorClass.newVideoDetails.isContentExclusive])
+
+	const doesNewVideoLimitNumberBuyers = useMemo(() => {
+		return creatorClass.doesNewVideoLimitNumberBuyers
+	}, [creatorClass.doesNewVideoLimitNumberBuyers])
+
+	const tierDataLength = useMemo(() => {
+		return creatorClass.newVideoDetails.tierData.length
+	}, [creatorClass.newVideoDetails.tierData.length])
+
+	if (isContentExclusive === false) return null
+
+	if (doesNewVideoLimitNumberBuyers === false) {
 		return (
 			<div>Max Profit: $∞ (no limit of buyers)</div>
 		)
 	}
 
-	const forunaFee = numberWithCommasFixed(creatorClass.newVideoFortunaFee, 2)
-	const profitAfterFee = numberWithCommasFixed(creatorClass.profitAfterFee, 2)
-
 	return (
 		<div>
-			{creatorClass.newVideoDetails.tierData.length >= 1 && (
+			{tierDataLength >= 1 && (
 				<MaxProfitByTier tierNumber={1} />
 			)}
-			{creatorClass.newVideoDetails.tierData.length >= 2 && (
+			{tierDataLength >= 2 && (
 				<MaxProfitByTier tierNumber={2} />
 			)}
-			{creatorClass.newVideoDetails.tierData.length >= 3 && (
+			{tierDataLength >= 3 && (
 				<MaxProfitByTier tierNumber={3} />
 			)}
-			{creatorClass.newVideoFortunaFee && (
+			{fortunaFee && (
 				<div>
 					Fortuna Fee (2.5%):&nbsp;
-					<SuperMoneyStyleDollars dollars={forunaFee.dollars} cents={forunaFee.cents}/>
+					<SuperMoneyStyleDollars dollars={fortunaFee.dollars} cents={fortunaFee.cents}/>
 				</div>
 			)}
 			{creatorClass.profitAfterFee && (

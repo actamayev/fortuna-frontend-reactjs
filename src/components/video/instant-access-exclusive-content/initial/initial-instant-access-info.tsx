@@ -16,7 +16,7 @@ function InitialInstantAccessInfo() {
 
 	if (
 		_.isUndefined(video) ||
-		marketClass?.instantAccessToExclusiveContentStage !== "initial"
+		marketClass.instantAccessToExclusiveContentStage !== "initial"
 	) return null
 
 	if (

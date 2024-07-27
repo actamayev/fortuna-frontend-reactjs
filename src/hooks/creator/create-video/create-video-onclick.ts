@@ -22,7 +22,6 @@ export default function useCreateVideoOnclick(): (
 		setError: React.Dispatch<React.SetStateAction<string>>,
 		setStatus: React.Dispatch<React.SetStateAction<string>>
 	): Promise<void> => {
-		if (_.isNull(creatorClass)) return
 		try {
 			if (
 				_.isNull(creatorClass.newVideoDetails.selectedVideo) ||

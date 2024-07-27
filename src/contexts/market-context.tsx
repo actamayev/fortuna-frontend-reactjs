@@ -21,7 +21,7 @@ class MarketClass {
 	}
 }
 
-const MarketContext = createContext<MarketClass | null>(null)
+const MarketContext = createContext(new MarketClass())
 
 export default function MarketProvider ({ children }: { children: React.ReactNode }) {
 	const marketClass = useMemo(() => new MarketClass(), [])

@@ -12,18 +12,16 @@ export default function useUnfeatureVideo(): () => Promise<void> {
 
 	return useCallback(async (): Promise<void> => {
 		try {
-			if (_.isNull(creatorClass)) return
-			const featuredContentVideoId = creatorClass.featuredContentId
-			if (_.isUndefined(featuredContentVideoId)) return
+			if (_.isUndefined(creatorClass.featuredContentId)) return
 
-			const response = await fortunaApiClient.creatorDataService.unfeatureVideo(featuredContentVideoId)
+			const response = await fortunaApiClient.creatorDataService.unfeatureVideo(creatorClass.featuredContentId)
 
 			if (!_.isEqual(response.status, 200) || isErrorResponses(response.data)) {
 				return
 			}
 
 			creatorClass.unfeatureVideo()
-			notificationsClass.setPositiveNotification("Video Un-featured")
+			notificationsClass.setPositiveNotification("Video un-featured")
 		} catch (error) {
 			console.error(error)
 			notificationsClass.setNegativeNotification("Unable to update un-feature video at this time. Please reload page and try again.")

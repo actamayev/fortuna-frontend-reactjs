@@ -1,7 +1,9 @@
+import _ from "lodash"
 import { observer } from "mobx-react"
-import { useState, useRef, useCallback } from "react"
+import { useState, useRef, useCallback, useMemo } from "react"
 import ProfileDropdownItems from "./profile-dropdown-items"
 import { useCreatorContext } from "../../../contexts/creator-context"
+import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 import useClickOutsideUseEffect from "../../../hooks/click-outside/click-outside-use-effect"
 import ShowUserProfileImageOrDefaultImage from "../../show-user-profile-image-or-default-image"
 
@@ -9,11 +11,20 @@ function HeaderDropdown () {
 	const [isOpen, setIsOpen] = useState(false)
 	const dropdownRef = useRef<HTMLDivElement>(null)
 	const creatorClass = useCreatorContext()
+	const personalInfoClass = usePersonalInfoContext()
 	useClickOutsideUseEffect(dropdownRef, setIsOpen)
 
-	const isOpenCallback = useCallback(() => {
-		setIsOpen(prevState => !prevState)
-	}, [])
+	const isOpenCallback = useCallback(() => setIsOpen(prevState => !prevState), [])
+
+	const profilePictureUrl = useMemo(() => {
+		return creatorClass.profilePictureUrl
+	}, [creatorClass.profilePictureUrl])
+
+	const username = useMemo(() => {
+		return personalInfoClass.username
+	}, [personalInfoClass.username])
+
+	if (_.isNull(username)) return null
 
 	return (
 		<div className="flex items-center">
@@ -25,7 +36,7 @@ function HeaderDropdown () {
 				>
 					<div className="w-8 h-8 rounded-full overflow-hidden flex justify-center items-center text-zinc-950 dark:text-zinc-100">
 						<ShowUserProfileImageOrDefaultImage
-							profileImageUrl={creatorClass?.profilePictureUrl}
+							profileImageUrl={profilePictureUrl}
 							extraClasses="min-w-full min-h-full object-cover"
 							onClickCreatorPicture={isOpenCallback}
 						/>

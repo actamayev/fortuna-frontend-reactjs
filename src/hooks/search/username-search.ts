@@ -17,7 +17,6 @@ export default function useUsernameSearch(): (
 	) => {
 		try {
 			if (
-				_.isNull(solanaClass) ||
 				_.isEmpty(solanaClass.moneyTransferDetails.username.trim()) ||
 				solanaClass.moneyTransferDetails.isUsernameSelected === true
 			) {
@@ -36,7 +35,6 @@ export default function useUsernameSearch(): (
 		} finally {
 			setIsLoading(false)
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [fortunaApiClient.searchDataService, solanaClass?.moneyTransferDetails.isUsernameSelected,
-		solanaClass?.moneyTransferDetails.username])
+	}, [fortunaApiClient.searchDataService, solanaClass.moneyTransferDetails.isUsernameSelected,
+		solanaClass.moneyTransferDetails.username])
 }

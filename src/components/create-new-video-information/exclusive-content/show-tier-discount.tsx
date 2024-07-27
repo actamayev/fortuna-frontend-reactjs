@@ -12,22 +12,24 @@ function ShowTierDiscount(props: Props) {
 	const creatorClass = useCreatorContext()
 
 	const tierAccessPriceUsd = useMemo(() => {
-		if (_.isNull(creatorClass)) return 0
 		return creatorClass.newVideoDetails.tierData[tierNumber - 1].tierAccessPriceUsd || 0
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.newVideoDetails.tierData[tierNumber - 1]?.tierAccessPriceUsd, tierNumber])
+	}, [creatorClass.newVideoDetails.tierData[tierNumber - 1]?.tierAccessPriceUsd, tierNumber])
 
 	const previousTierAccessPriceUsd = useMemo(() => {
-		if (_.isNull(creatorClass)) return null
 		return creatorClass.newVideoDetails.tierData[tierNumber]?.tierAccessPriceUsd || null
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass?.newVideoDetails.tierData[tierNumber]?.tierAccessPriceUsd, tierNumber])
+	}, [creatorClass.newVideoDetails.tierData[tierNumber]?.tierAccessPriceUsd, tierNumber])
 
-	if (_.isNull(previousTierAccessPriceUsd)) return null
+	const impliedTierDiscount = useMemo(() => {
+		if (_.isNull(previousTierAccessPriceUsd)) return -1
+		return  100 * (previousTierAccessPriceUsd - tierAccessPriceUsd) / (previousTierAccessPriceUsd)
+	}, [previousTierAccessPriceUsd, tierAccessPriceUsd])
 
-	const impliedTierDiscount = 100 * (previousTierAccessPriceUsd - tierAccessPriceUsd) / (previousTierAccessPriceUsd)
-
-	if (impliedTierDiscount <= 0) return null
+	if (
+		_.isNull(previousTierAccessPriceUsd) ||
+		impliedTierDiscount <= 0
+	) return null
 
 	return (
 		<>

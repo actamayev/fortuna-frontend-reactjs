@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import { isErrorResponse } from "../../utils/type-checks"
+import useDefaultCurrency from "../memos/default-currency"
 import useRetrieveSolPrice from "../solana/retrieve-sol-price"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
@@ -13,20 +14,19 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 	const fortunaApiClient = useApiClientContext()
 	const personalInfoClass = usePersonalInfoContext()
 	const notificationsClass = useNotificationsContext()
+	const defaultCurrency = useDefaultCurrency()
 	const retrieveSolPrice = useRetrieveSolPrice()
 	const updateMoneyTransferDetailsNewDefaultCurrency = useUpdateTransferFundsDetiailsNewDefaultCurrency()
 
 	return useCallback(async () => {
 		try {
-			if (_.isNull(personalInfoClass)) return
-			const newCurrency = personalInfoClass.defaultCurrency === "usd" ? "sol" : "usd"
+			const newCurrency = defaultCurrency === "usd" ? "sol" : "usd"
 			personalInfoClass.setDefaultCurrency(newCurrency)
 			updateMoneyTransferDetailsNewDefaultCurrency(newCurrency)
 
 			// If the last sol price was retrieved more than 30 seconds ago, retrieve it from the backend again.
 			const currentTime = new Date()
 			if (
-				!_.isNull(solanaClass) &&
 				!_.isNull(solanaClass.solPriceDetails) &&
 				new Date(solanaClass.solPriceDetails.lastRetrievedTime).getTime() + 30000 < currentTime.getTime()
 			) {
@@ -44,6 +44,6 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 			console.error(error)
 			notificationsClass.setNegativeNotification("Unable to change default currency at this time. Please reload page and try again.")
 		}
-	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService, personalInfoClass,
+	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService, personalInfoClass, defaultCurrency,
 		retrieveSolPrice, solanaClass, updateMoneyTransferDetailsNewDefaultCurrency, notificationsClass])
 }
