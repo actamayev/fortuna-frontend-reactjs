@@ -1,6 +1,7 @@
 import _ from "lodash"
 import { useCallback } from "react"
 import { isErrorResponse } from "../../utils/type-checks"
+import useDefaultCurrency from "../memos/default-currency"
 import useRetrieveSolPrice from "../solana/retrieve-sol-price"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
@@ -13,12 +14,13 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 	const fortunaApiClient = useApiClientContext()
 	const personalInfoClass = usePersonalInfoContext()
 	const notificationsClass = useNotificationsContext()
+	const defaultCurrency = useDefaultCurrency()
 	const retrieveSolPrice = useRetrieveSolPrice()
 	const updateMoneyTransferDetailsNewDefaultCurrency = useUpdateTransferFundsDetiailsNewDefaultCurrency()
 
 	return useCallback(async () => {
 		try {
-			const newCurrency = personalInfoClass.defaultCurrency === "usd" ? "sol" : "usd"
+			const newCurrency = defaultCurrency === "usd" ? "sol" : "usd"
 			personalInfoClass.setDefaultCurrency(newCurrency)
 			updateMoneyTransferDetailsNewDefaultCurrency(newCurrency)
 
@@ -42,6 +44,6 @@ export default function useSetDefaultCurrency(): () => Promise<void> {
 			console.error(error)
 			notificationsClass.setNegativeNotification("Unable to change default currency at this time. Please reload page and try again.")
 		}
-	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService, personalInfoClass,
+	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.personalInfoDataService, personalInfoClass, defaultCurrency,
 		retrieveSolPrice, solanaClass, updateMoneyTransferDetailsNewDefaultCurrency, notificationsClass])
 }
