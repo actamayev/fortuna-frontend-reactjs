@@ -25,7 +25,6 @@ export default function usePurchaseExclusiveContentAccess(): (
 	const positionsAndTransactionsClass = usePositionsAndTransactionsContext()
 	const confirmSufficientFundsForInstantAccess = useConfirmSufficientFundsForInstantAccess()
 
-	// eslint-disable-next-line complexity
 	return useCallback(async (
 		videoUUID: string,
 		tierNumber: number,
