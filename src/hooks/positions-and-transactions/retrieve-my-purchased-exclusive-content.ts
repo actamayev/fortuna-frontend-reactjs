@@ -13,7 +13,7 @@ export default function useRetrieveMyPurchasedExclusiveContent(): () => Promise<
 	return useCallback(async () => {
 		try {
 			if (
-				_.isNil(personalInfoClass.username) ||
+				_.isNull(personalInfoClass.username) ||
 				positionsAndTransactionsClass.hasPurchasedExclusiveContentToRetrieve === false ||
 				positionsAndTransactionsClass.isRetrievingPurchasedExclusiveContent === true
 			) return

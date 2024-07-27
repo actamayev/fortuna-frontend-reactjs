@@ -5,7 +5,7 @@ import { observer } from "mobx-react"
 import { FaUserCircle } from "react-icons/fa"
 
 interface Props {
-	profileImageUrl: string | null | undefined
+	profileImageUrl: string | null
 	onClickCreatorPicture?: (e: any) => void
 	extraClasses: string
 }
@@ -18,7 +18,7 @@ function ShowUserProfileImageOrDefaultImage(props: Props) {
 		if (onClickCreatorPicture) onClickCreatorPicture(e)
 	}, [onClickCreatorPicture])
 
-	if (_.isNil(profileImageUrl)) {
+	if (_.isNull(profileImageUrl)) {
 		return (
 			<FaUserCircle
 				className={`text-black dark:text-white ${extraClasses}`}

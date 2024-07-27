@@ -13,7 +13,7 @@ function TransactionSummaryCard() {
 
 	const transaction = useMemo(() => {
 		const newTransactionIdToFocusOn = positionsAndTransactionsClass.transactionIdToFocusOn
-		if (_.isNull(newTransactionIdToFocusOn)) return null
+		if (_.isNull(newTransactionIdToFocusOn)) return undefined
 		if (_.isNumber(newTransactionIdToFocusOn)) {
 			return positionsAndTransactionsClass.contextForMyTransaction(newTransactionIdToFocusOn)
 		} else {
@@ -22,7 +22,7 @@ function TransactionSummaryCard() {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [positionsAndTransactionsClass.transactionIdToFocusOn])
 
-	if (_.isNil(transaction)) return null
+	if (_.isUndefined(transaction)) return null
 
 	return (
 		<div className="bg-zinc-100 dark:bg-zinc-800 text-zinc-950 dark:text-zinc-200 p-2 rounded">
