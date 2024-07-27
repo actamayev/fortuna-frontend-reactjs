@@ -3,8 +3,8 @@ import { observer } from "mobx-react"
 import { useCallback, useEffect, useRef, useState } from "react"
 import SaveButton from "../../save-button"
 import { useCreatorContext } from "../../../../contexts/creator-context"
-import useEditVideoDescription from "../../../../hooks/creator/edit-video-description"
-import useAssignDefaultVideoDescription from "../../../../hooks/creator/assign-default-video-description"
+import useEditVideoDescription from "../../../../hooks/creator/video-description/edit-video-description"
+import useAssignDefaultVideoDescription from "../../../../hooks/creator/video-description/assign-default-video-description"
 
 interface Props {
 	videoUUID: string

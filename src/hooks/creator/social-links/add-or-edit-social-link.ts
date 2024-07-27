@@ -26,7 +26,7 @@ export default function useAddOrEditSocialLink(): (
 			)
 
 			if (!_.isEqual(response.status, 200) || isErrorResponses(response.data)) {
-				creatorClass.removeSocialPlatformLink(socialPlatform)
+				throw Error("Unable to add social link")
 			}
 			notificationsClass.setPositiveNotification(`Saved ${convertSocialLinkToProperCasing(socialPlatform)} link`)
 		} catch (error) {

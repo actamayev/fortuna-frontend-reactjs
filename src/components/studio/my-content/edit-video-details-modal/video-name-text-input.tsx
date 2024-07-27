@@ -2,9 +2,9 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useEffect, useState } from "react"
 import SaveButton from "../../save-button"
-import useEditVideoName from "../../../../hooks/creator/edit-video-name"
 import { useCreatorContext } from "../../../../contexts/creator-context"
-import useAssignDefaultVideoName from "../../../../hooks/creator/assign-default-video-name"
+import useEditVideoName from "../../../../hooks/creator/video-name/edit-video-name"
+import useAssignDefaultVideoName from "../../../../hooks/creator/video-name/assign-default-video-name"
 
 interface Props {
 	videoUUID: string

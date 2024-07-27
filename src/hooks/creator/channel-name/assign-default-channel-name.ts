@@ -1,6 +1,6 @@
 import { useCallback } from "react"
-import { useCreatorContext } from "../../contexts/creator-context"
-import { usePersonalInfoContext } from "../../contexts/personal-info-context"
+import { useCreatorContext } from "../../../contexts/creator-context"
+import { usePersonalInfoContext } from "../../../contexts/personal-info-context"
 
 export default function useAssignDefaultChannelName(): (
 	setChannelName: (value: React.SetStateAction<string>) => void

@@ -73,6 +73,7 @@ export default function useCreateVideoOnclick(): (
 			const myContent: MyContent = {
 				...restOfVideoDetails,
 				videoId: createVideoResponse.data.newVideoId,
+				videoTags: createVideoResponse.data.videoTags,
 				videoListingStatus: "LISTED",
 				imageUrl: uploadImageResponse.data.imageUploadUrl,
 				videoDurationSeconds: uploadVideoResponse.data.videoDurationSeconds,
@@ -82,7 +83,7 @@ export default function useCreateVideoOnclick(): (
 				createdAt: new Date(),
 				totalCreatorProfitInSol: 0,
 				totalCreatorProfitInUsd: 0,
-				numberOfExclusivePurchasesSoFar: creatorClass.newVideoDetails.isContentExclusive === true ? 0 : null
+				numberOfExclusivePurchasesSoFar: creatorClass.newVideoDetails.isContentExclusive === true ? 0 : null,
 			}
 
 			creatorClass.addContent(myContent)

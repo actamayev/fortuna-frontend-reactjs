@@ -27,7 +27,8 @@ class CreatorClass {
 			isPurchaseTierChecked: false,
 			purchasesInThisTier: null,
 			tierAccessPriceUsd: 2
-		}]
+		}],
+		videoTags: []
 	}
 	public isNewVideoLoading = false
 
@@ -128,6 +129,43 @@ class CreatorClass {
 			}
 			return content
 		})
+	})
+
+	public isAbleToAddTagToVideo(videoId: number, videoTag: string): boolean {
+		if (_.isEmpty(videoTag)) return false
+
+		const video = this.myContent.find(v => v.videoId === videoId)
+		if (_.isUndefined(video)) return false
+
+		const normalizedTag = videoTag.toLowerCase()
+		const tagExists = video.videoTags.some(tag => tag.videoTag.toLowerCase() === normalizedTag)
+		if (tagExists === true) return false
+
+		if (video.videoTags.length >= 12) return false
+
+		return true
+	}
+
+	public addTagToVideo = action((videoId: number, videoTag: string, videoTagId: number) => {
+		const ableToAddTag = this.isAbleToAddTagToVideo(videoId, videoTag)
+		if (ableToAddTag === false) return
+
+		const video = this.myContent.find(v => v.videoId === videoId)
+		if (_.isUndefined(video)) return
+
+		video.videoTags.push({ videoTagId, videoTag })
+	})
+
+	public removeTagFromVideo = action((videoId: number, videoTagId: number) => {
+		const video = this.myContent.find(v => v.videoId === videoId)
+		if (_.isUndefined(video)) return
+
+		// Find the index of the tag to remove
+		const tagIndex = video.videoTags.findIndex(tag => tag.videoTagId === videoTagId)
+		if (tagIndex === -1) return
+
+		// Remove the tag from the list
+		video.videoTags.splice(tagIndex, 1)
 	})
 
 	public updateNewVideoDetails = action(<K extends keyof NewVideoDetails>(
@@ -318,7 +356,8 @@ class CreatorClass {
 				isPurchaseTierChecked: false,
 				purchasesInThisTier: null,
 				tierAccessPriceUsd: 2
-			}]
+			}],
+			videoTags: []
 		}
 	})
 

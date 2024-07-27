@@ -17,7 +17,10 @@ declare global {
 	type GoogleAuthSuccess = LoginOrRegisterSuccess & { isNewUser: boolean }
 
 	// Creator Responses:
-	type CreateVideoResponse = { newVideoId: number }
+	type CreateVideoResponse = {
+		newVideoId: number
+		videoTags: VideoTags[]
+	}
 	type RetrieveMyContentResponse = { creatorContentList: MyContent[] }
 	type CreatorInfoResponse = {
 		channelName: string | null
@@ -26,6 +29,8 @@ declare global {
 		channelBannerUrl: string | null
 		socialPlatformLinks: SocialPlatformLinks[]
 	}
+
+	type AddVideoTag = { videoTagId: number }
 
 	// Market Resposnes:
 	type PurchaseInstantAccessResponse = {

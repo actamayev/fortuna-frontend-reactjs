@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import { useCreatorContext } from "../../contexts/creator-context"
+import { useCreatorContext } from "../../../contexts/creator-context"
 
 export default function useAssignDefaultVideoName(): (
 	videoUUID: string,

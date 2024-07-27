@@ -6,6 +6,7 @@ declare global {
 		description: string
 		isContentExclusive: boolean
 		tierData: TierData[]
+		videoTags: string[]
 	}
 
 	interface NewVideoDetails extends CommonNewVideoDetails {
@@ -21,6 +22,11 @@ declare global {
 
 	interface TierData extends TierDataToSend {
 		isPurchaseTierChecked: boolean
+	}
+
+	interface VideoTags {
+		videoTag: string
+		videoTagId: number
 	}
 
 	interface CreateVideo extends CommonNewVideoDetails {
@@ -42,6 +48,7 @@ declare global {
 		totalCreatorProfitInSol: number
 		totalCreatorProfitInUsd: number
 		numberOfExclusivePurchasesSoFar: number | null
+		videoTags: VideoTags[]
 	}
 
 	interface SocialPlatformLinks {
