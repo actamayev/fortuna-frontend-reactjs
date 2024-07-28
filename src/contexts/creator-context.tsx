@@ -187,6 +187,23 @@ class CreatorClass {
 		}
 	})
 
+	public addVideoTag = action((tagName: string): void => {
+		if (this.newVideoDetails.videoTags.length >= 12) return
+		const normalizedTag = tagName.toLowerCase()
+		const tagExists = this.newVideoDetails.videoTags.some(tag => tag.toLowerCase() === normalizedTag)
+		if (tagExists === true) return
+
+		this.newVideoDetails.videoTags.push(tagName)
+	})
+
+	public removeVideoTag = action((tagName: string): void => {
+		const normalizedTag = tagName.toLowerCase()
+		const tagExists = this.newVideoDetails.videoTags.some(tag => tag.toLowerCase() === normalizedTag)
+		if (tagExists === false) return
+
+		this.newVideoDetails.videoTags = this.newVideoDetails.videoTags.filter(tag => tag.toLowerCase() !== normalizedTag)
+	})
+
 	public updateNewVideoTierDetails = action(<K extends keyof TierData>(
 		key: K, tierNumber: number, value: TierData[K]
 	) => {

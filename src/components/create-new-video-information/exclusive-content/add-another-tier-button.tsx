@@ -29,6 +29,7 @@ function AddAnotherTierButton() {
 			hoverClass="hover:bg-blue-600 dark:hover:bg-blue-500"
 			onClick={addAnotherTierButton}
 			className="text-white dark:text-zinc-950 font-semibold"
+			style={{ padding: "4px" }}
 		/>
 	)
 }
