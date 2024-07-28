@@ -34,6 +34,9 @@ class VideoClass {
 	private creatorData: CreatorDataHeldInClass[] = []
 	public isCreatorDataBeingRetrieved: boolean = false
 
+	public videoHashtagMap: Map<string, VideoDataWithUrlRetrievalStatus[]> = new Map()
+	public isCurrentlySearchingHashtag: boolean = false
+
 	constructor() {
 		makeAutoObservable(this)
 	}
@@ -51,6 +54,7 @@ class VideoClass {
 	private findVideoNotInVideosArray(videoUUID: string): UrlExtendedSingleVideoData | undefined {
 		return (
 			this.findVideoInSearchMapByUUID(videoUUID) ||
+			this.findVideoInHashtagMapByUUID(videoUUID) ||
 			this.findVideoInCreatorDataMapByUUID(videoUUID)
 		)
 	}
@@ -61,6 +65,10 @@ class VideoClass {
 
 	public contextForSearchMap(searchTerm: string): SearchData[] | undefined {
 		return this.videoSearchMap.get(searchTerm)
+	}
+
+	public contextForHashtagMap(hashtag: string): VideoDataWithUrlRetrievalStatus[] | undefined {
+		return this.videoHashtagMap.get(hashtag)
 	}
 
 	public contextForCreatorData(creatorUsername: string): CreatorDataHeldInClass | undefined {
@@ -99,6 +107,18 @@ class VideoClass {
 
 			if (!_.isUndefined(videoData)) return videoData
 		}
+	}
+
+	private findVideoInHashtagMapByUUID(videoUUID: string): UrlExtendedSingleVideoData | undefined {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		for (const [key, searchDataArray] of this.videoHashtagMap.entries()) {
+			const videoData = searchDataArray.find(
+				data => _.has(data, "uuid") && data.uuid === videoUUID
+			) as UrlExtendedSingleVideoData | undefined
+
+			if (!_.isUndefined(videoData)) return videoData
+		}
+		return
 	}
 
 	public setRecentlyPostedHomePageVideos = action((videoData: VideoDataWithUrlRetrievalStatus[]): void => {
@@ -221,6 +241,20 @@ class VideoClass {
 		this.videoSearchMap.set(searchTerm, [...existingData, videoSearchData])
 	})
 
+	public setHashtagMapData = action((hashtag: string, videoData: VideoDataWithUrlRetrievalStatus[]): void => {
+		if (_.isEmpty(videoData)) this.videoHashtagMap.set(hashtag, videoData)
+		videoData.map(singleVideoData => this.addVideoHashtagToMap(hashtag, singleVideoData))
+	})
+
+	private addVideoHashtagToMap = action((hashtag: string, videoData: VideoDataWithUrlRetrievalStatus): void => {
+		const existingData = this.contextForHashtagMap(hashtag)
+		if (_.isUndefined(existingData)) {
+			this.videoHashtagMap.set(hashtag, [videoData])
+			return
+		}
+		this.videoHashtagMap.set(hashtag, [...existingData, videoData])
+	})
+
 	public addRetrievedCreatorData (creatorDataResponse: CreatorDataResponse): void {
 		const { creatorData, videoData } = creatorDataResponse
 		const newVideoData = videoData.map(video => ({
@@ -306,6 +340,10 @@ class VideoClass {
 		this.isCurrentlySearching = newState
 	})
 
+	public setIsCurrentlySearchingHashtag = action((newState: boolean): void => {
+		this.isCurrentlySearchingHashtag = newState
+	})
+
 	public setIsCreatorDataBeingRetrieved = action((newState: boolean): void => {
 		this.isCreatorDataBeingRetrieved = newState
 	})
@@ -348,6 +386,14 @@ class VideoClass {
 				}
 			})
 		})
+		this.videoHashtagMap.forEach((hashtagArray) => {
+			hashtagArray.forEach(hashtagData => {
+				hashtagData.userLikeStatus = false
+				if (hashtagData.isVideoExclusive === true) {
+					hashtagData.isUserAbleToAccessVideo = false
+				}
+			})
+		})
 		this.areHomePageVideosRetrieved = false
 		this.areRecentlyUploadedVideosRetrieved = false
 		this.clearCreatorVideosFilter()
@@ -369,6 +415,11 @@ class VideoClass {
 				}
 			})
 		})
+		this.videoHashtagMap.forEach((hashtagArray) => {
+			hashtagArray.forEach(video => {
+				video.videoUrlRetrievalAttempted = false
+			})
+		})
 	})
 
 	public clearVideosOnLogin = action((): void => {
@@ -384,6 +435,7 @@ class VideoClass {
 		this.isRetrievingVideoUrl = false
 
 		this.isCurrentlySearching = false
+		this.isCurrentlySearchingHashtag = false
 		this.isCreatorDataBeingRetrieved = false
 		this.setSearchTerm(null)
 		this.homeScreenVideosToShowCategory = "Most Popular"

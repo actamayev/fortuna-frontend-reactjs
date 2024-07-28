@@ -17,6 +17,7 @@ declare global {
 
 	type DynamicPageNames =
 		`/v/${string}` |
+		`/hashtag/${string}` |
 		`/c/${AtPrefixedString}` |
 		`/s/${string}`
 

@@ -65,6 +65,7 @@ declare global {
 		}[]
 	}
 	type GeneralSearchResponse = { searchResults: SearchData[] }
+	type VideoTagResponse = { transformedVideoTagData: VideoDataLessVideoUrlResponse[] }
 
 	// Solana Responses:
 	type TransferFundsResponse = { solTransferData: SolanaTransaction }

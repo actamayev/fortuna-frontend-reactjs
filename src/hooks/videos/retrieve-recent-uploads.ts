@@ -4,9 +4,7 @@ import { isErrorResponse } from "../../utils/type-checks"
 import { useVideoContext } from "../../contexts/video-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useRetrieveRecentUploads(
-	setAreVideosLoading: React.Dispatch<React.SetStateAction<boolean>>
-): void {
+export default function useRetrieveRecentUploads(): void {
 	const videoClass = useVideoContext()
 	const fortunaApiClient = useApiClientContext()
 
@@ -18,7 +16,6 @@ export default function useRetrieveRecentUploads(
 			) return
 			videoClass.areRecentlyUploadedVideosRetrieved = false
 			videoClass.areRecentlyUploadedBeingRetrieved = true
-			setAreVideosLoading(true)
 			const response = await fortunaApiClient.videoDataService.getRecentlyUploadedVideos()
 			if (!_.isEqual(response.status, 200) || isErrorResponse(response.data)) {
 				throw new Error("Failed to retrieve video")
@@ -32,10 +29,9 @@ export default function useRetrieveRecentUploads(
 		} catch (error) {
 			console.error(error)
 		} finally {
-			setAreVideosLoading(false)
 			videoClass.areRecentlyUploadedBeingRetrieved = false
 		}
-	}, [videoClass, fortunaApiClient.videoDataService, setAreVideosLoading])
+	}, [videoClass, fortunaApiClient.videoDataService])
 
 	useEffect(() => {
 		void retrieveRecentUploads()
