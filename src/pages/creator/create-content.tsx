@@ -40,7 +40,7 @@ function CreateContent() {
 
 				<AddVideoTagsSection />
 
-				<div className="text-zinc-950 dark:text-zinc-200">
+				<div className="text-zinc-950 dark:text-zinc-200 mt-2 mb-1">
 					<IsContentExclusiveSlider />
 				</div>
 				<div className="flex w-full text-zinc-950 dark:text-zinc-200">

@@ -189,7 +189,7 @@ class CreatorClass {
 
 	public addVideoTag = action((tagName: string): void => {
 		if (this.newVideoDetails.videoTags.length >= 12) return
-		const normalizedTag = tagName.toLowerCase()
+		const normalizedTag = tagName.toLowerCase().slice(0, 50)
 		const tagExists = this.newVideoDetails.videoTags.some(tag => tag.toLowerCase() === normalizedTag)
 		if (tagExists === true) return
 
