@@ -25,7 +25,6 @@ export default function useRetrieveVideosByTagUseEffect(hashtag: string | undefi
 			if (!_.isEqual(hashtagSearchData.status, 200) || isNonSuccessResponse(hashtagSearchData.data)) {
 				throw Error("Unable to retrieve hashtag seaarch data")
 			}
-			videoClass.setIsCurrentlySearchingHashtag(false)
 
 			const videos = _.isEmpty(hashtagSearchData.data.transformedVideoTagData) ?
 				[] :

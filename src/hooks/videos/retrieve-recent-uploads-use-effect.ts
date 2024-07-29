@@ -4,7 +4,7 @@ import { isErrorResponse } from "../../utils/type-checks"
 import { useVideoContext } from "../../contexts/video-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useRetrieveRecentUploads(): void {
+export default function useRetrieveRecentUploadsUseEffect(): void {
 	const videoClass = useVideoContext()
 	const fortunaApiClient = useApiClientContext()
 

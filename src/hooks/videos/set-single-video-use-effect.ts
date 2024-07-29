@@ -4,7 +4,7 @@ import { isNonSuccessResponse } from "../../utils/type-checks"
 import { useVideoContext } from "../../contexts/video-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useSetSingleVideo(
+export default function useSetSingleVideoUseEffect(
 	videoUUID: string | undefined,
 	setIsVideoLoading: React.Dispatch<React.SetStateAction<boolean>>,
 	setIsVideoNotFound: React.Dispatch<React.SetStateAction<boolean>>
