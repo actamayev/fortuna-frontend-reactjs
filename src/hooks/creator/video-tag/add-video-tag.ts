@@ -7,7 +7,9 @@ import { useApiClientContext } from "../../../contexts/fortuna-api-client-contex
 
 export default function useAddVideoTag(): (
 	videoId: number,
-	videoTag: string
+	videoTag: string,
+	setVideoTag: React.Dispatch<React.SetStateAction<string>>
+
 ) => Promise<void> {
 	const creatorClass = useCreatorContext()
 	const fortunaApiClient = useApiClientContext()
@@ -15,7 +17,8 @@ export default function useAddVideoTag(): (
 
 	return useCallback(async (
 		videoId: number,
-		videoTag: string
+		videoTag: string,
+		setVideoTag: React.Dispatch<React.SetStateAction<string>>
 	): Promise<void> => {
 		try {
 			const isAbleToAddTag = creatorClass.isAbleToAddTagToVideo(videoId, videoTag)
@@ -28,6 +31,7 @@ export default function useAddVideoTag(): (
 			}
 			creatorClass.addTagToVideo(videoId, videoTag, addVideoTagResponse.data.videoTagId)
 			notificationsClass.setPositiveNotification(`Added #${videoTag}`)
+			setVideoTag("")
 		} catch (error) {
 			console.error(error)
 			notificationsClass.setNegativeNotification(`Unable to add #${videoTag} to video.`)

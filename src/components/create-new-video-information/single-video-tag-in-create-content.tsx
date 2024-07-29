@@ -10,7 +10,7 @@ function SingleVideoTagInCreateContent(props: Props) {
 	const { videoTag } = props
 	const creatorClass = useCreatorContext()
 
-	const removeVideoTagCallback = useCallback(() => {
+	const removeTagAction = useCallback(() => {
 		creatorClass.removeVideoTag(videoTag)
 	}, [creatorClass, videoTag])
 
@@ -20,7 +20,7 @@ function SingleVideoTagInCreateContent(props: Props) {
 			<button
 				type="button"
 				className="ml-2 bg-transparent border-0 text-white focus:outline-none"
-				onClick={removeVideoTagCallback}
+				onClick={removeTagAction}
 			>
 			&times;
 			</button>
