@@ -1,3 +1,4 @@
+import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useMemo, useState } from "react"
 import FormGroup from "../form-group"
@@ -18,7 +19,7 @@ function AddVideoTagsSection() {
 	const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key !== "Enter" && e.key !== ",") return
 		e.preventDefault()
-		if (videoTag.trim() === "") return
+		if (_.isEmpty(videoTag.trim())) return
 		creatorClass.addVideoTag(videoTag.trim())
 		setVideoTag("")
 	}, [creatorClass, videoTag])
