@@ -15,17 +15,13 @@ function AddVideoTagsSection() {
 		return creatorClass.newVideoDetails.videoTags
 	}, [creatorClass.newVideoDetails.videoTags])
 
-	const addVideoTagCallback = useCallback(() => {
+	const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key !== "Enter" && e.key !== ",") return
+		e.preventDefault()
 		if (videoTag.trim() === "") return
 		creatorClass.addVideoTag(videoTag.trim())
 		setVideoTag("")
 	}, [creatorClass, videoTag])
-
-	const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
-		if (e.key !== "Enter" && e.key !== ",") return
-		e.preventDefault()
-		addVideoTagCallback()
-	}, [addVideoTagCallback])
 
 	const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value

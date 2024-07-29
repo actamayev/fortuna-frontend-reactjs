@@ -16,16 +16,12 @@ function EditVideoTags(props: Props) {
 	const maxTagLength = 50
 	const addVideoTag = useAddVideoTag()
 
-	const addVideoTagCallback = useCallback(() => {
-		if (videoTag.trim() === "") return
-		addVideoTag(content.videoId, videoTag, setVideoTag)
-	}, [addVideoTag, content.videoId, videoTag])
-
 	const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key !== "Enter" && e.key !== ",") return
 		e.preventDefault()
-		addVideoTagCallback()
-	}, [addVideoTagCallback])
+		if (videoTag.trim() === "") return
+		addVideoTag(content.videoId, videoTag, setVideoTag)
+	}, [addVideoTag, content.videoId, videoTag])
 
 	const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value
