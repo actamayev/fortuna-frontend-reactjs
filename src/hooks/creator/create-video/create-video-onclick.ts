@@ -56,10 +56,9 @@ export default function useCreateVideoOnclick(): (
 
 			const createVideoObject: CreateVideo = {
 				...restOfVideoDetails,
+				...uploadVideoResponse.data,
 				tierData: cleanedTierData, // use the cleaned tier data without isPurchaseTierChecked
-				uuid: uploadVideoResponse.data.uuid,
-				uploadedImageId: uploadImageResponse.data.uploadedImageId,
-				uploadedVideoId: uploadVideoResponse.data.uploadedVideoId
+				uploadedImageId: uploadImageResponse.data.uploadedImageId
 			}
 
 			setStatus("Video uploading... you may close this page")
@@ -72,12 +71,10 @@ export default function useCreateVideoOnclick(): (
 
 			const myContent: MyContent = {
 				...restOfVideoDetails,
-				videoId: createVideoResponse.data.newVideoId,
-				videoTags: createVideoResponse.data.videoTags,
+				...uploadVideoResponse.data,
+				...createVideoResponse.data,
 				videoListingStatus: "LISTED",
 				imageUrl: uploadImageResponse.data.imageUploadUrl,
-				videoDurationSeconds: uploadVideoResponse.data.videoDurationSeconds,
-				uuid: uploadVideoResponse.data.uuid,
 				numberOfLikes: 0,
 				isVideoFeatured: false,
 				createdAt: new Date(),
