@@ -1,36 +1,50 @@
 import _ from "lodash"
+import { AxiosError } from "axios"
 import { useCallback } from "react"
-import { useVideoContext } from "../../contexts/video-context"
-import { isNonSuccessResponse } from "../../utils/type-checks"
+import { useNotificationsContext } from "../../contexts/notifications-context"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
+import { isMessageResponse, isNonSuccessResponse } from "../../utils/type-checks"
 
 export default function useReportVideo(): (
 	video: UrlExtendedSingleVideoData,
-	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+	reportMessage: string,
+	toggleModalOpen: () => void
 ) => Promise<void> {
 	const fortunaApiClient = useApiClientContext()
-	const videoClass = useVideoContext()
+	const notificationsClass = useNotificationsContext()
 
 	return useCallback(async (
 		video: UrlExtendedSingleVideoData,
-		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+		reportMessage: string,
+		toggleModalOpen
 	) => {
 		try {
 			if (
 				_.isNull(fortunaApiClient.httpClient.accessToken) ||
 				video.isUserAbleToAccessVideo === false
 			) return
-			setIsLoading(true)
-			const likeResponse = await fortunaApiClient.videoDataService.reportVideo(video.videoId)
+			const likeResponse = await fortunaApiClient.videoDataService.reportVideo(
+				video.videoId, !_.isEmpty(reportMessage) ? reportMessage : undefined
+			)
 
 			if (!_.isEqual(likeResponse.status, 200) || isNonSuccessResponse(likeResponse.data)) {
-				throw new Error("Like failed")
+				throw new Error("Report Video failed")
 			}
-			videoClass.updateVideoDetailsAfterLikeOrRemoveLike(video.uuid)
+			toggleModalOpen()
+			notificationsClass.setPositiveNotification("Video reported")
 		} catch (error) {
 			console.error(error)
-		} finally {
-			setIsLoading(false)
+			if (error instanceof AxiosError) {
+				if (isMessageResponse(error.response?.data)) {
+					// eslint-disable-next-line max-depth
+					if (error.response.data.message === "User has already reported this video") {
+						notificationsClass.setNeutralNotification("You have already reported this video")
+						toggleModalOpen()
+						return
+					}
+				}
+			}
+			notificationsClass.setNegativeNotification("Unable to report video at this time. Please reload page and try again.")
 		}
-	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.videoDataService, videoClass])
+	}, [fortunaApiClient.httpClient.accessToken, fortunaApiClient.videoDataService, notificationsClass])
 }
