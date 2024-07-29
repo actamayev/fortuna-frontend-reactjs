@@ -1,4 +1,5 @@
 import _ from "lodash"
+import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import useVideoSearch from "../hooks/search/general-search"
@@ -11,9 +12,13 @@ function SearchResults() {
 	const videoClass = useVideoContext()
 	const videoSearch = useVideoSearch()
 
+	const isCurrentlySearching = useMemo(() => {
+		return videoClass.isCurrentlySearching
+	}, [videoClass.isCurrentlySearching])
+
 	if (_.isUndefined(searchTerm)) return null
 
-	if (videoClass.isCurrentlySearching === true) {
+	if (isCurrentlySearching === true) {
 		return (
 			<>
 				<BasicHelmet

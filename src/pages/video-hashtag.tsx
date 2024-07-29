@@ -1,4 +1,5 @@
 import _ from "lodash"
+import { useMemo } from "react"
 import { observer } from "mobx-react"
 import { useParams } from "react-router-dom"
 import { useVideoContext } from "../contexts/video-context"
@@ -11,9 +12,13 @@ function VideoHashtag() {
 	const videoClass = useVideoContext()
 	useRetrieveVideosByTagUseEffect(videoHashtag)
 
+	const isCurrentlySearchingHashtag = useMemo(() => {
+		return videoClass.isCurrentlySearchingHashtag
+	}, [videoClass.isCurrentlySearchingHashtag])
+
 	if (_.isUndefined(videoHashtag)) return null
 
-	if (videoClass.isCurrentlySearchingHashtag === true) {
+	if (isCurrentlySearchingHashtag === true) {
 		return (
 			<>
 				<BasicHelmet
