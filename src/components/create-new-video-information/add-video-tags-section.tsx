@@ -20,7 +20,7 @@ function AddVideoTagsSection() {
 		if (e.key !== "Enter" && e.key !== ",") return
 		e.preventDefault()
 		if (_.isEmpty(videoTag.trim())) return
-		creatorClass.addVideoTag(videoTag.trim())
+		creatorClass.addTagToNewVideoDetails(videoTag.trim())
 		setVideoTag("")
 	}, [creatorClass, videoTag])
 
@@ -31,7 +31,7 @@ function AddVideoTagsSection() {
 	}, [])
 
 	const removeTagAction = useCallback((videoTagToDelete: string) => {
-		creatorClass.removeVideoTag(videoTagToDelete)
+		creatorClass.removeTagFromNewVideoDetails(videoTagToDelete)
 	}, [creatorClass])
 
 	return (

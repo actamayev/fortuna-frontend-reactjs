@@ -137,11 +137,11 @@ class CreatorClass {
 		const video = this.myContent.find(v => v.videoId === videoId)
 		if (_.isUndefined(video)) return false
 
+		if (video.videoTags.length >= 12) return false
+
 		const normalizedTag = videoTag.toLowerCase()
 		const tagExists = video.videoTags.some(tag => tag.videoTag.toLowerCase() === normalizedTag)
 		if (tagExists === true) return false
-
-		if (video.videoTags.length >= 12) return false
 
 		return true
 	}
@@ -187,7 +187,7 @@ class CreatorClass {
 		}
 	})
 
-	public addVideoTag = action((tagName: string): void => {
+	public addTagToNewVideoDetails = action((tagName: string): void => {
 		if (this.newVideoDetails.videoTags.length >= 12) return
 		const normalizedTag = tagName.toLowerCase().slice(0, 50)
 		const tagExists = this.newVideoDetails.videoTags.some(tag => tag.toLowerCase() === normalizedTag)
@@ -196,7 +196,7 @@ class CreatorClass {
 		this.newVideoDetails.videoTags.push(tagName)
 	})
 
-	public removeVideoTag = action((tagName: string): void => {
+	public removeTagFromNewVideoDetails = action((tagName: string): void => {
 		const normalizedTag = tagName.toLowerCase()
 		const tagExists = this.newVideoDetails.videoTags.some(tag => tag.toLowerCase() === normalizedTag)
 		if (tagExists === false) return
