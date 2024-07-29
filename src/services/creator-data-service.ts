@@ -64,21 +64,21 @@ export default class CreatorDataService {
 		)
 	}
 
-	async updateVideoListingStatus(videoUUID: string): Promise<AxiosResponse<AllCommonResponses>> {
+	async updateVideoListingStatus(videoId: number): Promise<AxiosResponse<AllCommonResponses>> {
 		return await this.httpClient.http.post<AllCommonResponses>(
-			`${this.pathHeader}/update-video-listing-status/${videoUUID}`
+			`${this.pathHeader}/update-video-listing-status/${videoId}`
 		)
 	}
 
-	async editVideoName(videoName: string, videoUUID: string): Promise<AxiosResponse<AllCommonResponses>> {
+	async editVideoName(videoName: string, videoId: number): Promise<AxiosResponse<AllCommonResponses>> {
 		return await this.httpClient.http.post<AllCommonResponses>(
-			`${this.pathHeader}/edit-video-name`, { videoName, videoUUID }
+			`${this.pathHeader}/edit-video-name`, { videoName, videoId }
 		)
 	}
 
-	async editVideoDescription(videoDescription: string, videoUUID: string): Promise<AxiosResponse<AllCommonResponses>> {
+	async editVideoDescription(videoDescription: string, videoId: number): Promise<AxiosResponse<AllCommonResponses>> {
 		return await this.httpClient.http.post<AllCommonResponses>(
-			`${this.pathHeader}/edit-video-description`, { videoDescription, videoUUID }
+			`${this.pathHeader}/edit-video-description`, { videoDescription, videoId }
 		)
 	}
 

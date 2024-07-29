@@ -31,9 +31,15 @@ export function useAbbreviatedDateFormatter(): (dateInput: Date) => string {
 	}, [])
 }
 
-export function useRelativeDateFormatter(): (dateInput: Date) => string {
+export function useRelativeDateFormatter(): (
+	dateInput: Date,
+	nowOrUploaded?: "now" | "uploaded"
+) => string {
 	// eslint-disable-next-line complexity
-	return useCallback((dateInput: Date): string => {
+	return useCallback((
+		dateInput: Date,
+		nowOrUploaded: "now" | "uploaded" = "uploaded"
+	): string => {
 		const date = dayjs(dateInput)
 		const now = dayjs()
 		const diffInMinutes = now.diff(date, "minute")
@@ -44,7 +50,7 @@ export function useRelativeDateFormatter(): (dateInput: Date) => string {
 		const diffInYears = now.diff(date, "year")
 
 		if (diffInMinutes < 60) {
-			if (diffInMinutes === 0) return "Just uplaoded"
+			if (diffInMinutes === 0) return `${nowOrUploaded === "now" ? "j" : "J"}ust ${nowOrUploaded}`
 			return `${diffInMinutes} minute${diffInMinutes > 1 ? "s" : ""} ago`
 		} else if (diffInHours < 24) {
 			return `${diffInHours} hour${diffInHours > 1 ? "s" : ""} ago`

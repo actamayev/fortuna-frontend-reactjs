@@ -12,7 +12,7 @@ import { usePositionsAndTransactionsContext } from "../../contexts/positions-and
 import useConfirmSufficientFundsForInstantAccess from "../solana/confirm-sufficient-funds-for-instant-access"
 
 export default function usePurchaseExclusiveContentAccess(): (
-	videoUUID: string,
+	video: UrlExtendedSingleVideoData,
 	tierNumber: number,
 	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => Promise<void> {
@@ -26,28 +26,26 @@ export default function usePurchaseExclusiveContentAccess(): (
 	const confirmSufficientFundsForInstantAccess = useConfirmSufficientFundsForInstantAccess()
 
 	return useCallback(async (
-		videoUUID: string,
+		video: UrlExtendedSingleVideoData,
 		tierNumber: number,
 		setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 	): Promise<void> => {
 		try {
 			if (_.isNull(fortunaApiClient.httpClient.accessToken)) return
 
-			const doesUserHaveSufficientFunds = confirmSufficientFundsForInstantAccess(videoUUID)
+			const doesUserHaveSufficientFunds = confirmSufficientFundsForInstantAccess(video.uuid)
 			if (doesUserHaveSufficientFunds === false) return
-			const video = videoClass.findVideoFromUUID(videoUUID)
-			if (_.isUndefined(video)) return
 			setIsLoading(true)
-			const purchaseResponse = await fortunaApiClient.marketDataService.purchaseExclusiveContentAccess(videoUUID, tierNumber)
+			const purchaseResponse = await fortunaApiClient.marketDataService.purchaseExclusiveContentAccess(video.videoId, tierNumber)
 			if (!_.isEqual(purchaseResponse.status, 200) || isNonSuccessResponse(purchaseResponse.data)) {
 				throw Error ("Error completing exclusive content purchase")
 			}
-			videoClass.addVideoUrlToVideo(videoUUID, purchaseResponse.data.videoUrl)
+			videoClass.addVideoUrlToVideo(video.uuid, purchaseResponse.data.videoUrl)
 
 			positionsAndTransactionsClass.addExclusiveContent({ ...video, ...purchaseResponse.data })
 			notificationClass.setSuperPositiveNotification("Successfully purchased access to video. Enjoy!")
 			videoClass.updateVideoDetailsAfterUserPurchase(
-				videoUUID,
+				video.uuid,
 				tierNumber,
 				purchaseResponse.data.isTierSoldOut,
 				purchaseResponse.data.isVideoSoldOut

@@ -66,7 +66,7 @@ function BeneathThumbnailPurchasedExclusiveContent(props: Props) {
 				onMouseEnter={handleMouseEnter}
 				onMouseLeave={handleMouseLeave}
 			>
-				Purchased {relativeDateFormatter(purchaseDate)} for&nbsp;
+				Purchased {relativeDateFormatter(purchaseDate, "now")} for&nbsp;
 				<ShowProvidedUsdOrSolPrice
 					roundOrFixed="round"
 					solPriceToDisplay={priceInSol}

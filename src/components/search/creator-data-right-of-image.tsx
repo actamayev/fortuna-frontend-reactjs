@@ -9,7 +9,7 @@ function CreatorDataRightOfImage(props: Props) {
 	const { creatorData } = props
 
 	return (
-		<div className="flex flex-col justify-start w-7/12 px-3 my-1.5">
+		<div className="flex flex-col justify-start w-7/12 px-3 my-1">
 			<div className="text-zinc-950 dark:text-white text-2xl font-semibold overflow-hidden text-ellipsis whitespace-nowrap">
 				{creatorData.channelName}
 			</div>

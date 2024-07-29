@@ -21,7 +21,7 @@ function ShareVideoButton() {
 			classes="flex items-center justify-center"
 			onClickAction={copyToClipboard}
 		>
-			<MdIosShare size={22} className="mx-2" />
+			<MdIosShare size={24} className="mx-2" />
 		</HoverOutlineComponent>
 	)
 }

@@ -34,6 +34,10 @@ function ChangeVideoListingStatus(props: Props) {
 		return "cursor-pointer"
 	}, [content.isContentExclusive])
 
+	const updateVideoListingStatusCallback = useCallback(async() => {
+		await updateVideoListingStatus(content)
+	}, [content, updateVideoListingStatus])
+
 	return (
 		<div className="flex flex-col items-start w-full mt-2">
 			<label className="text-sm text-zinc-700 dark:text-zinc-300 ml-0.5 font-semibold">
@@ -63,7 +67,7 @@ function ChangeVideoListingStatus(props: Props) {
 				{content.videoListingStatus !== videoListingStatus && (
 					<div className="mt-0.5">
 						<SaveButton
-							handleSaveButton={() => updateVideoListingStatus(content.uuid)}
+							handleSaveButton={updateVideoListingStatusCallback}
 							customCirclePixelSize="35px"
 						/>
 					</div>
