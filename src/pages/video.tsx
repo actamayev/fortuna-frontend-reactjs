@@ -6,12 +6,12 @@ import VideoPlayer from "../components/video/video-player"
 import BasicHelmet from "../components/helmet/basic-helmet"
 import { useVideoContext } from "../contexts/video-context"
 import { addLeadingAt } from "../utils/leading-at-operations"
-import useSetSingleVideo from "../hooks/videos/set-single-video"
 import LoadingVideoPlayer from "../components/video/loading-video-player"
-import useRetrieveVideoUrlData from "../hooks/videos/retrieve-video-url-data"
 import MoreVideosMap from "../components/video/more-videos-area/more-videos-map"
+import useSetSingleVideoUseEffect from "../hooks/videos/set-single-video-use-effect"
 import SubVideoSection from "../components/video/sub-video-section/sub-video-section"
 import PurchaseExclusiveAccessCard from "../components/video/purchase-exclusive-access-card"
+import useRetrieveVideoUrlDataUseEffect from "../hooks/videos/retrieve-video-url-data-use-effect"
 import useRetrieveCreatorVideosAndDataUseEffect from "../hooks/videos/retrieve-creator-videos-and-data-use-effect"
 
 function Video() {
@@ -19,8 +19,8 @@ function Video() {
 	const videoClass = useVideoContext()
 	const [isVideoLoading, setIsVideoLoading] = useState(false)
 	const [isVideoNotFound, setIsVideoNotFound] = useState(false)
-	useSetSingleVideo(videoUUID, setIsVideoLoading, setIsVideoNotFound)
-	useRetrieveVideoUrlData(videoUUID)
+	useSetSingleVideoUseEffect(videoUUID, setIsVideoLoading, setIsVideoNotFound)
+	useRetrieveVideoUrlDataUseEffect(videoUUID)
 	const video = videoClass.findVideoFromUUID(videoUUID)
 	useRetrieveCreatorVideosAndDataUseEffect(addLeadingAt(video?.creatorUsername))
 

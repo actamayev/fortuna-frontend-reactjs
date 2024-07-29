@@ -4,9 +4,9 @@ import { useState, useCallback, useRef, useEffect } from "react"
 import SaveButton from "../../save-button"
 import CancelEditingButton from "../../cancel-editing-button"
 import ChannelNameTextInput from "./channel-name-text-input"
-import useEditChannelName from "../../../../hooks/creator/edit-channel-name"
-import useAssignDefaultChannelName from "../../../../hooks/creator/assign-default-channel-name"
+import useEditChannelName from "../../../../hooks/creator/channel-name/edit-channel-name"
 import useEscapeListenerUseEffect from "../../../../hooks/listeners/escape-key-listener-use-effect"
+import useAssignDefaultChannelName from "../../../../hooks/creator/channel-name/assign-default-channel-name"
 
 function ChannelName() {
 	const [channelName, setChannelName] = useState("")

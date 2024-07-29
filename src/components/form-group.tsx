@@ -9,6 +9,7 @@ interface Props {
 	multiline?: boolean
 	name?: string
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void
 	pattern?: string
 	placeholder?: string
 	required?: boolean
@@ -30,6 +31,7 @@ export default function FormGroup(props: Props) {
 		multiline,
 		name,
 		onChange,
+		onKeyDown,
 		pattern,
 		placeholder,
 		required,
@@ -53,6 +55,7 @@ export default function FormGroup(props: Props) {
 				maxLength={maxLength}
 				name={name}
 				onChange={onChange}
+				onKeyDown={onKeyDown}
 				pattern={pattern}
 				placeholder={placeholder}
 				required={required}

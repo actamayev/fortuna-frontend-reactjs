@@ -4,7 +4,7 @@ import { useVideoContext } from "../../contexts/video-context"
 import { isNonSuccessResponse } from "../../utils/type-checks"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useRetrieveVideoUrlData(videoUUID: string | undefined): void {
+export default function useRetrieveVideoUrlDataUseEffect(videoUUID: string | undefined): void {
 	const videoClass = useVideoContext()
 	const fortunaApiClient = useApiClientContext()
 

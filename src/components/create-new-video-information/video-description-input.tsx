@@ -22,7 +22,7 @@ function VideoDescriptionInput() {
 	}, [creatorClass])
 
 	return (
-		<>
+		<div className="mt-1">
 			<div>
 				<label className="text-sm text-zinc-600 dark:text-zinc-200 ml-0.5 font-semibold">
 					Video Description
@@ -42,7 +42,7 @@ function VideoDescriptionInput() {
 			<span className="text-xs text-zinc-600 dark:text-zinc-400 ml-0.5">
 				{description.length}/{maxLength}
 			</span>
-		</>
+		</div>
 	)
 }
 

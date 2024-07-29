@@ -4,36 +4,31 @@ import { isErrorResponses } from "../../../utils/type-checks"
 import { useCreatorContext } from "../../../contexts/creator-context"
 import { useNotificationsContext } from "../../../contexts/notifications-context"
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
-import convertSocialLinkToProperCasing from "../../../utils/convert-social-link-to-proper-casing"
 
-export default function useAddOrEditSocialLink(): (
-	socialLink: string,
-	socialPlatform: SocialPlatformKey,
+export default function useRemoveVideoTag(): (
+	videoTag: VideoTag,
+	videoId: number
 ) => Promise<void> {
 	const creatorClass = useCreatorContext()
 	const fortunaApiClient = useApiClientContext()
 	const notificationsClass = useNotificationsContext()
 
 	return useCallback(async (
-		socialLink: string,
-		socialPlatform: SocialPlatformKey,
+		videoTag: VideoTag,
+		videoId: number
 	): Promise<void> => {
 		try {
-			if (_.isEmpty(socialLink.trim())) return
-
-			const response = await fortunaApiClient.creatorDataService.addOrEditSocialPlatformLink(
-				socialLink, socialPlatform
-			)
+			const response = await fortunaApiClient.creatorDataService.deleteVideoTag(videoTag.videoTagId, videoId)
 
 			if (!_.isEqual(response.status, 200) || isErrorResponses(response.data)) {
-				throw Error("Unable to add social link")
+				throw Error("Unable to add tag to video")
 			}
-			notificationsClass.setPositiveNotification(`Saved ${convertSocialLinkToProperCasing(socialPlatform)} link`)
+			creatorClass.removeTagFromVideo(videoId, videoTag.videoTagId)
+			notificationsClass.setPositiveNotification(`Removed #${videoTag.videoTag}`)
 		} catch (error) {
 			console.error(error)
-			creatorClass.removeSocialPlatformLink(socialPlatform)
 			notificationsClass.setNegativeNotification(
-				`Unable to add ${convertSocialLinkToProperCasing(socialPlatform)} link at this time. Please reload page and try again.`
+				`Unable to remove #${videoTag.videoTag} from video at this time. Please reload page and try again.`
 			)
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass])
