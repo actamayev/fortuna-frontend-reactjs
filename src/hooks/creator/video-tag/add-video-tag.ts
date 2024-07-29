@@ -35,7 +35,9 @@ export default function useAddVideoTag(): (
 			setVideoTag("")
 		} catch (error) {
 			console.error(error)
-			notificationsClass.setNegativeNotification(`Unable to add #${cleanedVideoTag} to video.`)
+			notificationsClass.setNegativeNotification(
+				`Unable to add #${cleanedVideoTag} to video at this time. Please reload page and try again.`
+			)
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass])
 }

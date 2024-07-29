@@ -27,7 +27,9 @@ export default function useRemoveVideoTag(): (
 			notificationsClass.setPositiveNotification(`Removed #${videoTag.videoTag}`)
 		} catch (error) {
 			console.error(error)
-			notificationsClass.setNegativeNotification(`Unable to add #${videoTag.videoTag} to video.`)
+			notificationsClass.setNegativeNotification(
+				`Unable to remove #${videoTag.videoTag} from video at this time. Please reload page and try again.`
+			)
 		}
 	}, [creatorClass, fortunaApiClient.creatorDataService, notificationsClass])
 }
