@@ -1,9 +1,10 @@
 import { observer } from "mobx-react"
 import { useCallback, useState } from "react"
 import FormGroup from "../../../form-group"
+import SingleVideoTag from "../../../single-video-tag"
 import cleanVideoTag from "../../../../utils/clean-video-tag"
-import SingleVideoTagInStudio from "./single-video-tag-in-studio"
 import useAddVideoTag from "../../../../hooks/creator/video-tag/add-video-tag"
+import useRemoveVideoTag from "../../../../hooks/creator/video-tag/remove-video-tag"
 
 interface Props {
 	content: MyContent
@@ -15,6 +16,7 @@ function EditVideoTags(props: Props) {
 	const maxLengthActiveVideoTags = 12
 	const maxTagLength = 50
 	const addVideoTag = useAddVideoTag()
+	const removeVideoTag = useRemoveVideoTag()
 
 	const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key !== "Enter" && e.key !== ",") return
@@ -29,6 +31,10 @@ function EditVideoTags(props: Props) {
 		setVideoTag(limitedValue)
 	}, [])
 
+	const removeTagAction = useCallback(async(videoTagToDelete: VideoTags) => {
+		await removeVideoTag(videoTagToDelete, content.videoId)
+	}, [content.videoId, removeVideoTag])
+
 	return (
 		<div className="mt-1">
 			<label className="text-sm text-zinc-600 dark:text-zinc-200 ml-0.5 font-semibold">
@@ -39,10 +45,10 @@ function EditVideoTags(props: Props) {
 				border rounded-md border-zinc-200 dark:border-zinc-700"
 			>
 				{content.videoTags.map(tag => (
-					<SingleVideoTagInStudio
+					<SingleVideoTag
 						key={tag.videoTagId}
-						tag={tag}
-						videoId={content.videoId}
+						videoTag={tag.videoTag}
+						removeTagAction={() => removeTagAction(tag)}
 					/>
 				))}
 				<FormGroup

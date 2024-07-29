@@ -1,9 +1,9 @@
 import { observer } from "mobx-react"
 import { useCallback, useMemo, useState } from "react"
 import FormGroup from "../form-group"
+import SingleVideoTag from "../single-video-tag"
 import cleanVideoTag from "../../utils/clean-video-tag"
 import { useCreatorContext } from "../../contexts/creator-context"
-import SingleVideoTagInCreateContent from "./single-video-tag-in-create-content"
 
 function AddVideoTagsSection() {
 	const creatorClass = useCreatorContext()
@@ -29,6 +29,10 @@ function AddVideoTagsSection() {
 		setVideoTag(limitedValue)
 	}, [])
 
+	const removeTagAction = useCallback((videoTagToDelete: string) => {
+		creatorClass.removeVideoTag(videoTagToDelete)
+	}, [creatorClass])
+
 	return (
 		<div className="mt-1">
 			<label className="text-sm text-zinc-600 dark:text-zinc-200 ml-0.5 font-semibold">
@@ -39,9 +43,10 @@ function AddVideoTagsSection() {
 				border rounded-md border-zinc-200 dark:border-zinc-700"
 			>
 				{activeVideoTags.map(tag => (
-					<SingleVideoTagInCreateContent
+					<SingleVideoTag
 						key={tag}
 						videoTag={tag}
+						removeTagAction={() => removeTagAction(tag)}
 					/>
 				))}
 				<FormGroup
