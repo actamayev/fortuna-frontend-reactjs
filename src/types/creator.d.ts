@@ -24,7 +24,7 @@ declare global {
 		isPurchaseTierChecked: boolean
 	}
 
-	interface VideoTags {
+	interface VideoTag {
 		videoTag: string
 		videoTagId: number
 	}
@@ -48,7 +48,7 @@ declare global {
 		totalCreatorProfitInSol: number
 		totalCreatorProfitInUsd: number
 		numberOfExclusivePurchasesSoFar: number | null
-		videoTags: VideoTags[]
+		videoTags: VideoTag[]
 	}
 
 	interface SocialPlatformLinks {

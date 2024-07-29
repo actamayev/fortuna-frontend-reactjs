@@ -6,7 +6,7 @@ import { useNotificationsContext } from "../../../contexts/notifications-context
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 
 export default function useRemoveVideoTag(): (
-	videoTag: VideoTags,
+	videoTag: VideoTag,
 	videoId: number
 ) => Promise<void> {
 	const creatorClass = useCreatorContext()
@@ -14,7 +14,7 @@ export default function useRemoveVideoTag(): (
 	const notificationsClass = useNotificationsContext()
 
 	return useCallback(async (
-		videoTag: VideoTags,
+		videoTag: VideoTag,
 		videoId: number
 	): Promise<void> => {
 		try {

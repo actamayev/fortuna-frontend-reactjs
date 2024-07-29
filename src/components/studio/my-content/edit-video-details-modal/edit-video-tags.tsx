@@ -32,7 +32,7 @@ function EditVideoTags(props: Props) {
 		setVideoTag(limitedValue)
 	}, [])
 
-	const removeTagAction = useCallback(async(videoTagToDelete: VideoTags) => {
+	const removeTagAction = useCallback(async(videoTagToDelete: VideoTag) => {
 		await removeVideoTag(videoTagToDelete, content.videoId)
 	}, [content.videoId, removeVideoTag])
 

@@ -19,7 +19,7 @@ declare global {
 	// Creator Responses:
 	type CreateVideoResponse = {
 		videoId: number
-		videoTags: VideoTags[]
+		videoTags: VideoTag[]
 	}
 	type RetrieveMyContentResponse = { creatorContentList: MyContent[] }
 	type CreatorInfoResponse = {
