@@ -1,5 +1,6 @@
 import _ from "lodash"
 import { useState } from "react"
+import SingleHashtag from "./single-hashtag"
 import { useActualDateFormatter, useRelativeDateFormatter } from "../../../hooks/date-formatter"
 
 interface Props {
@@ -31,14 +32,26 @@ export default function VideoDescription(props: Props) {
 				<div>{actualDateFormatter(video.createdAt)}</div>
 				<div>{video.description}</div>
 			</div>
-			<div className="my-2 flex justify-end">
-				<span
-					className="rounded-lg cursor-pointer p-2 font-medium
-					bg-zinc-300 dark:bg-zinc-800 hover:bg-zinc-400 hover:dark:bg-zinc-900"
-					onClick={() => setIsOpen(false)}
-				>
-					Collapse
-				</span>
+			<div className="my-2">
+				<div className="flex flex-row justify-between items-center">
+					<div className="flex flex-row">
+						{video.videoTags.map(videoTag => (
+							<SingleHashtag
+								key={videoTag}
+								hashtag={videoTag}
+							/>
+						))}
+					</div>
+					<div className="flex justify-end">
+						<span
+							className="rounded-lg cursor-pointer p-2 font-medium bg-zinc-300 dark:bg-zinc-800
+							hover:bg-zinc-400 hover:dark:bg-zinc-900"
+							onClick={() => setIsOpen(false)}
+						>
+							Collapse
+						</span>
+					</div>
+				</div>
 			</div>
 		</div>
 	)

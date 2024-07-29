@@ -18,7 +18,7 @@ function HomePageCreatorsMap() {
 					))}
 				</div>
 			</div>
-			<div className="border-b my-3"/>
+			<div className="border-b my-3 dark:border-zinc-700 border-zinc-300"/>
 		</>
 	)
 }
