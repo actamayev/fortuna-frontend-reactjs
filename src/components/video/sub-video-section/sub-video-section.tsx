@@ -2,10 +2,10 @@ import { useCallback } from "react"
 import LikeButton from "./like-button"
 import VideoDescription from "./video-description"
 import ShareVideoButton from "./share-video-button"
+import ReportVideoButton from "./report-video-button"
 import { addDefiniteLeadingAt } from "../../../utils/leading-at-operations"
 import useNavigateToCreatorPage from "../../../hooks/navigate/navigate-to-creator-page"
 import ShowUserProfileImageOrDefaultImage from "../../show-user-profile-image-or-default-image"
-import ReportVideoButton from "./report-video-button"
 
 interface Props {
 	video: UrlExtendedSingleVideoData
