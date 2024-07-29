@@ -1,10 +1,9 @@
 import { observer } from "mobx-react"
-import { FaTimes } from "react-icons/fa"
 import { useCallback, useRef, useState } from "react"
 import FormGroup from "../../form-group"
 import Button from "../../buttons/button"
+import ModalHeader from "../../modal-header"
 import useReportVideo from "../../../hooks/videos/report-video"
-import HoverOutlineComponent from "../../hover-outline-component"
 import useClickOutsideModalUseEffect from "../../../hooks/click-outside/click-outside-modal-use-effect"
 
 interface Props {
@@ -32,18 +31,10 @@ function ReportVideoModal(props: Props) {
 				className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg w-2/3 max-h-full overflow-visible"
 				onClick={e => e.stopPropagation()}
 			>
-				<div className="flex justify-between items-center px-3 pt-1.5 border-b border-zinc-200 dark:border-zinc-700">
-					<div className="text-lg font-bold">
-						Report Video
-					</div>
-					<HoverOutlineComponent
-						classes="relative flex items-center justify-center inline-block"
-						onClickAction={toggleModalOpen}
-						circlePixelSize="33px"
-					>
-						<FaTimes />
-					</HoverOutlineComponent>
-				</div>
+				<ModalHeader
+					modalTitle="Report Title"
+					toggleModalOpen={toggleModalOpen}
+				/>
 				<div className="p-3">
 					<div className="flex flex-col">
 						<div>
