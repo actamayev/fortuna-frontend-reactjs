@@ -25,8 +25,8 @@ export default class SearchDataService {
 		)
 	}
 
-	async getVideosByTag(videoTag: string): Promise<AxiosResponse<VideoTagResponse | NonSuccessResponse>> {
-		return await this.httpClient.http.get<VideoTagResponse | NonSuccessResponse>(
+	async getVideosByTag(videoTag: string): Promise<AxiosResponse<VideoTagResponse | ErrorResponses>> {
+		return await this.httpClient.http.get<VideoTagResponse | ErrorResponses>(
 			`${this.pathHeader}/get-videos-by-tag/${videoTag}`
 		)
 	}

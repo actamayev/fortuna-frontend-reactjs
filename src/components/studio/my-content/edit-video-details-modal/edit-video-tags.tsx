@@ -1,6 +1,7 @@
 import { observer } from "mobx-react"
 import { useCallback, useState } from "react"
 import FormGroup from "../../../form-group"
+import cleanVideoTag from "../../../../utils/clean-video-tag"
 import SingleVideoTagInStudio from "./single-video-tag-in-studio"
 import useAddVideoTag from "../../../../hooks/creator/video-tag/add-video-tag"
 
@@ -28,8 +29,7 @@ function EditVideoTags(props: Props) {
 
 	const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value
-		const sanitizedValue = value.replace(/[#?&/@]/g, "")
-		const limitedValue = sanitizedValue.slice(0, 50)
+		const limitedValue = cleanVideoTag(value)
 		setVideoTag(limitedValue)
 	}, [])
 
