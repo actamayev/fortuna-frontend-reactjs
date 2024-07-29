@@ -1,9 +1,8 @@
 import { observer } from "mobx-react"
-import { FaTimes } from "react-icons/fa"
 import { useEffect, useRef, useState } from "react"
+import ModalHeader from "../../../../modal-header"
 import ActiveSocialLinks from "./active-social-links"
 import AvailableSocialLinks from "./available-social-links"
-import HoverOutlineComponent from "../../../../hover-outline-component"
 import { useCreatorContext } from "../../../../../contexts/creator-context"
 import useClickOutsideModalUseEffect from "../../../../../hooks/click-outside/click-outside-modal-use-effect"
 
@@ -30,18 +29,10 @@ function SocialLinksModal(props: Props) {
 				className="bg-white dark:bg-zinc-800 rounded-lg shadow-lg w-1/3"
 				onClick={e => e.stopPropagation()}
 			>
-				<div className="flex justify-between items-center px-3 pt-1 border-b border-zinc-200 dark:border-zinc-700">
-					<h2 className="text-lg font-bold">
-                        Social Links
-					</h2>
-					<HoverOutlineComponent
-						classes="relative flex items-center justify-center inline-block"
-						onClickAction={toggleModalOpen}
-						circlePixelSize="33px"
-					>
-						<FaTimes />
-					</HoverOutlineComponent>
-				</div>
+				<ModalHeader
+					modalTitle="Social Links"
+					toggleModalOpen={toggleModalOpen}
+				/>
 				<div className="p-3">
 					<ActiveSocialLinks
 						tempSocialLinks={tempSocialLinks}

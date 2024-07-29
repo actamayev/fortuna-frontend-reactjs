@@ -2,26 +2,24 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useEffect, useRef, useState } from "react"
 import SaveButton from "../../save-button"
-import { useCreatorContext } from "../../../../contexts/creator-context"
 import useEditVideoDescription from "../../../../hooks/creator/video-description/edit-video-description"
 import useAssignDefaultVideoDescription from "../../../../hooks/creator/video-description/assign-default-video-description"
 
 interface Props {
-	videoUUID: string
+	content: MyContent
 }
 
 function VideoDescriptionTextInput(props: Props) {
-	const { videoUUID } = props
+	const { content } = props
 	const maxLength = 5000
-	const creatorClass = useCreatorContext()
 	const textAreaRef = useRef<HTMLTextAreaElement>(null)
 	const [videoDescription, setVideoDescription] = useState("")
 	const editVideoDescription = useEditVideoDescription()
 	const assignDefaultVideoDescription = useAssignDefaultVideoDescription()
 
 	useEffect(() => {
-		assignDefaultVideoDescription(videoUUID, setVideoDescription)
-	}, [assignDefaultVideoDescription, videoUUID])
+		assignDefaultVideoDescription(content.uuid, setVideoDescription)
+	}, [assignDefaultVideoDescription, content.uuid])
 
 	useEffect(() => {
 		if (!textAreaRef.current) return
@@ -30,9 +28,9 @@ function VideoDescriptionTextInput(props: Props) {
 	}, [videoDescription])
 
 	const handleSaveVideoDescription = useCallback(async () => {
-		if (!_.isEmpty(videoDescription)) await editVideoDescription(videoUUID, videoDescription, setVideoDescription)
-		else assignDefaultVideoDescription(videoUUID, setVideoDescription)
-	}, [videoDescription, editVideoDescription, videoUUID, assignDefaultVideoDescription])
+		if (!_.isEmpty(videoDescription)) await editVideoDescription(content, videoDescription, setVideoDescription)
+		else assignDefaultVideoDescription(content.uuid, setVideoDescription)
+	}, [videoDescription, editVideoDescription, content, assignDefaultVideoDescription])
 
 	const handleChange = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
 		const value = event.target.value
@@ -70,7 +68,7 @@ function VideoDescriptionTextInput(props: Props) {
 					{videoDescription.length}/{maxLength}
 				</span>
 			</div>
-			{(!_.isEmpty(videoDescription) && (videoDescription !== creatorClass.contextForMyContent(videoUUID)?.description)) && (
+			{(!_.isEmpty(videoDescription) && (videoDescription !== content.description)) && (
 				<SaveButton
 					handleSaveButton={handleSaveVideoDescription}
 					extraClasses="mt-1 ml-2"

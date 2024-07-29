@@ -2,6 +2,7 @@ import { useCallback } from "react"
 import LikeButton from "./like-button"
 import VideoDescription from "./video-description"
 import ShareVideoButton from "./share-video-button"
+import ReportVideoButton from "./report-video-button"
 import { addDefiniteLeadingAt } from "../../../utils/leading-at-operations"
 import useNavigateToCreatorPage from "../../../hooks/navigate/navigate-to-creator-page"
 import ShowUserProfileImageOrDefaultImage from "../../show-user-profile-image-or-default-image"
@@ -42,8 +43,11 @@ export default function SubVideoSection(props: Props) {
 								{channelName}
 							</span>
 						</div>
-						<div className="flex items-center space-x-2">
+						<div className="flex items-center">
 							<ShareVideoButton />
+							<div className="mr-2">
+								<ReportVideoButton video={video}/>
+							</div>
 							<LikeButton video={video} />
 						</div>
 					</div>

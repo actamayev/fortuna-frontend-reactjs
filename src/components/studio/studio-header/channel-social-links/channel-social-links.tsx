@@ -7,9 +7,7 @@ export default function ChannelSocialLinks() {
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	useEscapeListenerUseEffect(isModalOpen, () => setIsModalOpen(false))
 
-	const toggleModalOpen = useCallback(() => {
-		setIsModalOpen(prev => !prev)
-	}, [])
+	const toggleModalOpen = useCallback(() => setIsModalOpen(prev => !prev), [])
 
 	return (
 		<div className="flex">

@@ -6,7 +6,7 @@ import { useNotificationsContext } from "../../../contexts/notifications-context
 import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 
 export default function useEditVideoName(): (
-	videoUUID: string,
+	myContent: MyContent,
 	videoName: string,
 	setVideoName: React.Dispatch<React.SetStateAction<string>>
 ) => Promise<void> {
@@ -15,23 +15,23 @@ export default function useEditVideoName(): (
 	const notificationsClass = useNotificationsContext()
 
 	return useCallback(async (
-		videoUUID: string,
+		myContent: MyContent,
 		videoName: string,
 		setVideoName: React.Dispatch<React.SetStateAction<string>>
 	): Promise<void> => {
 		if (videoName.length > 100) return
 
-		const existingVideo = creatorClass.contextForMyContent(videoUUID)
+		const existingVideo = creatorClass.contextForMyContent(myContent.uuid)
 		if (_.isUndefined(existingVideo) || existingVideo.videoName === videoName) return
 
 		try {
-			const response = await fortunaApiClient.creatorDataService.editVideoName(videoName, videoUUID)
+			const response = await fortunaApiClient.creatorDataService.editVideoName(videoName, myContent.videoId)
 
 			if (!_.isEqual(response.status, 200) || isNonSuccessResponse(response.data)) {
 				return
 			}
 
-			creatorClass.updateVideoProperty(videoUUID, "videoName", videoName)
+			creatorClass.updateVideoProperty(myContent.uuid, "videoName", videoName)
 			notificationsClass.setPositiveNotification("Video name updated")
 		} catch (error) {
 			console.error(error)

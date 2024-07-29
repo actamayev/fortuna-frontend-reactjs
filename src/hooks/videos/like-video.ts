@@ -22,13 +22,13 @@ export default function useLikeVideo(): (
 			) return
 			setIsLoading(true)
 			if (video.userLikeStatus === false)  {
-				const likeResponse = await fortunaApiClient.videoDataService.likeOrUnlikeVideo(video.uuid, true)
+				const likeResponse = await fortunaApiClient.videoDataService.likeOrUnlikeVideo(video.videoId, true)
 
 				if (!_.isEqual(likeResponse.status, 200) || isNonSuccessResponse(likeResponse.data)) {
 					throw new Error("Like failed")
 				}
 			} else {
-				const removeLikeResponse = await fortunaApiClient.videoDataService.likeOrUnlikeVideo(video.uuid, false)
+				const removeLikeResponse = await fortunaApiClient.videoDataService.likeOrUnlikeVideo(video.videoId, false)
 				if (!_.isEqual(removeLikeResponse.status, 200) || isNonSuccessResponse(removeLikeResponse.data)) {
 					throw new Error("Removal of like failed")
 				}

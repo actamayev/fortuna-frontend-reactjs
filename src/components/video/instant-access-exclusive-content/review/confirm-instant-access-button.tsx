@@ -1,30 +1,30 @@
 import _ from "lodash"
 import { observer } from "mobx-react"
-import { useParams } from "react-router-dom"
 import { useCallback, useMemo, useState } from "react"
 import Button from "../../../buttons/button"
 import usePurchaseExclusiveContentAccess from "../../../../hooks/market/purchase-exclusive-content-access"
+import getCurrentExclusiveAccessTier from "../../../../utils/video-access-tiers/get-current-exclusive-access-tier"
 import useConfirmSufficientFundsForInstantAccess from "../../../../hooks/solana/confirm-sufficient-funds-for-instant-access"
 
 interface Props {
-	tierNumber: number | null
+	video: UrlExtendedSingleVideoData
 }
 
 function ConfirmInstantAccessButton(props: Props) {
-	const { tierNumber } = props
-	const { videoUUID } = useParams<{ videoUUID: string }>()
+	const { video } = props
 	const [isLoading, setIsLoading] = useState(false)
 	const purchaseInstantAccess = usePurchaseExclusiveContentAccess()
 	const confirmSufficientFundsForInstantAccess = useConfirmSufficientFundsForInstantAccess()
+	const tierNumber = getCurrentExclusiveAccessTier(video)
 
 	const onClickButton = useCallback(async() => {
-		if (_.isUndefined(videoUUID) || _.isNull(tierNumber)) return
-		await purchaseInstantAccess(videoUUID, tierNumber, setIsLoading)
-	}, [purchaseInstantAccess, tierNumber, videoUUID])
+		if (_.isUndefined(video.uuid) || _.isNull(tierNumber)) return
+		await purchaseInstantAccess(video, tierNumber, setIsLoading)
+	}, [purchaseInstantAccess, tierNumber, video])
 
 	const doesUserHaveSufficientFunds = useMemo(() => {
-		return confirmSufficientFundsForInstantAccess(videoUUID)
-	}, [confirmSufficientFundsForInstantAccess, videoUUID])
+		return confirmSufficientFundsForInstantAccess(video.uuid)
+	}, [confirmSufficientFundsForInstantAccess, video.uuid])
 
 	return (
 		<Button
