@@ -39,8 +39,8 @@ function EditVideoDetailsModal(props: Props) {
 					</HoverOutlineComponent>
 				</div>
 				<div className="p-3">
-					<VideoNameTextInput videoUUID={content.uuid} />
-					<VideoDescriptionTextInput videoUUID={content.uuid} />
+					<VideoNameTextInput content={content} />
+					<VideoDescriptionTextInput content={content}  />
 					<ChangeVideoListingStatus content={content} />
 					<EditVideoTags content={content} />
 				</div>

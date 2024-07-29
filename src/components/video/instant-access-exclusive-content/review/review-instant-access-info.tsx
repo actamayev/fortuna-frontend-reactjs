@@ -8,7 +8,6 @@ import { useMarketContext } from "../../../../contexts/market-context"
 import ConfirmInstantAccessButton from "./confirm-instant-access-button"
 import ShowUsdOrSolPrice from "../../../usd-or-sol/show-usd-or-sol-price"
 import getTieredAccessPriceUsd from "../../../../utils/video-access-tiers/get-tiered-access-price-usd"
-import getCurrentExclusiveAccessTier from "../../../../utils/video-access-tiers/get-current-exclusive-access-tier"
 import ShowRemainingWalletBalanceAfterInstantAccessPurchase from "./show-remaining-wallet-balance-after-instant-access-purchase"
 
 function ReviewInstantAccessInfo() {
@@ -57,7 +56,7 @@ function ReviewInstantAccessInfo() {
 			</div>
 
 			<div className="flex justify-center mt-2">
-				<ConfirmInstantAccessButton tierNumber={getCurrentExclusiveAccessTier(video)}/>
+				<ConfirmInstantAccessButton video={video}/>
 			</div>
 		</>
 	)

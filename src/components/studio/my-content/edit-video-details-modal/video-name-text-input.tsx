@@ -2,30 +2,28 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { useCallback, useEffect, useState } from "react"
 import SaveButton from "../../save-button"
-import { useCreatorContext } from "../../../../contexts/creator-context"
 import useEditVideoName from "../../../../hooks/creator/video-name/edit-video-name"
 import useAssignDefaultVideoName from "../../../../hooks/creator/video-name/assign-default-video-name"
 
 interface Props {
-	videoUUID: string
+	content: MyContent
 }
 
 function VideoNameTextInput(props: Props) {
-	const { videoUUID } = props
+	const { content } = props
 	const maxLength = 100
 	const [videoName, setVideoName] = useState("")
 	const editVideoName = useEditVideoName()
 	const assignDefaultVideoName = useAssignDefaultVideoName()
-	const creatorClass = useCreatorContext()
 
 	useEffect(() => {
-		assignDefaultVideoName(videoUUID, setVideoName)
-	}, [assignDefaultVideoName, videoUUID])
+		assignDefaultVideoName(content.uuid, setVideoName)
+	}, [assignDefaultVideoName, content.uuid])
 
 	const handleSaveVideoName = useCallback(async () => {
-		if (!_.isEmpty(videoName)) await editVideoName(videoUUID, videoName, setVideoName)
-		else assignDefaultVideoName(videoUUID, setVideoName)
-	}, [videoName, editVideoName, videoUUID, assignDefaultVideoName])
+		if (!_.isEmpty(videoName)) await editVideoName(content, videoName, setVideoName)
+		else assignDefaultVideoName(content.uuid, setVideoName)
+	}, [videoName, editVideoName, content, assignDefaultVideoName])
 
 	const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value
@@ -62,7 +60,7 @@ function VideoNameTextInput(props: Props) {
 					{videoName.length}/{maxLength}
 				</span>
 			</div>
-			{(!_.isEmpty(videoName) && (videoName !== creatorClass.contextForMyContent(videoUUID)?.videoName)) && (
+			{(!_.isEmpty(videoName) && (videoName !== content.videoName)) && (
 				<SaveButton
 					handleSaveButton={handleSaveVideoName}
 					extraClasses="mt-0.5 ml-2"

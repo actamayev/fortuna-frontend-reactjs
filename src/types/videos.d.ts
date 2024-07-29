@@ -1,5 +1,6 @@
 declare global {
 	interface VideoDataLessVideoUrlResponse {
+		videoId: number
 		videoName: string
 		videoListingStatus: PostedVideoListingStatuses
 		description: string

@@ -37,7 +37,11 @@ export default class VideoDataService {
 		)
 	}
 
-	async likeOrUnlikeVideo(videoUUID: string, newLikeStatus: boolean): Promise<AxiosResponse<AllCommonResponses>> {
-		return await this.httpClient.http.post<AllCommonResponses>(`${this.pathHeader}/like-or-unlike-video`, { videoUUID, newLikeStatus })
+	async likeOrUnlikeVideo(videoId: number, newLikeStatus: boolean): Promise<AxiosResponse<AllCommonResponses>> {
+		return await this.httpClient.http.post<AllCommonResponses>(`${this.pathHeader}/like-or-unlike-video`, { videoId, newLikeStatus })
+	}
+
+	async reportVideo(videoId: number, reportMessage?: string): Promise<AxiosResponse<AllCommonResponses>> {
+		return await this.httpClient.http.post<AllCommonResponses>(`${this.pathHeader}/report-video`, { videoId, reportMessage })
 	}
 }

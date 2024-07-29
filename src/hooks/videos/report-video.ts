@@ -4,7 +4,7 @@ import { useVideoContext } from "../../contexts/video-context"
 import { isNonSuccessResponse } from "../../utils/type-checks"
 import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
 
-export default function useLikeVideo(): (
+export default function useReportVideo(): (
 	video: UrlExtendedSingleVideoData,
 	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => Promise<void> {
@@ -21,17 +21,10 @@ export default function useLikeVideo(): (
 				video.isUserAbleToAccessVideo === false
 			) return
 			setIsLoading(true)
-			if (video.userLikeStatus === false)  {
-				const likeResponse = await fortunaApiClient.videoDataService.likeOrUnlikeVideo(video.videoId, true)
+			const likeResponse = await fortunaApiClient.videoDataService.reportVideo(video.videoId)
 
-				if (!_.isEqual(likeResponse.status, 200) || isNonSuccessResponse(likeResponse.data)) {
-					throw new Error("Like failed")
-				}
-			} else {
-				const removeLikeResponse = await fortunaApiClient.videoDataService.likeOrUnlikeVideo(video.videoId, false)
-				if (!_.isEqual(removeLikeResponse.status, 200) || isNonSuccessResponse(removeLikeResponse.data)) {
-					throw new Error("Removal of like failed")
-				}
+			if (!_.isEqual(likeResponse.status, 200) || isNonSuccessResponse(likeResponse.data)) {
+				throw new Error("Like failed")
 			}
 			videoClass.updateVideoDetailsAfterLikeOrRemoveLike(video.uuid)
 		} catch (error) {
