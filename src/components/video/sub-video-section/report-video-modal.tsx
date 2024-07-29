@@ -32,14 +32,14 @@ function ReportVideoModal(props: Props) {
 				onClick={e => e.stopPropagation()}
 			>
 				<ModalHeader
-					modalTitle="Report Title"
+					modalTitle="Report Video"
 					toggleModalOpen={toggleModalOpen}
 				/>
 				<div className="p-3">
 					<div className="flex flex-col">
 						<div>
 							<FormGroup
-								label="Report Message"
+								label="Message"
 								value={reportMessage}
 								onChange={(event) => setReportMessage(event.target.value)}
 								maxLength={maxLength}
