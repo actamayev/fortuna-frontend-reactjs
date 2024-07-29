@@ -20,9 +20,7 @@ function SingleMyContent(props: Props) {
 	const [isVideoEditingModalOpen, setIsVideoEditingModalOpen] = useState(false)
 	useEscapeListenerUseEffect(isVideoEditingModalOpen, () => setIsVideoEditingModalOpen(false))
 
-	const toggleModalOpen = useCallback(() => {
-		setIsVideoEditingModalOpen(prev => !prev)
-	}, [])
+	const toggleModalOpen = useCallback(() => setIsVideoEditingModalOpen(prev => !prev), [])
 
 	return (
 		<div className="grid grid-cols-12 gap-4 bg-inherit py-2 border-b border-zinc-200 dark:border-zinc-800">

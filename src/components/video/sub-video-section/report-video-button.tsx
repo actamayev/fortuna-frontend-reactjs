@@ -28,9 +28,7 @@ function ReportVideoButton(props: Props) {
 		setIsModalOpen(true)
 	}, [authClass.isLoggedIn, navigate])
 
-	const toggleModalOpen = useCallback(() => {
-		setIsModalOpen(prev => !prev)
-	}, [])
+	const toggleModalOpen = useCallback(() => setIsModalOpen(prev => !prev), [])
 
 	if (_.isUndefined(video.videoUrl)) {
 		return (
