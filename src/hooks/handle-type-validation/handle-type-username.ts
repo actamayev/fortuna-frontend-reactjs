@@ -4,9 +4,9 @@ export default function useHandleTypeUsername(): (event: React.ChangeEvent<HTMLI
 	return useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		try {
 			const newValue = event.target.value
-			// Regex to remove any #, ?, &, / characters
-			const sanitizedValue = newValue.replace(/[#?&/@]/g, "")
-			return sanitizedValue
+			// Regex to remove any  % / ? # [ ] @ ! $ & ' ( ) * + , ; = ^ characters
+			// eslint-disable-next-line no-useless-escape
+			return newValue.replace(/[\/\?%#@\[\]!$&'()*+,;=^]/g, "")
 		} catch (error) {
 			console.error(error)
 			return ""
