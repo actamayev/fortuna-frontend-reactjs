@@ -82,15 +82,27 @@ export default class CreatorDataService {
 		)
 	}
 
-	async featureVideo(videoIdToFeature: number, videoIdToUnfeature?: number): Promise<AxiosResponse<ErrorResponses | SuccessResponse>> {
-		return await this.httpClient.http.post<ErrorResponses | SuccessResponse>(
+	async featureVideo(videoIdToFeature: number, videoIdToUnfeature?: number): Promise<AxiosResponse<SuccessResponse | ErrorResponses>> {
+		return await this.httpClient.http.post<SuccessResponse | ErrorResponses>(
 			`${this.pathHeader}/feature-video`, { videoIdToFeature, videoIdToUnfeature }
 		)
 	}
 
-	async unfeatureVideo(videoIdToUnfeature: number): Promise<AxiosResponse<ErrorResponses | SuccessResponse>> {
-		return await this.httpClient.http.post<ErrorResponses | SuccessResponse>(
+	async unfeatureVideo(videoIdToUnfeature: number): Promise<AxiosResponse<SuccessResponse | ErrorResponses>> {
+		return await this.httpClient.http.post<SuccessResponse | ErrorResponses>(
 			`${this.pathHeader}/unfeature-video`, { videoIdToUnfeature }
+		)
+	}
+
+	async addVideoTag(videoTag: string, videoId: number): Promise<AxiosResponse<AddVideoTag | ErrorResponses>> {
+		return await this.httpClient.http.post<AddVideoTag | ErrorResponses>(
+			`${this.pathHeader}/add-video-tag`, { videoTag, videoId }
+		)
+	}
+
+	async deleteVideoTag(videoTagId: number, videoId: number): Promise<AxiosResponse<SuccessResponse | ErrorResponses>> {
+		return await this.httpClient.http.post<SuccessResponse | ErrorResponses>(
+			`${this.pathHeader}/delete-video-tag`, { videoTagId, videoId }
 		)
 	}
 }

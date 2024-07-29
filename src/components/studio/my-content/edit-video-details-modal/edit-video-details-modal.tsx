@@ -1,6 +1,7 @@
 import { useRef } from "react"
 import { observer } from "mobx-react"
 import { FaTimes } from "react-icons/fa"
+import EditVideoTags from "./edit-video-tags"
 import VideoNameTextInput from "./video-name-text-input"
 import HoverOutlineComponent from "../../../hover-outline-component"
 import ChangeVideoListingStatus from "./change-video-listing-status"
@@ -41,6 +42,7 @@ function EditVideoDetailsModal(props: Props) {
 					<VideoNameTextInput videoUUID={content.uuid} />
 					<VideoDescriptionTextInput videoUUID={content.uuid} />
 					<ChangeVideoListingStatus content={content} />
+					<EditVideoTags content={content} />
 				</div>
 			</div>
 		</div>

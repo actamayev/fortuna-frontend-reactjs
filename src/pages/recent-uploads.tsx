@@ -1,16 +1,19 @@
-import { useState } from "react"
+import { useMemo } from "react"
 import { observer } from "mobx-react"
 import PageHelmet from "../components/helmet/page-helmet"
 import { useVideoContext } from "../contexts/video-context"
-import useRetrieveRecentUploads from "../hooks/videos/retrieve-recent-uploads"
 import SingleRecentUploadsCard from "../components/recent-uploads/single-recent-uploads-card"
+import useRetrieveRecentUploadsUseEffect from "../hooks/videos/retrieve-recent-uploads-use-effect"
 
 function RecentUploads() {
 	const videoClass = useVideoContext()
-	const [areVideosLoading, setAreVideosLoading] = useState(false)
-	useRetrieveRecentUploads(setAreVideosLoading)
+	useRetrieveRecentUploadsUseEffect()
 
-	if (areVideosLoading === true) {
+	const areRecentlyUploadedBeingRetrieved = useMemo(() => {
+		return videoClass.areRecentlyUploadedBeingRetrieved
+	}, [videoClass.areRecentlyUploadedBeingRetrieved])
+
+	if (areRecentlyUploadedBeingRetrieved === true) {
 		return <div className="dark:text-zinc-200">Loading...</div>
 	}
 

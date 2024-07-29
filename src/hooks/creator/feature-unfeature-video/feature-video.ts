@@ -1,9 +1,9 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import { isErrorResponses } from "../../utils/type-checks"
-import { useCreatorContext } from "../../contexts/creator-context"
-import { useNotificationsContext } from "../../contexts/notifications-context"
-import { useApiClientContext } from "../../contexts/fortuna-api-client-context"
+import { isErrorResponses } from "../../../utils/type-checks"
+import { useCreatorContext } from "../../../contexts/creator-context"
+import { useNotificationsContext } from "../../../contexts/notifications-context"
+import { useApiClientContext } from "../../../contexts/fortuna-api-client-context"
 
 export default function useFeatureVideo(): (
 	videoIdToFeature: number

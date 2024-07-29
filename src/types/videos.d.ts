@@ -18,6 +18,7 @@ declare global {
 		numberOfLikes: number
 		userLikeStatus: boolean
 		channelName: string
+		videoTags: string[]
 		videoUrlRetrievalAttempted?: boolean
 	}
 

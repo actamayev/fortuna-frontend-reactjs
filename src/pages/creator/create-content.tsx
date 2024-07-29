@@ -6,6 +6,7 @@ import CreateNewVideoTemplate from "../../components/templates/create-new-video-
 import VideoNameInput from "../../components/create-new-video-information/video-name-input"
 import VideoUploader from "../../components/create-new-video-information/upload-media/video-uploader"
 import ImageUploader from "../../components/create-new-video-information/upload-media/image-uploader"
+import AddVideoTagsSection from "../../components/create-new-video-information/add-video-tags-section"
 import UploadNewVideoButton from "../../components/create-new-video-information/upload-new-video-button"
 import VideoDescriptionInput from "../../components/create-new-video-information/video-description-input"
 import ExclusiveContentTierMap from "../../components/create-new-video-information/exclusive-content/exclusive-content-tier-map"
@@ -37,7 +38,9 @@ function CreateContent() {
 
 				<VideoDescriptionInput />
 
-				<div className="text-zinc-950 dark:text-zinc-200">
+				<AddVideoTagsSection />
+
+				<div className="text-zinc-950 dark:text-zinc-200 mt-2 mb-1">
 					<IsContentExclusiveSlider />
 				</div>
 				<div className="flex w-full text-zinc-950 dark:text-zinc-200">

@@ -2,9 +2,9 @@ import _ from "lodash"
 import { observer } from "mobx-react"
 import { FaThumbtack } from "react-icons/fa"
 import { useCallback, useMemo } from "react"
-import useFeatureVideo from "../../../../hooks/creator/feature-video"
 import { useCreatorContext } from "../../../../contexts/creator-context"
-import useUnfeatureVideo from "../../../../hooks/creator/unfeature-video"
+import useFeatureVideo from "../../../../hooks/creator/feature-unfeature-video/feature-video"
+import useUnfeatureVideo from "../../../../hooks/creator/feature-unfeature-video/unfeature-video"
 
 interface Props {
 	videoId: number

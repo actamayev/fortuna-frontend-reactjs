@@ -24,4 +24,10 @@ export default class SearchDataService {
 			`${this.pathHeader}/general-search/${searchTerm}`, { headers: { "No-Auth-Required": "true" }}
 		)
 	}
+
+	async getVideosByTag(videoTag: string): Promise<AxiosResponse<VideoTagResponse | ErrorResponses>> {
+		return await this.httpClient.http.get<VideoTagResponse | ErrorResponses>(
+			`${this.pathHeader}/get-videos-by-tag/${videoTag}`
+		)
+	}
 }

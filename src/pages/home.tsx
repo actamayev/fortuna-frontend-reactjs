@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from "react"
 import PageHelmet from "../components/helmet/page-helmet"
 import HomePageVideosMap from "../components/home-page/home-page-videos-map"
-import useRetrieveHomePageVideos from "../hooks/videos/retrieve-home-page-data"
 import HomePageCreatorsMap from "../components/home-page/home-page-creators-map"
 import HomeScreenSearchBar from "../components/search-bars/home-screen-search-bar"
 import FilterHomePageVideos from "../components/home-page/filter-home-page-videos"
+import useRetrieveHomePageVideos from "../hooks/videos/retrieve-home-page-data-use-effect"
 
 export default function Home() {
 	const [minHeight, setMinHeight] = useState("100vh")
