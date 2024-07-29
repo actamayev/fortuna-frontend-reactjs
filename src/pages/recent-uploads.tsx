@@ -1,3 +1,4 @@
+import { useMemo } from "react"
 import { observer } from "mobx-react"
 import PageHelmet from "../components/helmet/page-helmet"
 import { useVideoContext } from "../contexts/video-context"
@@ -8,7 +9,11 @@ function RecentUploads() {
 	const videoClass = useVideoContext()
 	useRetrieveRecentUploads()
 
-	if (videoClass.areRecentlyUploadedBeingRetrieved === true) {
+	const areRecentlyUploadedBeingRetrieved = useMemo(() => {
+		return videoClass.areRecentlyUploadedBeingRetrieved
+	}, [videoClass.areRecentlyUploadedBeingRetrieved])
+
+	if (areRecentlyUploadedBeingRetrieved === true) {
 		return <div className="dark:text-zinc-200">Loading...</div>
 	}
 
