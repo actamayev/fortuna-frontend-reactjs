@@ -15,7 +15,7 @@ export default function SingleHashtag(props: Props) {
 
 	return (
 		<div
-			className="cursor-pointer mr-2 p-1 rounded-md bg-zinc-300 dark:bg-zinc-600 hover:bg-zinc-400 dark:hover:bg-zinc-500"
+			className="cursor-pointer mr-2 my-0.5 p-1 rounded-md bg-zinc-300 dark:bg-zinc-600 hover:bg-zinc-400 dark:hover:bg-zinc-500"
 			onClick={navigateToHashtagPageCallback}
 		>
 			#{hashtag}

@@ -34,7 +34,7 @@ export default function VideoDescription(props: Props) {
 			</div>
 			<div className="my-2">
 				<div className="flex flex-row justify-between items-center">
-					<div className="flex flex-row">
+					<div className="flex flex-row flex-wrap">
 						{video.videoTags.map(videoTag => (
 							<SingleHashtag
 								key={videoTag}
