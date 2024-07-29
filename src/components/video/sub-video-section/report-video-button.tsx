@@ -33,7 +33,7 @@ function ReportVideoButton(props: Props) {
 	if (_.isUndefined(video.videoUrl)) {
 		return (
 			<HoverNotAllowedComponent>
-				<IoFlag />
+				<IoFlag size={22}/>
 			</HoverNotAllowedComponent>
 		)
 	}
@@ -44,7 +44,7 @@ function ReportVideoButton(props: Props) {
 				classes="flex items-center justify-center"
 				onClickAction={reportVideoCallback}
 			>
-				<IoFlag />
+				<IoFlag size={22}/>
 			</HoverOutlineComponent>
 			{isModalOpen && (
 				<ReportVideoModal
