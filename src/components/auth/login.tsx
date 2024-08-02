@@ -12,7 +12,7 @@ import useRedirectKnownUser from "../../hooks/redirects/redirect-known-user"
 interface Props {
 	whereToNavigate: PageNames
 	setLoginOrRegister?: React.Dispatch<React.SetStateAction<LoginOrRegister>>
-	customStyles?: Object
+	customStyles?: object
 }
 
 export default function Login(props: Props) {

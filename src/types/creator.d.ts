@@ -1,4 +1,4 @@
-import { SocialPlatforms } from "../utils/platform-icons"
+import type { SocialPlatforms } from "../utils/platform-icons"
 
 declare global {
 	interface CommonNewVideoDetails {

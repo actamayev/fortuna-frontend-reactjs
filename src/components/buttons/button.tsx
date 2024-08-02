@@ -7,7 +7,7 @@ interface Props {
 	disabled?: boolean
 	onClick?: (e: any) => void | Promise<void>
 	className?: string
-	style?: Object
+	style?: object
 }
 
 export default function Button (props: Props) {

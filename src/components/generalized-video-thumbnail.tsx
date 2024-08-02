@@ -10,7 +10,7 @@ interface Props {
 		videoListingStatus: AllVideoListingStatuses
 	}
 	showSoldOutSticker?: boolean
-	imageStyles?: Object
+	imageStyles?: object
 }
 
 // TODO: Figure out how to make right-clicking the image give the option to open in a new tab.
