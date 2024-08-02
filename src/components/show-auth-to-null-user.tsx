@@ -4,7 +4,7 @@ import Register from "./auth/register"
 
 interface Props {
 	whereToNavigate: PageNames
-	customStyles?: Object
+	customStyles?: object
 }
 
 export default function ShowAuthToNullUser(props: Props) {

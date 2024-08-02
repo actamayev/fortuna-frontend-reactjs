@@ -1,6 +1,6 @@
 interface Props {
 	title: string
-	customStyles?: Object
+	customStyles?: object
 	children: React.ReactNode
 }
 
