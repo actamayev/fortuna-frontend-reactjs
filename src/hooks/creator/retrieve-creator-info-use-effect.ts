@@ -27,8 +27,7 @@ export default function useRetrieveCreatorInfoUseEffect(): void {
 		} finally {
 			creatorClass.setIsRetrievingCreatorInfo(false)
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [creatorClass, creatorClass.isRetrievingCreatorInfo, fortunaApiClient.httpClient.accessToken, fortunaApiClient.creatorDataService])
+	}, [creatorClass, fortunaApiClient.httpClient.accessToken, fortunaApiClient.creatorDataService])
 
 	useEffect(() => {
 		void retrieveCreatorInfo()
