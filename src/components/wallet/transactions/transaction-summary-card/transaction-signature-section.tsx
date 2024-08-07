@@ -12,7 +12,7 @@ function ShowTransactionSignature(props: Props) {
 	const notificationsClass = useNotificationsContext()
 
 	const explorerUrl = useMemo(() => {
-		return `https://explorer.solana.com/tx/${transactionSignature}?cluster=devnet`
+		return `https://explorer.solana.com/tx/${transactionSignature}`
 	}, [transactionSignature])
 
 	const copyToClipboard = useCallback(async () => {

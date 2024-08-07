@@ -17,7 +17,7 @@ export default function useRetrieveWalletBalance(): () => Promise<void> {
 			) return
 
 			solanaClass.setIsRetrievingWalletDetails(true)
-			const connection = new Connection(clusterApiUrl("devnet"), "confirmed")
+			const connection = new Connection(clusterApiUrl("mainnet-beta"), "confirmed")
 
 			const balanceInLamports = await connection.getBalance(solanaClass.walletPublicKey)
 			const balanceInSol = balanceInLamports / LAMPORTS_PER_SOL
