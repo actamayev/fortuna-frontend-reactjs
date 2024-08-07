@@ -1,7 +1,6 @@
 import Deposits from "./deposits"
 import Withdrawals from "./withdrawals"
 import WalletBalance from "../wallet-balance"
-import AddFundsButton from "../add-funds-button"
 import LastSolanaPrice from "./last-solana-price"
 import ShowMyPublicKey from "../show-my-public-key"
 import MoneyTransferButton from "../transfer-funds/money-transfer-button"
@@ -20,7 +19,6 @@ export default function WalletSummaryBody(props: Props) {
 			<div className="flex justify-between mt-2">
 				<ShowMyPublicKey />
 				<div className="flex space-x-4">
-					<div><AddFundsButton /></div>
 					<div><MoneyTransferButton /></div>
 				</div>
 			</div>
