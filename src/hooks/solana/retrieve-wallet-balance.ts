@@ -1,6 +1,6 @@
 import _ from "lodash"
 import { useCallback } from "react"
-import { Connection, LAMPORTS_PER_SOL, clusterApiUrl } from "@solana/web3.js"
+import { Connection, LAMPORTS_PER_SOL } from "@solana/web3.js"
 import { useSolanaContext } from "../../contexts/solana-context"
 import { usePersonalInfoContext } from "../../contexts/personal-info-context"
 
@@ -17,7 +17,8 @@ export default function useRetrieveWalletBalance(): () => Promise<void> {
 			) return
 
 			solanaClass.setIsRetrievingWalletDetails(true)
-			const connection = new Connection(clusterApiUrl("mainnet-beta"), "confirmed")
+			const clusterUrl = "https://sleek-sparkling-waterfall.solana-mainnet.quiknode.pro/2304791a7554e508e4d429ba1adb4f91d5a9c7c5"
+			const connection = new Connection(clusterUrl, "confirmed")
 
 			const balanceInLamports = await connection.getBalance(solanaClass.walletPublicKey)
 			const balanceInSol = balanceInLamports / LAMPORTS_PER_SOL
